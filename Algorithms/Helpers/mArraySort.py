@@ -33,13 +33,13 @@ def merge(arr,start,mid,end):
 def mergeSort(arr:list) -> None:
     
     start = 0
-    end = len(arr)-1
+    end = len(arr)
     mid = (start + (end-start))//2
 
     mergeSort(arr[start:mid])                # from start -> mid;
     print("Merge Sort Left:",arr)
 
-    mergeSort(arr[mid+1:end])              # from mid -> end;
+    mergeSort(arr[mid+1:end])                # from mid -> end;
     print("Merge Sort Right:",arr)
 
     merge(arr,start,mid,end)
