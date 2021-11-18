@@ -1,19 +1,27 @@
 from Helpers.mArraySort import *
 
+
+## PRINTING ARRAY;
 def printArray(arr, message=None):
-    print(f"{message}") if message else print("Given Array...")
+    print(f"{message}") if message else print("Array...")
     for key,value in enumerate(arr):
         # print(f"{key} => {value}")
         print(value, end=" ")
     print("\n")
 
 
-def main():
+## MERGE SORT EXPL;
+def mergeSortExpl():
     arr = [9,0,8,2,3,4,6,51,29,87,10,23]
     printArray(arr,"Before...")
     mergeSort(arr)
-    printArray(arr,"After...")
+    printArray(arr,"After...")    
+    
+
+def main():
+    mergeSortExpl()             # Merge Sort Expl;
 
 
 if __name__ == "__main__":
     main()
+    
