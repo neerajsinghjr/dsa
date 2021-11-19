@@ -1,83 +1,52 @@
-# """
-# Merge Sort Algorithms...
-# """
+"""
+Array Sorting Algorithms :
+Merge Sort, Quick Sort, Counting Sort, Selection Sort, Insertion Sort, 
+"""
 
-# # MERGE(): USED TO MERGE THE MERGE-SHORT RECURSIVE CALL;
-# def merge(leftArr, rightArr):
-#     x = y = z = 0
-#     temp = []
-#     # Case 1: LeftArr == RigthArr
-#     while(x < len(leftArr) and y < len(rightArr)):
-#         if(leftArr[x] < rightArr[y]):
-#             temp.append(leftArr[x])
-#             print("leftArr:", leftArr[x])
-#             x += 1
-#         else:
-#             temp.append(rightArr[y])
-#             print("RightArr:", rightArr[x])
-#             y += 1
-#     # Case 2: LeftArr Greater
-#     while(x < len(leftArr)):
-#         temp.append(leftArr[x])
-#         print("leftArr:", leftArr[x])
-#         x += 1
-#     # Case 3: RigthArr Greater;
-#     while(y < len(rightArr)):
-#         temp.append(rightArr[y])
-#         print("RightArr:", rightArr[x])
-#         y += 1
-#     print("temp:", temp)
-#     # Case 4: Copying it back
-#     return temp
+## IMPLEMENTATION OF MergeSort() ALGORITHMS...
+def merge(left, right):
+    temp = []
+    x = y = z = 0
+    leftSize, rightSize = len(left), len(right)
+    while(x < leftSize and y < rightSize):
+        if(left[x] < right[y]):
+            temp.append(left[x])
+            x += 1
+        else:
+            temp.append(right[y])
+            y += 1
+    while(x < leftSize):
+        temp.append(left[x])
+        x += 1
+    while(y < rightSize):
+        temp.append(right[y])
+        y += 1
+    for x in range(len(temp)):
+        nums[x] = temp[x]
+    print("before return:",temp)
+    # return temp
 
 
-# # MERGESORT();
-# def mergeSort(arr:list) -> None:
-#     size = len(arr)
-#     if(size<=1):
-#         return arr
-#     else:
-#         mid = size//2
-#         leftArray = mergeSort(arr[:mid])           # from, start -> mid;
-#         print("left:",leftArray)
-#         rightArray = mergeSort(arr[mid:])          # from, mid -> end;
-#         print("right:",rightArray)
-#         # return merge(leftArray, rightArray)
-
-
-# def mergeSort(inp_arr):
-#     size = len(inp_arr)
-#     if size > 1:
-#         middle = size // 2
-#         left_arr = inp_arr[:middle]
-#         right_arr = inp_arr[middle:]
- 
-#         mergeSort(left_arr)
-#         mergeSort(right_arr)
- 
-#         p = 0
-#         q = 0
-#         r = 0
- 
-#         left_size = len(left_arr)
-#         right_size = len(right_arr)
-
-#         while p < left_size and q < right_size:
-#             if left_arr[p] < right_arr[q]:
-#               inp_arr[r] = left_arr[p]
-#               p += 1
-#             else:
-#                 inp_arr[r] = right_arr[q]
-#                 q += 1             
-#             r += 1
- 
+def mergeSort(nums):
+    size = len(nums)
+    if(size <= 1):
+        print("breakpoint:", nums)
+        return nums
+    else:
+        mid = size // 2
+        print("mid:",mid)
+        left = mergeSort(nums[:mid])                                      
+        print("to mid:",nums)
+        right = mergeSort(nums[mid:])
+        print("from mid:",nums[mid:])                             
+        # nums = merge(left, right)
+        # print("before return:", nums)
+        return merge(left, right)
         
-#         while p < left_size:
-#             inp_arr[r] = left_arr[p]
-#             p += 1
-#             r += 1
- 
-#         while q < right_size:
-#             inp_arr[r]=right_arr[q]
-#             q += 1
-#             r += 1
+
+## IMPLEMENTATION OF QuickSort() ALGORITHMS...
+def parition(nums):
+    pass
+
+def quickSort(nums):
+    pass
