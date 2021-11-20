@@ -10,16 +10,23 @@ def printArray(arr, message=None):
         print(value, end=" ")
     print("\n")
 
-
 ## MERGE SORT EXPL;
 def mergeSortExpl():
     # arr = [9,0,8,2,3,4,6,51,29,87,10,23]
     arr = [9,0,8,2]
     printArray(arr,"Before...")
-    temp = mergeSort(arr)
+    # arr = mergeSort(arr)                    ## MergeSort() ~V1
+    mergeSortV2(arr)
     printArray(arr,"After...")    
-    printArray(temp,"temp...")
-    
+
+
+## MERGE SORT LINKED LIST;
+def mergeSortLinkedList():
+    pass
+
+
+## Quick Sort 
+
 
 def main():
     mergeSortExpl()             # Merge Sort Expl;
