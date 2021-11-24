@@ -48,7 +48,25 @@ def mergeSort(nums):
 
 ## IMPLEMENTATION OF QuickSort() ALGORITHMS...
 def parition(nums):
-    pass
+    size = len(nums)
+    pivot = size-1
+    x = y = 0
+    for x in range(size-1):
+        if nums[x] < pivot:
+            nums[x], nums[y] = nums[y], nums[x]
+            y += 1
+    nums[y+1],pivot = pivot, nums[y+1]
+    return y+1
+        
 
 def quickSort(nums):
-    pass
+    size=len(nums)
+    if(size<=1):
+        return nums
+    else:
+        paritionIndex=parition(nums)
+        left = quickSort(nums[:paritionIndex-1])
+        print("left:", left)
+        right = quickSort(nums[paritionIndex+1:])
+        print("right:", right)
+        return 

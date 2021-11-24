@@ -16,8 +16,17 @@ def mergeSortExpl():
     printArray(arr,"After...")    
 
 
+## MERGE SORT EXPL;
+def quickSortExpl():
+    arr = [9,0,8,2,3,4,6,51,29,87,10,23]
+    printArray(arr,"Before...")
+    arr = mergeSort(arr)                    ## MergeSort() ~V1
+    printArray(arr,"After...")    
+
+
+##--- MAIN EXECUTION
 def main():
-    mergeSortExpl()             # Merge Sort Expl;
+    quickSortExpl()                         ## QuickSort()
 
 
 if __name__ == "__main__":
