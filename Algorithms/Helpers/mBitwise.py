@@ -145,11 +145,7 @@ def convertIntToBin(number):
 
 
 ## CHECK EVEN OR ODD IN NUMBER;
-
 def evenOrOdd(number=None) -> bool:
-    """
-    Even or Odd - Based on Bitwise Manipulation
-    """
     dataType = type(number)
     if dataType == list:
         for num in number:
@@ -166,3 +162,13 @@ def evenOrOdd(number=None) -> bool:
         return False
 
     return True
+
+
+## FLIP ALL SET TO UNSET BIT;
+def flipAllBits(num):
+    return (~num)^num
+
+
+## FLIP 32BIT INTEGER;
+def flip32BitInterger(num):
+    return (2**32-1)^num

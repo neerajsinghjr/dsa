@@ -1,7 +1,6 @@
-from mEvenOrOdd import *
-from mBitwise import *
 
 
+# GET NUMBER
 def getNumber(Message=None):
     if Message:
         return int(input(Message))
@@ -126,7 +125,6 @@ def countSetBit(number=None):
 def main():
     """
     BITWISE OPERATION FUNCTIONS...
-
     checkEvenOrOdd()		        ## Check Even or Odd;
     getBitNumber()				    ## GET A SPECIFIC BIT NUMBER;
     setBitNumber()				    ## SET A PARTICULAR BIT NUMBER;
@@ -141,9 +139,11 @@ def main():
     print(convertIntToBin(8))
     print("Program Terminated!")
     """
-    pass
+    print(flip32BitInterger(9))    
+    print(flipAllBits(-9))
 
 
 if __name__ == "__main__":
     main()
 
+    
