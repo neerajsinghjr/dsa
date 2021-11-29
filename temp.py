@@ -17,12 +17,26 @@ import time
 
 
 def main():
-    res = ""
-    print(res) if res else print("Empty!")
+    try:
+        res = ""
+        print(res) if res else print("Empty!")
+        
+    except(Exception) as e:
+        print(f"Program Stopped: {e}")
+    
+    else:
+        print("Program Executed: Success")
+
+    finally:
+        print("Program Terminated!")
+
         
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
+    startTime = time.time()
     main()
+    endTime = time.time()
+    print("Run Time:",endTime-startTime,"ms")
     print("#------------ Code Stop ----------------#")
     
