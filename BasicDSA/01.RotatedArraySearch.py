@@ -13,6 +13,7 @@ Output: [7,9,10,1,2,3,4,5,6]
 def rotatedArraySearchV1(arr, key):
     start,end,count, res,size = 0,len(arr),0,"Not Found!",len(arr)
     while(start < end):
+        count += 1
         mid = (start + end)//2
         print("start:",start,"end:",end,"mid:",mid)
         print("mid:",mid,"val:",arr[mid])
@@ -38,7 +39,7 @@ def rotatedArraySearchV1(arr, key):
                 else:
                     print("Previous to Mid:",arr[mid-1])
                     end = mid - 1
-        count += 1
+        
         ## Fallback Prevention;
         if(count == size):
             print("Warning: Program Stopped!")
@@ -81,7 +82,8 @@ def main():
         res = key = None
         key = int(input("Search: "))
         print(arr)
-        if (arr and key): res = rotatedArraySearchV2(arr,key)
+        if (arr and key): res = rotatedArraySearchV1(arr,key)                 ## ~V1
+        # if (arr and key): res = rotatedArraySearchV2(arr,key)                 ## ~V2  
         print (res) if (res and arr) else print("Not Found!")
     
     except(ValueError) as e:
@@ -89,6 +91,12 @@ def main():
         
     except(Exception) as e:
         print(f"Program Stopped: {e}")
+    
+    else:
+        print("Program Executed: Success")
+
+    finally:
+        print("Program Terminated!")
 
 
 if __name__ == "__main__":
