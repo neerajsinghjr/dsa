@@ -13,7 +13,9 @@ import time
 
 
 ## Main Working Function, here
-
+def pangrams(s):
+    # Write your code here
+    pass
 
 
 def main():
