@@ -1,21 +1,6 @@
 '''
 Problem Description:
-Given a square matrix, calculate the absolute difference between the sums of its diagonals.
 
-For example,
-The square matrix arr is shown below:
-1 2 3
-4 5 6
-9 8 9  
-
-The left-to-right diagonal, 1 + 5 + 9 = 15
-The right to left diagonal, 3 + 5 + 9 = 17
-
-Result, |15 - 17| = 2  (Absolute Difference)
-
-Inputs: arr[n][m] matrix;
-
-Outputs: Integer : Absolute Difference of Type INT;
 '''
 
 #!/bin/python3
@@ -29,15 +14,9 @@ import time
 
 
 ## Main Working Function, here
-def diagonalDifference(arr):
+def countingSorts(arr):
     # Write your code here
-    leftSum = rightSum = 0
-    size = len(arr)
-    for x in range(size):
-        leftSum += arr[x][x]
-        rightSum += arr[x][size-1-x]
-    diff = abs(leftSum - rightSum)
-    return diff
+    pass
         
 
 def main():
