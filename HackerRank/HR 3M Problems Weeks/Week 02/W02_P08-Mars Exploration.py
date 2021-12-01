@@ -1,23 +1,22 @@
 '''
 Problem Description:
-A pangram is a string that contains every letter of the alphabet. 
-Given a sentence determine whether it is a pangram in the English alphabet. 
-Ignore case. Return either pangram or not pangram as appropriate
+A space explorer's ship crashed on Mars! They send a series of 
+SOS messages to Earth for help.
 
-# Example: 
-s = The quick brown fox jumps over the lazy fox
+Letters in some of the SOS messages are altered by cosmic 
+radiation during transmission. 
 
-# Function Description
-Complete the function pangrams in the editor below. 
-It should return the string pangram if the input string is a pangram. 
-Otherwise, it should return not pangram.
+Given the signal received by Earth as a string, 'sos' , 
+determine how many letters of the SOS message have been 
+changed by radiation
 
-pangrams has the following parameter(s):
+#Example
+sos = SOSTOT
+The original message was SOSSOS. 
+Two of the message's characters were changed in transit.
 
-1) string s: a string to test
-
-# Returns
-string: either pangram or not pangram
+#Return
+1) int: the number of letters changed during transmission
 '''
 
 #!/bin/python3
@@ -32,41 +31,44 @@ import time
 
 
 ## Main Working Function, here
-def pangramsV1(s):
-    # Write your code here
-    aStr = 'qwertyuiopasdfghjklzxcvbnm'            ## alphabet;
-    aDict = {}                                     ## alphabet dict;
+def marsExplorationV2(sos):
+    sos = sos.lower()
+    size = len(sos)
+    count,sosLen = 0,math.ceil(size//3)
+    print("sosLen:",sosLen)
+    for x in range(0,size,3):
+        lo,hi = x, x+3              # iterator;
+        split = sos[lo:hi]
+        print("split:",split,"lo:hi:x",lo,":",hi,":",x)
+        if "sos" != split:
+            print("split neq:",split)
+            for y in split:
+                if y not in "sos":
+                    count += 1
+                    print("str:",y,"count:",count)
+    print(count)              
+    return count
     
-    for ch in aStr:
-        aDict[ch] = 0                               ## Frequency counts;
-        
-    for ch in s.lower():
-        if ch in aStr:
-            aDict[ch] += 1
-            
-    if 0 in list(aDict.values()):
-        return "not pangram"        
-        
-    return "pangram"
-
-
-## Python Based Solution;
-def pangramsV2(s):
-    if set(s.lower()) >= set(string.ascii_lowercase):
-        return "pangram"
-    return "not pangram"
+    
+def marsExploration(sos):
+    count = 0
+    for x in range(0,len(sos),3):
+        if(sos[x] != "S"):   count += 1
+        if(sos[x+1] != "O"): count += 1
+        if(sos[x+2] != "S"): count += 1
+    return count
 
 
 def main():
     try:
         myStr = [
-            "The quick brown fox jumps over the lazy fox",                      ## Not Pangram;
-            "We promptly judged antique ivory buckles for the next prize",      ## Pangram;
-            "We promptly judged antique ivory buckles for the prize"            ## Not Pangram;
+            "SOSTOTSOSTOT",                      
+            "QWERTYUIOPLKJHGFDSAZXCVBNMQWERTYUIOPASDFGHJKL;POIUYTREWAZSXDFGHJKLMNBVCXZ",      
+            "SOSQWENJKJSDJSOSSJDKFJSDKFSDSOSSDKFKSJDFKSDPSP"           
         ]
         for string in myStr:
-            # res = pangramsV1(string)                                          ## Version 1
-            res = pangramsV2(string)                                          ## Version 2
+            # res = marsExplorationV2(string)                                  ## Version 1
+            res = marsExploration(string)                                    ## Version 2
             print(res) if res else print("Empty!")
         
     except(Exception) as e:
@@ -77,7 +79,6 @@ def main():
 
     finally:
         print("Program Terminated!")
-
         
 
 if __name__ == '__main__':
