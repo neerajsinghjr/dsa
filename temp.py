@@ -12,7 +12,7 @@ import sys
 import time
 
 
-## Main Working Function, here
+## Main Working Function, here...
 
 
 

@@ -1,6 +1,5 @@
 '''
 Problem Description:
-
 '''
 
 #!/bin/python3
@@ -14,25 +13,16 @@ import time
 
 
 ## Main Working Function, here
-def countingSort(arr):
-    count = [0]*100
-    for x in arr:
-        count[x] += 1
-    return count
-        
+
+
 
 def main():
     try:
-        data = [
-            [1,22,4],
-            [22,3,4],
-            [4,5,66],
-        ]
-        res = countingSort(data)
+        res = ""
         print(res) if res else print("Empty!")
         
     except(Exception) as e:
-        print(f"Program Stopped: {e}")
+        print(f"Exception Traced: {e}")
     
     else:
         print("Program Executed: Success")
@@ -41,6 +31,7 @@ def main():
         print("Program Terminated!")
 
         
+
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
     startTime = time.time()
