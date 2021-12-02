@@ -15,11 +15,19 @@ import time
 
 ## Main Working Function, here
 def countingSort(arr):
-    count = [0]*100
+    count = [0]*100             ## Change 1: Working Fine
     for x in arr:
         count[x] += 1
     return count
-        
+
+
+# NOT WORKING FOR SOME CASE ~HR
+def countingSort(arr):
+    count = [0]*len(arr)       ## Change 2  : Some Test Case Stuck
+    for x in arr:
+        count[x] += 1
+    return count
+
 
 def main():
     try:

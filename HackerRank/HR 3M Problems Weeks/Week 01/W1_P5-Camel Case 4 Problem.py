@@ -46,79 +46,42 @@ import re
 import sys
 
 ## Main Working Function
-def getCaseString(opr, key, main):
-    if opr == "S":                                  ## Split;
-        if key == "V":
+def splitString(s, t):    
+    # split at upper case, convert to lower case and sep by blank:
+    s = ''.join(' '+c.lower() if c.isupper() else c for c in s)
+    # special treatment of classes and methods:
+    if t=='C':
+        s= s.capitalize().strip()
+    elif t=='M':
+        s = s[:-2]
+        
+    return s
+    
+    
+def combineString(s, t):    
+        if t=='C':
+            s = ''.join(x.capitalize() for x in s)             
+        elif t=='M':                        
+            s = s[0] + ''.join(x.capitalize() for x in s[1:]) 
+            s = s + '()'             
+        elif t=='V':            
+            s= s[0] + ''.join(x.capitalize() for x in s[1:]) 
             
-        if (key == "C"):
-            pass
-        if(key == "M"):
-            pass
-    else:                                           ## Combine;
-        pass  
-def getCaseString(s):
-    while True:
-        try:
-            s = input().rstrip()    
-            sc, mcv, op = s.split(";")
-            if sc == "S":
-                if mcv == "M":
-                    cap = re.finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)', op[:-2])
-                    ans = " ".join(m.group(0).lower() for m in cap)
-                    print(ans.rstrip())
-                    
-                if mcv == "C":
-                    cap = re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))', op)
-                    ans = " ".join(i.lower() for i in cap)
-                    print(ans.rstrip())
-                    
-                if mcv == "V":
-                    cap = re.finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)', op)
-                    ans = " ".join(m.group(0).lower() for m in cap)
-                    print(ans.rstrip())
-                    
-            if sc == "C":
-                if mcv == "M":
-                    lst = op.split(" ")
-                    res = []
-                    for i in range(len(lst)):
-                        if i == 0:
-                            res.append(lst[i].lower())
-                        else:
-                            res.append(lst[i].capitalize())
-                    ans = "".join(i for i in res)
-                    ans = ans.rstrip() + "()"
-                    print(ans.rstrip())
-                if mcv == "C":
-                    lst = op.split(" ")
-                    ans = "".join(i.capitalize() for i in lst)
-                    print(ans.rstrip())
-                if mcv == "V":
-                    lst = op.split(" ")
-                    res = []
-                    for i in range(len(lst)):
-                        if i == 0:
-                            res.append(lst[i].lower())
-                        else:
-                            res.append(lst[i].capitalize())
-                    ans = "".join(i for i in res)
-                    print(ans.rstrip())
-            
-        except EOFError:
-            break
+        return s
 
+        
+def processCase(arr):
+    if arr[0]=='S':        
+        s = splitString(arr[-1],arr[1])    
+        print(s)
 
-def getCamelCase(strings):
-    newStr = None
-    result = []
-    for str in strings:
-        getCamelCase(str)
-    #     opr, key, main = str.split(";")
-    #     newStr = getCaseString(opr,key,main)
-    #     print(str,"=>",newStr)
-    #     result.append(newStr)
-    # return result
-
+    elif arr[0]=='C':        
+        # split by blank:
+        s = arr[-1].split(' ')
+        # process
+        s = combineString(s,arr[1])            
+        print(s)
+    
 
 def main():
     strings = [
@@ -129,8 +92,9 @@ def main():
         "C;M;white sheet of paper",
         "S;V;pictureFrame"
     ]
-    res = getCamelCase(strings)
-    print(res) if res else print("Empty!")
+    for str in strings:
+        arr = str.rstrip().split(';')
+        processCase(arr)
         
 
 if __name__ == '__main__':
