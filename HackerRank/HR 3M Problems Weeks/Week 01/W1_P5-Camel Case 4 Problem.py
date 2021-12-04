@@ -46,56 +46,99 @@ import re
 import sys
 
 ## Main Working Function
-def splitString(s, t):    
-    # split at upper case, convert to lower case and sep by blank:
-    s = ''.join(' '+c.lower() if c.isupper() else c for c in s)
-    # special treatment of classes and methods:
-    if t=='C':
-        s= s.capitalize().strip()
-    elif t=='M':
-        s = s[:-2]
-        
-    return s
-    
-    
-def combineString(s, t):    
-        if t=='C':
-            s = ''.join(x.capitalize() for x in s)             
-        elif t=='M':                        
-            s = s[0] + ''.join(x.capitalize() for x in s[1:]) 
-            s = s + '()'             
-        elif t=='V':            
-            s= s[0] + ''.join(x.capitalize() for x in s[1:]) 
-            
-        return s
+def split(txt):
+    new = txt[0].lower()
+    for char in txt[1:]:
+        if char.isalpha():
+            if char.islower():
+                new += char
+            else:
+                new += " " + char.lower()
+    return new
 
-        
-def processCase(arr):
-    if arr[0]=='S':        
-        s = splitString(arr[-1],arr[1])    
-        print(s)
 
-    elif arr[0]=='C':        
-        # split by blank:
-        s = arr[-1].split(' ')
-        # process
-        s = combineString(s,arr[1])            
-        print(s)
+def combine(txt, opr):
+    flag = txt[0:1].lower()
+    if opr == "M":
+        # print("txt:",txt,"flag",flag,"opr",opr)
+        new = process(txt,flag, isMethod=True)
+        # print("combine:",new)
+    elif opr == "V":
+        # print("txt:",txt,"flag",flag,"opr",opr)
+        new = process(txt,flag)
+    elif opr == "C":
+        # print("txt:",txt,"flag",flag,"opr",opr)
+        flag = flag.upper()
+        new = process(txt,flag)
+        # print("combine:",new)
     
+    return new
+    
+
+def process(txt,flag,isMethod=False):
+    new, space = flag, False
+    for char in txt[1:]:
+        if char == " ":
+            space = True
+            # print("space:",space)
+            continue
+        elif char.islower():
+            if space:   
+                # print("if-l-char:",char)
+                new += char.upper()
+                space = False
+            else:
+                # print("else-l-char:",char)
+                new += char
+        elif char.isupper():
+            if not space:
+                # print("if-u-char:",char)
+                new += char.lower()
+            else:
+                # print("else-u-char:",char)
+                new += char
+                space = False
+        
+    if isMethod:
+        # Adding Parenthesis for Methods;
+        new += "()"
+        
+    return new
+                
 
 def main():
-    strings = [
-        "S;M;plasticCup()",
-        "C;V;mobile phone",
-        "C;C;coffee machine",
-        "S;C;LargeSoftwareBook",
-        "C;M;white sheet of paper",
-        "S;V;pictureFrame"
-    ]
-    for str in strings:
-        arr = str.rstrip().split(';')
-        processCase(arr)
-        
+    try:
+        strings = [
+            "C;V;can of coke",
+            "S;M;sweatTea()",
+            "S;V;epsonPrinter",
+            "C;M;santa claus",
+            "C;C;mirror",
+            "C;M;mouse pad",
+            "S;M;plasticCup()",
+            "C;V;mobile phone",
+            "C;C;coffee machine",
+            "S;C;LargeSoftwareBook",
+            "C;M;white sheet of paper",
+            "S;V;pictureFrame",
+            "S;V;iPad",
+            "C;C;code swarm",
+            "S;C;OrangeHighlighter",
+        ]
+        for str in strings:
+            if str[0] == "S":
+                print(split(str[4:]))
+            elif str[0] == "C":
+                print(combine(str[4:],str[2:3]))
+    
+    except(Exception) as e:
+        print(f"Exception Traced: {e}")
+    
+    else:
+        print("Program Executed: Success")
+
+    finally:
+        print("Program Terminated!")
 
 if __name__ == '__main__':
     print("#------------ Code Starts --------------#")
