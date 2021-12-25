@@ -25,6 +25,11 @@ def main():
         list.pushFront("Branda")
         list.pushFront("Camelio")
         list.pushFront("Dominoz")
+        list.pushFront("Erenster")
+        list.pushFront("Ferero")
+        list.pushFront("Gosepho")
+        list.pushFront("Hercules")
+        list.pushFront("Iglesius")
 
         # ## Before
         # print("Before Reverse :",end = " ")
@@ -46,7 +51,16 @@ def main():
         # print("After Popping :",end = " ")
         # list.show()
 
-        
+        ## Before
+        print(f"List Before ({len(list)}) : ", end = " ")
+        list.show()
+        ## Remove Index Element
+        index = 10
+        print(f"Remove Index : {index}")
+        list.remove(index)
+        ## After
+        print(f"List After ({len(list)}) :",end = " ")
+        list.show()
 
     except(Exception) as e:
         print(f"\nException Traced: {e}")

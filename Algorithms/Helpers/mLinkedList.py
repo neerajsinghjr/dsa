@@ -36,7 +36,7 @@ class LinkedList:
 
 
     """
-    len() : return the length of the nodes; 
+    len() : return the length of the nodes;
     """
     def __len__(self):
         if(self.head == None):
@@ -99,13 +99,35 @@ class LinkedList:
 
     """
     remove() : remove node for specific index;
-    eq, 
-    Input : HEAD -> A -> B -> C -> None and index : 2
-    Output : HEAD -> A -> C -> None 
-    """
+    eg, 
+    Input : HEAD -> A -> B -> C -> None, index : 2
+    Output : HEAD -> A -> C -> None
+    """        
     def remove(self, index):
-        pass
-
+        if(self.head == None):
+            return None
+        else:
+            i, size = 1, len(self)
+            # Index > Size;
+            if(index > size):
+                index = index % size
+            # Base Case;
+            if(index == 1):
+                self.head = self.head.next
+                return 
+            # Main Case;
+            # Step 1 : Go to one node before end;
+            while(i < index-1):
+                node = node.next
+                i += 1
+            # Step 2 : Removal of Specific node
+            if(node.next and node.next.next):
+                temp = node.next 
+                node.next = node.next.next
+                del temp            # Free-Up Memory
+            else:
+                node.next = None
+            
 
     """
     pop() : remove node from end;
@@ -115,7 +137,7 @@ class LinkedList:
     """
     def pop(self):
         if(self.head == None):
-            return None
+            return
         else:
             node = self.head
             prevNode = None
@@ -125,8 +147,8 @@ class LinkedList:
                 node = node.next
             # Step 2 : Reset the last node;
             prevNode.next = None
-            del node                # Delete residual last node;
-            
+            del node                # Delete last node;
+
 
     """
     reverse() : reverse the linked list;
@@ -136,7 +158,7 @@ class LinkedList:
     """
     def reverse(self):
         if(self.head == None):
-            return None
+            return 
         else:
             node = self.head
             prevNode = None
@@ -149,7 +171,5 @@ class LinkedList:
                 # Step 2 : Change Head;
                 if(temp == None):
                     self.head = prevNode
-
             return self.head
 
-                
