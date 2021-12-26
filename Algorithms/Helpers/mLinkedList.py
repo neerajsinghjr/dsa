@@ -1,5 +1,5 @@
 """
-Linked List Implementation file for CRUD Operations
+Implementation of LinkedList Datastructure in Python
 """
 
 class Node:
