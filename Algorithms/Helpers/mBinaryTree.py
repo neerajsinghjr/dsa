@@ -12,11 +12,13 @@ class Node:
         self.left = None
         self.right = None
 
+
     """
     getNode() : get node data;
     """
     def getData(self):
         return self.data
+
 
     """
     setData() : set node data;
@@ -33,17 +35,20 @@ class Tree:
     def __init__(self):
         self.root = None
 
+
     """
     len() : len of the tree;
     """
     def __len__(self):
         return self.height()
 
+
     """
     getRoot() : get root node;
     """
     def getRoot(self):
         return self.root
+
 
     """
     add() : add nodes;
@@ -53,6 +58,7 @@ class Tree:
             self.root = Node(data)
         else:
             self._add(self.root,data)
+
 
     """
     _add() : add method init;
@@ -68,6 +74,7 @@ class Tree:
                 self._add(root.right,data)
             else:
                 root.right = Node(data)
+
 
     """
     show() : show tree nodes;
@@ -85,6 +92,7 @@ class Tree:
         else:
             return None
 
+
     """
     _show() : show method init;
     """
@@ -94,6 +102,7 @@ class Tree:
             self._show(root.left)              # go left;
             self._show(root.right)             # go right;
         return
+
 
     """
     preorder() : pre-order tree traversal;
@@ -105,6 +114,7 @@ class Tree:
             self.preorder(root.right)      # go right;
         return
 
+
     """
     inorder() : in-order tree traversal;
     """
@@ -114,6 +124,7 @@ class Tree:
             print(root.data,end=", ")          # print;
             self.inorder(root.right)           # go right;
         return 
+
 
     """
     postporder() : post-order tree traversal;
@@ -135,6 +146,7 @@ class Tree:
         else:
             return None
 
+
     """
     _find() : find method init;
     """
@@ -148,12 +160,7 @@ class Tree:
                 return self._find(root.right,data)
         else:
             return f"Node {data}: Not Found"
-    
-    """
-    delete() : delete a not from tree;
-    """
-    def delete(self,data):
-        pass
+
 
     """
     height() : height of a tree
@@ -163,6 +170,7 @@ class Tree:
             return 0
         else:
             return self._height(self.root)
+
 
     """
     _height() : height method init;
@@ -174,4 +182,60 @@ class Tree:
             lenOne = self._height(root.left)
             lenTwo = self._height(root.right)
             return 1+max(lenOne,lenTwo)
-            
+
+
+    """
+    deleteTree() : delete all the tree
+    """
+    def deleteTree(self):
+        if(self.root == None):
+            return None
+
+
+    """
+    delete() : delete node from tree;
+    """
+    def delete(self,data):
+        if(self.root == None):
+            return None
+        else:
+            self._delete(self.root,data)
+    
+
+    """
+    _delete() : _delete node init;
+    """
+    def _delete(self,root,data):
+        if(root == None):
+            return 
+        elif(data < root.data):
+            self._delete(root.left,data)
+        elif(data > root.data):
+            self._delete(root.right,data)
+        else:
+            # Case 1 : Remove Tree Leaf Node
+            if(root.left and root.right):
+                return None
+            # Case 2 : Remove Skew Tree Node;
+            elif(root.left):        # Left Leaf
+                return root.left
+            elif(root.right):       # Right Leaf
+                return root.right
+            # Case 3 : Remove In-Between Tree Node;
+            else:
+                temp = self.findMinNode(root.right)
+                root.data = temp.data
+                root.right = self._delete(root.right,temp.data)
+
+        return root
+    
+
+    """
+    findMinNode() : find min node in-order style;
+    """
+    def findMinNode(self,root):
+        if(root):
+            while(root.left is not None):
+                root = root.left
+        return root
+        
