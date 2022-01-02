@@ -1,7 +1,3 @@
-'''
-Problem Description:
-'''
-
 #!/bin/python3
 
 import os
@@ -10,60 +6,36 @@ import sys
 import time
 import math
 import random
-from Helpers.mHelpers.mTrie import *
-# import Helpers.mHelpers.mTrie as Trie
-
-# """
-# Trie() : Create Trie Structure;
-# """
-# def Trie(words):
-#     _end = "end"                # Delimiter
-#     root = dict()               # Default dict()
-#     for word in words:          # Words = ["bar","baz"] 
-#         current = root
-#         for letter in word:     # Word = ["b","a","r"]
-#             current = current.setdefault(letter,{})
-#         current[_end] = _end    # Terminator;
-#     return root
+from ..Helpers.mHelpers.mTrie import *
 
 
-# """
-# find() : find inside Trie structure;
-# """
-# def find(root,word):
-#     _end = "end"
-#     for letter in word:
-#         if(letter not in root[letter]):
-#             return False
-#         root = root[letter]
-#     return _end in root[_end]
-
-
-## Main Working Fun
+## Main Working
 def main():
-    # try:
-    data = ["apple","mango","banana","organge","grapes","guava"] 
-    query = ["appy","apple,","mango","mangoes","organges"]
+    try:
+        data = ["apple","mango","banana"] 
+        query = ["appy","apple,","mangoes"]
 
-    trie = Trie(data)
-    # trie = Trie.Trie(data)
-    print(trie)
+        # trie = trie()
+        # trie.push("apple")
 
-    print("Querying...")
-    for q in query:
-        # print(f"{q}:",Trie.find(trie,q))
-        print(f"{q}:",find(trie,q))
+        trie = Trie(data)
+        print(trie)
 
-    print("End Reached...")
+        print("Querying...")
+        for q in query:
+            # print(f"{q}:",Trie.find(trie,q))
+            print(f"{q}:",find(trie,q))
+
+        print("End Reached...")
     
-    # except(Exception) as e:
-    #     print(f"Exception Traced: {e}")
+    except(Exception) as e:
+        print(f"Exception Traced: {e}")
     
-    # else:
-    #     print("Program Executed: Success")
+    else:
+        print("Program Executed: Success")
 
-    # finally:
-    #     print("Program Terminated!")
+    finally:
+        print("Program Terminated!")
 
         
 if __name__ == '__main__':
