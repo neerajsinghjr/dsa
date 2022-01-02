@@ -18,9 +18,7 @@ import random
 
 def main():
     try:
-        data = []               # ~ data
-        res = ""                # ~ func
-        print(res) if res else print("Empty!")
+        print()
         
     except(Exception) as e:
         print(f"Exception Traced: {e}")

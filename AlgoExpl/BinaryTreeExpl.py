@@ -10,7 +10,7 @@ import random
 import re
 import sys
 import time
-from Helpers.mBinaryTree import *
+from Algorithms.Helpers.mTree import *
 
 
 ## Main Working Function, here...
