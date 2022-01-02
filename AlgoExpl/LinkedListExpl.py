@@ -6,7 +6,7 @@ import sys
 import math
 import time
 import random
-from Helpers.mLinkedList import *
+from Helpers.LinkedList import *
 
 # Main Working Function, Here...
 def main():

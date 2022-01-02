@@ -6,7 +6,7 @@ import sys
 import time
 import math
 import random
-from Helpers.mHeaps import *
+from Helpers.Heaps import *
 from Helpers.Other.Heap.heap_iterative import *
 from Helpers.Other.Heap.heap_recursive import *
 

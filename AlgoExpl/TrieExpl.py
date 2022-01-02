@@ -10,27 +10,34 @@ import sys
 import time
 import math
 import random
+from Helpers.mHelpers.mTrie import *
 
 
-## Main Working Function, here...
-
-
-
+## Main Working Fun
 def main():
-    try:
-        print()
-        
-    except(Exception) as e:
-        print(f"Exception Traced: {e}")
+    # try:
+    data = ["apple","mango","banana","organge","grapes","guava"] 
+    query = ["appy","apple,","mango","mangoes","organges"]
+
+    trie = Trie(data)
+    print(trie)
+
+    print("Querying...")
+    for q in query:
+        print(f"{q}:",find(trie,q))
+
+    print("End Reached...")
     
-    else:
-        print("Program Executed: Success")
+    # except(Exception) as e:
+    #     print(f"Exception Traced: {e}")
+    
+    # else:
+    #     print("Program Executed: Success")
 
-    finally:
-        print("Program Terminated!")
+    # finally:
+    #     print("Program Terminated!")
 
         
-
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
     startTime = time.time()

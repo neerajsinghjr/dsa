@@ -8,24 +8,24 @@ class Node:
     init() : constructor;
     """
     def __init__(self,data):
-        self.data = []
-        self.set = set()
-        self.maend = False
-
+        self.data = [None]*26           # 26 Chars in Alphabet
+        self.end = False
 
 class Trie:
     """
     init() : constructor
     """
     def __init__(self):
-        self.root = None
+        self.root = Node()
     
-    
+
     """
     push() : push data to Trie;
     """
-    def push(self):
-        pass
+    def push(self,data):
+        temp = Node()
+        if(temp.data[]):
+            pass
 
 
     """

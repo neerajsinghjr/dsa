@@ -6,7 +6,7 @@ import random
 import re
 import sys
 import time
-from Helpers.mStack import *
+from Helpers.Stack import *
 from collections import deque
 
 ## Deque Pre-Installed Library
