@@ -4,12 +4,12 @@ Problem Description:
 
 #!/bin/python3
 
+import math
 import os
+import random
 import re
 import sys
 import time
-import math
-import random
 
 
 ## Main Working Function, here...

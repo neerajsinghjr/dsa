@@ -1,7 +1,3 @@
-'''
-Problem Description:
-'''
-
 #!/bin/python3
 
 import os
@@ -10,18 +6,28 @@ import sys
 import time
 import math
 import random
+from ..Helpers.mHelpers.mTrie import *
 
 
-## Main Working Function, here...
-
-
-
+## Main Working
 def main():
     try:
-        data = []               # ~ data
-        res = ""                # ~ func
-        print(res) if res else print("Empty!")
-        
+        data = ["apple","mango","banana"] 
+        query = ["appy","apple,","mangoes"]
+
+        # trie = trie()
+        # trie.push("apple")
+
+        trie = Trie(data)
+        print(trie)
+
+        print("Querying...")
+        for q in query:
+            # print(f"{q}:",Trie.find(trie,q))
+            print(f"{q}:",find(trie,q))
+
+        print("End Reached...")
+    
     except(Exception) as e:
         print(f"Exception Traced: {e}")
     
@@ -32,7 +38,6 @@ def main():
         print("Program Terminated!")
 
         
-
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
     startTime = time.time()

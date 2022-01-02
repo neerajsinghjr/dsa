@@ -4,12 +4,12 @@ Problem Description:
 
 #!/bin/python3
 
+import math
 import os
+import random
 import re
 import sys
 import time
-import math
-import random
 
 
 ## Main Working Function, here...
@@ -18,8 +18,7 @@ import random
 
 def main():
     try:
-        data = []               # ~ data
-        res = ""                # ~ func
+        res = ""
         print(res) if res else print("Empty!")
         
     except(Exception) as e:
