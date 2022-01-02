@@ -11,6 +11,32 @@ import time
 import math
 import random
 from Helpers.mHelpers.mTrie import *
+# import Helpers.mHelpers.mTrie as Trie
+
+# """
+# Trie() : Create Trie Structure;
+# """
+# def Trie(words):
+#     _end = "end"                # Delimiter
+#     root = dict()               # Default dict()
+#     for word in words:          # Words = ["bar","baz"] 
+#         current = root
+#         for letter in word:     # Word = ["b","a","r"]
+#             current = current.setdefault(letter,{})
+#         current[_end] = _end    # Terminator;
+#     return root
+
+
+# """
+# find() : find inside Trie structure;
+# """
+# def find(root,word):
+#     _end = "end"
+#     for letter in word:
+#         if(letter not in root[letter]):
+#             return False
+#         root = root[letter]
+#     return _end in root[_end]
 
 
 ## Main Working Fun
@@ -20,10 +46,12 @@ def main():
     query = ["appy","apple,","mango","mangoes","organges"]
 
     trie = Trie(data)
+    # trie = Trie.Trie(data)
     print(trie)
 
     print("Querying...")
     for q in query:
+        # print(f"{q}:",Trie.find(trie,q))
         print(f"{q}:",find(trie,q))
 
     print("End Reached...")
