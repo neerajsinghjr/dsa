@@ -1,5 +1,13 @@
 '''
 Problem Description:
+You are given a string s. You need to reverse the string.
+
+Example 1:
+
+Input:
+s = Geeks
+Output: 
+skeeG
 '''
 
 #!/bin/python3
@@ -13,12 +21,19 @@ import time
 
 
 ## Main Working Function, here...
-
+def reverseWord(s):
+    rev = ""
+    size = len(s)-1
+    while(size >= 0):
+        rev += s[size]
+        size -= 1
+    return rev
 
 
 def main():
     try:
-        res = ""
+        data = "GeeksForGeeks"
+        res = reverseWord(data)
         print(res) if res else print("Empty!")
         
     except(Exception) as e:
