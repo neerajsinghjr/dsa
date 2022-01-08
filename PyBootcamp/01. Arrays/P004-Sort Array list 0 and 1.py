@@ -25,7 +25,8 @@ import random
 
 ## Main Working Function, here...
 class Solution:
-    def sort012(self,arr):
+    # Method 1 : Dict() Solution
+    def sort012_V1(self,arr):
         if arr:
             temp = dict()
             temp[0] = temp[1] = temp[2] = 0
@@ -51,12 +52,39 @@ class Solution:
         return arr if arr else []
 
 
+    # Method 2 : DNF(Dutch National Flag) Solution
+    def sort012_V2(self, nums):
+        if nums:
+            low,mid,high = 0,0,len(nums)-1
+            for i in range(0,len(nums)):
+
+                # Mid : For 1's Value
+                if(nums[mid] == 0):
+                    nums[low],nums[mid] = nums[mid],nums[low]           # Swapped
+                    low += 1
+                    mid += 1
+                
+                # Low : For O's Value
+                elif(nums[mid] == 1):
+                    mid += 1
+                    
+                # High : For 2's Value
+                elif(nums[mid] == 2):
+                    nums[mid],nums[high] = nums[high],nums[mid]         # Swapped
+                    mid += 1
+                    high -= 1
+                
+        return nums
+
 
 def main():
     try:
-        arr = [0,1,2,2,2,2,2,1,0,1,0,0,0,1,0,2,1,0,0,1,0,0,0,0,0,0,0,1,1,1,2,2,2,2,2,1,1,1,1,0,0,2,2,2,1,1,0]
+        # arr = [2,0,1,2,2,2,2,2,1,0,1,0,0,0,1,0,2,1,0,0,1,0,0,0,0,0,0,0,1,1,1,2,2,2,2,2,1,1,1,1,0,0,2,2,2,1,1,0]
+        arr = [2,0,1,2,2,1,0]
         obj = Solution()
-        obj.sort012(arr)
+        # obj.sort012_V1(arr)     # V1
+        obj.sort012_V2(arr)     # V2
+        # obj.sort012_V1(arr)     # V3
         print(arr) if arr else print("Empty!")
         
     except(Exception) as e:
