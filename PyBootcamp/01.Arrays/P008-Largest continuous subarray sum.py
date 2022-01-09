@@ -14,17 +14,24 @@ import random
 
 ## Main Working Function, here...
 class Solution:
-    
-    def __init__(self):
-        pass
 
+    def maxSubArraySum(self,arr):
+        maxSum = -1e8
+        for i in range(0, len(arr)):
+            currSum = 0
+            for j in range(i,len(arr)):
+                currSum = currSum + arr[j]
+                if(currSum > maxSum):
+                   maxSum = currSum
+      
+        return maxSum
 
 
 def main():
     try:
-        data = []               # ~ data
+        data = [1,2,3,-2,5,7,4,-2,1,-5,-10,-11]
         obj = Solution()
-        res = ""
+        res = obj.maxSubArraySum(data)
         print(res) if res else print("Empty!")
         
     except(Exception) as e:
