@@ -13,20 +13,24 @@ import random
 
 
 ## Main Working Function, here...
+class Solution:
 
+    def __init__(self):
+        pass
 
 
 def main():
     try:
         data = []               # ~ data
-        res = ""                # ~ func
+        obj = Solution()
+        res = ""
         print(res) if res else print("Empty!")
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")
     
     else:
-        print("Program Completion : Success")
+        print("Program Completed : Success")
 
     finally:
         print("Program Terminated!")
