@@ -6,7 +6,7 @@ import sys
 import time
 import math
 import random
-from ..Helpers.mHelpers.mTrie import *
+from ..Helpers.Methods.mTrie import *
 
 
 ## Main Working

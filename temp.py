@@ -23,10 +23,10 @@ def main():
         print(res) if res else print("Empty!")
         
     except(Exception) as e:
-        print(f"Exception Traced: {e}")
+        print(f"Exception Traced : {e}")
     
     else:
-        print("Program Executed: Success")
+        print("Program Completion : Success")
 
     finally:
         print("Program Terminated!")
