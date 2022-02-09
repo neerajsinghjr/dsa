@@ -28,10 +28,13 @@ class Solution:
     # Method 1 : Dict() Solution
     def sort012_V1(self,arr):
         if arr:
-            # temp = dict()                 # Method 1
+            # temp = dict()                                           # Method 1
             # temp[0] = temp[1] = temp[2] = 0
             
-            temp = {0:0, 1:0, 2:0}          # Method 2
+            # temp = {0:0, 1:0, 2:0}                                  # Method 2
+
+            temp = dict.fromkeys([1,2,3], 0)                        # Method 3
+
             # Step 1: Using Dict;
             for num in arr:
                 if(temp[num] is None):
