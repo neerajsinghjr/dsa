@@ -46,6 +46,7 @@ import random
 
 ## Main Working Function, here...
 class Solution:
+    
     def getMinDiff(self, nums, n, k):
         nums = sorted(nums)
         tempMin = nums[0]+k

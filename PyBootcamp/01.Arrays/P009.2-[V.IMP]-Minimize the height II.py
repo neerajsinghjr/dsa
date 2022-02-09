@@ -54,7 +54,9 @@ class Solution:
                 arr[i] += k
             else:
                 arr[i] -= k
+
         return max(arr)-min
+
 
     # Method 2 : O(nlogn)
     def getMinDiff(self,nums, n, k):
@@ -86,7 +88,6 @@ def main():
     finally:
         print("Program Terminated!")
 
-        
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
