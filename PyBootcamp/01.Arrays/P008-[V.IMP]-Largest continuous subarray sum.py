@@ -16,7 +16,7 @@ import random
 class Solution:
 
     # Method 1 : Kadane Algorithms ~ O(n)
-    def maxSubArraySumV1(self,arr,size):
+    def maxSubArraySum_V1(self,arr,size):
         arrsum = temp = arr[0]
         for i in range(1,size):
             if(temp < 0):   
@@ -26,7 +26,7 @@ class Solution:
         return arrsum
            
     # Method 2 : General Approach
-    def maxSubArraySumV2(self,arr):
+    def maxSubArraySum_V2(self,arr):
         maxSum = -1e8
         for i in range(0, len(arr)):
             currSum = 0
@@ -36,6 +36,18 @@ class Solution:
                    maxSum = currSum
         return maxSum
 
+    def maxSubArraySum_V3(self,arr,n):
+        # base case
+        if arr == None:  return 0
+        
+        # main case
+        totalSum = runningSum = arr[0]
+        for idx in range(1,n):
+            if(runningSum < 0):   runningSum=0      # reset running sum;
+            runningSum += arr[idx]                  # add runing sum
+            totalSum = max(totalSum, runningSum)    # maintain total sum;
+            
+        return totalSum
 
 def main():
     try:
@@ -45,8 +57,9 @@ def main():
         ]
         obj = Solution()
         for data in datum:
-            res = obj.maxSubArraySumV1(data,len(data))
-            # res = obj.maxSubArraySumV2(data)
+            res = obj.maxSubArraySum_V1(data,len(data))
+            # res = obj.maxSubArraySum_V2(data)
+            # res = obj.maxSubArraySum_V3(data)
             print(res) if res else print("Empty!")
         
     except(Exception) as e:
