@@ -13,7 +13,7 @@ import time
 def moveZeroes(nums):
     size = len(nums)
     lo = 0
-    hi = 1
+    hi = 0
     while(lo < size and hi < size):
         if(nums[hi] == 0):
             nums[hi], nums[lo] = nums[lo], nums[hi]
@@ -24,7 +24,7 @@ def moveZeroes(nums):
 
 def main():
     try:
-        res = moveZeroes(nums=[1, 2, 3, 0, 5, 0, 9, 0, 0, 0, 46])
+        res = moveZeroes(nums=[0, 2, 3, 0, 5, 0, 9, 0, 0, 0, 46])
         print(res) if res else print("Empty!")
 
     except(Exception) as e:
