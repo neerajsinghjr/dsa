@@ -25,30 +25,45 @@ import random
 from math import ceil
 
 
-## Main Working Function, here...
-class Solution:
+
+# Brute Force Approach
+def maxSubArraySum_V2(arr, n):
+    # base case
+    if arr == None: return 0
+
+    # main case
+    maxSum = 0
+    for x in range(n):
+        temp = 0
+        for y in range(x+1,n):
+            temp += arr[y]
+            maxSum = max(temp, maxSum)
+    return maxSum
+
+# Kadane's Algorithms
+def maxSubArraySum_V1(arr,n):
+    # base case
+    if arr == None: return 0
     
-    def maxSubArraySum(self,arr,n):
-        # base case
-        if arr == None:  return 0
+    # main case
+    totalSum = runningSum = arr[0]
+    for idx in range(1,n):
+        if(runningSum < 0):   runningSum=0      # reset running sum;
+        runningSum += arr[idx]                  # add runing sum
+        totalSum = max(totalSum, runningSum)    # maintain total sum;
         
-        # main case
-        totalSum = runningSum = arr[0]
-        for idx in range(1,n):
-            if(runningSum < 0):   runningSum=0      # reset running sum;
-            runningSum += arr[idx]                  # add runing sum
-            totalSum = max(totalSum, runningSum)    # maintain total sum;
-            
-        return totalSum
+    return totalSum
 
 
 def main():
     try:
         # data = [-1,-2,-3,-4]               # ~ data
-        data = [1,2,3,-2,5]
-        obj = Solution()
-        res = obj.maxSubArraySum(data, len(data))
-        print(res) if res else print("Empty!")
+        # data = [1,2,3,-2,5]
+        data = [-2,-3,4,-1,-2,1,5,-1]
+        # res1 = maxSubArraySum_V1(data, len(data))             # Kadane Algo
+        res2 = maxSubArraySum_V2(data, len(data))               # Brute Force
+        # print(f"Kadane : {res1}") if res1 else print("Empty!")
+        print(f"Brute : {res2}") if res2 else print("Empty!")
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")
