@@ -9,8 +9,8 @@ Output : [31,19]
 import time
 
 
-## Method 1: Brute Force Aproach
-def moveZeroes(nums):
+## Method 1: Move Zeroes To Begins;
+def moveZeroesToStart(nums):
     size = len(nums)
     lo = 0
     hi = 0
@@ -21,10 +21,22 @@ def moveZeroes(nums):
         hi += 1
     return nums
 
+## Method 2: Move Zeroes To End;
+def moveZeroesToEnd(nums):
+    size = len(nums)-1
+    lo = size
+    hi = size
+    while(lo >= 0 and hi >= 0):
+        if(nums[hi] == 0):
+            nums[hi], nums[lo] = nums[lo], nums[hi]
+            lo -= 1
+        hi -= 1
+    return nums
 
 def main():
     try:
-        res = moveZeroes(nums=[0, 2, 3, 0, 5, 0, 9, 0, 0, 0, 46])
+        res1 = moveZeroesToStart(nums=[0, 2, 3, 0, 5, 0, 9, 0, 0, 0, 46])
+        res = moveZeroesToEnd(nums=[0, 2, 3, 0, 5, 0, 9, 0, 0, 0, 46])
         print(res) if res else print("Empty!")
 
     except(Exception) as e:
