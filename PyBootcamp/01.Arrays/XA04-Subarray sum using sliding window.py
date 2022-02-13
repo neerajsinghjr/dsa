@@ -35,15 +35,20 @@ def slidingSubarray_V2(nums,target):
         if(arrSum == target):
             res.append([start, end])
             break
+        
+        # Case: When 'start' surpass 'end' pointer;
+        elif(start > end):
+            end = start
+            arrSum = nums[start]     # reset arrSum, earlier items doesnt satisfy target;
             
-        # When Sum is greater than Target;
+        # Case: When Sum is greater than Target;
         elif(arrSum > target):
             arrSum -= nums[start]
             start += 1
 
-        # When Sum is Smaller than Target;
+        # Case: When Sum is Smaller than Target;
         elif(arrSum < target):
-            if (end == size):               # Check for end of array;
+            if (end == size):       # Check for end of array;
                 break
             end += 1
             arrSum += nums[end]

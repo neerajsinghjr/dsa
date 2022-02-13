@@ -4,6 +4,7 @@ Problem Description:
 
 #!/bin/python3
 
+from binascii import a2b_base64
 import os
 import re
 import sys
@@ -15,34 +16,92 @@ from math import ceil
 
 ## Main Working Function, here...
 class Solution:
-    
-    def merge(self, arr1, arr2, n, m):
-        total = n+m
-        arr1 = arr1+arr2
-        print(arr1)
-        i = 0
-        gap = n+m//2
+
+    # Method 1: Big O((n+m)*log(n+m)) using sort approach
+    def merge_V1(self, a1, a2, n, m): 
+        a1[:] = sorted(a1 + a2)
+        a2 = []
+        return 
+
+
+    # Helper for Method 2: Gap
+    def _gap(self, gap):
+        if(gap <= 1):
+            return 0
+        return (gap//2) + (gap%2)
+
+
+    # Method 2: Running Gaps;
+    def merge_V2(self, a1, a2, n, m):
+        size = n + m
+        gap = self._gap(gap=size)
         while(gap > 0):
-            x, y = 0,gap
-            if(x < total and y < total):
-                if(arr1[x] > arr1[y]):
-                    arr1[x], arr1[y] = arr1[y], arr1[x]
-                else:
-                    x += 1
-                    y += 1
-            else:
-                gap = gap//2
-                
+            # For array ~a1;
+            i = 0
+            while(i < n):
+                if(a1[i] > a1[i+gap]):
+                    a1[i], a1[i+gap] = a1[i+gap], a1[i]
+                i += 1
+
+            # For array ~a2;
+            j = gap-n if gap > n else 0
+            while i < n and j < m:
+                if (a1[i] > a2[j]):
+                    a1[i], a2[j] = a2[j], a1[i]
+                i += 1
+                j += 1
+
+            if(j < m):
+                j = 0
+                while((j + gap) < m):
+                    if (a2[j] > a2[j + gap]):
+                        a2[j], a2[j + gap] = a2[j + gap], a2[j]
+                    j += 1
+            
+            gap = self._gap(gap)        
+
+        return
 
 
+    # Method 3: Swap x Sort Solution, ~TLE REACHED 
+    def merge_V3(self, a1, a2, n, m):
+        i = j = 0
+        while(i < n and j < m):
+            if(a1[i] > a2[j]):              
+                a1[i], a2[j] = a2[j],a1[i]
+                a2.sort()                   # GFG: TLE Reached
+            i += 1
+        return None
+
+
+    # Method 4: Swap + Sort Solution, ~ Better Than Method 3
+    def merge_V4(self, a1, a2, n,m):
+        # base case 
+        if not a1:  return a2
+        if not a2:  return a1
+        
+        # main case
+        i = n-1
+        j = 0
+        while(i >= 0 and j < m):
+            if(a1[i] > a2[j]):
+                a1[i],a2[j] = a2[j],a1[i]
+            i -= 1
+            j += 1
+        a1.sort()
+        a2.sort()        
 
 
 def main():
     try:
-        data = []               # ~ data
+        a1,a2 = [1, 3, 5, 7], [0, 2, 6, 8, 9]
+        n, m = len(a1), len(a2)
         obj = Solution()
-        res = ""
-        print(res) if res else print("Empty!")
+        # obj.merge_V1(a1,a2,n,m)
+        obj.merge_V2(a1,a2,n,m)
+        # obj.merge_V3(a1,a2,n,m)
+        # obj.merge_V4(a1,a2,n,m)
+        print(a1+a2)
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")
@@ -53,7 +112,6 @@ def main():
     finally:
         print("Program Terminated!")
 
-        
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
