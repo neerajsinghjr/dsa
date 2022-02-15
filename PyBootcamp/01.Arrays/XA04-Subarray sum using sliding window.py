@@ -1,5 +1,12 @@
 '''
 Problem Description:
+Calculate subarray sum using sliding window of an array and 
+return a pair of elements which is equals to the target sum.
+
+Example 1:
+Input = [5,23,3,1,7,6,3,2,3], Target = 14
+Output : [[3,5]]
+
 '''
 
 #!/bin/python3
