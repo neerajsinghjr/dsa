@@ -15,29 +15,20 @@ def rotatedArraySearchV1(arr, key):
     while(start < end):
         count += 1
         mid = (start + end)//2
-        print("start:",start,"end:",end,"mid:",mid)
-        print("mid:",mid,"val:",arr[mid])
         if(arr[mid] == key):
-            print("Direct Mid: ",arr[mid])
             return f"found: {mid} index"
         else:
             if(arr[mid] > key):     # Key is Smaller;
-                print("Key is smaller")
                 # Region NEXT To Mid: Smaller;
                 if(arr[mid] < arr[mid+1]):
-                    print("Next to Mid: ",arr[mid+1])
                     start = mid
                 # Region PREVIOUS To Mid: Smaller
                 elif (arr[mid-1] < arr[mid]):
-                    print("Previous to Mid: ",arr[mid-1])
                     end = mid-1
             else:                   # Key is Greater;
-                print("Key is Greater")
                 if(arr[mid] < arr[mid+1]):
-                    print("Next To mid:", arr[mid+1])
                     start = mid
                 else:
-                    print("Previous to Mid:",arr[mid-1])
                     end = mid - 1
         
         ## Fallback Prevention;
