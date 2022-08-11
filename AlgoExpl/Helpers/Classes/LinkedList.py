@@ -173,3 +173,31 @@ class LinkedList:
                     self.head = prevNode
             return self.head
 
+    """
+    ReverseByPivot: 
+    LinkedList: 1->2->3->4->5
+    K = 3
+    Output: 3 2 1 5 4 
+    """
+    def reverseByKthIndex(self, k):
+        # print(self.next)
+        totalSize = len(self)
+        group = totalSize/4
+        prevNode,node = None,self.head
+        i = limit = 0
+        while(group > 0):
+            limit += k
+            while(i < limit and i < totalSize):
+                if not node:
+                    break
+                nextNode = node.next
+                node.next = prevNode
+                prevNode = node
+                node = nextNode
+                if nextNode:
+                    print("p/c:", prevNode.data,"/",node.data)
+                else:
+                    print("None")
+                i += 1
+            group = group - 1      # main loop counter;
+        return 

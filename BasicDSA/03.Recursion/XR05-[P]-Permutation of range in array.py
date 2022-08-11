@@ -1,7 +1,5 @@
 '''
 Problem Description:
-Fibonacci Series using a recursion backtracking.
-eg, 0 1 1 2 3 5 7 . . . . . . . 
 '''
 
 #!/bin/python3
@@ -17,25 +15,17 @@ import random
 ## Main Working Function, here...
 class Solution:
     
-    # Method 1 : Brute Force
-    def fiboV1(self, first, second):
-        pass
-
-    
-    # Method 2 : Recursion Backtracking 
-    def fiboV2(self, first, second):
+    def __init__(self):
         pass
 
 
 def main():
     try:
-        first, seconds = 0, 1
+        nums = [1,2,3,4,5,6]
+        key = 3
         obj = Solution()
-        res1 = obj.fiboV1(first, seconds)                           # Brute Force
-        print(res1) if res1 else print("Empty!")
-        res2 = obj.fiboV2(first, seconds)                           # Recursion Backtracking
-        print(res2) if res2 else print("Empty!")
-
+        res = ""
+        print(res) if res else print("Empty!")
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")

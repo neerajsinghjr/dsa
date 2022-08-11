@@ -6,12 +6,11 @@ import sys
 import math
 import time
 import random
-from Helpers.LinkedList import *
+from Helpers.Classes.LinkedList import *
 
 # Main Working Function, Here...
 def main():
     try:
-
         list  = LinkedList()                
 
         # ## Pushing at Last eg, A -> B -> C -> D -> E
@@ -21,15 +20,15 @@ def main():
         # list.pushBack("Dominoz")
 
         ## Pushing @ Front eg, A <- B <- C <- D <- E
-        list.pushFront("Adam")
-        list.pushFront("Branda")
-        list.pushFront("Camelio")
-        list.pushFront("Dominoz")
-        list.pushFront("Erenster")
-        list.pushFront("Ferero")
-        list.pushFront("Gosepho")
-        list.pushFront("Hercules")
-        list.pushFront("Iglesius")
+        # list.pushFront("Adam")
+        # list.pushFront("Branda")
+        # list.pushFront("Camelio")
+        # list.pushFront("Dominoz")
+        # list.pushFront("Erenster")
+        # list.pushFront("Ferero")
+        # list.pushFront("Gosepho")
+        # list.pushFront("Hercules")
+        # list.pushFront("Iglesius")
 
         # ## Before
         # print("Before Reverse :",end = " ")
@@ -51,16 +50,16 @@ def main():
         # print("After Popping :",end = " ")
         # list.show()
 
-        ## Before
-        print(f"List Before ({len(list)}) : ", end = " ")
-        list.show()
-        ## Remove Index Element
-        index = 10
-        print(f"Remove Index : {index}")
-        list.remove(index)
-        ## After
-        print(f"List After ({len(list)}) :",end = " ")
-        list.show()
+        # ## Before
+        # print(f"List Before ({len(list)}) : ", end = " ")
+        # list.show()
+        # ## Remove Index Element
+        # index = 10
+        # print(f"Remove Index : {index}")
+        # list.remove(index)
+        # ## After
+        # print(f"List After ({len(list)}) :",end = " ")
+        # list.show()
 
     except(Exception) as e:
         print(f"\nException Traced: {e}")

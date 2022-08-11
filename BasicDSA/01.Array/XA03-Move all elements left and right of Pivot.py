@@ -19,7 +19,6 @@ import math
 import random
 
 
-
 ## Main Working Function, here...
 def moveByPivot(nums):      # nums = [1,-2,3,-1,-33, 8,9,4,-4,10,0] 
     low,mid,high = 0,0,len(nums)-1
@@ -53,7 +52,7 @@ def main():
     finally:
         print("Program Terminated!")
 
-        
+
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")

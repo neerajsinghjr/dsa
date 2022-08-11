@@ -26,7 +26,7 @@ def main():
         data = []               # ~ data
         obj = Solution()
         res = ""
-        print("Result: {res}") if res else print("Empty!")
+        print(res) if res else print("Empty!")
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")

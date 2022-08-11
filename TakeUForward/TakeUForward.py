@@ -1,7 +1,7 @@
 '''
-#Problem Title:
-#Problem Attempted: 
-#Problem Description:
+#Day 01: ...
+#Problem 02: ... 
+#Problem Description: 
 '''
 
 #!/bin/python3
@@ -17,26 +17,28 @@ import random
 ## Main Working Function, here...
 class Solution:
     
-    def __init__(self):
-        pass
+    def __init__(self, data):
+        self.data = data
 
 
 def main():
     try:
-        data = []               # ~ data
         obj = Solution()
-        res = ""
-        print("Result: {res}") if res else print("Empty!")
+        if type(res) == tuple:
+        	print(f"Result: {res[1]}")
+        	print(f"Return: {res[0]}")
+        else:
+        	print(f"Result: {res}")
         
     except(Exception) as e:
-        print(f"Exception Traced : {e}")
+        print(f"Exception Traced: {e}")
     
     else:
-        print("Program Completed : Success")
+        print("Program Completed: Success")
 
     finally:    
         print("Program Terminated!")
-      
+        
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
