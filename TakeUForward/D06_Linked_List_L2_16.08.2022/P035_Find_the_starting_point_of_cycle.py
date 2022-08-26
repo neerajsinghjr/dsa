@@ -2,7 +2,7 @@
 ----------------------------------------------------------------------------------------------------
 -> Problem Title:
 -> Problem Status: Ongoing...
--> Problem Attempted: 
+-> Problem Attempted:
 -> Problem Description: 
 ----------------------------------------------------------------------------------------------------
 ...
@@ -20,20 +20,18 @@ import math
 import random
 
 
-###--- Main Solution;;
+## Main Working Function, here...
 class Solution:
-
+    
     def __init__(self):
         pass
-        
 
 
-##---Main Execution;;
 def main():
     try:
-        # data = []               # ~ data
-        # obj = Solution()
-        # res = ""
+        data = []               # ~ data
+        obj = Solution()
+        res = ""
         print(f"Result: {res}") if res else print("Empty!")
         
     except(Exception) as e:
