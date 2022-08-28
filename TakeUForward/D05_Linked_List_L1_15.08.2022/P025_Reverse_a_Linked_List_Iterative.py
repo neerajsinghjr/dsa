@@ -74,6 +74,47 @@ class Solution:
         dummy.next = pre
         return dummy.next
 
+    """
+    Code: Optimised Recursive ~v1 | T:O(N) | S:O(1) + Stack Space
+    Study: 
+    Simply reversing the first node then recursion magic followd;
+    """
+    def ansv2(self,head,pre=None):
+        if(head.next == None):
+            return pre
+
+        nex = head.next
+        head.next = pre
+        pre = head
+
+        return self.ansv2(nex,pre)
+
+
+    """
+    Code: Optimized Recursive ~v2 | T:O(N) | S:O(1) + Stack Space
+    Study:
+    In this recursion apporach, we are gonna reverse the list frome end point...
+    1) Iterate till the end node and return the end node as $NewHEAD
+    2) At function call previous to end node, then make the next node of current node points to current node
+        $next-of-current-node->next = $current-node
+    3) After changing link, return the current node as NEW HEAD
+
+    For eg, In real life suppose students are lined up the queue and when they about turn, 
+    First guy in the line turn himself
+    Fecond guy turn himself after seeing the first one turn 
+    Third one do the same and so on ...
+    till the whole queue get reversed !
+    """
+    def ansv3(self,head):
+        if(head.next == None):          # Till reach end node, only;;
+            return head
+
+        newHEAD = self.ansv3(head.next)
+        head.next.next = head
+
+        return newHEAD
+
+
 
 def main():
     try:

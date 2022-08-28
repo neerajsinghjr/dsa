@@ -64,31 +64,54 @@ def insertAtEnd(head,val=None):
         if(head == None):
             head.next = Node(val)
         else:
-            while(head.next != None):
-                head = head.next
-            head.next = Node(val)
-    return 
+            cur = head
+            while(cur.next != None):
+                cur = cur.next
+            cur.next = Node(val)
+
+    return head
 
 
 ###---Print Linked List;;
 def printList(head):
-    while(head != None):
-        marker = "->" if(head.next != None) else ""
-        print(head.val,marker,end=" ")
-        head = head.next
+    cur = head
+    while(cur != None):
+        marker = "->" if(cur.next != None) else ""
+        print(cur.val,marker,end=" ")
+        cur = cur.next
     print("-> NULL")
+    
     return 
 
 
+
+###---Iterative Reverse Linked List;;
+def itrReverse(head):
+
+    if(head == None):
+        return head
+
+    if(head.next == None):
+        return head
+
+    pre,cur = None,head
+
+    while(cur != None):
+        nex = cur.next
+        cur.next = pre
+        pre = cur
+        cur = nex
+
+    return pre
+
+
 ###---Created Linked List;;
-def createLinkedList(nodes=10,start=True):
+def createLinkedList(nodes=11,start=True):
     head = Node(1)
-    for x in range(nodes):
+    for x in range(2,nodes+1):
         if start:
-            insertAtStart(head,x)
+            head = insertAtStart(head,x)
         else:
-            insertAtEnd(head,x)
+            head = insertAtEnd(head,x)
 
-    printList("main...",head)
-
-    # return head
+    return head

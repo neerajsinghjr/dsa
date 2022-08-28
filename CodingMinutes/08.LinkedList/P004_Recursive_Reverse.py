@@ -1,14 +1,14 @@
 '''
 ----------------------------------------------------------------------------------------------------
--> Problem Title: Reverse of Linked List
--> Problem Status: Ongoing...
--> Problem Attempted: 26.08.2022
+-> Problem Title: Reverse of Linked List using recursion
+-> Problem Status: Completed
+-> Problem Attempted: 27.08.2022
 -> Problem Description: 
 ----------------------------------------------------------------------------------------------------
-Reverse a Linked List...
+Reverse a Linked List, using the recursion approach only
 
-Example 1:
-Input: 1 -> 2 -> 3
+Exmaple 1:
+Input : 1 -> 2 -> 3
 Output : 3 -> 2 -> 1
 
 ----------------------------------------------------------------------------------------------------
@@ -22,43 +22,45 @@ import sys
 import time
 import math
 import random
-import Helpers as ll
+import P000_Helpers as ll
 
 
-
-###--- Main Solution;;
-def iterativeReverse(head):
-
-    if(head == None):
-        return head
-
+###---Main Solution;;
+def recReverse(head):
     if(head.next == None):
         return head
 
-    pre,cur = None,head
+    revHead = recReverse(head.next)         # Reverse Head;;
+    head.next.next = head
+    head.next = None
 
-    while(cur != None):
-        nex = cur.next
-        cur.next = pre
-        cur = nex
+    return revHead
 
-    if(pre == None):
-        return head
+ 
+###---ReverseV2 using Recursion;;
+def recReverseV2(head,pre=None):
+    if(head == None):
+        return pre
 
-    return pre
+    nex = head.next
+    head.next = pre
+    pre = head
+
+    return recReverseV2(nex,pre)
 
 
 ##---Main Execution;;
 def main():
-
     try:
-        head = ll.createLinkedList()
-
+        
+        head = ll.createLinkedList(nodes=5, start=False)
+        print("Before Reversing...")
         ll.printList(head)
 
-        # interativeReverse(head)
-
-        # ll.printList(head)      
+        print("After Reversing...")
+        # head = recReverse(head)               # Version 1;;
+        head = recReverseV2(head)             # Version 2;;
+        ll.printList(head)
 
         
     except(Exception) as e:
