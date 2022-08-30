@@ -5,10 +5,14 @@
 -> Problem Attempted: 15.08.2022
 -> Problem Description: 
 ----------------------------------------------------------------------------------------------------
-...
+Includes all the basic methods of linked list data-structure;
 
 ----------------------------------------------------------------------------------------------------
 '''
+import os
+from random import randint
+import P000_Helpers as ll
+
 
 ###---Node Class;;
 class Node:
@@ -110,6 +114,120 @@ def createLinkedList(nodes=11,start=True):
     head = Node(1)
     for x in range(2,nodes+1):
         if start:
+            head = insertAtStart(head,x)
+        else:
+            head = insertAtEnd(head,x)
+
+    return head
+
+
+###---Created Linked List ~version2 ;;
+def createList(start=1,end=11,fromLeft=False,even=None):
+    if(even == None):
+        head = Node(start)
+    elif(start%2 == 0 and even):
+        head = Node(start)
+    else:
+        head = Node(start+1)
+        start += 1
+
+    for x in range(start+1,end+1):
+        if(fromLeft):
+            if(even == None):
+                head = insertAtStart(head,x)
+            if(x%2 == 0 and even == True):
+                head = insertAtStart(head,x)
+            elif not(x%2 and even == True):
+                head = insertAtStart(head,x)    
+        else:
+            if(even == None):
+                head = insertAtEnd(head,x)
+            elif(x%2 == 0 and even):
+                print(f"n:evn: {x}/{even}")
+                head = insertAtEnd(head,x)
+            elif not(x%2 == 0 and even):
+                head = insertAtEnd(head,x)    
+            
+    return head
+
+
+
+## Merge With Extra Space;
+def mergeList(list1,list2):
+
+    dummy = ll.Node()
+    head = dummy
+
+    while(list1 and list2):
+        if(list1.val < list2.val):
+            dummy.next = list1
+            list1,dummy = list1.next,dummy.next
+        else:
+            dummy.next = list2
+            list2,dummy = list2.next,dummy.next
+
+    if(list2 != None):
+        dummy.next = list2
+    if(list1 != None):
+        dummy.next = list1
+
+    return head.next
+
+
+## Merge With only Stack Space;
+def mergeListV2(list1,list2):
+    if(list1 == None): return list2
+
+    if(list2 == None): return list1
+
+    dummy = ll.Node()
+
+    if(list1.val < list2.val):
+        dummy  = list1
+        dummy.next = mergeListV2(list1.next, list2)
+    else:
+        dummy = list2
+        dummy.next = mergeListV2(list1,list2.next)
+
+    return dummy
+
+
+### Merge Without Extra Space
+def mergeListV3(list1,list2):
+    head = ll.Node()
+    dummy = head        
+    
+    while(list1 and list2):
+        print(f"list1: {list1.val} | list2: {list2.val}")
+        if(list1.val <= list2.val):
+            dummy.next = list1
+            list1 = list1.next
+            dummy = dummy.next
+        else:
+            dummy.next = list2
+            list2 = list2.next
+            dummy = dummy.next
+
+    if(list1 or list2):
+        dummy.next = list1 if(list1) else list2
+
+    return head.next
+
+
+###---Generate Random Linked List;
+def createRandomList(n=10,start=1,end=1000,fromLeft=False):
+    # First Node of Linked List;
+    x = randint(start,end)
+
+    if(fromLeft):
+        head = Node(x)
+    else:
+        head = Node(x)
+
+    # For N-1 node of Linked List;
+    for _ in range(1,n):
+        x = randint(start,end)
+        if(fromLeft):
             head = insertAtStart(head,x)
         else:
             head = insertAtEnd(head,x)
