@@ -40,13 +40,14 @@ def mergesort(head):
     start = head
     mid = node.next
     node.next = None
-    # print(f"start: {head.val} / mid: {mid.val} / node:{node.val}")
 
     # Recursive methodology;
     start = mergesort(start)
     mid = mergesort(mid)
 
-    return ll.mergeListV2(start,mid)
+    return ll.mergeList(start,mid)
+    # return ll.mergeListV2(start,mid)
+    # return ll.mergeListV3(start,mid)
 
 
 ##---Main Execution;;

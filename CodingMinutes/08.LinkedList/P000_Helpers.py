@@ -198,7 +198,6 @@ def mergeListV3(list1,list2):
     dummy = head        
     
     while(list1 and list2):
-        print(f"list1: {list1.val} | list2: {list2.val}")
         if(list1.val <= list2.val):
             dummy.next = list1
             list1 = list1.next
