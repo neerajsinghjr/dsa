@@ -15,13 +15,13 @@ class Solution:
         pass
 
 
-def sample():
+def fibo(n):
     pass
         
 
 ##---Main Execution;;
 def main():
-   pass
+   fib(5)
 
 
 if __name__ == '__main__':
@@ -31,4 +31,3 @@ if __name__ == '__main__':
     endTime = time.time()
     print("Run Time:",endTime-startTime,"ms")
     print("#------------ Code Stop ----------------#")
-    

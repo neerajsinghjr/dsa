@@ -1,0 +1,182 @@
+'''
+----------------------------------------------------------------------------------------------------
+-> Title: PyNotes Diary
+-> Problem Status: Ongoing...
+-> Created: 03.09.2022
+-> Updated: 03.09.2022
+-> Description: Notes indices are as follows
+----------------------------------------------------------------------------------------------------
+-> Question 001: Decorators in python;
+-> Question 002: Comprehension;
+-> Question 003: LAMBDA;
+-> Question 005: Copy in Python;
+->
+----------------------------------------------------------------------------------------------------
+'''
+
+
+
+
+----------------------------------------------------------------------------------------------------
+
+Question 005: Copy in Python;
+
+In Python, the assignment statement (= operator) does not copy objects.
+Instead, it creates a binding between the existing object and the target
+variable name. To create copies of an object in Python, we need to use the
+copy module. Moreover, there are two ways of creating copies for the given
+object using the copy module -
+
+Shallow Copy is a bit-wise copy of an object. The copied object created has an
+exact copy of the values in the original object. If either of the values is a
+reference to other objects, just the reference addresses for the same are
+copied. 
+
+Deep Copy copies all values recursively from source to target object,
+i.e. it even duplicates the objects referenced by the source object.
+
+from copy import copy, deepcopy
+list_1 = [1, 2, [3, 5], 4]
+## shallow copy
+list_2 = copy(list_1) 
+list_2[3] = 7
+list_2[2].append(6)
+list_2    # output => [1, 2, [3, 5, 6], 7]
+list_1    # output => [1, 2, [3, 5, 6], 4]
+## deep copy
+list_3 = deepcopy(list_1)
+list_3[3] = 8
+list_3[2].append(7)
+list_3    # output => [1, 2, [3, 5, 6, 7], 8]
+list_1    # output => [1, 2, [3, 5, 6], 4]
+
+----------------------------------------------------------------------------------------------------
+Question 004: Python arrays;
+
+Arrays in python can only contain elements of same data types i.e., data type
+of array should be homogeneous. It is a thin wrapper around C language arrays
+and consumes far less memory than lists. Lists in python can contain elements
+of different data types i.e., data type of lists can be heterogeneous. It has
+the disadvantage of consuming large memory.
+
+import array
+
+a = array.array('i', [1, 2, 3])
+for i in a:
+    print(i, end=' ')    #OUTPUT: 1 2 3
+a = array.array('i', [1, 2, 'string'])   #OUTPUT: TypeError: an integer is required (got type str)
+a = [1, 2, 'string']
+for i in a:
+   print(i, end=' ')    #OUTPUT: 1 2 string
+
+----------------------------------------------------------------------------------------------------
+Question 003: LAMBDA;
+
+Lambda is an anonymous function in Python, that can accept any number of
+arguments, but can only have a single expression. It is generally used in
+situations requiring an anonymous function for a short time period. Lambda
+functions can be used in either of the two ways:
+
+Assigning lambda functions to a variable:
+mul = lambda a, b : a * b
+print(mul(2, 5))    # output => 10
+Wrapping lambda functions inside another function:
+def myWrapper(n):
+ return lambda a : a * n
+mulFive = myWrapper(5)
+print(mulFive(2))    # output => 10
+
+----------------------------------------------------------------------------------------------------
+Question 002: Comprehensions;
+
+Python comprehensions, like decorators, are syntactic sugar constructs that
+help build altered and filtered lists, dictionaries, or sets from a given
+list, dictionary, or set. Using comprehensions saves a lot of time and code
+that might be considerably more verbose (containing more lines of code). Let's
+check out some examples, where comprehensions can be truly beneficial:
+
+Performing mathematical operations on the entire list
+my_list = [2, 3, 5, 7, 11]
+squared_list = [x**2 for x in my_list]    # list comprehension
+# output => [4 , 9 , 25 , 49 , 121]
+squared_dict = {x:x**2 for x in my_list}    # dict comprehension
+# output => {11: 121, 2: 4 , 3: 9 , 5: 25 , 7: 49}
+Performing conditional filtering operations on the entire list
+my_list = [2, 3, 5, 7, 11]
+squared_list = [x**2 for x in my_list if x%2 != 0]    # list comprehension
+# output => [9 , 25 , 49 , 121]
+squared_dict = {x:x**2 for x in my_list if x%2 != 0}    # dict comprehension
+# output => {11: 121, 3: 9 , 5: 25 , 7: 49}
+
+Combining multiple lists into one Comprehensions allow for multiple iterators
+and hence, can be used to combine multiple lists into one. 
+
+a = [1, 2, 3]
+b = [7, 8, 9]
+[(x + y) for (x,y) in zip(a,b)]  # parallel iterators
+# output => [8, 10, 12]
+[(x,y) for x in a for y in b]    # nested iterators
+# output => [(1, 7), (1, 8), (1, 9), (2, 7), (2, 8), (2, 9), (3, 7), (3, 8), (3, 9)] 
+
+Flattening a multi-dimensional list A similar approach of nested iterators (as
+above) can be applied to flatten a multi-dimensional list or work upon its
+inner elements. 
+
+my_list = [[10,20,30],[40,50,60],[70,80,90]]
+flattened = [x for temp in my_list for x in temp]
+# output => [10, 20, 30, 40, 50, 60, 70, 80, 90]
+
+Note: List comprehensions have the same effect as the map method in other
+languages. They follow the mathematical set builder notation rather than map
+and filter functions in Python.
+
+
+----------------------------------------------------------------------------------------------------
+Question 001: Decorators in python;; 
+
+Decorators in Python are essentially functions that add functionality to an
+existing function in Python without changing the structure of the function
+itself. They are represented the @decorator_name in Python and are called in a
+bottom-up fashion. For example:
+
+# decorator function to convert to lowercase
+def lowercase_decorator(function):
+   def wrapper():
+       func = function()
+       string_lowercase = func.lower()
+       return string_lowercase
+   return wrapper
+# decorator function to split words
+def splitter_decorator(function):
+   def wrapper():
+       func = function()
+       string_split = func.split()
+       return string_split
+   return wrapper
+@splitter_decorator # this is executed next
+@lowercase_decorator # this is executed first
+def hello():
+   return 'Hello World'
+hello()   # output => [ 'hello' , 'world' ]
+
+The beauty of the decorators lies in the fact that besides adding
+functionality to the output of the method, they can even accept arguments for
+functions and can further modify those arguments before passing it to the
+function itself. The inner nested function, i.e. 'wrapper' function, plays a
+significant role here. It is implemented to enforce encapsulation and thus,
+keep itself hidden from the global scope.
+
+# decorator function to capitalize names
+def names_decorator(function):
+   def wrapper(arg1, arg2):
+       arg1 = arg1.capitalize()
+       arg2 = arg2.capitalize()
+       string_hello = function(arg1, arg2)
+       return string_hello
+   return wrapper
+@names_decorator
+def say_hello(name1, name2):
+   return 'Hello ' + name1 + '! Hello ' + name2 + '!'
+say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
+
+----------------------------------------------------------------------------------------------------

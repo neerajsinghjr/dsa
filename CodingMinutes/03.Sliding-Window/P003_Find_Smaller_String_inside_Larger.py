@@ -22,17 +22,18 @@ import random
 
 ###--- Main Solution;;
 class Solution:
-    
-   def __init__(self):
-    pass
+
+    def __init__(self):
+        pass
+        
 
 
 ##---Main Execution;;
 def main():
     try:
-        data = []
-        obj = Solution()
-        res = None
+        # data = []               # ~ data
+        # obj = Solution()
+        # res = ""
         print(f"Result: {res}") if res else print("Empty!")
         
     except(Exception) as e:
