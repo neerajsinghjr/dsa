@@ -44,6 +44,29 @@ class Solution:
 
 	"""
 	Run:
+	Cdde:
+	Study:
+	"""
+	def ansv2(self,bg,sm,bgLen,smLen):
+		map = {}
+
+		for (key,value) in enumerate(sm):
+			if(value in sm):
+				sm[value] += 1
+			else:
+				sm[value] = 1
+
+		res = 0
+		start,cur = 0,0
+		while(cur < len(bg)):
+			if(bg[cur] in map):
+				map[bg[cur]] -= 1
+				res += 1
+			else
+
+
+	"""
+	Run:
 	Code:
 	Study:
 	"""
