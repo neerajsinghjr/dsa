@@ -9,16 +9,6 @@ import random
 
 
 
-class Solution:
-
-    def __init__(self):
-        pass
-
-
-def sample():
-    pass
-        
-
 ##---Main Execution;;
 def main():
    pass

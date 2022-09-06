@@ -1,4 +1,5 @@
-print("-----------------------------------CODE BEGINS ---------------------------------------")
+print("#------------------ CODE BEGINS ------------------#")
+
 from enum import Enum
 from copy import copy, deepcopy
 
@@ -24,17 +25,22 @@ testMember = TestV2.last
 
 
 def enumFunc():
+	# grocery = ['bread', 'milk', 'butter']
+	# enumerateGrocery = enumerate(grocery)
+	# print(type(enumerateGrocery))
+
+	# # converting to list
+	# print(list(enumerateGrocery))
+
+	# # changing the default counter
+	# enumerateGrocery = enumerate(grocery, 10)
+	# print(list(enumerateGrocery))
+
+	# With Generator;;
 	grocery = ['bread', 'milk', 'butter']
-	enumerateGrocery = enumerate(grocery)
-	print(type(enumerateGrocery))
+	obj = enumerate(grocery)
+	print(next(obj))
 
-	# converting to list
-	print(list(enumerateGrocery))
-
-	# changing the default counter
-	enumerateGrocery = enumerate(grocery, 10)
-	print(list(enumerateGrocery))
-	
 
 def square(num):
 	if not(num > 0):
@@ -103,15 +109,13 @@ def deepAndShallowCopy(n1):
 
 
 def main():
-	# enumFunc()
+	enumFunc()
 	# mapping()
-	deepAndShallowCopy(n1=[1,2,3,4,5,6,7,8,9,10])
-
-	
+	# deepAndShallowCopy(n1=[1,2,3,4,5,6,7,8,9,10])
 
 
 
 if __name__ == "__main__":
 	main()
 
-print("-----------------------------------CODE ENDS -----------------------------------------")
+print("#------------------ CODE ENDS ------------------#")

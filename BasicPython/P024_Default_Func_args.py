@@ -9,19 +9,10 @@ import random
 
 
 
-class Solution:
-
-    def __init__(self):
-        pass
-
-
-def fibo(n):
-    pass
-        
 
 ##---Main Execution;;
 def main():
-   fib(5)
+   pass
 
 
 if __name__ == '__main__':
@@ -31,3 +22,4 @@ if __name__ == '__main__':
     endTime = time.time()
     print("Run Time:",endTime-startTime,"ms")
     print("#------------ Code Stop ----------------#")
+    
