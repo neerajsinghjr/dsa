@@ -6,6 +6,7 @@
 -> Updated: 06.09.2022
 -> Summary: Notes indices are as follows
 ----------------------------------------------------------------------------------------------------
+-> Question 011: Set Variable LowerBound and UpperBound;;
 -> Question 010: Create a Generator Class;;
 -> Question 009: Iterators Vs Iterables Vs Generators in python;;
 -> Question 008: Iterators in python;;
@@ -17,6 +18,44 @@
 -> Question 001: Decorators in python;;
 ----------------------------------------------------------------------------------------------------
 '''
+
+----------------------------------------------------------------------------------------------------
+Question 011: Set Variable LowerBound and UpperBound;;
+
+This methods helps to set the upper and lower bound of a bound for fallback prevention.
+
+-> FIRST APPROACH
+
+for eg,
+>>> from sys import maxsize
+
+>>> minValue = -maxsize
+>>> maxValue = maxsize
+>>> print(minValue, maxValue)
+
+-> SECOND APPROACH 
+It acts as an unbounded upper value for comparison. This is
+useful for finding lowest values for something. for example, calculating path
+route costs when traversing trees.
+
+e.g. Finding the "cheapest" path in a list of options:
+
+>>> lowest_path_cost = float('inf')
+>>> # pretend that these were calculated using some worthwhile algorithm
+>>> path_costs = [1, 100, 2000000000000, 50]
+>>> for path in path_costs:
+...   if path < lowest_path_cost:
+...     lowest_path_cost = path
+...
+>>> lowest_path_cost
+1
+
+if you didn't have float('Inf') available to you, what value would you use for
+the initial lowest_path_cost? Would 9999999 be enough -- float('Inf') removes
+this guesswork.
+
+
+
 
 ----------------------------------------------------------------------------------------------------
 Question 010: Create a Generator Class;;
