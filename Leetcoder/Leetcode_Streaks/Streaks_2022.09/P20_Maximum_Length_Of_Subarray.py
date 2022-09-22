@@ -93,35 +93,35 @@ class Solution:
     
     """
     Run: Rejected
-    Code: Brute Force
+    Code: Brute Force | T:O(N^2) | S:O(1)
     Study:
+    Iterating two loops at the same time but managaing only finding the respective subarray 
+    in the another loop;
     """
     def ansv1(self,nums1,nums2,n,m):
-            maxlen = 0
-            i,j = 0,0
-            cur, count = 0,0
+        maxlen = 0
+        i,j,count = 0,0,0
+        n,m = len(nums1),len(nums2)
+        while(i < n):
+            while(j < m):
+                print(f"i:j -> {i}:{j}")
+                # case 1: When, nums1[i] eq nums2[j];
+                if(i < n and j < m and nums1[i] == nums2[j]):
+                    while(j < m and i < n):
+                        if(nums1[i] == nums2[j]):
+                            maxlen = max(maxlen,count+1)
+                            i,j = i+1,j+1
+                        else:
+                            j,count = 0,0
+                            break
+                # case 2: When, nums1[j] not eq nums2[i];
+                else:
+                    j += 1          #iter2 ++
             
-            while(i < n):
-                while(j < m):
-                    print(f"i:j => {i}:{j}")
-                    if(nums2[j] == nums1[i]):
-                        i,cur = i+1,j+1
-                        count += 1
-                        while(cur < m and i < n):
-                            if(nums1[i] == nums2[cur]):
-                                maxlen = max(maxlen,count+1)
-                                i,cur = i+1,cur+1
-                            else:
-                                j,count = 0,0
-                                break
-                                
-                    else:
-                        j += 1
-                    
-                maxlen = max(maxlen, count)
-                i += 1
-                
-            return maxlen
+            print(f"i:j -> {i}:{j}")
+            i += 1          # iter1++
+
+        return maxlen
 
 
 ##---Main Execution;;
