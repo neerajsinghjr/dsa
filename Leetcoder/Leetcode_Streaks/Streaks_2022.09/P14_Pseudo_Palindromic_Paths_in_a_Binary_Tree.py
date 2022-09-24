@@ -98,6 +98,7 @@ class Solution:
         
         return traverse(root, set())
     
+    
     ###---Main Execution;;
     def pseudoPalindromicPathsV2 (self, root: Optional[TreeNode]) -> int:
         if not(root): 
