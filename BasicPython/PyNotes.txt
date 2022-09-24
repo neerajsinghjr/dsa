@@ -6,6 +6,8 @@
 -> Updated: 06.09.2022
 -> Summary: Notes indices are as follows
 ----------------------------------------------------------------------------------------------------
+-> Question 013: @classmethod() vs @staticmethod();;
+-> Question 012: Magic Method __str__() vs __repr__();;
 -> Question 011: Set Variable LowerBound and UpperBound;;
 -> Question 010: Create a Generator Class;;
 -> Question 009: Iterators Vs Iterables Vs Generators in python;;
@@ -13,11 +15,152 @@
 -> Question 007: Generators in python;;
 -> Question 006: Type Hinting;;
 -> Question 005: Copy in python;;
+-> Question 004: Python arrays;;
 -> Question 003: LAMBDA in python;;
 -> Question 002: Comprehension in python;;
 -> Question 001: Decorators in python;;
 ----------------------------------------------------------------------------------------------------
 '''
+
+----------------------------------------------------------------------------------------------------
+Question 013: @classmethod vs @stacticmethod;;
+
+@classmethod 
+The @classmethod decorator is a built-in function decorator that is an
+expression that gets evaluated after your function is defined. The result of
+that evaluation shadows your function definition. A class method receives the
+class as an implicit first argument, just like an instance method receives
+the instance.
+
+Syntax Python Class Method: 
+
+class C(object):
+    @classmethod
+    def fun(cls, arg1, arg2, ...):
+       ....
+fun: function that needs to be converted into a class method
+returns: a class method for function.
+
+- A class method is a method that is bound to the class and not the object of
+  the class.
+- They have the access to the state of the class as it takes a class parameter
+that points to the class and not the object instance.
+- It can modify a class state that would apply across all the instances of the
+class. For example, it can modify a class variable that will be applicable to
+all the instances.
+
+@staticmethod 
+A static method does not receive an implicit first argument. A static method
+is also a method that is bound to the class and not the object of the class.
+This method can’t access or modify the class state. It is present in a class
+because it makes sense for the method to be present in class.
+
+Syntax Python Static Method: 
+
+class C(object):
+    @staticmethod
+    def fun(arg1, arg2, ...):
+        ...
+returns: a static method for function fun.
+
+# When to use the class or static method ?
+- We generally use the class method to create factory methods. Factory methods
+  return class objects ( similar to a constructor ) for different use cases.
+- We generally use static methods to create utility functions.
+
+for eg,
+# Python program to demonstrate
+# use of class method and static method.
+from datetime import date
+ 
+ 
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+ 
+    # a class method to create a Person object by birth year.
+    @classmethod
+    def fromBirthYear(cls, name, year):
+        return cls(name, date.today().year - year)
+ 
+    # a static method to check if a Person is adult or not.
+    @staticmethod
+    def isAdult(age):
+        return age > 18
+ 
+ 
+person1 = Person('mayank', 21)
+person2 = Person.fromBirthYear('mayank', 1996)
+ 
+print(person1.age)
+print(person2.age)
+ 
+# print the result
+print(Person.isAdult(22))
+
+#Output:
+21
+25
+True
+
+----------------------------------------------------------------------------------------------------
+Question 012: Magic Method __str__() vs __repr__();;
+
+In Python, the built-in str() and repr() functions both produce a textual
+representation of an object.
+
+for eg,
+
+import datetime
+today = datetime.datetime.now()
+print(str(today))
+print(repr(today))
+
+# Output:
+2021-10-14 10:15:31.405463          # output: __str__
+datetime.datetime(2021, 10, 14, 10, 15, 31, 405463)     # output: __repr__
+
+The difference between str() and repr() is:-
+- The str() function returns a user-friendly description of an object.
+- The repr() method returns a developer-friendly string representation of an object.
+
+Working str() and repr() under the hood:-
+- When you call str() on an object, it calls the special method __str__ of
+the object.
+- And when you call repr() on an object, it calls the special method __repr__ 
+of the object.
+- Also, when you call print() on an object, it calls __str__ method of the 
+object. If __str__ is not implemented, the __repr__ is called as a fallback.
+
+for eg, 
+
+# Case 1: Without str() and repr();
+
+class Fruit:
+    def __init__(self, name):
+        self.name = name
+
+banana = Fruit("Banana")
+print(banana)           
+
+# output:
+<__main__.Fruit object at 0x7f0ece0e8d00>
+
+# Case 2: With str() and repr();
+
+class Fruit:
+    def __init__(self, name):
+        self.name = name
+    
+    def __str__(self):
+        return f'I am a {self.name}'
+    
+    def __repr__(self):
+        return f'Fruit("{self.name}")'
+
+banana = Fruit("Banana")
+print(banana)       # output: I am a Banana
 
 ----------------------------------------------------------------------------------------------------
 Question 011: Set Variable LowerBound and UpperBound;;
@@ -53,9 +196,6 @@ e.g. Finding the "cheapest" path in a list of options:
 if you didn't have float('Inf') available to you, what value would you use for
 the initial lowest_path_cost? Would 9999999 be enough -- float('Inf') removes
 this guesswork.
-
-
-
 
 ----------------------------------------------------------------------------------------------------
 Question 010: Create a Generator Class;;
