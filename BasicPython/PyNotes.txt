@@ -6,6 +6,8 @@
 -> Updated: 06.09.2022
 -> Summary: Notes indices are as follows
 ----------------------------------------------------------------------------------------------------
+-> Question 015: Class Compositon Vs Inheritance;;
+-> Question 014: Class Composition in Python;;
 -> Question 013: @classmethod() vs @staticmethod();;
 -> Question 012: Magic Method __str__() vs __repr__();;
 -> Question 011: Set Variable LowerBound and UpperBound;;
@@ -21,11 +23,17 @@
 -> Question 001: Decorators in python;;
 ----------------------------------------------------------------------------------------------------
 '''
+----------------------------------------------------------------------------------------------------
+Question 014: Class Composition in python;;
+
+
+
 
 ----------------------------------------------------------------------------------------------------
 Question 013: @classmethod vs @stacticmethod;;
 
 @classmethod 
+
 The @classmethod decorator is a built-in function decorator that is an
 expression that gets evaluated after your function is defined. The result of
 that evaluation shadows your function definition. A class method receives the
@@ -50,6 +58,7 @@ class. For example, it can modify a class variable that will be applicable to
 all the instances.
 
 @staticmethod 
+
 A static method does not receive an implicit first argument. A static method
 is also a method that is bound to the class and not the object of the class.
 This method can’t access or modify the class state. It is present in a class
@@ -165,7 +174,8 @@ print(banana)       # output: I am a Banana
 ----------------------------------------------------------------------------------------------------
 Question 011: Set Variable LowerBound and UpperBound;;
 
-This methods helps to set the upper and lower bound of a bound for fallback prevention.
+This methods helps to set the upper and lower bound of a bound for fallback
+prevention.
 
 -> FIRST APPROACH
 
