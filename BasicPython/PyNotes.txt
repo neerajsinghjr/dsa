@@ -1,13 +1,37 @@
 '''
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 -> Title: PyNotes Diary
 -> Status: Ongoing...
 -> Created: 03.09.2022
 -> Updated: 06.09.2022
 -> Summary: Notes indices are as follows
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-> Question 039: Asyncio Module in Python;;
+-> Question 038: Arrays in Python;;
+-> Question 037: Method Overloading and Operator Overloading;;
+-> Question 036: Switch alternative in python;;
+**** Question 035: Disassember Package using DIS package;;
+**** Question 034: Access Python Source Code and Byte Code ;;
+-> Question 033: ABCMeta, AbstractClass, abstractmethod in ABC package;;
+-> Question 032: Variable arguments *args and **vargs in python;;
+-> Question 031: Finding and Installing Packages;;
+**** Question 030: Default Dict in Python;;
+-> Question 029: Explicit string type at definition of literals;;
+-> Question 028: Builtins Error and Exception;;
+-> Question 027: Mutable and Immutable data types;;
+-> Question 026: Explicit string type at definition of literals;;
+-> Question 025: Python first class objects;;
+-> Question 024: Python main() function;;
+-> Question 023: Identify bugs and performing static analysis in python;;
+-> Question 022: Global Interpreter Lock;;
+-> Question 021: Lambda function in Python;;
+-> Question 020: Module vs Packages in Python;;
+-> Question 019: Inheritance in Python;;
+-> Question 018: Access Specifiers used in python;;
+-> Question 017: Access Parent Class using Child class;;
+-> Question 016: Python Pickling vs UnPickling;;
 -> Question 015: Class Compositon Vs Inheritance;;
--> Question 014: Class Composition in Python;;
+**** Question 014: Class Composition in Python;;
 -> Question 013: @classmethod() vs @staticmethod();;
 -> Question 012: Magic Method __str__() vs __repr__();;
 -> Question 011: Set Variable LowerBound and UpperBound;;
@@ -21,16 +45,820 @@
 -> Question 003: LAMBDA in python;;
 -> Question 002: Comprehension in python;;
 -> Question 001: Decorators in python;;
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 '''
-----------------------------------------------------------------------------------------------------
-Question 014: Class Composition in python;;
+
+-------------------------------------------------------------------------------------
+-> Question 039: Asyncio Module in Python;;
+
+
+
+-------------------------------------------------------------------------------------
+-> Question 038: Arrays in Python;;
+
+// Syntax of array module :-
+arrayIdentifierName = array(typecode, [Initializers])
+
+for eg, 
+from array import Array
+
+arr = array(paramter type, initialize values)
+print(arr)
+
+
+// Array Parameters Details :-
+c : character of size 1 byte
+u : unicode character of size 2 bytes
+w : unicode character of size 4 bytes
+
+b : signed integer of 1 byte
+B : unsigned integer of 1 byte
+h : signed integer of 2 bytes
+H : unsigned integer of 2 bytes
+i : signed integer of 2 bytes
+I : unsigned integer of 2 bytes
+l : signed integer of 4 bytes
+L : unsigned integer of 4 bytes
+
+f : floating point of 4 bytes
+d : floating point of 8 bytes
+
+
+for eg, // Array CRUD
+
+from array import *
+
+arr = array(i, [1,2,3])
+
+// append values to array
+arr.append(4)       # [1,2,3,4]
+
+print(arr)
+
+// print array
+for i in arr:
+    print(i)
+
+// insert values at array
+arr.insert(4,99)
+
+// extends from list
+c = [11,12,13]
+arr.extends(c)
+print(arr)
+
+// more helpers...
+arr.fromlist(opts=[11,22,33])
+arr.count(3)
+arr.tostring()              # convert to string
+arr.tolist()                # convert to list
+
+
+-------------------------------------------------------------------------------------
+-> Question 037: Method Overloading and Operator Overloading;;
 
 
 
 
-----------------------------------------------------------------------------------------------------
-Question 013: @classmethod vs @stacticmethod;;
+-------------------------------------------------------------------------------------
+-> Question 036: Switch alternative in python;;
+
+for eg,
+
+# Case 1: Switch case using if-else;
+def switch(value):
+	if(value == 1):	return value*10
+	elif(value == 2): return value*20
+	elif(value == 3): return value*30
+	else: return value
+
+print(switch(value=3))	# switch function in python
+
+# Case 2: Switch using dict;
+switch = {
+	1: lambda: 1*10,
+	2: lambda: 2*20,
+	3: lambda: 3*30,
+	
+	
+}
+
+
+-------------------------------------------------------------------------------------
+-> Question 035: Disassember Package using DIS package;;
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Question 034: Access Python Source Code and Byte Code ;;
+
+
+
+-------------------------------------------------------------------------------------
+-> Question 033: ABCMeta, AbstractClass, abstractmethod in ABC package;;
+
+# BASIC USAGE OF ABSTRACT CLASS:-
+Abstract classes are classes that are meant to be inherited but avoid 
+implementing specific methods, leaving behind only method signatures that 
+subclasses must implement.
+
+Abstract classes are useful for defining and enforcing class abstractions 
+at a high level, similar to the concept of interfaces in typed languages, 
+without the need for method implementation.
+
+One conceptual approach to defining an abstract class is to stub out the 
+class methods, and then raise a NotImplementedError if accessed. This 
+prevents children classes from accessing parent methods without overriding
+them first. 
+
+for eg, 
+
+class Fruit:
+    def check_ripeness(self):
+        raise NotImplementedError("method not implemented!")
+
+class Apple(Fruit):
+    pass
+
+a = Apple()
+a.check_ripeness() # raises NotImplementedError
+
+
+# ABSTRACT CLASS PACKAGE :-
+Abstract base classes (ABCs) enforce what derived classes implement particular 
+methods from the base class.
+
+To understand how this works and why we should use it, let's take a look at 
+an example that Van Rossum would enjoy. Let's say we have a Base class 
+"MontyPython"with two methods (joke & punchline) that must be implemented by 
+all derived classes.
+
+for eg,
+class MontyPython:
+    def joke(self):
+        raise NotImplementedError()
+
+    def punchline(self):
+        raise NotImplementedError()
+
+class ArgumentClinic(MontyPython):
+    def joke(self):
+        return "Hahahahahah"
+        
+When we instantiate an object and call it's two methods, we'll get an error
+(as expected) with the punchline() method.
+
+ >>> sketch = ArgumentClinic() 
+ >>> sketch.punchline() 
+ >>> NotImplementedError 
+
+However, this still allows us to instantiate an object of the ArgumentClinic 
+class without getting an error. In fact we don't get an error until we look 
+for the punchline().
+
+This is avoided by using the Abstract Base Class (ABC) module. Let's see how
+this works with the same example:
+
+for eg,
+
+from abc import ABCMeta, abstractmethod
+
+class MontyPython(metaclass=ABCMeta):
+    @abstractmethod
+    def joke(self):
+        pass
+
+@abstractmethod
+def punchline(self):
+    pass
+
+class ArgumentClinic(MontyPython):
+    def joke(self):
+        return "Hahahahahah"
+        
+This time when we try to instantiate an object from the incomplete class, we 
+immediately get a TypeError!
+
+>>> c = ArgumentClinic()
+>>> TypeError: "Can't instantiate abstract class ArgumentClinic with abstract 
+methods punchline"
+
+In this case, it's easy to complete the class to avoid any TypeErrors:
+
+for eg,
+class ArgumentClinic(MontyPython):
+    def joke(self):
+        return "Hahahahahah"
+
+    def punchline(self):
+        return "Send in the constable!"
+
+
+-------------------------------------------------------------------------------------
+-> Question 032: *args and **vargs in python;;
+
+- args  : received tuple
+- kargs : recieved dictionary 
+
+# Usage 1:
+The names args and kwargs are used by convention, they are not a part of the 
+language specification. Thus, these are equivalent:
+
+for eg, They both are same...
+
+def func(*args, **kwargs):	# example 1
+	print(args)
+	print(kwargs)
+	
+def func(*a, **b):			# example 2
+	print(a)
+	print(b)
+
+
+# Usage 2:-
+You may not have more than one args or more than one kwargs parameters 
+(however they are not required)
+
+def func(*args1, *args2): #  example 1
+	# File "<stdin>", line 1
+	# def test(*args1, *args2):
+	
+	# SyntaxError: invalid syntax
+
+
+def test(**kwargs1, **kwargs2):	# example 2
+	# File "<stdin>", line 1
+	# def test(**kwargs1, **kwargs2):
+	
+	# SyntaxError: invalid syntax
+
+
+# Usage 3: 
+If any positional argument follow *args , they are keyword-only arguments
+that can only be passed by name. A single star may be used instead of 
+*args to force values to be keyword arguments without providing a variadic
+parameter list. Keyword-only parameter lists are only available in Pytohn3
+
+
+def func(a, b, *args, x, y):	# Example 1
+	print(a, b, args, x, y)
+	
+func(1, 2, 3, 4, x=5, y=6)
+>>> Error : Missing param x,y
+
+def func(a,b, *args, x, y):
+	print(a, b, var, b, y)
+	
+func(1,2,3,4,6,x=8,y=9)
+
+
+# Usage 4:
+Keyworded argument should be at last of the function defination.
+
+def func(**kwargs, *args):
+# File "<stdin>", line 1
+# def test(**kwargs, *args):
+#
+# SyntaxError: invalid syntax
+	
+	
+### args when calling for function;
+
+args uses tuple for sending and receiving the value;
+
+when you are using *args for sending param value to a func() param
+then argument gonna unpack while calling the method and the func()
+recieved individual argument.
+
+for eg,
+
+def func(x,y):
+	print(x,y)
+	
+a = [1,2]
+func(*a)		# x = 1, y = 2 unpack a into two variables;
+
+a.append(3)
+func(*a)		# error func() expects two agrument but 3 were given;
+
+### kwargs using in function;
+
+Work approach is same as in the args but kwargs received key:value
+pair instead of tuple as in args;
+
+for eg,
+
+def func(x,y):
+	print(f"x: {x} // y:{y}")
+
+x = {'a': 10, 'b': 20}
+func(**x)
+
+
+Note that the length of the starred argument need to be equal to the 
+number of the function's arguments.
+
+A common python idiom is to use the unpacking operator * with the zip 
+function to reverse its effects.
+
+
+-------------------------------------------------------------------------------------
+-> Question 031: Finding and Installing Packages;
+
+For indirect calling for the pip module if the pip module is not defined as 
+inside the environment variable;
+
+$ python -m pip install 
+
+NOTE: for directly using pip, you need to defined it inside the environment
+variable like you have done while install python;
+
+$ pip search <query>
+$ pip install <query>
+$ pip uniinstall <query>
+$ pip install [package_name]==x.x.x # specific version of the package
+$ pip install '[package_name]>=x.x.x' # minimum version of the package
+
+$ pip list --outdated # list outdated package;
+
+$ pip install <package> --upgrade # Upgrading the installed packges;;
+
+$ pip install -U pip	# upgrading pip module;;
+
+-------------------------------------------------------------------------------------
+-> Question 030: Deafult Dict in Python;;
+
+A defaultdict is a dictionary with a default value for keys, so that keys for
+which no value has been explicitly defined can be accessed without errors.
+defaultdict is especially useful when the values in the dictionary are
+collections (lists, dicts, etc) in the sense that it does not need to be
+initialized every time when a new key is used.
+
+A defaultdict will never raise a KeyError. Any key that does not exist gets
+the default value returned.
+
+for eg, 
+
+from collection import defaultdict
+
+list = [1,2,3]
+
+
+-------------------------------------------------------------------------------------
+-> Question 028: Builtins Error and Exception;;
+
+Built in modules contains extra functionalities.For example to get square root
+of a number we need to include math module.
+
+>>> import math
+>>> math.sqrt(16) # 4.0
+
+To know all the functions in a module we can assign the functions list to a
+variable, and then print the variable.
+
+>>> import math
+>>> dir(math)
+
+['__doc__', '__name__', '__package__', 'acos', 'acosh',
+'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign',
+'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1',
+'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma',
+'hypot', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10',
+'log1p', 'modf', 'pi', 'pow'
+
+>>> dir(__builtins__)
+[
+    'ArithmeticError',
+    'AssertionError',
+    'AttributeError',
+    'BaseException',
+    'BufferError',
+    'BytesWarning',
+    'DeprecationWarning',
+    'EOFError',
+    'Ellipsis',
+    'EnvironmentError',
+    'Exception',
+    'False',
+    'FloatingPointError',
+    'FutureWarning',
+    'GeneratorExit',
+    'IOError',
+    'ImportError',
+    'ImportWarning',
+    'IndentationError',
+    'IndexError',
+    'KeyError',
+    'KeyboardInterrupt',
+    'LookupError',
+    'MemoryError',
+    'NameError',
+    'None',
+    'NotImplemented',
+    'NotImplementedError',
+
+    ...
+]
+
+-------------------------------------------------------------------------------------
+-> Question 027: Mutable and Immutable data types;;
+
+# Immutable:
+int , long , float , complex
+str
+bytes
+tuple
+frozenset
+
+# Mutable
+list
+set
+dict
+bytearray
+
+-------------------------------------------------------------------------------------
+-> Question 026: Explicit string type at definition of literals;;
+
+With one letter labels just in front of the quotes you can tell what type of
+string you want to define.
+
+- b'foo bar' : results : bytes in Python 3, str in Python 2
+- u'foo bar' : results : str in Python 3, unicode in Python 2
+- 'foo bar'  : results : str
+- r'foo bar' : results : so called raw string, where escaping special characters
+  is not necessary, everything is taken verbatim as you typed 
+
+for eg,
+normal = 'foo\nbar'         # foo 
+                            # bar
+escaped = 'foo\\nbar'       # foo\nbar
+raw = r'foo\nbar'           # foo\nbar
+
+
+-------------------------------------------------------------------------------------
+-> Question 025: Python first class objects;;
+
+It means there are no restrictions on the object's use. It's the same as any
+other object.
+
+A first class object is an entity that can be dynamically created, destroyed,
+passed to a function, returned as a value, and have all the rights as other
+variables in the programming language have.
+
+Depending on the language, this can imply:
+
+- Being expressible as an anonymous literal value
+- Being storable in variables
+- Being storable in data structures
+- Being having an intrinsic identity (independent of any given name)
+- Being comparable for equality with other entities
+- Being passable as a parameter to a procedure/function
+- Being returnable as the result of a procedure/function
+- Being constructible at runtime
+- Being printable
+- Being readable
+- Being transmissible among distributed processes
+- Being storable outside running processes
+
+
+-------------------------------------------------------------------------------------
+-> Question 024: Python main() function;;
+
+In the world of programming languages, the main is considered as an entry
+point of execution for a program. But in python, it is known that the
+interpreter serially interprets the file line-by-line. This means that python
+does not provide main() function explicitly. But this doesn't mean that we
+cannot simulate the execution of main. This can be done by defining
+user-defined main() function and by using the __name__ property of python
+file. This __name__ variable is a special built-in variable that points to
+the name of the current module. This can be done as shown below:
+
+
+def main():
+   print("Hi Interviewbit!")
+if __name__=="__main__":
+   main()
+
+
+-------------------------------------------------------------------------------------
+-> Question 023: Shallow Copy vs Deep Copy;;
+
+Shallow copy does the task of creating new objects storing references of
+original elements. This does not undergo recursion to create copies of nested
+objects. It just copies the reference details of nested objects.
+
+Deep copy creates an independent and new copy of an object and even copies all
+the nested objects of the original element recursively.
+
+
+-------------------------------------------------------------------------------------
+-> Question 022: Global Interpreter Lock;;
+
+Yes, there are tools like PyChecker and Pylint which are used as static
+analysis and linting tools respectively. PyChecker helps find bugs in python
+source code files and raises alerts for code issues and their complexity.
+Pylint checks for the module’s coding standards and supports different
+plugins to enable custom features to meet this requirement.
+
+
+-------------------------------------------------------------------------------------
+-> Question 022: Global Interpreter Lock;;
+
+GIL stands for Global Interpreter Lock. This is a mutex used for limiting
+access to python objects and aids in effective thread synchronization by
+avoiding deadlocks. GIL helps in achieving multitasking (and not parallel
+computing). The following diagram represents how GIL works.
+
+
+Based on the above diagram, there are three threads. First Thread acquires the
+GIL first and starts the I/O execution. When the I/O operations are done,
+thread 1 releases the acquired GIL which is then taken up by the second
+thread. The process repeats and the GIL are used by different threads
+alternatively until the threads have completed their execution. The threads
+not having the GIL lock goes into the waiting state and resumes execution
+only when it acquires the lock.
+
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Question 021: Lambda function in Python;;
+
+Lambda functions are generally inline, anonymous functions represented by a
+single expression. They are used for creating function objects during
+runtime. They can accept any number of parameters. They are usually used
+where functions are required only for a short period. They can be used as:
+
+mul_func = lambda x,y : x*y
+print(mul_func(6, 4))
+# Output: 24
+
+-------------------------------------------------------------------------------------
+-> Question 020: Module vs Packages in Python;;
+
+The module is a single python file. A module can import other modules
+(other python files) as objects. Whereas, a package is the folder/directory
+where different sub-packages and the modules reside.
+
+A python module is created by saving a file with the extension of .py. This
+file will have classes and functions that are reusable in the code as well as
+across modules.
+
+A python package is created by following the below steps:
+
+Create a directory and give a valid name that represents its operation. Place
+modules of one kind in this directory. Create __init__.py file in this
+directory. This lets python know the directory we created is a package. The
+contents of this package can be imported across different modules in other
+packages to reuse the functionality.
+
+
+-------------------------------------------------------------------------------------
+-> Question 019: Inheritance in Python;;
+
+Inheritance gives the power to a class to access all attributes and methods of
+another class. It aids in code reusability and helps the developer to
+maintain applications without redundant code. The class inheriting from
+another class is a child class or also called a derived class. The class from
+which a child class derives the members are called parent class or
+superclass.
+
+Python supports different kinds of inheritance, they are:
+
+# Single Inheritance: Child class derives members of one parent class.
+
+# Parent class
+class ParentClass:
+    def par_func(self):
+         print("I am parent class function")
+
+# Child class
+class ChildClass(ParentClass):
+    def child_func(self):
+         print("I am child class function")
+
+# Driver code
+obj1 = ChildClass()
+obj1.par_func()
+obj1.child_func()
+
+
+# Multi-level Inheritance: The members of the parent class, A, are inherited
+  by child class which is then inherited by another child class, B. The
+  features of the base class and the derived class are further inherited into
+  the new derived class, C. Here, A is the grandfather class of class C.
+
+# Parent class
+class A:
+   def __init__(self, a_name):
+       self.a_name = a_name
+   
+# Intermediate class
+class B(A):
+   def __init__(self, b_name, a_name):
+       self.b_name = b_name
+       # invoke constructor of class A
+       A.__init__(self, a_name)
+
+# Child class
+class C(B):
+   def __init__(self,c_name, b_name, a_name):
+       self.c_name = c_name
+       # invoke constructor of class B
+       B.__init__(self, b_name, a_name)
+       
+   def display_names(self):
+       print("A name : ", self.a_name)
+       print("B name : ", self.b_name)
+       print("C name : ", self.c_name)
+
+#  Driver code
+obj1 = C('child', 'intermediate', 'parent')
+print(obj1.a_name)
+obj1.display_names()
+ 
+
+# Multiple Inheritance: This is achieved when one child class derives members
+  from more than one parent class. All features of parent classes are
+  inherited in the child class.
+
+# Parent class1
+class Parent1:
+   def parent1_func(self):
+       print("Hi I am first Parent")
+
+# Parent class2
+class Parent2:
+   def parent2_func(self):
+       print("Hi I am second Parent")
+
+# Child class
+class Child(Parent1, Parent2):
+   def child_func(self):
+       self.parent1_func()
+       self.parent2_func()
+
+# Driver's code
+obj1 = Child()
+obj1.child_func()
+
+
+# Hierarchical Inheritance: When a parent class is derived by more than one
+  child class, it is called hierarchical inheritance.
+
+# Base class
+class A:
+     def a_func(self):
+         print("I am from the parent class.")
+
+# 1st Derived class
+class B(A):
+     def b_func(self):
+         print("I am from the first child.")
+
+# 2nd Derived class
+class C(A):
+     def c_func(self):
+         print("I am from the second child.")
+ 
+# Driver's code
+obj1 = B()
+obj2 = C()
+obj1.a_func()
+obj1.b_func()    #child 1 method
+obj2.a_func()
+obj2.c_func()    #child 2 method
+
+
+-------------------------------------------------------------------------------------
+-> Question 018: Access Specifiers used in python;;
+
+Python does not make use of access specifiers specifically like private,
+public, protected, etc. However, it does not derive this from any variables.
+It has the concept of imitating the behaviour of variables by making use of a
+single (protected) or double underscore (private) as prefixed to the variable
+names. By default, the variables without prefixed underscores are public.
+
+Example:
+
+# to demonstrate access specifiers
+class InterviewbitEmployee:
+   
+    # protected members
+    _emp_name = None
+    _age = None
+    
+    # private members
+    __branch = None
+    
+    # constructor
+    def __init__(self, emp_name, age, branch): 
+         self._emp_name = emp_name
+         self._age = age
+         self.__branch = branch
+    
+    #public member
+    def display():
+        print(self._emp_name +" "+self._age+" "+self.__branch)
+
+
+-------------------------------------------------------------------------------------
+-> Question 017: Access Parent Class using Child class;;
+
+Following are the ways using which you can access parent class members within
+a child class:
+
+By using Parent class name: You can use the name of the parent class to access
+the attributes as shown in the example below:
+
+# Example Class;
+class Parent(object):  
+   # Constructor
+   def __init__(self, name):
+       self.name = name    
+ 
+class Child(Parent): 
+   # Constructor
+   def __init__(self, name, age):
+       Parent.name = name
+       self.age = age
+ 
+   def display(self):
+       print(Parent.name, self.age)
+ 
+
+# Driver Code
+obj = Child("Interviewbit", 6)
+obj.display()
+
+
+By using super(): The parent class members can be accessed in child class
+using the super keyword.
+
+
+class Parent(object):
+   # Constructor
+   def __init__(self, name):
+       self.name = name    
+ 
+class Child(Parent):
+   # Constructor
+   def __init__(self, name, age):         
+       ''' 
+       In Python 3.x, we can also use super().__init__(name)
+       ''' 
+       super(Child, self).__init__(name)
+       self.age = age
+ 
+   def display(self):
+      # Note that Parent.name cant be used 
+      # here since super() is used in the constructor
+      print(self.name, self.age)
+  
+# Driver Code
+obj = Child("Interviewbit", 6)
+obj.display()
+
+
+
+-------------------------------------------------------------------------------------
+-> Question 016: Python Pickling vs UnPickling;;
+
+
+Python library offers a feature - serialization out of the box. Serializing an
+object refers to transforming it into a format that can be stored, so as to
+be able to deserialize it, later on, to obtain the original object. Here, the
+pickle module comes into play.
+
+Pickling:
+
+Pickling is the name of the serialization process in Python. Any object in
+Python can be serialized into a byte stream and dumped as a file in the
+memory. The process of pickling is compact but pickle objects can be
+compressed further. Moreover, pickle keeps track of the objects it has
+serialized and the serialization is portable across versions. The function
+used for the above process is pickle.dump().
+
+Unpickling:
+
+Unpickling is the complete inverse of pickling. It deserializes the byte
+stream to recreate the objects stored in the file and loads the object to
+memory. The function used for the above process is pickle.load(). Note:
+Python has another, more primitive, serialization module called marshall,
+which exists primarily to support .pyc files in Python and differs
+significantly from the pickle.
+
+
+-------------------------------------------------------------------------------------
+-> Question 014: Class Composition in python;;
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Question 013: @classmethod vs @stacticmethod;;
 
 @classmethod 
 
@@ -113,8 +941,8 @@ print(Person.isAdult(22))
 25
 True
 
-----------------------------------------------------------------------------------------------------
-Question 012: Magic Method __str__() vs __repr__();;
+-------------------------------------------------------------------------------------
+-> Question 012: Magic Method __str__() vs __repr__();;
 
 In Python, the built-in str() and repr() functions both produce a textual
 representation of an object.
@@ -171,8 +999,8 @@ class Fruit:
 banana = Fruit("Banana")
 print(banana)       # output: I am a Banana
 
-----------------------------------------------------------------------------------------------------
-Question 011: Set Variable LowerBound and UpperBound;;
+-------------------------------------------------------------------------------------
+-> Question 011: Set Variable LowerBound and UpperBound;;
 
 This methods helps to set the upper and lower bound of a bound for fallback
 prevention.
@@ -207,8 +1035,8 @@ if you didn't have float('Inf') available to you, what value would you use for
 the initial lowest_path_cost? Would 9999999 be enough -- float('Inf') removes
 this guesswork.
 
-----------------------------------------------------------------------------------------------------
-Question 010: Create a Generator Class;;
+-------------------------------------------------------------------------------------
+-> Question 010: Create a Generator Class;;
 
 You're almost there, writing an Iterator class (I show a Generator at the end
 of the answer), but __next__ gets called every time you call the object with
@@ -281,8 +1109,8 @@ returns:
 <generator object __next__ at 0x000000000A3E4F68>
 
 
-----------------------------------------------------------------------------------------------------
-Question 009: Iterators Vs Iterables Vs Generators in python;;
+-------------------------------------------------------------------------------------
+-> Question 009: Iterators Vs Iterables Vs Generators in python;;
 
 -> Iterators:-
 An object capable of returning its members one at a time. Examples of
@@ -337,8 +1165,8 @@ generator iterator resumes, it picks-up where it left-off (in contrast to
 functions which start fresh on every invocation).
 
 
-----------------------------------------------------------------------------------------------------
-Question 008: Iterators in python;;
+-------------------------------------------------------------------------------------
+-> Question 008: Iterators in python;;
 
 The below is class which implements `__next__`as if it was a function using
 the `yield` keyword:
@@ -412,8 +1240,8 @@ next value (either from a sequence or generated values).
 
 You can iterate over iterables, not over iterators.
   
-----------------------------------------------------------------------------------------------------
-Question 007: Generator in Python;;
+-------------------------------------------------------------------------------------
+-> Question 007: Generator in Python;;
 
 A generator in Python is a function that remembers the state it’s in, in
 between executions.
@@ -485,8 +1313,8 @@ A few sections ago I printed out `range(10)` and it was a strange `range(0,
 10)` thing. That’s a generator object! 
 """
 
-----------------------------------------------------------------------------------------------------
-Question 006: Type Hinting in Python;;
+-------------------------------------------------------------------------------------
+-> Question 006: Type Hinting in Python;;
 
 It is used to validate the data type of the incoming argument of a function or
 returning variable  from the function; 
@@ -572,9 +1400,9 @@ Type variables are used extensively in type annotations, also internal
 machinery of the type inference in type checkers is typically build on type
 variables. Therefore, let us consider them in detail.
 
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 
-Question 005: Copy in Python;
+-> Question 005: Copy in Python;
 
 In Python, the assignment statement (= operator) does not copy objects.
 Instead, it creates a binding between the existing object and the target
@@ -605,8 +1433,8 @@ list_3[2].append(7)
 list_3    # output => [1, 2, [3, 5, 6, 7], 8]
 list_1    # output => [1, 2, [3, 5, 6], 4]
 
-----------------------------------------------------------------------------------------------------
-Question 004: Python arrays;
+-------------------------------------------------------------------------------------
+-> Question 004: Python arrays;
 
 Arrays in python can only contain elements of same data types i.e., data type
 of array should be homogeneous. It is a thin wrapper around C language arrays
@@ -619,13 +1447,18 @@ import array
 a = array.array('i', [1, 2, 3])
 for i in a:
     print(i, end=' ')    #OUTPUT: 1 2 3
-a = array.array('i', [1, 2, 'string'])   #OUTPUT: TypeError: an integer is required (got type str)
+
+a = array.array('i', [1, 2, 'string'])   
+
+#OUTPUT: TypeError: an integer is required (got type str)
+
 a = [1, 2, 'string']
+
 for i in a:
    print(i, end=' ')    #OUTPUT: 1 2 string
 
-----------------------------------------------------------------------------------------------------
-Question 003: LAMBDA;
+-------------------------------------------------------------------------------------
+-> Question 003: LAMBDA;
 
 Lambda is an anonymous function in Python, that can accept any number of
 arguments, but can only have a single expression. It is generally used in
@@ -641,8 +1474,8 @@ def myWrapper(n):
 mulFive = myWrapper(5)
 print(mulFive(2))    # output => 10
 
-----------------------------------------------------------------------------------------------------
-Question 002: Comprehensions;
+-------------------------------------------------------------------------------------
+-> Question 002: Comprehensions;
 
 Python comprehensions, like decorators, are syntactic sugar constructs that
 help build altered and filtered lists, dictionaries, or sets from a given
@@ -686,8 +1519,8 @@ languages. They follow the mathematical set builder notation rather than map
 and filter functions in Python.
 
 
-----------------------------------------------------------------------------------------------------
-Question 001: Decorators in python;; 
+-------------------------------------------------------------------------------------
+-> Question 001: Decorators in python;; 
 
 Decorators in Python are essentially functions that add functionality to an
 existing function in Python without changing the structure of the function
@@ -733,5 +1566,6 @@ def names_decorator(function):
 def say_hello(name1, name2):
    return 'Hello ' + name1 + '! Hello ' + name2 + '!'
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
+
 
 ----------------------------------------------------------------------------------------------------
