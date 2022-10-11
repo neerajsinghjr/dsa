@@ -3,8 +3,8 @@
 -> Title: PyNotes Diary
 -> Status: Ongoing...
 -> Created: 03.09.2022
--> Updated: 06.09.2022
--> Summary: Notes indices are as follows
+-> Updated: 09.10.2022
+-> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> Question 039: Asyncio Module in Python;;
 -> Question 038: Arrays in Python;;
@@ -50,6 +50,11 @@
 
 -------------------------------------------------------------------------------------
 -> Question 039: Asyncio Module in Python;;
+
+# Thread syncrhonization;
+
+# 
+
 
 
 
@@ -1568,4 +1573,4 @@ def say_hello(name1, name2):
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
 
 
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
