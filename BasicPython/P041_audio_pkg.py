@@ -1,18 +1,13 @@
 #!/bin/python3
 
-import os
-import re
-import sys
 import time
-import math
-import random
-
+import pyglet
 
 
 
 ##---Main Execution;;
 def main():
-   pass
+   pyglet.play('resources/pop.wav')
 
 
 if __name__ == '__main__':
