@@ -1,6 +1,7 @@
 '''
 -------------------------------------------------------------------------------------
 -> Title: PyNotes Diary
+-> Author: Neeraj Singh Jr.
 -> Status: Ongoing...
 -> Created: 03.09.2022
 -> Updated: 09.10.2022
@@ -26,7 +27,7 @@
 -> Question 022: Global Interpreter Lock;;
 -> Question 021: Lambda function in Python;;
 -> Question 020: Module vs Packages in Python;;
--> Question 019: Inheritance in Python;;
+-> Question 019: Inheritance in Python;;t
 -> Question 018: Access Specifiers used in python;;
 -> Question 017: Access Parent Class using Child class;;
 -> Question 016: Python Pickling vs UnPickling;;
