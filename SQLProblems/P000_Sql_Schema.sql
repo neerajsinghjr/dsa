@@ -3,7 +3,8 @@
 --------------------------------------------------------------------------------------------
 
 --- Q01: Create Table
-This statement is used to create a new table from an existing table. So, this table gets the same column definitions as that of the existing table.
+This statement is used to create a new table from an existing table. So, this
+table gets the same column definitions as that of the existing table.
 
 for eg,
 
@@ -18,12 +19,14 @@ CREATE TABLE ExampleTable AS
 SELECT Studentname, Parentname
 FROM Students;
 
+
 -- Q02: Alter Table
 The ALTER command is used to add, modify or delete constraints or columns.
 
 Syntax:
 ALTER TABLE table_name
 ADD column_name datatype;
+
 
 -- Q03: Drop Table
 The DROP command is used to delete the database, tables or columns.
@@ -34,12 +37,14 @@ DROP SCHEMA schema_name;
 for eg,
 DROP SCHEMA StudentsInfo;
 
+
 -- Q04: TRUNCATE Table
 This statement is used to delete the data which is present inside a table, but the table doesn’t get deleted.
 
 for eg,
 Syntax:
 TRUNCATE TABLE table_name;
+
 
 -- Q05: RENAME table 
 This statement is used to rename one or more tables.
@@ -49,6 +54,7 @@ Syntax:
 RENAME TABLE 
     tbl_name TO new_tbl_name
     [, tbl_name2 TO new_tbl_name2] ...
+
 
 -- Q06: Different Types Of Keys In Database
 There are mainly 5 types of Keys, that can be mentioned in the database...
