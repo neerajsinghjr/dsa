@@ -336,3 +336,43 @@ Q35: Query to upper case the name of the employee and lower case the city values
 */
 SELECT UPPER(FullName), LOWER(City) 
 FROM EmployeeDetails;
+
+/*
+special-queries */
+select table_name, column_name, data_type from information_schema.columns where table_name='customer';
+
+/*
+Table : scheme
+*/
+ select * from scheme where id in (2,6);
+
+/*
+Table : customer_table
+*/
+select * from customer where email='rathoreboys786786@gmail.com';
+select email, count(*) from customer group by email having count(*)>1;
+select id, mobile, name from customer where mobile7703863166;
+select extract(year from now()) - extract(year from (select date_of_birth from customer where id=2));
+select extract(month from (select kyc_created_on from customer where id=2));
+select extract(year from (select kyc_created_on from customer where id=2));
+select extract(dow from (select kyc_created_on from customer where id=2));
+select extract(century from (select kyc_created_on from customer where id=2));
+delete from customer_transaction where id in (15,16,17,18,19,20,21,22,23,24,25,26,27,28)
+update customer set country="india" where id=2;
+select * from customer where id=2;
+
+/*
+Table : investment_group
+*/
+select * from investment_group where group_id='IGL0E8XX0R1RR';
+update investment_group set available_withdrawal_balance=4000 where group_id='IGL0E8XX0R1RR';
+
+/*
+Table : customer_action
+*/
+select * from customer_action where params['uid']='C1RZPO4XL' and params['investment_group_id']='IGL0E8XX0R1RR';
+
+/*
+Table : customer_transaction
+*/
+update customer_transaction set nav=10.608 where investment_id=1;
