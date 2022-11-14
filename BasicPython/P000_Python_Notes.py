@@ -7,47 +7,132 @@
 -> Updated: 09.10.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Question 039: Asyncio Module in Python;;
--> Question 038: Arrays in Python;;
--> Question 037: Method Overloading and Operator Overloading;;
--> Question 036: Switch alternative in python;;
-**** Question 035: Disassember Package using DIS package;;
-**** Question 034: Access Python Source Code and Byte Code ;;
--> Question 033: ABCMeta, AbstractClass, abstractmethod in ABC package;;
--> Question 032: Variable arguments *args and **vargs in python;;
--> Question 031: Finding and Installing Packages;;
-**** Question 030: Default Dict in Python;;
--> Question 029: Explicit string type at definition of literals;;
--> Question 028: Builtins Error and Exception;;
--> Question 027: Mutable and Immutable data types;;
--> Question 026: Explicit string type at definition of literals;;
--> Question 025: Python first class objects;;
--> Question 024: Python main() function;;
--> Question 023: Identify bugs and performing static analysis in python;;
--> Question 022: Global Interpreter Lock;;
--> Question 021: Lambda function in Python;;
--> Question 020: Module vs Packages in Python;;
--> Question 019: Inheritance in Python;;t
--> Question 018: Access Specifiers used in python;;
--> Question 017: Access Parent Class using Child class;;
--> Question 016: Python Pickling vs UnPickling;;
--> Question 015: Class Compositon Vs Inheritance;;
-**** Question 014: Class Composition in Python;;
--> Question 013: @classmethod() vs @staticmethod();;
--> Question 012: Magic Method __str__() vs __repr__();;
--> Question 011: Set Variable LowerBound and UpperBound;;
--> Question 010: Create a Generator Class;;
--> Question 009: Iterators Vs Iterables Vs Generators in python;;
--> Question 008: Iterators in python;;
--> Question 007: Generators in python;;
--> Question 006: Type Hinting;;
--> Question 005: Copy in python;;
--> Question 004: Python arrays;;
--> Question 003: LAMBDA in python;;
--> Question 002: Comprehension in python;;
--> Question 001: Decorators in python;;
+-> Question 040 : Hashing vs Encryption;
+-> Question 039 : Asyncio Module in Python;;
+-> Question 038 : Arrays in Python;;
+-> Question 037 : Method Overloading and Operator Overloading;;
+-> Question 036 : Switch alternative in python;;
+**** Question 035 : Disassember Package using DIS package;;
+**** Question 034 : Access Python Source Code and Byte Code ;;
+-> Question 033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
+-> Question 032 : Variable arguments *args and **vargs in python;;
+-> Question 031 : Finding and Installing Packages;;
+**** Question 030 : Default Dict in Python;;
+-> Question 029 : Explicit string type at definition of literals;;
+-> Question 028 : Builtins Error and Exception;;
+-> Question 027 : Mutable and Immutable data types;;
+-> Question 026 : Explicit string type at definition of literals;;
+-> Question 025 : Python first class objects;;
+-> Question 024 : Python main() function;;
+-> Question 023 : Identify bugs and performing static analysis in python;;
+-> Question 022 : Global Interpreter Lock;;
+-> Question 021 : Lambda function in Python;;
+-> Question 020 : Module vs Packages in Python;;
+-> Question 019 : Inheritance in Python;;t
+-> Question 018 : Access Specifiers used in python;;
+-> Question 017 : Access Parent Class using Child class;;
+-> Question 016 : Python Pickling vs UnPickling;;
+-> Question 015 : Class Compositon Vs Inheritance;;
+**** Question 014 : Class Composition in Python;;
+-> Question 013 : @classmethod() vs @staticmethod();;
+-> Question 012 : Magic Method __str__() vs __repr__();;
+-> Question 011 : Set Variable LowerBound and UpperBound;;
+-> Question 010 : Create a Generator Class;;
+-> Question 009 : Iterators Vs Iterables Vs Generators in python;;
+-> Question 008 : Iterators in python;;
+-> Question 007 : Generators in python;;
+-> Question 006 : Type Hinting;;
+-> Question 005 : Copy in python;;
+-> Question 004 : Python arrays;;
+-> Question 003 : LAMBDA in python;;
+-> Question 002 : Comprehension in python;;
+-> Question 001 : Decorators in python;;
 -------------------------------------------------------------------------------------
 '''
+
+-------------------------------------------------------------------------------------
+-> Question 040 : Encryption vs Hashing
+
+ENCYRPTION : 
+
+    - Encryption is a two-way function where data is passed in as plaintext and
+      comes out as ciphertext, which is unreadable but the data can be decrypted
+      so it is readable again
+    - Encryption comes in two types: Asymmetric and Symmetric. 
+
+        a) Asymmetric Encryption
+
+            Encryption : Asymmetric encryption uses two different keys, a public
+            and private key, for encryption and decryption. The private key is
+            used to encrypt data, and is kept a secret from everyone but the
+            person encrypting the data. The public key is available for anyone,
+            and is used for decryption. Using asymmetric encryption, the
+            authenticity of the data can be verified, because if the data was
+            modified in transit, it would not be able to be re-encrypted with
+            the private key
+
+            Asymmetric Encryption Algorithms:
+
+                1) Elliptic Curve Digital Signature Algorithm (ECDSA)
+                2) Rivest-Shamir-Adleman (RSA)
+                3) Diffie-Hellman
+                4) Pretty Good Privacy (PGP)
+
+        b) Symmetric Encryption : 
+            
+            Symmetric encryption uses the same key for both encryption and
+            decryption. This type of encryption uses less processing power
+            and is faster, but is less secure as only one key is used
+
+            Symmetric Encryption Algorithms:
+
+                1) Advanced Encryption Standard (AES)
+                2) Blowfish
+                3) Twofish
+                4) Rivest Cipher (RC4)
+                5) Data Encryption Standard (DES)
+
+HASHING  :
+
+    - Hashing, on the other hand, is one-way, meaning the plaintext is scrambled
+      into a unique digest, through the use of a salt, that cannot be decrypted.
+
+    -  Hashing Algorithms:
+
+        1) Message Digest Algorithm (MD5)
+        2) Secure Hashing Algorithm (SHA-1, SHA-2, SHA-3)
+        3) WHIRLPOOL
+        4) TIGER
+        5) Cyclical Reduction Check (CRC32)
+
+HASHING USE CASES :-
+
+1)  One of the uses for hashing is to compare large amounts of data. Hash
+values are much easier to compare than large chunks of data, as they are more
+concise.
+
+2) Hashing is also used for mapping data, as finding values using hashes is
+quick, and good hashes do not overlap.
+
+3) Hashes are used in digital signatures and to create random strings to avoid
+duplication of data in databases too.
+
+4) hashing is extremely infeasible to reverse, hashing algorithms are used on
+passwords. This makes the password shorter and undiscoverable by attackers.
+
+ENCRYPTION USE CASES :-
+
+1)  Encryption tends to be used for encrypting data that is in transit. Data
+being transmitted is data that needs to be read by the recipient only, thus
+it must be sent so that an attacker cannot read it.
+
+2) Encryption hides the data from anyone taking it in the middle of transit,
+and allows only the decryption key owner to read the data
+
+3) Encryption would be used over hashing is for storing and retrieving data in
+databases, authentication methods, and other cases where data must be hidden
+at rest, but retrieved later.
+
 
 -------------------------------------------------------------------------------------
 -> Question 039: Asyncio Module in Python;;
@@ -70,7 +155,6 @@ from array import Array
 
 arr = array(paramter type, initialize values)
 print(arr)
-
 
 // Array Parameters Details :-
 c : character of size 1 byte
