@@ -1,11 +1,12 @@
 /*
 ----------------------------------------------------------------------------------------------------
--> Problem Title: 
--> Problem Status: Ongoing...
--> Problem Attempted:
--> Problem Description: 
+-> Title: Postgres Diary Junior
+-> Author: Neeraj Singh 
+-> Status: Ongoing...
+-> Created: 15.10.2022
+-> Updated: 15.10.2022
+-> Summary: Notes indices are as follows (**** pending)
 ----------------------------------------------------------------------------------------------------
-
 
 
 ----------------------------------------------------------------------------------------------------
@@ -14,6 +15,7 @@
 ###---PostgreSQL NOTES : BEGINNING 
 
 ----------------------------------------------------------------------------------------------------
+
 /*
 P003 : Postgresql - Select
 */
@@ -32,8 +34,6 @@ The SELECT statement has the following clauses:
 - Join with other tables using joins such as INNER JOIN, LEFT JOIN, 
 FULL OUTER JOIN, CROSS JOIN clauses.
 - Perform set operations using UNION, INTERSECT, and EXCEPT.
-
-
 
 
 ----------------------------------------------------------------------------------------------------
