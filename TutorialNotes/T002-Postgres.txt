@@ -7,18 +7,18 @@
 -> Updated: 15.10.2022
 -> Summary: Notes indices are as follows (**** pending)
 ----------------------------------------------------------------------------------------------------
-
-
+-> P003 : Postgresql - Select
+-> P002 : Connect to the PostgreSQL database server via psql
+-> P001 : What is PostgreSQL
 ----------------------------------------------------------------------------------------------------
 */
 
 ###---PostgreSQL NOTES : BEGINNING 
 
 ----------------------------------------------------------------------------------------------------
+-> P003 : Postgresql - Select
 
-/*
-P003 : Postgresql - Select
-*/
+Solution : 
 
 The SELECT statement is one of the most complex statements in PostgreSQL. It
 has many clauses that you can use to form a flexible query.
@@ -35,13 +35,12 @@ The SELECT statement has the following clauses:
 FULL OUTER JOIN, CROSS JOIN clauses.
 - Perform set operations using UNION, INTERSECT, and EXCEPT.
 
-
 ----------------------------------------------------------------------------------------------------
-/*
-P002 : Connect to the PostgreSQL database server via psql
-*/
+-> P002 : Connect to the PostgreSQL database server via psql
 
--> Connect to PostgreSQL using the postgres role, you switch over to the
+Solution : 
+
+Connect to PostgreSQL using the postgres role, you switch over to the
 postgres account on your server by typing:
 
 $ sudo -i -u postgres
@@ -131,9 +130,9 @@ Code language: Shell Session (shell)
 Congratulations! you have successfully installed PostgreSQL on Ubuntu, connect to PostgreSQL database server using psql, and load the sample database.
 
 ----------------------------------------------------------------------------------------------------
-/*
-P001 : What is PostgreSQL
-*/
+-> P001 : What is PostgreSQL
+
+Solution : 
 
 PostgreSQL is an advanced, enterprise-class, and open-source relational
 database system. PostgreSQL supports both SQL (relational) and JSON

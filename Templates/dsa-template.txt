@@ -1,11 +1,12 @@
 '''
 ----------------------------------------------------------------------------------------------------
--> Problem Title: Maximum subarray of size k
+-> Problem Title: 
 -> Problem Status: Ongoing...
--> Problem Attempted: 07.09.2022
+-> Problem Attempted:
 -> Problem Description: 
 ----------------------------------------------------------------------------------------------------
-You are aksed to return the maximum sum of subarray of the size k
+
+
 
 ----------------------------------------------------------------------------------------------------
 '''
@@ -19,34 +20,22 @@ import time
 import math
 import random
 
-from sys import maxsize
 
-###--- Main Solution;;
+##---Main Solution
 class Solution:
     
-   def maxSubArraySum(self,nums,k):
-        cursum = 0
-        start,cur = 0,0
-        maxsum = -maxsize
-
-        for cur in range(k):
-            cursum += nums[cur]
-
-        for cur in range(k,n):
-            cursum += nums[cur]
-            cursum -= nums[start]
-
+    # Constructor;
+    def __init__(self):
+        pass
 
 
 ##---Main Execution;;
-def main():
+def main(res=None):
     try:
-        num = [2,3,5,3,2,1,1,2,3,4,2,1,1,7,8,9,0]
-        k  = 3
-        obj = Solution()
-        res = obj.maxSubArraySum(num,k)
-
-        print(f"res: {res}")
+    	data = []				
+        obj = Solution()	
+        res = None
+        print(f"Result: {res}") if res else print("Empty!")
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")

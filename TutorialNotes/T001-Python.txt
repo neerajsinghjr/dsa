@@ -7,54 +7,56 @@
 -> Updated: 09.10.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Question 040 : Hashing vs Encryption;
--> Question 039 : Asyncio Module in Python;;
--> Question 038 : Arrays in Python;;
--> Question 037 : Method Overloading and Operator Overloading;;
--> Question 036 : Switch alternative in python;;
-**** Question 035 : Disassember Package using DIS package;;
-**** Question 034 : Access Python Source Code and Byte Code ;;
--> Question 033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
--> Question 032 : Variable arguments *args and **vargs in python;;
--> Question 031 : Finding and Installing Packages;;
-**** Question 030 : Default Dict in Python;;
--> Question 029 : Explicit string type at definition of literals;;
--> Question 028 : Builtins Error and Exception;;
--> Question 027 : Mutable and Immutable data types;;
--> Question 026 : Explicit string type at definition of literals;;
--> Question 025 : Python first class objects;;
--> Question 024 : Python main() function;;
--> Question 023 : Identify bugs and performing static analysis in python;;
--> Question 022 : Global Interpreter Lock;;
--> Question 021 : Lambda function in Python;;
--> Question 020 : Module vs Packages in Python;;
--> Question 019 : Inheritance in Python;;t
--> Question 018 : Access Specifiers used in python;;
--> Question 017 : Access Parent Class using Child class;;
--> Question 016 : Python Pickling vs UnPickling;;
--> Question 015 : Class Compositon Vs Inheritance;;
-**** Question 014 : Class Composition in Python;;
--> Question 013 : @classmethod() vs @staticmethod();;
--> Question 012 : Magic Method __str__() vs __repr__();;
--> Question 011 : Set Variable LowerBound and UpperBound;;
--> Question 010 : Create a Generator Class;;
--> Question 009 : Iterators Vs Iterables Vs Generators in python;;
--> Question 008 : Iterators in python;;
--> Question 007 : Generators in python;;
--> Question 006 : Type Hinting;;
--> Question 005 : Copy in python;;
--> Question 004 : Python arrays;;
--> Question 003 : LAMBDA in python;;
--> Question 002 : Comprehension in python;;
--> Question 001 : Decorators in python;;
+-> Q040 : Hashing vs Encryption;
+-> Q039 : Asyncio Module in Python;;
+-> Q038 : Arrays in Python;;
+-> Q037 : Method Overloading and Operator Overloading;;
+-> Q036 : Switch alternative in python;;
+**** Q035 : Disassember Package using DIS package;;
+**** Q034 : Access Python Source Code and Byte Code ;;
+-> Q033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
+-> Q032 : Variable arguments *args and **vargs in python;;
+-> Q031 : Finding and Installing Packages;;
+**** Q030 : Default Dict in Python;;
+-> Q029 : Explicit string type at definition of literals;;
+-> Q028 : Builtins Error and Exception;;
+-> Q027 : Mutable and Immutable data types;;
+-> Q026 : Explicit string type at definition of literals;;
+-> Q025 : Python first class objects;;
+-> Q024 : Python main() function;;
+-> Q023 : Identify bugs and performing static analysis in python;;
+-> Q022 : Global Interpreter Lock;;
+-> Q021 : Lambda function in Python;;
+-> Q020 : Module vs Packages in Python;;
+-> Q019 : Inheritance in Python;;t
+-> Q018 : Access Specifiers used in python;;
+-> Q017 : Access Parent Class using Child class;;
+-> Q016 : Python Pickling vs UnPickling;;
+-> Q015 : Class Compositon Vs Inheritance;;
+**** Q014 : Class Composition in Python;;
+-> Q013 : @classmethod() vs @staticmethod();;
+-> Q012 : Magic Method __str__() vs __repr__();;
+-> Q011 : Set Variable LowerBound and UpperBound;;
+-> Q010 : Create a Generator Class;;
+-> Q009 : Iterators Vs Iterables Vs Generators in python;;
+-> Q008 : Iterators in python;;
+-> Q007 : Generators in python;;
+-> Q006 : Type Hinting;;
+-> Q005 : Copy in python;;
+-> Q004 : Python arrays;;
+-> Q003 : LAMBDA in python;;
+-> Q002 : Comprehension in python;;
+-> Q001 : Decorators in python;;
 -------------------------------------------------------------------------------------
 '''
 
+###---PYTHON NOTES : BEGINNING 
+
 -------------------------------------------------------------------------------------
--> Question 040 : Encryption vs Hashing
+-> Q040 : Encryption vs Hashing
 
 ENCYRPTION : 
-
+    
     - Encryption is a two-way function where data is passed in as plaintext and
       comes out as ciphertext, which is unreadable but the data can be decrypted
       so it is readable again
@@ -135,17 +137,15 @@ at rest, but retrieved later.
 
 
 -------------------------------------------------------------------------------------
--> Question 039: Asyncio Module in Python;;
+-> Q039: Asyncio Module in Python;;
 
 # Thread syncrhonization;
-
-# 
 
 
 
 
 -------------------------------------------------------------------------------------
--> Question 038: Arrays in Python;;
+-> Q038: Arrays in Python;;
 
 // Syntax of array module :-
 arrayIdentifierName = array(typecode, [Initializers])
@@ -205,13 +205,13 @@ arr.tolist()                # convert to list
 
 
 -------------------------------------------------------------------------------------
--> Question 037: Method Overloading and Operator Overloading;;
+-> Q037: Method Overloading and Operator Overloading;;
 
 
 
 
 -------------------------------------------------------------------------------------
--> Question 036: Switch alternative in python;;
+-> Q036: Switch alternative in python;;
 
 for eg,
 
@@ -235,18 +235,18 @@ switch = {
 
 
 -------------------------------------------------------------------------------------
--> Question 035: Disassember Package using DIS package;;
+-> Q035: Disassember Package using DIS package;;
 
 
 
 
 -------------------------------------------------------------------------------------
--> Question 034: Access Python Source Code and Byte Code ;;
+-> Q034: Access Python Source Code and Byte Code ;;
 
 
 
 -------------------------------------------------------------------------------------
--> Question 033: ABCMeta, AbstractClass, abstractmethod in ABC package;;
+-> Q033: ABCMeta, AbstractClass, abstractmethod in ABC package;;
 
 # BASIC USAGE OF ABSTRACT CLASS:-
 Abstract classes are classes that are meant to be inherited but avoid 
@@ -346,7 +346,7 @@ class ArgumentClinic(MontyPython):
 
 
 -------------------------------------------------------------------------------------
--> Question 032: *args and **vargs in python;;
+-> Q032: *args and **vargs in python;;
 
 - args  : received tuple
 - kargs : recieved dictionary 
@@ -454,7 +454,7 @@ function to reverse its effects.
 
 
 -------------------------------------------------------------------------------------
--> Question 031: Finding and Installing Packages;
+-> Q031: Finding and Installing Packages;
 
 For indirect calling for the pip module if the pip module is not defined as 
 inside the environment variable;
@@ -477,7 +477,7 @@ $ pip install <package> --upgrade # Upgrading the installed packges;;
 $ pip install -U pip	# upgrading pip module;;
 
 -------------------------------------------------------------------------------------
--> Question 030: Deafult Dict in Python;;
+-> Q030: Deafult Dict in Python;;
 
 A defaultdict is a dictionary with a default value for keys, so that keys for
 which no value has been explicitly defined can be accessed without errors.
@@ -496,7 +496,7 @@ list = [1,2,3]
 
 
 -------------------------------------------------------------------------------------
--> Question 028: Builtins Error and Exception;;
+-> Q028: Builtins Error and Exception;;
 
 Built in modules contains extra functionalities.For example to get square root
 of a number we need to include math module.
@@ -552,7 +552,7 @@ variable, and then print the variable.
 ]
 
 -------------------------------------------------------------------------------------
--> Question 027: Mutable and Immutable data types;;
+-> Q027: Mutable and Immutable data types;;
 
 # Immutable:
 int , long , float , complex
@@ -568,7 +568,7 @@ dict
 bytearray
 
 -------------------------------------------------------------------------------------
--> Question 026: Explicit string type at definition of literals;;
+-> Q026: Explicit string type at definition of literals;;
 
 With one letter labels just in front of the quotes you can tell what type of
 string you want to define.
@@ -587,7 +587,7 @@ raw = r'foo\nbar'           # foo\nbar
 
 
 -------------------------------------------------------------------------------------
--> Question 025: Python first class objects;;
+-> Q025: Python first class objects;;
 
 It means there are no restrictions on the object's use. It's the same as any
 other object.
@@ -613,7 +613,7 @@ Depending on the language, this can imply:
 
 
 -------------------------------------------------------------------------------------
--> Question 024: Python main() function;;
+-> Q024: Python main() function;;
 
 In the world of programming languages, the main is considered as an entry
 point of execution for a program. But in python, it is known that the
@@ -632,7 +632,7 @@ if __name__=="__main__":
 
 
 -------------------------------------------------------------------------------------
--> Question 023: Shallow Copy vs Deep Copy;;
+-> Q023: Shallow Copy vs Deep Copy;;
 
 Shallow copy does the task of creating new objects storing references of
 original elements. This does not undergo recursion to create copies of nested
@@ -643,7 +643,7 @@ the nested objects of the original element recursively.
 
 
 -------------------------------------------------------------------------------------
--> Question 022: Global Interpreter Lock;;
+-> Q022: Global Interpreter Lock;;
 
 Yes, there are tools like PyChecker and Pylint which are used as static
 analysis and linting tools respectively. PyChecker helps find bugs in python
@@ -653,7 +653,7 @@ plugins to enable custom features to meet this requirement.
 
 
 -------------------------------------------------------------------------------------
--> Question 022: Global Interpreter Lock;;
+-> Q022: Global Interpreter Lock;;
 
 GIL stands for Global Interpreter Lock. This is a mutex used for limiting
 access to python objects and aids in effective thread synchronization by
@@ -674,7 +674,7 @@ only when it acquires the lock.
 
 
 -------------------------------------------------------------------------------------
--> Question 021: Lambda function in Python;;
+-> Q021: Lambda function in Python;;
 
 Lambda functions are generally inline, anonymous functions represented by a
 single expression. They are used for creating function objects during
@@ -686,7 +686,7 @@ print(mul_func(6, 4))
 # Output: 24
 
 -------------------------------------------------------------------------------------
--> Question 020: Module vs Packages in Python;;
+-> Q020: Module vs Packages in Python;;
 
 The module is a single python file. A module can import other modules
 (other python files) as objects. Whereas, a package is the folder/directory
@@ -706,7 +706,7 @@ packages to reuse the functionality.
 
 
 -------------------------------------------------------------------------------------
--> Question 019: Inheritance in Python;;
+-> Q019: Inheritance in Python;;
 
 Inheritance gives the power to a class to access all attributes and methods of
 another class. It aids in code reusability and helps the developer to
@@ -823,7 +823,7 @@ obj2.c_func()    #child 2 method
 
 
 -------------------------------------------------------------------------------------
--> Question 018: Access Specifiers used in python;;
+-> Q018: Access Specifiers used in python;;
 
 Python does not make use of access specifiers specifically like private,
 public, protected, etc. However, it does not derive this from any variables.
@@ -855,7 +855,7 @@ class InterviewbitEmployee:
 
 
 -------------------------------------------------------------------------------------
--> Question 017: Access Parent Class using Child class;;
+-> Q017: Access Parent Class using Child class;;
 
 Following are the ways using which you can access parent class members within
 a child class:
@@ -914,7 +914,7 @@ obj.display()
 
 
 -------------------------------------------------------------------------------------
--> Question 016: Python Pickling vs UnPickling;;
+-> Q016: Python Pickling vs UnPickling;;
 
 
 Python library offers a feature - serialization out of the box. Serializing an
@@ -942,13 +942,13 @@ significantly from the pickle.
 
 
 -------------------------------------------------------------------------------------
--> Question 014: Class Composition in python;;
+-> Q014: Class Composition in python;;
 
 
 
 
 -------------------------------------------------------------------------------------
--> Question 013: @classmethod vs @stacticmethod;;
+-> Q013: @classmethod vs @stacticmethod;;
 
 @classmethod 
 
@@ -1032,7 +1032,7 @@ print(Person.isAdult(22))
 True
 
 -------------------------------------------------------------------------------------
--> Question 012: Magic Method __str__() vs __repr__();;
+-> Q012: Magic Method __str__() vs __repr__();;
 
 In Python, the built-in str() and repr() functions both produce a textual
 representation of an object.
@@ -1090,7 +1090,7 @@ banana = Fruit("Banana")
 print(banana)       # output: I am a Banana
 
 -------------------------------------------------------------------------------------
--> Question 011: Set Variable LowerBound and UpperBound;;
+-> Q011: Set Variable LowerBound and UpperBound;;
 
 This methods helps to set the upper and lower bound of a bound for fallback
 prevention.
@@ -1126,7 +1126,7 @@ the initial lowest_path_cost? Would 9999999 be enough -- float('Inf') removes
 this guesswork.
 
 -------------------------------------------------------------------------------------
--> Question 010: Create a Generator Class;;
+-> Q010: Create a Generator Class;;
 
 You're almost there, writing an Iterator class (I show a Generator at the end
 of the answer), but __next__ gets called every time you call the object with
@@ -1200,7 +1200,7 @@ returns:
 
 
 -------------------------------------------------------------------------------------
--> Question 009: Iterators Vs Iterables Vs Generators in python;;
+-> Q009: Iterators Vs Iterables Vs Generators in python;;
 
 -> Iterators:-
 An object capable of returning its members one at a time. Examples of
@@ -1256,7 +1256,7 @@ functions which start fresh on every invocation).
 
 
 -------------------------------------------------------------------------------------
--> Question 008: Iterators in python;;
+-> Q008: Iterators in python;;
 
 The below is class which implements `__next__`as if it was a function using
 the `yield` keyword:
@@ -1331,7 +1331,7 @@ next value (either from a sequence or generated values).
 You can iterate over iterables, not over iterators.
   
 -------------------------------------------------------------------------------------
--> Question 007: Generator in Python;;
+-> Q007: Generator in Python;;
 
 A generator in Python is a function that remembers the state it’s in, in
 between executions.
@@ -1404,7 +1404,7 @@ A few sections ago I printed out `range(10)` and it was a strange `range(0,
 """
 
 -------------------------------------------------------------------------------------
--> Question 006: Type Hinting in Python;;
+-> Q006: Type Hinting in Python;;
 
 It is used to validate the data type of the incoming argument of a function or
 returning variable  from the function; 
@@ -1492,7 +1492,7 @@ variables. Therefore, let us consider them in detail.
 
 -------------------------------------------------------------------------------------
 
--> Question 005: Copy in Python;
+-> Q005: Copy in Python;
 
 In Python, the assignment statement (= operator) does not copy objects.
 Instead, it creates a binding between the existing object and the target
@@ -1524,7 +1524,7 @@ list_3    # output => [1, 2, [3, 5, 6, 7], 8]
 list_1    # output => [1, 2, [3, 5, 6], 4]
 
 -------------------------------------------------------------------------------------
--> Question 004: Python arrays;
+-> Q004: Python arrays;
 
 Arrays in python can only contain elements of same data types i.e., data type
 of array should be homogeneous. It is a thin wrapper around C language arrays
@@ -1548,7 +1548,7 @@ for i in a:
    print(i, end=' ')    #OUTPUT: 1 2 string
 
 -------------------------------------------------------------------------------------
--> Question 003: LAMBDA;
+-> Q003: LAMBDA;
 
 Lambda is an anonymous function in Python, that can accept any number of
 arguments, but can only have a single expression. It is generally used in
@@ -1565,7 +1565,7 @@ mulFive = myWrapper(5)
 print(mulFive(2))    # output => 10
 
 -------------------------------------------------------------------------------------
--> Question 002: Comprehensions;
+-> Q002: Comprehensions;
 
 Python comprehensions, like decorators, are syntactic sugar constructs that
 help build altered and filtered lists, dictionaries, or sets from a given
@@ -1610,7 +1610,7 @@ and filter functions in Python.
 
 
 -------------------------------------------------------------------------------------
--> Question 001: Decorators in python;; 
+-> Q001: Decorators in python;; 
 
 Decorators in Python are essentially functions that add functionality to an
 existing function in Python without changing the structure of the function

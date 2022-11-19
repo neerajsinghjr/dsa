@@ -1,5 +1,13 @@
 '''
-Problem Description:
+----------------------------------------------------------------------------------------------------
+-> Title: 
+-> Attempted:
+-> Description: 
+----------------------------------------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------------
 '''
 
 #!/bin/python3
@@ -12,20 +20,21 @@ import math
 import random
 
 
-## Main Working Function, here...
+##---Main Solution
 class Solution:
     
+    # Constructor;
     def __init__(self):
         pass
 
 
-def main():
+##---Main Execution;;
+def main(res=None):
     try:
-        nums = [1,2,3,4,5,6]
-        key = 3
-        obj = Solution()
-        res = ""
-        print(res) if res else print("Empty!")
+    	data = []				
+        obj = Solution()	
+        res = None
+        print(f"Result: {res}") if res else print("Empty!")
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")
@@ -33,10 +42,9 @@ def main():
     else:
         print("Program Completed : Success")
 
-    finally:
+    finally:    
         print("Program Terminated!")
 
-        
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
