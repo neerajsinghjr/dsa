@@ -1,21 +1,21 @@
 /*
-----------------------------------------------------------------------------------------------------
--> Title: Postgres Diary Junior
--> Author: Neeraj Singh 
+-------------------------------------------------------------------------------------
+-> Title: Postgres Diary
+-> Author: @neeraj-singh-jr
 -> Status: Ongoing...
 -> Created: 15.10.2022
 -> Updated: 15.10.2022
 -> Summary: Notes indices are as follows (**** pending)
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 -> P003 : Postgresql - Select
 -> P002 : Connect to the PostgreSQL database server via psql
 -> P001 : What is PostgreSQL
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 */
 
 ###---PostgreSQL NOTES : BEGINNING 
 
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 -> P003 : Postgresql - Select
 
 Solution : 
@@ -35,7 +35,7 @@ The SELECT statement has the following clauses:
 FULL OUTER JOIN, CROSS JOIN clauses.
 - Perform set operations using UNION, INTERSECT, and EXCEPT.
 
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 -> P002 : Connect to the PostgreSQL database server via psql
 
 Solution : 
@@ -129,7 +129,7 @@ count
 Code language: Shell Session (shell)
 Congratulations! you have successfully installed PostgreSQL on Ubuntu, connect to PostgreSQL database server using psql, and load the sample database.
 
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 -> P001 : What is PostgreSQL
 
 Solution : 
@@ -166,4 +166,4 @@ Python, Java, Php, C/C++, C#, Go, Perl.
 - Nested transactions (savepoints)
 - Sophisticated locking mechanism
 
-----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
