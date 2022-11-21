@@ -2,13 +2,23 @@
 -------------------------------------------------------------------------------------
 -> Title: PyNotes Diary
 -> Author: @neeraj-singh-jr
--> Status: Ongoing...
+-> Status: Ongoing
 -> Created: 03.09.2022
 -> Updated: 09.10.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q041 : Python Operator Precedance
--> Q040 : Hashing vs Encryption;
+-> Q051 : Collection Module;;
+-> Q050 : Exception Handling;;
+-> Q049 : List or Variable Destructuring;;
+-> Q048 : String Helpers Methods;;
+-> Q047 : Dictionary and Operation;;
+-> Q046 : Set and Operation;;
+-> Q045 : List and Operations;;
+-> Q044 : Padding Number using F-String;;
+-> Q043 : Join() vs Format() in Python;;
+-> Q042 : Python Conventions;;
+-> Q041 : Python Operator Precedance;;
+-> Q040 : Hashing vs Encryption;;
 -> Q039 : Asyncio Module in Python;;
 -> Q038 : Arrays in Python;;
 -> Q037 : Method Overloading and Operator Overloading;;
@@ -52,6 +62,680 @@
 '''
 
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q051 : Collection Module;;
+
+Python provides a number of utilities and storage methods that can help us
+store our data in the most effective way. Many of these utilities are
+available in the collections module.
+
+for eg,
+
+//---------------------------- EXAMPLE 1: COUNTER IMPORTS;
+>>> import collections
+
+>>> print(collections)
+<module 'collections' from '/usr/lib/python3.8/collections/__init__.py'>
+
+>>> dir(collections)
+['ChainMap', 'Counter', 'Mapping', 'MutableMapping', 'OrderedDict', 'UserDict',
+'UserList', 'UserString', '_Link', '_OrderedDictItemsView', '_OrderedDictKeysView',
+'_OrderedDictValuesView', '__all__', '__builtins__', '__cached__', '__doc__',
+'__file__', '__getattr__', '__loader__', '__name__', '__package__', '__path__',
+'__spec__', '_chain', '_collections_abc', '_count_elements', '_eq', '_heapq',
+'_iskeyword', '_itemgetter', '_proxy', '_recursive_repr', '_repeat', '_starmap',
+'_sys', '_tuplegetter', 'abc', 'defaultdict', 'deque', 'namedtuple']
+
+//---------------------------- EXAMPLE 2: COUNTER MODULE;
+
+
+
+-------------------------------------------------------------------------------------
+-> Q050 : Exception Handling;;
+
+Exceptions are errors thrown by Python when we try to do something which we
+are not allowed to or is not possible to
+
+Few Common Execption like, Divide by zero, Adding different types ('Hello' + 10)
+
+for eg, 
+//-------------------- EXAMPLE 1 : KEY NOT FOUND EXCEPTION;;
+>>> countries_and_capitals = {"India": "Delhi"}
+>>> print(countries_and_capitals["England"])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'England'
+
+//-------------------- SOLUTION CAN BE HANDLED;
+try:
+    country = countries_list[i]
+    print(f"The capital of {country} is {countries_and_capitals[country]}")
+except KeyError:  
+    print(f"--- Key {countries_list[i]} does not exist ---")
+except IndexError:
+    print(f"--- Index {i} is not present in countries_list ---")
+
+//-------------------- EXAMPLE 2 : VERBOSE MESSAGE;
+>>> try:
+...   40 / 0
+... except ZeroDivisionError as e:
+...   print(e)
+... 
+division by zero
+
+
+//-------------------- EAMPLE 3 : TRY-EXCEPT-ELSE BLOCK
+
+The Else block in a try/except statement is executed when none of the except
+blocks are executed i.e no error is thrown.
+
+for eg,
+>>> countries_and_capitals = {
+...   "India": "Delhi",
+...   "United Kingdom": "London",
+...   "Thailand": "Bangkok",
+...   "Russia": "Moscow",
+... }
+>>> 
+>>> countries_list = ["India", "Russia", "China", "Thailand"]
+>>> 
+>>> try:
+...   country = countries_list[0]
+...   capital = countries_and_capitals[country]
+...   print(f"The capital of {country} is {capital}")
+... except KeyError:
+...   print("Key was not found in dictionary")
+... except IndexError:
+...   print("Index does not exist in List")
+... else: # <--- Else Block
+...   print("No Error Occurred")
+... 
+The capital of India is Delhi
+No Error Occurred
+
+//---------------------- EXAMPLE 4 : FINALLY BLOCK
+
+The finally block in a try-except statement, contains code that will be run
+irrespective of if there was an error or not i.e It will always be run.
+
+for eg,
+>>> countries_and_capitals = {
+...   "India": "Delhi",
+...   "United Kingdom": "London",
+...   "Thailand": "Bangkok",
+...   "Russia": "Moscow",
+... }
+>>> 
+>>> countries_list = ["India", "Russia", "China", "Thailand"]
+>>> 
+>>> try:
+...   country = countries_list[4]
+...   capital = countries_and_capitals[country]
+...   print(f"The capital of {country} is {capital}")
+... except KeyError:
+...   print("Key was not found in dictionary")
+... except IndexError:
+...   print("Index does not exist in List")
+... else:
+...   print("No Error Occured")
+... finally:
+...   print("Runs irrespective of occurrence of error.")
+... 
+Index does not exist in List
+Runs irrespective of occurrence of error.
+
+-------------------------------------------------------------------------------------
+-> Q049 : List or Variable Destructuring;;
+
+//----------------------- USAGE 1: BASIC DESTRUCTING;
+For eg,
+>>> animal, bird, insect = "Dog", "Eagle", "Ant"
+>>> print(animal, bird, insect)
+Dog Eagle Ant
+
+//----------------------- USAGE 2: TUPLE;
+for eg, 
+>>> animals = ('dog', 'cat', 'elephant')
+>>> print(type(animals))
+<class 'tuple'>
+>>> a1, a2, a3 = animals
+>>> print(a1,'~', a2, '~', a3)
+dog ~ cat ~ elephant
+>>> print(animals)
+('dog', 'cat', 'elephant')
+
+//------------------------ USAGE 3: VARIABLE ARGUMENT;
+>>> numbers = (1,2,3,4,5,6,7,8,9,10,11,12,13,14)
+>>> a,b,c,*var = numbers
+>>> print(a,b,c)
+1 2 3
+>>> print(type(var))
+<class 'list'>
+>>> print(var)
+[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+>>> print(type(numbers))
+<class 'tuple'>
+
+//------------------------ USAGE 4: DICTIONARY DESTRUCTING;
+>>> countries_and_capitals = {
+...   "USA": "Washington D.C",
+...   "India": "New Delhi",
+...   "China": "Beijing",
+...   "England": "London"
+... }
+>>> 
+>>> for country, capital in countries_and_capitals.items():
+...   print(f"The capital of {country} is {capital}")
+... 
+The capital of USA is Washington D.C
+The capital of India is New Delhi
+The capital of China is Beijing
+The capital of England is London
+
+//------------------------ USAGE 5: ENUMERATE FUNCTION;
+>>> names = ["Ricky", "Justin", "Bob"]
+>>> 
+>>> for index, name in enumerate(names):
+...   print(f"The value at index {index} is {name}")
+... 
+The value at index 0 is Ricky
+The value at index 1 is Justin
+The value at index 2 is Bob
+
+//------------------------- USAGE 6: NEGATIVE NUMBER;
+>>> colors = ["red", "pink", "white", "yellow", "grey", "blue"]
+>>> print(f"The last element in the list is {colors[-1]}")
+The last element in the list is blue
+
+>>> print(f"The second last element in the list is {colors[-2]}")
+The second last element in the list is grey
+
+>>> print(f"The third last element in the list is {colors[-3]}")
+The third last element in the list is yellow
+
+//-------------------------- USAGE 7: SLICING
+>>> colors = ["red", "pink", "white", "yellow", "grey", "blue"]
+>>> print(colors[0:4])
+['red', 'pink', 'white', 'yellow']
+>>> print(colors[3: 6])
+['yellow', 'grey', 'blue']
+>>> print(colors[4:])
+['grey', 'blue']
+>>> print(colors[:4])
+['red', 'pink', 'white', 'yellow']
+
+//--------------------------- USAGE 8: MAP
+>>> names = ["Neeraj", "Mathews", "Jack"]
+>>> unames = map(lambda x: x + f"(@{x})", names)
+>>> print(unames)
+<map object at 0x7f7241dce430>
+>>> print(list(unames))
+['Neeraj(@Neeraj)', 'Mathews(@Mathews)', 'Jack(@Jack)']
+
+//---------------------------- USAGE 9: LIST COMPREHENSION
+
+List comprehension is an inline for loop, which can be used to quickly iterate
+over and process elements of a list.
+
+SYNTAX :-
+    [(return value) for value in list if (condition)]
+
+for eg,
+
+// Example 1:
+>>> names = ["Tom", "Bob", None, "Shirley", None, "Kajal"]
+>>> filtered_names = [f"Mr.{name}" for name in names if name is not None]
+>>> print(filtered_names)
+['Mr.Tom', 'Mr.Bob', 'Mr.Shirley', 'Mr.Kajal']
+
+-------------------------------------------------------------------------------------
+-> Q048 : String Helpers Methods;;
+
+###--- Join() Method : 
+
+Just like separating words into a list using a .split(), we can also join a
+list of strings into a sentence using .join().
+
+// Example 1
+characters = ["Gangadhar", "Geetha", "Kilvish", "Dr.Jackal"]
+print(', '.join(characters))
+
+# OUTPUT :
+Gangadhar, Geetha, Kilvish, Dr.Jackal
+
+// Example 2: 
+
+characters = ["Gangadhar", "Geetha", "Kilvish", "Dr.Jackal"]
+print(f"The main characters in Shaktimaan were {', '.join(characters)}")
+
+# OUTPUT :
+The main characters in Shaktimaan were Gangadhar, Geetha, Kilvish, Dr.Jackal
+
+###--- lowercase() and uppercase() and capitalize()
+
+Convert lowercase and uppercase of letter.
+
+for eg, 
+// lowercase 
+text = "PUT YOUR HANDS IN THE AIR."
+print(text.lower())
+# OUTPUT:
+put your hands in the air.
+
+// uppercase
+text = "put your hands in the air."
+print(text.uppercase())
+# OUTPUT:
+PUT YOUR HANDS IN THE AIR.
+
+// capitalize()
+text = "i am the king"
+print(text.capitalize())
+# OUTPUT :
+I am the king
+
+// remove extra spaces from string
+text = "  Cooper, this is no time for caution.  \n\n"
+print(text.strip())
+
+// find index of character in word
+text = "The dishes served are Mutton, Soup, Pulav, Chicken, Salad."
+i = text.find("Soup") # Returns the index if the text is found
+print(f"The Index of Soup is {i}")
+
+// count the appearance of particular letter;
+i = text.count("e") # Returns -1 if the text is not found
+print(f"The Index of Ice Cream is {i}")
+
+// Replace a word;
+text = "The dishes served are Mutton, Soup, Pulav, Chicken, Salad"
+
+text = text.replace("Soup", "Curry")
+print(text)
+# OUTPUT :
+The dishes served are Mutton, Curry, Pulav, Chicken, Salad
+
+// Check is string is digit;
+print("4532".isdigit()) # check for digit;
+print("4efef".isalpha()) # check for alphabet;
+print("45.32".isalphanum()) # check for alpha-numeric;
+
+// Select Subset of string;
+movie = "Spiderman: No Way Home"
+
+# Output:
+>>> print(f"The first character is {movie[0]}")
+The first character is S
+
+>>> print(f"The last character is {movie[-1]}") # gets the last character
+The last character is e
+
+>>> print(f"The length of the string is {len(movie)}")
+The length of the string is 22
+
+>>> print(movie[::-1])                                  # emoH yaW oN :namredipS
+>>> print(movie[-1])                                    # e
+>>> print(movie[-2])                                    # m
+>>> print(movie[-7:-2])                                 # ay Ho
+>>> print(movie[0:len(movie)-4])                        # Spiderman: No Way 
+
+-------------------------------------------------------------------------------------
+-> Q047 : Dictionary and Operation;;
+
+###--- DICT :-
+Python provides an in-built way of storing key-value pairs. These are called
+Dictionaries and can be declared using dict() or {}.
+
+###--- OPERATION :-
+
+// Initialization;
+>>> fruits_and_colors = {
+...   "grapes": "green",
+...   "apple": "red",
+...   "banana": "yellow",
+...   "orange": "orange"
+... }
+>>> print(fruits_and_colors)
+{'grapes': 'green', 'apple': 'red', 'banana': 'yellow', 'orange': 'orange'}
+>>> print(fruits_and_colors['apple'])
+red
+
+// or 
+for k,v  in fruits_and_colors.items():
+... print(f"{k} are {v} in colours")
+...
+grapes are green in colours
+apple are red in colours
+banana are yellow in colours
+orange are orange in colours
+
+// Setting Default Values;
+>>> print(fruits_and_colors.get('mango', 'NOT FOUND'))
+NOT FOUND
+
+// Inserting Values;
+>>> fruits_and_colors['sapodilla'] = "brown"
+>>> print(fruits_and_colors)
+{
+    'grapes': 'green', 
+    'apple': 'red', 
+    'banana': 'yellow', 
+    'orange': 'orange', 
+    'sapodilla': 'brown'
+}
+
+// Delete Values from Dictionary;
+
+## METHOD 1: Delete using del keyword;
+## To delete a key-value pair from the dictionary we can use the del keyword.
+
+>>> print(fruits_and_colors)
+{
+    'grapes': 'green', 'apple': 'red', 
+    'banana': 'yellow', 'orange': 'orange', 
+    'sapodilla': 'brown'
+}
+>>> del fruits_and_colors['apple']  
+>>> print(fruits_and_colors)
+{'grapes': 'green', 'banana': 'yellow', 'orange': 'orange', 'sapodilla': 'brown'}
+
+## METHOD 2: Delete using pop keyword;
+## Pop can also used for deleting element as well. Difference here is pop returned 
+## the delte value. 
+
+>>> print(fruits_and_colors)
+{
+    'grapes': 'green', 'banana': 'yellow', 
+    'sapodilla': 'brown'
+}
+>>> fruit = fruits_and_colors.pop('sapodilla')
+>>> print(fruits_and_colors)
+{'grapes': 'green', 'banana': 'yellow'}
+
+// Merge Dictionary using updated() method:
+>>> states = {'delhi', 'goa'}
+>>> states_2 = {'uttrakhand', 'uttar pradesh'}
+>>> states.update(states_2)
+>>> print(states)
+{'uttrakhand', 'delhi', 'uttar pradesh', 'goa'}
+
+
+-------------------------------------------------------------------------------------
+-> Q046 : Set and Operation;;
+
+# SET :- 
+It is unqiue collection of number. It can include the numbers, string, list,
+tuple, dictionary.
+
+Set can be defined using the helper method set() or similary can be defined
+using the brackets {}. But remember the brackets can't be initialized empty. 
+
+NOTE : EMPTY BRACKETS {} IS CONSIDERED AS DICTIONARY NOT SET;
+
+###--- OPERATIONS :-
+// Initialization;
+>>> a = {1,2,3,4,5}
+>>> b = {1,3,5,7,9}
+>>> print(a|b)
+{1, 2, 3, 4, 5, 7, 9}
+
+###--- Intersection; 
+>>> print(a.intersection(b))
+{1, 3, 5}
+or 
+>>> print(a&b)
+{1, 3, 5}
+
+// Union;
+>>> print(a.union(b))
+{1, 2, 3, 4, 5, 7, 9}
+>>> print(a|b)
+{1, 2, 3, 4, 5, 7, 9}
+
+
+// Difference;
+>>> print(a.difference(b))
+{2, 4}
+>>> print(b.difference(a))
+{9, 7}
+or
+>>> print(a-b)
+{2, 4}
+>>> print(b-a)
+{9, 7}
+
+// issubset()
+>>> a = {1,2,3}
+>>> b = {1,2,3,4,5,6,7,8,9,10}
+>>> print(a.issubset(b))
+True
+
+
+-------------------------------------------------------------------------------------
+-> Q045 : List and Operations;;
+
+###--- LIST :-
+List :- It is a heterogeneous collection of items including... 
+    a) numbers
+    b) string
+    c) child list
+    d) child tuple 
+    e) dictionary 
+
+Tuples are similar to Lists except that they cannot be modified. We cannot add
+or remove elements from a tuple once declared.
+
+Tuples are read-only and can only be accessed or searched for elements.
+
+We can declare a tuple using the () branckets.
+
+###--- OPERATION : -
+
+// Initialization;
+>>> fruits = ['animal', 'grapes','guawa', 'banana','mango', 'orange']
+>>> print(fruits)
+['animal', 'grapes', 'guawa', 'banana', 'mango', 'orange']
+
+// remove operation;
+>>> fruits.remove('banana')
+>>> print(fruits)
+['animal', 'grapes', 'guawa', 'mango', 'orange']
+
+// pop operation default;
+>>> fruits.pop()
+'orange'
+>>> print(fruits)
+['grapes', 'guawa', 'mango']
+
+// pop operation index provided;
+>>> fruits.pop(0)
+'animal'
+>>> print(fruits)
+['grapes', 'guawa', 'mango', 'orange']
+
+// append operation;
+fruits.append('oranges')
+>>> print(fruits)
+['grapes', 'guawa', 'mango', 'oranges']
+
+// Accessing list;
+>>> for fruit in fruits:
+...     print(fruit)
+# OUTPUT 
+grapes
+guawa
+mango
+oranges
+
+// len of list;
+>>>print(len(fruits))
+>>>6
+
+// Search a List
+>>> print('banana' in fruits)
+False
+>>> print('guawa' in fruits)
+True
+
+
+-------------------------------------------------------------------------------------
+-> Q044 : Padding Number using F-String;
+
+Sometimes we would like to print our numbers with a fixed length. For example,
+printing military time. ie. 0900 hours, we can use the inbuilt string
+formating syntax to print numbers in a fixed length.
+
+In the example below, basically padding or inserting zero to the left of the 
+number, if the number has less than 4 digits.
+
+for eg, 
+
+print(f"We will depart at {900:04d} hours")
+We will depart at 0900 hours
+
+print(f"We will depart at {90:04d} hours")
+We will depart at 0090 hours
+
+print(f"We will depart at {99:05d} hours")
+We will depart at 00099 hours
+
+print(f"Operative \t\t Code")
+print("-----------------------------")
+print(f"Elena Williams \t\t {5:03d}")
+print(f"Catherine Smith \t {6:03d}")
+print(f"James Bond \t\t {7:03d}")
+
+   Operative           Code
+-----------------------------
+ Elena Williams         005
+ Catherine Smith        006
+ James Bond             007
+
+-------------------------------------------------------------------------------------
+-> Q043 : Join() vs Format() in Python;
+
+// format() 
+
+The Indian Space Research Organisation has launched a new mission to Mars.
+After the scheduled landing of its rover: Mangal, ISRO will put out a
+message, announcing to the world it's successful landing.
+
+Create a Python program to print out the message given the details below.
+Use .format() to add the variable into the text.
+   
+for eg, 
+    # Example 0:
+    >>> fname, mname, lname = "Neeraj", "Singh", "Junior"
+    >>> v = "f : {0}, m: {1}, l: {2}".format(fname, mname, lname)
+    >>> print(v)
+    f : Neeraj, m: Singh, l: Junior
+
+    >>> v = "f : {2}, m: {1}, l: {0}".format(fname, mname, lname)
+    >>> print(v)
+    f : Junior, m: Singh, l: Neeraj
+
+    >>> v = "f : {f}, m: {m}, l: {l}".format(fname, mname, lname)
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    KeyError: 'f'
+
+    >>> v = "f : {f}, m: {m}, l: {l}".format(f=fname, m=mname, l=lname)
+    >>> print(v)
+    f : Neeraj, m: Singh, l: Junior
+
+    # Example 1:
+    >>> var = "{0}, {1}, {2}".format("Neeraj", "Singh", "Junior")
+    >>> print(var)
+    Neeraj, Singh, Junior
+
+    # Example 2:
+    >>> var = "firstname : {0}, middlename : {1},lastname : {2}".format("Neeraj", "Singh", "Junior")
+    >>> print(var)
+    firstname : Neeraj, middlename : Singh,lastname : Junior
+
+    # Example 3:
+    >>> firstname = "Neeraj"
+    >>> middlename = "Singh"
+    >>> lastname = "Junior"
+    >>> var = "firstname : {0}, middlename : {1}, lastname : {2}".format(firstname, middlename, lastname)
+    >>> print(var)
+    firstname : Neeraj, middlename : Singh, lastname : Junior
+
+
+// join() :
+
+The join() method takes all items in an iterable and joins them into one
+string. A string must be specified as the separator.
+
+for eg, 
+    ###--- Example 1:
+    numList = ['1', '2', '3', '4']
+    print(','.join(numList))
+    '1,2,3,4'
+
+    ###--- Example 2:
+    >>>''.join(['A', 'B', 'C'])
+    'ABC'
+    >>> ''.join({'A': 0, 'B': 0, 'C': 0}) # note that dicts are unordered
+    'ACB'
+    >>> '-'.join(['A', 'B', 'C'])  # '-' string is the seprator
+    'A-B-C' 
+
+    ###--- EXAMPLE 3: PRINT DATA IN TABLE FORMAT;
+    headers = ["Name" ,"Age","Phone","City"]
+    data = [
+      ['Tom', '25', '9838572948', 'Kochi'],
+      ['Bob', '29', '8273885932', 'Delhi'],
+      ['Rob', '45', '9273285631', 'Miami'],
+    ]
+
+    print("-----------------------------------------------------")
+    print("\t|\t".join(headers))
+    print("-----------------------------------------------------")
+
+    for record in data:
+      print("\t|\t".join(record))
+
+    # Output:
+    -------------------------------------------------------------
+    Name    |   Age |   Phone   |   City
+    -------------------------------------------------------------
+    Tom |   25  |   9838572948  |   Kochi
+    Bob |   29  |   8273885932  |   Delhi
+    Rob |   45  |   9273285631  |   Miami
+
+-------------------------------------------------------------------------------------
+-> Q042 : Python Conventions;
+
+// Variable Naming Conventions;
+
+- Tip #1: Variable names should only contain alpha numeric characters.
+for eg, 
+    H3LL0_W0RLD = "Hello World" # valid variable name
+    $uper$t@r = "superstar" # not a valid variable
+
+- Tip #2: Variables names cannot start with a number.
+for eg, 
+    oceans_12 = "movie" # valid variable name
+    13_reasons_why = "series" # not a valid variable
+
+- Tip #3: Variable names are case sensitive.
+for eg, 
+    ANIMAL = "cow" # valid variable name
+    ANiMaL = "pig" # valid variable name
+    AnIMal = "crocodile" # valid variable name
+
+    print(ANIMAL)   # cow
+    print(ANiMaL)   # pig
+    print(AnIMal)   # crocodile
+
+- Tip #4: Python variables are generally declared in snake case
+for eg,
+    no_of_animals = 13      # recommended
+    noOfAnimals = 13        # not recommended
+
+
 
 -------------------------------------------------------------------------------------
 -> Q041 : Python Operator Precedance;;
@@ -368,10 +1052,13 @@ class ArgumentClinic(MontyPython):
 -------------------------------------------------------------------------------------
 -> Q032: *args and **vargs in python;;
 
-- args  : received tuple
-- kargs : recieved dictionary 
+- args  : RECEIVED TUPLE
+- kargs : RECIEVED DICTIONARY 
 
-# Usage 1:
+###--- KEYWORDED ARGUMENT : **kwargs
+
+
+//------------------------ Usage 1:
 The names args and kwargs are used by convention, they are not a part of the 
 language specification. Thus, these are equivalent:
 
@@ -386,7 +1073,7 @@ def func(*a, **b):			# example 2
 	print(b)
 
 
-# Usage 2:-
+//------------------------ Usage 2:
 You may not have more than one args or more than one kwargs parameters 
 (however they are not required)
 
@@ -404,7 +1091,7 @@ def test(**kwargs1, **kwargs2):	# example 2
 	# SyntaxError: invalid syntax
 
 
-# Usage 3: 
+//------------------------ Usage 3: 
 If any positional argument follow *args , they are keyword-only arguments
 that can only be passed by name. A single star may be used instead of 
 *args to force values to be keyword arguments without providing a variadic
@@ -414,7 +1101,7 @@ parameter list. Keyword-only parameter lists are only available in Pytohn3
 def func(a, b, *args, x, y):	# Example 1
 	print(a, b, args, x, y)
 	
-func(1, 2, 3, 4, x=5, y=6)
+func(1, 2, 3, 4, 5, 6)
 >>> Error : Missing param x,y
 
 def func(a,b, *args, x, y):
@@ -423,7 +1110,7 @@ def func(a,b, *args, x, y):
 func(1,2,3,4,6,x=8,y=9)
 
 
-# Usage 4:
+//------------------------ Usage 4:
 Keyworded argument should be at last of the function defination.
 
 def func(**kwargs, *args):
@@ -432,8 +1119,58 @@ def func(**kwargs, *args):
 #
 # SyntaxError: invalid syntax
 	
-	
-### args when calling for function;
+
+//--------------------------- Usage 5:
+Keyword arguments (also known as named arguments) are arguments that need to
+be named specifically while calling the function. They don't require to be in
+any order like positional arguments.
+
+We can define keyword arguments by adding a * as the first argument to a
+function. In the snippet below, we define two keyword arguments width and
+length, for the area() function.
+
+for eg,
+def area(*, width, length):
+  return width * length
+
+if __name__ == "__main__":
+    result = area(length=10, width=6)   # Keyworded Argument accepted only;
+    print(f"The area of the rectangle is {result}")
+
+# Example without keyworded argument in above example will result error;
+for eg, 
+
+def area(*, width, length):
+  return width * length
+
+result = area(2, 3) 
+
+# Will throw an error, like this 
+Traceback (most recent call last):
+  File "script.py", line 4, in <module>
+    result = area(2, 3) # Will throw an error
+TypeError: area() takes 0 positional arguments but 2 were given
+
+
+//------------------------ Usage 6:
+We can use variable argument(*args) and keyworded argument(**kwargs) together in a 
+function. 
+
+for eg, 
+def area(*args, shape="rectangle", **kwargs):  # kwargs is a variable keyword argument
+  print(args)
+  print(shape)
+  print(kwargs)
+
+area(8,9,10,height=6, width=8, breadth=4, shape='cuboid')
+
+# Output : 
+(8, 9, 10)
+cuboid
+{'height': 6, 'width': 8, 'breadth': 4}
+
+
+###--- VARIABLE ARGUMENT : *args ;
 
 args uses tuple for sending and receiving the value;
 
@@ -471,7 +1208,6 @@ number of the function's arguments.
 
 A common python idiom is to use the unpacking operator * with the zip 
 function to reverse its effects.
-
 
 -------------------------------------------------------------------------------------
 -> Q031: Finding and Installing Packages;
@@ -696,14 +1432,46 @@ only when it acquires the lock.
 -------------------------------------------------------------------------------------
 -> Q021: Lambda function in Python;;
 
-Lambda functions are generally inline, anonymous functions represented by a
+LAMBDA functions are generally inline, anonymous functions represented by a
 single expression. They are used for creating function objects during
 runtime. They can accept any number of parameters. They are usually used
 where functions are required only for a short period. They can be used as:
 
-mul_func = lambda x,y : x*y
-print(mul_func(6, 4))
-# Output: 24
+They are defined by using lambda instead of def, and return the result of the
+one line of code without requiring the return statement
+
+//----------------------------- USAGE 1 : GENERAL
+for eg,
+
+square = lambda x: x * x
+
+print(square(3))
+print(square(4))
+
+# OUTPUT : 
+9
+16
+
+The code above defines a Lambda function that takes in an input x and returns
+its square. The LAMBDA is then assigned to variable square that can be called
+in a similar way to a normal function.
+
+//----------------------------- USAGE 2: MAP FUNCTION
+Lambda functions are generally useful when using functions like map(). The map() 
+function takes in a list and returns its modified version based on some
+criteria. This criterion is passed to it as a function.
+
+for eg,
+radius = [1,2,3,4,5]
+areas = map(lambda x: 3.14*x*x, radius)
+print(f"areas : {list(areas)}")
+
+//------------------------------- USAGE 3: FILTER FUNCTION
+>>> numbers = (1,2,3,4,5,6,7,8,9,10)
+>>> data = filter(lambda x: x % 2 == 0, numbers)
+>>> print(list(data))
+[2, 4, 6, 8, 10]
+
 
 -------------------------------------------------------------------------------------
 -> Q020: Module vs Packages in Python;;
@@ -1676,6 +2444,5 @@ def names_decorator(function):
 def say_hello(name1, name2):
    return 'Hello ' + name1 + '! Hello ' + name2 + '!'
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
-
 
 -------------------------------------------------------------------------------------
