@@ -1,12 +1,18 @@
-'''
+'y''
 -------------------------------------------------------------------------------------
 -> Title: PyNotes Diary
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03.09.2022
--> Updated: 09.10.2022
+-> Updated: 21.11.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q057 : Decorator in Python;;
+-> Q056 : Date and Time (datetime) Module;;
+-> Q055 : Deque in collection module;;
+-> Q054 : Name Tuples (namedtuple) in collections module;;
+-> Q053 : Ordered Dictionary;;
+-> Q052 : Difference list vs [];
 -> Q051 : Collection Module;;
 -> Q050 : Exception Handling;;
 -> Q049 : List or Variable Destructuring;;
@@ -28,7 +34,7 @@
 -> Q033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
 -> Q032 : Variable arguments *args and **vargs in python;;
 -> Q031 : Finding and Installing Packages;;
-**** Q030 : Default Dict in Python;;
+-> Q030 : Default Dict in Python;;
 -> Q029 : Explicit string type at definition of literals;;
 -> Q028 : Builtins Error and Exception;;
 -> Q027 : Mutable and Immutable data types;;
@@ -64,15 +70,585 @@
 ###---PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
+-> Q057 : Decorator in Python;;
+
+Sometimes we might want to run some code at the beginning and at end of a
+function. 
+
+While effective, we would have to wrap any function/code we want to measure
+with time.time() statements. 
+
+We can avoid such repetition using decorators and implement the same in a much
+cleaner way.
+
+for eg, // EXAMPLE WITHOUT DECORATOR
+import time
+
+def hello_world():
+  print("Hello World")
+
+if __name__ == "__main__":
+    start = time.time()
+    hello_world()
+    end = time.time()
+    print(f"Time taken : {end - start} seconds")
+
+
+Decorators are basically functions. They help us run code before and after
+other functions. Ideally, you can think of them as wrappers for other
+functions.
+
+//---------------------------------- EXAMPLE 1: DECORATOR EXAMPLES;
+
+For eg, # BASIC EXAMPLE 1
+import time
+
+def hello_world():
+  print("Hello World")
+
+def measure_time(another_function):     # <-- Decorator function
+  start = time.time()
+  result = another_function()           # <-- Original function called
+  end = time.time()
+  print(f"Execution Time : {end - start} seconds")
+  return result                         # <-- Result of original function returned
+
+measure_time(hello_world)
+
+for eg, # BASIC EXAMPLE 2
+# Create function encrypt to encrypt the string returned from send_message
+# Store the result in message
+
+def encrypt(func):
+  res = func()
+  return [ord(char) for char in res]
+
+def send_message():
+  return "Tango, Charlie, Alpha"
+
+message = encrypt(send_message)
+
+print(message)
+# OUTPUT :
+[84, 97, 110, 103, 111, 44, 32, 67, 104, 97, 114, 108, 105, 101, 44, 32, 65, 108, 112, 104, 97]
+
+//---------------------------------- EXAMPLE 2: DECORATOR AS ANNOTATION;
+
+Python provides a cleaner and shorter way to represent decorators by using
+the @ symbol.
+
+for eg, # Annotations;
+impdef measure_time(another_function):
+  start = time.time()
+  result = another_function()
+  end = time.time()
+  print(f"Time Measured : {end - start} seconds")
+  return result
+
+@measure_time           # <-- wraps hello_world in measure_time decorator
+def hello_world():
+  print("Hello World")
+
+# OUTPUT :
+Time Measured : 5.936622619628906e-05 seconds
+
+EXPLANATION : An issue however, is that python runs measure_time()
+(hello_world) without an explicit call or calling automatically, which is
+something we might not want. 
+
+To avoid such automatic calling scenario, we used the nested function.
+
+//----------------------------------- EXAMPLE 3: NESTED FUNCTION;
+
+Re-define above method using the nested function !!!
+
+for eg,
+from time import time
+
+def runtime(main):
+  def wrapper():
+    start = time()
+    main()
+    end = time()
+    print(f"runtime : {end - start} seconds")
+  return wrapper  # Return the memory reference of the wrapper method defination;
+  
+@runtime
+def greeting():
+  print("Hello World")
+  
+greeting()    # MAIN ENTERY POINT;
+
+# OUTPUT : 
+Hello World
+runtime : 3.337860107421875e-06 seconds
+
+EXPLANATION :  The only change that we have made is that we have added a
+nested function called wrapper() and moved the code within it. measure_time
+() returns this wrapper function to the caller.
+
+If we run the code snippet now, you will notice measure_time() is not being
+called implicitly. Instead, we will have to call hello_world(), which will
+internally call the code from wrapper() within the measure_time decorator.
+
+for eg, # Practice Example (Redefine BASIC EXAMPLE 2)
+# MESSAGE ENCYRPTION PROBLEM;
+
+def encrypt(func):
+  def wrapper():
+    message = func()
+    return [ord(c) for c in message]
+  return wrapper
+  
+@encrypt
+def send_message():
+  return "Tango, Charlie, Alpha"
+
+send_message()
+
+//----------------------------------- EXAMPLE 4: DECORATIOR WITH ARGUMENT;
+
+An buggy based example for receiving the argument inside the decorator.
+
+import time
+
+def measure_time(function):
+  def wrapper():
+    start = time.time()
+    result = function() # Nested functions have access to variables from parent function
+    end = time.time()
+    print(f"Time taken for to execute hello is {end - start} seconds")
+    return result
+  return wrapper
+
+
+@measure_time
+def hello(name):
+  print("Hello", name)
+
+hello("Python")     # Here we've passed the "Python" as the arguments;
+
+# OUTPUT : (Missing Parameter Error Occured)
+Traceback (most recent call last):
+  File "script.py", line 17, in <module>
+    hello("Python")
+TypeError: wrapper() takes 0 positional arguments but 1 was given
+
+-> Real example of argument in decorator.
+
+for eg, 
+
+import time
+
+def measure_time(function):
+  def wrapper(*args, **kwargs): # <-- accepts arguments
+    print(f"args : {args} || kwargs : {kwargs}")
+    start = time.time()
+    result = function(*args, **kwargs) # <-- Pass arguments to function i.e hello()
+    end = time.time()
+    print(f"Time taken: {end - start} seconds")
+    return result
+  return wrapper # <-- Notice here just memory reference to the function defination;
+
+@measure_time
+def hello(*args, **kwargs):
+  print("your v-args:", args)
+  print("your kw-args:", kwargs)
+
+hello("Python", "Guido Van Rosseum", xyz=20, abc=30)
+
+//------------------------------------ EXAMPLE 5: MULTIPLE DECORATORS;
+
+The measure_time decorator here measures the time for running the function
+twice. That is, it includes the do_twice decorator's time within it. Try
+swapping the order of the decorators and see the output.
+
+fore eg,
+
+import time
+
+def measure_time(function):
+  '''Measures time for execution'''
+  def wrapper(*args, **kwargs):
+    start = time.time()
+    result = function(*args, **kwargs)
+    end = time.time()
+    print(f"Time taken to execute print_name is {end - start} seconds")
+    return result
+  return wrapper
+
+
+def do_twice(function):
+  '''Executes the function twice'''
+  def wrapper(*args, **kwargs):
+    for _ in range(2):
+      function(*args, **kwargs)
+  return wrapper
+
+
+@measure_time # <-- Decorator 1
+@do_twice # <-- Decorator 2
+def print_name(name):
+  print(f"My name is {name}")
+
+
+print_name("Eleven")
+
+## OUTPUT :
+My name is Eleven
+My name is Eleven
+Time taken to execute print_name is 6.9141387939453125e-06 seconds
+
+//------------------------------------ EXAMPLE 6: DECORATOR INSIDE DECORATOR WITH ARGUMENT;
+
+## General purpose Decorator with Decorator itself accepting arbitary arguments;;
+# decorator_kwargs: kwargs are coming from decorator main (@decorator_maker);
+## 1st Level Decorator;;
+
+def decorator_maker(*args):  
+    ## Decorator works likes the main;
+
+    def decorator_main(func):
+        ## Wrapper function arguments come from the main external function (employee_details);
+
+        def wrapper(**kwargs):
+
+            print("-----------------------------------")
+            print("****|Decorator Maker Arguments|****")
+            print("-----------------------------------")
+            for key,value in kwargs.items():
+                print(f"{key} : {value}")
+            print("-----------------------------------")
+            for key,value in enumerate(args, start=1):
+                print(f"Hobbies {key} : {value}")
+            else:
+                print("-----------------------------------")
+                data = func(**kwargs)
+                print(f"data : {data}")
+
+        return wrapper          ## 2nd-level-decorator > wrapper;
+
+    return decorator_main       ## /1st-level-decorator;
+
+@decorator_maker("Crickets", "Badminton", "Football", "Volleyball")
+def student_details(**kwargs):
+    return kwargs
+
+student_details(
+  "firstname" : "Neeraj",
+  "middlename" : "Singh",
+  "lastname" : "Junior",
+  "std" : "XII"
+)
+
+# OUTPUT : 
+-----------------------------------
+****|Decorator Maker Arguments|****
+-----------------------------------
+firstname : Neeraj
+middlename : Singh
+lastname : Junior
+std : XII
+-----------------------------------
+Hobbies 1 : Crickets
+Hobbies 2 : Badminton
+Hobbies 3 : Football
+Hobbies 4 : Volleyball
+-----------------------------------
+data : {
+  'firstname': 'Neeraj', 
+  'middlename': 'Singh', 
+  'lastname': 'Junior', 
+  'std': 'XII'
+}
+
+-------------------------------------------------------------------------------------
+-> Q056 : Date and Time (datetime) Module;;
+
+Python provides specialized modules for working with dates and times. One of
+the most popular modules for the same is the datetime module.
+
+SYNTAX :
+    from datetime import datetime
+    today = datetime.now()
+    print(today)               # 2022-11-21 20:01:00.791002
+
+    # or, alternatively we can used the datetime object like this also,
+    x-mas = datetime(year=2022, month=12, day=25)
+    print(f"This year Christmas day comes on a {x-mas:%A}")
+
+//---------------------------------- EXAMPLE 1;
+>>> from datetime import datetime
+
+>>> today = datetime.now()                          # 2022-11-21 20:01:00.791002  
+
+>>> print(f"The day today is {today.day}")          # The day today is 22
+>>> print(f"The month is {today.month}")            # The month is 11
+>>> print(f"The year is {today.year}")              # The year is 2022
+>>> print(f"The hour is {today.hour}")              # The hour is 1
+>>> print(f"The minute is {today.minute}")          # The minute is 36
+>>> print(f"The second is {today.second}")          # The second is 4
+
+//---------------------------------- EXAMPLE 2: TODAYS DATE;
+for eg,
+
+from datetime import datetime
+
+today = datetime.now()
+
+dd = today.day
+mm = today.month
+yyyy = today.year
+
+print(f"Today : {dd}-{mm}-{yyyy}")              # Today : 21-11-2022
+
+//----------------------------------- EXAMPLE 3: HUMAN READABLE DATE;
+
+-> Human-readable formats of dates :
+
+-----------------------------------------------------------
+|   Code     |     Description             |   Example    |  
+-----------------------------------------------------------
+|    %d      |   day of the month          |    08        |
+|    %m      |   month of the year         |    12        |
+|    %y      |   year in two digits        |    93        |
+|    %Y      |   year in four digits       |    1993      |
+|    %a      |   abv. name of the day      |    Sun       |
+|    %A      |   full name of the day      |    Sunday    |
+|    %b      |   abv. name of the month    |    Dec       |
+|    %B      |   full name of the month    |    December  |
+|    %H      |   hour in 24h format        |    14        |
+|    %I      |   hour in 12h format        |    02        |
+|    %M      |   minute of the hour        |    30        |
+|    %S      |   second of the minute      |    40        |
+|    %p      |   AM/PM                     |    PM        |
+-----------------------------------------------------------
+
+for eg,
+
+from datetime import datetime
+
+today = datetime.now()
+
+print(f"Today   : {today:%d-%m-%y}")            # Today   : 22-11-22
+print(f"Today   : {today:%d-%m-%Y}")            # Today   : 22-11-2022
+print(f"Time    : {today:%H::%M::%S}")          # Time    : 01::55::57
+print(f"AM/PM   : {today:%p}")                  # AM/PM   : AM
+print(f"Month   : {today:%b or %B}")            # Month   : Nov or November
+print(f"Weekday : {today:%a or %A}")            # Weekday : Tue or Tuesday
+
+//----------------------------------- EXAMPLE 4: DIFFERENCE IN TIME;
+
+You can count the required days or months. By simply subtracting it from the
+`datetime.now()` object
+
+for eg,
+from datetime import datetime
+
+current_date = datetime.now()
+christmas_date = datetime(year=2022, month=12, day=25)
+days_left = christmas_date - current_date
+
+print(f"Days left with Time : {days_left}")     # Days left : 32 days, 21:36:31.024657
+print(f"Days left only : {days_left}")          # Days left only : 32 days
+
+//----------------------------------- EXAMPLE 5: REPLACE VALUE IN DATETIME;
+
+To replace any value like a year, month, date, hour, etc within the date or
+time in the datetime object we can use the replace() method.
+
+for eg,
+from datetime import datetime
+
+christmas_day = datetime(year=2022, month=12, day=25)
+
+# can use year, month, day, hour, minute, microsecond
+next_christmas = christmas_day.replace(year=2023)
+
+time_since = next_christmas - christmas_day
+
+print(f"Days left for X-Mas : {time_since.days}")   # Days left for X-Mas : 365
+
+//----------------------------------- EXAMPLE 6: TIMEDELTA IN PYTHON;
+
+Sometimes we might want to add or subtract a number of days to/from our date.
+For this, we use the timedelta() function.
+
+The timedelta object adds or removes weeks, days, and time. For example, we
+could also add an hour to our time.
+
+for eg,
+
+from datetime import timedelta, datetime
+
+print(f"Today: {datetime.now()}") 
+# OUTPUT : Today: 2022-11-21 21:34:17.346508
+
+# Adds two days
+add_two_days = timedelta(days=+2)
+print(f"Two days later: {datetime.now() + add_two_days}")
+# OUTPUT : Two days later: 2022-11-23 21:34:17.346525
+
+# Adds 1 week
+add_one_week = timedelta(weeks=+1)
+print(f"One week later: {datetime.now() + add_one_week}")
+# OUTPUT : One week later: 2022-11-28 21:34:17.346531
+
+# Subracts 1 day
+subtract_one_day = timedelta(days=-1)
+print(f"Yesterday: {datetime.now() + subtract_one_day}")
+# OUTPUT : Yesterday: 2022-11-20 21:54:19.012421
+
+next_two_year = timedelta(days=365*2)
+print(f"next year : {datetime.now() + next_two_year}")
+# next year : 2024-11-20 21:54:19.012424
+
+
+-------------------------------------------------------------------------------------
+-> Q055 : Deque in collection module;;
+
+A deque is a combination of a stack and a queue data structure. It basically
+implements the First In First Out (Queue) and First In Last Out
+(Stack) policies internally.
+
+It is similar to a list wherein we can add and remove elements. However, a
+deque is much faster when adding or removing elements compared to a list. At
+the same time, it is slower when accessing elements, as you can only access
+the ends of the queue.
+
+SYNTAX :
+    from collections import deque
+
+    que = deque([1,2,3,4,5])
+    print(que)
+
+//------------------------------ EXAMPLE 1
+>>> from collections import deque
+
+>>> nums = [x for x in range(6)]
+>>> print(nums)                         # [0, 1, 2, 3, 4, 5]
+>>> que = deque(nums)
+>>> print(que)                          # deque([0, 1, 2, 3, 4, 5])
+>>> que.append(6)
+>>> print(que)                          # deque([0, 1, 2, 3, 4, 5, 6])
+>>> print(que.pop())                    # 6
+>>> print(que)                          # deque([0, 1, 2, 3, 4, 5])
+>>> print(que.popleft())                # 0
+>>> print(que)                          # deque([1, 2, 3, 4, 5])
+>>> que.appendleft(10)
+>>> print(que)                          # deque([10, 1, 2, 3, 4, 5])
+
+
+-------------------------------------------------------------------------------------
+-> Q054 : Name Tuples (namedtuple) in collections module;;
+
+A named tuple is a variant of a tuple whose values can be accessed by a given
+attribute instead of indices.
+
+SYNTAX : 
+    from collections import namedtuple
+
+    variable-name = namedtuple('name-of-tuple', ['attribute_1', 'attribute_2'])
+
+    # Sake of Simplicity, community define the variable-name and name-of-tuple
+    # of value same like below,
+    Employee = namedtuple('Employee', ['firstname', 'lastname', 'ecode'])
+
+    # then access, can be easy
+    stud_1 = Employee('Neeraj', 'Singh', 'BH10319')
+
+    print(stud_1.firstname)         # Neeraj
+    print(stud_1.lastname)          # Singh
+    print(stud_1.ecode)             # BH10319
+
+    # Above namedtuple can be defined like this,
+    # e = namedtuple('Employee', ['firstname', 'lastname', 'ecode'])
+    # stud_1 = e('Neeraj', 'Singh', 'BH10319')
+    # print(stud_1.firstname)         # Neeraj
+
+for eg,
+
+//------------------------------------ EXAMPLE 1
+
+from collections import namedtuple
+
+Person = namedtuple('Person', ['name', 'age', 'place'])
+person = Person("Jonathan", 34, "Goa, India")
+
+print(f"{person.name} is {person.age} years old coming from {person.place}.")
+
+
+//------------------------------------ EXAMPLE 2
+from collections import namedtuple
+
+# Create a list of named tuples of planets with the given csv data
+
+csv_data = "Jupiter, 69911\nSaturn, 58232 km\nUranus, 25362 km\nNeptune, 
+24622 km\nEarth, 6371 km\nVenus, 6052 km\nMars, 3390 km\nMercury, 2440 km"
+
+# Instantiate named tuple of planet with name and radius
+
+Planet = namedtuple('Planet', ['name','radius'])
+planet_list = []
+
+for line in csv_data.split('\n'):
+  name, radius = line.split(', ')
+  # Create instance of planet tuple
+  planet_tuple = Planet(name, radius)
+  planet_list.append(planet_tuple)
+  
+for planet in planet_list:
+  print(f"The radius of {planet.name} is {planet.radius}")
+
+# OUTPUT :-
+The radius of Jupiter is 69911
+The radius of Saturn is 58232 km
+The radius of Uranus is 25362 km
+The radius of Neptune is 24622 km
+The radius of Earth is 6371 km
+The radius of Venus is 6052 km
+The radius of Mars is 3390 km
+The radius of Mercury is 2440 km
+
+
+-------------------------------------------------------------------------------------
+-> Q052 : Difference list vs [];
+
+here, [] is just returned the location of the stored objects. but list
+() convert the old object to the new object as list.
+
+for eg,
+>>> a = (1,2,3)         
+>>> b = (4,5,6)
+>>> c = [a] + [b]
+>>> print(c)
+[(1, 2, 3), (4, 5, 6)]
+>>> c = list(a) + list(b)
+>>> print(c)
+[1, 2, 3, 4, 5, 6]
+
+
+-------------------------------------------------------------------------------------
 -> Q051 : Collection Module;;
 
 Python provides a number of utilities and storage methods that can help us
 store our data in the most effective way. Many of these utilities are
 available in the collections module.
 
-for eg,
+For a defaultdict the default value is usually not really a value, it a
+factory: a method that generates a new value.
+
+SYNTAX : 
+
+    from collections import defaultdict
+
+    dictionary = defaultdict(list)     
+    # here, list is a factory object or iterable objects only.
+    # Other options are int, float, str, dict, tuple, set etc.
+
 
 //---------------------------- EXAMPLE 1: COUNTER IMPORTS;
+for eg,
 >>> import collections
 
 >>> print(collections)
@@ -88,7 +664,111 @@ for eg,
 '_sys', '_tuplegetter', 'abc', 'defaultdict', 'deque', 'namedtuple']
 
 //---------------------------- EXAMPLE 2: COUNTER MODULE;
+from collections import Counter
 
+
+>>> from collections import Counter
+>>> string = "hello"
+>>> c = Counter(string)
+>>> print(c)
+Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1})
+
+//----------------------------- EXAMPLE 3: MOST COMMON MODULE;
+
+-- most_common(n=None) method of collections.Counter instance --
+List the n most common elements and their counts from the most
+common to the least. If n is None, then list all element counts.
+    
+>>> Counter('abracadabra').most_common(3)
+[('a', 5), ('b', 2), ('r', 2)]
+
+for eg, 
+
+from collections import Counter
+
+string = '''Peter Piper picked a peck of pickled peppers
+A peck of pickled peppers Peter Piper picked
+If Peter Piper picked a peck of pickled peppers
+Where’s the peck of pickled peppers Peter Piper picked?'''
+
+c = Counter(string.split())
+print(c.most_common(3))
+
+# OUTPUT:
+[('Peter', 4), ('Piper', 4), ('peck', 4)]
+
+//-------------------------------- EXAMPLE 4: DEFAULT DICTIONARY
+
+The collections module also provides a variant of a dictionary called Default
+Dictionary. A default dictionary pre initializes the values in a dictionary
+to a certain type.
+
+for eg,
+string = '''Peter Piper picked a peck of pickled peppers
+A peck of pickled peppers Peter Piper picked
+If Peter Piper picked a peck of pickled peppers
+Where’s the peck of pickled peppers Peter Piper picked?'''
+
+# CASE 1: Without default dict when non-existing key insertion;
+position_mapping = {}       # normal dictionary;
+words = string.split()
+
+for position, word in enumerate(words, start=1):
+  if word in position_mapping:
+    position_mapping[word].append(position)
+  else:
+    position_mapping[word] = [position]
+
+print(position_mapping)
+
+# OUTPUT:
+{'Peter': [1, 14, 18, 32], 'Piper': [2, 15, 19, 33], 'picked': [3, 16, 20], 
+'a': [4, 21], 'peck': [5, 10, 22, 28], 'of': [6, 11, 23, 29], 
+'pickled': [7, 12, 24, 30], 'peppers': [8, 13, 25, 31], 'A': [9], 'If': [17], 
+'Where’s': [26], 'the': [27], 'picked?': [34]}
+
+
+# CASE 2: With default dict implementation; 
+position_mapping = defaultdict(list())  # Other options are int, float, str, dict, tuple, set etc.
+words = string.split()
+
+for pos,word in enumerate(words, start=1):
+    position_mapping[word].append(pos)
+
+print(position_mapping)
+
+# OUTPUT : 
+defaultdict(<class 'list'>, {
+        'Peter': [1, 14, 18, 32], 'Piper': [2, 15, 19, 33], 'picked': [3, 16,
+        20], 'a': [4, 21], 'peck': [5, 10, 22, 28], 'of': [6, 11, 23,
+        29], 'pickled': [7, 12, 24, 30], 'peppers': [8, 13, 25, 31], 'A':[9], 'If':
+        [17], 'Where’s': [26], 'the': [27], 'picked?': [34]
+    }
+)
+
+//-------------------------------- EXAMPLE 5: ORDERED DICTIONARY
+
+An Ordered Dictionary is a variant of a dictionary that maintains the order of
+the elements in the way they were added. 
+
+For eg,
+from collections import OrderedDict
+
+data = OrderedDict()
+items = ["cheese", "yoghurt", "tomatoes", "yoghurt", "onions", "milk", "milk", "cheese"]
+
+for item in items:
+  if not(item in data):
+    data[item] = 1
+    continue
+  data[item] += 1
+
+print(data)
+
+# OUTPUT:
+OrderedDict(
+    [ ('cheese', 2), ('yoghurt', 2), ('tomatoes', 1), ('onions', 1), ('milk', 2) ]
+)
 
 
 -------------------------------------------------------------------------------------
@@ -184,6 +864,7 @@ for eg,
 ... 
 Index does not exist in List
 Runs irrespective of occurrence of error.
+
 
 -------------------------------------------------------------------------------------
 -> Q049 : List or Variable Destructuring;;
@@ -289,6 +970,7 @@ for eg,
 >>> print(filtered_names)
 ['Mr.Tom', 'Mr.Bob', 'Mr.Shirley', 'Mr.Kajal']
 
+
 -------------------------------------------------------------------------------------
 -> Q048 : String Helpers Methods;;
 
@@ -379,6 +1061,7 @@ The length of the string is 22
 >>> print(movie[-2])                                    # m
 >>> print(movie[-7:-2])                                 # ay Ho
 >>> print(movie[0:len(movie)-4])                        # Spiderman: No Way 
+
 
 -------------------------------------------------------------------------------------
 -> Q047 : Dictionary and Operation;;
@@ -612,6 +1295,7 @@ print(f"James Bond \t\t {7:03d}")
  Catherine Smith        006
  James Bond             007
 
+
 -------------------------------------------------------------------------------------
 -> Q043 : Join() vs Format() in Python;
 
@@ -705,6 +1389,7 @@ for eg,
     Bob |   29  |   8273885932  |   Delhi
     Rob |   45  |   9273285631  |   Miami
 
+
 -------------------------------------------------------------------------------------
 -> Q042 : Python Conventions;
 
@@ -734,7 +1419,6 @@ for eg,
 for eg,
     no_of_animals = 13      # recommended
     noOfAnimals = 13        # not recommended
-
 
 
 -------------------------------------------------------------------------------------
@@ -1059,6 +1743,7 @@ class ArgumentClinic(MontyPython):
 
 
 //------------------------ Usage 1:
+
 The names args and kwargs are used by convention, they are not a part of the 
 language specification. Thus, these are equivalent:
 
@@ -1074,6 +1759,7 @@ def func(*a, **b):			# example 2
 
 
 //------------------------ Usage 2:
+
 You may not have more than one args or more than one kwargs parameters 
 (however they are not required)
 
@@ -1092,6 +1778,7 @@ def test(**kwargs1, **kwargs2):	# example 2
 
 
 //------------------------ Usage 3: 
+
 If any positional argument follow *args , they are keyword-only arguments
 that can only be passed by name. A single star may be used instead of 
 *args to force values to be keyword arguments without providing a variadic
@@ -1111,6 +1798,7 @@ func(1,2,3,4,6,x=8,y=9)
 
 
 //------------------------ Usage 4:
+
 Keyworded argument should be at last of the function defination.
 
 def func(**kwargs, *args):
@@ -1121,6 +1809,7 @@ def func(**kwargs, *args):
 	
 
 //--------------------------- Usage 5:
+
 Keyword arguments (also known as named arguments) are arguments that need to
 be named specifically while calling the function. They don't require to be in
 any order like positional arguments.
@@ -1153,6 +1842,7 @@ TypeError: area() takes 0 positional arguments but 2 were given
 
 
 //------------------------ Usage 6:
+
 We can use variable argument(*args) and keyworded argument(**kwargs) together in a 
 function. 
 
@@ -1209,6 +1899,7 @@ number of the function's arguments.
 A common python idiom is to use the unpacking operator * with the zip 
 function to reverse its effects.
 
+
 -------------------------------------------------------------------------------------
 -> Q031: Finding and Installing Packages;
 
@@ -1232,6 +1923,7 @@ $ pip install <package> --upgrade # Upgrading the installed packges;;
 
 $ pip install -U pip	# upgrading pip module;;
 
+
 -------------------------------------------------------------------------------------
 -> Q030: Deafult Dict in Python;;
 
@@ -1245,10 +1937,14 @@ A defaultdict will never raise a KeyError. Any key that does not exist gets
 the default value returned.
 
 for eg, 
+from collections import defaultdict
 
-from collection import defaultdict
+data = defaultdict(int)
+nums = [1,2,3,4,4,3,3,1,2,3,4,5,6]
+for num in nums:
+ data[num] += 1
 
-list = [1,2,3]
+print(data)     # defaultdict(<class 'int'>, {1: 2, 2: 2, 3: 4, 4: 3, 5: 1, 6: 1})
 
 
 -------------------------------------------------------------------------------------
@@ -1307,6 +2003,7 @@ variable, and then print the variable.
     ...
 ]
 
+
 -------------------------------------------------------------------------------------
 -> Q027: Mutable and Immutable data types;;
 
@@ -1322,6 +2019,7 @@ list
 set
 dict
 bytearray
+
 
 -------------------------------------------------------------------------------------
 -> Q026: Explicit string type at definition of literals;;
@@ -1424,9 +2122,6 @@ thread. The process repeats and the GIL are used by different threads
 alternatively until the threads have completed their execution. The threads
 not having the GIL lock goes into the waiting state and resumes execution
 only when it acquires the lock.
-
-
-
 
 
 -------------------------------------------------------------------------------------
@@ -1700,10 +2395,8 @@ obj = Child("Interviewbit", 6)
 obj.display()
 
 
-
 -------------------------------------------------------------------------------------
 -> Q016: Python Pickling vs UnPickling;;
-
 
 Python library offers a feature - serialization out of the box. Serializing an
 object refers to transforming it into a format that can be stored, so as to
@@ -1819,6 +2512,7 @@ print(Person.isAdult(22))
 25
 True
 
+
 -------------------------------------------------------------------------------------
 -> Q012: Magic Method __str__() vs __repr__();;
 
@@ -1877,6 +2571,7 @@ class Fruit:
 banana = Fruit("Banana")
 print(banana)       # output: I am a Banana
 
+
 -------------------------------------------------------------------------------------
 -> Q011: Set Variable LowerBound and UpperBound;;
 
@@ -1912,6 +2607,7 @@ e.g. Finding the "cheapest" path in a list of options:
 if you didn't have float('Inf') available to you, what value would you use for
 the initial lowest_path_cost? Would 9999999 be enough -- float('Inf') removes
 this guesswork.
+
 
 -------------------------------------------------------------------------------------
 -> Q010: Create a Generator Class;;
@@ -2118,6 +2814,7 @@ next value (either from a sequence or generated values).
 
 You can iterate over iterables, not over iterators.
   
+
 -------------------------------------------------------------------------------------
 -> Q007: Generator in Python;;
 
@@ -2190,6 +2887,7 @@ turning it into a list continues and builds a list from the remaining values
 A few sections ago I printed out `range(10)` and it was a strange `range(0,
 10)` thing. That’s a generator object! 
 """
+
 
 -------------------------------------------------------------------------------------
 -> Q006: Type Hinting in Python;;
@@ -2278,6 +2976,7 @@ Type variables are used extensively in type annotations, also internal
 machinery of the type inference in type checkers is typically build on type
 variables. Therefore, let us consider them in detail.
 
+
 -------------------------------------------------------------------------------------
 
 -> Q005: Copy in Python;
@@ -2311,6 +3010,7 @@ list_3[2].append(7)
 list_3    # output => [1, 2, [3, 5, 6, 7], 8]
 list_1    # output => [1, 2, [3, 5, 6], 4]
 
+
 -------------------------------------------------------------------------------------
 -> Q004: Python arrays;
 
@@ -2335,6 +3035,7 @@ a = [1, 2, 'string']
 for i in a:
    print(i, end=' ')    #OUTPUT: 1 2 string
 
+
 -------------------------------------------------------------------------------------
 -> Q003: LAMBDA;
 
@@ -2351,6 +3052,7 @@ def myWrapper(n):
  return lambda a : a * n
 mulFive = myWrapper(5)
 print(mulFive(2))    # output => 10
+
 
 -------------------------------------------------------------------------------------
 -> Q002: Comprehensions;
@@ -2444,5 +3146,6 @@ def names_decorator(function):
 def say_hello(name1, name2):
    return 'Hello ' + name1 + '! Hello ' + name2 + '!'
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
+
 
 -------------------------------------------------------------------------------------
