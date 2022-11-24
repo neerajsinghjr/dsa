@@ -7,6 +7,10 @@
 -> Updated: 21.11.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q061 : First Class Function in Python;;
+-> Q060 : Operator Overloading in Python;;
+-> Q059 : Inheritance in Python;;
+-> Q058 : Class and Objects Python;;
 -> Q057 : Decorator in Python;;
 -> Q056 : Date and Time (datetime) Module;;
 -> Q055 : Deque in collection module;;
@@ -68,6 +72,370 @@
 '''
 
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q061 : First Class Function in Python;;
+
+--> DEFINATION OF FIRST CLASS FUNCTION
+
+First class functions: If a function can be assigned to a variable or passed
+as object/variable to other function, that function is called as first class
+function.
+
+Languages like - Python, Javascript and C(pointers) support first class
+functions.
+
+First class objects in a language are handled uniformly throughout. They may
+be stored in data structures, passed as arguments, or used in control
+structures. A programming language is said to support first-class functions
+if it treats functions as first-class objects. Python supports the concept of
+First Class functions.
+
+for eg, 
+
+def square(x):
+  return x*x
+
+def cube(x):
+  return x*x*x
+
+def show(x, func):
+  return func(x)
+
+print(show(5, square))    # 25
+print(show(5, cube))      # 125
+
+--> PROPERTIES OF FIRST CLASS FUNCTIONS:
+1) You can store the function in a variable. 
+2) You can pass the function as a parameter to another function. 
+3) You can return the function from a function. 
+4) You can store them in data structures such as hash tables, lists, 
+
+//--- Property 1 : Storing function in variable
+
+Functions are objects: Python functions are first class objects. In the
+example below, we are assigning function to a variable. This assignment
+doesn’t call the function. It takes the function object referenced by shout
+and creates a second name pointing to it, yell.
+
+for eg,
+
+def show(message):
+  return message.upper()
+
+print(show("Hello World"))      # HELLO WORLD
+yell = show
+print(yell("Now i'm shouting..."))       # NOW I'M SHOUTING...
+
+//--- Property 2 : Functions can be passed as arguments to other functions:
+
+Because functions are objects we can pass them as arguments to other
+functions. Functions that can accept other functions as arguments are also
+called higher-order functions. In the example below, we have created a
+function greet which takes a function as an argument.
+
+for eg,
+# Python program to illustrate functions
+# can be passed as arguments to other functions
+def shout(text):
+    return text.upper()
+def whisper(text):
+    return text.lower()
+def greet(func):
+    #storing the function in a variable
+    greeting = func("Hi, I am created by a function passed as an argument.")
+    print greeting     
+
+
+greet(shout)
+greet(whisper)
+
+// Property 3 : Functions can return another function
+
+Because functions are objects we can return a function from another function.
+In the below example, the create_adder function returns adder function.
+
+for eg,
+#Python program to illustrate functions
+#Functions can return another function    
+def create_adder(x):  
+    def adder(y):  
+        return x+y  
+    return adder  
+      
+add_15 = create_adder(15)
+print add_15(10)
+
+
+-------------------------------------------------------------------------------------
+-> Q060 : Operator Overloading in Python;;
+
+Operator Overloading : the + operator is used to add two numbers or
+concatenate two strings together. 
+
+To overload the + operator, we have to overwrite the internal __add__ method
+of the operand's class.
+
+for eg, # Operator Overloading
+
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Q059 : Inheritance in Python;;
+
+//--------------------------------------- EXAMPLE 1: BASIC INHERITANCE;
+
+Inheritance : Python supports inheriting data and methods from other classes.
+This can help us to avoid rewriting common functionalities across multiple
+classes.
+
+for eg, # Inheritance of Class
+class Phone: # <-- Parent class
+  """
+  Contains all functionalities and data of a Phone
+  """
+
+  def call(self, number):
+    print(f"Calling {number}")
+
+
+class IPhone(Phone): # <-- Inherits Phone class
+  """
+  Contains all functionalities and data of a Phone and IPhone
+  """
+  def __init__(self):
+    self.ios_version = "12.5.6"
+
+  def get_ios_version(self):
+    print(f"iOS Version {self.ios_version}")
+
+
+class AndroidPhone(Phone): # <-- Inherits Phone class
+  """
+  Contains all functionalities and data of a Phone and Android Phone
+  """
+  def open_playstore(self):
+    print("Opening Play Store")
+
+
+print("Calling iPhone methods")
+iphone = IPhone()
+iphone.call("999999999") # <-- Called from parent (Phone) class
+iphone.get_ios_version() # <-- Called from child (IPhone) class
+
+print("Calling Android methods")
+android_phone = AndroidPhone()
+android_phone.call("999999999") # <-- Called from parent (Phone) class
+android_phone.open_playstore()  # <-- Called from child (AndroidPhone) class
+
+# OUTPUT:
+Calling iPhone methods
+Calling 999999999
+iOS Version 12.5.6
+
+Calling Android methods
+Calling 999999999
+Opening Play Store
+
+//--------------------------------------- EXAMPLE 2: METHOD OVERRIDING
+
+Method Overriding : Inheritance allows us to overwrite the methods and data
+from the parent class. We could add new functionality in the child class for
+the same method.
+
+for eg, # Method Overriding
+class Phone:
+  """
+  Parent Class
+  """
+  def send_email(self, email_id):
+    print(f"Sending an email to {email_id} via Email")
+
+class IPhone(Phone):
+  """
+  Child Class
+  """
+  def send_email(self, email_id): # <-- Child class with same method name and args as parent class
+    print(f"Sending an email to {email_id} via Apple Mail")
+
+print("Calling Phone methods")
+phone = Phone()
+phone.send_email("abc@gmail.com") # <-- Called from Parent class
+
+print()
+
+print("Calling iPhone methods")
+iphone = IPhone()
+iphone.send_email("abc@gmail.com") # <-- Overwritten method called from Child class
+
+# OUTPUT:
+Calling Phone methods
+Sending an email to abc@gmail.com via Email
+
+Calling iPhone methods
+Sending an email to abc@gmail.com via Apple Mail
+
+//--------------------------------------- EXAMPLE 3: SUPER FUNCTION
+
+SUPER() : super() method helps us to call the function of parent method from 
+before overriding that function in the derived class.
+
+super() refers to a temporary instance of the parent class.
+
+for eg # SUPER method
+class Phone:
+  """
+  Parent Class
+  """
+  def power_up(self):
+    print("Powering up Phone.")
+
+
+class IPhone(Phone):
+  """
+  Child Class
+  """
+  def power_up(self):
+    super().power_up() # <-- Calls Phone.power_up()
+    print("Showing apple logo")
+
+
+print("Calling iPhone methods")
+iphone = IPhone()
+iphone.power_up()
+
+# OUTPUT:
+Calling iPhone methods
+Powering up Phone.
+Showing apple logo
+
+//--------------------------------------- EXAMPLE 4: MULTIPLE INHERITANCE
+
+Multiple Inheritance can inherit attributes and methods from more than two class
+at the same time.
+
+for eg, # MULTIPLE INHERITANCE
+
+class Phone:
+  """
+  Contains all functionalities and data of a Phone
+  """
+  def start(self):
+    print(f"Opening Caller")
+
+class Camera:
+  """
+  Contains all functionalities and data of a Camera
+  """
+  def start(self):
+    print(f"Opening Camera")
+
+class IPhone(Phone, Camera):
+  def __init__(self):
+    print("Switching on iPhone")
+
+iphone = IPhone()
+iphone.start() # <-- Calls from Phone class
+
+# OUTPUT:
+witching on iPhone
+Opening Caller
+
+
+-------------------------------------------------------------------------------------
+-> Q058 : Class and Objects Python;;
+
+A class is a blueprint for an item. For example, if Dog is a class then a
+Labrador is an object or instance of that class
+
+The __init__ method is automatically called by Python internally when we
+create an instance/object of the class
+
+The self variable within our class represents the instance of the class.
+
+for eg, # Basic Class Example 
+
+class Dog: # <-- Define Dog class
+  
+  noOfObjects = 1       # <-- Class ATTRIBUTES;
+
+  def __init__(self, name, breed):
+    self.name = name # <-- ATTRIBUTE : Dog has a name
+    self.breed = breed # <-- ATTRIBUTE : Dog belongs to a breed
+    Dog.noOfObjects += 1
+
+  # METHOD 1
+  def bark(self): # <-- Dog can bark
+    print("Woof")
+
+  # METHOD 2
+  def wag_tail(self): # <-- Dog can wag tail
+    print("Wagging tail..")  
+
+chester = Dog(name="Chester", breed="dalmatian")
+
+chester.bark()
+chester.wag_tail()
+
+print(f"The dog name is {chester.name}") 
+print(f"The dog name is {chester.breed}")
+
+# OUTPUT:
+Woof
+Wagging tail..
+The dog name is Chester
+The dog name is dalmati
+
+for eg // Example of class attributes;
+
+class Employee:
+
+  # Create class attribute count
+  id = 0
+
+  def __init__(self, name):
+    self.name = name
+    Employee.id += 1
+    self.id = Employee.id
+
+employee = Employee("Annie")
+print(f"{employee.name}'s Employee ID: ", employee.id)
+employee = Employee("Jonas")
+print(f"{employee.name}'s Employee ID: ", employee.id)
+
+# OUTPUT :
+Annie's Employee ID:  1
+Jonas's Employee ID:  2
+
+for eg, // Find the class name from a object;
+  
+class Dog:
+  def __init__(self, name):
+    self.name = name
+
+
+chester = Dog("Chester")
+print(chester.__class__.__name__)
+
+# OUTPUT 
+Dog
+
+for eg, # Popular examples of classes and object;
+
+from collections import Counter # import class
+
+counter = Counter("hello world") # Count frequency
+print(counter.most_common()) # print most common using .most_common() method
+
+# OUTPUT :
+[
+  ('l', 3), ('o', 2), ('h', 1), 
+  ('e', 1), (' ', 1), ('w', 1), 
+  ('r', 1), ('d', 1)
+]
+
 
 -------------------------------------------------------------------------------------
 -> Q057 : Decorator in Python;;
@@ -361,6 +729,7 @@ data : {
   'lastname': 'Junior', 
   'std': 'XII'
 }
+
 
 -------------------------------------------------------------------------------------
 -> Q056 : Date and Time (datetime) Module;;
@@ -729,7 +1098,8 @@ print(position_mapping)
 
 
 # CASE 2: With default dict implementation; 
-position_mapping = defaultdict(list())  # Other options are int, float, str, dict, tuple, set etc.
+# Other options are int, float, str, dict, tuple, set etc.
+position_mapping = defaultdict(list()) 
 words = string.split()
 
 for pos,word in enumerate(words, start=1):
