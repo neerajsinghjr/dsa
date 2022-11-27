@@ -7,7 +7,7 @@
 -> Updated: 26.11.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q065 : ;
+-> Q065 : Bitwise Operators;
 -> Q064 : Magic Method __call__ in Python;
 -> Q063 : Class Decorator in Python;;
 -> Q062 : Generators in Python;;
@@ -75,6 +75,229 @@
 -------------------------------------------------------------------------------------
 '''
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q065 : Bitwise Operators;
+
+//-------------------------- USAGE 1 : BITWISE BASIC;;
+
+All data within a system is represented by bits. A bit is a unit of the
+binary number system, which comprises only two numbers 1 and 0
+
+A collection of bits make up Integers, Floats, Strings, and other Datatypes.
+For example, the following are samples of how natural numbers are represented
+in bit
+
+------------------------------
+|   BITS      |    VALUES    |
+------------------------------
+| 0000 0001   |       1      |
+| 0000 0010   |       2      |
+| 0000 0011   |       3      |
+| 0000 0100   |       4      |
+| 0000 0101   |       5      |
+------------------------------
+
+bin() : bin() is a binary function in python can be used to quickyl view the
+binary representation of the number.
+
+foe eg,
+print(bin(5))   # 0b101
+print(bin(6))   # 0b110
+print(bin(15))  # 0b1111
+
+//----------------------- OPERATOR 1 : BITWISE AND OPERATOR;;
+
+The AND operator is represented by an & (ampersand) symbol in Python. It
+compares two bits and returns 1 if and only if both the operands are 1. If
+either one of the operands is 0, then the operator will return a 0.
+
+Illustration 1 :-
+
+print(5, "\t = ", bin(5))
+print(4, "\t = ", bin(4))
+print(5 & 4, "\t = ", bin(5 & 4))
+
+# OUTPUT:
+5  =  0b101
+4  =  0b100
+4  =  0b100
+
+# Code Explanation
+5 :  0000 00101
+4 :  0000 00100
+RESULT : 5 & 4 => 0000 00100  => 4
+
+
+For eg, # EXAMPLE 1: CHECK FOR EVEN AND ODD IN BINARY OPERATOR;
+
+# Find if a number is even or odd using & operator
+nums = [45, 21, 34, 64]
+
+for num in nums:
+  if(num & 1) : # <-- add condition here
+    print(f"{num} is odd")
+  else:
+    print(f"{num} is even")
+
+# OUTPUT:
+45 is odd
+21 is odd
+34 is even
+64 is even
+
+//----------------------- OPERATOR 2 : BITWISE OR OPERATOR;;
+
+The OR operator is represented by a | pipe character in Python. The result of
+an or operator is 1 if one of the operands is 1.
+
+Illustration 2 :-
+
+print(10, "\t = ", bin(10))
+print(1, "\t = ", bin(1))
+print(5, "\t = ", bin(5))
+print(10 | 5, "\t = ", bin(10 | 5))
+
+# OUTPUT:
+10   =  0000 1010
+1    =  0000 0001
+5    =  0000 0101
+15   =  0000 1111
+
+for eg,
+
+# Check task is to check if a number is even or odd. If it is odd, you should
+# ignore it. If it is even, increment the number by 1 to make it odd.
+
+# Modify an even number by adding 1 and making it odd
+nums = [45, 21, 34, 64, 4, 97, 24]
+
+for num in nums:
+  res = num | 1
+  print(f"res is now ", {res})
+
+# OUTPUT:
+45 is now 45
+21 is now 21
+34 is now 35
+64 is now 65
+4 is now 5
+97 is now 97
+24 is now 25
+
+# EXPLANATION:
+We are adding 1 to only even value and making then odd number
+So, for illustration
+14 : 0000 1110 
+1 : 0000 0001
+then, OR Operation...
+14 OR 1 => 0000 1110 OR 0000 0001 => 0000 1111 (~15)
+
+//----------------------- OPERATOR 3 : XOR BITWISE OPERATION;
+
+The XOR operator is represented by the ^ (hat) character in Python. The XOR
+operator outputs a 1 only if both the input bits are different. If both input
+bits are the same, the result is 0.
+
+Illustration 3 :-
+
+print(10, "\t = ", bin(10))
+print(12, "\t = ", bin(12))
+print(10 ^ 12, "\t = ", bin(10 ^ 12))
+
+# OUTPUT: 
+10 : 0000 1010
+12 : 0000 1100
+10 XOR 12 => 0000 1010 XOR 0000 1100 => 0000 0110
+
+for eg, 
+# Illustration : Version 1 
+def example3_v1():
+    nums = [
+        34, 3, 64, 33, 22, 574, 74, 
+        6, 3, 2, 574, 43, 33, 789, 
+        6, 64, 43, 22, 789, 34, 2
+    ]    
+    i,result = 0,0
+    
+    for i in range(len(nums)):
+      for j in range(i+1, len(nums)):
+        status = nums[i] ^ nums[j]
+        # Status : 0 means number is duplicate;
+        if(status == 0):
+          break
+      # status not 0 means loop iterated success and unique number is found;
+      if(status != 0):
+        result = nums[i]
+        break
+
+    print(f"Result : {result}")
+
+# Illustration : Version 2 
+def example3_v2():
+    nums = [
+        34, 3, 64, 33, 22, 574, 74, 6, 3, 2, 574, 
+        43, 33, 789, 6, 64, 43, 22, 789, 34, 2
+    ]
+    result = 0
+    for num in nums:
+        print("Current num :", num)
+        result ^= num
+        print(f"current result:", result)
+
+    print("Result :", result)
+
+//----------------------- OPERATOR 4 : NOT BITWISE OPERATION;
+
+The NOT operation is simple and easy to grasp. The purpose of the NOT operator
+is to just invert the existing bits. i.e if the input is 0 the output is 1
+and vice versa. The NOT operator is represented by the ~(tilde) sign in
+Python.
+
+The NOT operator is a unary operator in Python, which means, that it only
+takes in one operand as the input
+
+like, 
+
+print(10, "\t = ", bin(10))   # 10 =  0b1010
+print(~10, "\t = ", bin(~10)) # -11 = -0b1011
+print(bin(~10 & 0xf))         # 0b101
+
+
+//------------------------ OPERATOR 5: LEFT AND RIGHT SHIFT;;
+
+Left shift and Right shift operators : These two operators either move the
+bits to the left or right based on the value specified by the second operand.
+The left and right shift operators are represented by the << and >> operators
+respectively.
+
+print(8, "\t =", bin(8))                # 8 = 0b1000
+print(8 << 1, "\t =", bin(8 << 1))      # 16 = 0b10000
+
+In our example, we right shift bit of integer 8 by 1 bit.
+
+print(8, "\t =", bin(8))                # 8 = 0b1000
+print(8 >> 2, "\t =", bin(8 >> 2))      # 2 = 0b10
+
+
+for eg,
+
+# Given below is a number n. Your task is to find the number of 1's in the
+# number. Do this using the >> and & operators.
+
+num = 355
+result = 0
+print(bin(num))
+while(num):
+  result += (num & 1)
+  num = num >> 1
+
+print(result)
+
+# OUTPUT :
+0b101100011
+5
+
 
 -------------------------------------------------------------------------------------
 -> Q064 : Magic Method __call__ in Python;
@@ -1663,17 +1886,34 @@ OrderedDict(
 Exceptions are errors thrown by Python when we try to do something which we
 are not allowed to or is not possible to
 
-Few Common Execption like, Divide by zero, Adding different types ('Hello' + 10)
+The Exception class is imported by default when Python starts. We can use it
+to create an Exception object with a custom message and any other details we
+need. Like, 
 
-for eg, 
-//-------------------- EXAMPLE 1 : KEY NOT FOUND EXCEPTION;;
->>> countries_and_capitals = {"India": "Delhi"}
->>> print(countries_and_capitals["England"])
+The Exception object takes in a variable number of arguments. So we can pass
+it any number and types of data related to the error we face.
+
+SYNTAX :
+    raise Exception("Failure detected.", {"data": [1, 2, 3]})
+
+eg, # Raising Exception Example;;
+age = 999
+if not 1 <= age <= 100:
+  raise Exception("Invalid age value provided.")  # Exception is raised;;
+
+//-------------------- USAGE 1 : BASIC TRY AND CATCH;;
+
+for eg,  # EXAMPLE 1 : KEY NOT FOUND EXCEPTION;;
+
+countries_and_capitals = {"India": "Delhi"}
+print(countries_and_capitals["England"])
+
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 KeyError: 'England'
 
-//-------------------- SOLUTION CAN BE HANDLED;
+Execption can be handled using the exception handling.
+
 try:
     country = countries_list[i]
     print(f"The capital of {country} is {countries_and_capitals[country]}")
@@ -1682,74 +1922,222 @@ except KeyError:
 except IndexError:
     print(f"--- Index {i} is not present in countries_list ---")
 
-//-------------------- EXAMPLE 2 : VERBOSE MESSAGE;
->>> try:
-...   40 / 0
-... except ZeroDivisionError as e:
-...   print(e)
-... 
+for eg, # EXAMPLE 2 : VERBOSE MESSAGE;
+
+try:
+  40 / 0
+except ZeroDivisionError as e:
+  print(e)
+
+# OUTPUT:-
 division by zero
 
-
-//-------------------- EAMPLE 3 : TRY-EXCEPT-ELSE BLOCK
+//---------------------- USAGE 2 : TRY-EXCEPT-ELSE BLOCK
 
 The Else block in a try/except statement is executed when none of the except
 blocks are executed i.e no error is thrown.
 
 for eg,
->>> countries_and_capitals = {
-...   "India": "Delhi",
-...   "United Kingdom": "London",
-...   "Thailand": "Bangkok",
-...   "Russia": "Moscow",
-... }
->>> 
->>> countries_list = ["India", "Russia", "China", "Thailand"]
->>> 
->>> try:
-...   country = countries_list[0]
-...   capital = countries_and_capitals[country]
-...   print(f"The capital of {country} is {capital}")
-... except KeyError:
-...   print("Key was not found in dictionary")
-... except IndexError:
-...   print("Index does not exist in List")
-... else: # <--- Else Block
-...   print("No Error Occurred")
-... 
+countries_and_capitals = {
+  "India": "Delhi",
+  "United Kingdom": "London",
+  "Thailand": "Bangkok",
+  "Russia": "Moscow",
+}
+
+countries_list = ["India", "Russia", "China", "Thailand"]
+
+try:
+  country = countries_list[0]
+  capital = countries_and_capitals[country]
+  print(f"The capital of {country} is {capital}")
+
+except KeyError:
+  print("Key was not found in dictionary")
+
+except IndexError:
+  print("Index does not exist in List")
+
+else: # <--- Else Block
+  print("No Error Occurred")
+
+# OUTPUT :- 
 The capital of India is Delhi
 No Error Occurred
 
-//---------------------- EXAMPLE 4 : FINALLY BLOCK
+//---------------------- USAGE 3 : FINALLY BLOCK
 
 The finally block in a try-except statement, contains code that will be run
 irrespective of if there was an error or not i.e It will always be run.
 
 for eg,
->>> countries_and_capitals = {
-...   "India": "Delhi",
-...   "United Kingdom": "London",
-...   "Thailand": "Bangkok",
-...   "Russia": "Moscow",
-... }
->>> 
->>> countries_list = ["India", "Russia", "China", "Thailand"]
->>> 
->>> try:
-...   country = countries_list[4]
-...   capital = countries_and_capitals[country]
-...   print(f"The capital of {country} is {capital}")
-... except KeyError:
-...   print("Key was not found in dictionary")
-... except IndexError:
-...   print("Index does not exist in List")
-... else:
-...   print("No Error Occured")
-... finally:
-...   print("Runs irrespective of occurrence of error.")
-... 
+countries_and_capitals = {
+  "India": "Delhi",
+  "United Kingdom": "London",
+  "Thailand": "Bangkok",
+  "Russia": "Moscow",
+}
+
+countries_list = ["India", "Russia", "China", "Thailand"]
+
+try:
+  country = countries_list[4]
+  capital = countries_and_capitals[country]
+  print(f"The capital of {country} is {capital}")
+
+except KeyError:
+  print("Key was not found in dictionary")
+
+except IndexError:
+  print("Index does not exist in List")
+
+else:
+  print("No Error Occured")
+
+finally:
+  print("Runs irrespective of occurrence of error.")
+
+# OUTPUT:-
 Index does not exist in List
 Runs irrespective of occurrence of error.
+
+//---------------------- USAGE 4 : CREATE CUSTOM EXCEPTION;;
+
+While we can use the Exception class to create and raise new errors but it is
+not the recommended method. The Exception class does not distinguish between
+different types of errors. It is a broad and generic class that classifies
+all exceptions the same way.
+
+To help exception handlers (try-except block) distinguish between errors, we
+create a child exception class.
+
+for eg,
+
+age = 999
+
+class InvalidAgeException(Exception): # <-- inherit from Exception
+
+  # Constructor Method;
+  def __init__(self, age, message=None):
+    self.age = age
+    self.message = message
+
+  # Custom Formatting Method;
+  def __str__(self):
+    return f"{self.age} should be in range 1 - 100"
+
+
+#--- EXAMPLE 1 : WITHOUT TRY AND CATCH BLOCK;
+
+if not(1 <= age <= 100):
+  raise InvalidAgeException(age, "Invalid Age Provided")
+
+# OUTPUT: EXCEPTION WILL OCCURRED LIKE THIS,
+Traceback (most recent call last):
+  File "script.py", line 12, in <module>
+    raise InvalidAgeException(age, "Invalid age value provided.")
+__main__.InvalidAgeException: 999 is not in the range of 1 - 100
+
+
+#--- EXAMPLE 2: WITH TRY AND CATCH ERROR BLOCK;;
+
+try:
+  if not(1 <= age <= 100):
+    raise InvalidAgeException(age, "Invalid age value provided")
+
+except InvalidAgeException: # <-- Handler for age related errors 
+  print("Please enter a valid age in the input")
+
+except Exception:
+  print("Some error occurred")
+
+# OUTPUT:
+Please enter a valid age in the input
+
+//---------------------- USAGE 5: RE-RAISING EXCEPTION IN PYTHON;;
+
+Python also allows us to re-raise a handled exception. 
+
+for example, we might want to first capture an error that occurs in our
+try-except block and store its details in some file. Then we would want to
+continue to raise that exception so that it can be handled at a higher
+level.
+
+for eg, #--- ILLUSTRATION OF RE-RAISING EXCEPTION;;
+
+age = 999       # Given, age
+
+def errorLogging(e):
+  print("Store Log here...")
+
+class InvalidAgeException(Exception):
+  pass
+
+if__name__ == "__main__":
+  try:
+    if not(1<= age <= 100):
+      raise InvalidAgeException("Exception : Invalid Age Found !!!")
+
+  except InvalidAgeException as err:
+    # Here, Storing the log to the file;
+    errorLogging(err)
+
+    # then again raising the error;
+    raise(err)
+
+  except Exception as e:
+    print("Exception Traced Here : ", e)
+
+  finally:
+    print("Finally Block Executed !")
+
+# OUTPUT:-
+Traceback (most recent call last):
+  File "script.py", line 15, in <module>
+    raise e# <-- re raise the exception
+  File "script.py", line 12, in <module>
+    raise InvalidAgeException("Invalid age value provided.")
+__main__.InvalidAgeException: Invalid age value provided.
+
+
+for eg, #--- Example 5: REAL LIFE SCENARIO 
+
+#------------------------------ TASK --------------------------------------------#
+# Mr.Sharma wants you to design a login screen where the user has 3 attempts to  
+# login into his website.
+# 
+# Given below is a code snippet that authenticates a user using their email and
+# password. If the password does not match, a WrongPasswordError is raised.
+# 
+# Your task is to capture this exception and reduce the number of login attempts
+# by 1. Re-raise the exception once this is done.
+#--------------------------------------------------------------------------------#
+# Handle WrongPasswordError and reduce attempts. 
+# Re raise the exception once done.
+#--------------------------------------------------------------------------------#
+
+attempts = 2
+email, password = "username@gmail.com", "pasword"
+
+class WrongPasswordError(Exception):
+  pass
+
+try:
+
+  try:
+    if not (email == "username@gmail.com" and password == "password"):
+      raise WrongPasswordError()
+
+  except WrongPasswordError as err:
+    # Attempts Calculate, here
+    attempts -= 1
+    raise(err)
+
+except:
+  print(f"Please try again. You have {attempts} left")
+
+# OUTPUT:
+Please try again. You have 1 left
 
 
 -------------------------------------------------------------------------------------
