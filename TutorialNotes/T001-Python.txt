@@ -7,10 +7,11 @@
 -> Updated: 26.11.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q066 : Iterators Workflow in Python
 -> Q065 : Bitwise Operators;
 -> Q064 : Magic Method __call__ in Python;
 -> Q063 : Class Decorator in Python;;
--> Q062 : Generators in Python;;
+-> Q062 : Generators Workflow in Python;;
 -> Q061 : First Class Function in Python;;
 -> Q060 : Operator Overloading in Python;;
 -> Q059 : Inheritance in Python;;
@@ -64,8 +65,8 @@
 -> Q011 : Set Variable LowerBound and UpperBound;;
 -> Q010 : Create a Generator Class;;
 -> Q009 : Iterators Vs Iterables Vs Generators in python;;
--> Q008 : Iterators in python;;
--> Q007 : Generators in python;;
+-> Q008 : What are Iterators in python;;
+-> Q007 : What are Generators in python;;
 -> Q006 : Type Hinting;;
 -> Q005 : Copy in python;;
 -> Q004 : Python arrays;;
@@ -75,6 +76,338 @@
 -------------------------------------------------------------------------------------
 '''
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q066 : Iterators Workflow in Python;;
+
+Iterators are objects that allow us to compute and fetch one value at a time
+from a sequence. They help us save memory and computation by not calculating
+the results for the entire sequence, but only for the next one.
+
+We can convert any sequence such as list, tuple, dict, and set into an
+iterative object using iter(). 
+
+To fetch the next value we can use the next() function as shown below.
+
+//-------------------------- USAGE 1 : ITERATOR BASIC;;
+
+def example1():
+  cartoons = ['Tom and Jerry', 'Shin Chan', 'Doraemon', 'Ninja Hatodi', 'Hage Maru']
+
+  cartoon = iter(cartoons)
+
+  print("Generator Object :", cartoon)
+  print("next cartoon :", next(cartoon))
+  print("next cartoon :", next(cartoon))
+  print("next cartoon :", next(cartoon))
+  print("next cartoon :", next(cartoon))
+  print("next cartoon :", next(cartoon))
+
+# OUTPUT:-
+Generator Object : <list_iterator object at 0x7f0897500bb0>
+next cartoon : Tom and Jerry
+next cartoon : Shin Chan
+next cartoon : Doraemon
+next cartoon : Ninja Hatodi
+next cartoon : Hage Maru
+
+//--------------------------- USAGE 2: ITERATOR VS GENERATORS;;
+
+-------------------------------------------------------------------------------
+|                                  ITERATORS                                  |
+-------------------------------------------------------------------------------
+| -> Iterators use classes.                                                   |
+| -> Iterators use the __next__ and __iter__ methods                          |
+| -> Iterators maintain state within instance attributes                      |
+| -> No methods are paused. State is maintained within instance.              |
+| -> Can be created using iter()                                              |
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+|                                  GENERATORS                                 |
+-------------------------------------------------------------------------------
+| -> Generators use function.                                                 |
+| -> Generator use yield keyword for pause exeuction and next() methods       |
+| -> Generator maintain state within the local function variable.             |
+| -> Functions are paused and their state is maintained within Python.        |
+| -> Can be created using function()                                          |
+-------------------------------------------------------------------------------
+
+//--------------------------- USAGE 3: CREATE A ITERATOR;;
+
+To create an iterator we have to add the __iter__ and __next__ methods in our
+class. __iter__ is used to initialize the iterator object and __next__ is
+used to return the next value from the iterator.
+
+To create an iterator instance we have to call the iter() function on the
+object of the class.
+
+for eg,
+
+class IDGenerator:
+
+    def __init__(self, ECODE):
+        self.id = 0
+        self.ECODE = ECODE
+
+    def __iter__(self):
+        return self                 # return the self instance of the object;
+
+    def __next__(self):
+        self.id += 1
+        return f"{self.ECODE}{self.id:03d}"
+
+def example2():
+    idObject = IDGenerator('EAC')       # IdGenerator Object;;
+    iterObject = iter(idObject)         # Iterator Object;;
+
+    print("GENERATING EMPLOYEE CODE ...")
+    for _ in range(5):
+        print("ID: ", next(iterObject))
+
+if __name__ == "__main__":
+  example2()
+
+# OUTPUT:-
+GENERATING EMPLOYEE CODE ...
+ID:  EAC001
+ID:  EAC002
+ID:  EAC003
+ID:  EAC004
+ID:  EAC005
+
+//--------------------------- USAGE 4: EXAMPLES OF ITERATORS;;
+
+Many functions within Python 3 return an Iterator instead of a list by
+default. This is in order to help conserve memory and avoid unnecessary
+computation.
+
+For example the map(), filter() and range() functions should ideally return a
+sequence. Instead the return value is an iterable. 
+
+To consume its values we have to pass it to the list() function or iterate
+over it.
+
+for eg, #--- Example 1: range() iterator;;
+
+print(range(5))         # result is an iterator
+print(list(range(5)))   # convert iterator to a list
+
+# OUTPUT:
+range(0, 5)
+[0, 1, 2, 3, 4]
+
+for eg, #--- Example 2: map() iterator;;
+
+inputs = [56,23,67,23,75,23]
+result = map(lambda x: x // 2, inputs)
+
+print("Result : ", result) # <-- returns an iterator
+
+for r in result: # <-- iterates through the results
+  print(r, end="\t")
+
+# OUTPUT:-
+Result :  <map object at 0x7ffff781df10>
+28  11  33  11  37  11  
+
+for eg, #--- Example 3: filter() method iterator;;
+
+nums = range(10)
+result = filter(lambda x: x & 1, nums)
+print("Result type : ", result)
+print(list(result))
+
+# OUTPUT:-
+Result type :  <filter object at 0x7ffff781df40>
+[1, 3, 5, 7, 9]
+
+//--------------------------- USAGE 5: MODIFYING ITERATOR WITH ITERTOOLS;;
+
+#--- EXAMPLE 1: ITERTOOLS BASICS;;
+
+Python comes with a dedicated inbuilt module to help us work with iterables.
+The itertools module in Python comprises of a set of functions that allow us
+to augment iterables in a way that can ease our work.
+
+To use the function from itertools we have to import it.
+
+import itertools
+print(itertools)
+
+# OUTPUT:-
+<module 'itertools' (built-in)>
+
+#--- EXAMPLE 2: ZIP LONGEST FROM ITERTOOLS
+
+The zip_longest() function in itertools, extends the zip() functions
+functionality.
+
+Consider two lists A and B which are not equal in length. A has a length of 4
+while B has a length of 6.
+
+Given zip(A, B), the zip() function ends after the 4th iteration as A has only
+4 values. The zip_longest() function on the other hand continues the
+iteration until B ends. It fills the empty values missing from A with a fill
+value.
+
+for eg,
+
+from itertools import zip_longest
+
+A = ["Aaron", "Clive", "Thomas", "Victor"]
+B = ["Sharon", "Rossette", "Emily", "Alice", "Karen", "Shirley"]
+
+# Normal Zip function 
+print("Using zip():")
+for boy, girl in zip(A, B): # <-- ends after the 4th iteration
+  print(f"{boy} is paired with {girl}")
+
+print("\n")
+
+# Zip Longest function
+print("Using zip_longest():")
+
+# Set 'Nobody' for fillvalue key for missing values;;
+iterator = zip_longest(A, B, fillvalue="Nobody") 
+
+for boy, girl in iterator: # <-- ends after the 6th iteration
+  print(f"{boy} is paired with {girl}")
+
+# OUTPUT:
+Using zip():
+Aaron is paired with Sharon
+Clive is paired with Rossette
+Thomas is paired with Emily
+Victor is paired with Alice
+
+Using zip_longest():
+Aaron is paired with Sharon
+Clive is paired with Rossette
+Thomas is paired with Emily
+Victor is paired with Alice
+Nobody is paired with Karen
+Nobody is paired with Shirley
+
+#--- EXAMPLE 3: ZIP LONGEST FROM ITERTOOLS
+
+The cycle() function loops through the values of a list infinitely. That is,
+once it finishes iterating through all the values from a list, it begins
+iterating again from the start of the list.
+
+for eg,
+from itertools import cycle
+colours = ['Red', 'Pink' , 'Blue']
+
+iterObj = cycle(colours)
+
+for i in range(100):
+  print(next(iterObj))
+
+# OUTPUT:
+Red
+Blue
+Pink
+Red
+Blue
+... TILL 100
+
+#--- EXAMPLE 4: CHAINED FROM ITERTOOLS
+
+for eg,
+
+from itertools import chain
+
+# Merges three iterables together
+chainedObj = chain(range(1,4), range(4, 7), range(7, 10))
+
+print(list(chainedObj))
+
+# OUTPUT:
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+#--- EXAMPLE 5: COMPRESS FROM ITERTOOLS;;
+
+The compress() method helps us pick out elements from an iterable based on the
+values of another iterable.
+
+For example, say we have a list of students ["John", "Vishnu", "Kabir"] and a
+list of results containing a boolean indicating if the student has passed the
+test [True, False, True]. Now, using compress() we can select all the
+students from the student list who have passed i.e where the boolean is
+True.
+
+for eg,
+
+from itertools import compress
+
+students = ["John", "Vishnu", "Kabir", "Shreya", "Rose"]
+results = [True, False, True, True, False]
+
+filtered = compress(students, results)
+print(list(filtered))
+
+# OUTPUT: -
+['John', 'Kabir', 'Shreya']
+
+
+#--- EXAMPLE 6: GROUPBY FROM ITERTOOLS;;
+
+The groupby() function does exactly what its name says. Using groupby() we can
+group values of an iterable together based on a certain condition.
+
+THE ONE QUIRK OF THIS FUNCTION IS THAT IT EXPECTS THE ITERABLE TO BE IN SORTED
+ORDER.
+
+Hence we need to sort our lists before we use them.
+
+import itertools
+
+students = ["John", "Jishnu", "Vishnu", "Kabir", "Vinod", "Shreya", "Vikas", "Rose"]
+students.sort() # <-- sort list
+groups = itertools.groupby(students, lambda x: x[1])
+
+for group, values in groups:
+  print(group, " --- ", list(values))
+
+# OUTPUT: 
+i  ---  ['Jishnu']
+o  ---  ['John']
+a  ---  ['Kabir']
+o  ---  ['Rose']
+h  ---  ['Shreya']
+i  ---  ['Vikas', 'Vinod', 'Vishnu']
+
+#--- EXAMPLE 7: STARMAP FROM ITERTOOLS;;
+
+The starmap() is similar to the map() function where we can iteratively pass
+values from a list as an argument to a function. The difference between them
+is that starmap() supports passing multiple arguments to a function.
+
+We can use starmap() in cases where we want to call a function iteratively for
+every set of arguments in a list. starmap() passes each argument set to the
+function and returns the results as an iterable.
+
+for eg,
+
+from itertools import starmap
+
+params= [(2,4), (5,6), (7,8)]
+
+def areaRectangle(length, breadth):
+  return length * breadth
+
+res = starmap(areaRectangle, params)
+
+for param, result in zip(params, res):
+  print(f"{param} => {result}")
+
+# OUTPUT: -
+(2, 4) => 8
+(5, 6) => 30
+(7, 8) => 56
+
 
 -------------------------------------------------------------------------------------
 -> Q065 : Bitwise Operators;
@@ -300,7 +633,7 @@ print(result)
 
 
 -------------------------------------------------------------------------------------
--> Q064 : Magic Method __call__ in Python;
+-> Q064 : Magic Method __call__ in Python;;
 
 Python has a set of built-in methods and __call__ is one of them. The __call__
 method enables Python programmers to write classes where the instances behave
@@ -561,7 +894,7 @@ if __name__ == "__main__":
 
 
 -------------------------------------------------------------------------------------
--> Q062 : Generators in Python;;
+-> Q062 : Generators Workflow in Python;;
 
 Generators are basically stateful functions. They can be paused and resumed at
 specific points.
@@ -4012,12 +4345,26 @@ state (including local variables and pending try-statements). When the
 generator iterator resumes, it picks-up where it left-off (in contrast to
 functions which start fresh on every invocation).
 
+-> Iterators Vs Generators:-
+
+-----------------------------------------------------------------------------------
+|         Iterators                     |             Generators                  |
+-----------------------------------------------------------------------------------
+| -> Iterators use classes.             | -> Generators use functions.            |
+| -> Iterators use the __next__ and     | -> Generators use the yield keyword     |
+|    __iter__ methods.                  |    and next methods.                    |
+| -> Iterators maintain state within    | -> Generators store state in local      |
+|    instance attributes                |    function variables                   |
+| -> No methods are paused. State is    | -> Functions are paused and their state |
+|    maintained within Instance.        |    is maintained within Python.         |
+| -> Can be created using iter()        | -> Can be created using function()      |
+-----------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------
--> Q008: Iterators in python;;
+-> Q008: What are Iterators in python;;
 
 The below is class which implements `__next__`as if it was a function using
-the `yield` keyword:
+the `yield` keyword.
 
 class FirstHundredGenerator(object):
     def __init__(self):
@@ -4090,7 +4437,7 @@ You can iterate over iterables, not over iterators.
   
 
 -------------------------------------------------------------------------------------
--> Q007: Generator in Python;;
+-> Q007: What are Generator in Python;;
 
 A generator in Python is a function that remembers the state it’s in, in
 between executions.
