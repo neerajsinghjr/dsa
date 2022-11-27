@@ -1,12 +1,15 @@
-'y''
+'''
 -------------------------------------------------------------------------------------
 -> Title: PyNotes Diary
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03.09.2022
--> Updated: 21.11.2022
+-> Updated: 26.11.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q064 : Magic Method __call__ in Python;
+-> Q063 : Class Decorator in Python;;
+-> Q062 : Generators in Python;;
 -> Q061 : First Class Function in Python;;
 -> Q060 : Operator Overloading in Python;;
 -> Q059 : Inheritance in Python;;
@@ -70,9 +73,364 @@
 -> Q001 : Decorators in python;;
 -------------------------------------------------------------------------------------
 '''
-
 ###---PYTHON NOTES : BEGINNING 
 
+-------------------------------------------------------------------------------------
+-> Q064 : Magic Method __call__ in Python;
+
+Python has a set of built-in methods and __call__ is one of them. The __call__
+method enables Python programmers to write classes where the instances behave
+like functions and can be called like a function. When the instance is called
+as a function; 
+
+if this method is defined,
+x(arg1, arg2, ...) is a shorthand for x.__call__(arg1, arg2, ...).
+
+Syntax : 
+  object() is shorthand for object.__call__
+
+//----------------------------------- EXAMPLE 1: 
+
+class Example:
+    def __init__(self):
+        print("Instance Created")
+      
+    # Defining __call__ method
+    def __call__(self):
+        print("Instance is called via special method")
+  
+# Instance created
+e = Example()
+  
+# __call__ method will be called
+e()     # Call object like a function;
+
+# OUTPUT :
+Instance Created
+Instance is called via special method
+
+//----------------------------------- EXAMPLE 2: 
+
+class Product:
+    def __init__(self):
+        print("Instance Created")
+  
+    # Defining __call__ method
+    def __call__(self, a, b):
+        print(a * b)
+  
+# Instance created
+ans = Product()
+  
+# __call__ method will be called
+ans(10, 20)   # Calling like a function with argument;
+
+# OUTPUT:
+Instance Created
+200
+
+//------------------------------------- EXAMPLE 3:
+
+class Student:
+
+  _record = {}
+
+  def __init__(self, name):
+    self._record['name'] = name
+    print(f"NEW STUDENT CREATED : {name}")
+
+  def __call__(self, *args, **kwargs):
+    flag = False
+    if (args):
+      flag = True
+      self._record['extra'] = args
+
+    if(kwargs):
+      flag = True
+      for key,value in kwargs.items(): 
+        self._record[key] = value
+
+    if(flag):
+      print(f"PROFILE UPDATED")
+
+
+  def showDetails(self):
+    print(f"Student Profile : {self._record['name']}")
+    for k,v in self._record.items():
+      if not(k == 'name'):
+        print(f"{k} : {v}")
+
+# OUTPUT : 
+NEW STUDENT CREATED : Neeraj Singh
+PROFILE UPDATED
+Student Profile : Neeraj Singh
+extra : ('Crickets', 'Volleyball', 'Badminton')
+school : DUCS Sr. Sec. School
+std : XII
+teacher : Shristi Sharma
+Subjects : ('Physics', 'Chemisty', 'Computer Cpp', 'Maths', 'English')
+
+
+-------------------------------------------------------------------------------------
+-> Q063 : Class Decorator in Python;;
+
+We can also use decorators to modify the methods of a class. As a class can
+also be passed as an argument to a function, we can access and modify it as
+required.
+
+for eg, 
+
+//------------ EXAMPLE 1: IMPLEMENTING DECORATOR FUNCTION ON REGULAR CLASS;;
+
+Here, in this example decorator are implemented using the regular function
+like we are using earlied but the decorator are implementing on the class 
+variable.
+
+for eg,
+def printUppercase(_class):
+    
+    # Main Wrapper Starts Here
+    def wrapper(self): 
+        print(self.word.upper())
+
+    # _class.show =  wrapper 
+    # here, we are overriding the memory reference of show method 
+    # from the class to the wrapper function of the decorator.
+    # So that we can modify or extends the functional requirement
+    # of that function.
+
+    _class.show = wrapper   # Overriding old show function with wrapper 
+
+    return _class
+
+
+@printUppercase
+class Dictionary:
+
+    def __init__(self):
+        self.word = "Word of the day is {self.word}"
+
+    def show(self):
+        print("Dictionary show...")
+        return self.word
+
+if __name__ == "__main__":
+  obj = Dictionary()
+  obj.show()
+
+# OUTPUT :
+WORD OF THE DAY IS HALLOWEEN
+
+
+//------------ EXAMPLE 2: IMPLEMENTING DECORATOR CLASS ON REGULAR FUNCTION;;
+
+We can also use a class as a decorator in Python. The function will be
+received as an argument to __init__ and the function arguments will be passed
+to __call__.
+
+for eg, # In the example below we define StoreResults which stores the results
+of every call to add().
+
+class StoreResults:
+    """
+    @classname
+    Here, you've defined the class as a decorator on a regular function.
+    In class, you have to received the function name inside the __init__
+    method using any keyword.
+    Like this,
+        def __init__(self, function): ...
+
+    and the given functional arguments from external function (~add())
+    will be received by the __call__() magic methods.
+    """
+    def __init__(self, func):
+        self.func = func            # <-- accepts function as arguments;
+        self.result = []            # <-- lists to store result;
+
+    def __call__(self, *args, **kwargs):
+        print("LOG : args:", args)            # debugger 1
+        print("LOG kwargs:", kwargs)        # debugger 2
+        res = self.func(*args, **kwargs)
+        self.result.append(res)
+        return self.result
+
+
+@StoreResults
+def add(a,b, y,z): 
+  return a+b 
+
+
+if __name__ == "__main__":
+  print(add(10,10, y=10, z=20))
+  print(add(11,11, y=22, z=33))
+
+
+# OUTPUT :
+LOG : args: (10, 10)
+kwargs: {'y': 10, 'z': 20}
+[20]
+
+LOG : args: (11, 11)
+LOG : kwargs: {'y': 22, 'z': 33}
+[20, 22]
+
+# or, @return res ... instead of self.result from place INDEX-01;
+20      
+20, 22 
+
+
+//------------ EXAMPLE 3 : PASSING ARGUMENT ON CLASS DECORATOR;
+
+To accept arguments to our class-based decorator, we would have to make subtle
+changes because of the following issues.
+1) The __init__ method will now receive the decorator argument and not the function.
+2) The function will be passed as the first argument to __call__. 
+3) The function arguments will be received in a nested function.
+
+for eg, # In this case we are expanding the abbreviation of the given message;
+
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Q062 : Generators in Python;;
+
+Generators are basically stateful functions. They can be paused and resumed at
+specific points.
+
+
+Consider ordering fries, biryani, and ice cream at a restaurant. You could ask
+the waiter to get all the items in one go itself. However, it would be
+difficult to consume all of them in one sitting. Instead, you ask the waiter
+to get the first dish i.e fries, and once you are through with it, you could
+ask them to get the next one i.e biryani followed by ice cream.
+
+Generators take a similar approach. A function is paused after it yields a
+value and resumes when it is explicitly asked.
+
+
+for eg, # Example Illustration in P0043 inside the 'BasicPython/01.basic/...'
+
+###---- Example 1 : Basic Example for Generator object;
+def orderFood():
+    yield 'Red Wine'
+
+    yield 'Fish and Rice'
+
+    yield 'Ice Cream'
+
+def example1():
+    serving = orderFood()
+    print("__main__ :", serving)
+    print("Starters : ", next(serving))
+    print("Main Course: ", next(serving))
+    print("Desserts :", next(serving))
+
+# OUTPUT:
+__main__ : <generator object orderFood at 0x7f431e4f2a50>
+Starters :  Red Wine
+Main Course:  Fish and Rice
+Desserts : Ice Cream
+
+###---/Example 1;
+
+###---Example 2: Fibonacci Series using the Generator Object;
+def fibo(a=0, b=1, limit=10):
+    a = 0
+    yield(a)
+    b = 1
+    yield(b)
+    for _ in range(limit):
+        c = a+b 
+        yield(c)
+        a,b = b,c
+
+def example2():
+    a,b,limit = 0,1,10
+    fib = fibo(a,b,limit)        
+    print("Generator Initiated ")
+    print("Object __main__ :", fib)
+    for k in range(limit):
+        print(next(fib), end="")
+        if not(k == limit-1):
+            print("->", end="")
+    print('\nGenrator Terminated !')
+
+# OUTPUT:
+Generator Initiated 
+Object __main__ : <generator object fibo at 0x7fc5238c2a50>
+0->1->1->2->3->5->8->13->21->34
+Genrator Terminated !
+
+###--- /Example2;
+
+###--- Example 3: Calculate first N prime number default limit 10;
+def checkPrimeNumber(num):
+    for x in range(2, num//2):
+        if(num % x == 0):
+            return False
+    return True
+
+
+def primeGenerator(count):
+    i = 2           # number 0 and 1 are not prime number;
+    cur_count = 0
+    while(i and cur_count<=count):
+        if(checkPrimeNumber(i)):
+            yield(i)
+            cur_count += 1
+        i += 1
+
+
+def example3():
+    count = 10
+    nextPrimeNumber = primeGenerator(count)
+    print("Generator Initialized...")
+    print("Object __main__ : ", nextPrimeNumber)
+    for _ in range(count):
+        print("Next Prime Number : ", next(nextPrimeNumber))
+    print("\nGenerator Terminated !")
+
+# OUTPUT :
+Generator Initialized...
+Object __main__ :  <generator object primeGenerator at 0x7f50800fea50>
+Next Prime Number :  2
+Next Prime Number :  3
+Next Prime Number :  4
+Next Prime Number :  5
+Next Prime Number :  7
+Next Prime Number :  11
+Next Prime Number :  13
+Next Prime Number :  17
+Next Prime Number :  19
+Next Prime Number :  23
+Generator Terminated !
+
+//--------------------------------- USAGE 2 : PASSING ARGUMENT TO GENERATOR 
+
+For eg,
+
+names = ["ferrari", "john", "barbie", "cottonwood", "shirley"]
+labels = ["car", "boy", "toy", "tree", "girl"]
+
+def combine(data_a, data_b):
+  for a, b in zip(data_a, data_b):
+    yield f"{a.capitalize()} is a {b}"    # Pause
+    
+cogen = combine(names, labels) # pass arguments to combine
+
+for value in cogen: # for loop will iterate until end of data
+  print(value)
+
+# OUTPUT :
+Ferrari is a car
+John is a boy
+Barbie is a toy
+Cottonwood is a tree
+Shirley is a girl
+
+  
 -------------------------------------------------------------------------------------
 -> Q061 : First Class Function in Python;;
 
@@ -150,7 +508,7 @@ def greet(func):
 greet(shout)
 greet(whisper)
 
-// Property 3 : Functions can return another function
+//--- Property 3 : Functions can return another function
 
 Because functions are objects we can return a function from another function.
 In the below example, the create_adder function returns adder function.
@@ -170,15 +528,85 @@ print add_15(10)
 -------------------------------------------------------------------------------------
 -> Q060 : Operator Overloading in Python;;
 
-Operator Overloading : the + operator is used to add two numbers or
-concatenate two strings together. 
+Operator Overloading : The + operator is used to add two numbers or
+concatenate two strings together. Using Operator Overloading we can also
+modify it to perform some operations on our newly created objects.
 
 To overload the + operator, we have to overwrite the internal __add__ method
 of the operand's class.
 
 for eg, # Operator Overloading
 
+class House:
+  def __init__(self):
+    self.rooms = []
 
+  def __add__(self, room): # <-- operator overloading done here
+    self.rooms.append(room)
+    return house
+
+  def __repr__(self): # <-- For display purposes. Can be ignored
+    room_names = [str(room) for room in self.rooms]
+    room_str = ', '.join(room_names)
+    return f"House[rooms: [{room_str}]]"
+
+
+class Room:
+  def __init__(self, room_owner):
+    self.owner = room_owner
+
+  def __repr__(self):
+    return f"{self.owner}'s room"
+
+
+house = House()
+judys_room = Room("Judy")
+house = house + judys_room # <-- add a room to house using overloaded + operator
+print(house)
+
+arthurs_room = Room("Arthur")
+house = house + arthurs_room # <-- add another room to house
+print(house)
+
+
+# OUTPUT :
+House[rooms: [Judy's room]]
+House[rooms: [Judy's room, Arthur's room]]
+
+
+//--- Overloading other mathematical operators
+
+Method :    Addition        :    (+)    :   def __add__(self): ...
+Method :    Subtraction     :    (-)    :   def __sub__(self): ...
+Method :    Multiply        :    (*)    :   def __mul__(self): ...
+Method :    Division        :    (/)    :   def __truediv__(self): ...
+Method :    Modulus         :    (%)    :   def __mod__(self): ...
+Method :    Left Shift      :    (<<)   :   def __lshift__(self): ...
+Method :    Unary Opr       :    (~)    :   def __invert__(self): ...
+Method :    Greater Opr       :    (~)    :   def __invert__(self): ...
+Method :    Less Than Opr       :    (~)    :   def __invert__(self): ...
+Method :    Unary Opr       :    (~)    :   def __invert__(self): ...
+
+//--- Unary Operator Example;
+ for eg, 
+ class Bulb:
+
+   def __init__(self):
+      self.switch = "OFF"
+
+   def __invert__(self):
+      self.switch = 'ON' if self.switch == 'OFF' else 'OFF'
+
+   def __repr__(self):
+      return f"Bulb : {self.switch}"
+
+
+# OUTPUT:
+Bulb : OFF
+Bulb : ON
+Bulb : OFF
+
+//--- COMPARISION OPERATOR OVERLOADING
 
 
 
@@ -438,7 +866,7 @@ print(counter.most_common()) # print most common using .most_common() method
 
 
 -------------------------------------------------------------------------------------
--> Q057 : Decorator in Python;;
+-> Q057 : Decorator in Python;; (PING -> Q063 : Class Decorator in Python)
 
 Sometimes we might want to run some code at the beginning and at end of a
 function. 
@@ -574,7 +1002,7 @@ def send_message():
 
 send_message()
 
-//----------------------------------- EXAMPLE 4: DECORATIOR WITH ARGUMENT;
+//----------------------------------- EXAMPLE 4: DECORATOR WITH ARGUMENT;
 
 An buggy based example for receiving the argument inside the decorator.
 
@@ -602,9 +1030,8 @@ Traceback (most recent call last):
     hello("Python")
 TypeError: wrapper() takes 0 positional arguments but 1 was given
 
--> Real example of argument in decorator.
 
-for eg, 
+for eg, // Real example of argument in decorator.
 
 import time
 
@@ -631,7 +1058,7 @@ The measure_time decorator here measures the time for running the function
 twice. That is, it includes the do_twice decorator's time within it. Try
 swapping the order of the decorators and see the output.
 
-fore eg,
+for eg, // Ex 1: Demonstration for passing argument;
 
 import time
 
@@ -666,6 +1093,51 @@ print_name("Eleven")
 My name is Eleven
 My name is Eleven
 Time taken to execute print_name is 6.9141387939453125e-06 seconds
+
+
+For eg, // Ex 2: For Passing Argument in Decorator;
+
+"""
+SCENARIO :
+Pavel has been working on strengthning his encryption program. He has decided
+that once he converts his characters to numbers using ord() he will add them
+by a particular constant to increase their encryption strength.
+
+Help him modify the decorator to accept an integer strength with the value 3,
+which will then be added to the result of every ord(char).
+"""
+
+
+# Modify encrypt decorator to accept argument strength
+# Add it to ord(c)
+
+# Intermediate Encryption;
+def encrypt_v2(times):
+  # Encryption V1: Basic Encryption;
+  def encrypt_v1(func): # <-- Accept argument strength
+    # Create a nested function
+    def wrapper(*args, **kwargs):
+      message = func(*args, **kwargs)
+      return [ord(c)+times for c in message]  # <-- Add strength to ord(c)
+    return wrapper
+  return encrypt_v1
+  
+@encrypt_v2(times=3)
+def send_message(message):
+  return message
+
+message = send_message("Hello Officers. This is your captain speaking.")
+
+print(message)
+
+# OUTPUT:
+[75, 104, 111, 111, 114, 35, 82, 105, 105, 108, 102, 104, 117, 118, 49, 35,
+87, 107, 108, 118, 35, 108, 118, 35, 124, 114, 120, 117, 35, 102, 100, 115,
+119, 100, 108, 113, 35, 118, 115, 104, 100, 110, 108, 113, 106, 49]
+
+
+
+
 
 //------------------------------------ EXAMPLE 6: DECORATOR INSIDE DECORATOR WITH ARGUMENT;
 

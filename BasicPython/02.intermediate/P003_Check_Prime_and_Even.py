@@ -4,8 +4,7 @@ def checkPrime(number):
         for x in range(2, number // 2):
             if number % x == 0:
                 return False
-            else:
-                return True
+        return True
     else:
         return False
 
