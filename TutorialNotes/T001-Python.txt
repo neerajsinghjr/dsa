@@ -7,6 +7,7 @@
 -> Updated: 26.11.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q065 : ;
 -> Q064 : Magic Method __call__ in Python;
 -> Q063 : Class Decorator in Python;;
 -> Q062 : Generators in Python;;
@@ -289,8 +290,51 @@ changes because of the following issues.
 
 for eg, # In this case we are expanding the abbreviation of the given message;
 
+# Given Abbreviation inside the system;
+abbr = {
+  "ttyl": "Talk to you later",
+  "omg": "Oh my God!",
+  "gtg": "got to go"
+}
+
+class Abbreviation:
+
+    # Catch here is that, one layer added for top abstraction for 
+    # receiving the class decorator argument;
+    # __init__() : It will receive the argument from the decorator
+    # calling.
+    # dargs : decorator arguments received;
+
+    def __init__(self, decorator_args): 
+        self.dargs = decorator_args
 
 
+    def __call__(self, func):   # here, func : name of the external function;
+
+        # Nested Wrapper for main functionality;
+        # args : refers to external argument of function;
+        def wrapper(args):   
+            
+            # string, *_ = args             # Doesn't effect the code ;
+            # print("string : ", string)    # Doesn't effect the code ;
+            # print("undescore : ", _)      # Doesn't effect the code ;
+
+            for key,value in self.dargs.items():
+                if(key in args):
+                    args = args.replace(key,value)
+
+            return func(args)
+
+        return wrapper
+
+
+@Abbreviation(abbr)
+def message(msg):
+    print(msg)
+
+
+if __name__ == "__main__":
+  message("omg that's so funny. Anyways I gtg. ttyl okay.")
 
 
 -------------------------------------------------------------------------------------
