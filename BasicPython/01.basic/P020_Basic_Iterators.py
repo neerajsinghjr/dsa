@@ -8,7 +8,7 @@ import math
 import random
 
 
-
+#-------------------------- Example 1: Basic example of iterators
 class FirstHundredNumber:
 
     def __init__(self):
@@ -49,16 +49,19 @@ class EvenOddNumber:
         else:
             raise StopIteration()
 
-        
-
-##---Main Execution;;
-def main():
+def example1():
    num = FirstHundredNumber()
-   print
    print(list(num))
    # print(num.__name__)
    # print(next(num))
-   # print(next(num))
+   # print(next(num))    
+
+#-------------------------- /Example 1;;
+
+##---Main Execution;;
+def main():
+    example1()
+
 
 
 if __name__ == '__main__':
