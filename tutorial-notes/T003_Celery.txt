@@ -1,0 +1,31 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Celery
+-> Author : Neeraj Singh Junior
+-> Status : Ongoing...
+-> Created : 04/12/2022
+-> Updated : 04/12/2022
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q002 : Python Celery Basics;;
+-> Q001 : What is Celery;;
+-------------------------------------------------------------------------------------
+'''
+
+###---{Tutorial-Name} NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q002 : Python Celery Basics;;
+
+
+
+-------------------------------------------------------------------------------------
+-> Q001 : What is Celery;;
+
+Celery is a distributed task queue for UNIX systems. It allows you to offload
+work from your Python app. Once you integrate Celery into your app, you can
+send time-intensive tasks to Celery’s task queue. That way, your web app can
+continue to respond quickly to users while Celery completes expensive
+operations asynchronously in the background.
+
+-------------------------------------------------------------------------------------
