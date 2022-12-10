@@ -1,12 +1,11 @@
-	'''
+'''
 -------------------------------------------------------------------------------------
--> Problem Title: 
--> Problem Status: Ongoing...
--> Problem Attempted:
--> Problem Description: 
+-> Title: 
+-> Attempted:
+-> Description: 
 -------------------------------------------------------------------------------------
 
-...
+
 
 -------------------------------------------------------------------------------------
 '''
@@ -19,33 +18,30 @@ import sys
 import time
 import math
 import random
+from functools import reduce
 
 
-##---Main Solution
-class Solution:
-    
-    # Constructor;
-    def __init__(self):
-        pass
-
-
-##---Main Execution;;
+###--- Reduce Function;;
 def main(res=None):
-    try:
-    	data = []				
-        obj = Solution()	
-        res = None
-        print(f"Result: {res}") if res else print("Empty!")
-        
-    except(Exception) as e:
-        print(f"Exception Traced : {e}")
+    mylist = [12,13,11,14,14,14,14,15,16]
     
-    else:
-        print("Program Completed : Success")
+    # Scenario 1: Without Lambda;
+    def _sum(a, b):
+        count = 1
+        print(f"count {count}, : {a},{b}")
+        return a+b
 
-    finally:    
-        print("Program Terminated!")
+    print("sum >", sum(mylist))
 
+    a = reduce(_sum, mylist)
+    print("sum >> ", a)
+
+    # Scenario 2 : With Lambda;;
+    res2 = reduce(lambda a,b : a+b, mylist)
+    print(f"res2: {res2}")
+
+
+    
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")

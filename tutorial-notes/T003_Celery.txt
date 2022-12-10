@@ -4,20 +4,88 @@
 -> Author : Neeraj Singh Junior
 -> Status : Ongoing...
 -> Created : 04/12/2022
--> Updated : 04/12/2022
+-> Updated : 05/12/2022
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q002 : Why use Celery;;
 -> Q002 : Python Celery Basics;;
 -> Q001 : What is Celery;;
 -------------------------------------------------------------------------------------
 '''
 
-###---{Tutorial-Name} NOTES : BEGINNING 
+###---CELERY NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q003 : Why use Celery;;
+
+There are two main reasons why most developers want to start using Celery:
+
+Offloading work from your app to distributed processes that can run
+independently of your app Scheduling task execution at a specific time,
+sometimes as recurring events Celery is an excellent choice for both of these
+use cases. It defines itself as “a task queue with focus on real-time
+processing, while also supporting task scheduling” (Source).
+
+Even though both of these functionalities are part of Celery, they’re often
+addressed separately:
+
+Celery workers are worker processes that run tasks independently from one
+another and outside the context of your main service. 
+
+Celery beat is a scheduler that orchestrates when to run tasks. You can use it
+to schedule periodic tasks as well. 
+
+Celery workers are the backbone of Celery. Even if you aim to schedule
+recurring tasks using Celery beat, a Celery worker will pick up your
+instructions and handle them at the scheduled time. 
+
+What Celery beat adds to the mix is a time-based scheduler for Celery
+workers.
 
 -------------------------------------------------------------------------------------
 -> Q002 : Python Celery Basics;;
 
+Celery isn’t only useful for web applications, but it’s certainly popular in
+that context. That’s because you can efficiently tackle some everyday
+situations in web development by using a distributed task queue such as
+Celery:
 
+a) Email sending: You may want to send an email verification, a password reset
+email, or a confirmation of a form submission. Sending emails can take a
+while and slow down your app, especially if it has many users.
+
+b) Image processing: You might want to resize avatar images that users upload
+or apply some encoding on all images that users can share on your platform.
+Image processing is often a resource-intensive task that can slow down your
+web app, mainly if you’re serving a large community of users.
+
+c) Text processing: If you allow users to add data to your app, then you might
+want to monitor their input. For example, you may want to check for profanity
+in comments or translate user-submitted text to a different language.
+Handling all this work in the context of your web app can significantly
+impair performance.
+
+d) API calls and other web requests: If you need to make web requests to
+provide the service that your app offers, then you can quickly run into
+unexpected wait times. This is true for rate-limited API requests just as
+much as other tasks, such as web scraping. It’s often better to hand off
+these requests to a different process.
+
+e) Data analysis: Crunching data is notoriously resource-intensive. If your
+web app analyzes data for your users, you’ll quickly see your app become
+unresponsive if you’re handling all the work right within Django.
+
+f) Machine learning model runs: Just like with other data analysis, waiting
+for the results of machine learning operations can take a moment. Instead of
+letting your users wait for the calculations to complete, you can offload
+that work to Celery so they can continue browsing your web app until the
+results come back.
+
+g) Report generation: If you’re serving an app that allows users to generate
+reports from data they provided, you’ll notice that building PDF files
+doesn’t happen instantaneously. It’ll be a better user experience if you let
+Celery handle that in the background instead of freezing your web app until
+the report is ready for download
 
 -------------------------------------------------------------------------------------
 -> Q001 : What is Celery;;

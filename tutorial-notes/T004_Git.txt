@@ -1,0 +1,46 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Git
+-> Author : Neeraj Singh Junior
+-> Status : Ongoing...
+-> Created : 05/12/2022
+-> Updated : 05/12/2022
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+
+-> Q00X : Check code changes pulled from origin;;
+-> Q002 : Git basic commands;;
+-> Q001 : What is Git;;
+-------------------------------------------------------------------------------------
+'''
+
+###---GIT NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q00X : Check code changes pulled from origin;;
+
+
+
+-------------------------------------------------------------------------------------
+-> Q00X : Check code changes pulled from origin;;
+
+
+
+-------------------------------------------------------------------------------------
+-> Q003 : Config Command in Git;;
+
+
+-------------------------------------------------------------------------------------
+-> Q002 : Git Stage - Add/Commit/Push;;
+
+
+
+-------------------------------------------------------------------------------------
+-> Q001 : What is Git;;
+
+Git is a distributed version control system: tracking changes in any set of
+files, usually used for coordinating work among programmers collaboratively
+developing source code during software development. Its goals include speed,
+data integrity, and support for distributed, non-linear workflows.
+
+-------------------------------------------------------------------------------------
