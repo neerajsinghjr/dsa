@@ -71,6 +71,8 @@ class Solution:
         _run: accepted
         _code: optimised | time: o(n) | space: o(1) + stack(n)
         _study:
+        traced the sum of the parent and two siblings nodes first 
+        then recursively check for max sum
         """
         res = [root.val]
 
@@ -87,6 +89,7 @@ class Solution:
         
         dfs(root)
         return res[0]
+
 
 ##---Main Execution;;
 def main(res=None):
