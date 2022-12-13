@@ -17,8 +17,49 @@
 ###---GIT NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q00X : Check code changes pulled from origin;;
+-> Q005 : Check code changes pulled from origin;;
 
+###--- GIT COMMANDS :-
+
+//--- set upstream for local branch to remote
+$ git branch --set-upstream-to origin feature-branch
+
+//--- show up which remote branch a local branch is tracking
+$ git branch -v
+
+//--- short version to set upstream with very first push
+$ git push -u origin local-branch
+
+//--- fetch and pull branch
+$ git fetch origin BAC-2633-transaction-apis-create-lumpsum
+$ git checkout BAC-2633-transaction-apis-create-lumpsum
+
+//--- push from different local branch to different remote branch
+git push <remote> <branch with new changes>:<branch you are pushing to>
+for eg,
+$ git push origin branch-1:branch-2
+
+//--- fetch origin
+$ git fetch --all
+$ git pull --rebase origin master
+
+//--- Show local branch sync with remote branch
+$ git branch -v
+
+//--- Setup Email for Local Repo:
+$ git config --local user.email <your_email>
+
+//--- Clone Single branch from Repo:
+$ git clone -b <branch_name> <repo_url>
+$ git clone -b <branch_name> --single-branch <repo_url>
+
+//--- view all settings
+$ git config --list --show-origin 
+
+//--- Global configurations for your git
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+$ git config --global init.defaultBranch main
 
 
 -------------------------------------------------------------------------------------

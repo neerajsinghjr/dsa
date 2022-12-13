@@ -7,13 +7,122 @@
 -> Updated : 05/12/2022
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q002 : Why use Celery;;
--> Q002 : Python Celery Basics;;
+-> Q005 : Setup redis for celery;;
+-> Q004 : Celery steup project;;
+-> Q003 : Why use Celery;;
+-> Q002 : Celery real life applications;;
 -> Q001 : What is Celery;;
 -------------------------------------------------------------------------------------
 '''
 
 ###---CELERY NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q005 : Setup redis for celery;;
+
+Install redis-server, like 
+
+---------------------------------------------------------------------------------
+|>>> Shell															            |
+---------------------------------------------------------------------------------
+|(venv) $ sudo apt update 														|
+|(venv) $ sudo apt install redis-server											|
+---------------------------------------------------------------------------------
+
+then, 
+
+---------------------------------------------------------------------------------
+|>>> Shell															            |
+---------------------------------------------------------------------------------
+|(venv) $ redis-server															|
+---------------------------------------------------------------------------------
+
+This window will be your dedicated terminal window for Redis. Keep it open for
+the rest of this tutorial.
+
+---------------------------------------------------------------------------------
+|>>> Note															            |
+---------------------------------------------------------------------------------
+| Note: Running redis-server starts the Redis server. You run Redis as a 		|
+|process that’s independent of Python, so you don’t need to have your virtual	|
+|environment activated when you start it.										|
+---------------------------------------------------------------------------------
+
+To test whether communicating with the Redis server works, start the Redis CLI
+in another new terminal window:
+
+---------------------------------------------------------------------------------
+|>>> Shell															            |
+---------------------------------------------------------------------------------
+| 127.0.0.1:6379> ping 															|
+| PONG 																			|
+| 127.0.0.1:6379>																|
+---------------------------------------------------------------------------------
+
+After starting the Redis CLI with redis-cli, you sent the word ping to the
+Redis server, which responded with an authoritative PONG. If you got this
+response, then your Redis installation was successful, and Celery will be
+able to communicate with Redis.
+
+Quit the Redis CLI by pressing Ctrl+C before moving on to the next step.
+
+Next, you’ll need a Python client to interface with Redis. Confirm that you’re
+in a terminal window where your virtual environment is still active, and then
+install redis-py:
+
+---------------------------------------------------------------------------------
+|>>> Shell															            |
+---------------------------------------------------------------------------------
+| (venv) $ python -m pip install redis 											|
+---------------------------------------------------------------------------------
+
+This command doesn’t install Redis on your system but only provides a Python
+interface for connecting to Redis.
+
+
+-------------------------------------------------------------------------------------
+-> Q004 : Celery steup project;;
+
+Your first step in integrating Celery into your Django app is to install the
+Celery package into your virtual environment:
+
+(venv) $ python -m pip install celery
+
+Just installing Celery, however, isn’t enough. If you attempt to run the task
+queue, you’ll notice that Celery first seems to start up fine but then
+displays an error message that indicates that Celery can’t find a message
+broker:
+
+---------------------------------------------------------------------------------
+|>>> Shell															            |
+---------------------------------------------------------------------------------
+|(venv) $ python -m celery worker 									            |
+|[ERROR/MainProcess] consumer: Cannot connect to 					            |
+|⮑ amqp://guest:**@127.0.0.1:5672//: [Errno 61] Connection refused.            |
+|Trying again in 2.00 seconds... (1/100)							            |
+---------------------------------------------------------------------------------
+
+Celery needs a message broker to communicate with programs that send tasks to
+the task queue. Without a broker, Celery isn’t able to receive instructions,
+which is why it keeps trying to reconnect.
+
+---------------------------------------------------------------------------------
+|>>> Note 																		|
+---------------------------------------------------------------------------------
+Note: You may notice the URL-like syntax in the target that Celery attempts to 	|
+connect to. The protocol name, amqp, stands for Advanced Message Queuing		|
+Protocol and is the messaging protocol that Celery uses. The best-known 		|
+project that implements AMQP natively is RabbitMQ, but Redis can also 			|
+communicate using the protocol.													|
+---------------------------------------------------------------------------------
+
+Before using Celery, you’ll need to install a message broker and define a
+project as a message producer. In your case, the producer is your Django app,
+and the message broker will be Redis.
+
+Refer -> Q005 : Setup redis for celery;;
+
+# Add Celery to Your Django Project
 
 -------------------------------------------------------------------------------------
 -> Q003 : Why use Celery;;
@@ -43,7 +152,7 @@ What Celery beat adds to the mix is a time-based scheduler for Celery
 workers.
 
 -------------------------------------------------------------------------------------
--> Q002 : Python Celery Basics;;
+-> Q002 : Celery real life applications;;
 
 Celery isn’t only useful for web applications, but it’s certainly popular in
 that context. That’s because you can efficiently tackle some everyday
