@@ -7,6 +7,8 @@
 -> Updated: 03.12.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q069 : Time Delta (timedelta) in python;;
+-> Q068 : Relative Delta (relativedelta)in Python;;
 -> Q067 : Sort and Reverse Dictionary by value;;
 -> Q066 : Iterators Workflow in Python
 -> Q065 : Bitwise Operators;
@@ -77,6 +79,211 @@
 -------------------------------------------------------------------------------------
 '''
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q069 : Time Delta (timedelta) in python
+
+A timedelta represents a duration which is the difference between two dates,
+time, or datetime instances, to the microsecond resolution.
+
+The Timedelta class available in Python’s datetime module. Use the timedelta
+to add or subtract weeks, days, hours, minutes, seconds, microseconds, and
+milliseconds from a given date and time.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| - timedelta.days            Returns days from timedelta                              |
+| - timedelta.microseconds    Returns microseconds from timedelta                      |
+| - timedelta.seconds         Returns seconds from timedelta                           |
+| - timedelta.max             Returns the maximum positive timedelta value,            |
+|                             it will be datetime.timedelta(999999999, 86399, 999999)  |
+| - timedelta.min             Returns the most negative timedelta value and its value  |
+|                             is datetime.timedelta(-999999999)                        |
+| - timedelta.resolution      Return the smallest possible difference between          |
+|                             two nonequal timedelta objects is 1 microsecond.         |
+| - timedelta.total_seconds() Returns total seconds in the duration                    |
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//------------------------ Example 1: Imports
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from datetime import timedelta                                    |
+| from datetime import datetime                                     |
+|                                                                   |
+| # given datetime                                                  |
+| current_date = datetime.now()                                     |
+| x_date_time = datetime(                                           |
+|   year=2020, month=3, day=21, hour=12, minute=30                  |
+| )                                                                 |
+|                                                                   |
+| # Difference between two dates                                    |
+| # Get timedelta                                                   |
+| timedelta = current_date - x_date_time                            |
+|                                                                   |
+| print(timedelta)                                                  |
+| print(type(timedelta))                                            |
+|                                                                   |
+| # output:                                                         |
+| 469 days, 20:39:07.830124                                         |
+| <class 'datetime.timedelta'>                                      |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//------------------------- Example 2: Calculate Future Datetime
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from datetime import datetime, timedelta                          |
+|                                                                   |
+| current_date = datetime.now()                                     |
+| print('Given Date:', current_date)                                |
+|                                                                   |
+| # add 4 weeks in given date                                       |
+| new_date = current_date + timedelta(weeks=4)                      |
+| print('Future Date:', new_date)                                   |
+|                                                                   |
+| # OUTPUT                                                          |
+| Given Date: 2021-07-04 05:41:46.328154                            |
+| Future Date: 2021-08-01 05:41:46.328154                           |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//------------------------- Example 3: Features
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from datetime import datetime                                            |
+|                                                                          |
+| d1 = datetime(year=2020, month=3, day=21, hour=12, minute=30)            |
+| d2 = datetime(year=2021, month=1, day=12, hour=18, minute=15)            |
+|                                                                          |
+| # Get timedelta by subtracting two dates                                 |
+| td = d2 - d1                                                             |
+|                                                                          |
+| # access timedelta attributes                                            |
+| print("Days:", td.days)   # Days: 297                                    |
+| print("Microseconds:", td.microseconds) # Microseconds: 0                |
+| print("seconds:", td.seconds) # seconds: 20700                           |
+| print("Max:", td.max) # Max: 999999999 days, 23:59:59.999999             |
+| print("Min:", td.min)  # Min: -999999999 days, 0:00:00                   |
+| print("Resolution:", td.resolution) # Resolution: 0:00:00.000001         |                      
+| print("Total Seconds:", td.total_seconds() # Total Seconds: 25681500.0   |                    
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+-------------------------------------------------------------------------------------
+-> Q068 : Relative Delta (relativedelta)in Python;;
+
+Realtive delta is a python library used to calculated the date relatively from
+a given expected date.
+
+It falls under the (dateutil.realtivedelta) package library.
+
+
+//-------------------------- USAGE 1: Params of realtivedelta;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from dateutil.relativedelta import relativedelta                                |
+|                                                                                 |
+| dt=relativedelta(                                                               |
+|  year=2021,month=1,day=1,hour=23,minute=56,second=57,microsecond=324534         |
+|  )                                                                              |
+| print(dt)                                                                       |
+| print(dt.year,dt.month,dt.day,dt.hour,dt.minute,dt.second,dt.microsecond)       |
+|                                                                                 | 
+| # outputs                                                                       |
+| relativedelta(                                                                  |
+|    year=2021, month=1, day=1, hour=23, minute=56, second=57, microsecond=324534 |
+|  )                                                                              |
+| 2021 1 1 23 56 57 324534                                                        |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//-------------------------- USAGE 2: Difference days vs days;
+
+-> day : reset the day counter to 1 of that month.
+-> days : adds day relatively for the given today date.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from dateutil.relativedelta import relativedelta                                |
+| from datetime import date                                                       |
+|                                                                                 |
+| dt=date.today()  # today is 2019-09-23                                          |
+|                                                                                 |
+| # Adding one day to today                                                       |
+| print(dt + relativedelta(days=1))  # 2019-09-24                                 |
+|                                                                                 |
+| # 1st day of the month                                                          |
+| print(dt + relativedelta(day=1))  # 2019-09-01                                  |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//------------------------- USAGE 3: Difference months vs month
+
+-> month : reset the month counter to the 1 of the year eg, january.
+-> months : add month relatively to the given today date.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from dateutil.relativedelta import relativedelta                                |
+| from datetime import date                                                       |
+|                                                                                 |
+| dt=date.today()  # today is 2019-09-23                                          |
+|                                                                                 |
+| # Adding one month to today                                                     |
+| print(dt + relativedelta(month=1))  # 2019-01-23                                |
+|                                                                                 |
+| # 1st month of the year                                                         |
+| print(dt + relativedelta(months=1))  # 2019-10-23                               |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+//------------------------- USAGE 4: Difference years vs year;
+
+-> year : reset the year counter to the 0001 of the year.
+-> years : add year relatively to the given today date.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from dateutil.relativedelta import relativedelta                                |
+| from datetime import date                                                       |
+|                                                                                 |
+| dt=date.today()  # today is 2019-09-23                                          |
+|                                                                                 |
+| # Adding one month to today                                                     |
+| print(dt + relativedelta(year=1))  # 0001-10-24                                 |
+|                                                                                 |
+| # 1st month of the year                                                         |
+| print(dt + relativedelta(years=1))  # 2020-01-24                                |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+//--------------------------- USAGE 5: Age Calculation using RealtiveDelta;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from dateutil.relativedelta import relativedelta                                |
+| from datetime import date                                                       |
+|                                                                                 |
+| dob = date(1997,1,5)    # date of birth;                                        |
+| today = date.today()    # 28/12/2022                                            |
+|                                                                                 |
+| cur_date = relativedelta(today, dob)                                            |
+| print(cur_date)         # relativedelta(years=+25, months=+11, days=+23)        |
+| print(cur_date.years)   # 25                                                    |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+//--------------------------- USAGE 6: RelativeDelta adding sequence;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| from dateutil.relativedelta import relativedelta                                |
+| from datetime import date                                                       |
+| from dateutil.rrule import MO, TU, WE, TH, FR, SA, SU                           |
+|                                                                                 |
+| dt=date.today()  # today is 2019-09-22                                          |
+|                                                                                 |
+| # 2nd Monday from today                                                         |
+| print(dt + relativedelta(weekday=MO(2)))  # 2019-09-30                          |
+|                                                                                 |
+| # 2nd Monday of present Month                                                   |
+| print(dt + relativedelta(day=1,weekday=MO(2)))  # 2019-09-09                    |
+|                                                                                 |
+| # Next Sunday from TODAYS                                                       |
+| print(dt + relativedelta(weekday=SU(+1)))  # 2019-09-22                         |
+|                                                                                 |
+| # As today is sunday there is no difference with SU(+1) or SU(-1)               |
+| print(dt + relativedelta(weekday=SU(-1)))  # 2019-09-22                         |
+|                                                                                 |
+| # previous 2nd Tuesday                                                          |
+| print(dt + relativedelta(weekday=TU(-2)))   # 2019-09-10                        |
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 -------------------------------------------------------------------------------------
 -> Q067 : Sort and Reverse Dictionary by value;;
