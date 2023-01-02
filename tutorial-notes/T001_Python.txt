@@ -7,6 +7,7 @@
 -> Updated: 03.12.2022
 -> Summary: Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q070 : Different usage when add list to set or set to set;
 -> Q069 : Time Delta (timedelta) in python;;
 -> Q068 : Relative Delta (relativedelta)in Python;;
 -> Q067 : Sort and Reverse Dictionary by value;;
@@ -81,6 +82,72 @@
 ###---PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
+-> Q070 : Different usage when add list to set or set to set;
+
+Differene usage of add or updating list or set to the main set;
+
+for eg, 
+
+a = set()
+
+#--- CASE 1: WHEN ADDING LIST TO SET A;
+
+a.add([12, 0])
+a.add([13, 1])
+a.add([14, 2])
+
+print(a)	# Traceback: TypeError: unhashable type: 'list'
+
+NOTE: Throw Error Saying, 
+because set not able to hashed the independent list alone 
+
+NOTE : Countermeasure EXPL
+
+a.add(0)
+a.add(1)
+a.add(2)
+
+print(a)
+
+# NOTE: WORKS FINE;
+{0, 1, 2}
+
+
+#-- CASE 2 : WHEN UPDATING THE SAME LIST TO A;
+
+a.update([12, 0])
+a.update([13, 1])
+a.update([14, 2])
+
+print(a)
+
+NOTE : Notice the list not stored as given 
+{0, 1, 2, 12, 13, 14}
+
+#--- CASE 3 : WHEN ADD THE SAME DATA AS TUPLE INSTEAD OF LIST;
+
+a.add((12,0))
+a.add((13,1))
+a.add((14,2))
+
+print(a)
+
+# NOTE : Notice result format;
+{(12, 0), (14, 2), (13, 1)}
+
+#--- CASE 4 : WHEN UPDATE THE SAME LIST DATA AS TUPLE;
+
+a.update((12,0))
+a.update((13,1))
+a.update((14,2))
+
+print(a)
+
+# NOTE : Notice result format;
+{0, 1, 2, 12, 13, 14}
+
+
+-------------------------------------------------------------------------------------
 -> Q069 : Time Delta (timedelta) in python
 
 A timedelta represents a duration which is the difference between two dates,
@@ -90,18 +157,18 @@ The Timedelta class available in Python’s datetime module. Use the timedelta
 to add or subtract weeks, days, hours, minutes, seconds, microseconds, and
 milliseconds from a given date and time.
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| - timedelta.days            Returns days from timedelta                              |
-| - timedelta.microseconds    Returns microseconds from timedelta                      |
-| - timedelta.seconds         Returns seconds from timedelta                           |
-| - timedelta.max             Returns the maximum positive timedelta value,            |
-|                             it will be datetime.timedelta(999999999, 86399, 999999)  |
-| - timedelta.min             Returns the most negative timedelta value and its value  |
-|                             is datetime.timedelta(-999999999)                        |
-| - timedelta.resolution      Return the smallest possible difference between          |
-|                             two nonequal timedelta objects is 1 microsecond.         |
-| - timedelta.total_seconds() Returns total seconds in the duration                    |
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| - timedelta.days            | Returns days from timedelta                              |
+| - timedelta.microseconds    | Returns microseconds from timedelta                      |
+| - timedelta.seconds         | Returns seconds from timedelta                           |
+| - timedelta.max             | Returns the maximum positive timedelta value,            |
+|                             | it will be datetime.timedelta(999999999, 86399, 999999)  |
+| - timedelta.min             | Returns the most negative timedelta value and its value  |
+|                             | is datetime.timedelta(-999999999)                        |
+| - timedelta.resolution      | Return the smallest possible difference between          |
+|                             | two nonequal timedelta objects is 1 microsecond.         |
+| - timedelta.total_seconds() | Returns total seconds in the duration                    |
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //------------------------ Example 1: Imports
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

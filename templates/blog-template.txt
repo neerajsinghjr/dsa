@@ -1,0 +1,33 @@
+#-----------------------------------------------------------------------------#
+#--- TAGS : LEETCODE, DATASTRUCTURE, DSA, ALGORITHMS 
+
+Hi Readers,
+In this post, I've shown the solution of the Leetcode Problem Two Sum. 
+There are multiple solution of it and all are accepted on the respective platform.
+I've added a little summary for the respective solution with particular key points including ...
+1) '_run' states of the code (approved, accepted or rejected),  
+2) '_code' describe the status of code run and space complexity, _choke describe the 
+3) '_choke' describe the choked or bottleneck cases or countermeasure preventions
+4) '_study' describe the simple soltuion approach or solution go through
+
+
+Please feel free to share any coding feedback 
+If you 're a coder then you need a little push, like me !
+
+
+# SnapeShot of the coding Screen, You can copy and also run on you IDE as well !
+# If you have any other approach or style, 
+# let me know in the comment section
+
+Let's Start Then...
+
+#-----------------------------------------------------------------------------#
+# TAGS :- POST
+
+Hi Readers,
+In this post, I've shown the solution regarding,  
+
+
+
+Please feel free to share any coding feedback 
+If you 're a coder then you need a little push, like me !
