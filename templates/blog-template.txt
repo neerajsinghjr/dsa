@@ -10,10 +10,8 @@ I've added a little summary for the respective solution with particular key poin
 3) '_choke' describe the choked or bottleneck cases or countermeasure preventions
 4) '_study' describe the simple soltuion approach or solution go through
 
-
 Please feel free to share any coding feedback 
 If you 're a coder then you need a little push, like me !
-
 
 # SnapeShot of the coding Screen, You can copy and also run on you IDE as well !
 # If you have any other approach or style, 
