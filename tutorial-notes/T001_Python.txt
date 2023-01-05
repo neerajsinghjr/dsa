@@ -5,9 +5,11 @@
 -> Status: Ongoing
 -> Created: 03.09.2022
 -> Updated: 03.12.2022
--> Summary: Notes indices are as follows (**** pending)
+-> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
--> Q070 : Different usage when add list to set or set to set;
+-> Q072 : Python class inherits from objects;;
+*** -> Q071 : Cython Package feature and usage;;
+-> Q070 : Different usage when add list to set or set to set;;
 -> Q069 : Time Delta (timedelta) in python;;
 -> Q068 : Relative Delta (relativedelta)in Python;;
 -> Q067 : Sort and Reverse Dictionary by value;;
@@ -42,8 +44,8 @@
 -> Q038 : Arrays in Python;;
 -> Q037 : Method Overloading and Operator Overloading;;
 -> Q036 : Switch alternative in python;;
-**** Q035 : Disassember Package using DIS package;;
-**** Q034 : Access Python Source Code and Byte Code ;;
+*** Q035 : Disassember Package using DIS package;;
+*** Q034 : Access Python Source Code and Byte Code ;;
 -> Q033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
 -> Q032 : Variable arguments *args and **vargs in python;;
 -> Q031 : Finding and Installing Packages;;
@@ -63,7 +65,7 @@
 -> Q017 : Access Parent Class using Child class;;
 -> Q016 : Python Pickling vs UnPickling;;
 -> Q015 : Class Compositon Vs Inheritance;;
-**** Q014 : Class Composition in Python;;
+*** Q014 : Class Composition in Python;;
 -> Q013 : @classmethod() vs @staticmethod();;
 -> Q012 : Magic Method __str__() vs __repr__();;
 -> Q011 : Set Variable LowerBound and UpperBound;;
@@ -80,6 +82,102 @@
 -------------------------------------------------------------------------------------
 '''
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q072 : Python class inherits from objects;;
+
+//--- PYTHON 2.X : Usage as per Parent object class; 
+
+In Python 2.x (from 2.2 onwards) there's two styles of defining classes
+depending on the presence or absence of object as a base-class
+
+1) Classic Style Classes : They don't have object as a base class.
+
+for eg, 
+# Example 1
+class ClassicSpam:      # no base class
+	pass
+
+print(ClassicSpam.__bases__()) 	
+# Result : 
+AttributeError: 'builtin_function_or_method' object has no attribute '__bases__'
+
+2) NEW Style : They have directly or indirectly, object as a base class.
+
+for eg, 
+
+# Example 1
+Class NewStyleClass_v1(object):
+	pass
+
+print(NewStyleClass_v1.__base__)	# Result : (<type 'object'>)
+
+# Example 2 
+Class NewStyleClass_v2(int):
+	pass
+
+print(NewStyleClass_v2.__base__)		# Result : (<type 'int'>)
+
+
+//--- PYTHON 3.X : Usage as per Parent Object Class;
+
+In Python 3, things are simplified. Only new-style classes exist (referred to
+plainly as classes) so, the only difference in adding object is requiring you
+to type in 8 more characters.
+
+# Example 1;
+class ClassicSpam:
+    pass
+
+It is completely equivalent to this,
+
+# Example 2;
+class NewSpam(object):
+     pass
+
+# Example 3;
+class Spam():
+    pass
+
+All have object in their __bases__ object.
+
+>>> [object in cls.__bases__ for cls in {Spam, NewSpam, ClassicSpam}]
+[True, True, True]
+
+//--- Advantage of Python Object Class
+
+Without a doubt, when writing a class you'll always want to go for new-style
+classes. The perks of doing so are numerous, to list some of them:
+
+Support for descriptors. Specifically, the following constructs are made
+possible with descriptors:
+
+classmethod: A method that receives the class as an implicit argument instead
+of the instance. staticmethod: A method that does not receive the implicit
+argument self as a first argument. properties with property: Create functions
+for managing the getting, setting and deleting of an attribute.
+__slots__: Saves memory consumptions of a class and also results in faster
+  attribute access. Of course, it does impose limitations. The __new__ static
+  method: lets you customize how new class instances are created.
+
+Method resolution order (MRO): in what order the base classes of a class will
+be searched when trying to resolve which method to call.
+
+Related to MRO, super calls. Also see, super() considered super.
+
+If you don't inherit from object, forget these. A more exhaustive description
+of the previous bullet points along with other perks of "new" style classes
+can be found here.
+
+One of the downsides of new-style classes is that the class itself is more
+memory demanding. Unless you're creating many class objects, though, I doubt
+this would be an issue and it's a negative sinking in a sea of positives.
+
+-------------------------------------------------------------------------------------
+*** -> Q071 : Cython Package feature and usage;;
+
+
+
 
 -------------------------------------------------------------------------------------
 -> Q070 : Different usage when add list to set or set to set;
