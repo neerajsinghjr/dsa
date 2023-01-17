@@ -7,6 +7,9 @@
 -> Updated: 03.12.2022
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q075 : Python rsplit function;;
+-> Q074 : Python Unittest Mock Library;
+-> Q073 : Pytohn urllib method urljoin();;
 -> Q072 : Python class inherits from objects;;
 *** -> Q071 : Cython Package feature and usage;;
 -> Q070 : Different usage when add list to set or set to set;;
@@ -82,6 +85,187 @@
 -------------------------------------------------------------------------------------
 '''
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q075 : Python rsplit function;;
+
+The rsplit() method splits a string into a list, starting from the right.
+
+If no "max" is specified, this method will return the same as the split () method.
+
+//--------------------- SYNTAX
+
+    ++++++++++++++++++++++++++++++++++++++
+    | string.rsplit(separator, maxsplit) |
+    ++++++++++++++++++++++++++++++++++++++
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| Parameter |  Description                                                       |
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+| separator |  Optional. Act as Delimiter with defautl is whitespace.            |
+| maxsplit  |  Optional. Specifies how many splits to do. Default -1.            |
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//--------------------- USAGE : rsplit()
+
+txt = "app.worker.transaction.transact_via_bse"
+
+x = txt.rsplit(".")
+y = txt.split(".")
+print("x : ", x)    # x :  ['app', 'worker', 'transaction', 'transact_via_bse']
+print("y : ", y)    # y :  ['app', 'worker', 'transaction', 'transact_via_bse']
+
+a = txt.rsplit(".", 1)
+print("a : ", a)    # a :  ['app.worker.transaction', 'transact_via_bse']
+b = txt.rsplit(".", 1)
+print("b : ", b)    # b :  ['app.worker.transaction', 'transact_via_bse']
+
+
+-------------------------------------------------------------------------------------
+***-> Q074 : Python Unittest Mock Library;
+
+# Refer : root/basic-python/advance/P001_Unittest_mock_library.py; 
+
+//------------------------------- USAGE 1: Definations;;
+A mock object substitutes and imitates a real object within a testing
+environment. It is a versatile and powerful tool for improving the quality of
+your tests.
+
+One reason to use Python mock objects is to control your code’s behavior
+during testing.
+
+For example, if your code makes HTTP requests to external services, then your
+tests execute predictably only so far as the services are behaving as you
+expected. Sometimes, a temporary change in the behavior of these external
+services can cause intermittent failures within your test suite.
+
+Because of this, it would be better for you to test your code in a controlled
+environment. Replacing the actual request with a mock object would allow you
+to simulate external service outages and successful responses in a
+predictable way.
+
+//------------------------------ USAGE 2: Installation;;
+
+Installation :-
+$ pip install mock
+
+'unittest.mock' provides a class called Mock which you will use to imitate real
+objects in your codebase
+
+The library also provides a function, called patch(), which replaces the real
+objects in your code with Mock instances. You can use patch() as either a
+decorator or a context manager, giving you control over the scope in which
+the object will be mocked. Once the designated scope exits, patch() will
+clean up your code by replacing the mocked objects with their original
+counterparts.
+
+Finally, unittest.mock provides solutions for some of the issues inherent in
+mocking objects.
+
+//----------------------------- USAGE 3: Directly using Mock Object;
+
+unittest.mock offers a base class for mocking objects called Mock. The use
+cases for Mock are practically limitless because Mock is so flexible.
+
+for eg,
+>>> from unittest.mock import Mock
+>>> mock = Mock()
+>>> mock
+<Mock id='4561344720'>
+
+Now, you are able to substitute an object in your code with your new Mock. You
+can do this by passing it as an argument to a function or by redefining
+another object:
+
+# Pass mock as an argument to do_something()
+do_something(mock)
+
+# Patch the json library
+json = mock
+
+When you substitute an object in your code, the Mock must look like the real
+object it is replacing. Otherwise, your code will not be able to use the Mock
+in place of the original object.
+
+
+//------------------------------ USAGE 4: Lazy Attributes and Methods
+
+A Mock must simulate any object that it replaces. To achieve such flexibility,
+it creates its attributes when you access them:
+
+>>> mock.some_attribute
+<Mock name='mock.some_attribute' id='4394778696'>
+>>> mock.do_something()
+<Mock name='mock.do_something()' id='4394778920'>
+
+Since Mock can create arbitrary attributes on the fly, it is suitable to
+replace any object.
+
+for eg,
+>>> json = Mock()
+>>> json.dumps()
+<Mock name='mock.dumps()' id='4392249776'>
+
+    
+
+
+-------------------------------------------------------------------------------------
+-> Q073 : Python urllib method urljoin();;
+
+The best way (for me) to think of this is the first argument, base is like the
+page you are on in your browser. The second argument url is the href of an
+anchor on that page. The result is the final url to which you will be
+directed should you click.
+
+>>> urljoin('some', 'thing')           # 'thing'
+
+This one makes sense given my description. Though one would hope base includes
+a scheme and domain.
+
+>>> urljoin('http://some', 'thing')     # 'http://some/thing'
+
+If you are on a vhost some, and there is an anchor like <a href='thing'>Foo</a>, 
+then the link will take you to http://some/thing
+
+>>> urljoin('http://some/more', 'thing')    # 'http://some/thing'
+
+We are on some/more here, so a relative link of thing will take us to /some/thing
+
+>>> urljoin('http://some/more/', 'thing') 
+
+# just a tad / after 'more'
+'http://some/more/thing'
+
+Here, we aren't on some/more, we are on some/more/ which is different. Now,
+our relative link will take us to some/more/thing
+
+>>> urljoin('http://some/more/', '/thing')
+'http://some/thing'
+
+
+>>> urljoin('http://some/parent_dir_1/parent_dir_2/', '/child_dir_1')
+'http://some/child_dir_1'
+
+here, /child_dir_1 is considered as new independent root directory;
+
+>>> urljoin('http://some/parent_dir_1/parent_dir_2/', 'child_dir_1')
+'http://some/parent_dir_1/parent_dir_2/child_dir_1'
+
+here, child_dir_1 is acting as sub directory of parent_dir_2;
+
+>>> urljoin('http://some/parent_dir_1/parent_dir_2', 'child_dir_1')
+'http://some/parent_dir_1/child_dir_1'
+
+Here, notice the parent_dir_2 is the sub-directory of the parent_dir_1
+then when using accessing child_dir_1. It will replace the parent_dir_2 
+completely and replace it with child_dir_1. 
+Here "parent_dir_2" and "child_dir_2" is considered as a sub-directory 
+of "parent_dir_1" folder.
+
+And lastly. 
+
+If on some/more/ and the href is to /thing, you will be linked to some/thing.
+
 
 -------------------------------------------------------------------------------------
 -> Q072 : Python class inherits from objects;;
