@@ -4,7 +4,7 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03.09.2022
--> Updated: 03.12.2022
+-> Updated: 17.01.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
 -> Q075 : Python rsplit function;;
