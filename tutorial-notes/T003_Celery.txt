@@ -1,6 +1,6 @@
 '''
 -------------------------------------------------------------------------------------
--> Title : Celery
+-> Title : Celery Notes
 -> Author : Neeraj Singh Junior
 -> Status : Ongoing...
 -> Created : 04/12/2022

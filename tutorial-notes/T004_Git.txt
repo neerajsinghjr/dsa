@@ -1,6 +1,6 @@
 '''
 -------------------------------------------------------------------------------------
--> Title : Git
+-> Title : Git Notes
 -> Author : Neeraj Singh Junior
 -> Status : Ongoing...
 -> Created : 05/12/2022

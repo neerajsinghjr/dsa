@@ -7,6 +7,7 @@
 -> Updated: 17.01.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q076 : Python Celery function;;
 -> Q075 : Python rsplit function;;
 -> Q074 : Python Unittest Mock Library;
 -> Q073 : Pytohn urllib method urljoin();;
@@ -84,7 +85,73 @@
 -> Q001 : Decorators in python;;
 -------------------------------------------------------------------------------------
 '''
+
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q076 : Python Celery function;;
+
+//-------------------- USAGE 1 : Definations;;
+
+# Basics;
+
+Celery is an open-source Python library which is used to run the tasks
+asynchronously. It is a task queue that holds the tasks and distributes them
+to the workers in a proper manner. Celery introduces the various
+message brokers such as RabbitMQ and Redis.
+
+The main advantage of Celery is that our application can continue to respond
+to client requests. So the end-users don't have to wait unnecessarily.
+
+# Architecture;
+
+Celery interacts via messages, normally broker works as a mediate between
+clients and workers. The inward working of the Celery affirms as Producer and
+Consumer pattern. Celery has the three chief elements at the high level.
+
+Producers - Producers are 'web nodes' that manages the web requests. When the
+application is processing, tasks are assigned to the Celery means forced into
+the task queue.
+
+Consumer - Consumers are the 'worker nodes' that monitors the queue head, the
+workers take the tasks and perform it. Workers can perform various tasks as
+well; hence they can also behave as producers.
+
+Queue - It is basically a message broker which acts as a bridge between
+producer and consumer. It essentially passes messages between web application
+and the Celery workers. Celery has wide support for RabbitMQ and Redis, also
+helps Zookeeper, Amazon SQS but with confined abilities.
+
+# Features;
+
+- Open-source Library
+- Straight Forward Installation 
+- Scheduling
+- Broker Support
+- Integration with Web Frameworks
+- Fast
+- Works-flow
+
+//--------------------- USAGE 2 : Installation;
+
+# Install using pip :- $ pip install celery
+
+# Celery Configuration :-
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata' 
+
+# About BROKER :- 
+
+Brokers are separate services that enable applications, systems, and services
+to communicate and share information. We assign tasks to workers via a
+message queue. A message queue is a first-in, first-out data structure which
+means the message is stored at first place will be executed first
+
+
+
 
 -------------------------------------------------------------------------------------
 -> Q075 : Python rsplit function;;
@@ -122,11 +189,14 @@ print("b : ", b)    # b :  ['app.worker.transaction', 'transact_via_bse']
 
 
 -------------------------------------------------------------------------------------
-***-> Q074 : Python Unittest Mock Library;
+-> Q074 : Python Unittest Mock Library;
 
 # Refer : root/basic-python/advance/P001_Unittest_mock_library.py; 
 
+# Refer : https://realpython.com/python-mock-library/#lazy-attributes-and-methods
+
 //------------------------------- USAGE 1: Definations;;
+
 A mock object substitutes and imitates a real object within a testing
 environment. It is a versatile and powerful tool for improving the quality of
 your tests.
@@ -206,6 +276,35 @@ for eg,
 >>> json.dumps()
 <Mock name='mock.dumps()' id='4392249776'>
 
+//------------------------------- USAGE 5: mocking with patch
+
+for eg, 
+@patch('app.service.branch.requests.post')
+def test_create_non_customer_campaign_through_admin(mock_request_post, client, db):
+    params = {
+        "is_customer": False,
+        "name": "Indus OS campaign",
+        "description": "Co-branded standee campaign",
+        "campaign_code": "indusos",
+        "start_time": "2099-07-04",
+        "end_time": "3099-07-04",
+        "payable_in": "coupon",
+        "trigger_event": "first_transaction"
+    }
+    payload = {
+        "action": "create_campaign",
+        "params": params
+    }
+    response = {
+        'ok' : True,
+        'status_code' : 202,
+        'json.return_value' : {
+            'url' : f"https://app-bse.sqrrl.in/campaign/{params.get('campaign_code', 'testing')}"
+        }
+    }
+    mock_request_post.return_value = Mock(name="mock response", **response)
+    res = initiate_admin_action(client, payload)
+    assert res.status_code < 300
     
 
 
