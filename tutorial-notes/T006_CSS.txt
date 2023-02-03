@@ -1,0 +1,371 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : CSS Notes
+-> Author : Neeraj Singh Junior
+-> Status : Ongoing...
+-> Created : 03/02/2023
+-> Updated : 03/02/2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q004 : CSS Sizing;;
+-> Q003 : CSS Color;;
+-> Q002 : Selectors Brief;;
+-> Q001 : CSS Core;;
+-------------------------------------------------------------------------------------
+'''
+
+###---CSS NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q004 : CSS Sizing;;
+
+###---------------- CSS : Heights;;
+
+The height property is used to set the height of an element. Height can be
+defined in percentage % or pixels px.
+
+Percentage height is calculated based on the height of the immediate parent element.
+
+for eg,
+<!-- HTML -->
+<body>
+	<p>PARAGRAPH HERE...</p>
+	<div>
+	  <img src="fort-kochi-beach.jpg" alt="Fort Kochi Beach">
+	</div>
+</body>
+
+<!-- CSS -->
+p {
+	font-size: 24px;
+}
+div {
+	width : 250px;
+	height : 250px;
+	background-color: red;
+}
+img {
+	width: 100%
+}
+
+###---------------- CSS : Width;;
+
+The width property is used to set the width of an element. Width can be
+defined in percentage % or pixels px.
+
+for eg,
+<!-- HTML -->
+<body>
+	<div id="parent">
+		<div id="first">This div is set to 300px width</div>
+		<div id="second">This div is set to 50% width</div>
+	</div>
+</body>
+
+<!-- CSS -->
+#parent {
+  border: 3px solid darkcyan;
+}
+#first {
+  width: 300px;
+  height: 100px;
+  background-color: yellow;
+  border: 2px solid orange;
+}
+#second {
+  width: 50%;
+  height: 100px;
+  background-color: orange;
+  border : 2px solid yellow;
+}
+
+###---------------- CSS : Relative Units;;
+
+When we use relative units to specify a length, it depends on the size of
+other elements.
+
+Let us look at some commonly used relative units
+
+//--- Percentage :- When width, height or font size of an element is specified in %,
+it is relative to the parent element's width, height or font-size
+
+for eg,
+<!-- HTML -->
+<body>
+	<div>Width, height and font size in %</div>
+	<p>Normal font size</p>
+</body>
+
+<!-- CSS -->
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: yellow;
+}
+div {
+  width: 50%;
+  height: 50%;
+  background-color: orange;
+  font-size: 200%;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q003 : CSS Color;;
+
+###---------------- CSS : Color Names;;
+
+Color names such as blue, yellow, black, white, gray, darkgreen in your CSS.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h1>Light gray heading on a black background</h1>
+</body>
+
+<!-- CSS -->
+body {
+  background-color: black;
+}
+h1 {
+  color: lightgray;
+}
+
+###---------------- CSS : RGB Colurs;;
+
+RGB mix the 3 primary colours Red, Green and Blue in different proportions.
+This way, we can create any colour that we require.
+
+The <h1> has a text color of Orange because we mixed red with an intensity of
+255, green with an intensity of 165 and blue with an intensity of 0.
+
+The <p> element with id one has text color gray because in the rgb code, we
+have all three colors with an intensity of 128.
+
+Each parameter takes a value ranging from 0 to 255, 0 being least intensity
+and 255 being highest intensity
+
+for eg,
+<!-- HTML -->
+<body>
+	<h1>Web Design</h1>
+	<p id="one">First Paragraph</p>
+	<p id="two">Second Paragraph</p>
+</body>
+
+<!-- CSS -->
+h1 {
+  /* Orange */
+  color: rgb(255, 165, 0);
+}
+#one {
+  /* Gray */
+  color: rgb(128, 128, 128);
+}
+#two {
+  /* Black background */
+  background-color: rgb(0, 0, 0);
+  /* White text */
+  color: rgb(255, 255, 255);
+}
+
+###---------------- CSS : HEX Colurs;;
+
+HEX color value is a mix of Red, Green, Blue color values. The colour code
+uses the hexadecimal number range from 00 to ff to represent the different
+intensities
+
+for eg,
+<!-- HTML -->
+<body>
+	<h1>Web Design</h1>
+	<p id="one">First Paragraph</p>
+	<p id="two">Second Paragraph</p>
+</body>
+
+<!-- CSS -->
+h1 {
+  /* Orange */
+  color: #ffa500;
+}
+#one {
+  /* Gray */
+  color: #808080;
+}
+#two {
+  /* Black background */
+  background-color: #000000;
+  /* White text */
+  color: #ffffff;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q002 : Selectors Brief;;
+
+###---------------- CSS : Element Selectors;;
+
+Selectors like h2 and p are Element Selectors. They select elements using
+their HTML tag name.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h2>The Sun</h2>
+	<p>
+	  The Sun is the Solar System's star and by far its most massive component.
+	</p>
+</body>
+
+<!-- CSS -->
+h2 {
+  text-decoration: underline;
+}
+p {
+  color: darkblue;
+}
+
+###---------------- CSS : Class Selectors;;
+
+An element selector selects all the elements with that tag. But what if we
+need to give a different color only to the second and third headings
+
+In such case we can use class attribute to select elements. The . symbol is
+used before the class name to select the element
+
+for eg,
+<!-- body -->
+<body>
+	<h2> Solar System </h2>
+	<p>
+	  The Solar System is the gravitationally bound system of the Sun and the objects that orbit it, either directly or indirectly.
+	</p>
+	<h2 class="heading">The Sun</h2>
+	<p class="brief">The Sun is the Solar System's star and by far its most massive component.</p>
+</body>
+
+<!-- CSS -->
+body {
+	background-color: lightgrey;
+}
+.heading {
+	font-size : 24rem;
+}
+.brief {
+	color : darkgrey;
+}
+
+###---------------- CSS : ID Selectors;;
+
+When we need to style only one element on the page differently, using a class
+selector is not the best way.
+
+We can use the HTML id attribute to select that single element. The # symbol
+is used before the id name to select it
+
+for eg,
+<body>
+	<h2 id="title">Solar System</h2>
+	<p>The Solar System is the gravitationally bound system of the Sun and the 
+	objects that orbit it, either directly or indirectly.</p>
+</body>
+
+<!-- CSS -->
+#title {
+  font-size: 36px;
+}
+p {
+  color: darkblue;
+}
+
+###---------------- CSS : Universal Selectors;;
+
+Sometimes, we need to apply some common styles to all elements on a web page.
+For this, we can use the universal selector *. 
+
+This applies the specified styles to all the elements.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h2>Solar System</h2>
+	<p>The Solar System is the gravitationally bound system of the Sun and the objects that orbit it, either directly or indirectly.</p>
+	<a href="#">Read more</a>
+</body>
+
+<!-- CSS -->
+* {
+  color: darkgreen;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q001 : CSS Core;;
+
+###---------------- CSS : Selectors
+
+Selector are used to select the HTML elements that we want to style. 
+
+for eg.
+<!-- HTML -->
+<body>
+	<h1>
+	  Solar System
+	</h1>
+	<p>
+	  The Solar System is the gravitationally bound system of the Sun and the objects that orbit it, either directly or indirectly.
+	</p>
+</body>
+
+<!-- CSS -->
+body {
+	background-color: yellow;
+}
+h1 {
+	color : darkgreen;
+}
+p {
+	font-size : 18px;
+}
+
+###---------------- CSS : Properties and Values;
+
+Properties that we want to change like background-color, color and font-size etc
+
+Values are that we provide to the properties like beige, darkgreen, blue, 18px etc
+
+for eg,
+<!-- HTML -->
+<body>
+	<h1>Solar System</h1>
+	<p>The Solar System is the gravitationally bound system of the Sun and the objects that orbit it, either directly or indirectly.</p>
+</body>
+
+<!-- CSS -->
+body {
+  background-color: beige;
+}
+h1 {
+  color: darkgreen;
+}
+p {
+  font-size: 18px;
+}
+
+###---------------- CSS : Comments;
+
+CSS comments start with /* and end with */. They can be single line or span
+across multiple lines.
+
+for eg,
+/* This is a comment */
+
+/* Here is a
+multi-line comment */
+
+body {
+  /* background-color: yellow; */
+}
+
+
+-------------------------------------------------------------------------------------
