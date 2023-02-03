@@ -7,7 +7,10 @@
 -> Updated : 03/02/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q005 : HTML Tables;;
+-> Q008 : HTML Structure;;
+-> Q007 : Input Element;;
+-> Q006 : Form Element;;
+-> Q005 : Tables Element;;
 -> Q004 : Anchor Links to same Page;;
 -> Q003 : HTML Tag with attributes;;
 -> Q002 : HTML Attributes;;
@@ -18,7 +21,344 @@
 ###---HTML NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q005 : HTML Tables;;
+-> Q008 : HTML Structure;;
+
+//--- Element : Doctype
+
+<!DOCTYPE> is a special element that is added only at the top of the document.
+It provides information about the type of HTML used in the document. 
+
+For example, the following code is used for an HTML document:
+
+for eg, 
+<!DOCTYPE html>
+
+//--- Element : <html>
+
+The <html> element is the main element, which acts as the container for all
+the other elements, except the <!DOCTYPE> element. The <head> and <body>
+elements are placed inside the <html> element.
+
+for eg,
+<!DOCTYPE html>
+<html>
+	<!-- Body -->
+</html>
+
+//--- Element : <head>
+
+The <head> element is used for specifying additional information about your
+webpage. Information such as which fonts to use, which JavaScript or CSS
+files to link to, what is the title of the page, etc.
+
+The elements includes :-
+1) Title : <title> element, used to set the title of the web page.
+2) Link : <link> element, used to add external resources, such as CSS files.
+3) Script : <script> element, used to embed JavaScript code.
+
+for eg,
+<head>
+	<title>Web Page Title</title>
+</head>
+
+//--- Element : <body>
+
+The <body> element contains the HTML elements that are used to display the
+contents of the web page, such as headings, images, paragraphs, links etc.
+There can be only one <body> tag within an HTML document.
+
+for eg,
+<body>
+	<!-- Content here -->
+</body>
+
+//--- Element : Comments
+
+Comments are great! Comments can help explain your work to other coders and
+even to your future self.
+
+Comments do not get shown in the actual webpage. Although your comments can
+contain anything you want, yet it is recommended that you keep them precise
+and helpful.
+
+For writing a comment use the syntax: <!-- text -->
+
+//--- Complete : Structure
+
+- <!DOCTYPE> declaration
+- <html> element, contains root HTML element that holds all the other elements.
+- <head> element, contains information about the document.
+- <body> element, contains the actual content displayed in the browser.
+
+for eg,
+<!DOCTYPE html>
+<html>
+	<!-- HEADERS -->
+	<head>
+		<title> <title>
+	</head>
+
+	<body>
+		<!-- BODY -->
+	</body>
+</html>
+
+
+-------------------------------------------------------------------------------------
+-> Q007 : Input Element;;
+
+###---------------- Input Type : Basic
+
+The <input type="text"> is used for submitting a single line of text.
+
+for eg,
+<form>
+	<label>Name:</label>
+	<input type="text">
+</form>
+
+###---------------- Input Type : Password
+
+The <input type="password"> is used for submitting a password. For security
+purposes, it hides the text entered by the user by displaying symbols like
+the dot in place of each character entered.
+
+for eg,
+<form>
+	<label>Username:</label>
+	<input type="text">
+	<br />
+	<label>Password:</label>
+	<input type="password">
+</form>
+
+###---------------- Input Type : Submit
+
+The <input type="submit"> creates a button for submitting the form data.
+
+for eg,
+<form>
+	<label>Username:</label>
+	<input type="text">
+	<br />
+	<label>Password:</label>
+	<input type="password">
+	<br />
+	<input type="submit">
+</form>
+
+###---------------- Input Type : Reset
+
+The <input type="reset"> resets all the form data to their default values.
+
+for eg,
+<form>
+	<label>Username:</label>
+	<input type="text">
+	<br />
+	<label>Password:</label>
+	<input type="password">
+	<br />
+	<input type="submit">
+	<input type="reset">
+</form>
+
+###---------------- Input Type : Reset
+
+The <input type="radio"> is used to create a list from which the user can select one option.
+
+for eg,
+<form>
+	<label>Can you vote?</label>
+	<br />
+	<input type="radio" id="vote1" value="no" name="vote">
+	<label>No</label>
+	<br />
+	<input type="radio" id="vote2" value="yes" name="vote">
+	<label>Yes</label>
+	<br />
+	<input type="radio" id="vote3" value="maybe" name="vote">
+	<label>Maybe!</label>
+</form>
+
+The value attribute is important for the website to analyze the choice made by
+the user. Also, it is required to have the name attribute be the same for all
+the radio input types for them to be treated as a group.
+
+###---------------- Input Type : Checkbox
+
+The <input type="checkbox"> allows the user to select one or more options from
+a list of choices. Attribute name is used as key and value is used as value
+for the key and the output is shown like a hashmap
+
+for eg,
+<form>
+	<label>Fruits you like:</label>
+	<br />
+	<input type="checkbox" name="fruit" value="apple">
+	<label>Apple</label>
+	<br />
+	<input type="checkbox" name="fruit" value="banana">
+	<label>Banana</label>
+	<br />
+	<input type="checkbox" name="fruit" value="orange">
+	<label>Orange</label>
+	<br />
+</form>
+
+###---------------- Input Type : Button
+
+The <input type="button"> creates a clickable button.
+
+for eg,
+<form>
+	<input type="button" value="Click Me!">
+</form>
+
+
+-------------------------------------------------------------------------------------
+-> Q006 : Form Element;;
+
+###---------------- Form : BASIC
+
+An HTML form is used to collect information that the user submits. The HTML
+<form> element can nest other elements like input, label, textarea, button,
+etc. inside it to represent different parts of a form.
+
+for eg,
+<form>
+  <input type="text" placeholder="Enter your name here">
+  <button type="submit">Submit</button>
+</form>
+
+###---------------- Form : Attributes
+
+There are many different attributes that we can specify for HTML forms. The following are some of the important ones:
+1) action = "url-to-destination"
+2) method = "GET / POST"
+
+# ACTION :- The action attribute in the form element tells us where to send
+  the form data after the form is submitted.
+
+# METHOD : The method attribute specifies how to submit the form data. We use
+  the GET and POST methods to submit form data. The default method is GET.
+
+for eg,
+<form action="/login" method="post">
+	<!-- Form Fields Here -->
+</form>
+
+###----------------- Form : Elements
+
+#--- ELEMENT : <input>
+There are many HTML form elements. Let's look at some of the important ones:
+
+The <input> element accepts data from the user. Its functioning depends on the
+value of its type attribute.
+
+eg,
+<form action="path-to-url" method="POST">
+	<input type="text">
+	<input type="submit">
+</form>
+
+#--- ELEMENT : <label>
+The <label> element puts a label on other form elements. 
+
+In the example given below, <label> helps the user understand the purpose of
+the <input> element.
+
+eg,
+<form>
+	<label>Name: </label>
+	<input type="text">
+</form>
+
+#--- ELEMENT : <textarea>
+The <textarea> element is for submitting large textual content. To control its
+size, the rows and cols attributes are utilized.
+
+for eg,
+<form>
+	<textarea rows="3" cols="30" placeholder="Enter description here"></textarea>
+</form>
+
+#--- ELEMENT : <select>
+For creating drop-down lists in our forms, we use the <select> element.
+
+for eg,
+<form>
+	<select name="fruits">
+		<option value="apple">Apple</option>
+		<option value="orange">Orange</option>
+		<option value="mango">Mango</option>
+		<option value="papaya">Papaya</option>
+	</select>
+</form>
+
+// Output -> "fruits" : "Apple"
+
+#--- ELEMENT : <button>
+The <button> element displays a button. 
+
+for eg,
+<form>
+	<input type="text" />
+	<button type="reset">Wipe it clean!</button>
+</form>
+
+#--- ELEMENT : <fieldset>
+The <fieldset> element groups related form elements. Inside the <fieldset>, a
+<legend> element sets the caption at the top.
+
+for eg,
+<fieldset>
+	<legend>Location: </legend>
+	<label>City: </label>
+	<input type="text">
+	<br>
+	<label>State: </label>
+	<input type="text">
+	<br>
+	<label>Country: </label>
+	<input type="text">
+</fieldset>
+
+#--- FORM Structure :-
+The basic structure of a form is as follows:
+
+for eg,
+<form>
+	<label>Name: </label>
+	<input type="text" />
+	
+  	<fieldset>
+		<legend>Address:</legend>
+		<label>City:</label>
+		<input type="text" />
+		<label>State: </label>
+		<input type="text" />
+		<label>Country: </label>
+		<input type="text" />
+  	</fieldset>
+ 
+	<label>Review:</label>	
+  	<textarea rows="3" cols="30"></textarea>
+  
+  	<label>Favorite color: </label>
+	<select>
+		<option value="apple">Red</option>
+		<option value="orange">Green</option>
+		<option value="mango">Blue</option>
+	</select>
+  
+	<button type="reset">Reset</button>
+	<input type="submit" />
+</form>
+
+
+-------------------------------------------------------------------------------------
+-> Q005 : Tables Element;;
 
 ###---------------- TABLE Usage : Basic
 
