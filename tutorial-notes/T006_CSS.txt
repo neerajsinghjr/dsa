@@ -4,9 +4,15 @@
 -> Author : Neeraj Singh Junior
 -> Status : Ongoing...
 -> Created : 03/02/2023
--> Updated : 03/02/2023
+-> Updated : 04/02/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q010 : Backgrounds in CSS;;
+-> Q009 : Text Formatting in CSS;;
+-> Q008 : Spacing With Padding in CSS;;
+-> Q007 : Spacing With Margin in CSS;;
+-> Q006 : Min Width and Min Height;;
+-> Q005 : Max Width and Max Height;;
 -> Q004 : CSS Sizing;;
 -> Q003 : CSS Color;;
 -> Q002 : Selectors Brief;;
@@ -15,6 +21,775 @@
 '''
 
 ###---CSS NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q010 : Backgrounds in CSS;;
+
+###---------------- Background Color :-
+
+We can add a background color to an HTML element using the background-color
+property. Color can be specified using color names, HEX values or RGB values.
+
+for eg,
+<!-- HTML -->
+<p>	Paragraph </p>
+
+<!-- CSS -->
+p {
+	background-color: lightgrey;
+	color: darkgrey;
+}
+
+###---------------- Background Image :-
+
+An image can be added to the background of any element using the
+background-image property.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h1>Monsoon</h1>
+	<p>
+	  A monsoon is traditionally a seasonal reversing wind accompanied by corresponding changes in precipitation, but is now used to describe seasonal changes in atmospheric circulation and precipitation associated with the asymmetric heating of land and sea.
+	</p>
+</body>
+
+<!-- CSS -->
+body {
+  background-image: url('https://images.pexels.com/photos/4913167/pexels-photo-4913167.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600');
+  padding: 30px;
+  color: white;
+}
+
+###---------------- Background Repeat :-
+
+By default, the background image repeats itself horizontally and vertically,
+if it's smaller than the element. This can be changed using the
+background-repeat property.
+
+Required Values : 
+repeat(default), no-repeat, repeat-x (horizontally), repeat-y (Vertically)
+
+for eg,
+<!-- HTML -->
+<body>
+	<h1>Monsoon</h1>
+	<p>
+	  A monsoon is traditionally a seasonal reversing wind accompanied by
+	  corresponding changes in precipitation, but is now used to describe
+	  seasonal changes in atmospheric circulation and precipitation associated
+	  with the asymmetric heating of land and sea.
+	</p>
+</body>
+
+<!-- CSS -->
+body {
+  padding: 60px;
+  background-image: url('https://images.pexels.com/photos/2512387/pexels-photo-2512387.jpeg?auto=compress&cs=tinysrgb&w=150');
+  background-repeat: repeat-x;
+}
+
+###---------------- Background Size :-
+
+The background image for any element retains its original size. To adjust the
+image size, we need to use the background-size property.
+
+When this property is set to cover, the image stretches or scales down in size
+to fill the entire container
+
+We can also specify the exact width and height in pixels or percentage.
+
+If only one value is specified, then width is set to that value and height is 
+auto-adjusted 
+
+If we want the image to be fully visible, then background size property can be
+set to contain.
+
+for eg,
+<!-- HTML -->
+<body>
+	<div>
+		<h1>Monsoon</h1>
+		<p> A monsoon is traditionally a seasonal reversing wind accompanied by
+		corresponding changes in precipitation, but is now used to describe
+		seasonal changes in atmospheric circulation and precipitation associated
+		with the asymmetric heating of land and sea.</p>
+	</div>
+</body>
+
+<!-- CSS -->
+div {
+  padding: 60px;
+  background-image: url('https://images.pexels.com/photos/2512387/pexels-photo-2512387.jpeg?auto=compress&cs=tinysrgb&w=400');
+  /* Image stretches to occupy full space */
+  background-size: cover;
+}
+
+###---------------- Background Position :-
+
+By default, the background image starts at the top left corner of its HTML
+element. This can be changed using the background-position property.
+
+This property takes in two values like this: background-position: left center.
+The first value is for the horizontal and the second one is for the vertical
+position.
+
+Required Values :- Top, Left, Right, Bottom 
+
+for eg,
+<!-- HTML -->
+<body>
+	<div> </div>
+</body>
+
+<!-- CSS -->
+body {
+	background-color: cyan	;
+}
+div {
+	background-image : url('url-to-image');
+	background-size : 250px 250px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q009 : Text Formatting in CSS;;
+
+###---------------- Text Color :-
+
+We can set the colour of the text in any element on the web page using its color property.
+
+The values can be color names, HEX values, or RGB values.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h2>Hello World</h2>
+	<p>Paragraph</p>
+	<ul>
+		<li>Item</li>
+	</ul>
+</body>
+
+<!-- CSS -->
+h2 {
+  color: purple;
+}
+p {
+  /* Crimson */
+  color: #dc143c;
+}
+ul {
+  /* DarkCyan */
+  color: rgb(0, 139, 139);
+}
+
+###---------------- Text Alignments :-
+
+We can make our text align the way we want, using the text-align property.
+We can use the values left, right, center or justify to align the text
+accordingly.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h2>Hello World</h2>
+	<p>Paragraph</p>
+	<ul>
+		<li>Item</li>
+	</ul>
+</body>
+
+<!-- CSS -->
+h2 {
+  text-align: center;
+}
+p {
+  text-align: justify;
+}
+ul {
+  text-align: left;
+  /* This is the default value */
+}
+
+###---------------- Text Decoration :-
+
+We can underline text, strike through it or remove an underline using the
+text-decoration property.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h2>Hello World</h2>
+	<p>Paragraph</p>
+	<ul>
+		<li>Item</li>
+	</ul>
+</body>
+
+<!-- CSS -->
+h2 {
+  text-decoration: underline;
+}
+p {
+  text-decoration: line-through;
+}
+ul {
+  text-decoration: none;
+  /* Removes default underline */
+  color: purple;
+}
+ul > li {
+  color: green;
+}
+
+###---------------- Text Line Height :-
+
+We can control the space between lines of text using the line-height
+property.
+
+The value can be given as a unitless number like 1.5, 2 etc or in px, em, % or
+even the keyword normal.
+
+The number value or percentage is used as a multiplier. line-height: 1.5 means
+the space between the lines will be 1.5 times the font size of the element.
+
+The value of line-height: normal is set based on the browser's default value.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h2>Hello World</h2>
+	<p>Paragraph</p>
+	<ul>
+		<li>Item</li>
+	</ul>
+</body>
+
+<!-- CSS -->
+h2 {
+  line-height: 1em;
+}
+p {
+  line-height: 140%;
+}
+ul > li {
+  line-height: 2;
+}
+
+###---------------- Text Letter Space :-
+
+We can control the spacing between letters of the text using the
+letter-spacing property.
+
+A positive value increases the space between the letters in a word, while a
+negative value decreases it.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h2>Hello World</h2>
+</body>
+
+<!-- CSS -->
+h2 {
+  letter-spacing: 1em;
+}
+
+###---------------- Text Font Space :-
+
+We can modify the size of any text using the font-size property.
+
+for eg,
+<!-- HTML -->
+<body>
+	<h1>The Solar System</h1>
+	<p>
+	  The Solar System is the gravitationally bound system of the Sun and the objects that orbit it, either directly or indirectly.
+	</p>
+</body>
+
+<!-- CSS -->
+h1 {
+  font-size: 2.4em;
+}
+p {
+  font-size: 120%;
+}
+
+###---------------- Text Font Weight :-
+
+The font-weight property is used to make text bolder or lighter.
+
+We can use values such as normal, bold, lighter, bolder for this. We can also
+use numbers in the multiples of 100 such as 100, 200 and so on up to 900.
+Here 100 is the lightest and 900 is the boldest
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">Hello World</p>
+	<p id="second">Second Paragraph</p>
+</body>
+
+<!-- CSS -->
+#first {
+	/* Bold */
+  font-weight: bold;
+}
+#second {
+	/* Normal */
+  font-weight: 400; 
+}
+
+###---------------- Text Font Family :-
+
+The font-family property can help us choose which font we want for our text.
+
+By default, this value is serif. The other generic font families available are
+sans-serif, monospace, cursive and fantasy
+
+for eg,
+<!-- HTML -->
+<p id="serif">
+  This is a serif font.
+</p>
+
+<!-- CSS -->
+#serif {
+   font-family: 'Times New Roman', serif;
+}
+p {
+	font-size: 1.2em;
+  margin-top: 10px;
+}
+
+Here, Serif is the fallback font for #serif id based element.
+
+
+-------------------------------------------------------------------------------------
+-> Q008 : Spacing With Padding in CSS;;
+
+###---------------- Padding :-
+
+The padding property defines the spacing within an element. It controls the
+space between the content in the element and the element's boundaries.
+
+for eg,
+<!-- HTML -->
+<body>
+	<p> A paragraph with 2em padding on all four side </p>
+</body>
+
+<!-- CSS -->
+p {
+  background-color: tan;
+  padding: 2em;
+}
+
+###---------------- Padding Shorthand Property :-
+
+Instead of using individual properties for top, bottom, right and left
+padding, the single padding property can be used to specify different values
+for each direction.
+
+-> Padding With Four values :-
+
+If this property has four different values separated by spaces:
+
+padding: 10px 20px 30px 40px;
+
+
+10px is top padding
+20px is right padding
+30px is bottom padding
+40px is left padding
+
+The values get assigned in clockwise direction starting from the top.
+
+-> Padding With Three values :-
+
+If this property has three values:
+
+padding: 10px 20px 30px;
+10px is top padding
+20px is right and left padding
+30px is bottom padding
+
+-> Padding With Two Values :-
+
+If this property has two values:
+
+padding: 10px 20px;
+
+Top padding and bottom padding are both 10px.
+Right padding and left padding are both 20px.
+
+-> Padding With One value :-
+
+If this property has only one value:
+
+padding: 10px;
+
+All four padding values are 10px
+
+for eg,
+<!-- HTML -->
+<body> 
+	<p>PARAGRAPH</p>
+</body>
+
+<!-- CSS -->
+p {
+	background-color: lightgray;
+	padding: 50px 100px 80px 20px; /* top right bottom left */
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q007 : Spacing With Margin in CSS;;
+
+###---------------- Margins :-
+
+The margin property defines the spacing around an element.
+
+for eg,
+<!-- HTML -->
+<body>
+	<p>A paragraph with 2em margin on all four sides</p>
+	<span>Another element here</span>
+</body>
+
+<!-- CSS -->
+body {
+  background-color: orange;
+}
+p {
+  background-color: yellow;
+  margin: 2em;
+}
+
+###---------------- Side Margin :-
+
+We can separately set margin properties for each side of an element using
+margin-top, margin-bottom, margin-left and margin-right.
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">
+	  A paragraph with 50px margin at the top and 100px margin on the left
+	</p>
+	<p id="second">
+	  Another paragraph with 80px margin on the right
+	</p>
+</body>
+
+<!-- CSS -->
+#first {
+  background-color: yellow;
+  margin-top: 50px;
+  margin-left: 100px;
+}
+#second {
+  background-color: orange;
+  margin-right: 80px;
+}
+
+###---------------- Margin Shorthand Property :-
+
+Instead of using individual properties for top, bottom, right and left
+margins, the single margin property can be used to specify different values
+for each direction.
+
+-> Margin with Four values :-
+
+If this property has four different values separated by spaces:
+
+margin: 10px 20px 30px 40px;
+
+10px is top margin
+20px is right margin
+30px is bottom margin
+40px is left margin
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">A paragraph with four margin values</p>
+	<p>Web design encompasses many different skills and disciplines in the
+	production and maintenance of websites.</p>
+</body>
+
+<!-- CSS -->
+#first {
+  background-color: yellow;
+  /* top right bottom left */
+  margin: 50px 100px 80px 20px; 
+}
+
+-> Margin With Three Values :-
+
+If this property has three values:
+
+margin: 10px 20px 30px;
+
+10px is top margin
+20px is right margin as well as the left margin
+30px is bottom margin
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">A paragraph with four margin values</p>
+	<p>Web design encompasses many different skills and disciplines in the
+	production and maintenance of websites.</p>
+</body>
+
+<!-- CSS -->
+#first {
+  background-color: yellow;
+  /* top right-left bottom */
+  margin: 50px 0px 80px; 
+}
+
+-> Margin With Two values :-
+If this property has two values:
+
+margin: 10px 20px;
+
+10px is top and bottom margin
+20px is right and left margin
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">A paragraph with four margin values</p>
+	<p>Web design encompasses many different skills and disciplines in the
+	production and maintenance of websites.</p>
+</body>
+
+<!-- CSS -->
+#first {
+  background-color: yellow;
+  /* top-bottom right-left */
+  margin: 50px 100px; 
+}
+
+-> Margin With One value
+If this property has only one single value:
+
+margin: 10px;
+
+All four margins are 10px in size.
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">A paragraph with four margin values</p>
+	<p>Web design encompasses many different skills and disciplines in the
+	production and maintenance of websites.</p>
+</body>
+
+<!-- CSS -->
+#first {
+  background-color: yellow;
+  margin: 50px;
+}
+
+###---------------- Margin With Negative Values :-
+
+The margin properties can also accept negative values. This reduces the
+spacing around elements.
+
+for eg,
+<!-- HTML -->
+<body>
+	<div id="first"></div>
+	<div id="second"></div>
+</body>
+
+<!-- CSS -->
+#first {
+  background-color: orange;
+  height: 100px;
+}
+#second {
+  background-color: green;
+  width: 50%;
+  height: 100px;
+  margin-top: -2em;
+}
+
+###---------------- Marign with Auto Alignments :-
+
+The margin property can be set to auto value. This horizontally centers an
+element.
+
+The left and right margins are auto calculated by equally splitting the
+remaining space.
+
+for eg,
+<!-- HTML -->
+<body>
+	<div id="auto-align">Check Alignment
+</body>
+
+<!-- CSS -->
+.auto-align {
+  width: 75%;
+  margin: auto;
+}
+
+REMARK : 
+- If margin-left is set to auto, the remaining space is assigned to left
+  margin and hence the element aligns to the right.
+
+- If margin-right is set to auto, the element aligns to the left.
+
+
+-------------------------------------------------------------------------------------
+-> Q006 : Min Width and Min Height;;
+
+###---------------- Minimum Height (~ min-height) :-
+
+The min-height property is used to define the minimum height of an element.
+
+If the content is larger than the value given to the min-height, this property
+has no effect. But, if it is smaller than the min-height value, the minimum
+height is applied.
+
+When both min-height and height are defined, the larger of the two values is
+applied, as can be seen in the code examples given below:
+
+for eg,
+<!-- HTML -->
+<body>
+	<div>
+		<p id="first"> FIRST PARAGRAPH </p>
+		<p id="second"> SECOND PARAGRAPH </p>
+	</div>
+</body>
+
+<!-- CSS -->
+#first {
+  /*Minimum height has no effect */
+  min-height: 10px;
+  background-color: yellow;
+}
+#second {
+  height: 50px;
+  min-height: 100px;
+  /* Greatest value is applied */
+  background-color: orange;
+}
+
+###---------------- Minimum Width (~ min-width) :-
+
+The min-width property is used to define the minimum width of an element.
+
+If the content is larger than the min-width value, this property has no
+effect. But if the content is smaller than the min-width value, the minimum
+width is applied.
+
+When both min-width and width are defined, the larger of the two values is
+applied.
+
+View the editor in full screen mode and change the width of the output panel
+to feel the difference.
+
+for eg,
+<!-- HTML -->
+<body>
+	<div>
+		<p id="first"> FIRST PARAGRAPH </p>
+		<p id="second"> SECOND PARAGRAPH </p>
+	</div>
+</body>
+
+<!-- CSS -->
+#first {
+  width: 50%;
+  min-width: 250px;
+  /* Greatest value is applied */
+  background-color: yellow;
+}
+#second {
+  width: 50%;
+  min-width: 500px;
+  /* Greatest value is applied */
+  background-color: orange;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q005 : Max Width and Max Height;;
+
+###---------------- Maximum Height (~ max-height) :-
+
+The max-height property is used to define the maximum height of an element.
+
+If the content is smaller than the value of the max-height, this property has
+no effect. But, if the content is larger than the max-height value, the
+content overflows.
+
+When both max-height and height are defined, the smaller of the two values is
+applied, as can be seen in the code example given below:
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">FIRST PARAGRAPH</p>
+	<p id="second">SECOND PARAGRAPH</p>
+</body>
+
+<!-- CSS -->
+#first {
+  height: 100px;
+  max-height: 200px;
+  /* Least value is applied */
+  background-color: yellow;
+}
+#second {
+  height: 100px;
+  max-height: 25px;
+  /* Least value is applied */
+  background-color: orange;
+}
+
+###---------------- Maximum Width (~ max-width) :-
+
+The max-width property is used to define the maximum width of an element.
+
+If the content is larger than the defined value, the height of the element
+increases to make space.
+
+When both max-width and width are defined, the least of the two values is
+applied, as can be seen in the code examples given below:
+
+for eg,
+<!-- HTML -->
+<body>
+	<p id="first">Web Design</p>
+	<p id="second">PARAGRAPH</p>
+</body>
+
+<!-- CSS -->
+#first {
+  /* Width is 100% by default */
+  max-width: 200px;
+  /* Least value is applied */
+  background-color: yellow;
+}
+#second {
+  width: 200px;
+  max-width: 100px;
+  /* Least value is applied */
+  background-color: orange;
+}
+
 
 -------------------------------------------------------------------------------------
 -> Q004 : CSS Sizing;;
@@ -86,8 +861,10 @@ other elements.
 
 Let us look at some commonly used relative units
 
-//--- Percentage :- When width, height or font size of an element is specified in %,
-it is relative to the parent element's width, height or font-size
+//--- Percentage '%' :- 
+
+When width, height or font size of an element is specified in %, it is
+relative to the parent element's width, height or font-size
 
 for eg,
 <!-- HTML -->
@@ -108,6 +885,186 @@ div {
   background-color: orange;
   font-size: 200%;
 }
+
+//--- Reative Unit 'em' :-
+
+When length of an element is specified using em, it is calculated based on the
+font size of the element.
+
+If this element has no font-size specified, the length is calculated based on
+the font size of its nearest parent element.
+
+Default, 1em = 16px
+
+for eg, #1
+<!-- HTML -->
+<body>
+	<div>Relative unit 'em'</div>
+</body>
+
+<!-- CSS -->
+div {
+	/* 10em = 10*font-size = 10*20px = 200px */
+	/* width : 10*20px : 200px*/
+	width: 10em;  
+	/*height : 10*20px : 200px*/
+	height: 10em;
+	background-color: orange;
+	font-size: 20px;
+}
+
+Example Note #1 : Here, the width and height of the div were calculated based
+on the div's font-size.
+
+for eg, #2 
+<!-- HTML -->
+<body>
+	<div id="parent"><h1 id="child"> Relative unit 'em' </h1></div>
+</body>
+
+<!-- CSS -->
+#parent {
+  font-size: 20px;
+}
+#child {
+  width: 5em;
+  height: 5em;
+  /* 
+  font-size = 1 em = 1*20px = 20px
+  width & height = 5em = 5*font-size = 5*20px = 100px
+  */
+  font-size: 1em;
+  background-color: peachpuff;
+}
+
+Example Note #2 : The width and height of h1 was calculated based on h1's font
+size. Though one thing different here is that, the font-size itself is given
+in em. So the font-size value of h1 now depends on the font-size of its
+parent element.
+
+
+//--- Relative Unit 'rem' :-
+
+When length is specified using rem, it is calculated based on the font size of
+the root element of the page, which is the <html> element
+
+for eg,
+<!-- HTML -->
+<html>
+	<body>
+ 		<div id="first"></div>
+		<div id="second"></div>
+ </body>
+</html>
+
+<!-- CSS -->
+html {
+  font-size: 10px;
+}
+#first {
+  width: 10rem;
+  height: 10rem;
+  background-color: beige;
+  font-size: 1em;
+}
+#second {
+  width: 10rem;
+  height: 10rem;
+  background-color: orange;
+  font-size: 24px;
+}
+
+Example Note : The width and height of both the <div> depend on the font-size
+of the html element. The sizes are not linked to the font-sizes of the
+respective elements.
+
+The width of the div is calculated as:
+10rem = 10*font-size-of-html = 10*10px = 100px
+
+//--- Relative Units 'vh' :-
+
+When length is specified using vh, it is calculated based on the window
+height, also known as viewport height.
+
+1vh is 1% of the window height. So, 100vh is equivalent to the window height.
+
+for eg,
+<!-- HTML -->
+<body>
+	<div>Occupies 100% height of the window.</div>
+</body>
+
+<!-- CSS -->
+div {
+  height: 100vh;
+  background-color: beige;
+}
+
+Example Remark : Viewport is the visible part of a screen. In the example
+given above, the viewport is the rectangular window given below the code
+editor and the div covers it completely with a height of 100vh.
+
+//--- Relative Unit 'vw' :-
+
+When length is specified using vw, it is calculated based on the window width,
+also known as viewport width.
+
+1vw is 1% of the window width. So, 100vw is equivalent to the window width.
+
+for eg,
+<!-- HTML -->
+<body>
+	<div>Occupies 50% width of the window, with same height.</div>
+</body>
+
+<!-- CSS -->
+div {
+  width: 50vw;
+  height: 50vw;
+  background-color: beige;
+}
+
+//--- Absolute Units :-
+
++ When we use absolute units to specify a length, the size is fixed and does not
+	depend on the size of other elements.
+
++ Some absolute units are:
+	1) Pixels, px
+	2) Centimeters, cm
+	3) Inches, in 
+
+for eg,
+<!-- HTML -->
+<body>
+	<div id="inches">
+	  <div id="centi">
+	    <div id="pixels">
+	    </div>
+	  </div>
+	</div>
+</body>
+
+<!-- CSS -->
+#inches {
+  width: 2in;
+  height: 2.5in;
+  background-color: tomato;
+}
+#centi {
+  width: 4cm;
+  height: 4cm;
+  background-color: orange;
+}
+#pixels {
+  width: 100px;
+  height: 50px;
+  background-color: teal;
+}
+
+Example Remark : The size of these elements do not change when you change
+their font size or parent element's size.
+
 
 
 -------------------------------------------------------------------------------------
