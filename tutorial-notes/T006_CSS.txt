@@ -31,7 +31,275 @@
 -------------------------------------------------------------------------------------
 -> Q016 : Styling Forms in CSS;;
 
+###---------------- Styling Width & Height for Text Inputs :-
 
+The text fields and textareas in forms can be styled in multiple ways using
+width, height, padding, border, color, background-color and fonts. 
+
+for eg,
+<!-- 
+	!! Refer HTML !!
+-->
+<!-- HTML -->
+<body>
+	<form>
+		<input type="text" placeholder="Your Name" /><br>
+		<input type="radio" id="male" name="gender" value="male">
+		<label for="male">Male</label>
+		<input type="radio" id="female" name="gender" value="female">
+		<label for="female">Female</label>
+		<input type="radio" id="other" name="gender" value="other">
+		<label for="other">Other</label><br>
+		<input type="button" value="Submit">
+	</form>
+</body>
+
+<!-- CSS -->
+form {
+  width: 300px;
+  border: 3px solid black;
+}
+input {
+  width: 200px;
+  height: 25px;
+}
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+###---------------- Style Input by type :-
+
+Select each input type differently, we can use it like this -
+
+input[type="value"]
+
+for eg,
+<!-- CSS -->
+input[type="text"] {
+  width: 300px;
+  height: 25px;
+  margin-bottom: 20px;
+}
+input[type="radio"] {
+  width: 50px;
+  height: 10px;
+}
+input[type="button"] {
+  margin-top: 20px;
+  width: 200px;
+  height: 25px;
+}
+
+###---------------- Padding & Margin for text inputs :-
+
+Padding and Margin can be used inside the text inputs. 
+
+for eg,
+<!-- CSS -->
+input[type="text"], textarea {
+  padding: 15px;
+  margin: 10px 0;
+  width: 300px;
+}
+
+###---------------- Styling with Borders and Colors :-
+
+Text input fields and textareas have a border by default. But we can change
+their look using the border property.
+
+for eg,
+<!-- CSS -->
+input[type="text"], textarea {
+  width: 300px;
+  padding: 15px;
+  margin: 10px 0;
+  color: indigo;	
+  background-color: lavender;
+}
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid lightgray;
+   border-radius: 10px;
+}
+textarea {
+  border: 1px solid lightgray;
+}
+
+###---------------- Styling Font-Family and Font-Size :-
+
+By default, the text field has a sans-serif font and the textarea has a serif
+font. The font sizes are different too.
+
+Most of the HTML elements inherit the font family and font size from body, but
+the text input fields don't. They use their default values. 
+
+TO customize, we need to specify these properties separately
+
+for eg,
+input[type="text"], textarea {
+  width: 300px;
+  padding: 15px;
+  margin: 5px 0;
+  width: 20em;
+  border: 1px solid lightgray;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1em;
+}
+
+###---------------- Textarea resize :-
+
+The textarea field can be resized when you drag the resizer at the bottom
+right corner in any direction. To prevent resizing horizontally, vertically
+or in both directions, we can use the resize property.
+
+Default value for this property is both which allows resizing in both vertical
+and horizontal direction. 
+
+Other accepted values are horizontal, vertical, and none.
+
+for eg,
+<!-- HTML -->
+<form>
+  <p>Try dragging the resizer and notice that you can resize it only vertically:</p>
+  <textarea id = "vertical-resizer" rows="4" placeholder="Vertical Slider"></textarea>
+
+  <p>Try dragging the resizer and notice that you can resize it only horizontally:</p>
+  <textarea id = "horizontal-resizer" rows="4" placeholder="Horizonal Slider"></textarea>
+</form>
+
+<!-- CSS -->
+textarea {
+  width: 70%;
+  padding: 15px;
+  border: 1px solid lightgray;
+}
+#horizontal-resizer {
+    resize: horizontal;
+}
+#vertical-resizer {
+    resize: vertical;
+}
+
+###---------------- Styling Select Inputs :-
+
+The select input can be styled in the standard manner much like any other HTML
+element or a form element
+
+for eg,
+<!-- HTML -->
+<form>
+  <fieldset>
+    <legend>Styling Select</legend>
+    <p>Are you happy with our service?</p>
+	  <select name="review">
+	    <option value="5">Very Happy</option>
+	    <option value="4">Satisfied</option>
+	    <option value="3">Neutral</option>
+	    <option value="2">Unhappy</option>
+	    <option value="1">Disappointed</option>
+	  </select>  
+  </fieldset>
+</form>
+
+<!-- CSS -->
+select {
+  width: 300px;
+  padding: 15px;
+  margin: 5px 0;
+  width: 20em;
+  border: 1px solid lightgray;
+  background-color: beige;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1em;
+}
+select > option {
+  font-size: 1.5em;
+  line-height: 1px;
+}
+
+###---------------- Styling Border :-
+
+Buttons can be styled in various ways using the standard properties - width,
+height, padding, background-color, color, border, border-radius, font-family,
+font-size.
+
+for eg,
+<!-- HTML -->
+<form
+	<input type="button" value="Next"/>
+	<input type="reset" value="Reset"/>
+	<input type="submit" value="Submit"/>
+</form>
+
+
+<!-- CSS -->
+input[type="button"] {
+  width: 100px;
+  padding: 12px 16px;
+  background-color: #4568bb;
+  color: white;
+  font-family: sans-serif;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 5px;
+}
+input[type="reset"] {
+  width: 100px;
+  padding: 12px 16px;
+  margin-left: 10px;
+  background-color: white;
+  color: #4568bb;
+  font-family: sans-serif;
+  font-size: 0.9em;
+  border: 1px solid #4568bb;
+  border-radius: 5px;
+}
+input[type="submit"] {
+  width: 100%;
+  padding: 15px 0;
+  margin-top: 10px;
+  background-color: green;
+  color: white;
+  font-family: sans-serif;
+  font-size: 1em;
+  border: none;
+}
+
+###---------------- Hover & Focus Styles
+
+When you take your mouse over a text input or a button, the background or
+border colour can be changed using the :hover pseudo-class selector.
+
+when you tap on an input field or move focus to it using the tab key on your
+keyboard, a blue outline appears around the input field. This style can be
+changed using the :focus pseudo-class selector.
+
+for eg,
+<!-- HTML -->
+<input type="text" id="email" placeholder="Email ID" />
+<input type="button" id="subscribe" value="Subscribe" /
+
+<!-- CSS -->
+#email {
+  border: solid 1px #dddddd;
+  padding: 10px;
+}
+#subscribe {
+  padding: 10px;
+  border: none;
+  background-color: #6789ff;
+  color: white;
+}
+/* Same hover & focus styles */
+#email:hover, #email:focus {
+  border: solid 1px #888888;
+  outline: none;
+}
+#subscribe:hover, #subscribe:focus {
+  background-color: #4567de;
+  cursor: pointer;
+}
 
 
 -------------------------------------------------------------------------------------
