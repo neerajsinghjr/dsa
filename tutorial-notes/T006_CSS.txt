@@ -4,9 +4,21 @@
 -> Author : Neeraj Singh Junior
 -> Status : Ongoing...
 -> Created : 03/02/2023
--> Updated : 04/02/2023
+-> Updated : 07/02/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q028 : Flexbox in CSS;
+-> Q027 : Media Query in CSS;
+-> Q026 : CSS Page Layout;
+-> Q025 : Cascade in CSS;
+-> Q024 : Pseudo-Elements in CSS;
+-> Q023 : Pseudo-Class in CSS;
+-> Q022 : Combinators in CSS;
+-> Q021 : Float in CSS;
+-> Q020 : Position in CSS;
+-> Q019 : Display none vs Visibility Hidden in CSS;
+-> Q018 : Display in CSS;;
+-> Q017 : CSS Box Model;;
 -> Q016 : Styling Forms in CSS;;
 -> Q015 : Styling Tables in CSS;;
 -> Q014 : Styling Un/Ordered List in CSS 
@@ -27,6 +39,2458 @@
 '''
 
 ###---CSS NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q028 : Flexbox in CSS;
+
+Display Properties - static, relative, absolute, fixed, float, flex 
+
+###---------------- Flexbox Display Property :-
+
+The float property has been used a lot in the past to create web layouts. We
+can agree that it helps us stack elements next to each other.
+
+But, there are so many limitations with float. Not only that, our code gets
+complex for large layouts too
+
+for eg,
+<!-- HTML -->
+<section>
+  <div class="col">
+    <h2>Solar System</h2>
+    <p>First Paragraph</p>
+  </div>
+  <div class="col">
+    <h2>The Sun</h2>
+    <p>Second Paragraph</p>
+  </div>
+  <div class="col">
+    <h2>Earth</h2>
+    <p>Third Paragraph</p>
+  </div>
+</section>
+
+<!-- CSS -->
+.section {
+  display: flex;
+}
+.col {
+  margin: 10px
+  padding: 5px 15px;
+  background-color: #F1F5F9;
+}
+
+###---------------- Flex Container :-
+
+When you set the display property of an element to flex, that element becomes
+a flex container and all its immediate child elements become flex items.
+
+for eg,
+<!-- HTML -->
+<div class="container">
+  <div class="pink"> 1 </div>
+  <div class="green"> 2 </div>
+  <div class="orange"> 3 </div>
+  <div class="grey"> 4 </div>
+  <div class="black"> 5 </div>
+  <div class="white"> 6 </div>
+</div>
+
+<!-- CSS -->
+div {
+  color: #fff;
+}
+.container {
+  display: flex;
+}
+.pink, .orange, .green, 
+.grey, .black, .white {
+  padding: 30px;
+}
+.pink {
+  background-color: lightpink;
+}
+.orange {
+  background-color: orange;
+}
+.green {
+  background-color: lightgreen;
+}
+.grey {
+  background-color: grey;
+}
+.black {
+  background-color: black;
+}
+.white {
+  background-color: lightgrey;
+}
+
+###---------------- Flex Direction :-
+
+By default, the elements within a flex container are stacked next to each
+other in a single row. The stacking happens left to right.
+
+Direction for Flex Direction - 
+row, row-reverse, column and column-reverse for the flex-direction property
+
+for eg,
+<h3>Flex Direction: Row</h3>
+<div class="container row">
+  <div class = "inner-div">1</div>
+  <div class = "inner-div">2</div>
+  <div class = "inner-div">3</div>
+</div>
+
+<h3>Flex Direction: Row Reverse</h3>
+<div class="container row-rev">
+  <div class = "inner-div">1</div>
+  <div class = "inner-div">2</div>
+  <div class = "inner-div">3</div>
+</div>
+
+<h3>Flex Direction: Column</h3>
+<div class="container col">
+  <div class = "inner-div">1</div>
+  <div class = "inner-div">2</div>
+  <div class = "inner-div">3</div>
+</div>
+
+<h3>Flex Direction: Column Reverse</h3>
+<div class="container col-rev">
+  <div class = "inner-div">1</div>
+  <div class = "inner-div">2</div>
+  <div class = "inner-div">3</div>
+</div>
+
+<!-- CSS -->
+.container {
+  display: flex:
+  margin: 10px 10px;
+}
+.container > div {
+  margin: 5px;
+  padding: 10px 10px;
+  background-color: orange;
+}
+.row {
+  flex-direction: row;
+}
+.row-rev {
+  flex-direction: row-reverse;
+}
+.col {
+  flex-direction: column;
+}
+.col-rev {
+  flex-direction: column-reverse;
+}
+
+###---------------- Flex Wraps :-
+
+By default, flexbox tries to fit all the child elements in a single row or a
+single column depending on the flex-direction.
+
+If the width of the flex items exceeds the width of the parent element, we
+will see a horizontal scrollbar.
+
+To avoid this, we can choose to wrap the elements pushing them to the next
+row / column using the flex-wrap property.
+
+Default Columns for flex-wrap - wrap, wrap-reverse.
+
+for eg,
+<!-- HTML -->
+<div class="container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+
+<!-- CSS -->
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container > div {
+  background-color: orange;
+  padding: 30px 90px;
+  margin: 5px;
+}
+
+###---------------- Flex Justify Content :-
+
+By default, we saw that the flex items are placed at the beginning of the
+container depending on the flex direction, with least spacing between the
+items.
+
+In case of row-reverse, the items begin from right. With column, from the top
+and with column-reverse, from the bottom
+
+The justify-content property is used to change this behaviour. We can use the
+values 'flex-start', 'flex-end', 'center', 'space-between', 'space-around' and
+'space-evenly'.
+
+-> flex-start : Items are placed at the beginning of the container, which is
+   the default value.
+
+-> flex-end : Items are placed at the end of the container.
+
+-> center : Items are placed in the center.
+
+-> space-between : There is as much space between the items as can be evenly
+   distributed.
+
+-> space-around : The spaces between the items are double the space on both
+   ends of the container.
+
+-> space-evenly : There is equal space between the items and at both the
+   ends.
+
+for eg, 
+<!-- HTML -->
+<h3>Flex Start - Default</h3>
+<div class="container flex-start">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Flex End</h3>
+<div class="container flex-end">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Center</h3>
+<div class="container center">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Space Between</h3>
+<div class="container between">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Space Around</h3>
+<div class="container around">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Space Evenly</h3>
+<div class="container evenly">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<!-- CSS -->
+.container {
+  display: flex;
+  padding: 10px;
+  background-color: beige;
+}
+.container > div {
+  background-color: orange;
+  padding: 20px;
+  margin: 5px;
+}
+.flex-start {
+  justify-content: flex-start;
+}
+.flex-end {
+  justify-content: flex-end;
+}
+.center {
+  justify-content: center;
+}
+.between {
+  justify-content: space-between;
+}
+.around {
+  justify-content: space-around;
+}
+.evenly {
+  justify-content: space-evenly;
+}
+
+###---------------- Align Items :-
+
+While justify-content allows us to change the placement and spacing of the
+items in one direction, we would also want to align the items in the other
+direction.
+
+Align items Property Values :-
+
+-> flex-start : Items are aligned at the beginning of the container.
+
+-> flex-end : Items are aligned at the end of the container.
+
+-> center : Items are aligned in the center.
+
+-> baseline : Items are aligned such that the bottom of all elements are in a line.
+
+-> stretch : Items are stretched full width in case of the column direction,
+   and full height in case of the row direction.
+
+for eg,
+<!-- HTML -->
+<h3>Flex Start</h3>
+<div class="container flex-start">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Flex End</h3>
+<div class="container flex-end">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Center</h3>
+<div class="container center">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Baseline</h3>
+<div class="container baseline">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<h3>Stretch</h3>
+<div class="container stretch">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+</div>
+
+<!-- CSS -->
+.container {
+  display: flex;
+  padding: 10px;
+  background-color: beige;
+  min-height: 150px;
+}
+.container > div {
+  background-color: orange;
+  padding: 20px;
+  margin: 5px;
+}
+.container > div:nth-child(2) {
+  font-size: 2em;
+}
+.flex-start {
+  align-items: flex-start;
+}
+.flex-end {
+  align-items: flex-end;
+}
+.center {
+  align-items: center;
+}
+.baseline {
+  align-items: baseline;
+}
+.stretch {
+  align-items: stretch; /* Default */
+}
+
+
+###---------------- Align Self :-
+
+When you want only one flex item to be aligned differently from the rest, you
+can use the align-self property.
+
+for eg,
+<!-- HTML -->
+<div class="container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div class="last">4</div>
+</div>
+
+<!-- CSS -->
+.container {
+  background-color: darkgrey;
+  display: flex;
+  height: 200px;
+}
+.container > div {
+  padding: 20px;
+  margin: 5px;
+  background-color: orange;
+  align-items: baseline;
+}
+.last {
+  align-self: end;
+}
+
+###---------------- Flex Grow :-
+
+Sometimes, you might want one or all of the items to occupy the full space
+available. That's when you can use the flex-grow property on individual flex
+items to specify a number.
+
+The default value is 0, which is why the items occupy only as much space as
+required. When the value is more than 0 for some items, the extra space is
+divided proportionally among those items.
+
+for eg,
+<!-- HTML -->
+<div class="container">
+  <p class="p1">Sun</p>
+  <p class="p2">The Sun is the star at the center of the Solar System.</p>
+</div>
+
+<!-- CSS -->
+.container {
+  display: flex;
+}
+p {
+  background-color: #f1f1f8;
+  padding: 10px;
+  border: 1px solid #a1a1a1;
+}
+.p1 {
+  flex-grow: 2;
+}
+.p2 {
+  flex-grow: 0;
+}
+
+###---------------- Flex Shrink :-
+
+When the flex items don't wrap, they try to shrink as much as possible to fit
+into the available space.
+
+Using the flex-shrink property, we can control how much each item shrinks. The 
+value can be any number. 
+
+Value 0 means no shrink. Higher the value, more the item shrink
+
+for eg, 
+<!-- HTML -->
+<div class="container">
+  <div class="shrink"></div>
+  <div class="shrink-more"></div>
+  <div class="shrink"></div>
+</div>
+
+<!-- CSS -->
+.container {
+  display: flex
+}
+.container > div {
+  padding: 30px;
+  margin: 10px;
+  width: 33%;
+  bachground-color: orange;
+}
+.shrink {
+  flex-shrink: 1;
+}
+.shrink-more {
+  flex-shrink: 5;
+}
+
+###---------------- Flex Basis :-
+
+With the flex-basis property, we can set the initial size of the item. It's
+possible to set this with the width property too, but flex-basis is a better
+way to do the same, for flex items.
+
+The default is auto.
+
+for eg,
+<!-- HTML -->
+<div class="container">
+  <div id="one">
+  </div>
+  <div id="two">
+  </div>
+  <div id="three">
+  </div>
+</div>
+
+
+<!-- CSS -->
+.container {
+  display: flex;
+}
+.container > div {
+  padding: 30px;
+  margin: 10px;
+  background-color: orange;
+}
+#one {
+  flex-basis: 50px;
+}
+#two {
+  flex-basis: 50%;
+}
+#three {
+  flex-basis: 50%;
+}
+
+###---------------- Flex Shorthand Property :- 
+
+-> You can set flex-grow, flex-shrink and flex-basis with one single shorthand
+   flex property.
+
+-> This can take one, two or three values separated by spaces:
+
+flex: <flex-grow> <flex-shrink> <flex-basis>
+
+
+//--- Three values
+flex: 1 1 auto;
+
+flex-grow is 1
+flex-shrink is 1
+flex-basis is auto
+
+
+//--- Two values - Both without units
+flex: 0 1;
+
+flex-grow is 0
+flex-shrink is 1
+flex-basis not specified
+
+//--- Two values - One without units and another with units
+flex: 0 100px;
+
+flex-grow is 0
+flex-shrink is not specified
+flex-basis is 100px
+
+###---------------- Flex Order :-
+
+-> By default, flex items are displayed in the same order they appear in the
+   HTML code.
+
+-> We can change the order using the order property for the flex item, without
+   even changing the HTML.
+
+-> The value can be any number. The default is 0. Higher the number, later the
+   element appears in the layout or The lower the value, the earlier the
+   element appears.
+
+for eg,
+<!-- HTML -->
+<div class="container">
+  <div id="one">1<br>(Order: 2)</div>
+  <div id="two">2<br>(Order: 1)</div>
+  <div>3<br>(Order: 0)</div>
+  <div>4<br>(Order: 0)</div>
+</div>
+
+<!-- CSS -->
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container > div {
+  background-color: orange;
+  padding: 30px;
+  margin: 5px;
+  text-align: center;
+}
+#one {
+  order: 2;
+}
+#two {
+  order: 1;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q027 : Media Query in CSS;
+
+###---------------- Responsive without Media Query :- 
+
+With CSS flexbox, we can create blocks which automatically adjust their sizes
+for small and large screens
+
+for eg,
+<!-- HTML -->
+<section>
+  <div class="col">
+    <h2>Solar System</h2>
+    <p> FIRST PARAGRAPH </p>
+  </div>
+  <div class="col">
+    <h2>The Sun</h2>
+    <p>SECOND PARAGRAPH</p>
+  </div>
+  <div class="col">
+    <h2>Earth</h2>
+    <p>THIRD PARAGRAPH</p>
+  </div>
+</section>
+
+<!-- CSS -->
+section {
+  display: flex;
+}
+.col {
+  margin: 10px;
+  padding: 5px 15px;
+  background-color: #F1F5F9;
+}
+@media screen and (max-width: 630px) {
+  section {
+    flex-direction: column;
+  }
+}
+
+Mobile first and Desktop first Approaches The Media Rule :-
+
+CSS @media rule which is used to apply different styles for different device
+types or sizes.
+
+@media screen and (max-width: 630px) {
+  ...
+}
+
+//--- Media Type and Media Feature :-
+
+-> This rule contains a media type screen and a media feature max-width: 630px.
+-> Except screen, other media type are all, print and speech can also be used.
+-> A media feature expression tests for a condition. The styles within the
+   media query are applied if this condition is true.
+
+for eg,
+<!-- HTML -->
+<div> </div>
+
+<!-- CSS -->
+div {
+  width : 1200px;
+  height: 200px;
+  background-color: green
+}
+
+@media screen and (max-width: 600px) {
+  background-color: orange;
+}
+
+NOTE : 
+-> Width > 600 green bg shown and smaller then 600 orange bg will be shown.
+
+###---------------- Mobile first and Desktop first Approaches :-
+
+-> Desktop First Approaches : Usually, We started with layouts suitable for
+   desktops. Then we worked our way towards smaller screen sizes by adding
+   breakpoints to change the styles for widths lower than that of the
+   breakpoint. This approach is known as the Desktop First approach
+
+-> Mobile First Approaches : We can start with a layout suitable for the
+   mobile screens. Usually, this would be a simpler design choice. This
+   approach known as the Mobile First approach is the recommended one.
+
+-> Keep in mind that we used max-width media feature for desktop-first
+   approach and min-width for mobile-first approach.
+
+###---------------- Media Queries for Orientation :-
+
+We can also change some styles based on whether our web page is being viewed
+in portrait or landscape orientation
+
+for eg,
+<!-- HTML -->
+<p> The Solar System is the gravitationally bound system of the Sun and the
+objects that orbit it, either directly or indirectly. Of the objects that
+orbit the Sun directly, the largest are the eight planets, with the remainder
+being smaller objects, the dwarf planets and small Solar System bodies. </p>
+
+<!-- CSS -->
+p {
+  width: 50%;
+}
+@media screen and (orientation: portrait) {
+  p {
+    width: 100%;
+  }
+}
+
+###---------------- Responsive Images :-
+
+When we specify the width of an image in pixels or em, on larger screens there
+might be a lot of empty space next to image and on smaller screens, a
+horizontal scrollbar might appear.
+
+BEST APPROACH : To making the images responsive, without the need for media
+queries, is to set their max-width as 100%
+
+for eg,
+<!-- HTML -->
+<img src="path-to-image.jpg" alt="" />
+
+<!-- CSS -->
+img {
+  max-width: 100%
+}
+
+###---------------- Responsive Text :-
+
+Just like any other style, we can change the text size too, based on screen
+width using media queries
+
+for eg,
+<!-- HTML -->
+<h1>Large heading on desktop</h1>
+<h2>Relatively smaller one</h2> 
+
+<!-- CSS -->
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+@media screen and (min-width: 767px) {
+  h1 {
+    font-size: 2.6rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+###---------------- Responsive Blocks :-
+
+One of the earliest methods of creating responsive layouts is to set the width
+of blocks in percentages and stack them one below the other for mobile
+devices. With the help of media queries, we can use float to stack them next
+to each other on larger screens
+
+for eg,
+<!-- HTMl -->
+<header></header>
+<div class="content">
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+
+<!-- CSS -->
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 10px;
+  margin: auto;
+}
+
+header, .left, .right {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+header {
+  height: 80px;
+  background-color: #f1f5ff;
+}
+
+.left {
+  height: 250px;
+  background-color: #d4d7ff;
+}
+
+.right {
+  height: 250px;
+  background-color: #ffd4d7;
+}
+
+@media (min-width: 767px) {
+  .left {
+    width: 29%;
+    float: left;
+  }
+  .right {
+    width: 69%;
+    float: right;
+  }
+
+
+-------------------------------------------------------------------------------------
+-> Q026 : CSS Page Layout;
+
+###---------------- Most common web page structure
+
+Key Points :-
+- The header, navigation bar and footer occupy 100% width of the page.
+- The sidebars and main content are placed next to each other using the float
+  property. Individual blocks are styled using width, height, margin, padding
+  and background-color
+- The line-height property is used to vertically center the text in each block.
+
+for eg,
+<!-- HTML -->
+<header> Header </header>
+<nav> Navigation bar </nav>
+
+<div class="content">
+  <div class="left"> Left Sidebar </div>
+  <div class="main"> Main Content </div>
+  <div class="right"> Right Sidebar </div>
+</div>
+
+<footer> Footer </footer>
+
+<!-- CSS -->
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 1em;
+  text-align: center;
+}
+header, nav, .left, .main, .right, footer {
+  padding: 10px;
+  background-color: #f1f2f3;
+}
+header {
+  height: 80px;
+  line-height: 60px;
+}
+nav, footer {
+  margin-top: 10px;
+  height: 50px;
+  line-height: 30px;
+}
+.left, .right {
+  width: 25%;
+  float: left;
+  margin-top: 10px;
+  height: 250px;
+  line-height: 230px;
+}
+.main {
+  width: 46%;
+  float: left;
+  margin: 10px 2% 0;
+  height: 250px;
+  line-height: 230px;
+}
+.content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+###---------------- Fluid Layout :-
+
+Instead of setting the width in pixels, if we use percentages, all the
+elements auto adjust their width based on the screen size.
+
+for eg,
+<!-- HTML -->
+<header> Header </header>
+<div class="content">
+  <div class="left"> Left Sidebar </div>
+  <div class="main"> Main Content </div>
+  <div class="right"> Right Sidebar </div>
+</div>
+
+<!-- CSS -->
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 10px;
+}
+header, .left, .main, .right {
+  padding: 10px;
+  background-color: #f1f5ff;
+}
+header {
+  height: 80px;
+}
+.left, .right {
+  width: 25%; /* Width in percentage */
+  float: left;
+  margin-top: 10px;
+  height: 250px;
+}
+.main {
+  width: 46%; /* Width in percentage */
+  float: left;
+  margin: 10px 2% 0;
+  height: 250px;
+}
+
+This is a fluid layout because all the elements adjust according to the size
+of the screen just like a liquid put inside a container.
+
+###---------------- Adaptive Layout :-
+
+If we can change the appearance of elements based on screen size, our problem
+is solved. We can use media queries to set different styles for different
+sizes.
+
+These are media queries:
+  @media (min-width: 768px) and (max-width: 1200px) { ... }
+
+The styles specified within this block are applied when the screen width is a
+minimum of 768px and a maximum of 1200px.
+
+Such a layout is called an adaptive layout.
+
+//--- Limitation of Adaptive Layout :-
+
+- Adaptive layouts are great, but with them, you need to design multiple fixed
+  layouts and take care of each element's width. Also, you might have noticed
+  a lot of empty space on both sides of the content for some screen sizes.
+
+- To Avoid these Responsive Layouts are used.
+
+for eg,
+<!-- HTML -->
+<header></header>
+<div class="content">
+  <div class="left"> </div>
+  <div class="main"> </div>
+</div>
+
+<!-- CSS -->
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: auto;
+  width: 1200px;
+}
+header, .left, .main {
+  padding: 10px;
+  margin-top: 10px;
+}
+header {
+  height: 80px;
+  background-color: #f1f5ff;
+}
+.left {
+  width: 348px;
+  float: left;
+  height: 250px;
+  background-color: #d4d7ff;
+}
+.main {
+  width: 828px;
+  float: right;
+  height: 250px;
+  background-color: #ffd4d7;
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  body {
+    width: 768px;
+  }
+  .left {
+    width: 222px;
+  }
+  .main {
+    width: 530px;
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  body {
+    width: 480px;
+  }
+  .left, .main {
+    float: none;
+    width: 480px;
+  }
+}
+@media (max-width: 479px) {
+  body, .left, .main {
+    width: 300px;
+  }
+}
+
+###---------------- Responsive Layout :-
+
+Responsive layouts use a mix of fluid and adaptive layouts. That is, we can
+specify the widths in percentages and use media queries to change them as
+needed
+
+for eg,
+<!-- HTML -->
+<header></header>
+<div class="content">
+  <div class="left">
+  </div>
+  <div class="main">
+  </div>
+</div>
+
+<!-- CSS -->
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 10px;
+  margin: auto;
+}
+
+header,
+.left,
+.main {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+header {
+  height: 80px;
+  background-color: #f1f5ff;
+}
+
+.left {
+  width: 29%;
+  float: left;
+  height: 250px;
+  background-color: #d4d7ff;
+}
+
+.main {
+  width: 69%;
+  float: right;
+  height: 250px;
+  background-color: #ffd4d7;
+}
+
+@media (max-width: 767px) {
+  .left,
+  .main {
+    float: none;
+    width: 100%;
+  }
+}
+
+
+
+-------------------------------------------------------------------------------------
+-> Q025 : Cascade in CSS;
+
+###---------------- Cascade : Basic :-
+
+When you have multiple CSS rules that apply to the same HTML, these rules
+conflict with each other and one of them wins
+
+There are three rules that try to apply different colors to the same p element, and two rules that try to apply different background colors
+
+for eg,
+<!-- HTML -->
+<p> CSS is Cascading Style Sheets, and the cascading is important </p>
+
+<!-- CSS -->
+p {
+  color: orange;
+  background-color: black;
+}
+p {
+  color: blue;
+  background-color: yellow;
+}
+p {
+  color: green;
+}
+
+In such a case, where all the selectors are identical, the rule that appears
+last in the code always wins. The last color value is green and the last
+background-color is yellow
+
+###---------------- Cascade : Specificity Hierarchy :-
+
+When the selectors are identical, or have the same importance, the rule that
+comes later wins. 
+
+But what happens with different selectors like in the example given below
+
+//--- CASE 1 : 
+<!-- HTML -->
+<p id="p1" class="para">
+  CSS is Cascading Style Sheets, and the cascading is important.
+</p>
+
+<!-- CSS -->
+#p1 {
+  color: purple;
+}
+.para {
+  color: red;
+}
+
+NOTE : Purple Wins, Id selector > class & html-element.
+
+//--- CASE 2 :
+<!-- HTML -->
+<p class="para">
+  CSS is Cascading Style Sheets, and the cascading is important.
+</p>
+
+<!-- CSS -->
+.para {
+  color: red;
+}
+p {
+  color: blue;
+}
+
+NOTE : Red Wins, Class selector > html-element.
+
+###---------------- Cascade : Specificity Value :-
+
+There is a specificity value attached to each of the selectors or combination
+of selectors. Higher the specificity value, more specific is the selector.
+
+Specificity Value Cheatsheet :-
+1) ID Selector (#menu) with Value - 100
+2) Class Selector (.nav) with Value - 10
+3) Element Selector (ul) with Value - 1
+4) Element Selector (li) with Value - 1
+
+the specificity value of this selector is 100 + 10 + 1 + 1 = 112
+
+for eg,
+<!-- HTML -->
+<div>
+  <p class="para" id="p1">
+    This is a paragraph with a <span class="sp">span</span> element
+  </p>
+</div>
+
+<!-- CSS -->
+#p1 > span {
+  color: red;
+}
+div .para .sp {
+  color: blue;
+}
+
+Calculate Specificity Value :-
+# CASE 1 :- (div .para .sp)
+Specificity value = 1 + 10 + 10 = 21
+
+# CASE 2 :- (#p1 > span)
+Specificity value = 100 + 1 = 101
+
+###---------------- Cascade : The !important Rule :-
+
+Sometimes you might need to override the styles of a more specific selector.
+The only way to do that is by adding !important to the CSS rule, to which you
+want to give more importance
+
+for eg,
+<!-- HTML -->
+<p id="p1" class="para">
+  !important overrides any specificity discussion.
+</p>
+
+<!-- CSS -->
+#p1 {
+  background-color: orange;
+}
+.para {
+  background-color: gray !important;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q024 : Pseudo-Elements in CSS;
+
+###---------------- Pesudo Elements : Styling First Line and First Letter :-
+
+::first-line :- When you want to style only the first line of a paragraph or
+  the first line of each paragraph differently, you can use the ::first-line
+  pseudo-element
+
+::first-letter :- When you want to style only the first letter of a paragraph or
+  first letter of each paragraph differently, you can use the ::first-letter
+  pseudo-element
+
+NOTE:
+::first-line will be considered on the basis of width of the element. Try changing
+the width of the whole div box.
+
+
+for eg,
+<!-- HTML -->
+<div>
+  <p> Albert Einstein was a German-born theoretical physicist, widely
+  acknowledged to be one of the greatest physicists of all time. </p>
+  
+  <p> Einstein is known for developing the theory of relativity, but he also
+  made important contributions to the development of the theory of quantum
+  mechanics. </p>
+</div>
+
+<!-- CSS -->
+div {
+  max-width: 450px;
+}
+p::first-line {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  color: brown;
+}
+p::first-letter {
+  font-size: 2rem;
+  color: brown;
+}
+
+you can combine the :first-child pseudo-class with :first-letter like this:
+
+p:first-child::first-letter
+
+###---------------- Pesudo Elements : Before Element :-
+
+When you want to add something at the beginning of an element without actually
+adding it in HTML, you can use the ::before pseudo-element to do so, with the
+help of the content property.
+
+for eg,
+<!-- HTML -->
+<h2>Frequently asked questions</h2>
+<p class="question"> What are FAQs </p>
+<p class="answer"> FAQs are frequently asked questions by customers of a product or students of a course.</p>
+
+<!-- CSS -->
+.question::before {
+  content: "Q";
+}
+.answer::before {
+  content: "A";
+}
+.question::before, .answer::before {
+  margin-right: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 0;
+  color: tomato;
+}
+
+###---------------- Pesudo Elements : After Element :-
+
+When you want to add something at the end of an element without actually
+adding it in the HTML, you can use the ::after pseudo-element to do so, with
+the help of the content property.
+
+for eg,
+<!-- HTML -->
+<h2>A Styled Heading</h2>
+
+
+<!-- CSS -->
+h2::before, h2::after {
+  content: '';
+  display: inline-block;
+  width: 100px;
+  border-top: 3px solid lightgray;
+  margin: 6px 10px;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q023 : Pseudo-Class in CSS;
+
+###---------------- Pseudo Class: Hover :-
+
+When a user takes the mouse pointer over an element, you can style it
+differently by appending :hover to the selector
+
+for eg,
+<!-- HTML -->
+<div> Hover over me to see the paragraph element </div>
+<p> You can see me </p>
+
+<!-- CSS -->
+p {
+  position: absolute;
+  display: none;
+  background-color: orange;
+  padding: 8px;
+}
+div:hover + p {
+  display: block;
+}
+
+###---------------- Pseudo Class : Focus :-
+
+When you click or tap on an element, or when you use the tab key on keyboard
+to move to it, an element gets focus
+
+By default, the browser adds a blue outline to an element that is focused.
+This can be changed using the :focus pseudo-clas
+
+for eg,
+<!-- HTML -->
+<form>
+  <h3>Register:</h3>
+  <input type="text" id="name" placeholder="Full name" />
+  <button type="button">Submit</button>
+</form>
+
+<!-- CSS -->
+input[type="text"] {
+  border: 1px solid lightgray;
+  padding: 4px 8px;
+  font-size: 1em;
+}
+button {
+  border: none;
+  padding: 4px 8px;
+  background-color: purple;
+  color: white;
+  font-size: 1em;
+}
+#name:focus {
+  outline: 1px solid black;
+}
+button:focus {
+  outline: 1px solid darkblue;
+}
+
+###---------------- Pseudo Class : Links :-
+
+Along with :hover, we can change the appearance of links depending on other
+user actions. We can change the link styling for when the user clicks the
+link or based on whether the link was previously visited or not:
+
+:visited - Used if the link was previously visited
+
+:active - Applied when the link is just clicked
+
+for eg,
+<!-- HTML -->
+<p>
+  First, take the cursor on the link to see the hover styles take effect.
+  Next click on it to see the active styles take effect.
+  Notice that the visited styles take effect after you have clicked it once.
+</p>
+<a href="#1">
+  Hover and click
+</a>
+
+<!-- CSS -->
+a {
+  color: tomato;
+}
+a:visited {
+  color: darkgrey;
+}
+a:hover {
+  color: orange;
+  text-decoration: none;
+}
+a:active {
+  color: darkred;
+}
+
+###---------------- Pseudo Class : First and Last Child :-
+
+We can select first child or the last child of its parent element, we can
+use - 
+
+-> First Element (:first-child) 
+-> Last Element (:last-child)
+
+for eg,
+<!-- HTML -->
+<ul>
+  <li>Home</li>
+  <li>About</li>
+  <li>Services</li>
+  <li>Contact</li>
+</ul>
+
+<!-- CSS -->
+ul > li:first-child {
+  list-style-type : lower-roman;
+  font-weight: bolder;
+}
+ul > li:nth-child(2) {
+  list-style-type : upper-roman;
+  font-weight: lighter;
+}
+ul > li:nth-child(3) {
+  list-style-type : disc;
+  font-style: italic;
+}
+ul > li:last-child {
+  list-style-type : cirlce;
+  color: yellow;
+}
+
+###---------------- Pseudo Class : Nth Child :-
+
+You can also select a specific child element using the :nth-child
+pseudo-class
+
+:nth-child(n+3) - Selects all matching child elements starting from 3rd one
+
+:nth-child(3n) - Selects every 3rd matching child element
+
+:nth-child(3n-2) - Selects every 3rd matching child element starting from the first
+
+for eg,
+<!-- HTML -->
+<div>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- CSS -->
+span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: lightgray;
+  margin-right: 5px;
+}
+span:nth-child(n+3) {
+  background-color: teal;
+}
+
+###---------------- Pseudo Class : First and Last of Type :-
+
+With the :first-child pseudo-class, you can select a particular type of
+element if its the first child of its parent. 
+
+For example, span:first-child selects a span element, only if its the first
+child of its parent
+
+you want to select the first span element within its parent, whether or not it
+is the first child, you can use span:first-of-type instead.
+
+:last-child and :last-of-type work in the same manner as :first-child and 
+:first-of-type.
+
+for eg,
+<!-- HTML -->
+<div>
+  <p>This is a beginning paragraph</p>
+  <span>Span 1</span>
+  <span>Span 2</span>
+  <span>Span 3</span>
+  <p>This is an ending paragraph</p>
+</div>
+
+<!-- CSS -->
+span {
+  padding: 5px 8px;
+  background-color: lightgray;
+  border-radius: 3px;
+}
+span:first-of-type {
+  background-color: orange;
+}
+
+###---------------- Pseudo Class : nth of Type :-
+
+When you want to select the 7th element of its type within its parent, or
+select the first 15 elements or every 3rd element and so on, you can use
+the :nth-of-type pseudo-clas
+
+for eg,
+<!-- HTML -->
+<div>
+  <p>
+    Albert Einstein was a German-born theoretical physicist, widely
+    acknowledged to be one of the greatest physicists of all time. <a
+    href="#">Read full story now</a>
+  </p>
+</div>
+<span>
+  <a href="#">Like</a>
+  <a href="#">Comments</a>
+  <a href="#">Read Story</a>
+</span>
+
+<!-- CSS -->
+span a {
+  text-decoration: none;
+  display: inline-block;
+  background-color: black;
+  padding: 5px;
+  color: #ffffff;
+}
+a, span a:nth-child(2) {
+  margin: 0px 5px;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q022 : Combinators in CSS;
+
+###---------------- Combinators : Selecting Direct Child Elements :-
+
+We can select an element directly using its class, or id, or the tag name. 
+
+But sometimes, we need to select elements based on their relationship with
+other elements.
+
+Here, > is a combinator. Notice that the styles were only applied to the p
+elements within a div.
+
+for eg,
+<!-- HTML -->
+<div>
+  <p>First Paragraph</p>
+  <p>Second Paragraph</p>
+</div>
+
+<!-- CSS -->
+div > p {
+  color: darkgrey;
+  background-color: lightgrey;
+}
+
+###---------------- Combinator : Selecting all child elements :-
+
+When we need to select a particular set of child elements, we use the space
+character like this - div a
+
+Here, div a will select all a elements that are the children of a div element,
+even when those a elements are nested deeper within the div
+
+for eg,
+<!-- HTML -->
+<div> <a href="#" alt="">Link 1 </a> </div>
+
+a href="#" alt="">Link 2</a>
+
+<ul> <li>Summer</li> </ul>
+
+
+<!-- CSS -->
+div a {
+  font-weight: bolder;
+  color: red;
+}
+a {
+  color: green;
+}
+ul li {
+  display:inline-block;
+  padding-right: 10px
+}
+
+###---------------- Combinators : Selecting Immediate Next Element :-
+
+When we need to select the immediate next element, we use the + character.
+
+for eg,
+<!-- HT :-L -->
+<h1>Lotus</h1>
+<p>
+  Binomial name: Nelumbo nucifera
+  <p> GREEN COLOUR NOT SHOWN FOR THIS PARAGRAPH! </p>
+</p>
+
+<!-- CSS -->
+h1 + p {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: green;
+}
+
+###---------------- Combinators : Selecting any Next Element :-
+
+When we need to select any sibling element that follow a particular element,
+we use the ~ character to combine two selectors like this, h2 ~ p
+
+for eg,
+<div>
+  <p>BROWN COLOR NEGATI76VE</p>
+  <h2>Hello World</h2>
+  <a href="#">LINK COLOR WILL CHANGE</a>
+  <p>BROWN COLOR POSITIVE</p>
+</div>
+<p class="outer">BROWN COLOR NEGATIVE
+  <p>BROWN COLOR NEGATIVE</p>
+</p>
+
+<!-- CSS -->
+h2 ~ p {
+  color: brown;
+  font-weight: bolder;
+}
+h2 ~ a {
+  color: red;
+  font-weight: bolder;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q021 : Float in CSS;
+
+###---------------- Float Property :-
+
+We can use the float property to put an element on the right or left side
+inside its parent element
+
+The commonly used values for this property are ...
+1) left
+2) right
+3) none
+
+for eg,
+<!-- HTML -->
+<div>
+  <img src="har-ki-doon-valley-uttarakhand.jpg" alt="Har ki Doon Valley Uttarakhand"/>
+  <h1>Har Ki Doon</h2>
+  <p>
+    Har Ki Doon or Har Ki Dun is a cradle-shaped hanging valley in the Garhwal Himalayas of Uttarakhand, India. The region is surrounded with green Bugyals (High Altitude Meadows). It is surrounded by snow-covered peaks and alpine vegetation. It is connected to Baspa Valley by the Borasu Pass. (Credits: Wikipedia)
+  </p>
+</div>
+
+<!-- CSS -->
+img {
+  float:left;
+  padding-right: 15px;
+  width: 300px;
+}
+
+###---------------- Float Clear Property :-
+
+Float's clear property is used to clear the left or right alignment.
+
+The value of clear should be similar to that of float specified previously. Or
+you can also use the value both to simply clear both right as well as the
+left direction.
+
+for eg,
+<!-- HTML -->
+<body>
+  <div class="intro">
+    <img src="url-to-image.jpg" alt=""/>
+    <h2>Header shift to right </h2>
+    <p>Long description shifted to right </p>
+  </div>
+
+  <div class="another-block">
+    <h2>Another block header </h2>
+    <p>Another Block Description </p>
+  </div>
+</body>
+
+<!-- CSS -->
+img {
+  float: left;
+  padding-right: 15px;
+  width: 150px;
+}
+.another-block {
+  clear: left
+}
+
+###---------------- Clearfix :-
+
+The clear property on the next element to clear the effect of the float property. 
+
+If the floating element is taller than its parent, it overflows the parent's
+boundaries.
+
+for eg,
+<!-- HTML -->
+<div class="clearfix">
+  <img src="aliyar-dam-pollachi.jpg" alt="Aliyar Dam Pollachi"/>
+  <p> FIRST PARAGRAPH  </p>
+</div>
+<div>
+  <p>SECOND PARAGRAPH.</p>
+</div>
+
+<!-- CSS -->
+img {
+  float:left;
+  padding-right: 15px;
+  width: 150px;
+}
+div {
+  background-color: lightgreen;
+  padding: 15px;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q020 : Position in CSS;
+
+###---------------- Position Property;
+
+By default, all the HTML elements appear on the web page one after another in
+the same order as specified in the HTML markup. 
+
+for eg,
+<!-- HTML -->
+<body>
+	<div id="relative"> Relative </div>
+	<div id="absolute"> Absolute </div>
+	<div id="fixed"> Fixed </div>
+	<div id="sticky"> Sticky </div>
+</body>
+
+<!-- CSS -->
+body {
+  height: 150vh;
+}
+div {
+  background-color: orange;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border: 3px solid darkorange;
+}
+#relative {
+  position: relative;
+  left: 50px;
+  top: 50px;
+}
+#absolute {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+#fixed {
+  position: fixed;
+  right: 0px;
+  top: 50px;
+}
+#sticky {
+  position: sticky;
+  margin-top: 50px;
+  top: 50px;
+}
+
+###---------------- Position Relative :-
+
+The default value for the position property is static. It makes the elements
+follow the normal flow.
+
+When you set an element's position to relative, you can move the element to a
+new location. The top, right, bottom and left properties are used to note the
+distance of the new location from the original default location.
+
+When you set the element position to relative then element start moving from 
+top, left, right, bottom as per the hierarch index of that element.
+
+for eg, 
+<body>
+  <div id="div1"> Static </div>
+  <div id="div2"> Relative, but not moved </div>
+  <div id="div3"> Relative & moved </div>
+</body>
+
+<!-- CSS -->
+div {
+  border: solid 1px lightgray;
+  width: 210px;
+  padding: 20px;
+}
+#div1 {
+  position: static; /* Default */
+}
+#div2 {
+  position: relative;
+}
+#div3 {
+  position: relative;
+  left: 100px;
+  top: 100px;
+}
+
+In the above example, div3's original position is directly below div2. But by
+setting the position value to relative and using left and top values, we have
+pushed it from the left and top by 100px from its original position.
+
+The top and left properties wouldn't work if you remove the position property.
+These properties don't work with the static position elements.
+
+###---------------- Difference between offsets and margins :-
+
+//--- Top vs Margin-top :-
+
+The top and left properties appear to work similar to the margin-top and the
+margin-left properties. But there is a big difference between them.
+
+When you set the top property of a relative element to 50px, only that element
+is shifted by 50px from the top. 
+
+But if you set the margin-top property to 50px, all the elements below this
+particular element are also shifted down by 50px
+
+//--- Left vs Margin-Left :-
+
+When you set the left property of a relative element, only that element is
+shifted from the left of its original position.
+
+//--- Right and Bottom Offsets :-
+
+When you set the right property of a relative element, the element actually
+moves to the left. That is because the element is pushed from the right side.
+
+for eg,
+<!-- HTML -->
+<body>
+  <div> Relative Element </div>
+</body>
+
+<!-- CSS -->
+div {
+  padding: 10px;
+  background-color: orange;
+  position: relative;
+  right: 50px;
+  border: 5px solid darkorange;
+}
+
+Similarly, when you set the bottom property of a relative element, it moves
+upwards, because it is pushed from the bottom
+
+for eg,
+<!-- HTML -->
+<body>
+  <div> Relative Element </div>
+</body>
+
+<!-- CSS -->
+body {
+  margin: 0;
+}
+div {
+  width: 150px;
+  padding: 10px;
+  background-color: orange;
+  position: relative;
+  bottom: 20px;
+  border: 5px solid darkorange;
+}
+
+###---------------- Negative Offset Values :-
+
+The top, right, bottom and left properties can also have negative values.
+
+for eg,
+<body>
+  <div id="static"></div>
+  <div id="relative"></div>
+</body>
+
+<!-- CSS -->
+div {
+  width : 80px;
+  height: 80px;
+}
+#static {
+  background-color: teal;
+}
+#relative {
+  position: relative;
+  background-color : orange;
+  top: -15px;
+  left: 40px;
+}
+
+###---------------- Z-Index :-
+
+Sometimes, we want to overlap one element over another. We can achieve this
+with position:relative, but which element appears in front or at the back can
+be difficult to manage. This is why, we have the z-index property.
+
+The element with a lower z-index value goes behind the one with a higher z-index.
+
+for eg,
+<!-- HTML -->
+<body>
+  <div id="one"> </div>
+  <div id="two"> </div>
+  <div id="three"> </div>
+</body>
+
+<!-- CSS -->
+div {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+#one {
+  background-color: indigo;
+  z-index: 3;
+}
+#two {
+  background-color: orange;
+  bottom: 50px;
+  left: 30px;
+  z-index: 1;
+}
+#three {
+  background-color: teal;
+  bottom: 100px;
+  left: 60px;
+  z-index: 2;
+}
+
+###---------------- Position Absolute :-
+
+When you set an element's position to absolute, you can use the top, right,
+bottom and left properties to change the its position inside its parent
+element.
+
+When you set the item's position to absolete then that item start moving from top,
+left, right, bottom as per the web page.
+
+for eg,
+<!-- HTML -->
+<body>
+    <div id="static">
+      Static
+    </div>
+    <div id="relative">
+      Relative
+    </div>
+    <div id="absolute">
+      Absolute
+    </div>  
+</body>  
+
+<!-- CSS -->
+body {
+  background-color: steelblue;
+}
+div {
+  border: 2px solid white;
+  padding: 20px;
+  width: 200px;
+  color: white;
+  font-size: 1.2rem;
+}
+#relative {
+  position: relative;
+  top: 20px;
+  right: 20px;
+}
+#absolute {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+###---------------- Parent Element For Absolute Position;
+
+An absolute element's location changes with respect to its parent element.
+This works only if the parent element has its own position set to a value
+other than static.
+
+If this is not so, the absolute element looks for the nearest parent whose
+position is set to a value other than static. 
+
+If no such parent element is found, it's location changes with respect to the
+body itself:
+
+for eg,
+<!-- HTML -->
+<div class="outer">
+    <div class="box1"></div>
+</div>
+
+<!-- CSS -->
+body {
+  background-color: lightgrey;
+  width: 500px;
+  height: 500px;
+}
+div {
+  width: 220px;
+  height: 200px;
+  background-color: darkgrey;
+}
+.outer { 
+  /* Case 1, Case 2, Case 3 : Try Commenting below position, result are same */
+  /*position: absolute;*/
+  /*position: relative;*/
+  position: static;
+
+}
+.box1 {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+###---------------- Absolute Element's Width & Height;
+
+If an absolute element has no height specified, we can make the element fill
+up the available vertical space by specifying both top and bottom values.
+
+Similarly, we can make the absolute element fill up the available horizontal
+space by specifying both left and right values when width is not specified.
+
+NOTE : 
+- Top and Bottom Veritical Spacing will work only when width is not specified.
+- Left and Right Horizontal Spacing will work only when height is not specified.
+
+for eg,
+<!-- HTML -->
+<div id="parent">
+  <div id="absolute">
+  </div>
+</div>
+
+<!-- CSS -->
+#parent {
+  position: relative;
+  background-color: teal;
+  width: 200px;
+  height: 200px;
+}
+#absolute {
+  /* No width & height */
+  position: absolute;
+  background-color: orange;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+}
+
+//--- Exception for Width and Height :-
+
+If both top and bottom values are specified for an element and the element is
+also provided a height value, the element takes up the specified height, and
+ignores the bottom property value. 
+
+Similarly, when both left and right values are provided along with a width
+value, the element takes up the specified width and ignores the right
+property value.
+
+for eg,
+<!-- HTML -->
+<div id="parent">
+  <div id="absolute">
+  </div>
+</div>
+
+<!-- CSS -->
+#parent {
+  position: relative;
+  background-color: teal;
+  width: 200px;
+  height: 200px;
+}
+#absolute {
+  /* Width & height specified */
+  position: absolute;
+  background-color: orange;
+  width: 100px;
+  height: 100px;
+  top: 20px;
+  right: 0px; /* right ignored */
+  bottom: 20px; /* bottom ignored */
+  left: 0px;
+}
+
+###---------------- Position Fixed :-
+
+When you set an element's position to fixed, the element stays at the same
+position even when you scroll away.
+
+The top, right, bottom, and left properties are used to position the element
+relative to the browser window itself.
+
+for eg,
+<!-- HTML -->
+<div></div>
+
+<!-- CSS -->
+body {
+  min-height: 120vh;
+}
+div {
+  background-color: orange;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+
+###---------------- Position Sticky
+
+The orange coloured div is positioned sticky in the example given below. Try
+to scroll inside the example window.
+
+A position:sticky element has a relative position until the user scrolls to
+it, and then it behaves in place like a fixed element
+
+for eg,
+<!-- HTML -->
+<div id="div1"></div>
+<div id="sticky"></div>
+
+<!-- CSS -->
+body {
+  margin: 0;
+  min-height: 200vh;
+}
+#div1 {
+  width: 100px;
+  height: 100px;
+  background-color: teal;
+}
+#sticky {
+  background-color: orange;
+  width: 50px;
+  height: 50px;
+  position: sticky;
+  top: 100px;
+  left: 50px;
+}
+
+//--- Position Sticky within Parent :-
+
+The sticky element stops being sticky once the page is scrolled such that the
+element reaches the bottom of its parent element.
+
+for eg,
+<!-- HTML -->
+<body>
+  <div id="parent">
+    <div id="sticky"></div>
+  </div>
+</body>
+
+<!-- CSS -->
+body {
+  margin: 0;
+  min-height: 200vh;
+}
+
+#parent {
+  width: 250px;
+  height: 250px;
+  background-color: teal;
+  margin-top: 50px;
+}
+
+#sticky {
+  background-color: orange;
+  width: 100px;
+  height: 100px;
+  position: sticky;
+  top: 0px;
+}
+
+###---------------- Position Inset Property :-
+
+Instead of using the individual top, right, bottom and left properties, a
+single inset property can be used to specify all the four values.
+
+->  Four values :-
+- If this property has four different values separated by spaces:
+- Values get assigned in the clockwise direction starting from the top.
+
+inset: 10px 20px 30px 40px;
+
+10px is top
+20px is right
+30px is bottom
+40px is left
+
+-> Three values:-
+inset: 10px 20px 30px;
+10px is top
+20px is right as well as left
+30px is bottom
+
+-> Two values :-
+inset: 10px 20px;
+10px is top and bottom
+20px is right and left
+
+-> One value :-
+inset: 10px;
+
+for eg,
+<!-- HTML -->
+<body>
+  <div class="parent">
+    <div class="child" id="child1">
+    </div>
+  </div>
+  <div class="parent">
+    <div class="child" id="child2">
+    </div>
+  </div>
+  <div class="parent">
+    <div class="child" id="child3">
+    </div>
+  </div>
+  <div class="parent">
+    <div class="child" id="child4">
+    </div>
+  </div>
+</body>
+
+<!-- CSS -->
+.parent {
+  width: 100px;
+  height: 100px;
+  background-color: teal;
+  margin-bottom: 10px;
+  position: relative;
+}
+.child {
+  position: absolute;
+  background-color: orange;
+}
+#child1 {
+  inset: 10px 20px 30px 0px;
+  /* top right bottom left - clockwise direction starting from top */
+}
+#child2 {
+  inset: 10px 20px 30px;
+  /* top right&left bottom */
+}
+#child3 {
+  inset: 10px 20px;
+  /* top&bottom right&left */
+}
+#child4 {
+  inset: 10px;
+  /* all four */
+}
+
+//--- Inset Property Auto Values :-
+
+For inset property, you can use the value auto to automatically calculate one
+or more offset values
+
+for eg,
+<!-- HTML -->
+<div id='absolute'></div>
+
+<!-- CSS -->
+div {
+  background-color: orange;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  inset: auto 10px 0 auto;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q019 : Display none vs Visibility Hidden in CSS;
+
+It remove the element from page and DOM.
+for eg, Display:none;
+
+It remove only from page.
+for eg, Visibility:hidden;
+
+
+-------------------------------------------------------------------------------------
+-> Q018 : Display in CSS;;
+
+###---------------- Display Block :-
+
+The div and p elements have their default display set to block. Some more
+block-level elements are the heading elements - h1 to h6, header, footer,
+section and form.
+
+Block elements start on a new line, occupy 100% width by default, and can have
+height, width properties and also have functional margin on all four sides.
+
+We can make elements like span, a and img behave like block-level elements by
+setting their display property to block
+
+for eg,
+<!-- HTML-->
+Example 1: <span>Now span also starts on a new line</span><br>
+Example 2: <p>Paragraph starts on a new line and occupies 100% width</p>
+<a href="#">Link 1</a>
+<a href="#">Link 2 in the next line</a>
+
+<!-- CSS -->
+p {
+  background-color: yellow;
+  margin-top: 30px;
+}
+span, a {
+  display: block;
+  background-color: orange;
+  margin-top: 30px;
+}
+
+###---------------- Display Inline :-
+
+The span, a and img elements have their display set to inline by default.
+These elements do not start on a new line and take up only as much space as
+required.
+
+ul - block level element 
+
+for eg,
+<!-- HTML -->
+<ul>
+  <li><a href="#">Home</a></li>
+  <li><a href="#">About</a></li>
+  <li><a href="#">Contact</a></li>
+</ul>
+
+<!-- CSS -->
+ul {
+	display: inline;
+	margin: 10px;
+}
+
+###---------------- Display Inline Block :-
+
+Sometimes it's helpful to have elements display in the same line but also
+behave like block-level elements with specified height and width.
+
+This can be achieved with the display value of inline-block
+
+for eg,
+<!-- HTML -->
+<p>Some links for your reference:</p>
+<a href="#">Link 1</a>
+<a href="#">Link 2</a>
+
+<!-- CSS -->
+a {
+  display: inline-block;
+  background-color: orange;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+  line-height: 3rem;
+  margin-top: 50px;
+}
+
+###---------------- Display None :-
+
+The display property has another value none which makes the element completely disappear.
+
+for eg,
+<!-- HTML -->
+<span id="span1">You cannot see me</span>
+<span id="span2">You can see me</span>
+
+<!-- CSS -->
+#span1 {
+  display: none;
+}
+
+
+-------------------------------------------------------------------------------------
+-> Q017 : CSS Box Model;;
+
+###---------------- CSS Box Model or content-box :-
+
+In CSS, all elements are represented as rectangular boxes in the browser. 
+
+The width and height specified for an element in CSS are not the final width
+and height occupied by the element on the web page. 
+
+The actual dimensions include the collective size of padding, borders and
+margins along with the content area. Like, 
+
+Final width = content width + left padding + right Padding + left Border 
+							+ right Border + left Margin + right Margin
+
+Final height = content height + top padding + bottom Padding + top Border 
+							+ bottom Border + top Margin + bottom Margin
+
+###---------------- Box Sizing Model :-
+
+The calculations for the width or height in the box model tend to become complex. 
+This is why, CSS has an alternative box model, where the padding and border sizes 
+are included within the specified width. The margin is excluded. 
+This makes the calculation of the width simpler.
+
+The property box-sizing is used to determine how these calculations will be done. 
+By default, the value is content-box because of which the original box model is used. 
+When we set this to border-box, the alternate model is followed.
+
+
+<!--- 
+	Example of content-box and box-sizing border box model
+-->
+<!-- HTML -->
+<body>
+	<div id="standard"> Standard box model </div>
+	<div id="alternate"> Alternate box model </div>
+</body>
+
+<!-- CSS -->
+div {
+  background-color: lightgreen;
+  width: 250px;
+  height: 80px;
+  padding: 20px;
+  border: solid 10px darkgreen;
+  margin: 30px;
+}
+#standard {
+  box-sizing: content-box; /* Default */
+}
+#alternate {
+  box-sizing: border-box;
+}
+
 
 -------------------------------------------------------------------------------------
 -> Q016 : Styling Forms in CSS;;
@@ -740,7 +3204,8 @@ For the four sides of an element, we can provide different border styles.
 When this property has only one value specified, the same style is applied to
 all four sides.
 
-When it has two values, the first value is applied to the top and bottom borders, and the second value is applied to the right and left borders:
+When it has two values, the first value is applied to the top and bottom
+borders, and the second value is applied to the right and left borders:
 
 for eg,
 <!-- HTML -->
@@ -1957,7 +4422,6 @@ for eg,
 
 Example Remark : The size of these elements do not change when you change
 their font size or parent element's size.
-
 
 
 -------------------------------------------------------------------------------------
