@@ -1,0 +1,14 @@
+// SETUP BUILD FOR PYTHON !!!
+{
+   "shell_cmd": "gnome-terminal -- bash -c \"python3 -u $file;echo;echo Press Enter to exit...;read\"",
+   "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+   "selector": "source.python",
+}
+
+
+// SETUP BUILD FOR JAVASCRIPT !!!
+{
+   "shell_cmd": "gnome-terminal -- bash -c \"/home/neerajsingh/.nvm/versions/node/v19.6.0/bin/node $file;echo;echo Press Enter to exit...;read\"",
+   "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+   "selector": "source.js",
+}

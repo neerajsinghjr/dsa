@@ -1,0 +1,294 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Javascript Notes
+-> Author : Neeraj Singh Junior
+-> Status : Ongoing...
+-> Created : 12/02/2023
+-> Updated : 12/02/2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q004 : Fix Bad Practice;;
+-> Q003 : Number - Javascript;;
+-> Q002 : String - Javascript;;
+-> Q001 : Variable - Javascript;;
+-------------------------------------------------------------------------------------
+'''
+
+###---Javascript NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q004 : Fix Bad Practice;;
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Q003 : Number - Javascript;;
+
+###---------------- Store Number :-
+
+-> Number can be positive, negative, fraction.
+-> for eg,
+
+const num1 = 1290
+const num2 = -1290
+const num3 = 12.90
+
+console.log(f`num1: ${num1} || num2 : ${num2} || num3: ${num3}`)
+
+# Output :-
+num1: 1290 || num2 : -1290 || num3: 12.9
+
+###---------------- NaN (Not a Number) :-
+
+-> NaN stands for Not a Number
+-> Arithmetic operation on a value that is not a number, we get NaN as the result.
+
+-> for eg, check for NaN existence ...
+
+const personID = "123abc";
+const quotient = personID / 2;
+
+console.log(quotient)
+console.log(isNaN(quotient))
+
+# Output:-
+NaN
+true
+
+###---------------- Uniary Operator :-
+
+-> Operator (++), (--) is used to increment the value of a number by 1.
+-> for eg,
+
+var number = 10
+console.log(number)  # 10
+
+number++
+console.log(number)  # 11
+
+number++
+console.log(number)  # 12
+
+###---------------- Remainder (%) :-
+
+-> We can use % to get the remainder. It returns the remainder after the
+   division of the value on the left of % by the value on the right of %.
+-> for eg,
+
+console.log(5 % 3);
+
+# Output : 2
+
+
+-----------------------------------------------------------------------------------
+-> Q002 : String - Javascript;;
+
+###---------------- Create String :-
+
+for eg,
+const fullName = "Sam Smith";
+console.log(fullName);              # Sam Smith
+
+const book = "The Newest Dragon Stories";
+console.log(book);                  # The Newest Dragon Stories
+
+const someRandomSentence = "You can be a great programmer!";
+console.log(someRandomSentence);    # You can be a great programmer!
+
+###---------------- Joining Strings :-
+
+We can join the string using add '+' operator.
+
+for eg,
+let firstname = "Neeraj"
+let middleName = "Singh"
+let lastName = "Junior"
+
+console.log(firstName + middleName + lastName)  # Neeraj Singh Junior
+
+###---------------- Template Strings :-
+
+-> Backticks should be used to create a string only when there is a need to
+   escape double quotes in the string.
+-> for eg,
+
+console.log(`Hello, I am a "software developer".`);
+
+# Output :- 
+Hello, I am a "software developer".
+
+
+-> Backtick is also used to create multi-line strings for formatting.
+-> for eg,
+
+const itemList = `Fruits:
+  Apple
+  Mango
+  Banana
+  Orange
+`;
+
+console.log(itemList)
+
+# Output :-
+Fruits:
+  Apple
+  Mango
+  Banana
+  Orange
+ 
+-> Inserting values from variables into template strings using the ${} 
+   notation is called string interpolation.
+-> for eg,
+
+const firstName = "Sam";
+const lastName = "Smith";
+
+// We don't need to do: firstName + " " + lastName, anymore.
+const fullName = `${firstName} ${lastName}`;
+
+console.log(fullName);
+
+# Output:-
+Sam Smith
+
+
+-------------------------------------------------------------------------------------
+-> Q001 : Variable - Javascript;;
+
+###---------------- Console Log:-
+
+In js, console.log() to make it visible on a special screen called console.
+
+for eg,
+console.log("I love ice cream");
+
+###---------------- Data Types :-
+
+Different programming languages work with different sets of data types.
+JavaScript also has a set of data types it can work with.
+
+//--- Variables :-
+
+-> Variable like `const length = 120`, stores the value 120 in a variable named length.
+-> Once the variable is created, we can use the variable name, 'length' in the
+   entire code
+
+for eg,
+const length = 120;
+
+console.log("Length in centimeters:");
+console.log(length);
+
+console.log("Length in kilometers:");
+console.log(length / 100000);
+
+//--- const and let keywords :-
+
+-> const: It used to declare a variable whose value is not intended to be
+   changed at all, once it is declared.
+-> let : It is used to declared variable whose value can be changed anywhere
+   in the code.
+
+NOTE : we can create variables without using the const and the let keyword.
+
+for eg,
+count = 20
+console.log(count) // This will work;;
+
+but, this is considered as bad practice.
+
+//--- typeof :-
+
+-> typeof keyword is used to return the type of instance.
+
+for eg,
+count = 20
+console.log(typeof count)              # number 
+console.log(typeof "Hello World")      # string
+
+
+//--- Naming Variable :-
+
+-> Variable are always case sensitive in javascript .
+-> Javascript uses the camel case conventions for naming variable in javascript.
+
+# Rule of Naming variable are ...
+1) Name can be start with lowercase or uppercase.
+2) Underscore is allowed for naming variable.
+3) Digits can be used for naming variable, but digit can't be placed at the start.
+4) A reserved keyword cannot be used as a variable name. 
+
+NOTE : Always name a variable precisely as per the code logic. Variable hold the 
+responsibility to make code readable for other developer as well.
+
+//--- Changing Data Type :-
+
+for eg,
+let lengthOfBox = 120;
+console.log(lengthOfBox);                       # 120 
+
+lengthOfBox = "120cm";
+console.log(lengthOfBox);                       # 120cm
+
+console.log("Length of box in meters");         # Length of box in meters 
+console.log(lengthOfBox * 100);                 # NaN
+
+//--- Boolean Variable :-
+
+-> The values true and false are known as Boolean values.
+for eg,
+
+isAdmin = true
+console.log(isAdmin)    # true
+
+//--- Expression :-
+
+-> An expression is a piece of code that evaluates to something. It contains
+   at least one operator and one operand.
+
+-> The assignment operator = requires two operands, a left-hand operand and a
+   right-hand operand.
+
+for eg,
+console.log(23 + 45);
+
+const length = 1000;
+console.log(length / 100);
+
+console.log(typeof ["Apple", "Banana"]);
+
+# Key Points :-
+
+1) `23 + 45` is an expression. + is the operator. 23 and 45 are operands.
+
+2) `length = 1000` is an expression. = is the operator. length and 1000 are
+operands.
+
+3) `length / 100` is an expression. / is the operator. length and 100 are
+operands.
+
+4) `typeof ["Apple", "Banana"]` is an expression. typeof is the operator.
+["Apple", "Banana"] is the operand
+
+The operators +, -, *, and / are called arithmetic operators and are used to
+perform arithmetic operations on numbers.
+
+//--- Checking equality
+
+We can use the === operator to check if two values are equal.
+
+for eg,
+console.log(9 === 9);   # true
+
+console.log(9 == "9");  # true 
+
+console.log(9 === "9"); # false
+
+
+-------------------------------------------------------------------------------------
