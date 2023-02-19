@@ -10,17 +10,36 @@
 -------------------------------------------------------------------------------------
 */
 
+// const age 
+// console.log(age)
 
+// const name = null;
+// const age = null;
+// console.log(name);
+// console.log(age);
+
+// undefined variable 
+let name1 = undefined
+let name2 = null 
+const name3 = undefined
+const name4 = null
+
+console.log(typeof name1)
+console.log(typeof name2)
+console.log(name1 == name2)
+console.log(name1 === name2)
+console.log(name3)
+console.log(name4)
 
 // checking scope of variable;
-let a = 10
-console.log(a)
-if(a == 10) {
-	console.log(a)
-	a = 20
-	console.log(a)
-}
-console.log(a)
+// let a = 10
+// console.log(a)
+// if(a == 10) {
+// 	console.log(a)
+// 	a = 20
+// 	console.log(a)
+// }
+// console.log(a)
 
 
 //--- increment or decrement operator;

@@ -7,7 +7,8 @@
 -> Updated : 12/02/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q004 : Fix Bad Practice;;
+-> Q005 : Object - Javascript
+-> Q004 : Undefined and null - Javscript;;
 -> Q003 : Number - Javascript;;
 -> Q002 : String - Javascript;;
 -> Q001 : Variable - Javascript;;
@@ -17,13 +18,58 @@
 ###---Javascript NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q004 : Fix Bad Practice;;
+-> Q005 : Object - Javascript
 
 
 
 
 
 
+
+
+-------------------------------------------------------------------------------------
+-> Q004 : Undefined and null - Javscript;;
+
+###---------------- Undefined Datatype :-
+
+-> A variable declared using let, whose value hasn't been assigned yet, has
+   undefined as its default value.
+
+NOTE : A variable declared using 'const' should always have a value assigned to
+it. It won't get automatically assigned with undefined if no value is given
+during declaration.
+for eg,
+
+const age
+console.log(age)
+
+// SyntaxError: Missing initializer in const declaration
+
+###---------------- Null Datatype :-
+
+The 'null' is a data type in JavaScript. It is used to denote the value of
+nothing in a variable.
+
+for eg,
+
+const name = null;
+console.log(name);      // output: null
+
+###---------------- Undefined vs Null :-
+
+-> typeof of a variable assigned with undefined keyword, is always undefined.
+-> typeof of a variable assigned with null, is always object.
+-> Equality of undefined with null, is always true.
+
+for eg,
+
+let name1 = undefined
+let name2 = null 
+
+console.log(typeof name1)     // undefined
+console.log(typeof name2)     // object
+console.log(name1 == name2)   // true
+console.log(name1 === name2)  // false
 
 
 -------------------------------------------------------------------------------------
