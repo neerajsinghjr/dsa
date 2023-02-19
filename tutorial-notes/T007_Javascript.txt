@@ -4,9 +4,10 @@
 -> Author : Neeraj Singh Junior
 -> Status : Ongoing...
 -> Created : 12/02/2023
--> Updated : 12/02/2023
+-> Updated : 19/02/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q006 : Array - Javascript
 -> Q005 : Object - Javascript
 -> Q004 : Undefined and null - Javscript;;
 -> Q003 : Number - Javascript;;
@@ -18,13 +19,338 @@
 ###---Javascript NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
+-> Q006 : Array - Javascript
+
+###---------------- Array Basic :-
+
+-> An array is used to store multiple values together.
+-> An array is built by a pair of square brackets, with values placed inside
+   it separated by commas.
+-> for eg,
+const fruits = ["Apple", "Orange", "Banana"];
+console.log(fruits); // ["Apple", "Orange", "Banana"]
+
+###---------------- Homogenenous Array :-
+
+-> Array are of the same data type, i.e., string, the array is known as a
+   homogeneous array.
+-> for eg,
+const fruits = ["Apple", "Orange", "Banana"];
+console.log(fruits); 
+// ["Apple", "Orange", "Banana"]
+
+###---------------- Heterogeneous Array :-
+
+-> The elements of the array measurements are of different data types. Such an
+   array is known as a heterogeneous array.
+-> for eg,
+const measurements = [12, "34cm", 567.89];
+console.log(measurements);    
+// [12, "34cm", 567.89]
+
+###---------------- Reading an Array :-
+
+-> Each element of an array has a number associated with it starting from 0
+   and is known as the index of that element.
+-> for eg,
+const names = ["Oliver", "Adam", "Eve"];
+console.log(names[0]);  // Oliver
+
+//--- Addng item to array :-
+
+names[3] = "May"
+console.log(names[3]);  // May
+
+//--- Adding item to faraway index :-
+
+names[7] = "Neeraj"
+console.log(names)   // ["Oliver", "Adam", "Eve", "May", undefined, undefined, undefined, "Neeraj"]
+
+//--- Updating Array Element :-
+
+names[0] = "Jency"
+console.log(name[0]) // Jency
+
+
+###---------------- Array Length :-
+
+-> We can use .length to get the number of elements in an array, also known as
+   the length of the array.
+-> for eg,
+const fruits = ["Apple", "Banana"];
+console.log(fruits.length);   // ~2
+
+
+-------------------------------------------------------------------------------------
 -> Q005 : Object - Javascript
 
+###---------------- Javascript Object :-
+
+-> Object are used to store complex datatype together in a single entity. For
+   an instance, String and Number can hold string and number individually but
+   there may be an instance when you need to bundle both together in a single
+   entity, then object instance is used.
+-> for eg,
+const car = {
+  model: 2011,
+  fuelType: "diesel",
+  fullName : "Hyundai Verna"
+};
+
+console.log(car.model);    // 2011
+console.log(car['fullName']);    // Hyundai Verma
+
+###----------------- Access Javascript object :-
+
+-> There are two ways in which we can access javascript object.
+
+//--- CASE 1 : Accessing using Bracket Notation;;
+
+for eg,
+const car = {
+  model: 2011,
+  fuelType: "diesel",
+  fullName : "Hyundai Verna"
+};
+
+console.log(car['model']);    // 2011
+console.log(car['fullName']);    // Hyundai Verma
 
 
+//--- CASE 2 : Accessing using Dot Notation;;
 
+for eg,
+const car = {
+  model: 2011,
+  fuelType: "diesel",
+  fullName : "Hyundai Verna"
+};
 
+console.log(car.model);    // 2011
+console.log(car.fullName);    // Hyundai Verma
 
+###---------------- Different Object Usages :-
+
+-> There are specific conventions for defining key and value syntax of an
+   object.
+
+-> for eg,
+const profile = {
+   first name : "Neeraj",  // Incorrect: Unexpected Variable;
+   middle_name : "Singh",     // Correct
+   last-name : "Junior"    // Incorrect: Unexpected Token '-';
+}
+
+console.log(profile)
+
+// Countermeasure of above Syntax Error 
+
+-> for eg,
+const profile = {
+   "first name" : "Neeraj",  
+   "middle_name" : "Singh",  
+   "last-name" : "Junior"  
+}
+
+NOTE: Object keys which are stored in double quotes can't be accessed using
+the dot notation. It can only be accessed using the bracket notation.
+
+console.log(profile."first name")   // Error: Not Accessible
+consolg.log(profile["first name"])  // Success
+
+-> for eg, 
+
+const subjectWithCode = {
+   101 : "Physics",
+   102 : "English",
+   103 : "Chemistry",
+   104 : "Computer with cpp"
+}
+
+// Can't be access using Dot Notation;
+console.log(subjectWithCode.101)
+
+// Can be accessed using Bracket Notation;
+console.log(subjectWithCode[101])
+
+###---------------- Add Property to Existing Object :-
+
+//--- Add using Dot Notation :-
+
+for eg,
+const person = {
+   name : "Adam Jensen",
+   age : 26,
+   isAdmin : true
+};
+
+person.profession = "Software Engineer"
+console.log(person)  
+
+# OUTPUT:-
+{
+  name: 'Adam Jensen',
+  age: 26,
+  isAdmin: true,
+  profession: 'Software Engineer'
+}
+
+//--- Add using Bracket Notation :-
+
+for eg,
+
+const subjects = {
+  101: "Physics",
+  102: "Biology",
+  103: "Chemistry"
+};
+
+subjects[104] = "Computer";
+
+// Same as subjects[200] = "Mathematics"
+subjects[100 * 2] = "Mathematics"; 
+
+console.log(subjects);
+
+# OUTPUT:- 
+{
+  '101': 'Physics',
+  '102': 'Biology',
+  '103': 'Chemistry',
+  '104': 'Computer',
+  '200': 'Mathematics'
+}
+
+###---------------- Get Object Keys - Object.keys() :-
+
+-> We can get all the keys of an object using Object.keys(). It returns the
+   keys as an array of strings.
+-> Object.keys() function return list of all keys in an object.
+-> for eg,
+
+const subjects = {
+  101: "Physics",
+  102: "Biology",
+  103: "Chemistry"
+};
+
+console.log(Object.keys(subjects))
+
+// OUTPUT :
+[ '101', '102', '103']
+
+###---------------- Get Object Values - Object.values() :-
+
+-> We can get all the values of an object using Object.values(). It returns
+   the values as an array of different types.
+-> Object.values() return the value in a list.
+-> for eg,
+const subjects = {
+  101: "Physics",
+  102: "Biology",
+  103: "Chemistry"
+};
+
+console.log(Object.keys(subjects))
+
+// OUTPUT :
+[ 'Physics', 'Biology', 'Chemistry']
+
+###---------------- Get Object Keys and Values - Object.entires() :-
+
+-> We can get all the key-value pairs of an object using Object.entries(). It
+   returns the key-value pairs as an array of array
+-> Object.entries(person) returns an array in which all the elements are also
+   arrays. In other words, Object.entries(person) returns an array with many
+   arrays nested in it.
+-> Each nested array contains the key and the value of a property of 'subjects',
+   in that same order. The keys will be strings.
+-> for eg,
+
+const subjects = {
+  101: ["Physics","P2"],
+  102: "Biology",
+  103: "Chemistry"
+};
+
+// { '101': [ 'Physics', 'P2' ], '102': 'Biology', '103': 'Chemistry' }
+console.log(subjects);
+
+// [ '101', '102', '103' ]
+console.log(Object.keys(subjects))
+
+// [ [ 'Physics', 'P2' ], 'Biology', 'Chemistry' ]
+console.log(Object.values(subjects))
+
+// [ [ '101', [ 'Physics', 'P2' ] ], [ '102', 'Biology' ], [ '103', 'Chemistry' ] ]
+console.log(Object.entries(subjects))
+
+###---------------- Object Shorthand :-
+
+-> Generally, we define object like this,
+-> for eg,
+const model = 2011;
+const fuelType = "diesel";
+
+const car = {
+  model: model,      // Here, model is a variable;
+  fuelType: fuelType,   // Here, fuelType is a variable;
+};
+
+console.log(car);
+
+-> Here, we can use object shorthand
+-> for eg,
+
+const model = 2011;
+const fuelType = "diesel";
+
+const car = {
+  model,
+  fuelType,
+};
+
+console.log(car);
+
+###---------------- Object Naming Conventions :-
+
+-> The name of the variable to which an object is assigned should give a clear
+   description of what the object holds.
+-> The name user itself gives the idea that the value is an object that
+   contains information on a user. Suffixing user with Object or Data is
+   redundant
+-> for instance, an object that contains information on a user should not be
+   given names such as object, data, info or any other name that does not
+   describe the content of the object
+-> for eg,
+
+// This is a bad name
+const object = { name: "Sam", age: 32 };
+console.log(object);
+
+// This is a good name
+const user = { name: "Oliver", age: 23 };
+console.log(user);
+
+-> The name of object properties, i.e., the keys of objects should also follow
+   the naming conventions of a variable.
+-> for eg,
+
+// These are bad key names
+const user = {
+  "first-name": "Sam",  // Name is not in camel case
+  "last name": "Smith",    // Name is not in camel case
+  number: 32, // Name does not give good description of value
+};
+console.log(user);
+
+// These are good key names
+const member = {
+  firstName: "Oliver",
+  lastName: "Smith",
+  age: 23,
+};
+console.log(member);
 
 
 -------------------------------------------------------------------------------------
