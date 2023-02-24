@@ -166,8 +166,8 @@ function objectShorthand() {
 	const fuelType = "diesel";
 
 	const car = {
-		models,
-		fuelTypes,
+		model,
+		fuelType,
 	};
 
 	console.log(car);
