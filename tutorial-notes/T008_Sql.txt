@@ -1,7 +1,7 @@
 '''
 -------------------------------------------------------------------------------------
 -> Title : Sql Notes
--> Author : Neeraj Singh Junior
+-> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 04/02/2023
 -> Updated : 04/02/2023

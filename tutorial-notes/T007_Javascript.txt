@@ -1,7 +1,7 @@
 '''
 -------------------------------------------------------------------------------------
 -> Title : Javascript Notes
--> Author : Neeraj Singh Junior
+-> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 12/02/2023
 -> Updated : 19/02/2023

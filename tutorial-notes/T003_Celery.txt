@@ -1,7 +1,7 @@
 '''
 -------------------------------------------------------------------------------------
 -> Title : Celery Notes
--> Author : Neeraj Singh Junior
+-> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 04/12/2022
 -> Updated : 05/12/2022

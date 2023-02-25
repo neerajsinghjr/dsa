@@ -1,10 +1,10 @@
 '''
 -------------------------------------------------------------------------------------
 -> Title : HTML Notes
--> Author : Neeraj Singh Junior
--> Status : Ongoing...
+-> Author: @neeraj-singh-jr
+-> Status : Completed
 -> Created : 03/02/2023
--> Updated : 03/02/2023
+-> Updated : 04/02/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> Q008 : HTML Structure;;
