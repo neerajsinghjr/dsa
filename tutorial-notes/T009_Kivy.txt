@@ -5,10 +5,11 @@
 -> Status : Ongoing...
 -> Created : 20/02/2022
 -> Updated : 20/02/2022
--> Summary : Notes indices are as follows (**** pending)
+-> Summary : Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
--> ***Q005 : Images Class in Kivy;
--> ***Q004 : Label Class in Kivy;
+***Q006 : Layouting in Kivy App;;
+***Q005 : Images Class in Kivy;
+***Q004 : Label Class in Kivy;
 -> Q003 : Kivy Installation;;
 -> Q002 : Kivy Architecture;;
 -> Q001 : What is Kivy;;
@@ -16,6 +17,24 @@
 '''
 
 ###---PYTHON KIVY NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+***Q006 : Layouting in Kivy App;;
+
+
+
+
+-------------------------------------------------------------------------------------
+***Q005 : Images Class in Kivy;;
+
+
+
+
+-------------------------------------------------------------------------------------
+***Q004 : Label Class in Kivy;;
+
+
+
 
 -------------------------------------------------------------------------------------
 -> Q003 : Kivy Installation;;
