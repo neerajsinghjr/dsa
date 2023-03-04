@@ -18,6 +18,22 @@
 
 Refer : dsa/core_dsa/graph/P001_graph.py
 
+Study : https://www.bogotobogo.com/python/python_graph_data_structures.php
+
+###---------------- Graph Structure :-
+
+> In this Graph structure, We have 3 vertices a, b, c. 
+> Edges on vertices are like that...
+	> Edge, a -> b, weight 7 and a -> c, weight 17.
+	> Edge, b -> c, weight 8 and b -> a, weight 7.
+	> Edge, c -> a, weight 17 and c -> b, weight 8.
+> Python Graph structure look like this,
+{
+	a -> { {b -> 7}, {c -> 17} }
+	b -> { {a -> 7}, {c -> 8}  }
+	c -> { {b -> 8}, {a -> 17} }
+}
+
 ###---------------- Graph - Terminology :-
 
 - VERTEX : A vertex is the most basic part of a graph and it is also called a
@@ -54,7 +70,6 @@ Refer : dsa/core_dsa/graph/P001_graph.py
 - Cycle : A cycle in a directed graph is a path that starts and ends at the
   same vertex. A graph with no cycles is called an acyclic graph. A directed
   graph with no cycles is called a directed acyclic graph or a DAG.	
-  
 
 
 -------------------------------------------------------------------------------------
