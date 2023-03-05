@@ -28,7 +28,6 @@ def add_edges(source, destination, cost):
     neighbours[source].update({destination : cost})
     neighbours[destination].update({source : cost})
 
-
 ##---Main Execution;;
 def main(res=None):
 
@@ -55,9 +54,6 @@ def main(res=None):
 
     print("graph vertices: ", vertices)
     print("neighbour : ", neighbours)
-
-    # print_bfs_pattern()
-    
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")
