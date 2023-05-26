@@ -3,8 +3,8 @@
 -> Title : Sql Notes
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
--> Created : 04/02/2023
--> Updated : 04/02/2023
+-> Created : 26/05/2023
+-> Updated : 26/05/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> Q001 : Sql Core;;
@@ -15,6 +15,255 @@
 
 -------------------------------------------------------------------------------------
 -> Q001 : Sql Core;;
+
+###----------------  Select 
+SELECT to select all the columns and all the data from the table.
+
+eg, 
+select * 
+from students;
+
+
+###--------------- Where
+WHERE is used to filterout data from the table.
+
+eg, 
+select * 
+from student 
+where couse = 'English';
+
+
+###----------------  Not
+We can use not equal to operator != to get the job done.
+
+eg,
+SELECT * 
+FROM students 
+WHERE age != 12
+
+
+###---------------- Less Than
+We can use < to perform a less than operation.
+
+eg, 
+SELECT * 
+FROM students 
+WHERE grade < 8
+
+
+###---------------- Greater Than
+We can use > to perform a greater than operation.
+
+eg, 
+SELECT * 
+FROM students 
+WHERE age > 13
+
+
+###---------------- Less Than Equals to 
+We can use <= to perform a less than or equal to operation.
+
+eg, 
+SELECT * 
+FROM students 
+WHERE age <= 7
+
+
+###---------------- Greater Than Equals to 
+We can use >= to perform a greater than or equal to operation.
+
+eg, 
+SELECT *
+FROM students
+WHERE grade >= 9
+
+
+###---------------- Sql Comments
+We can use comments in SQL too to mark part of code not to be run.
+
+eg,
+SELECT *
+FROM students
+-- WHERE grade < 8
+
+
+###---------------- Multiple Line Comments
+Let's say we have a query to get all students whose grade is less than 8.
+
+eg,
+/* 
+Multi-Line Comment in Sql Language !!!
+*/
+
+SELECT *
+FROM students
+WHERE age < 13
+
+
+###---------------- AND Operation
+We can use AND operator to combine the two conditions.
+
+eg,
+SELECT *
+FROM students
+WHERE age > 10
+AND course = 'JavaScript'
+
+
+###---------------- OR Operation
+We can use OR operator to combine the three conditions. If one of the
+conditions is true then that record will be selected since we are using OR
+operator.
+
+eg, 
+SELECT *
+FROM students
+WHERE age > 15
+OR course = 'Java'
+OR grade = 7
+
+
+###---------------- Both AND & OR
+We need to use both AND as well as OR to solve this problem.
+
+eg,
+Find all students who
+are of age 15 or of age 13 or of age 12
+and
+belong to a grade lesser than 9.
+
+SELECT *
+FROM students 
+where (grade < 9) and
+(age = 15 or age = 13 or age = 12)
+
+
+###---------------- Between 
+One way of doing this would be using OR.
+
+eg,
+Find all students who are of age between 12 and 15.
+
+SELECT *
+FROM students
+WHERE age BETWEEN 12 and 15
+
+
+###---------------- Between and Other Condition
+We can use BETWEEN & AND condition to solve this.
+
+eg, 
+Find all students who belong to grades between 8 and 12 and they are enrolled
+in course C#.
+
+SELECT *
+FROM students
+WHERE (course = 'C#') and 
+(grade BETWEEN 8 and 12)
+
+
+###---------------- Not Between 
+One way of doing this would be using WHERE in combination with less than and
+greater than operators.
+
+eg,
+Find all students who don't have marks between 30 and 70.
+
+select *
+from students
+where marks NOT BETWEEN 30 AND 70;
+
+alternatively , 
+
+select * 
+from students
+where not marks between 30 and 70;
+
+
+###---------------- IN 
+In operator is used to find values from a list of collections
+
+eg,
+Find all student having grades 6,9,12
+SELECT *
+FROM students
+WHERE grade IN (6, 9, 12)
+
+
+###---------------- NOT IN 
+NOT In is just used to find the opposite of IN collections.
+
+eg,
+Find those grade not in (2, 3, 5, 7, 11)
+
+SELECT *
+FROM students
+WHERE grade  NOT IN (2, 3, 5, 7, 11)
+
+alternative,
+
+SELECT *
+FROM students
+WHERE NOT grade IN (2, 3, 5, 7, 11)
+
+
+###---------------- Null 
+In database we represent missing information as NULL.
+
+eg,
+Find all students whose age information is not available.
+
+SELECT *
+FROM students
+WHERE age IS NULL
+
+Find those student age is missing or course is missing
+
+select *
+from students 
+where age is null or course is null 
+
+
+###---------------- NOT Null
+Find all information who row is not missing.
+
+eg,
+Find all students whose grade information is available.
+
+SELECT *
+FROM students
+WHERE grade IS NOT NULL
+
+
+###---------------- Like 
+We can use % with LIKE to solve this find any string pattern
+
+eg,
+Find all students who are enrolled in a course that starts with P.
+
+SELECT  *
+FROM students 
+where course like 'P%';
+
+
+###---------------- NOT Like
+We can use % with NOT LIKE to solve this.
+
+eg,
+Find all students who are enrolled in a course that does not start with Ja.
+
+SELECT *
+FROM students
+WHERE course NOT LIKE 'Ja%'
+
+
+###---------------- 
+
+
+
+
+
+
 
 
 

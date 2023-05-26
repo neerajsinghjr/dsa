@@ -64,7 +64,7 @@
 -> Q022 : Global Interpreter Lock;;
 -> Q021 : Lambda function in Python;;
 -> Q020 : Module vs Packages in Python;;
--> Q019 : Inheritance in Python;;t
+-> Q019 : Inheritance in Python;;
 -> Q018 : Access Specifiers used in python;;
 -> Q017 : Access Parent Class using Child class;;
 -> Q016 : Python Pickling vs UnPickling;;
