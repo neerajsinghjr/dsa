@@ -4,7 +4,7 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 26/05/2023
--> Updated : 26/05/2023
+-> Updated : 27/05/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> Q001 : Sql Core;;
@@ -257,10 +257,112 @@ FROM students
 WHERE course NOT LIKE 'Ja%'
 
 
-###---------------- 
+###---------------- DISTINCT
+Distinct is used to fetch the unique record from a row.
+
+eg,
+Find all the unique age of all the students.
+
+SELECT distinct age
+FROM students;
 
 
+###---------------- COUNT
+The count function is used to count the number of rows.
 
+An aggregate function is used to perform some calculations on data. Count,
+average, sum, maximum and minimum are examples of aggregate function.
+
+eg,
+Let's find the total number of students.
+
+select count(*) from students
+
+alternatively, both query are same 
+
+select count(all name) from students
+
+
+###---------------- AS
+AS is used to change the header of the column.
+
+eg,
+Let's display only the id, grade and course of students. The column name for
+ids should be studentId and the column name for grades should be
+studentGrade.
+
+SELECT
+id as studentId,
+grade as studentGrade,
+course
+FROM students;
+
+
+###---------------- COUNT with DISTINCT
+count distinct give distinct count of all the rows of the database.
+
+eg,
+find all distinct courses.
+
+SELECT DISTINCT(course)
+FROM students
+
+
+###---------------- SUM and AVG
+-> Sum : Sum aggregate sums up all the values from the result
+
+eg, 
+Find the sum of all distinct marks under 50 and name it 
+sumOfDistinctMarks.
+
+SELECT sum(distinct marks) as sumOfDistinctMarks
+FROM students
+where marks < 50;
+
+-> Avg : Avg aggregate average of all the marks. 
+
+eg,
+Find the average of all the marks. AVG can be used to solve this.
+
+SELECT AVG(marks)
+FROM students
+
+
+###---------------- MAX and MIN
+-> Max : Max returns the maximum of all the not-null values in the column mentioned
+next to it.
+
+eg,
+Calculate the maximum marks among all the students who are enrolled in the
+Python course.
+
+select max(marks)
+from students
+where course = 'Python'
+
+-> Min : Min returns the Minimum of all the not-null values in the column mentioned
+next to it.
+
+eg,
+calculate the minimum age.
+
+SELECT min(age)
+FROM students
+
+
+###---------------- Select Multiple Data
+We can select multiple columns and perform some mathematical operation on
+these columns. Suppose, we want to get the total age of all the students and
+the maximum marks in the same query.
+
+eg. 
+Let's calculate the minimum marks, the maximum marks and the count of distinct
+courses and name them as minMarks, maxMarks and countOfCourses respectively.
+
+SELECT min(marks) as minMarks,
+max(marks) as maxMarks,
+count(distinct course) as countOfCourses
+FROM students
 
 
 
