@@ -4,17 +4,295 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 26/05/2023
--> Updated : 27/05/2023
+-> Updated : 31/05/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q001 : Sql Core;;
+-> Q009 : Concatenation in Sql;;
+-> Q008 : Case Clause in Sql;;
+-> Q007 : Modify Data from Rows in Sql;;
+-> Q006 : Arithmetic Operation in Sql;;
+-> Q005 : Modulus in Sql;;
+-> Q004 : Strftime function in sql;;
+-> Q003 : Date and Time function in sql;;
+-> Q002 : Sql Length function in sql;;
+-> Q001 : Sql Core  Fundamentals Topics;;
 -------------------------------------------------------------------------------------
 '''
 
 ###---Sql NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q001 : Sql Core;;
+-> Q009 : Concatenation in Sql;;
+
+-> We use || operator to concatenate data from different columns 
+
+eg1: Display name and email in a single column
+
+select name||','||email as contacts
+from students
+
+
+-------------------------------------------------------------------------------------
+-> Q008 : Case Clause in Sql;;
+
+-> Case in sql is used for the implementation of the if-else block in
+   programming language.
+-> Syntax: 
+	case when something = True then 'this happens' else 'This one' end 
+
+Note that the way conditional expressions in SQL are written, differs from
+database to database. Sqlite3 used the conditional operator CASE and Portgres also used the same But MySql have different syntax. Like,
+
+MYSQL SYNTAX : 
+
+select name, 
+if(course in ('Python', 'Ruby'), 
+	'Then This will Execute', 
+	'Otherwise this will work')
+from students
+
+
+eg1 : Display students result and the value of "result" should be be "passed"
+if marks is greater than 33. Otherwise "failed".
+
+SELECT name, marks, 
+case when marks > 33 then 'passed' else 'failed' end as result
+FROM students
+
+
+-------------------------------------------------------------------------------------
+-> Q007 : Modify Data from Rows in Sql;;
+
+-> You can add boolean clauses in select statements
+
+eg1: Display name and age of students along with the information whether they
+are a teenager or not.
+
+SELECT name, age, (age BETWEEN 13 AND 19) AS isTeenager
+FROM students
+
+eg2 : Let's say that a student is considered underage if the difference
+between the age and the grade is 5 or less.
+
+SELECT name, age, grade, (age-grade <= 5) as isUnderage
+FROM students
+
+
+-------------------------------------------------------------------------------------
+-> Q006 : Arithmetic Operation in Sql;;
+
+-> Arithmetic operations like addition, subtraction, multiplication, division
+   and modulo can be applied on an individual column.
+
+eg1: Show arithmetic operatoin
+
+SELECT age / 2, age * 2
+FROM students
+
+eg2: Display the length of name of students incremented by 1 and marks of
+students rounded to nearest multiple of 10 less than or equal to marks
+
+SELECT 
+length(name) + 1 as incremented_length, 
+marks-marks%10 as rounded_marks
+FROM students
+
+eg3: List the names, ages and marks of students where the sum of age and marks
+is between 30 and 70.
+
+select name, age, marks
+from students
+where (age + marks) between 30 and 70
+
+eg4: Display the name, age and marks of students whose age is an even number
+and marks are an odd number.
+
+SELECT name, age , marks
+FROM students
+where age % 2 = 0 and marks % 2 <> 0
+
+eg5: Display the name, age and grade of students in the ascending order of
+difference of their age and grade for students who have both age data and
+grade data.
+
+
+-------------------------------------------------------------------------------------
+-> Q005 : Modulus in Sql;;
+
+-> SQL can perform arithmetic operations like addition, subtraction, division
+   or modulus.
+-> Modulus is the remainder of a division between two numbers. It is
+   represented by the symbol %.
+
+
+eg1: show modulo between 10 and 3
+
+select 10 % 3;
+-- output : 1
+
+eg2: Find all students having ids even
+
+select * from students where id % 2 = 0;
+
+
+-------------------------------------------------------------------------------------
+-> Q004 : Strftime function in sql;;
+
+-> STRFTIME is a SQL function that can be used over DATETIME to extract
+   specific information.
+-> Here are a few basic parameters used for date extractions. Like,
+	- %d ~ day of month: 00
+	- %m ~ month: 01-12
+	- %Y ~ year: 2023
+	- %H ~ hour: 00-24
+	- %M ~ minutes: 00-60
+	- %S ~ seconds: 00-60
+	- %f ~ fractional seconds: SS.SSS ~ 59.001
+	- %j ~ day of the year: 001- 366
+	- %J ~ julian day number
+	- %s ~ seconds since 1970-01-01
+	- %w ~ day of week :0 to 6 with 0 -> Sunday
+	- %W ~ week of year: 00-53
+
+eg1, Print month of the current date
+
+SELECT STRFTIME('%m', DATETIME('Now'))
+
+eg2, Format the whole date
+
+select strftime('%Y-%m-%d %H:%M:%S', datetime('now'))
+
+eg 3, Write a query to display the datetime timestamps
+1) for time exactly 4 days after the current time in UTC
+2) time at the beginning of the current day in UTC 
+
+SELECT 
+strftime('%d/%m/%Y %H:%M', datetime('now', '+4 days')) as time4DaysLater,
+strftime('%d/%m/%Y %H:%M', datetime('now', 'start of day')) 
+as timeCurrentDayStart
+
+-- time4dayslater : 04/06/2023 15:42
+-- timecurrentdaystart : 31/05/2023 00:00
+
+
+-------------------------------------------------------------------------------------
+-> Q003 : Date and Time function in sql;;
+
+###----Date 
+- Date function is used to display the date of today.
+
+eg 1 : Let's use the DATE function to display today's date along with the name
+and course of all students.
+
+SELECT DATE('Now')
+-- output: 2023-05-31
+
+###---- Time 
+-> Time() function is used to display the time in current instances;
+
+eg2 : Dispaly time in sql query
+
+select time('now')
+
+###---- DateTime() function
+-> The DATETIME function combines the features of both DATE and TIME
+   functions. It displays both date and time together.
+-> The time shown by DATETIME is UTC time by default. If we want to display
+   the local time, we can add a parameter 'localtime' to the DATETIME
+   function .
+-> There are modifiers like 
+	1) 'start of day'
+	2) 'start of month'
+	3) 'start of year'
+	4) '+2 days'
+	5) '-2 days'
+	6) '+2 months'
+	7) '+2 months'
+ 
+eg3: Display localtime 
+
+SELECT DATETIME('NOW', 'localtime')
+
+###---- DateTime() Modifiers 
+-> We can also add or subtract date time from current date time
+
+eg4: For adding 2 days in current datetime
+
+select datetime('now', '+2 days')
+-- 2023-06-02 14:57:21
+
+and, this modifier also work with date() function
+
+eg4.1: For adding two days with date() function 
+
+select date('now', '+2 days')
+-- 2023-06-02
+
+eg 4.2: for subtracting 2 months from the current date
+
+select datetime('now', '-2 days')
+
+and with date() function
+
+select date('now', '-2 days ')
+
+eg 4.3: for subtracting 2 months from the current date
+
+select datetime('now', '-2 months')
+-- 2023-03-31 15:02:28
+
+and, similarly with date() function 
+
+select date('now', '-2 months')
+-- 2023-03-31
+
+eg 4.4: for datetime timestamp of +3 years to the current localtime
+
+select datetime('now', 'localtime', '3 years')
+-- UTC TIME + 3year
+
+and, if you want 
+
+eg 4.5: some other modifiers are
+
+SELECT DATETIME('now', 'localtime', 'Start of Day');
+
+SELECT DATETIME('now', 'localtime', 'Start of Month');
+
+SELECT DATETIME('now', 'localtime', 'Start of Year');
+
+
+-------------------------------------------------------------------------------------
+-> Q002 : Sql Length function;;
+- SQL has a LENGTH function which can be used for counting the length of
+  string, number etc.
+- LENGTH can also be used on number or integer columns in addition to string
+  columns.
+- We can use LENGTH in ORDER BY clause to get this result.
+
+ 
+eg 1 : Let's say we want to select the length of the names of students along
+with their names.
+ 
+SELECT name, LENGTH(name)
+FROM students
+
+eg 2 : Find unique course names which are of length 4.
+
+SELECT DISTINCT course
+FROM students
+WHERE LENGTH(course) = 4
+
+eg 3 : List the names of students in the ascending order of length of their
+names.
+
+select name 
+from students 
+order by length(name) asc
+
+
+-------------------------------------------------------------------------------------
+-> Q001 : Sql Core  Fundamentals Topics;;
 
 ###----------------  Select 
 SELECT to select all the columns and all the data from the table.
@@ -22,7 +300,6 @@ SELECT to select all the columns and all the data from the table.
 eg, 
 select * 
 from students;
-
 
 ###--------------- Where
 WHERE is used to filterout data from the table.
@@ -32,7 +309,6 @@ select *
 from student 
 where couse = 'English';
 
-
 ###----------------  Not
 We can use not equal to operator != to get the job done.
 
@@ -40,7 +316,6 @@ eg,
 SELECT * 
 FROM students 
 WHERE age != 12
-
 
 ###---------------- Less Than
 We can use < to perform a less than operation.
@@ -50,7 +325,6 @@ SELECT *
 FROM students 
 WHERE grade < 8
 
-
 ###---------------- Greater Than
 We can use > to perform a greater than operation.
 
@@ -58,7 +332,6 @@ eg,
 SELECT * 
 FROM students 
 WHERE age > 13
-
 
 ###---------------- Less Than Equals to 
 We can use <= to perform a less than or equal to operation.
@@ -68,7 +341,6 @@ SELECT *
 FROM students 
 WHERE age <= 7
 
-
 ###---------------- Greater Than Equals to 
 We can use >= to perform a greater than or equal to operation.
 
@@ -77,7 +349,6 @@ SELECT *
 FROM students
 WHERE grade >= 9
 
-
 ###---------------- Sql Comments
 We can use comments in SQL too to mark part of code not to be run.
 
@@ -85,7 +356,6 @@ eg,
 SELECT *
 FROM students
 -- WHERE grade < 8
-
 
 ###---------------- Multiple Line Comments
 Let's say we have a query to get all students whose grade is less than 8.
@@ -99,7 +369,6 @@ SELECT *
 FROM students
 WHERE age < 13
 
-
 ###---------------- AND Operation
 We can use AND operator to combine the two conditions.
 
@@ -108,7 +377,6 @@ SELECT *
 FROM students
 WHERE age > 10
 AND course = 'JavaScript'
-
 
 ###---------------- OR Operation
 We can use OR operator to combine the three conditions. If one of the
@@ -122,15 +390,11 @@ WHERE age > 15
 OR course = 'Java'
 OR grade = 7
 
-
 ###---------------- Both AND & OR
 We need to use both AND as well as OR to solve this problem.
 
-eg,
-Find all students who
-are of age 15 or of age 13 or of age 12
-and
-belong to a grade lesser than 9.
+eg, Find all students who are of age 15 or of age 13 or of age 12 and belong
+to a grade lesser than 9.
 
 SELECT *
 FROM students 
@@ -141,33 +405,28 @@ where (grade < 9) and
 ###---------------- Between 
 One way of doing this would be using OR.
 
-eg,
-Find all students who are of age between 12 and 15.
+eg, Find all students who are of age between 12 and 15.
 
 SELECT *
 FROM students
 WHERE age BETWEEN 12 and 15
 
-
 ###---------------- Between and Other Condition
 We can use BETWEEN & AND condition to solve this.
 
-eg, 
-Find all students who belong to grades between 8 and 12 and they are enrolled
-in course C#.
+eg, Find all students who belong to grades between 8 and 12 and they are
+enrolled in course C#.
 
 SELECT *
 FROM students
 WHERE (course = 'C#') and 
 (grade BETWEEN 8 and 12)
 
-
 ###---------------- Not Between 
 One way of doing this would be using WHERE in combination with less than and
 greater than operators.
 
-eg,
-Find all students who don't have marks between 30 and 70.
+eg, Find all students who don't have marks between 30 and 70.
 
 select *
 from students
@@ -179,22 +438,19 @@ select *
 from students
 where not marks between 30 and 70;
 
-
 ###---------------- IN 
 In operator is used to find values from a list of collections
 
-eg,
-Find all student having grades 6,9,12
+eg, Find all student having grades 6,9,12
+
 SELECT *
 FROM students
 WHERE grade IN (6, 9, 12)
 
-
 ###---------------- NOT IN 
 NOT In is just used to find the opposite of IN collections.
 
-eg,
-Find those grade not in (2, 3, 5, 7, 11)
+eg, Find those grade not in (2, 3, 5, 7, 11)
 
 SELECT *
 FROM students
@@ -206,12 +462,10 @@ SELECT *
 FROM students
 WHERE NOT grade IN (2, 3, 5, 7, 11)
 
-
 ###---------------- Null 
 In database we represent missing information as NULL.
 
-eg,
-Find all students whose age information is not available.
+eg, Find all students whose age information is not available.
 
 SELECT *
 FROM students
@@ -223,34 +477,29 @@ select *
 from students 
 where age is null or course is null 
 
-
 ###---------------- NOT Null
 Find all information who row is not missing.
 
-eg,
-Find all students whose grade information is available.
+eg, Find all students whose grade information is available.
 
 SELECT *
 FROM students
 WHERE grade IS NOT NULL
 
-
 ###---------------- Like 
 We can use % with LIKE to solve this find any string pattern
 
-eg,
-Find all students who are enrolled in a course that starts with P.
+eg, Find all students who are enrolled in a course that starts with P.
 
 SELECT  *
 FROM students 
 where course like 'P%';
 
-
 ###---------------- NOT Like
 We can use % with NOT LIKE to solve this.
 
-eg,
-Find all students who are enrolled in a course that does not start with Ja.
+eg, Find all students who are enrolled in a course that does not start with
+Ja.
 
 SELECT *
 FROM students
@@ -260,12 +509,10 @@ WHERE course NOT LIKE 'Ja%'
 ###---------------- DISTINCT
 Distinct is used to fetch the unique record from a row.
 
-eg,
-Find all the unique age of all the students.
+eg, Find all the unique age of all the students.
 
 SELECT distinct age
 FROM students;
-
 
 ###---------------- COUNT
 The count function is used to count the number of rows.
@@ -273,8 +520,7 @@ The count function is used to count the number of rows.
 An aggregate function is used to perform some calculations on data. Count,
 average, sum, maximum and minimum are examples of aggregate function.
 
-eg,
-Let's find the total number of students.
+eg, Let's find the total number of students.
 
 select count(*) from students
 
@@ -282,13 +528,11 @@ alternatively, both query are same
 
 select count(all name) from students
 
-
 ###---------------- AS
 AS is used to change the header of the column.
 
-eg,
-Let's display only the id, grade and course of students. The column name for
-ids should be studentId and the column name for grades should be
+eg, Let's display only the id, grade and course of students. The column name
+for ids should be studentId and the column name for grades should be
 studentGrade.
 
 SELECT
@@ -297,22 +541,18 @@ grade as studentGrade,
 course
 FROM students;
 
-
 ###---------------- COUNT with DISTINCT
 count distinct give distinct count of all the rows of the database.
 
-eg,
-find all distinct courses.
+eg, find all distinct courses.
 
 SELECT DISTINCT(course)
 FROM students
 
-
 ###---------------- SUM and AVG
 -> Sum : Sum aggregate sums up all the values from the result
 
-eg, 
-Find the sum of all distinct marks under 50 and name it 
+eg, Find the sum of all distinct marks under 50 and name it
 sumOfDistinctMarks.
 
 SELECT sum(distinct marks) as sumOfDistinctMarks
@@ -321,52 +561,91 @@ where marks < 50;
 
 -> Avg : Avg aggregate average of all the marks. 
 
-eg,
-Find the average of all the marks. AVG can be used to solve this.
+eg, Find the average of all the marks. AVG can be used to solve this.
 
 SELECT AVG(marks)
 FROM students
 
-
 ###---------------- MAX and MIN
--> Max : Max returns the maximum of all the not-null values in the column mentioned
-next to it.
+-> Max : Max returns the maximum of all the not-null values in the column
+   mentioned next to it.
 
-eg,
-Calculate the maximum marks among all the students who are enrolled in the
+eg, Calculate the maximum marks among all the students who are enrolled in the
 Python course.
 
 select max(marks)
 from students
 where course = 'Python'
 
--> Min : Min returns the Minimum of all the not-null values in the column mentioned
-next to it.
+-> Min : Min returns the Minimum of all the not-null values in the column
+   mentioned next to it.
 
-eg,
-calculate the minimum age.
+eg, calculate the minimum age.
 
 SELECT min(age)
 FROM students
-
 
 ###---------------- Select Multiple Data
 We can select multiple columns and perform some mathematical operation on
 these columns. Suppose, we want to get the total age of all the students and
 the maximum marks in the same query.
 
-eg. 
-Let's calculate the minimum marks, the maximum marks and the count of distinct
-courses and name them as minMarks, maxMarks and countOfCourses respectively.
+eg. Let's calculate the minimum marks, the maximum marks and the count of
+distinct courses and name them as minMarks, maxMarks and countOfCourses
+respectively.
 
 SELECT min(marks) as minMarks,
 max(marks) as maxMarks,
 count(distinct course) as countOfCourses
 FROM students
 
+###---------------- ORDER BY
+order by is used to order the result row in ascending or descending pattern.
 
+eg1,
+Find name, grade, and age of all students, sorted in increasing order of their age.
 
+SELECT name, grade, age
+FROM students 
+order by age asc
 
+eg2,
+Find name, grade, age, and marks of students, in the increasing order of grade
+first, then age and then marks.
 
+SELECT name, grade, age, marks
+FROM students
+order by grade, age, marks
+
+eg3, Find name, marks and age of all students, and order them by age in
+ascending order first and then sort them in descending order of marks.
+
+SELECT name, marks, age
+FROM students
+ORDER BY age ASC, marks DESC
+
+###---------------- LIMIT
+Limit is used to select specific number of rows from the results 
+
+eg4,
+Select 6 students above age 9
+
+SELECT  *
+FROM students
+where age > 9
+limit 6;
+
+###---------------- OFFSET
+SQL provides OFFSET which sets the starting position. When we use LIMIT then
+we take a number of records from the top. It means starting position is 0.
+
+eg, Let's say that we want to find students who are at position 6, position 7,
+position 8, position 9 and position 10. You have to skip the first 5 position
+of the customer
+
+select *
+from students 
+limit 5
+offset 5
 
 -------------------------------------------------------------------------------------
