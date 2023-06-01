@@ -1,0 +1,107 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : ...
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 01/06/2023 
+-> Updated : 01/06/2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q004 : Ctrade-off between Time and Space Complexity;;
+-> Q003 : Calculating Space Complexity;;
+-> Q002 : Auxiliary Space and Space complexity;;
+-> Q001 : What is Space Complexity?;;
+-------------------------------------------------------------------------------------
+'''
+
+###---SPACE COMPLEXITY NOTES : BEGINNING 
+
+
+-------------------------------------------------------------------------------------
+-> Q004 : Ctrade-off between Time and Space Complexity;;
+
+-> The best algorithm to solve a particular problem is no doubt the one that
+   requires less memory space and takes less time to execute. However,
+   designing such an algorithm is not a trivial task, there can be more than
+   one algorithm to solve a given problem one may require less memory space
+   while the other may require less time to solve the problem.
+
+-> It is quite common to observe a tradeoff between time and space consumed
+   while designing an algorithm, where one needs to be sacrificed for the
+   other. 
+
+-> If space is a constraint, one might choose an algorithm that takes less
+   space at the cost of more CPU time and vice-versa. 
+
+-> We must choose an algorithm according to the requirements and the
+   environment in which it needs to be executed
+
+-------------------------------------------------------------------------------------
+-> Q003 : Calculating Space Complexity;;
+
+-> The calculation of space complexity is necessary for determining the
+   algorithm’s efficiency. 
+-> However, the space complexity also depends on the programming language, the
+   compiler used, and the machine on which it is executed.
+
+-> For Recurison Prgram, Apart from the space your algrithm using to perform
+   the job. There are also the stack space on which every recursion call
+   store its previous state for backtrack.
+
+-> A Recursion stack frame consists of 
+	1) Local variables 
+	2) Arguments passed to the function 
+	3) Information about caller’s stack frame 
+	4) The return address of the function
+
+-> eg1: Let us consider a program for calculating the sum of two numbers: 
+
+// Function to print the sum of two integers 
+function SumOfTwoIntegers() {
+	// Reading integers num1 and num2 
+	read(num1); 
+	read(num2); 
+
+	// Calculating the sum of two integers 
+	sum = num1 + num2; 
+	print("The sum of two integers"); 
+	print(sum);
+}
+
+We have declared three variables ‘num1’, ’num2’,’ ’sum’, considering them of
+data type ‘int’ let the space occupied by ‘int’ data type be 4 bytes, 
+
+hence the total space consumed is 4*3 = 12 bytes. Hence we can say that the
+space complexity of the above program is O(1) as 12 is a constant.
+
+-> eg2: Recursion Example 
+
+calc(n-1) -> calc(n-2) -> calc(n-3) ....... calc(0) 
+
+Hence, the maximum depth of the recursion is all the way up to n, as we make
+n recursive calls which is definitely an auxiliary space for our program.
+
+So, the overall space complexity is O(n) + O(n) => O(n), where one term is
+the space consumed due to input size and the other is the auxiliary space
+due to function call stack.
+
+
+-------------------------------------------------------------------------------------
+-> Q002 : Auxiliary Space and Space complexity;;
+
+-> Auxiliary Space : It is the temporary or extra spaceused by an algorithm
+   apart from the input size in order to solve a problem. 
+
+-> Space complexity : It is the total space used by analgorithm in order to
+   solve a problem including the input size. It includes both auxiliary space
+   and space taken by the input size. Space complexity = Auxiliary Space +
+   Space taken by the input size
+
+-------------------------------------------------------------------------------------
+-> Q001 : What is Space Complexity?;;
+
+-> Space complexity is a measure of the total amount of memory including the
+   space of input values with respect to the input size, that an algorithm
+   needs to run and produce the result.
+
+-------------------------------------------------------------------------------------

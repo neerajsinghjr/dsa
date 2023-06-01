@@ -1,0 +1,400 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : ...
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 01/06/2023 
+-> Updated : 01/06/2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q010 : Master's Theorum Practice Quesiton;
+-> Q009 : Master's Theorum Relation;;
+-> Q008 : Recurrence Relation;;
+-> Q007 : Guidelines for Asymptotic notations;;
+-> Q006 : Asymptotic Notation for Analysis;;
+-> Q005 : Types of Analysis;;
+-> Q004 : Commonly used rate of growth;;
+-> Q003 : What is the rate of growth of algorithms;;
+-> Q002 : How to compare algorithms;;
+-> Q001 : What is Running Time Analysis;;
+-------------------------------------------------------------------------------------
+'''
+
+###---TIME COMPLEXITY NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q010 : Master's Theorum Practice Quesiton;
+
+-> Let us now look at a few examples of Master theorem applications
+
+eg 1 : T(n) = 8T(n/2) + 1000n^2
+
+Here, 
+a = 8
+b = 2
+f(n) = 100n^2 ~ o(n^2)
+loga to base b = log8 to 2 => 3 i.e 3 > 2 (~power of n in f(n)
+
+So, CASE 1 will be applied, T(n) = Θ(n^(log a to base b))
+
+Thus, T(n) = f(n) = n ^ (log a to base b) = n ^ 3
+
+eg 2 : T(n) = 2T(n/2) + Θ(n)
+Here, 
+a = 2
+b = 2
+f(n) = o(n)
+loga to base b = log 2 to base 2 => 1 i.e 1 = 1 (~power of n in f(n)
+
+So, CASE 2 will be applied, Θ(n^(logb a)*logn)
+Thus, T(n) = f(n) = O(n^(log a to base b) * logn)
+f(n) = O(n*logn) 
+
+Because, loga to base b ~ 1 in our case
+
+eg 3 : T(n) = 3T(n/2) + n^2
+Here, 
+a = 3
+b = 2
+f(n) = n
+loga to base b = log3 to base 2 => 1.58 i.e 1.58 < 2 (~power of n in f(n)
+
+Thus CASE 3 Implies here, Thus, T(n) = f(n) = Θ(n2)
+
+
+-------------------------------------------------------------------------------------
+-> Q009 : Recurrence Relation;;
+
+-> Master’s theorem can be used to solve the recurrence relations of the type:
+   T(n) = a.T(n/b) + f(n)a>=1, b>1
+
+-> Here,
+	- n : The size of the problem. 
+	- a : The number of subproblems in the recursion. 
+	- n/b : The size of each subproblem.(It is assumed thatthe size of all the
+	  subproblems are the same) 
+	- f(n) : The cost of work done outside the recursivecalls, which basically
+	  includes the cost of dividing the problem and merging the solutions of
+	  the subproblems.
+
+NOTE: Here ‘a’ and ‘b’ are constants and f(n) is asymptoticallya positive
+function. In other words, for sufficiently large input size ‘n’, f(n) > 0 and
+T(n) is a monotonically increasing function
+
+###--- CRUX of MASTER's THEORUM
+
+-> The solution of recurrence relations of the form T(n) = a.T(n/b) + f(n) as
+   given by Master’s theorem where the whole idea is based upon the comparison 
+   of f(n) and n^(loga to base b) and determining which of them is the
+   dominating factor 
+
+-> There are three case associated with domination 
+
+	#-- CASE 1 : If f(n) = O(n^(logb a -ε)), for some ε > 0, then 
+	T(n) = Θ(n^(log a to base b)). 
+
+	This case can be interpreted as the worst case of f(n) is n^(logb a -ε),
+	which is less than n^(logb a) so n^(logb a) takes more time and dominates.
+
+	#-- CASE 2 : If f(n)=Θ(n^(logb a)), then T(n) = Θ(n^(logb a)* logn). 
+
+	If f(n) is also Θ(n^(logb a)), then the time taken will be 
+	Θ(n^(logb a)*logn).
+
+	#-- CASE 3 : If f(n)=Ω(n^(logb a + ε)), for some ε > 0,and if a.f(n/b) <= c.f(n) 
+
+	for some c < 1 and all sufficiently large ‘n’, then T(n) =Θ(f(n)).
+
+Since the best case of f(n) is n^(logb a - ε), so thebest case of f(n) is
+greater than n^(logb a), hence f(n) dominates.
+
+
+###---- LIMITATION of MASTER's THEORUM 
+-> We cannot use Master’s theorem if T(n) is not monotone, for eg, T(n) = sin(n). 
+-> f(n) must be a polynomial 
+-> If a is not a constant, for example a = 2*n, or b cannot be expressed as a
+   constant, for example T(n) = T(√n), then the master's theorem cannot be
+   applied.
+
+
+-------------------------------------------------------------------------------------
+-> Q008 : Recurrence Relation;;
+
+-> (Refer Personal Notes Deathnode Chapter 5, for more in dept)
+
+-> Recurrence Relation : A recurrence relation is an equation that recursively
+   defines a sequence where the next term of the sequence is a function of
+   the previous terms. In other words we express the nth term of the sequence
+   f(n) as a functionof the previous terms fi(i<n). 
+
+-> In Fibonacci Series the nthterm can be expressedas the sum of previous 2
+   terms. The base case for n <= 1 is also defined above. So the second term
+   is F2 = F0 + F1 = 1, F3 = 2, F4 = 3 and so on. 
+
+   For example:Fibonacci Series: Fn = Fn-1 + Fn-2 , whereF0 = 0 and F1 = 1.
+
+-> For example:Let us consider the recursive version of binary search to find
+   the position of an element in a sorted array. 
+
+   In Binary searchwe are given a sorted array of elements and we aim to find
+   the target element. We do this by comparing the target with the middle
+   element and compress the search space to half of its original size in
+   every pass. If the target element is greater than the middle element we
+   move our left pointer to the middle position else we move the right
+   pointer to the middle position.
+
+-> Code Snippet : 
+
+/* 
+	Array from leftidx(0) to rightidx(arr.length-1) is considered 
+*/ 
+
+function binarySearch(arr, leftidx , rightidx , target) {
+	//   base case : element not found 
+	if  leftidx > rightidx 
+		return -1 
+	middle = (leftidx + rightidx) / 2 
+	if  arr[middle] equals target 
+		return middle 
+	else if arr[middle] > target 
+		return binarySearch(arr , leftidx , middle - 1 , target) 
+	else 
+		return  binarySearch(arr, middle + 1, rightidx, target)
+}
+
+The recurrence relation for the above recursive function can be defined as 
+
+Let T(n) denote the time taken by an algorithm to execute for input size ‘n’.
+Hence, T(n) = T(n/2) + 1where T(1) = 1.
+
+
+-------------------------------------------------------------------------------------
+-> Q007 : Guidelines for Asymptotic notations;;
+
+-> There are some general rules to help us determine the running time of an
+   algorithm.
+
+1) Loops: The running time of a loop is, at most, the running time of the
+statements inside the loop (including tests) multiplied by the number of
+iterations 
+
+eg, 
+//executes n times 
+for i from 1 to n: 
+	m = m + 2;        //   constant time c i++;
+
+# run time: O(n)
+
+2) Nested loops: Analyze from the inside out. Total running time is the product of the sizes of all the loops. 
+
+for eg,
+//outer loop executed n times 
+for i from 1 to n { 
+	//   inner loop executed n time 
+	i++; 
+	for j from 1 to n { 
+		k = k+1;     //   constant time 
+		j++ 
+	} 
+}
+// run time: o(n^2)
+
+3) Consecutive Statements: Add the time complexities of each statement. 
+for eg,
+x = x + 1;   //  constant time 
+
+// executed n times 
+for i from 1 to n { 
+	m = m + 2;   //   constant time c 
+	i++; 
+} 
+
+//  outer loop executed n time 
+for i from 1 to n { 
+	// inner loop executed n time 
+	for j from 1 to n { 
+		k = k + 1;    //   constant time 
+		j++; 
+	} 
+}
+
+// run time : o(1) + o(n) + o(n^2) ~ o(n^2)
+
+
+-------------------------------------------------------------------------------------
+-> Q006 : Asymptotic Notation for Analysis;;
+
+-> We aim to identify upper and lower bounds by doing worst case, average case
+   and best case analysis. 
+-> To represent the upper and lower bounds, we need some kind of syntax, and
+   that is the subject of the following discussion
+  	1) Big-O Notation 
+  	2) Omega Notation 
+  	3) Theta Notation
+
+###--- Big-O Notation :
+
+-> This notation gives the tight upper boundof the given function. Generally,
+   it is represented as f(n)=O(g(n)). That means at larger values of N the
+   upper bound of a f(n) is g(n). 
+
+-> For example: if f(n) = n^4+ 2n^3+ 100^n+ 500 is the given algorithm then
+   n^4 is g(n). That means g(n) gives the maximum rate of growth for f(n) at
+   larger values of n.
+
+-> O-notation is defined as, 
+	
+	O(g(n)) = {f(n): there exists positive constants c and n0 such that  
+	0 <= f(n) <= cg(n) for all n > n0 }. 
+
+	g(n) is an asymptotic tight upperbound for f(n). 
+
+-> Our objective is to give the smallest rate of growth g(n) which is greater
+   than or equal to the given algorithm’s rate of growth.
+
+-> Generally we discard lower values of n. That means the rate of growth at
+   lower values of n is not important. In the figure, n0 is the pointfrom
+   which we need to consider the rate of growth for a given algorithm. Below
+   n0 the rateof growth could be different. n0 is called the threshold for
+   the given function.
+
+###--- Omega Notation :
+
+-> Similar to the O discussion, this notation gives the tighter lower bound of
+   the given algorithm and we represent it as f(n) = Ω(g(n)). That means, at
+   larger values of n, the tighter lower bound of f(n) is g(n).
+
+-> Ω-notation is defined as 
+
+	Ω(g(n)) = {f(n): there exists positive constants c and n0 such that  0 <=
+	cg(n) <= f(n) for all n > n0 }. 
+
+	g(n) is an asymptotic lower bound for f(n). 
+
+-> Our objective is to give the largest rate of growth g(n) which is less than
+   or equal to the given algorithms’ rate of growth.
+
+###--- Theta Notation : 
+
+-> This notation decides whether the upper and the lower bound of the given
+   function(algorithm) are the same. 
+
+-> The average running time of an algorithm is always between the lower bound
+   and the upper bound. If the upper bound(O) and the lower bound(Ω) give the
+   same result, then the Theta notation will also have the same rate of growth. 
+
+-> As an example, let us assume that f(n) = 10n + n  is the expression. Then,
+   its tight upper bound g(n) is O(n). The rate of growth in the best case is
+   g(n) = O(n).
+
+-> In this case, the rate of growth in the best case and worst case are the
+   same. As a result the average case will also be the same. For a given
+   function(algorithm), if the rates of growth for Big-O and Omega are not
+   same, then the rate of growth for Theta case may not be the same.
+
+-> Θ-notation is defined as 
+
+	Θ(g(n)) = {f(n): there exists positive constants c and n0 such that  
+	0 <= c1 g(n) <= f(n) <= c2 g(n) for all n > n0 }. 
+
+	g(n) is an asymptotic tight bound for f(n). Θ(g(n)) is the set of functions
+	with the same order of growth as g(n). 
+
+
+Note: In the analysis, we generally focus on the upper bound BigO(O) because
+knowing the lower bound Omega(Ω) of an algorithm is of no practical importance, 
+and we use the Theta(Θ) notation if the upper bound(O) and lower
+bound(Ω) are the same .
+
+
+-------------------------------------------------------------------------------------
+-> Q005 : Types of Analysis;;
+
+-> To analyse the given algorithm, we need to know with which inputs does the
+   algorithm take less time and with which inputs takes the long time. 
+-> We have already seen that an algorithm can be represented in the form of an
+   expression. That means we represent the algorithm with multiple expressions 
+   one for the case where it takes less time and one for it take more time.  
+-> Three types of analysis are generally performed: 
+	1) Worst-Case Analysis : The worst-case consists ofthe input for which the
+	algorithm takes the longest time to complete its execution. 
+	2) Best Case Analysis:The best case consists of theinput for which the
+	algorithm takes the least time to complete its execution. 
+	3) Average case:The average case gives an idea aboutthe average running
+	time of the given algorithm.
+
+
+-------------------------------------------------------------------------------------
+-> Q004 : Commonly used rate of growth;;
+
+-> There are common used rate of growth constant defined.
+-> Constants are like tihs, 
+	1) Constant : 1
+	2) Logarithmic : Logn 
+	3) Linear : n
+	4) Linear Quadratic : nLogn
+	5) Quadratic : n^2
+	6) Cubic : n^3
+	7) Exponentials : 2^n
+	8) Factorial : n!
+-> Their sequence is like this in programming world.
+
+1 < logn < sqrt(n) < n < nlogn < n^2 < n^3 < 2^n <  n!
+
+
+-------------------------------------------------------------------------------------
+-> Q003 : What is the rate of growth of algorithms
+
+-> The rate at which running time increases as a function of input is called
+   rate of growth. 
+
+-> Let us assume that you go to a shop to buy a car and a bicycle. If your
+   friend sees you over there and asks you what you are buying, then in
+   general you say buying a car. This is because the cost of the car is high
+   compared to the cost of the bicycle (approximately the cost of the bicycle
+   to the cost of the car). 
+
+   Total cost = cost of car + cost of bicycle 
+   Total cost ~ cost of car (approximation) 
+
+   Similarly, For a given function, ignore the low order terms that are
+   relatively insignificant. 
+
+   n^4+ 2n^3+ 100^n + 500 ~ n4 (for large value of inputsize, n)
+
+
+-------------------------------------------------------------------------------------
+-> Q002 : How to compare algorithms;;
+
+To compare algorithms, let us define a few objective measures 
+
+-> Execution Times : Not a good measure as execution time are specific to a
+   particular computer 
+-> Number of statements executed : Not a good measureas the number of
+   statements varies with programming languages as well as with the style of
+   individual programmer.
+-> Ideal Solution : Let us assume that we express the running time of a given
+   algorithm as a function of input size n(i.e., f(n)) and compare these
+   different functions corresponding to running times. This kind of
+   comparison is independent of machine time, programming style, etc. 
+
+   We measure the total number of basic operations (additions, subtractions,
+   increments, multiplications, divisions,modulo etc.) performed as a
+   function of input size.
+
+
+-------------------------------------------------------------------------------------
+-> Q001 : What is Running Time Analysis;;
+
+-> It is the process of determining how processing time of a problem increases
+   as the size of the problem (input size) increases. Input size is the
+   number of elements in the input, and depending on the problem type, the
+   input may be of different types. 
+-> Example: 
+	1) Size of an array 
+	2) Polynomial degree 
+	3) Number of elements in matrix 
+	4) Number of bits in the binary representation of the input 
+	5) Vertices and edges in the graph
+
+-------------------------------------------------------------------------------------
