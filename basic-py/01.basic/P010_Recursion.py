@@ -57,6 +57,17 @@ def powerFast(num, exp):
     res = num * power(num,exp//2)
     return (res*num if exp%2 == 0 else res)
 
+
+def calc(n):
+    print(n, end=',  ')
+    calc(n+1)
+
+def calcminus(n):
+    if n == 0:
+        return 
+    print(n, end=', ')
+    calcminus(n-1)
+
 # main function;
 def main():
     try:
@@ -67,7 +78,11 @@ def main():
         # res = downAndUpFunc(num)              # 5,4,3,2,1,1,2,3,4,5
         # res = power(num,exp)                  # 2 ^ 2 ~ 4
         # res = powerFast(num,exp)              # 2 ^ 2 ~ 4
-        print(res) if res else print("main: None")
+        # print(res) if res else print("main: None")
+        # checking max recursion depth;;
+        n = 1000
+        # calc(n)
+        calcminus(n)
         
     except(Exception) as e:
         print(f"Exception Traced: {e}")

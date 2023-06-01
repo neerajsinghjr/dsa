@@ -183,7 +183,12 @@ having count(1) > 2
 
 ###------ GROUP BY with MULTIPLE COLUMNS
 
--> When you are fetching more then one column (excluding dynamically rendered column) then everything works fine. But things gets messy as soon as you include more than two columns in single group by. To overcome such things, you 've to include multiple columns in the single group by clause.
+-> When you are fetching only one column (excluding dynamically rendered
+   column) then everything works fine. But things gets messy as soon as you
+   include more than two columns in single group by. To overcome such things,
+   you 've to include multiple columns in the single group by clause.
+
+eg
 
 
 
