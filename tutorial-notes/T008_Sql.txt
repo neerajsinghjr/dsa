@@ -7,6 +7,11 @@
 -> Updated : 31/05/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q014 : COUNT(*) vs COUNT(1) in Sql;;
+-> Q013 : COUNT & GROUP BY in Sql;;
+-> Q012 : COALESCE vs IFNULL in Sql;;
+-> Q011 : COALESCE Clause in Sql;;
+-> Q010 : IFNULL Clause in Sql;;
 -> Q009 : Concatenation in Sql;;
 -> Q008 : Case Clause in Sql;;
 -> Q007 : Modify Data from Rows in Sql;;
@@ -20,6 +25,233 @@
 '''
 
 ###---Sql NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q014 : COUNT(*) vs COUNT(1) in Sql;;
+
+(Future : https://learnsql.com/blog/difference-between-count-distinct)
+
+###--- COUNT(*)
+-> The COUNT(*) returns the total number of rows in a table, including the
+   NULLs. 
+
+###--- COUNT(1) 
+-> The COUNT(1) function replaces all records from the query result set with
+   value 1. If you have NULL values, it is also replaced by 1. Therefore,
+   COUNT(1) also returns the total number of records (including NULLs) in the
+   table.
+
+-> Similarly,if you used count(2), count(3), count(1000), count(-100) all will
+   have the same result No different.
+
+-> Even if you use the string in the count() function the final result will be
+   the same as for count(*).
+
+###--- COUNT(COLUMN_NAME)
+-> If we specify a column name in the SQL COUNT function argument, it counts
+   the total number of rows in the table and excludes the NULL in the
+   specified column. 
+
+###--- COUNT(DISTINCT COLUMN_NAME)
+-> It will count the normal distinct value count only. As what the distinct
+   keyword do.
+
+###--- FALSE MISCONCEPTION 
+-> There’s a popular misconception that “1” in COUNT(1) means “count the
+   values in the first column and return the number of rows.” From that
+   misconception follows a second: that COUNT(1) is faster because it will
+   count only the first column, while COUNT(*)
+
+### --- CONCLUSION
+-> COUNT(*) returns counts of all the rows, including NULLs
+-> COUNT(1) returns counts of all the rows, including NULLs
+-> COUNT(column_name) counts of all the rows, excluding NULLs.
+
+
+-------------------------------------------------------------------------------------
+-> Q013 : COUNT & GROUP BY in Sql;;
+
+-> COUNT: It is used to count the number of rows in table.
+-> GROUP BY: When we count rows then we have to group the rows with respects
+   to the column for which you want the count.
+
+eg1: Count the number of students enrolled in all course and course is not null.
+
+select course, count(*) NoOfStudents
+from students
+where course is not null
+group by course
+
+eg2: Find all grades and the maximum age of students in each grade. The column
+header for "maximum age" should be maxAge.
+
+SELECT grade, max(age) as maxAge
+FROM students
+where grade is not null
+group by grade
+
+eg3 : Find all the distinct courses and the minimum marks students have scored
+in each course. The column header for "minimum marks" should be minMarks.
+
+SELECT course, min(marks) as minMarks
+FROM students
+where course is not null
+group by course
+
+eg4 : Find all distinct courses and the total sum of all marks students have
+scored in each course. The column header for "sum of marks" should be
+sumOfMarks.
+
+SELECT course, sum(marks) as sumOfMarks
+FROM students
+where course is not null 
+group by course
+
+eg5: Find all distinct grades and the average of all marks students have
+scored in each grade. The column header for "average of all marks" should be
+avgOfMarks.
+
+select grade, avg(marks)
+from students
+where grade is not null
+group by grade
+
+###------ GROUP BY Modified Column Data 
+-> We can apply group by on non-exisiting table column or one which is
+   rendered by the sql query builder.
+
+eg6: We want to count the number of students for unique length of names.
+
+SELECT LENGTH(name) AS nameLength, COUNT(*) AS countOfStudents
+FROM students
+GROUP BY LENGTH(name)
+
+eg7: Write a query which shows the number of students who have got marks in
+single digits (0-9) and the number of students who got marks in double
+digits (10-99).
+
+select length(marks) as digitsInMarks, 
+count(*) as noOfStudents
+from students
+group by length(marks)
+
+###------ GROUP BY with ORDERING (ORDER BY)
+
+eg8: Write Query to fetch no. of students in each grade and sort the no. of
+students in descending order.
+
+select grade, count(*) as studentsCount
+from students
+where grade is not null
+group by grade
+order by count(*) desc
+
+eg9: Write a query to list all unique not-null courses and the maximum marks
+obtained in each of them as "maxMarks" by the students in ascending order
+
+select course, max(marks) as maxMarks
+from students
+where course is not null 
+group by course
+order by marks asc
+
+###------ GROUP BY with FILTER (HAVING)
+
+-> HAVING clause is used with the group by clause when there is a need to add
+   filteration among the grouped data.
+
+eg10: Write a SQL query to list only unique not-null courses having average
+marks obtained in each them between 30 and 69, along with the average marks
+obtained in each of them as avgMarks, sorted in the descending order of the
+avgMarks scored in them.
+
+select course, avg(marks) as avgMarks
+from students
+where course is not null
+group by course
+having avg(marks) between 30 and 69
+order by avg(marks) desc
+
+eg11: List all no. of students in every course having student count geater
+than 2.
+
+select grade, count(*) as noOfStudents
+from students
+where grade is not null
+group by grade
+having count(1) > 2
+
+###------ GROUP BY with MULTIPLE COLUMNS
+
+-> When you are fetching more then one column (excluding dynamically rendered column) then everything works fine. But things gets messy as soon as you include more than two columns in single group by. To overcome such things, you 've to include multiple columns in the single group by clause.
+
+
+
+-------------------------------------------------------------------------------------
+-> Q012 : COALESCE vs IFNULL in Sql;;
+
+-> COALESCE is useful when you have unknown number of values that you want to
+   check and IFNULL is useful when you select columns and know that it can be
+   null but you want to represent it with a different value.
+-> COALESCE function can take two or more parameters and returns the first
+   non-NULL parameter, or NULL and IFNULL function takes two arguments and
+   returns the first one if it's not NULL or the second if the first one is
+   NULL.
+
+eg1, Difference of COALESCE Vs IFNULL
+
+SELECT IFNULL('some value', 'some other value');
+-- returns 'some value'
+
+SELECT IFNULL(NULL,'some other value');
+-- returns 'some other value'
+
+SELECT COALESCE(NULL, 'some other value');
+-- returns 'some other value' - equivalent of the IFNULL function
+
+SELECT COALESCE(NULL, 'some value', 'some other value');
+-- returns 'some value'
+
+SELECT COALESCE(NULL, NULL, NULL, NULL, 'first non-null value');
+-- returns 'first non-null value'
+
+
+-------------------------------------------------------------------------------------
+-> Q011 : COALESCE Clause in Sql;;
+
+-> COALESCE function is used to select first not-null value in the list of inputs.
+
+eg, Let's say we want to display the name of all students with one additional
+data point. If age is available, then print it. If age is not available, then
+we print the grade value. If the grade is also NULL, then we print the course
+value. If the course value is NULL as well, we return NULL
+
+SELECT name, coalesce(age, grade, course) AS "age or grade or course"
+FROM students
+
+
+-------------------------------------------------------------------------------------
+-> Q010 : IFNULL Clause in Sql;;
+
+-> IFNULL is simply to implement a check of a value being NULL 
+-> IFNULL accepts 2 arguments. 
+	1) The first argument is the column that needs to be picked
+	2) Fallback value if the first column is set to null.
+
+eg1: Select all grade and print no grade if grade is null
+
+select name, ifnull(grade, 'no other')
+from students
+
+or, we can also do it with the case statement. Like
+
+select name, 
+case 
+	when grade is not null then grade
+else
+	'no grade'
+from students
+
 
 -------------------------------------------------------------------------------------
 -> Q009 : Concatenation in Sql;;
@@ -41,7 +273,8 @@ from students
 	case when something = True then 'this happens' else 'This one' end 
 
 Note that the way conditional expressions in SQL are written, differs from
-database to database. Sqlite3 used the conditional operator CASE and Portgres also used the same But MySql have different syntax. Like,
+database to database. Sqlite3 used the conditional operator CASE and Portgres
+also used the same But MySql have different syntax. Like,
 
 MYSQL SYNTAX : 
 
