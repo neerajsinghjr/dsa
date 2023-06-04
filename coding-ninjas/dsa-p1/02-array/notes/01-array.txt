@@ -1,0 +1,92 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Array Notes
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 02-06-2023
+-> Updated : 02-06-2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q001 : Array Getting Started;;
+-------------------------------------------------------------------------------------
+'''
+
+###---ARRAY NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q001 : Array Getting Started;;
+
+-> An array is defined as a fixed-size collection of elements of the same data
+   type stored incontiguous memory locations, Where each element is accessed
+   by the index.
+
+###--- Properties of Arrays 
+
+-> Each element of the array is of the same data type and same size. For
+   example: For an array of integers with the int data type, each element of
+   the array will occupy 4 bytes.
+-> Elements of the array are stored in contiguous memory locations.
+
+###--- Accessing Array Elements 
+
+-> The elements of the array are accessed by using their index. The index of
+   an array of size N ranges from 0 to N-1. 
+
+   For eg, accessing 5th element will be array[4], index starts from 0 to
+   N-1.
+
+-> Every array is identified by its base address. So, basically, the base
+   address helps in identifying the address of all the elements of the array.
+
+   for eg, 200 as base address of the array,so address of element
+   at index 4 will be 200 + 4 * (sizeof(int)) = 216.
+
+
+###--- Usages of Arrays 
+
+1) Arrays should be used where the number of elements to be stored is already
+known. 
+
+2) Arrays are commonly used in computer programs to organize data so that a
+related set of values can be easily sorted or searched. 
+
+3) Generally, when we requir every fast access times,we usually prefer arrays
+since they provide O(1) access times. 
+
+4) Arrays work well when we have toorganize data inmultidimensional format. We
+can declare arrays of as many dimensions as we want. 
+
+5) If the index of the element to be modified is known before hand, it can be
+efficiently modified using arrays due to quick access time and mutability.
+
+###--- Disadvantages of arrays
+1) Arrays are fixed-size data structures you cannot dynamically alter their
+sizes. It creates a problem when the number of elements the array is going to
+store is not known beforehand.
+
+2) Insertion and Deletion in arrays are difficult and costly since the
+elements are stored in contiguous memory locations, hence, we need to shift
+the elements to create/delete space for elements
+
+3) If more memory is allocated than required, it leads to the wastage of
+memory space and less allocation of memoryalso leads toa problem.
+
+###--- Time Complexity
+
+-> Accessing Elements : Elements in an array are stored at contiguous memory
+   locations, they can be accessed very efficiently (random access) in O(1) 
+   time using indices.
+
+-> Searching Elements : Searching any elements in array is O(n) time work.
+
+-> Inserting Elements : Insertion of elements at the end of the array, O
+   (1) time. But Insertion at the begin or at specific index will require O
+   (n). Becuase you have you re-adjust the array again after making any
+   changes.
+
+-> Deleting Elements : Deletion from end is surely O(1) of work. But at
+   specific location will take O(n). Because it is the cost of searching and
+   re-adjusting the array again.
+
+
+-------------------------------------------------------------------------------------

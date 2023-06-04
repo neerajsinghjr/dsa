@@ -1,0 +1,112 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Array Notes
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 02-06-2023
+-> Updated : 02-06-2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q001 : KADANE's Algorithm;;
+-------------------------------------------------------------------------------------
+'''
+
+###---ARRAY NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q001 : KADANE's Algorithm;;
+
+###--- Problem Description 
+
+-> Given an array of N integers a1,a2,a3,....., a(n-1),a(n). find the maximum
+   subarray(non-empty) sum of the given array.
+
+NOTE : An array B is a subarray of an array A if B can be obtained from A by
+deleting several (possibly, zero, or all) elements from the beginning or from
+the end.
+
+-> For example: Array A[] = [-1, 2, -2, 5, 7, -3, 1] 
+Maximum subarray sum-> 12 Subarray(0-Based indexed) from index 1 to 4 ->
+[2, -2, 5, 7] and subarray(0-Based indexed) from index 3 to 4 -> [5, 7] have
+sum 12.
+
+###--- KADANE ALGORITHM 
+
+-> The idea of Kadane’s algorithm is to maintain a maximum subarray sum ending
+   at every index ‘i’ of the given array and update the maximum sum obtained
+   by comparing it with the maximum sum of the subarray ending at every
+   index ‘i’.
+
+-> At any given index ‘i’ of the array, we can either: 
+	
+	a) Append the element at index ‘i’ to the maximum sum subarray(so just add
+	the element at index ‘i’ to the maximum you’ve found so far). 
+
+	b) Start a new subarray starting from index ‘i’. Appending an element at
+	index ‘i’ to the maximum sum subarray obtained so far is beneficial if
+	the sum till index ‘i-1’ is non-negative, otherwise it is better to
+	start a new subarray starting from index ‘i’ and setting the sum = 0
+	and update the maximum sum obtained accordingly.
+
+-> Time complexity: O(N), where N is the number of elementsin the array, as we
+   traverse the array once to get the maximum subarray sum. 
+
+-> Space complexity: O(1), as no extra space is required.
+
+-> for eg, [1, -2,-3, 4, -1, 2, 1]
+
+Firstly initializae the cur_sum = 0, max_sum = INT_MIN or max(list)
+
+for i = 0 
+	A[i] = 1, 
+	Sum = Sum + A[i] = 1 
+	MaxSum = max(MaxSum,Sum) = 1 
+
+for i = 1 
+	A[i] = -2 
+	Sum = Sum + A[i] = -1 
+	MaxSum = max(MaxSum,Sum) = 1
+
+Since Sum is negative, there is no point in appending the current sum obtained
+to the next element, so Sum = 0 i.e It is better to start a new subarray from
+the next index.
+
+for i = 2 
+	A[i] = -3 
+	Sum = Sum + A[i] = -3 
+	MaxSum = max(MaxSum,Sum) = 1 
+
+Again, since Sum is negative, Sum = 0. Reset Sum counter.
+
+for i = 3 
+	A[i] = 4 
+	Sum = Sum + A[i] = 4 
+	MaxSum = max(MaxSum,Sum) = 4 
+
+for i = 4 
+	A[i] = -1 
+	Sum  = Sum + A[i] = 3 
+	MaxSum = max(MaxSum,Sum) = 4
+
+for i = 5 
+	A[i] = 2 
+	Sum = Sum + A[i] = 5 
+	MaxSum = max(MaxSum,Sum) = 5 
+
+for i = 6 
+	A[i] = 1 
+	Sum  = Sum + A[i] = 6 
+	MaxSum = max(MaxSum,Sum) = 6
+
+-> Kadane Algorithm in Python
+
+def kadane_algorithm(nums):
+    cur_sum, max_sum = 0, max(nums)
+    for num in nums:
+        if cur_sum < 0:
+            cur_sum = 0
+        else:
+            cur_sum += num
+            max_sum = max(cur_sum, max_sum)
+    return max_sum
+-------------------------------------------------------------------------------------

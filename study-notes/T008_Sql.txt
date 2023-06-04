@@ -4,9 +4,12 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 26/05/2023
--> Updated : 31/05/2023
+-> Updated : 03/06/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q017 : JOIN - CARTENSIAN PRODUCT in Sql;;
+-> Q016 : JOIN Relationship in Sql;;
+-> Q015 : GROUP_CONCAT in Sql;;
 -> Q014 : COUNT(*) vs COUNT(1) in Sql;;
 -> Q013 : COUNT & GROUP BY in Sql;;
 -> Q012 : COALESCE vs IFNULL in Sql;;
@@ -20,16 +23,380 @@
 -> Q004 : Strftime function in sql;;
 -> Q003 : Date and Time function in sql;;
 -> Q002 : Sql Length function in sql;;
--> Q001 : Sql Core  Fundamentals Topics;;
+-> Q001 : Sql Core Fundamentals Topics;;
 -------------------------------------------------------------------------------------
 '''
 
-###---Sql NOTES : BEGINNING 
+###---SQL NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q017 : JOIN - CARTENSIAN PRODUCT in Sql;;
+
+###--- CATESIAN PROJECT WITH SIMPLE JOIN
+
+-> Let's see what happens if we skip the ON clause from a simple JOIN query.
+
+-- STUDENTS ROW: 25, COURES: 15
+-- OUTPUT: 25*13 ~ 325 ROWS (~all possible combinations of table rows)
+
+select student.name, course.name
+from students as student
+join courses as course
+
+-> Let's rearrange the above possible combination and rendered a new
+   columned, 'enrolled' if particular student is enrolled in that course.
+
+SELECT students.name AS student,
+courses.name AS course,
+students.courseId = courses.id AS enrolled
+FROM students 
+JOIN courses
+
+eg1: Write a query to display all the combinations of book names and author
+names, and for each combination, display a boolean value (0/1) that shows
+whether the book is written by the author.
+
+select book.name as book,
+author.name as author,
+book.authorID = author.id as 'authored'
+from books as book
+join authors as author
+
+
+###--- CATESIAN PROJECT WITH SELF JOIN & FILTER
+
+-> Let's say we want to select a panel of 2 authors, author1 and author2, out
+   of all available authors and a1.id != a2.id 
+
+/*
+OBSERVATIONS:
+author table rows : 10 
+self join : 100 rows in total 
+but adding filter a1.id <> a2.id 
+reduces 10 rows.
+TOTAL ROW NOW = 90
+*/
+
+SELECT a1.name AS author1,
+a2.name AS author2
+FROM authors a1 JOIN authors a2
+WHERE a1.id <> a2.id
+
+eg2: Let's say we want to select a panel of 2 authors, author1 and author2,
+out of all available authors. There's one condition though, author1 must be a
+female (gender 'F') and author2 must be a male (gender 'M'). Write a query to
+get all combinations of names of author1 and author2.
+
+SELECT a1.name as author1, 
+a2.name as author2
+FROM authors as a1
+join authors as a2
+WHERE a1.id <> a2.id and 
+a1.gender == 'F' and
+a2.gender == 'M'
+
+
+-------------------------------------------------------------------------------------
+-> Q016 : JOIN Relationship in Sql;;
+
+-> JOIN is used when you have two or more tables bind to each other using
+   foreign key relationship.
+
+-> Similar JOIN Terminology,(https://www.w3schools.com/sql/sql_join.asp)
+   1) JOIN == INNER JOIN
+   2) LEFT JOIN == LEFT OUTER JOIN 
+   3) RIGHT JOIN == RIGHT OUTER JOIN 
+   4) FULL OUTER JOIN
+
+
+###--- INNER JOIN 
+
+-> Examine below INNER Query,
+
+SELECT students.name, courses.name 
+FROM students 
+JOIN courses ON
+students.courseId = courses.id
+
+- SELECT Keyword: Specifies the list of columns
+- FROM Keyword: Consists of the list of tables the columns are being picked
+  from, separated by the word JOIN
+- ON Keyword: It is used to express the columns from each table which should
+  be matched together to connect the data amongst them
+- CONSTRAINT Keyword: The column courseId in students stores the reference to
+  the courses students are enrolled in. Hence, the clause, ON
+  students.courseId = courses.id 
+
+-> eg1: Write a query to display the name and age of all students who are
+enrolled in a course, along with the name and the abbreviated name of the
+courses.
+
+SELECT a.name as studentName, 
+a.age as age, 
+b.name as courseName, 
+b.abbreviatedname as courseAbbreviatedName
+FROM students as a
+INNER JOIN courses as b
+ON a.courseId = b.id 
+
+
+###--- LEFT OUTER JOIN 
+
+-> OUTER JOIN is a JOIN that also returns records that are unmatched from the
+   criteria in ON clause, along with the ones that match.
+
+-> LEFT OUTER JOIN or a LEFT JOIN returns records from the table at left in
+   the JOIN, that are unmatched from the connecting query in ON, along with
+   the matched records.
+
+
+eg2: Write a query to display the id and name of all students, along with the
+name of the course they are enrolled in, if its a valid course.
+
+select stud.id as studentId,
+stud.name as studentName,
+course.name as courseName
+FROM students as stud
+left outer join courses as course
+ON stud.courseId = course.id
+
+
+###--- SELF JOIN 
+
+-> SELF JOIN is used to crawl the data from the same table.
+
+eg3: The table books contains a column nextVolumeId. It stores the id of
+another book which is the next volume of the book in that row.
+
+Write a query to display the name of all the books which have a next volume,
+along with the name of the book which is the next volume for each of them
+
+select a.name as book, 
+b.name as nextVolume
+from books as a
+join books as b
+on a.nextvolumeid = b.id
+
+
+eg4: Write a query to display the name of all the students, along with the
+name of the student who is their student mentor. For students who don't have
+a student mentor, leave that column in the result blank.
+
+select a.name as studentName, 
+b.name as mentorName
+from students a
+left join students b
+on a.studentmentorid = b.id
+
+
+###---- JOINING MORE THAN 2 TABLES
+
+-> We can join two or more tables using JOINS.
+
+eg5: 
+ 
+select publisherName, 
+books.name as book,
+courses.name AS course,
+authors.name AS author
+from books 
+join courses, authors
+ON books.courseId = courses.id AND
+books.authorId = authors.id
+
+
+###--- JOIN WITH FILTER 
+
+-> WHERE claue can be used to add inside the JOIN query like an orderinary sql
+   query to render multiple table data.
+
+-> for eg,
+
+SELECT students.name AS studentName,
+courses.name AS courseName, marks
+FROM students 
+JOIN courses
+ON students.courseId = courses.id
+WHERE courses.name IN ('JavaScript', 'Python') AND
+marks BETWEEN 15 AND 85;
+
+
+###--- JOIN WITH ORDER
+
+-> ORDER claue can be also used to order data final table in ascending or
+   descending order.
+
+-> for eg,
+
+SELECT students.name AS studentName,
+courses.name AS courseName, marks
+FROM students 
+JOIN courses
+ON students.courseId = courses.id
+ORDER BY courses.name, marks
+
+
+###--- JOIN WITH GROUP BY
+
+-> GROUP BY clause can be used simply like ordinary query.
+
+eg1: Write a query to display the names of all authors and the number of books
+authored by them.
+
+/*
+-- A LEFT JOIN B: Here A: AUTHOR, B: BOOK 
+-- Query will return all the author who have or have not 
+-- published any book. 
+*/
+
+select author.name as author, 
+count(book.name) as books
+from authors as author 
+left join books as book
+on book.authorID = author.id 
+group by author
+
+eg2: Write a query to display the names of all courses followed by these 4
+data items:
+   - maximum marks scored by students in the course
+   - minimum marks scored by students in the course
+   - sum of all marks scored by students in the course
+   - average of marks scored by students in the course
+
+/*
+LEFT JOIN is used because we want those course too, in which marks is not 
+scored or those course whose exam not conducted till now.
+*/
+select course.name as courseName, 
+max(marks) as maximumMarks, 
+min(marks) as minimumMarks, 
+sum(marks) as sumOfMarks, 
+avg(marks) as averageMarks
+from courses as course
+left join students as student
+on student.courseid = course.id 
+group by course.name
+
+
+eg3: Write SQL query to get the count of students in each unique combination
+of a course and a grade.
+
+Note: Skip combinations which have 0 results. So if there is no student in
+grade 5 who is enrolled in Java, don't include this combination in the final
+results.
+
+select course.name as name, 
+student.grade grade, 
+count(student.name) as studentsCount
+from students as student
+join courses as course 
+on student.courseid = course.id
+group by course.name, student.grade
+order by course.name, student.grade desc
+
+
+eg4: Write an SQL query to display the name of all unique male authors
+(gender equals M) who have written 3 or more books, with the number of books
+authored for each of them.
+
+select author.name author, 
+count(1) as booksAuthored
+from authors as author
+join books as book
+on book.authorID = author.id 
+where author.gender = 'M'
+group by author.name
+having count(1) >= 3
+
+
+eg 5: Write an SQL query to display the name of all unique courses, and count
+of books that belong to that course. The names of courses should be in
+alphabetical order.
+
+select course.name as course, 
+count(1) as books
+from courses as course
+join books as book
+on book.courseID = course.id 
+group by course.name
+order by course.name
+
+
+###--- GROUP BY MULITPLE JOINED TABLES 
+
+eg6: Write a query to display the names of all students who are enrolled in a
+valid course that has at least one book that belongs to it, and the year of
+publishing of the oldest book that belongs to the course the student is
+enrolled in, for each student
+
+At the end, make sure that the results are sorted in
+
+   - the ascending order of oldestPublishingYear, and
+   - the alphabetical order of students' name.
+
+select student.name as student, book.publishedIn as oldestPublishingYear
+from students as student
+join courses as course
+on student.courseid = course.id 
+join books as book
+on book.courseID = course.id
+group by student.name
+order by book.publishedIn, student.name  
+
+
+-------------------------------------------------------------------------------------
+-> Q015 : GROUP_CONCAT in Sql;;
+
+-> Let's say we want to display the names of all unique not-null courses. For
+   each of these courses names display names of all students enrolled in the
+   course. Separate the names of students using a comma.
+-> SQL provides GROUP_CONCAT, a combination clause over GROUP BY.
+-> Delmiter can be anything in the GROUP CONCAT function default is comma and
+   other like pipe(|), Dash(-), Underscore(_), Hashtag(#) etc.
+-> GROUP_CONCAT(column_name, 'delimiter')
+-> for an instance,
+-- Data with Group By Only 
+
+select course, name, count(*)
+from students 
+where course is not null 
+group by course, name
+
+-- RESULT DATA 
+ _________________________________________
+|  python | (first student)  | 1 (~count) |
+|  python | (second student) | 1 (~count) |
+|  Java 	 | (third student)  | 1 (~count) |
+ -----------------------------------------
+
+-- WITH GROUP CONCAT
+
+select course, group_concat(name), count(*)
+from students 
+where course is not null
+group by course
+
+-- RESULT DATA
+ ________________________________________________________
+| python  | (first student, second student) | 2 (~count)	|
+| Java 	 | (third student) 					  | 1 (~count)	|
+---------------------------------------------------------	
+
+eg1: Write a query to list all the unique not-null grades. For each of these
+grades, display all the courses, students of that grade are enrolled in.
+Separate the list of courses using a single space ( ). Set the headers for
+grades and list of courses as grade and courses respectively.
+
+SELECT grade, group_concat(course, ' ') as courses
+FROM students
+WHERE grade is not null and course is not null
+GROUP BY grade
+
 
 -------------------------------------------------------------------------------------
 -> Q014 : COUNT(*) vs COUNT(1) in Sql;;
 
-(Future : https://learnsql.com/blog/difference-between-count-distinct)
+(~ Future : https://learnsql.com/blog/difference-between-count-distinct)
 
 ###--- COUNT(*)
 -> The COUNT(*) returns the total number of rows in a table, including the
@@ -188,8 +555,17 @@ having count(1) > 2
    include more than two columns in single group by. To overcome such things,
    you 've to include multiple columns in the single group by clause.
 
-eg
+NOTE: GROUP BY Clause you can also group an alias column or a column that you
+have been rendered dynamically on the basis of a logic. Refer Below Example
 
+eg12: List of all the PASSED & FAILED 	students in every grade. Students
+having marks greater than 33 will be considered as PASSED or else FAILED.
+
+select grade, count(*) as CountOfStudents,
+case when marks > 33 then 'PASSED' else 'FAILED' end as status
+from students
+where grade is not null
+group by grade, status
 
 
 -------------------------------------------------------------------------------------
