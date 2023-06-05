@@ -1,0 +1,92 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Prefix and Suffix Sum
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 06/05/2023
+-> Updated : 06/05/2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q002 : Suffix Sum Algorithm;;
+-> Q002 : Prefix Sum Algorithm;;
+-> Q001 : Array Revision Lecture;;
+-------------------------------------------------------------------------------------
+'''
+
+###---PREFIX & SUFFIX SUM NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q003 : Suffix Sum Algorithm;;
+
+###--- SUFFIX SUM 
+
+-> Given an array 'A' of size N, its suffix sum array is an array of the same
+   size N such the ith element of the suffix sum array 'Suffix' is the sum of
+   all elements of the given array till ith index from the end. 
+
+   i.e, Suffix = A[i]+A[i+1]+A[i+2]+...+A[N-1] - (0-Based Indexing)
+
+-> for eg, Given A[] = [3,4,-1,2,5],
+
+then the suffix sum array S[] is given as - 
+
+S[0] = 13
+S[1] = 10
+S[2] = 6
+S[3] = 7
+S[4] = 5
+
+i,e. S[] = [13,10,6,7,5]
+
+-> Suffix sum array can serve the same applications as prefix sum array, as it
+   works in a similar manner to prefix sum array.
+
+-------------------------------------------------------------------------------------
+-> Q002 : Prefix Sum Algorithm;;
+
+###--- PREFIX SUM 
+
+-> Given an arrya, 'A' of size N,its prefix sum arrya is an array of the same
+   size N such that the ith element of the prefix sum array 'Prefix' s the
+   sum of all elements of the given array till ith index from the beginning,
+   i.e, Prefix[i] = A[0]+A[1]+A[2]+...+A[i]
+
+-> for eg, Given A[] = [3,4,-1,2,5], 
+
+then the prefix sum array P[] is given as - 
+
+P[0] = 3
+P[1] = 7
+P[2] = 6
+P[3] = 8
+P[4] = 13
+
+i,e. P[] = [3,7,6,8,13]
+
+-> Application;
+
+	1) Useful for answering efficiently range sum/xor queries, provided the
+	array elements dont change over which the prefix sum/xor array is
+	calculated
+
+	2) Product of element in a given range.
+
+	3) Useful for calculating maximum sum subarry and many more.
+
+-------------------------------------------------------------------------------------
+-> Q001 : Array Revision Lecture;;
+
+-> An array is defined as afixed-size collection of elements of the same data
+   typestored in contiguous memory locations. It is the simplest
+   datastructure where each element of the array can be accessed by using its
+   index. 
+
+-> Properties of arrays
+
+	- Each element of the array is of the same data type and same size. For
+	  example: For an array of integers with the int data type, each element
+	  of the array will occupy 4 bytes. 
+
+	- Elements of the array are stored in contiguous memory locations.
+
+-------------------------------------------------------------------------------------E

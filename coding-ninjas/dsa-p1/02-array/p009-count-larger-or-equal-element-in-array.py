@@ -1,11 +1,14 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: Count Smaller or Equal Elements in Array
+-> Problem Title: Count larger or Equal Elements in Array
 -> Problem Status: Completed
 -> Problem Attempted: 05/06/2023
 -> Problem Description: 
 -------------------------------------------------------------------------------------
+Similar Problem like p007, just here is now we're findging all the larger or
+equal to element from another array
 
+Similar problem can be viewed here as well ...
 https://www.codingninjas.com/codestudio/guided-paths/data-structures-algorithms/content/118820/offering/1381881
 
 -------------------------------------------------------------------------------------
@@ -21,21 +24,12 @@ import math
 import random
 
 
-##---Main Solution
-def countSmallerOrEqual(nums1, nums2, n, m):
-    """
-    run: success
-    time: o(nlogn) + o(nlogn) ~ o(nlogn)
-    space: o(n)+o(n)+o(1) ~ o(n)
-    choke: none
-    study: implement using binary search, track only the first number 
-    to which target element is smaller and then just increase the 
-    slider in the forward direction to check any duplicate as well.
-    """
+def countLargerOrEqual(nums1, nums2):
     res = []
     nums2.sort()
     for num in nums1:
         count = count_element(nums2, num)
+        print(f">>>> num: {num}, count: {count}")
         res.append(count)
     return res
     
@@ -44,33 +38,26 @@ def count_element(nums, target):
     lo, hi = 0, len(nums)-1
     while(lo <= hi):
         mid = lo + (hi-lo)//2
-        if target >= nums[mid]:
-            res, lo = mid, mid+1
-        else:
+        print("mid @start: ", nums[mid])
+        if target <= nums[mid]:
+            res = mid
             hi = mid-1
+        else:
+            lo = mid+1
     
-    return res+1 if res != None else 0
-    
-def countSmallerOrEqual_v1(nums1, nums2, n, m):
-    """
-    run: TLE
-    time: o(n*m) ~ o(n^2)
-    space: o(n)
-    choke: TLE
-    study: brute force, counting individually smaller element from 
-    A into B, then store it inside list and then return result.
-    """
-    res = []
-    nums2.sort()
-    for a1 in nums1:
-        count = 0
-        for a2 in nums2:
-            if a1 < a2:
-                break
-            count += 1
-        res.append(count)
+    return len(nums)-res if res != None else 0
 
-    return res    
+# Output case 1: [4,2,0]
+# nums1 = [13, 20, 50]
+# nums2 = [15, 14, 32, 21, 11]
+# Output case 2: [4,2,0,3] 
+nums1 = [-2, 1, 3, 0]
+nums2 = [-1, 0, 2, 1]
+res = countLargerOrEqual(nums1, nums2)
+print("res: ", res)
+
+
+
 
 
 ##---Main Execution;;
