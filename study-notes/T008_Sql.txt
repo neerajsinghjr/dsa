@@ -4,9 +4,12 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 26/05/2023
--> Updated : 03/06/2023
+-> Updated : 05/06/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q020 : Subqueries in Sql;;
+-> Q019 : INTERSECT & EXCEPT in Sql;;
+-> Q018 : UNION clause in Sql;;
 -> Q017 : JOIN - CARTENSIAN PRODUCT in Sql;;
 -> Q016 : JOIN Relationship in Sql;;
 -> Q015 : GROUP_CONCAT in Sql;;
@@ -28,6 +31,242 @@
 '''
 
 ###---SQL NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q020 : Subqueries in Sql;;
+
+-> Subqueries are used to write nested queries inside the main queries to
+   fetch record from multiple tables efficiently.
+
+-> Subqueries are always written inside the parenthesis for the Main Queries.
+
+-> Subqueries are alaway executes before executing the main query.
+
+eg1: Write a query to display name, price and author's name for all books
+which are priced higher than the highest priced book written by the author
+Steve Strange
+
+SELECT book.name as book, 
+book.price as price, 
+author.name as author
+FROM books as book
+join authors as author
+on author.id = book.authorID
+WHERE book.price > (
+
+  select max(price) 
+  from authors as author 
+  join books as book 
+  on book.authorID = author.id
+  where author.name = 'Steve Strange'
+
+)
+
+eg2: Write a query to display name, grade and marks of all students who have
+scored marks which lie between the lowest marks scored by a student in grade
+7 and the highest marks scored by a student in grade 6.
+
+SELECT student.name as name, 
+student.grade as grade, 
+student.marks as marks
+FROM students as student 
+WHERE student.marks between (select min(marks) from students where grade = 7) and 
+(select max(marks) from students where grade = 6)
+
+eg3: Write a query to display name and publisherName of all such books which
+are published by a publisher who have worked with at least 3 distinct
+authors (i.e. the total number of distinct authors who have written a book
+with that publisher are 3 or more).
+
+select book.name as book,
+book.publishername as publisherName 
+from books as book
+where book.publishername in (
+  select book.publishername
+  from authors as author 
+  join books as book
+  on book.authorID = author.id 
+  group by book.publishername
+  having count(distinct author.id) >= 3
+)
+
+
+###--- SUBQUERY IN FROM 
+
+-> Let's say, for each book, we want to display the name and prices of books
+   which are costlier than the average price of books published by the same
+   publisher.
+
+-> We can narrow down the above problem into two steps 
+
+   STEP 1: The subquery in this case would be to figure out the average price
+   of books for each publisher, something similar to following:
+
+   select publisherName, AVG(price) AS avgPrice
+   from books
+   group by publisherName
+
+   STEP 2: Results of the subquery (average book price) will have to be
+   individually compared with each of our main parameters (book price), based
+
+   select books.name, 
+   books.price, 
+   books.publisherName,
+   publisherSummary.avgPrice AS publisherAvgPrice
+   
+   from books 
+   join (
+      select publisherName, AVG(price) AS avgPrice
+      from books
+      group by publisherName
+   ) AS publisherSummary
+   on books.publisherName = publisherSummary.publisherName
+
+   where books.price > publisherSummary.avgPrice
+
+
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Q019 : INTERSECT & EXCEPT in Sql;;
+
+###--- INTERSECT 
+
+-> INTERSECT clause is used to fetch the common the data from the tables,
+   which helps display common data of different types together, from results
+   of two or more queries.
+
+eg1: Write a query to display names which are common in the names of all
+students and codeNames of all authors, under a single column.
+
+SELECT name as name FROM students
+INTERSECT
+SELECT codename as name FROM authors
+
+
+###--- EXCEPT 
+
+-> EXCEPT display all those records which are present in the first table
+   records but not present in the second table records.
+
+eg2: Write a query to display all the ids belonging to books, which are not
+ids of any of the students
+
+SELECT id
+FROM books
+EXCEPT
+SELECT id
+FROM students
+
+
+eg3: Write a query to display names which are codeNames for authors, but not
+names of any of the students. Set Header as uniqueCodeNames.
+
+SELECT codeName as uniqueCodeNames
+FROM authors 
+EXCEPT
+SELECT name as uniqueCodeNames
+FROM students 
+
+
+-------------------------------------------------------------------------------------
+-> Q018 : UNION clause in Sql;;
+
+###--- UNION 
+
+-> UNION is used to club the different data together in a single column.
+
+eg1: UNION is used to merge queries data together.
+
+SELECT name AS people
+FROM students
+UNION
+SELECT name AS people
+FROM authors
+
+-> UNION must have the same number of columns from each query.
+
+eg2: Column mismatch error in UNION
+
+SELECT name, id FROM students
+UNION
+SELECT name FROM authors
+
+-- output: SELECTs to the left and right of UNION do not have the same number
+   of result columns
+
+
+eg3: Write a query to display all the book names and all the course names,
+under a single column.
+
+select name as academicData
+from books
+union
+select name as academicData
+from courses
+
+eg4: Write a query to display the following under a single column:
+   - Names of all students enrolled in the Java course
+   - Names of all the books that belong to the Java course
+   - Names of all authors who have written at least one book that belongs to Java
+
+OUTPUT FORMAT :
+-----------------------------------
+|     type     |     javaData     |
+-----------------------------------
+|  Student     |     Joaquin      |
+|  Books       |   Basic of Java  |
+|  Student     |     Helen        |
+|  Author      |    Mat Reeves    |
+-----------------------------------
+
+select 'Student' as type, 
+student.name as 'javaData'
+from students as student, courses as course
+where student.courseid = course.id and 
+course.name = 'Java'
+
+UNION 
+select 'Book' as type,
+book.name as 'javaData'
+from books as book, courses as course
+where course.id = book.courseid and
+course.name = 'Java'
+
+UNION 
+select 'Author' as type, 
+author.name as 'javaData'
+from books as book, authors as author, courses as course
+where book.authorid = author.id and 
+course.id = book.courseid and 
+course.name = 'Java'
+group by author.name 
+having count(author.name) > 0
+ 
+
+###--- UNION ALL 
+
+-> UNION is fetched all the unique rows or column from one or more tables.
+
+for eg, 
+
+# STUDENT TABLE COUNT: 25;;
+AUTHORS TABLE COUNT: 25;;
+
+select id from students 
+union 
+select id from authors
+-- output : 25
+
+NOTE: To overcom such scenario, we need all records from UNION;;
+
+select id from students 
+UNION ALL 
+select id from authors 
+-- output: 50
+
 
 -------------------------------------------------------------------------------------
 -> Q017 : JOIN - CARTENSIAN PRODUCT in Sql;;

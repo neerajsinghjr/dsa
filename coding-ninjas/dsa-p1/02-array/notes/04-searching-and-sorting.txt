@@ -1,0 +1,153 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Searching And Sorting
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 05-06-2023
+-> Updated : 05-06-2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q001 : Introduction to SEARCHING;;
+-------------------------------------------------------------------------------------
+'''
+
+###---SEARCHING AND SORTING NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q001 : Introduction to SEARCHING;;
+
+-> Searching means to find out whether a particular element is present in the
+   given array/list.
+
+-> There are two types of search algorithms 
+    1) Linear Search 
+    2) Binary Search 
+
+
+###--- LINEAR SEARCH 
+
+-> It is a simple sequential search over all the elements of the array, and
+   each element is checked for a match, if a match is found return the
+   element otherwise the search continues until we reach the end of the
+   array.
+
+-> Pseudocode 
+
+/* 
+array from leftidx(0) to rightidx(arr.length-1) is considered 
+*/ 
+
+function linearSearch(arr, leftidx , rightidx , target) {
+    //   Search for the target from the beginning of arr 
+    for idx = 0 to arr.length-1 
+        if arr[idx] == target 
+            return idx 
+
+    //   target is not found 
+    return -1
+}
+
+// Time complexity: O(N), as we traverse full array for seach.
+// Space complexity: O(1), as no extra space is required
+
+
+###--- BINARY SEARCH 
+
+NOTE: BINARY SEARCH can be implemented on sorted array only.
+
+-> Search in a sorted array by repeatedly dividing the array into two halves
+   and searching in one of the halves.
+
+-> Suppose you want to find a particular element in the sorted array, then
+   following this technique, you have to traverse all the array elements for
+   searching one element but guess if you only have to search at most half of
+   the array indices for performing the same operation. This can be achieved
+   through binary search.
+
+-> for eg, Let us consider the array: 
+
+    [ 0       1        2        3       4 1       2        3        4       5 Given an array of size 5 with elements inside the boxes and indices above them. Our target element is 2.
+
+-> Steps To Follow : 
+    1) Find the middle index of the array. 
+    2) Now, we will compare the middle element with the target element, If they are equal then we will simply return the middle index. 
+    3) If they are not equal, then we will check if the target element is less
+    than or greater than the middle element. 
+        - In case the target_element < middle_element, then look for
+          target_element in the left side of the array.
+        - Otherwise, the target element will be on the right side of the
+          middle element. 
+    4) This helps us discard half of the length of the array each time and we
+    reduce our search space to half of the current search space.
+
+-> Advantages of Binary search: 
+    - Requires no extra space. 
+    - This searching technique is fast and easier to implement. 
+    - Reduces time complexity of the program to a greater extent i.e O(logN)
+
+-> Pseudocode of BINARY SEARCH 
+
+/* 
+* array of size N from 0 to N-1 is considered 
+*/ 
+
+function binarySearch(arr, N, target) {
+    // Initializing lo and hi pointers;;
+    lo = 0 hi = N-1 
+
+    // Searching for the target element until lo<=h;;  
+    while lo <= hi 
+
+        // Finding the mid of search space from lo to hi;; 
+        mid = lo + (hi-lo)/2 
+
+        // If the target element is present at mid;; 
+        if arr[mid] == target 
+            return mid 
+
+        // If the target element is less than arr[mid];;
+        if target < arr[mid]
+            hi = mid - 1
+
+        // Otherwise, It can be present in the right side;;
+        else
+            lo = mid + 1
+
+    // If the target is not found return -1
+    return -1
+}
+
+-> Time Complexity : O(logN), Where N is the number of element. We always
+   search the array in the half everytime. That's why it is of o(logN).
+
+   // Time Complexity Calculations
+   Since we go on searching for the target until our search space reduces to 1,
+
+   so, 
+   Iteration 1- Initial search space: N 
+   Iteration 2 - Search space: N/2 
+   Iteration 3 - Search space: N/4 
+
+   Let after ‘k’ iterations search space reduces to 1 
+
+   So, N/(2k) = 1 => N = 2k 
+
+   Taking Log2 on both sides: => k = log2N 
+
+   Hence, the maximum number of iterations ‘k’ comes out to be log2N.
+
+-> Space Complexity : O(1), It stores nothing other than the unit space
+   varables.
+
+
+###--- SORTING 
+
+-> Sorting means an arrangement of elements in an ordered sequence either in
+   increasing(ascending) order or decreasing(descending) order. 
+
+-> Sorting is very important and many software and programs use this. The
+   major difference is the amount of space and time they consume while being
+   performed in the program.
+
+
+-------------------------------------------------------------------------------------
