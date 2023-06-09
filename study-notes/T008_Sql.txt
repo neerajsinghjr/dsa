@@ -4,9 +4,16 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 26/05/2023
--> Updated : 05/06/2023
+-> Updated : 09/06/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q027 : VIEWS in Sql;;
+-> Q026 : COPYING DATA TO TABLE in Sql;;
+-> Q025 : DROP TABLE CONSTRAINTS in Sql;;
+-> Q024 : ALTER TABLE CONSTRAINTS in Sql;;
+-> Q023 : CRUD TABLE & SCHEMA CONSTRAINTS in Sql;;
+-> Q022 : INSERT INTO Table in Sql;;
+-> Q021 : CREATE TABLE in Sql;;
 -> Q020 : Subqueries in Sql;;
 -> Q019 : INTERSECT & EXCEPT in Sql;;
 -> Q018 : UNION clause in Sql;;
@@ -27,10 +34,556 @@
 -> Q003 : Date and Time function in sql;;
 -> Q002 : Sql Length function in sql;;
 -> Q001 : Sql Core Fundamentals Topics;;
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 '''
 
-###---SQL NOTES : BEGINNING 
+###---SQL NOTES (SQLITE): BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q027 : VIEWS in Sql;;
+
+(refer table: https://academy.bigbinary.com/learn-sql/views/views)
+
+-> Consider a Scenario, Let's say we want to display the number of unique
+   authors that have written a book for each course.
+
+-> ONE WAY DOING IT USING JOINS...
+
+SELECT courses.name,
+COUNT(DISTINCT authorId)
+
+FROM courses 
+JOIN books
+ON books.courseId = courses.id
+
+WHERE courseId IS NOT NULL
+GROUP BY courseId
+
+-> ANOTHER WAY OF DOINT IT USING SUBQUERIES...
+
+SELECT courses.name, 
+booksSummary.authorsCount
+
+FROM  courses 
+JOIN (
+   SELECT courseId,
+   COUNT(DISTINCT authorId) as authorsCount
+   FROM books
+   WHERE courseId IS NOT NULL
+   GROUP BY courseId
+) AS booksSummary
+ON courses.id = booksSummary.courseId
+
+
+-> ONE WAY OF DOING IT USING VIEWS ...
+
+CREATE VIEW booksSummary AS
+SELECT      courseId,
+            COUNT(DISTINCT authorId) as authorsCount
+FROM        books
+WHERE       courseId IS NOT NULL
+GROUP BY    courseId;  --- VIEWS ENDS;;
+
+SELECT   courses.name, 
+         booksSummary.authorsCount
+FROM     courses 
+JOIN     booksSummary
+ON       courses.id = booksSummary.courseId
+
+NOTE: Sometimes, when there is an expected use of results of a subquery, we
+can create them separate using an SQL property called VIEWs. Notice the set
+of statements below.
+
+-> eg1: Create a VIEW basicStudentData that contains these four columns: name,
+   age, grade, marks. The data should be the name, age, grade and marks for
+   all the students.
+   Display all data from the VIEW basicStudentData.
+
+--- FIRST ANSWER;;
+create view basicStudentData as
+select name, age, grade, marks from students;
+
+select *
+from basicStudentData
+
+-- SECOND ANSWER;;
+create view basicStudentData as
+select name, grade, ma from students;
+
+select basicStudentData.name, 
+basicStudentData.age, 
+basicStudentData.grade, 
+basicStudentData.marks
+from basicStudentData
+
+-> eg2: Write a set of SQL statements to:
+
+(ref table : https://academy.bigbinary.com/learn-sql/views/exercise-views-2)
+
+KEY POINT 1 : Create a VIEW booksVolumeSeries that contains these two columns:
+name, nextVolumeId. The data should be the name and the nextVolumeId for all
+the books where nextVolumeId is present.
+
+KEY POINT 2 : Use the VIEW booksVolumeSeries in combination with books to get
+the name of the book and the name of the next volume for all the books that
+have a next volume. The headers should be set as bookName and nextVolumeName
+respectively.
+
+create view bookVolumeSeries as 
+-- first book version in here;;
+select name, nextVolumeId
+from books;
+
+-- second book version in here;;
+select fv.name as bookName, 
+sv.name as nextVolumeName
+from bookVolumeSeries as fv
+join books as sv
+on fv.nextVolumeId = sv.id
+
+-> eg3: Write a set of SQL statements to:
+
+(ref table: https://academy.bigbinary.com/learn-sql/views/exercise-views-3)
+
+KEY POINT 1 : Create a VIEW booksCourses that contains these three columns:
+bookId, bookName, courseName. The data should be the id, name and the name of
+the course the book belongs to for all the books. For the books that do not
+have a course that they belong to, courseName should be NULL.
+
+KEY POINT 2 : Use the VIEW booksCourses in combination with authors and books
+to get the name of the book, name of the author it belongs to and name of the
+course it belongs to for all the books. For books that don't have an author
+or course, the relevant columns should be NULL. The headers should be set as
+bookName, authorName and courseName respectively.
+
+-- SOLUTION 
+
+create view booksCourses as 
+select books.id as bookId,
+books.name as bookName,
+courses.name as courseName, 
+books.authorID as authorid
+from books 
+left join courses
+on courses.id = books.courseID;
+
+select booksCourses.bookName as bookName,
+authors.name as authorName
+from booksCourses
+left join authors
+on booksCourses.authorid = authors.id
+
+
+-------------------------------------------------------------------------------------
+-> Q026 : COPYING DATA TO TABLE in Sql;;
+
+-> Let's say we want to copy over all the data from the students table below
+   to a new table, called studentsCopy.
+
+-> NAIVE APPORACH : One way of doing it is copying over all the data manually
+   after creating a new table with same schema.
+
+-> OPTIMIZE APPROACH : The other is using a subquery that returns a list of
+   rows instead of the VALUES list of an INSERT INTO statement.
+
+-> for eg,
+
+CREATE TABLE studentsCopy (
+   id INTEGER NOT NULL PRIMARY KEY,
+   name TEXT NOT NULL,
+   age INTEGER,
+   grade INTEGER,
+   course TEXT,
+   marks INTEGER NOT NULL
+);
+
+INSERT INTO studentsCopy
+SELECT * FROM students;
+
+-> eg2: There is a students table below with a few columns. The table
+   studentsClone has the exact same number and type of columns as students.
+   The table studentsMarks has only id, name and marks columns that are same
+   as students, and a few extra columns. Neither studentsClone, nor
+   studentsMarks have any records.
+
+
+INSERT INTO studentsClone
+SELECT * FROM students;
+
+/*
+* NOTE: You have to specify the column name when you are only sending specific
+* values to columns.
+*/
+
+INSERT INTO studentsMarks(id, name, marks)
+select id, name, marks from students
+
+
+###--- UPDATING DATA USING SUBQUERIES;;
+
+-> We can also use subqueries to upgrade the data of a table also
+
+-> Note the subquery in the SET clause in UPDATE statement below.
+
+-> for eg,
+
+UPDATE students
+SET courseName = (
+   SELECT name
+   FROM   courses
+   WHERE  id = students.courseId
+   LIMIT  1
+);
+
+
+-------------------------------------------------------------------------------------
+-> Q025 : DROP TABLE CONSTRAINTS in Sql;;
+
+-> SQL has a DROP TABLE statement to delete/drop tables from a database.
+
+-> SYNTAX :
+
+DROP TABLE teachers
+
+eg1: Write an SQL statement to delete the table courses from the database
+information given below.
+
+drop table courses
+
+
+-------------------------------------------------------------------------------------
+-> Q024 : ALTER TABLE CONSTRAINTS in Sql;;
+
+-> ALTER TABLE is used for making updates to the structure of a table.
+
+###--- ALTER TABLE: ADD COLUMN TO TABLE
+
+-> SYNTAX : 
+
+ALTER TABLE students
+ADD COLUMN NEW_COLUMN_NAME TEXT
+
+-> eg1: There are two tables courses and teachers, given below. Write a set of
+   SQL statements to add these new columns to specified tables.
+
+----------------------------------------------------------------
+| table    |  new column | data type   |  constraint           |
+----------------------------------------------------------------
+| courses  |  startedIn  | INTEGER     | DEFAULT 2015          |
+| teachers |  courseId   | INTEGER     | NOT NULL, DEFAULT 1   |         
+----------------------------------------------------------------
+
+alter table courses
+add column startedin integer default 2015;
+
+alter table teachers 
+add column courseId integer not null default 1;
+
+
+###--- ALTER TABLE: RENAME COLUMNS;;
+
+-> SYNTAX :
+
+ALTER TABLE students 
+rename column name to first_name;
+
+
+###--- ALTER TABLE: RENAME TABLE;;
+
+-> SQL provides a RENAME TO variant to the ALTER TABLE statement, to solve
+   this problem.
+
+-> SYNTAX :
+
+ALTER TABLE students 
+rename to students_records
+
+
+-------------------------------------------------------------------------------------
+-> Q023 : CRUD TABLE & SCHEMA CONSTRAINTS in Sql;;
+
+###--- NOT NULL FOR TABLE;;
+
+-> SYNTAX :
+
+CREATE TABLE teachers (
+   id INTEGER,
+   name TEXT NOT NULL,
+   age INTEGER
+);
+
+INSERT INTO teachers values (1,'neeru', '24')
+
+
+###--- UNIQUE CONSTRAINTS FOR TABLE;;
+
+-> Let's create a new table books, and insert a few rows of records in it.
+
+-> SYNTAX :
+
+CREATE TABLE books (
+    id INTEGER,
+    name TEXT UNIQUE,
+    price REAL
+);
+
+
+###---- DEFAULT CONSTRAINTS FOR TABLE
+
+-> DEFAULT constraints is used to set default value of a table.
+
+-> SYNTAX :
+
+CREATE TABLE books (
+   id INTEGER NOT NULL,
+   name TEXT NOT NULL,
+   price REAL DEFAULT 350
+);
+
+
+###--- CHECK CONSTRAINTS FOR TABLE;;
+
+-> CHECK constraints is used to check whether the input value for a column is
+   authenticate value or not in the table.
+
+-> SYNTAX :
+
+CREATE TABLE teachers (
+   id INTEGER,
+   name TEXT NOT NULL,
+   age INTEGER CHECK (age > 21),
+   contact TEXT
+);
+
+
+eg2: Create a new table courses with the following columns, data types and
+constraints.
+
+----------------------------------------------------------------------
+|  column         |  data type  |            constraint              |
+----------------------------------------------------------------------
+|  id             |  INTEGER    |         UNIQUE, NOT NULL           |
+|  name           |   TEXT      |         UNIQUE, NOT NULL           |
+|  abbreviation   |   TEXT      |         Length <= 3 chars          |
+|  type           |   TEXT      | must be 'Language' or 'Framework'  |
+----------------------------------------------------------------------
+
+
+CREATE TABLE courses (
+    id INTEGER NOT NULL UNIQUE,
+    name TEXT NOT NULL UNIQUE,
+    abbreviation TEXT CHECK (LENGTH(abbreviation) <= 3),
+    type TEXT CHECK (type IN ('Language', 'Framework'))
+);
+
+INSERT INTO
+    courses
+VALUES
+    (1, 'Ruby', 'rb', 'Language'),
+    (2, 'Rails', 'rls', 'Framework');
+
+
+###--- PRIMARY KEY CONSTRAINT IN TABLE;;
+
+-> PRIMARY KEY is used to recognize a row uniquely in the database.
+
+-> SYNTAX:
+
+CREATE TABLE books (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    price REAL DEFAULT 350
+ );
+
+###--- PRIMARY KEY with multiple columns
+
+-> Multiple columns are eligible for acting as a primary key in a table.
+   Usually, any column which is unique in nature can act as a primary key.
+
+-> SYNTAX : 
+
+CREATE TABLE books (
+ id INTEGER NOT NULL,
+ name TEXT NOT NULL,
+ price REAL DEFAULT 350,
+ isbn TEXT NOT NULL,
+ PRIMARY KEY (id, isbn)
+);
+
+INSERT INTO books VALUES (1, 'Basics of SQL', 333.50, 'e42b-3637-119b-5a6f');
+INSERT INTO books VALUES (2, 'Java for Beginners', 280.40, '2c1c-d89b-df66-c5d4');
+INSERT INTO books VALUES (3, 'Basics of SQL', 333.50, 'e42b-3637-119b-5a6f');
+INSERT INTO books VALUES (1, 'Basics of SQL', 333.50, 'e42b-3637-119b-5a6f');
+
+
+###--- PRIMARY KEY AUTOINCREMENT;;
+
+-> SQL provides an attribute called AUTOINCREMENT as an addition to the
+   PRIMARY KEY constraint on a column, which automatically generates the
+   appropriate PRIMARY KEY values.
+
+-> SYNTAX :
+
+CREATE TABLE courses (
+   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   name TEXT NOT NULL,
+   abbreviation TEXT NOT NULL
+);
+INSERT INTO courses (name, abbreviation) VALUES
+('Ruby', 'rb'),
+('SQL', 'sql'),
+('Python', 'py');
+
+
+###--- FOREIGN KEY :
+
+-> The FOREIGN KEY constraint on a table can be defined as a new item in the
+   CREATE TABLE columns list. 
+
+-> It starts with FOREIGN KEY followed by the name of the column which is to
+   be declared as FOREIGN KEY in parentheses (in this case, courseId).
+
+->  This is followed by the keyword REFERENCES and the name of the table whose
+    PRIMARY KEY is referred (in this case, courses), followed by the name of
+    the PRIMARY KEY
+
+-> SYNTAX : 
+CREATE TABLE students (
+   id INTEGER NOT NULL PRIMARY KEY,
+   name TEXT NOT NULL,
+   age INTEGER NOT NULL,
+   courseId INTEGER NOT NULL,
+   gradeId INTEGER NOT NULL,
+   FOREIGN KEY (courseId) REFERENCES courses (id)
+);   
+
+
+###--- FOREIGN KEY WITH MULTIPLE COLUMNS 
+
+-> It is same as it was in Foreign Key in the previous hashtag. Just right now
+   it is being using for more than 2 columns. 
+
+-> SYNTAX 
+
+--- GRADE TABLE;;
+CREATE TABLE grades   (
+   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   name TEXT NOT NULL
+);
+
+-- COURSE TABLE;;
+CREATE TABLE COURSE (
+   id INTEGER NOT NULL PRIMARY AUTOINCREMENT,
+   name text not null,
+   abbr text check(length(name) <= 3)
+)
+
+--- STUDENT TABLE;;
+CREATE TABLE STUDENTS (
+   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+   name TEXT NOT NULL,
+   age INTEGER NOT NULL,
+   courseId INTEGER NOT NULL,
+   gradeId INTEGER NOT NULL,
+   FOREIGN KEY (courseId) REFERENCES courses (id),
+   FOREIGN KEY (gradeId) REFERENCES grade (id)
+)
+
+
+### --- UPDATING COLUMN IN TABLE;;
+
+-> SYNTAX :
+
+/*
+NOTE: WITHOUT THE WHERE CLAUSE THIS QUERY WILL RUN FOR ALL ROWS IN THE TABLE;;
+*/
+
+UPDATE students
+SET marks = marks + 5, 
+name = 'Neerj Singh Jr.'
+WHERE id = 5;
+
+
+###--- DELETE SPECIFIC DATA FROM TABLE;;
+
+-> SYTNAX :
+
+/*
+NOTE: WITHOUT THE WHERE CLAUSE THIS QUERY WILL RUN FOR ALL ROWS IN THE TABLE;;
+*/
+
+DELETE FROM students
+WHERE marks BETWEEN 30 AND 70
+
+
+-------------------------------------------------------------------------------------
+-> Q022 : INSERT INTO Table in Sql;;
+
+###--- INSERT INTO TABLE BASIC
+
+--- Case 1: Simple Insert
+
+INSERT INTO teachers (1,'Abhishek Mishra', 27, '2023-06-09')
+
+--- Case 2: alternative syntax with values
+
+INSERT INTO students VALUES (2, 'Henry Mishra', 24, NULL)
+
+
+###---- INSERT MULTIPLE RECORDS;; 
+
+INSERT INTO students VALUES 
+(19, 'Henry', NULL, 7, 'Java', 56),
+(20, 'Galahad', 13, 6, 'JavaScript', 64),
+(21, 'Arthur', 10, 4, 'Scala', 23)
+
+
+###---- INSERTING RECORD IN SPECIFIC COLUMNS 
+
+--- Case 1: Target Specific Column and rest null
+
+INSERT INTO students VALUES (19, 'Jiaying', NULL, 9, NULL, NULL)
+
+--- Case 2: Alternative syntax with values 
+
+INSERT INTO students (id, name, grade) VALUES (19, 'Jiaying', 9)
+
+--- and, with multiple records
+
+INSERT INTO students (id, name, grade) VALUES 
+(19, 'Jiaying', 9),
+(20, 'Gordon', 8),
+(21, 'Ramsay', 7)
+
+
+-------------------------------------------------------------------------------------
+-> Q021 : Create Table in Sql;;
+
+-> Create table is used to create table in your database.
+
+-> SYNTAX : 
+   CREATE TABLE teachers (
+      id INTEGER,
+      name TEXT,
+      age INTEGER,
+      joiningDate TEXT
+    )
+
+-> EXPLANATORY :
+   - CREATE TABLE is how an SQL statement to create a new table starts,
+     followed by the name of the table that needs to be created.
+
+   - Then, define list of columns inside parentheses(()), each of which is
+     constituted by the name of the column, data type of it. 
+
+-> DATA TYPE: Tables used to define column must be defined along side with their data type.
+
+   1) INTEGER: Stores values that are integer in nature
+   2) REAL : Stores floating point numbers/decimal numbers
+   3) TEXT : Stores character data
+   4) BLOB : Stores binary large objects like files
+   5) NULL : When the data type is not defined or unclear.
+
 
 -------------------------------------------------------------------------------------
 -> Q020 : Subqueries in Sql;;
@@ -42,7 +595,7 @@
 
 -> Subqueries are alaway executes before executing the main query.
 
-eg1: Write a query to display name, price and author's name for all books
+-> eg1: Write a query to display name, price and author's name for all books
 which are priced higher than the highest priced book written by the author
 Steve Strange
 
@@ -62,7 +615,7 @@ WHERE book.price > (
 
 )
 
-eg2: Write a query to display name, grade and marks of all students who have
+-> eg2: Write a query to display name, grade and marks of all students who have
 scored marks which lie between the lowest marks scored by a student in grade
 7 and the highest marks scored by a student in grade 6.
 
@@ -73,7 +626,7 @@ FROM students as student
 WHERE student.marks between (select min(marks) from students where grade = 7) and 
 (select max(marks) from students where grade = 6)
 
-eg3: Write a query to display name and publisherName of all such books which
+-> eg3: Write a query to display name and publisherName of all such books which
 are published by a publisher who have worked with at least 3 distinct
 authors (i.e. the total number of distinct authors who have written a book
 with that publisher are 3 or more).
@@ -91,7 +644,7 @@ where book.publishername in (
 )
 
 
-###--- SUBQUERY IN FROM 
+###--- CORRELATED SUBQUERIES IN FROM CLAUSE;;
 
 -> Let's say, for each book, we want to display the name and prices of books
    which are costlier than the average price of books published by the same
@@ -124,9 +677,203 @@ where book.publishername in (
 
    where books.price > publisherSummary.avgPrice
 
+-> eg3: Let's say students have to read all the books that exist for the course
+they are enrolled in. Write a query to display student's name, name of the
+course and the number of books they have to read, for each student
+
+CONSTRAINTS :
+
+1) Skip the students who don't have a course, or don't have a valid course
+(Think JOIN vs LEFT JOIN)
+
+2) Do not skip the students who are enrolled in courses which have no books
+belonging to them. Make sure 0 is shown in numberOfBooks for such students.
+(Again, think JOIN vs LEFT JOIN)
+
+--- QUERY SOLUTION;;
+
+select students.name AS student,
+courseSummary.courseName AS course,
+courseSummary.numberOfBooks AS numberOfBooks
+from students
+join (
+   
+   SELECT courses.id AS courseId,
+   courses.name AS courseName,
+   count(books.id) AS numberOfBooks
+   FROM courses
+   LEFT JOIN books ON books.courseId = courses.id
+   GROUP BY courses.Id
+
+) as courseSummary 
+on students.courseId = courseSummary.courseId
 
 
+-> eg5: Write an SQL query to list all course names in alphabetical order, and
+for each of them, display the number of books that belong to them, and the
+number of students that belong to them
 
+CONSTRAINTS:
+
+1) Display 0 for count of students as well as count of books if there are no
+matching records for a course.
+
+select tb1.course_name as course,
+tb1.book_count as numberOfBooks,
+tb2.student_count as numberOfStudents
+from (
+  select course.id as course_id,
+  course.name as course_name, 
+  count(book.id) as book_count
+  from courses as course 
+  left join books as book 
+  on course.id = book.courseid 
+  group by course_id, course_name
+) as tb1
+
+left join(
+  select course.id as course_id,
+  course.name as course_name, 
+  count(student.id) as student_count
+  from courses as course 
+  left join students as student
+  on student.courseid = course.id
+  group by course_id, course_name
+) as tb2
+
+on tb1.course_id = tb2.course_id
+group by course
+order by course asc
+
+
+###----------- CORRELATED SUBQUERIES IN WHERE CLAUSE;;
+
+-> Subqueries can be used in the where clause also. 
+
+for eg6: Let's say we want to filter out courses for which the average price of
+books belonging to that course is more than 500.
+
+select course.name as course_name
+from courses as coure
+join books as book
+on course.id = book.courseID
+group by course_name
+having avg(book.price) < 500
+
+--- Alternatively, approach using subqueries,
+
+select course.name as course_name 
+from courses as course 
+where 500 < (
+   select avg(book.price)
+   from books as book
+   where book.courseID = course.id 
+)
+
+-> eg1: Write a query to display name and marks of all students, who have
+   scored the minimum marks out of all the students enrolled in the same
+   course as them.
+
+select a.name as name, 
+a.marks as marks
+from students as a
+where marks = (
+  select min(marks)
+  from students as b
+  where a.courseId = b.courseId
+)
+
+
+###------ CORRELATED SUBQUERY IN SELECT CLAUSE;;
+
+-> We can also used the subqueries in the select clause
+
+-> eg7: Let's say we want to display the year of publishing of the oldest
+   published book that belongs to each course, with the name of the course
+   itself.
+
+select courses.name as name,
+min(books.publishedIn) as oldestBookPublishedIn
+from course join books 
+on course.id = books.courseId
+group by courses.name
+
+--- Alternatively, approach using subqueries,
+
+select courses.name,
+(
+   SELECT MIN(publishedIn)
+   FROM books
+   WHERE books.courseId = courses.id
+) AS oldestBookPublishedIn
+
+FROM courses
+
+
+###--- CORRELATED SUBQUERIES WITH EXISTS
+
+-> When you want to select data row from a table on the basis that whether
+   there is at least one record existing with a certain condition related to
+   the original table.
+
+-> eg8: Let's say we want to show names of students who are enrolled in
+   courses that have at least 1 book that belong to them.
+
+select name
+from students
+where 
+courseexists(
+   select id
+   from books as book
+   where courseID = students.courseId
+)
+
+-> eg9: Write a query to list the names of authors who have written at least
+   one book which was published either in 2010 or earlier. Set the header for
+   the single column of results, to be name.
+
+Note: Try doing it with EXISTS operator.
+
+SELECT name 
+FROM authors 
+where exists(
+  select id 
+  from books
+  where publishedIn <= 2010 and 
+  authors.id = authorid
+)
+
+-> eg10: Write a query to list the names of books for which the next volume was
+   published within 1 year of their publishing year
+
+SELECT a.name as name
+FROM books as a
+WHERE exists(
+  select b.id as id
+  from books as b
+  where b.id = a.nextVolumeId and 
+  b.publishedIn - a.publishedIn <= 1
+)
+
+
+###------ CORRELATED SUBQUERIES WITH NOT EXISTS;;
+
+-> NOT EXIST case work opposite with respect to EXIST clause. 
+
+-> It returns those 0 no of rows from the database on the basis of the
+   constraints given.
+
+-> eg11: Write a query to list the names of courses that do not have a book
+   published in 2014.
+
+select course.name as name 
+from courses as course 
+where not exists(
+  select id 
+  from books
+  where publishedin = 2014 and 
+  courseid = course.id
+)
 
 
 -------------------------------------------------------------------------------------
@@ -138,7 +885,7 @@ where book.publishername in (
    which helps display common data of different types together, from results
    of two or more queries.
 
-eg1: Write a query to display names which are common in the names of all
+-> eg1: Write a query to display names which are common in the names of all
 students and codeNames of all authors, under a single column.
 
 SELECT name as name FROM students
@@ -151,7 +898,7 @@ SELECT codename as name FROM authors
 -> EXCEPT display all those records which are present in the first table
    records but not present in the second table records.
 
-eg2: Write a query to display all the ids belonging to books, which are not
+-> eg2: Write a query to display all the ids belonging to books, which are not
 ids of any of the students
 
 SELECT id
@@ -161,7 +908,7 @@ SELECT id
 FROM students
 
 
-eg3: Write a query to display names which are codeNames for authors, but not
+-> eg3: Write a query to display names which are codeNames for authors, but not
 names of any of the students. Set Header as uniqueCodeNames.
 
 SELECT codeName as uniqueCodeNames
@@ -178,7 +925,7 @@ FROM students
 
 -> UNION is used to club the different data together in a single column.
 
-eg1: UNION is used to merge queries data together.
+-> eg1: UNION is used to merge queries data together.
 
 SELECT name AS people
 FROM students
@@ -188,7 +935,7 @@ FROM authors
 
 -> UNION must have the same number of columns from each query.
 
-eg2: Column mismatch error in UNION
+-> eg2: Column mismatch error in UNION
 
 SELECT name, id FROM students
 UNION
@@ -198,7 +945,7 @@ SELECT name FROM authors
    of result columns
 
 
-eg3: Write a query to display all the book names and all the course names,
+-> eg3: Write a query to display all the book names and all the course names,
 under a single column.
 
 select name as academicData
@@ -207,7 +954,7 @@ union
 select name as academicData
 from courses
 
-eg4: Write a query to display the following under a single column:
+-> eg4: Write a query to display the following under a single column:
    - Names of all students enrolled in the Java course
    - Names of all the books that belong to the Java course
    - Names of all authors who have written at least one book that belongs to Java
@@ -291,7 +1038,7 @@ students.courseId = courses.id AS enrolled
 FROM students 
 JOIN courses
 
-eg1: Write a query to display all the combinations of book names and author
+-> eg1: Write a query to display all the combinations of book names and author
 names, and for each combination, display a boolean value (0/1) that shows
 whether the book is written by the author.
 
@@ -321,7 +1068,7 @@ a2.name AS author2
 FROM authors a1 JOIN authors a2
 WHERE a1.id <> a2.id
 
-eg2: Let's say we want to select a panel of 2 authors, author1 and author2,
+-> eg2: Let's say we want to select a panel of 2 authors, author1 and author2,
 out of all available authors. There's one condition though, author1 must be a
 female (gender 'F') and author2 must be a male (gender 'M'). Write a query to
 get all combinations of names of author1 and author2.
@@ -389,7 +1136,7 @@ ON a.courseId = b.id
    the matched records.
 
 
-eg2: Write a query to display the id and name of all students, along with the
+-> eg2: Write a query to display the id and name of all students, along with the
 name of the course they are enrolled in, if its a valid course.
 
 select stud.id as studentId,
@@ -404,7 +1151,7 @@ ON stud.courseId = course.id
 
 -> SELF JOIN is used to crawl the data from the same table.
 
-eg3: The table books contains a column nextVolumeId. It stores the id of
+-> eg3: The table books contains a column nextVolumeId. It stores the id of
 another book which is the next volume of the book in that row.
 
 Write a query to display the name of all the books which have a next volume,
@@ -417,7 +1164,7 @@ join books as b
 on a.nextvolumeid = b.id
 
 
-eg4: Write a query to display the name of all the students, along with the
+-> eg4: Write a query to display the name of all the students, along with the
 name of the student who is their student mentor. For students who don't have
 a student mentor, leave that column in the result blank.
 
@@ -432,7 +1179,7 @@ on a.studentmentorid = b.id
 
 -> We can join two or more tables using JOINS.
 
-eg5: 
+-> eg5: 
  
 select publisherName, 
 books.name as book,
@@ -479,7 +1226,7 @@ ORDER BY courses.name, marks
 
 -> GROUP BY clause can be used simply like ordinary query.
 
-eg1: Write a query to display the names of all authors and the number of books
+-> eg1: Write a query to display the names of all authors and the number of books
 authored by them.
 
 /*
@@ -495,7 +1242,7 @@ left join books as book
 on book.authorID = author.id 
 group by author
 
-eg2: Write a query to display the names of all courses followed by these 4
+-> eg2: Write a query to display the names of all courses followed by these 4
 data items:
    - maximum marks scored by students in the course
    - minimum marks scored by students in the course
@@ -517,7 +1264,7 @@ on student.courseid = course.id
 group by course.name
 
 
-eg3: Write SQL query to get the count of students in each unique combination
+-> eg3: Write SQL query to get the count of students in each unique combination
 of a course and a grade.
 
 Note: Skip combinations which have 0 results. So if there is no student in
@@ -534,7 +1281,7 @@ group by course.name, student.grade
 order by course.name, student.grade desc
 
 
-eg4: Write an SQL query to display the name of all unique male authors
+-> eg4: Write an SQL query to display the name of all unique male authors
 (gender equals M) who have written 3 or more books, with the number of books
 authored for each of them.
 
@@ -548,7 +1295,7 @@ group by author.name
 having count(1) >= 3
 
 
-eg 5: Write an SQL query to display the name of all unique courses, and count
+-> eg 5: Write an SQL query to display the name of all unique courses, and count
 of books that belong to that course. The names of courses should be in
 alphabetical order.
 
@@ -563,7 +1310,7 @@ order by course.name
 
 ###--- GROUP BY MULITPLE JOINED TABLES 
 
-eg6: Write a query to display the names of all students who are enrolled in a
+-> eg6: Write a query to display the names of all students who are enrolled in a
 valid course that has at least one book that belongs to it, and the year of
 publishing of the oldest book that belongs to the course the student is
 enrolled in, for each student
@@ -621,7 +1368,7 @@ group by course
 | Java 	 | (third student) 					  | 1 (~count)	|
 ---------------------------------------------------------	
 
-eg1: Write a query to list all the unique not-null grades. For each of these
+-> eg1: Write a query to list all the unique not-null grades. For each of these
 grades, display all the courses, students of that grade are enrolled in.
 Separate the list of courses using a single space ( ). Set the headers for
 grades and list of courses as grade and courses respectively.
@@ -681,14 +1428,14 @@ GROUP BY grade
 -> GROUP BY: When we count rows then we have to group the rows with respects
    to the column for which you want the count.
 
-eg1: Count the number of students enrolled in all course and course is not null.
+-> eg1: Count the number of students enrolled in all course and course is not null.
 
 select course, count(*) NoOfStudents
 from students
 where course is not null
 group by course
 
-eg2: Find all grades and the maximum age of students in each grade. The column
+-> eg2: Find all grades and the maximum age of students in each grade. The column
 header for "maximum age" should be maxAge.
 
 SELECT grade, max(age) as maxAge
@@ -696,7 +1443,7 @@ FROM students
 where grade is not null
 group by grade
 
-eg3 : Find all the distinct courses and the minimum marks students have scored
+-> eg3 : Find all the distinct courses and the minimum marks students have scored
 in each course. The column header for "minimum marks" should be minMarks.
 
 SELECT course, min(marks) as minMarks
@@ -704,7 +1451,7 @@ FROM students
 where course is not null
 group by course
 
-eg4 : Find all distinct courses and the total sum of all marks students have
+-> eg4 : Find all distinct courses and the total sum of all marks students have
 scored in each course. The column header for "sum of marks" should be
 sumOfMarks.
 
@@ -713,7 +1460,7 @@ FROM students
 where course is not null 
 group by course
 
-eg5: Find all distinct grades and the average of all marks students have
+-> eg5: Find all distinct grades and the average of all marks students have
 scored in each grade. The column header for "average of all marks" should be
 avgOfMarks.
 
@@ -726,13 +1473,13 @@ group by grade
 -> We can apply group by on non-exisiting table column or one which is
    rendered by the sql query builder.
 
-eg6: We want to count the number of students for unique length of names.
+-> eg6: We want to count the number of students for unique length of names.
 
 SELECT LENGTH(name) AS nameLength, COUNT(*) AS countOfStudents
 FROM students
 GROUP BY LENGTH(name)
 
-eg7: Write a query which shows the number of students who have got marks in
+-> eg7: Write a query which shows the number of students who have got marks in
 single digits (0-9) and the number of students who got marks in double
 digits (10-99).
 
@@ -743,7 +1490,7 @@ group by length(marks)
 
 ###------ GROUP BY with ORDERING (ORDER BY)
 
-eg8: Write Query to fetch no. of students in each grade and sort the no. of
+-> eg8: Write Query to fetch no. of students in each grade and sort the no. of
 students in descending order.
 
 select grade, count(*) as studentsCount
@@ -752,7 +1499,7 @@ where grade is not null
 group by grade
 order by count(*) desc
 
-eg9: Write a query to list all unique not-null courses and the maximum marks
+-> eg9: Write a query to list all unique not-null courses and the maximum marks
 obtained in each of them as "maxMarks" by the students in ascending order
 
 select course, max(marks) as maxMarks
@@ -766,7 +1513,7 @@ order by marks asc
 -> HAVING clause is used with the group by clause when there is a need to add
    filteration among the grouped data.
 
-eg10: Write a SQL query to list only unique not-null courses having average
+-> eg10: Write a SQL query to list only unique not-null courses having average
 marks obtained in each them between 30 and 69, along with the average marks
 obtained in each of them as avgMarks, sorted in the descending order of the
 avgMarks scored in them.
@@ -778,7 +1525,7 @@ group by course
 having avg(marks) between 30 and 69
 order by avg(marks) desc
 
-eg11: List all no. of students in every course having student count geater
+-> eg11: List all no. of students in every course having student count geater
 than 2.
 
 select grade, count(*) as noOfStudents
@@ -797,7 +1544,7 @@ having count(1) > 2
 NOTE: GROUP BY Clause you can also group an alias column or a column that you
 have been rendered dynamically on the basis of a logic. Refer Below Example
 
-eg12: List of all the PASSED & FAILED 	students in every grade. Students
+-> eg12: List of all the PASSED & FAILED 	students in every grade. Students
 having marks greater than 33 will be considered as PASSED or else FAILED.
 
 select grade, count(*) as CountOfStudents,
@@ -818,7 +1565,7 @@ group by grade, status
    returns the first one if it's not NULL or the second if the first one is
    NULL.
 
-eg1, Difference of COALESCE Vs IFNULL
+-> eg1, Difference of COALESCE Vs IFNULL
 
 SELECT IFNULL('some value', 'some other value');
 -- returns 'some value'
@@ -841,7 +1588,7 @@ SELECT COALESCE(NULL, NULL, NULL, NULL, 'first non-null value');
 
 -> COALESCE function is used to select first not-null value in the list of inputs.
 
-eg, Let's say we want to display the name of all students with one additional
+-> eg, Let's say we want to display the name of all students with one additional
 data point. If age is available, then print it. If age is not available, then
 we print the grade value. If the grade is also NULL, then we print the course
 value. If the course value is NULL as well, we return NULL
@@ -858,7 +1605,7 @@ FROM students
 	1) The first argument is the column that needs to be picked
 	2) Fallback value if the first column is set to null.
 
-eg1: Select all grade and print no grade if grade is null
+-> eg1: Select all grade and print no grade if grade is null
 
 select name, ifnull(grade, 'no other')
 from students
@@ -878,7 +1625,7 @@ from students
 
 -> We use || operator to concatenate data from different columns 
 
-eg1: Display name and email in a single column
+-> eg1: Display name and email in a single column
 
 select name||','||email as contacts
 from students
@@ -905,7 +1652,7 @@ if(course in ('Python', 'Ruby'),
 from students
 
 
-eg1 : Display students result and the value of "result" should be be "passed"
+-> eg1 : Display students result and the value of "result" should be be "passed"
 if marks is greater than 33. Otherwise "failed".
 
 SELECT name, marks, 
@@ -918,13 +1665,13 @@ FROM students
 
 -> You can add boolean clauses in select statements
 
-eg1: Display name and age of students along with the information whether they
+-> eg1: Display name and age of students along with the information whether they
 are a teenager or not.
 
 SELECT name, age, (age BETWEEN 13 AND 19) AS isTeenager
 FROM students
 
-eg2 : Let's say that a student is considered underage if the difference
+-> eg2 : Let's say that a student is considered underage if the difference
 between the age and the grade is 5 or less.
 
 SELECT name, age, grade, (age-grade <= 5) as isUnderage
@@ -937,12 +1684,12 @@ FROM students
 -> Arithmetic operations like addition, subtraction, multiplication, division
    and modulo can be applied on an individual column.
 
-eg1: Show arithmetic operatoin
+-> eg1: Show arithmetic operatoin
 
 SELECT age / 2, age * 2
 FROM students
 
-eg2: Display the length of name of students incremented by 1 and marks of
+-> eg2: Display the length of name of students incremented by 1 and marks of
 students rounded to nearest multiple of 10 less than or equal to marks
 
 SELECT 
@@ -950,21 +1697,21 @@ length(name) + 1 as incremented_length,
 marks-marks%10 as rounded_marks
 FROM students
 
-eg3: List the names, ages and marks of students where the sum of age and marks
+-> eg3: List the names, ages and marks of students where the sum of age and marks
 is between 30 and 70.
 
 select name, age, marks
 from students
 where (age + marks) between 30 and 70
 
-eg4: Display the name, age and marks of students whose age is an even number
+-> eg4: Display the name, age and marks of students whose age is an even number
 and marks are an odd number.
 
 SELECT name, age , marks
 FROM students
 where age % 2 = 0 and marks % 2 <> 0
 
-eg5: Display the name, age and grade of students in the ascending order of
+-> eg5: Display the name, age and grade of students in the ascending order of
 difference of their age and grade for students who have both age data and
 grade data.
 
@@ -978,12 +1725,12 @@ grade data.
    represented by the symbol %.
 
 
-eg1: show modulo between 10 and 3
+-> eg1: show modulo between 10 and 3
 
 select 10 % 3;
 -- output : 1
 
-eg2: Find all students having ids even
+-> eg2: Find all students having ids even
 
 select * from students where id % 2 = 0;
 
@@ -1007,17 +1754,17 @@ select * from students where id % 2 = 0;
 	- %w ~ day of week :0 to 6 with 0 -> Sunday
 	- %W ~ week of year: 00-53
 
-eg1, Print month of the current date
+-> eg1, Print month of the current date
 
 SELECT STRFTIME('%m', DATETIME('Now'))
 
-eg2, Format the whole date
+-> eg2, Format the whole date
 
 select strftime('%Y-%m-%d %H:%M:%S', datetime('now'))
 
-eg 3, Write a query to display the datetime timestamps
+-> eg 3, Write a query to display the datetime timestamps
 1) for time exactly 4 days after the current time in UTC
-2) time at the beginning of the current day in UTC 
+2) time at the b-> eginning of the current day in UTC 
 
 SELECT 
 strftime('%d/%m/%Y %H:%M', datetime('now', '+4 days')) as time4DaysLater,
@@ -1034,7 +1781,7 @@ as timeCurrentDayStart
 ###----Date 
 - Date function is used to display the date of today.
 
-eg 1 : Let's use the DATE function to display today's date along with the name
+-> eg 1 : Let's use the DATE function to display today's date along with the name
 and course of all students.
 
 SELECT DATE('Now')
@@ -1043,7 +1790,7 @@ SELECT DATE('Now')
 ###---- Time 
 -> Time() function is used to display the time in current instances;
 
-eg2 : Dispaly time in sql query
+-> eg2 : Dispaly time in sql query
 
 select time('now')
 
@@ -1062,26 +1809,26 @@ select time('now')
 	6) '+2 months'
 	7) '+2 months'
  
-eg3: Display localtime 
+-> eg3: Display localtime 
 
 SELECT DATETIME('NOW', 'localtime')
 
 ###---- DateTime() Modifiers 
 -> We can also add or subtract date time from current date time
 
-eg4: For adding 2 days in current datetime
+-> eg4: For adding 2 days in current datetime
 
 select datetime('now', '+2 days')
 -- 2023-06-02 14:57:21
 
 and, this modifier also work with date() function
 
-eg4.1: For adding two days with date() function 
+-> eg4.1: For adding two days with date() function 
 
 select date('now', '+2 days')
 -- 2023-06-02
 
-eg 4.2: for subtracting 2 months from the current date
+-> eg 4.2: for subtracting 2 months from the current date
 
 select datetime('now', '-2 days')
 
@@ -1089,7 +1836,7 @@ and with date() function
 
 select date('now', '-2 days ')
 
-eg 4.3: for subtracting 2 months from the current date
+-> eg 4.3: for subtracting 2 months from the current date
 
 select datetime('now', '-2 months')
 -- 2023-03-31 15:02:28
@@ -1099,14 +1846,14 @@ and, similarly with date() function
 select date('now', '-2 months')
 -- 2023-03-31
 
-eg 4.4: for datetime timestamp of +3 years to the current localtime
+-> eg 4.4: for datetime timestamp of +3 years to the current localtime
 
 select datetime('now', 'localtime', '3 years')
 -- UTC TIME + 3year
 
 and, if you want 
 
-eg 4.5: some other modifiers are
+-> eg 4.5: some other modifiers are
 
 SELECT DATETIME('now', 'localtime', 'Start of Day');
 
@@ -1119,24 +1866,24 @@ SELECT DATETIME('now', 'localtime', 'Start of Year');
 -> Q002 : Sql Length function;;
 - SQL has a LENGTH function which can be used for counting the length of
   string, number etc.
-- LENGTH can also be used on number or integer columns in addition to string
+- LENGTH can also be used on number or int-> eger columns in addition to string
   columns.
 - We can use LENGTH in ORDER BY clause to get this result.
 
  
-eg 1 : Let's say we want to select the length of the names of students along
+-> eg 1 : Let's say we want to select the length of the names of students along
 with their names.
  
 SELECT name, LENGTH(name)
 FROM students
 
-eg 2 : Find unique course names which are of length 4.
+-> eg 2 : Find unique course names which are of length 4.
 
 SELECT DISTINCT course
 FROM students
 WHERE LENGTH(course) = 4
 
-eg 3 : List the names of students in the ascending order of length of their
+-> eg 3 : List the names of students in the ascending order of length of their
 names.
 
 select name 
@@ -1150,14 +1897,14 @@ order by length(name) asc
 ###----------------  Select 
 SELECT to select all the columns and all the data from the table.
 
-eg, 
+-> eg, 
 select * 
 from students;
 
 ###--------------- Where
 WHERE is used to filterout data from the table.
 
-eg, 
+-> eg, 
 select * 
 from student 
 where couse = 'English';
@@ -1165,7 +1912,7 @@ where couse = 'English';
 ###----------------  Not
 We can use not equal to operator != to get the job done.
 
-eg,
+-> eg,
 SELECT * 
 FROM students 
 WHERE age != 12
@@ -1173,7 +1920,7 @@ WHERE age != 12
 ###---------------- Less Than
 We can use < to perform a less than operation.
 
-eg, 
+-> eg, 
 SELECT * 
 FROM students 
 WHERE grade < 8
@@ -1181,7 +1928,7 @@ WHERE grade < 8
 ###---------------- Greater Than
 We can use > to perform a greater than operation.
 
-eg, 
+-> eg, 
 SELECT * 
 FROM students 
 WHERE age > 13
@@ -1189,7 +1936,7 @@ WHERE age > 13
 ###---------------- Less Than Equals to 
 We can use <= to perform a less than or equal to operation.
 
-eg, 
+-> eg, 
 SELECT * 
 FROM students 
 WHERE age <= 7
@@ -1197,7 +1944,7 @@ WHERE age <= 7
 ###---------------- Greater Than Equals to 
 We can use >= to perform a greater than or equal to operation.
 
-eg, 
+-> eg, 
 SELECT *
 FROM students
 WHERE grade >= 9
@@ -1205,7 +1952,7 @@ WHERE grade >= 9
 ###---------------- Sql Comments
 We can use comments in SQL too to mark part of code not to be run.
 
-eg,
+-> eg,
 SELECT *
 FROM students
 -- WHERE grade < 8
@@ -1213,7 +1960,7 @@ FROM students
 ###---------------- Multiple Line Comments
 Let's say we have a query to get all students whose grade is less than 8.
 
-eg,
+-> eg,
 /* 
 Multi-Line Comment in Sql Language !!!
 */
@@ -1225,7 +1972,7 @@ WHERE age < 13
 ###---------------- AND Operation
 We can use AND operator to combine the two conditions.
 
-eg,
+-> eg,
 SELECT *
 FROM students
 WHERE age > 10
@@ -1236,7 +1983,7 @@ We can use OR operator to combine the three conditions. If one of the
 conditions is true then that record will be selected since we are using OR
 operator.
 
-eg, 
+-> eg, 
 SELECT *
 FROM students
 WHERE age > 15
@@ -1246,7 +1993,7 @@ OR grade = 7
 ###---------------- Both AND & OR
 We need to use both AND as well as OR to solve this problem.
 
-eg, Find all students who are of age 15 or of age 13 or of age 12 and belong
+-> eg, Find all students who are of age 15 or of age 13 or of age 12 and belong
 to a grade lesser than 9.
 
 SELECT *
@@ -1258,7 +2005,7 @@ where (grade < 9) and
 ###---------------- Between 
 One way of doing this would be using OR.
 
-eg, Find all students who are of age between 12 and 15.
+-> eg, Find all students who are of age between 12 and 15.
 
 SELECT *
 FROM students
@@ -1267,7 +2014,7 @@ WHERE age BETWEEN 12 and 15
 ###---------------- Between and Other Condition
 We can use BETWEEN & AND condition to solve this.
 
-eg, Find all students who belong to grades between 8 and 12 and they are
+-> eg, Find all students who belong to grades between 8 and 12 and they are
 enrolled in course C#.
 
 SELECT *
@@ -1279,7 +2026,7 @@ WHERE (course = 'C#') and
 One way of doing this would be using WHERE in combination with less than and
 greater than operators.
 
-eg, Find all students who don't have marks between 30 and 70.
+-> eg, Find all students who don't have marks between 30 and 70.
 
 select *
 from students
@@ -1294,7 +2041,7 @@ where not marks between 30 and 70;
 ###---------------- IN 
 In operator is used to find values from a list of collections
 
-eg, Find all student having grades 6,9,12
+-> eg, Find all student having grades 6,9,12
 
 SELECT *
 FROM students
@@ -1303,7 +2050,7 @@ WHERE grade IN (6, 9, 12)
 ###---------------- NOT IN 
 NOT In is just used to find the opposite of IN collections.
 
-eg, Find those grade not in (2, 3, 5, 7, 11)
+-> eg, Find those grade not in (2, 3, 5, 7, 11)
 
 SELECT *
 FROM students
@@ -1318,7 +2065,7 @@ WHERE NOT grade IN (2, 3, 5, 7, 11)
 ###---------------- Null 
 In database we represent missing information as NULL.
 
-eg, Find all students whose age information is not available.
+-> eg, Find all students whose age information is not available.
 
 SELECT *
 FROM students
@@ -1333,7 +2080,7 @@ where age is null or course is null
 ###---------------- NOT Null
 Find all information who row is not missing.
 
-eg, Find all students whose grade information is available.
+-> eg, Find all students whose grade information is available.
 
 SELECT *
 FROM students
@@ -1342,7 +2089,7 @@ WHERE grade IS NOT NULL
 ###---------------- Like 
 We can use % with LIKE to solve this find any string pattern
 
-eg, Find all students who are enrolled in a course that starts with P.
+-> eg, Find all students who are enrolled in a course that starts with P.
 
 SELECT  *
 FROM students 
@@ -1351,7 +2098,7 @@ where course like 'P%';
 ###---------------- NOT Like
 We can use % with NOT LIKE to solve this.
 
-eg, Find all students who are enrolled in a course that does not start with
+-> eg, Find all students who are enrolled in a course that does not start with
 Ja.
 
 SELECT *
@@ -1362,7 +2109,7 @@ WHERE course NOT LIKE 'Ja%'
 ###---------------- DISTINCT
 Distinct is used to fetch the unique record from a row.
 
-eg, Find all the unique age of all the students.
+-> eg, Find all the unique age of all the students.
 
 SELECT distinct age
 FROM students;
@@ -1370,10 +2117,10 @@ FROM students;
 ###---------------- COUNT
 The count function is used to count the number of rows.
 
-An aggregate function is used to perform some calculations on data. Count,
-average, sum, maximum and minimum are examples of aggregate function.
+An aggr-> egate function is used to perform some calculations on data. Count,
+average, sum, maximum and minimum are examples of aggr-> egate function.
 
-eg, Let's find the total number of students.
+-> eg, Let's find the total number of students.
 
 select count(*) from students
 
@@ -1384,7 +2131,7 @@ select count(all name) from students
 ###---------------- AS
 AS is used to change the header of the column.
 
-eg, Let's display only the id, grade and course of students. The column name
+-> eg, Let's display only the id, grade and course of students. The column name
 for ids should be studentId and the column name for grades should be
 studentGrade.
 
@@ -1397,24 +2144,24 @@ FROM students;
 ###---------------- COUNT with DISTINCT
 count distinct give distinct count of all the rows of the database.
 
-eg, find all distinct courses.
+-> eg, find all distinct courses.
 
 SELECT DISTINCT(course)
 FROM students
 
 ###---------------- SUM and AVG
--> Sum : Sum aggregate sums up all the values from the result
+-> Sum : Sum aggr-> egate sums up all the values from the result
 
-eg, Find the sum of all distinct marks under 50 and name it
+-> eg, Find the sum of all distinct marks under 50 and name it
 sumOfDistinctMarks.
 
 SELECT sum(distinct marks) as sumOfDistinctMarks
 FROM students
 where marks < 50;
 
--> Avg : Avg aggregate average of all the marks. 
+-> Avg : Avg aggr-> egate average of all the marks. 
 
-eg, Find the average of all the marks. AVG can be used to solve this.
+-> eg, Find the average of all the marks. AVG can be used to solve this.
 
 SELECT AVG(marks)
 FROM students
@@ -1423,7 +2170,7 @@ FROM students
 -> Max : Max returns the maximum of all the not-null values in the column
    mentioned next to it.
 
-eg, Calculate the maximum marks among all the students who are enrolled in the
+-> eg, Calculate the maximum marks among all the students who are enrolled in the
 Python course.
 
 select max(marks)
@@ -1433,7 +2180,7 @@ where course = 'Python'
 -> Min : Min returns the Minimum of all the not-null values in the column
    mentioned next to it.
 
-eg, calculate the minimum age.
+-> eg, calculate the minimum age.
 
 SELECT min(age)
 FROM students
@@ -1443,7 +2190,7 @@ We can select multiple columns and perform some mathematical operation on
 these columns. Suppose, we want to get the total age of all the students and
 the maximum marks in the same query.
 
-eg. Let's calculate the minimum marks, the maximum marks and the count of
+-> eg. Let's calculate the minimum marks, the maximum marks and the count of
 distinct courses and name them as minMarks, maxMarks and countOfCourses
 respectively.
 
@@ -1455,14 +2202,14 @@ FROM students
 ###---------------- ORDER BY
 order by is used to order the result row in ascending or descending pattern.
 
-eg1,
+-> eg1,
 Find name, grade, and age of all students, sorted in increasing order of their age.
 
 SELECT name, grade, age
 FROM students 
 order by age asc
 
-eg2,
+-> eg2,
 Find name, grade, age, and marks of students, in the increasing order of grade
 first, then age and then marks.
 
@@ -1470,7 +2217,7 @@ SELECT name, grade, age, marks
 FROM students
 order by grade, age, marks
 
-eg3, Find name, marks and age of all students, and order them by age in
+-> eg3, Find name, marks and age of all students, and order them by age in
 ascending order first and then sort them in descending order of marks.
 
 SELECT name, marks, age
@@ -1480,7 +2227,7 @@ ORDER BY age ASC, marks DESC
 ###---------------- LIMIT
 Limit is used to select specific number of rows from the results 
 
-eg4,
+-> eg4,
 Select 6 students above age 9
 
 SELECT  *
@@ -1492,7 +2239,7 @@ limit 6;
 SQL provides OFFSET which sets the starting position. When we use LIMIT then
 we take a number of records from the top. It means starting position is 0.
 
-eg, Let's say that we want to find students who are at position 6, position 7,
+-> eg, Let's say that we want to find students who are at position 6, position 7,
 position 8, position 9 and position 10. You have to skip the first 5 position
 of the customer
 
