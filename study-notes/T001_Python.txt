@@ -7,6 +7,7 @@
 -> Updated: 17.01.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q077 : Python Crontab Job function;;
 -> Q076 : Python Celery function;;
 -> Q075 : Python rsplit function;;
 -> Q074 : Python Unittest Mock Library;
@@ -87,6 +88,46 @@
 '''
 
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q077 : Python Crontab Job function;;
+
+-> CronTab is the linux library which is used to run the any script in as a
+   backgroun job.
+
+-> Cronjob alaway run as per the UTC time slot, you make sure to verify your
+   utc time before setting any job. You can use $: date linux command to
+   check machine local utc time slot.
+
+-> Syntax for Configuration of crontab is here 
+
+(~ you can also use * for arg1 to arg5 only)
+
+(Time Format is 24 hr format)
+
+arg1: minute (m), 
+arg2: hour (h), 
+arg3: day of month (dom), 
+arg4: month (mon),
+arg5: day of week (dow) or use '*' in these fields (for 'any').
+arg6: your command which need to run.
+
+-> Consider there is a dummy file named, test.py
+
+23 7 * * * 
+source /home/ec2-user/.virtualenvs/api/bin/activate; 
+cd /home/ec2-user/api; 
+python -m scripts.test >> ~/temp/log
+
+Here, the commands is in the sequence like 
+cmd1 : Activating the virtual env for python
+cmd2 : Traverse to the project director
+cmd3 : Run the python script file, test.py
+cmd4 : Logs redirection for verification.
+
+NOTE : All the commands must be separated with semicolon and order is
+important. Otherwise flow will break. Keep this in mind.
+
 
 -------------------------------------------------------------------------------------
 -> Q076 : Python Celery function;;
