@@ -7,6 +7,8 @@
 -> Updated: 17.01.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q079 : Python Multithreading;;
+-> Q078 : GropuBy in Itertools;;
 -> Q077 : Python Crontab Job function;;
 -> Q076 : Python Celery function;;
 -> Q075 : Python rsplit function;;
@@ -88,6 +90,85 @@
 '''
 
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q079 : Python Multithreading;;
+
+###--- Multithreading in Python 
+
+-> Multithreading, in its simplest form, is an approach for carrying out many
+   threads of operation simultaneously. Each thread operates independently
+   from the others and has the capacity to run unique sections of the
+   software program simultaneously.
+
+###--- Why Python Lack Support For Multithreading 
+
+-> Python's lack of multithreading instruction is due to the Global
+   Interpreter Lock (GIL). The GIL is a mechanism that guarantees only one
+   thread can execute Python bytecode at a time.
+
+-> Even though numerous threads can exist in a Python process, they are
+   incapable of executing Python code concurrently. This is because the GIL
+   restricts the interpreter to a single thread, which prevents other threads
+   from executing Python code.
+
+-> The Global Interpreter Lock exists because Python adopts a
+   reference-counting memory management model, which deletes objects when
+   their reference count reaches zero.
+
+-> The GIL guarantees that the reference count is accurate, even when multiple
+   threads are simultaneously accessing the same object. If the GIL were not
+   in place, there would be race conditions whereby two threads may attempt
+   to modify the reference count of the same object concurrently, resulting
+   in memory corruption.
+
+-> Python used to be designed to be a high-level, user-friendly, and readable
+   language. Python lacks many intricate and low-level elements seen in other
+   programming languages as a result. 
+
+-> Although it is a powerful tool, multithreading is now not required for all
+   Python applications. The single-threaded Python paradigm typically serves
+   the meaning well.
+
+
+-------------------------------------------------------------------------------------
+-> Q078 : GropuBy in Itertools;;
+
+-> Refer Example: Basic-Py/P050_Iterator_GroupBy.py
+
+-> Python’s Itertool is a module that provides various functions that work on
+   iterators to produce complex iterators. This module works as a fast,
+   memory-efficient tool that is used either by themselves or in combination
+   to form iterator algebra.
+
+-> for eg,
+
+records = [
+    ['5000', '1234567890'],
+    ['5000', '1234567890'],
+    ['6000', '1234567890'],
+    ['6000', '1234567890'],
+    ['8000', '1234567890'],
+]
+
+print("Example 1...")
+for key, group in groupby(records):
+    print(key,':', list(group))
+
+# Example 1...
+# ['5000', '1234567890'] : [['5000', '1234567890'], ['5000', '1234567890']]
+# ['6000', '1234567890'] : [['6000', '1234567890'], ['6000', '1234567890']]
+# ['8000', '1234567890'] : [['8000', '1234567890']]
+
+print("Example 2...")
+for key, group in groupby(records, lambda x: x[0]):
+    print(key,':', list(group))
+
+# Example 2...
+# 5000 : [['5000', '1234567890'], ['5000', '1234567890']]
+# 6000 : [['6000', '1234567890'], ['6000', '1234567890']]
+# 8000 : [['8000', '1234567890']]
+
 
 -------------------------------------------------------------------------------------
 -> Q077 : Python Crontab Job function;;
