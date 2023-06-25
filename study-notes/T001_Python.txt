@@ -8,7 +8,7 @@
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
 -> Q079 : Python Multithreading;;
--> Q078 : GropuBy in Itertools;;
+
 -> Q077 : Python Crontab Job function;;
 -> Q076 : Python Celery function;;
 -> Q075 : Python rsplit function;;
@@ -57,13 +57,13 @@
 -> Q032 : Variable arguments *args and **vargs in python;;
 -> Q031 : Finding and Installing Packages;;
 -> Q030 : Default Dict in Python;;
--> Q029 : Explicit string type at definition of literals;;
+-> Q029 : GropuBy in Itertools;;
 -> Q028 : Builtins Error and Exception;;
 -> Q027 : Mutable and Immutable data types;;
 -> Q026 : Explicit string type at definition of literals;;
 -> Q025 : Python first class objects;;
 -> Q024 : Python main() function;;
--> Q023 : Identify bugs and performing static analysis in python;;
+-> Q023 : Shallow Copy vs Deep Copy;;
 -> Q022 : Global Interpreter Lock;;
 -> Q021 : Lambda function in Python;;
 -> Q020 : Module vs Packages in Python;;
@@ -129,45 +129,6 @@
 -> Although it is a powerful tool, multithreading is now not required for all
    Python applications. The single-threaded Python paradigm typically serves
    the meaning well.
-
-
--------------------------------------------------------------------------------------
--> Q078 : GropuBy in Itertools;;
-
--> Refer Example: Basic-Py/P050_Iterator_GroupBy.py
-
--> Python’s Itertool is a module that provides various functions that work on
-   iterators to produce complex iterators. This module works as a fast,
-   memory-efficient tool that is used either by themselves or in combination
-   to form iterator algebra.
-
--> for eg,
-
-records = [
-    ['5000', '1234567890'],
-    ['5000', '1234567890'],
-    ['6000', '1234567890'],
-    ['6000', '1234567890'],
-    ['8000', '1234567890'],
-]
-
-print("Example 1...")
-for key, group in groupby(records):
-    print(key,':', list(group))
-
-# Example 1...
-# ['5000', '1234567890'] : [['5000', '1234567890'], ['5000', '1234567890']]
-# ['6000', '1234567890'] : [['6000', '1234567890'], ['6000', '1234567890']]
-# ['8000', '1234567890'] : [['8000', '1234567890']]
-
-print("Example 2...")
-for key, group in groupby(records, lambda x: x[0]):
-    print(key,':', list(group))
-
-# Example 2...
-# 5000 : [['5000', '1234567890'], ['5000', '1234567890']]
-# 6000 : [['6000', '1234567890'], ['6000', '1234567890']]
-# 8000 : [['8000', '1234567890']]
 
 
 -------------------------------------------------------------------------------------
@@ -3760,42 +3721,42 @@ Create a Python program to print out the message given the details below.
 Use .format() to add the variable into the text.
    
 for eg, 
-    # Example 0:
-    >>> fname, mname, lname = "Neeraj", "Singh", "Junior"
-    >>> v = "f : {0}, m: {1}, l: {2}".format(fname, mname, lname)
-    >>> print(v)
-    f : Neeraj, m: Singh, l: Junior
+# Example 0:
+>>> fname, mname, lname = "Neeraj", "Singh", "Junior"
+>>> v = "f : {0}, m: {1}, l: {2}".format(fname, mname, lname)
+>>> print(v)
+f : Neeraj, m: Singh, l: Junior
 
-    >>> v = "f : {2}, m: {1}, l: {0}".format(fname, mname, lname)
-    >>> print(v)
-    f : Junior, m: Singh, l: Neeraj
+>>> v = "f : {2}, m: {1}, l: {0}".format(fname, mname, lname)
+>>> print(v)
+f : Junior, m: Singh, l: Neeraj
 
-    >>> v = "f : {f}, m: {m}, l: {l}".format(fname, mname, lname)
-    Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
-    KeyError: 'f'
+>>> v = "f : {f}, m: {m}, l: {l}".format(fname, mname, lname)
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+KeyError: 'f'
 
-    >>> v = "f : {f}, m: {m}, l: {l}".format(f=fname, m=mname, l=lname)
-    >>> print(v)
-    f : Neeraj, m: Singh, l: Junior
+>>> v = "f : {f}, m: {m}, l: {l}".format(f=fname, m=mname, l=lname)
+>>> print(v)
+f : Neeraj, m: Singh, l: Junior
 
-    # Example 1:
-    >>> var = "{0}, {1}, {2}".format("Neeraj", "Singh", "Junior")
-    >>> print(var)
-    Neeraj, Singh, Junior
+# Example 1:
+>>> var = "{0}, {1}, {2}".format("Neeraj", "Singh", "Junior")
+>>> print(var)
+Neeraj, Singh, Junior
 
-    # Example 2:
-    >>> var = "firstname : {0}, middlename : {1},lastname : {2}".format("Neeraj", "Singh", "Junior")
-    >>> print(var)
-    firstname : Neeraj, middlename : Singh,lastname : Junior
+# Example 2:
+>>> var = "firstname : {0}, middlename : {1},lastname : {2}".format("Neeraj", "Singh", "Junior")
+>>> print(var)
+firstname : Neeraj, middlename : Singh,lastname : Junior
 
-    # Example 3:
-    >>> firstname = "Neeraj"
-    >>> middlename = "Singh"
-    >>> lastname = "Junior"
-    >>> var = "firstname : {0}, middlename : {1}, lastname : {2}".format(firstname, middlename, lastname)
-    >>> print(var)
-    firstname : Neeraj, middlename : Singh, lastname : Junior
+# Example 3:
+>>> firstname = "Neeraj"
+>>> middlename = "Singh"
+>>> lastname = "Junior"
+>>> var = "firstname : {0}, middlename : {1}, lastname : {2}".format(firstname, middlename, lastname)
+>>> print(var)
+firstname : Neeraj, middlename : Singh, lastname : Junior
 
 
 // join() :
@@ -3804,41 +3765,41 @@ The join() method takes all items in an iterable and joins them into one
 string. A string must be specified as the separator.
 
 for eg, 
-    ###--- Example 1:
-    numList = ['1', '2', '3', '4']
-    print(','.join(numList))
-    '1,2,3,4'
+###--- Example 1:
+numList = ['1', '2', '3', '4']
+print(','.join(numList))
+'1,2,3,4'
 
-    ###--- Example 2:
-    >>>''.join(['A', 'B', 'C'])
-    'ABC'
-    >>> ''.join({'A': 0, 'B': 0, 'C': 0}) # note that dicts are unordered
-    'ACB'
-    >>> '-'.join(['A', 'B', 'C'])  # '-' string is the seprator
-    'A-B-C' 
+###--- Example 2:
+>>>''.join(['A', 'B', 'C'])
+'ABC'
+>>> ''.join({'A': 0, 'B': 0, 'C': 0}) # note that dicts are unordered
+'ACB'
+>>> '-'.join(['A', 'B', 'C'])  # '-' string is the seprator
+'A-B-C' 
 
-    ###--- EXAMPLE 3: PRINT DATA IN TABLE FORMAT;
-    headers = ["Name" ,"Age","Phone","City"]
-    data = [
-      ['Tom', '25', '9838572948', 'Kochi'],
-      ['Bob', '29', '8273885932', 'Delhi'],
-      ['Rob', '45', '9273285631', 'Miami'],
-    ]
+###--- EXAMPLE 3: PRINT DATA IN TABLE FORMAT;
+headers = ["Name" ,"Age","Phone","City"]
+data = [
+  ['Tom', '25', '9838572948', 'Kochi'],
+  ['Bob', '29', '8273885932', 'Delhi'],
+  ['Rob', '45', '9273285631', 'Miami'],
+]
 
-    print("-----------------------------------------------------")
-    print("\t|\t".join(headers))
-    print("-----------------------------------------------------")
+print("-----------------------------------------------------")
+print("\t|\t".join(headers))
+print("-----------------------------------------------------")
 
-    for record in data:
-      print("\t|\t".join(record))
+for record in data:
+  print("\t|\t".join(record))
 
-    # Output:
-    -------------------------------------------------------------
-    Name    |   Age |   Phone   |   City
-    -------------------------------------------------------------
-    Tom |   25  |   9838572948  |   Kochi
-    Bob |   29  |   8273885932  |   Delhi
-    Rob |   45  |   9273285631  |   Miami
+# Output:
+-------------------------------------------------------------
+Name    |   Age |   Phone   |   City
+-------------------------------------------------------------
+Tom |   25  |   9838572948  |   Kochi
+Bob |   29  |   8273885932  |   Delhi
+Rob |   45  |   9273285631  |   Miami
 
 
 -------------------------------------------------------------------------------------
@@ -4068,8 +4029,6 @@ switch = {
 	1: lambda: 1*10,
 	2: lambda: 2*20,
 	3: lambda: 3*30,
-	
-	
 }
 
 
@@ -4399,6 +4358,46 @@ print(data)     # defaultdict(<class 'int'>, {1: 2, 2: 2, 3: 4, 4: 3, 5: 1, 6: 1
 
 
 -------------------------------------------------------------------------------------
+
+-> Q029 : GropuBy in Itertools;;
+
+Refer Example: Basic-Py/P050_Iterator_GroupBy.py
+
+Python’s Itertool is a module that provides various functions that work on
+iterators to produce complex iterators. This module works as a fast,
+memory-efficient tool that is used either by themselves or in combination
+to form iterator algebra.
+
+For eg,
+
+records = [
+    ['5000', '1234567890'],
+    ['5000', '1234567890'],
+    ['6000', '1234567890'],
+    ['6000', '1234567890'],
+    ['8000', '1234567890'],
+]
+
+print("Example 1...")
+for key, group in groupby(records):
+    print(key,':', list(group))
+
+# Example 1...
+# ['5000', '1234567890'] : [['5000', '1234567890'], ['5000', '1234567890']]
+# ['6000', '1234567890'] : [['6000', '1234567890'], ['6000', '1234567890']]
+# ['8000', '1234567890'] : [['8000', '1234567890']]
+
+print("Example 2...")
+for key, group in groupby(records, lambda x: x[0]):
+    print(key,':', list(group))
+
+# Example 2...
+# 5000 : [['5000', '1234567890'], ['5000', '1234567890']]
+# 6000 : [['6000', '1234567890'], ['6000', '1234567890']]
+# 8000 : [['8000', '1234567890']]
+
+
+-------------------------------------------------------------------------------------
 -> Q028: Builtins Error and Exception;;
 
 Built in modules contains extra functionalities.For example to get square root
@@ -4547,15 +4546,6 @@ Deep copy creates an independent and new copy of an object and even copies all
 the nested objects of the original element recursively.
 
 
--------------------------------------------------------------------------------------
--> Q022: Global Interpreter Lock;;
-
-Yes, there are tools like PyChecker and Pylint which are used as static
-analysis and linting tools respectively. PyChecker helps find bugs in python
-source code files and raises alerts for code issues and their complexity.
-Pylint checks for the module’s coding standards and supports different
-plugins to enable custom features to meet this requirement.
-
 
 -------------------------------------------------------------------------------------
 -> Q022: Global Interpreter Lock;;
@@ -4566,13 +4556,18 @@ avoiding deadlocks. GIL helps in achieving multitasking (and not parallel
 computing). The following diagram represents how GIL works.
 
 
-Based on the above diagram, there are three threads. First Thread acquires the
-GIL first and starts the I/O execution. When the I/O operations are done,
-thread 1 releases the acquired GIL which is then taken up by the second
-thread. The process repeats and the GIL are used by different threads
-alternatively until the threads have completed their execution. The threads
-not having the GIL lock goes into the waiting state and resumes execution
-only when it acquires the lock.
+Thread Work Synchronization, Suppose there are 3 threads, so their execution
+should be like this, 
+
+First Thread: First Thread acquires the GIL first and starts the I/O execution. When the
+I/O operations are done, thread 1 releases the acquired GIL Lock.
+
+Second Thread: After Thread 1 release GIL Lock, which is then taken up by the
+second thread. The process repeats and the GIL are used by different threads
+alternatively until the threads have completed their execution. 
+
+The threads not having the GIL lock goes into the waiting state and resumes
+execution only when it acquires the lock.
 
 
 -------------------------------------------------------------------------------------
