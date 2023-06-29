@@ -5,7 +5,7 @@
 -> Problem Status: Completed
 -> Problem Attempted: 02/02/2023
 -> Problem Description:
--> Problem Link: https://www.codingninjas.com/codestudio/guided-paths/data-structures-algorithms/content/118820/offering/1381873
+-> Problem Link: https://www.codingninjas.com/studio/guided-paths/data-structures-algorithms/content/118820/offering/1381873
 -------------------------------------------------------------------------------------
 '''
 

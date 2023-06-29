@@ -6,8 +6,7 @@
 -> Problem Description: 
 -------------------------------------------------------------------------------------
 
-https://www.codingninjas.com/codestudio/guided-paths/data-structures-algorithms/content/118820/offering/1381879?leftPanelTab=0
-
+https://www.codingninjas.com/studio/guided-paths/data-structures-algorithms/content/118820/offering/1381879
 # DEGENERATE TRIANGLE CONCETPS :-
 
 Non-degenerate triangle − it is a triangle that has a positive area. The

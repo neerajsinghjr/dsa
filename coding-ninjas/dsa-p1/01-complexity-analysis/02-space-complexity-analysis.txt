@@ -18,7 +18,7 @@
 
 
 -------------------------------------------------------------------------------------
--> Q004 : Ctrade-off between Time and Space Complexity;;
+-> Q004 : Trade-off between Time and Space Complexity;;
 
 -> The best algorithm to solve a particular problem is no doubt the one that
    requires less memory space and takes less time to execute. However,
