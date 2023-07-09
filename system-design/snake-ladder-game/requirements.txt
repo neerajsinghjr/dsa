@@ -1,0 +1,9 @@
+# Requirements
+1. Multiplayer Game
+2. Customizable board in terms of Snake and ladder placements and the size of game board.
+3. Customizable in terms of number of dice
+4. When Game Board loads then it should...
+    a) Loads configured boards size
+    b) Load snake and ladders
+    c) Loads the number of dice.
+    d) Loads the no of player who is playing and all player should be starting position.
