@@ -1,0 +1,41 @@
+# System Design Requirements 
+1) Elevator should move up and down
+2) Internal Button and Exteranl Button to control the car, like 
+	a) One button should inside the elevator car to reach particular floor.
+	b) One button is outside the elevator car to call the elevator.
+
+3) Dispatcher Unit that will control the flow of elevator  for going up and
+down.
+4) For larger scale, 100th floor building and there are 20 elevator. So Every
+Elevator covering up 100th floor is waste of time and resource.
+
+To overcome such things, we can divide the zone like elevator 1 -> 20 will be
+covered by zone_1 and 21 -> 40 will be covered by zone_2 and so on.
+
+5) There should be open/close gate functinality of car (elevator)
+6) Limitation of car - like overweight of the car or number of person inside
+the car.
+
+
+
+# Identify The class Architecture :-
+
+-> Enum Direction :— This enum will have two values UP and DOWN.
+
+-> Class ExternalRequest :— The request made by the person from the floor when
+   he requests for the elevator by pressing either the UP or the DOWN button.
+   It will have the fields enum Direction and integer sourceFloor.
+
+-> Class InternalRequest :— The Request made by person when he enters the
+   elevator. The person presses the floor number to which he wants to go.
+   This will be the integer destinationFloor.
+
+-> Class Request :— This class will be the encapsulation for the
+   ExternalRequest and InternalRequest. We will be passing this Request to
+   the elevator to be processed. So this class will be having two fields —
+   ExternalRequest and InternalRequest.
+
+-> Enum State :— This enum will have three values MOVING, STOPPED and IDLE.
+
+-> Elevator :— This class will represent the Elevator. It will have the fields
+   currentFloor, currentState and currentDirection.

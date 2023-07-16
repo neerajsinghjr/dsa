@@ -8,6 +8,7 @@ from src.player import Player
 from src.playground import Playground
 from collections import deque
 
+
 if __name__ == '__main__':
 	# Player init
 	player1 = Player(1, 'Devil')
@@ -20,9 +21,9 @@ if __name__ == '__main__':
 	snake3 = Jumper(40, 10)
 	snakes = deque([snake1, snake2, snake3])
 	# Ladder init
-	ladder1 = Jumper(40, 10)
-	ladder2 = Jumper(60, 40)
-	ladder3 = Jumper(55, 30)
+	ladder1 = Jumper(10, 40)
+	ladder2 = Jumper(26, 60)
+	ladder3 = Jumper(30, 80)
 	ladders = deque([ladder1, ladder2, ladder3])
 	# Dice init
 	dice = Dice(2)

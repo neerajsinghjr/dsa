@@ -7,8 +7,8 @@
 -> Updated: 17.01.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
--> Q079 : Python Multithreading;;
-
+-> Q079 : Enum in Python;;
+-> Q078 : Python Multithreading;;
 -> Q077 : Python Crontab Job function;;
 -> Q076 : Python Celery function;;
 -> Q075 : Python rsplit function;;
@@ -92,7 +92,68 @@
 ###---PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q079 : Python Multithreading;;
+-> Q079 : Enum in Python;;
+
+Enumerations in Python are implemented by using the module named “enum“.
+
+Enumerations are created using classes. Enums have names and values associated
+with them.
+
+Properties of enum:
+1) Enums can be displayed as string or repr. 
+2) Enums can be checked for their types using type(). 
+3) The “name” keyword is used to display the name of the enum member.
+
+for eg,
+from enum import Enum
+
+class Season(Enum):
+   spring = 1
+   winter = 2
+   autumn = 3
+   summer_x = 4
+   summer_y = 4
+
+print("key:", Season.spring)  # key: Season.spring
+print("key: ", Season['summer_x'])  # key:  Season.summer_x
+print("value: ", Season['summer_y'].value)   # value:  4
+print("type: ", type(Season.spring))   # type:  <enum 'Season'>
+print("repr: ", repr(Season.spring))   # repr:  <Season.spring: 1>
+
+season_list = list(Season)
+print("list in season: ", season_list) 
+# OUTPUT: 
+list in season:  [
+   <Season.spring: 1>, 
+   <Season.winter: 2>, 
+   <Season.autumn: 3>, 
+   <Season.summer_x: 4>
+]
+
+print("Season Obj: ", Season) # Season Obj:  <enum 'Season'>
+
+print("access key based on values : ", Season(4).name)
+# OUTPUT: 
+access key based on values :  summer_x
+
+print("list in Season : ", (Season))
+# OUTPUT:
+list in Season :  <enum 'Season'>
+
+# Looping Season Values;;
+for season in Season:
+   print(season.name, "<->", season.value)
+
+# Output
+spring <-> 1
+winter <-> 2
+autumn <-> 3
+summer_x <-> 4
+
+
+
+-------------------------------------------------------------------------------------
+-> Q078 : Python Multithreading;;
 
 ###--- Multithreading in Python 
 
