@@ -7,6 +7,7 @@
 -> Updated: 17.01.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q080 : SortedContainers in Python
 -> Q079 : Enum in Python;;
 -> Q078 : Python Multithreading;;
 -> Q077 : Python Crontab Job function;;
@@ -92,6 +93,147 @@
 ###---PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
+-> Q080 : SortedContainers in Python
+
+Sorted Containers is an Apache2 licensed sorted collections library, written
+in pure-Python, and fast as C-extensions.
+
+-> Installation:
+$ pip install sortedcontainers
+
+-> Features:
+1) Pure-Python
+2) Fully documented
+3) Benchmark comparison (alternatives, runtimes, load-factors
+4) Performance (often faster than C implementations)
+5) Compatible API (nearly identical to popular blist and rbtree modules)
+6) Feature-rich (e.g. get the five largest keys in a sorted dict: d.iloc[-5:])
+7) Pragmatic design (e.g. SortedSet is a Python set with a SortedList index)
+
+-> Types Of Containers
+1) SortedList : It is used to add list in sorted containers.
+2) SortedDict : It is used to add dict in sorted containers.
+3) SortedSet : It is used to add set in sorted containers.
+
+###--- SortedList :-
+
+-> Methods : add(), discard(), update(), clear()
+
+-> Description :
+
+1) add(value) : A function that takes one element as parameter and inserts it
+into the list by maintaining sorted order. 
+- Runtime Complexity: O(log(n))
+
+2) discard(value) : Remove value from sorted list if it is a member. If value
+is not a member, do nothing. 
+- Runtime complexity: O(log(n)).
+
+3) update(value) : A function that takes an iterable as input and updates the
+SortedList adding all the values from the iterable.
+- Runtime complexity: O(k*log(n)).
+
+4) clear() : Remove all values from sorted list. 
+- Runtime complexity: O(n).
+
+For eg, 
+            
+from sortedcontainers import SortedList, SortedDict, SortedSet
+
+sl = SortedList()                                                                                
+
+# Add methods;;
+sl.add(110)                                                                                      
+sl.add(10)                                                                                       
+sl.add(1)                                                                                        
+print(sl) # 1,10, 110
+
+# Update Methods
+s2 = SortedList()
+s2.update(sl)
+
+# OUTPUT : 
+Traceback Error, because
+you can't add sortedlist directly to any already sortedcontainer.
+
+Error: TypeError: '<' not supported between instances of 'list' and 'int'
+
+# Update without error
+element = [10,100, 80, 90]
+s3 = SortedList()
+s3.update(element)
+
+# Output: It will work;;
+                                                                                                      
+                                                                                                      
+###--- SortedSet :-
+
+-> Methods : add(value), discard(value), clear()
+
+-> Description :
+
+1) add(value) : A function that takes one element as parameter and inserts it
+into the set by maintaining sorted order. 
+- Runtime Complexity: O(log(n))
+
+2) discard(value): Remove value from sorted set if it is a member. If value is
+not a member, do nothing. 
+- Runtime complexity: O(log(n))
+
+3) clear(): Remove all values from sorted set. 
+- Runtime complexity: O(n)
+
+for eg, 
+sorted_set = SortedSet([1, 1, 2, 3, 4])
+for i in range(5, 0, -1):
+    sorted_set.add(i)
+  
+print(sorted_set)
+# Output: SortedSet([1, 2, 3, 4, 5]
+
+###--- SortedDict :-
+
+-> Sorted dict is a sorted mutable mapping in which keys are maintained in
+   sorted order.
+
+-> Sorted dict inherits from dict to store items and maintains a sorted list
+   of keys. 
+
+-> Sorted dict keys must be hashable and comparable.
+
+-> Description :
+
+1) setdefault(key, default = None) : Return value for item identified by key
+in sorted dict. If key is in the sorted dict then return its value. If key is
+not in the sorted dict then insert key with value default and return
+default. 
+- Runtime Complexity: O(log(n))
+
+2) clear(): Remove all values from sorted dict. 
+- Runtime complexity: O(n)
+
+3) get(key, default): Return the value for key if key is in the dictionary, else default.
+- Runtime Complexity: O(1)
+
+-> for eg,
+from sortedcontainers import SortedDict 
+
+sd = SortedDict()                                                                            
+sd['d'] = 3                                                                                  
+sd['a'] = 2                                                                                  sd['c'] = 1000
+print(sd)
+
+# Output: SortedDict({'a':2, 'c':1000, 'd':3})
+
+sd.setdefault('c', 20)
+# Output: SortedDict({'a':2, 'c':20, 'd':3})
+
+sd.get('c')
+# Output: 20
+
+
+
+-------------------------------------------------------------------------------------
 -> Q079 : Enum in Python;;
 
 Enumerations in Python are implemented by using the module named “enum“.
@@ -149,7 +291,6 @@ spring <-> 1
 winter <-> 2
 autumn <-> 3
 summer_x <-> 4
-
 
 
 -------------------------------------------------------------------------------------
