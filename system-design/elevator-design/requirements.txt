@@ -1,3 +1,6 @@
+# Referenced Elevator System Design Diagram
+https://medium.com/geekculture/system-design-elevator-system-design-interview-question-6e8d03ce1b44
+
 # System Design Requirements 
 1) Elevator should move up and down
 2) Internal Button and Exteranl Button to control the car, like 

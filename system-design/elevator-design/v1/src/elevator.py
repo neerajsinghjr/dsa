@@ -34,6 +34,9 @@ class Elevator:
 						self.add_pending_down_jobs_to_current_jobs()
 				
 				# TODO : Add DOWN Logic later;
+			else:
+				print("Info: No Jobs Found, Elevator Switching to Ideal State...")
+				break
 	
 
 	def check_if_job_exist(self):
