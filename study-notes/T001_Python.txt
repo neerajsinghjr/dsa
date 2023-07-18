@@ -16,7 +16,7 @@
 -> Q074 : Python Unittest Mock Library;
 -> Q073 : Pytohn urllib method urljoin();;
 -> Q072 : Python class inherits from objects;;
-*** -> Q071 : Cython Package feature and usage;;
+-> Q071 : Multitreading Vs Multiprocessing
 -> Q070 : Different usage when add list to set or set to set;;
 -> Q069 : Time Delta (timedelta) in python;;
 -> Q068 : Relative Delta (relativedelta)in Python;;
@@ -230,7 +230,6 @@ sd.setdefault('c', 20)
 
 sd.get('c')
 # Output: 20
-
 
 
 -------------------------------------------------------------------------------------
@@ -741,10 +740,37 @@ One of the downsides of new-style classes is that the class itself is more
 memory demanding. Unless you're creating many class objects, though, I doubt
 this would be an issue and it's a negative sinking in a sea of positives.
 
+
 -------------------------------------------------------------------------------------
-*** -> Q071 : Cython Package feature and usage;;
+-> Q071 : Multitreading Vs Multiprocessing
 
+#--- Multithreading:-
 
+-> Multithreading is when lot of threads of a single process is working
+   simultaneously.
+
+-> Multiple thread shares the same memory address and heap memory.
+
+-> Multiple thread do have their own code and task and their different stack
+   memory
+
+-> Multiple thread can access global variable simultaneously and that can
+   cause a conflict. Becuase any thread can access it and change the value
+   which may cause inaccurate result.
+
+-> Threads are light weight.
+
+#--- Multiprocessing:-
+
+-> Multiprocessing is when multile process are executing simultaneously.
+
+-> Multiprocess have different memory address but they can communicate with
+   other process using the File, Shared Memory, Message Pipe.
+
+-> Process are heavy weighted
+
+-> Running Multiprocess is good because one process error doesnt induce error
+   flow in another process.
 
 
 -------------------------------------------------------------------------------------
