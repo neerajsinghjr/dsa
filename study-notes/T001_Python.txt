@@ -7,23 +7,24 @@
 -> Updated: 17.01.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
--> Q080 : SortedContainers in Python
+-> Q081 : Multiprocessing Lock And Pool;;
+-> Q080 : SortedContainers in Python;;
 -> Q079 : Enum in Python;;
 -> Q078 : Python Multithreading;;
 -> Q077 : Python Crontab Job function;;
 -> Q076 : Python Celery function;;
 -> Q075 : Python rsplit function;;
--> Q074 : Python Unittest Mock Library;
--> Q073 : Pytohn urllib method urljoin();;
+-> Q074 : Python Unittest Mock Library;;
+-> Q073 : Python urllib method urljoin();;
 -> Q072 : Python class inherits from objects;;
--> Q071 : Multitreading Vs Multiprocessing
+-> Q071 : Multitreading Vs Multiprocessing;;
 -> Q070 : Different usage when add list to set or set to set;;
 -> Q069 : Time Delta (timedelta) in python;;
 -> Q068 : Relative Delta (relativedelta)in Python;;
 -> Q067 : Sort and Reverse Dictionary by value;;
--> Q066 : Iterators Workflow in Python
--> Q065 : Bitwise Operators;
--> Q064 : Magic Method __call__ in Python;
+-> Q066 : Iterators Workflow in Python;;
+-> Q065 : Bitwise Operators;;
+-> Q064 : Magic Method __call__ in Python;;
 -> Q063 : Class Decorator in Python;;
 -> Q062 : Generators Workflow in Python;;
 -> Q061 : First Class Function in Python;;
@@ -35,7 +36,7 @@
 -> Q055 : Deque in collection module;;
 -> Q054 : Name Tuples (namedtuple) in collections module;;
 -> Q053 : Ordered Dictionary;;
--> Q052 : Difference list vs [];
+-> Q052 : Difference list vs [];;
 -> Q051 : Collection Module;;
 -> Q050 : Exception Handling;;
 -> Q049 : List or Variable Destructuring;;
@@ -91,6 +92,50 @@
 '''
 
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q081 : Multiprocessing Lock And Pool
+
+#--- Multiprocessing Pool
+
+-> Multiprocesing Pool object which offers a convenient means of parallelizing
+   the execution of a function across multiple input values, distributing the
+   input data across processes(data parallelism). 
+
+-> for eg, (ref P056 file)
+
+from multiprocessing import Pool
+from time import time
+
+def func(x):
+   sum = 0
+   for x in range(1000):
+      sum += x
+   return sum
+
+if __name__ == "__main__":
+   p1 = Pool()
+   result = p1.map(func, range(lc))
+
+#--- Multiprocessing Lock
+
+-> The most commonly used mechanism for ensuring mutual exclusion is a mutual
+   exclusion lock or mutex, or simply lock. A mutex is a special type of
+   object that has support in the underlying hardware. The basic idea is that
+   each critical section is protected by a lock.
+
+-> for eg, (refer basic-py -> P055 file)
+
+// Basic Snippet
+...
+# create a lock
+lock = multiprocessing.Lock()
+# acquire the lock
+lock.acquire()
+# ...
+# release the lock
+lock.release()
+
 
 -------------------------------------------------------------------------------------
 -> Q080 : SortedContainers in Python
@@ -743,6 +788,9 @@ this would be an issue and it's a negative sinking in a sea of positives.
 
 -------------------------------------------------------------------------------------
 -> Q071 : Multitreading Vs Multiprocessing
+
+NOTE : Here address memory is referred to those memory where a program store
+variable, argument, control statement etc.
 
 #--- Multithreading:-
 
