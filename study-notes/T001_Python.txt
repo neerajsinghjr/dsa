@@ -4,9 +4,10 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03.09.2022
--> Updated: 17.01.2023
+-> Updated: 23.07.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q082 : UDP Socket Programming in Pthon
 -> Q081 : Multiprocessing Lock And Pool;;
 -> Q080 : SortedContainers in Python;;
 -> Q079 : Enum in Python;;
@@ -92,6 +93,120 @@
 '''
 
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q082 : UDP Socket Programming in Pthon
+
+#--- USER DATAGRAM PROTOCOL:
+-> UDP is the abbreviation of User Datagram Protocol. UDP makes use of
+   Internet Protocol of the TCP/IP suit. In communications using UDP, a
+   client program sends a message packet to a destination server wherein the
+   destination server also runs on UDP.
+
+#--- Properties of UDP:
+-> The UDP does not provide guaranteed delivery of message packets. If for
+   some issue in a network if a packet is lost it could be lost forever.
+-> Since there is no guarantee of assured delivery of messages, UDP is
+   considered an unreliable protocol.
+-> The underlying mechanisms that implement UDP involve no connection-based
+   communication. There is no streaming of data between a UDP server or and
+   an UDP Client.
+-> An UDP client can send "n" number of distinct packets to an UDP server and
+   it could also receive "n" number of distinct packets as replies from the
+   UDP server.
+-> Since UDP is connectionless protocol the overhead involved in UDP is less
+   compared to a connection based protocol like TCP.
+
+#--- For eg,
+
+#--------------------- CLIENT.py --------------------#
+
+import socket
+
+
+def run_udp_server():
+    # udp client constants;;
+    local_ip = '127.0.0.1'
+    local_port = 2001
+    buffer_size = 1024
+    server_ip = ("127.0.0.1", 2002)
+
+    # create udp socket;;
+    udp_client_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+    # bind address with ip;;
+    udp_client_socket.bind((local_ip, local_port))
+
+    print("UDP Client is running ....")
+
+    # listen to the port;;
+    while(True):
+        # convert ascii text to byte datagram;;
+        message = input("Client Saying : ")
+        enc_message = str.encode(message)
+
+        # client will send message;;
+        udp_client_socket.sendto(enc_message, server_ip)
+
+        # message received;;
+        raw_message = udp_client_socket.recvfrom(buffer_size)
+        message  = raw_message[0]
+        print(f"Server reply: ", message.decode())
+
+        # terminate operation;;
+        flag = input("Continue (Y or N): ")
+
+        # terminate proce
+        if flag.lower() == ['y', 'yes', 'n', 'no']:
+            print("Server Terminated by client !")
+            break
+
+
+if __name__ == "__main__":
+    print("Starting UDP Server...")
+    run_udp_server()
+    print("Terminating UDP Server...")
+
+
+#--------------------- SERVER.py --------------------#
+
+import socket
+
+
+def run_udp_server():
+    # udp client constants;;
+    local_ip = '127.0.0.1'
+    local_port = 2002
+    buffer_size = 1024
+
+    # create udp socket;;
+    udp_server_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+    # bind address with ip;;
+    udp_server_socket.bind((local_ip, local_port))
+
+    print("UDP Server is running ....")
+
+    # listen to the port;;
+    while(True):
+        # message received;;
+        raw_message = udp_server_socket.recvfrom(buffer_size)
+        message, client_ip = raw_message
+        print(f"Client saying: ", message.decode())
+
+        # convert ascii to byte datagram;;
+        message = input("Server Reply: ")
+        enc_message = str.encode(message)
+
+        # client will send message;;
+        udp_server_socket.sendto(enc_message, client_ip)
+
+
+if __name__ == "__main__":
+    print("Starting UDP Server...")
+    run_udp_server()
+    print("Terminating UDP Server...")
+
 
 -------------------------------------------------------------------------------------
 -> Q081 : Multiprocessing Lock And Pool
@@ -5143,10 +5258,17 @@ Python has another, more primitive, serialization module called marshall,
 which exists primarily to support .pyc files in Python and differs
 significantly from the pickle.
 
+-------------------------------------------------------------------------------------
+-> Q015: Class Composition Vs Class Inheritance;;
+
+(Refer: https://realpython.com/inheritance-composition-python)
+
+
 
 -------------------------------------------------------------------------------------
 -> Q014: Class Composition in python;;
 
+(Refer: https://realpython.com/inheritance-composition-python)
 
 
 
