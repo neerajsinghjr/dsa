@@ -1,0 +1,10 @@
+# Requirements
+1) Multiple floor parking are there for parking.
+2) Addition and removal of floor 
+2) ParkingSlot are of different types
+    - large vehicles (bus)
+    - hatchback (small back vehicle)
+    - suv (large size vehicles)
+    - compact vehicles (nano)
+    - small vehicles (bike, scooty)
+3) Ticket Creation if parking is available.
