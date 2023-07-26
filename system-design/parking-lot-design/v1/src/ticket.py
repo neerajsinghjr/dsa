@@ -9,7 +9,7 @@ class Ticket:
         self.vehicle = vehicle
         self.parking_slot = parking_slot
 
-    
+
     def create_ticket(self, vehicle):
         return f"{vehicle.id}-{round(time())}"
     
@@ -17,8 +17,3 @@ class Ticket:
     def generate_bill(self, end_time=''):
         duration = round(time()) - self.start_time
         return VehicleFees.self.parking_lot()
-
-
-    
-               
-

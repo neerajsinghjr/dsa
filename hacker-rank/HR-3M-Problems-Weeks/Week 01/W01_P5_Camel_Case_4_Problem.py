@@ -20,7 +20,7 @@ with lowercase letters that you need to combine into the appropriate camel case 
 Methods should end with an empty set of parentheses to differentiate them from variable names.
 
 Sample Input
-    S;M;plasticCup()
+    S;M;plasticCup()    
     C;V;mobile phone
     C;C;coffee machine
     S;C;LargeSoftwareBook
