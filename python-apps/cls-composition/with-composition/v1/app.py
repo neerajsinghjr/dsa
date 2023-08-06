@@ -7,7 +7,6 @@ from salary_calculator import SalaryCalculator
 if __name__ == "__main__":
     e1 = e.Manager(1001, "Abhishek", 100000)
     e1.address = Address("12 Block", "North Delhi", "Delhi", "110099")
-    print(">>>>>>>>>> e1 address : ", e1.name, e1.address)
     e2 = e.SalesEmployee(1002, "Manoj", 40000, 4000)
     e2.address = Address("20 Block", "East Delhi", "Delhi", "110099")
     e3 = e.Secretary(1003, "Shreya", 50000)
