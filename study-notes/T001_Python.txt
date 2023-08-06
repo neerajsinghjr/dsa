@@ -5296,6 +5296,9 @@ properties of the program."
    that a class Composite can contain an object of another class Component.
    This relationship means that a Composite has a Component.
 
+-> Class composition directly inject the class depency into the composite
+   class. so because of this style class composition have loose coupling.
+
 -> UML representation of the following, 
 
       |Composite Class| (1)----------------->  |Component Class|
