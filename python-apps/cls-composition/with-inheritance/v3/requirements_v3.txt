@@ -1,0 +1,5 @@
+# Constraint 3 (refer source code v3)
+Usages of Multiple Inheritance
+-> Add new employee TemporarySecretary Who work roles as General
+Secretary(refer v2) but the wages will be calculated based on
+hourly basis.

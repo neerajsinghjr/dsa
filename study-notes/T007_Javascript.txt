@@ -4,7 +4,7 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 12/02/2023
--> Updated : 22/02/2023
+-> Updated : 02/08/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> Q006 : Array - Javascript

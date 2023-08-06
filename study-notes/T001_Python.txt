@@ -4,9 +4,10 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03.09.2022
--> Updated: 23.07.2023
+-> Updated: 06.08.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q083 : Method Resolution Order in Python;;
 -> Q082 : UDP Socket Programming in Pthon
 -> Q081 : Multiprocessing Lock And Pool;;
 -> Q080 : SortedContainers in Python;;
@@ -75,7 +76,7 @@
 -> Q017 : Access Parent Class using Child class;;
 -> Q016 : Python Pickling vs UnPickling;;
 -> Q015 : Class Compositon Vs Inheritance;;
-*** Q014 : Class Composition in Python;;
+***Q014: Duck Typing in Python;;
 -> Q013 : @classmethod() vs @staticmethod();;
 -> Q012 : Magic Method __str__() vs __repr__();;
 -> Q011 : Set Variable LowerBound and UpperBound;;
@@ -5263,12 +5264,56 @@ significantly from the pickle.
 
 (Refer: https://realpython.com/inheritance-composition-python)
 
+//--- Inheritance:
+
+-> Inheritance models what is called an 'is a' relationship. This means that
+   when you have a Derived class that inherits from a Base class, you created
+   a relationship where Derived is a specialized version of Base.
+
+-> Inheritance is represented using the Unified Modeling Language or UML in
+   the following way:
+
+      |Base Class| <---- Extends ---- |Derived Class|
+
+-> Liskov Substitution Principle: 
+
+Suppose, you have base class of type Animal and there is a class Horse derived
+from it. So you can say that Horse is a type of Animal. 
+
+Horse inherits interface and implementation of class Animal and Horse class
+object can be used to replace the Animal Class object from the code.
+
+This is known as Liskov Substitution Principle. The Principle states that 
+"in a computer program, If S is a subtype of T, then objects of type T may be
+replaced with object of type S without altering any of the desired
+properties of the program."
+
+
+//--- Class Composition:
+
+-> Composition model what is called an 'has a' relationship. It enables
+   creating complex types by combining objects of other types. This means
+   that a class Composite can contain an object of another class Component.
+   This relationship means that a Composite has a Component.
+
+-> UML representation of the following, 
+
+      |Composite Class| (1)----------------->  |Component Class|
+
+Here, 
+-> A number represent number of the component class. In our case it is 1,
+   which means the composite class have components.
+-> The * Symbols indicates that the composite class can contains a variable
+   number of component services.
+-> A range 1..4 indicates that the composite class can contain a range of
+   component instance. The range is indicated with the minimum and maximum
+   number of numbers of instances. for eg, if there is minimum instance is of
+   1 and maximum doesnt have any limit than it can be show with *, 1..*
 
 
 -------------------------------------------------------------------------------------
--> Q014: Class Composition in python;;
+-> Q014: Duck Typing in Python;;
 
-(Refer: https://realpython.com/inheritance-composition-python)
 
 
 

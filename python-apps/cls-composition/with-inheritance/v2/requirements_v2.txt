@@ -1,0 +1,13 @@
+# Constraints 2 (refer source code to v2):-
+Now Suppose, you want to add productivity system based on employee role
+Like
+-> Managers : They do yelling but earn the most.
+-> Secretary: They handle the paperwork.,
+-> Sales Employees: They get commissioned over fixed salary
+-> Factory Workers: They work on the hourly basis.
+
+# Countermeasure
+1) We are segregating the employee from the HR module and making it
+employees modules
+
+2) We are making a productivity system to track the work hours of

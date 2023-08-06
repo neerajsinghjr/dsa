@@ -1,0 +1,23 @@
+# Requirements
+
+# Objective: 
+Create HR system which needs to process the payroll for the company's
+employees.
+
+# Constraints 1 (refer source code v1):-
+There are different types of employees depending on how their
+payroll is calculated
+
+# Constraints 2 (refer source code v2):-
+Now Suppose, you want to add productivity system based on employee role
+Like
+-> Managers : They do yelling but earn the most.
+-> Secretary: They handle the paperwork.,
+-> Sales Employees: They get commissioned over fixed salary
+-> Factory Workers: They work on the hourly basis.
+
+# Constraint 3 (refer source code v3)
+Usages of Multiple Inheritance
+-> Add new employee TemporarySecretary Who work roles as General
+Secretary(refer v2) but the wages will be calculated based on
+hourly basis.
