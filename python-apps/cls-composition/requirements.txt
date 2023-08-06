@@ -1,9 +1,12 @@
-# Requirements
-
-# Objective: 
+----------------------------------------------------------------------
+# Objective:
+----------------------------------------------------------------------
 Create HR system which needs to process the payroll for the company's
 employees.
 
+----------------------------------------------------------------------
+# Requirements for with-inheritance:-
+----------------------------------------------------------------------
 # Constraints 1 (refer source code v1):-
 There are different types of employees depending on how their
 payroll is calculated
@@ -21,3 +24,10 @@ Usages of Multiple Inheritance
 -> Add new employee TemporarySecretary Who work roles as General
 Secretary(refer v2) but the wages will be calculated based on
 hourly basis.
+
+----------------------------------------------------------------------
+# Requirements for with-composition:-
+----------------------------------------------------------------------
+# Constraints 1
+Create a new address class of every employee to hold the details
+employee profile.

@@ -7,7 +7,7 @@
 -> Updated: 06.08.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
--> Q083 : Method Resolution Order in Python;;
+*** Q083 : Method Resolution Order in Python;;
 -> Q082 : UDP Socket Programming in Pthon
 -> Q081 : Multiprocessing Lock And Pool;;
 -> Q080 : SortedContainers in Python;;
