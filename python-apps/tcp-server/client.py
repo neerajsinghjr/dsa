@@ -7,6 +7,7 @@ https://realpython.com/python-sockets/
 #---------------------------------#
 SOCKET_AF_INET FAMILY
 #---------------------------------#
+
 AF_INET is an address family that is used to designate the type of addresses
 that your socket can communicate with (in this case, Internet Protocol v4
 addresses). When you create a socket, you have to specify its address family,
@@ -57,33 +58,33 @@ def run_tcp_server():
     server_ip = ("127.0.0.1", 2002)
 
     # create udp socket;;
-    tcp_server_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+    tcp_client_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
         
     # bind address with ip;;
-    # tcp_server_socket.bind((local_ip, local_port))
+    tcp_client_socket.bind((local_ip, local_port))
     
-    tcp_server_socket.connect(server_ip)
+    tcp_client_socket.connect(server_ip)
 
     print("TCP Client is running ....")
 
     # listen to the port;;
-    while(True):
+    while True:
         # convert ascii text to byte datagram;;
         message = input("Client Saying : ")
         enc_message = str.encode(message)
 
         # client will send message;;
-        tcp_server_socket.sendto(enc_message, server_ip)
+        tcp_client_socket.sendto(enc_message, server_ip)
 
         # message received;;
-        raw_message = tcp_server_socket.recvfrom(buffer_size)
-        message  = raw_message[0]
+        raw_message = tcp_client_socket.recvfrom(buffer_size)
+        message = raw_message[0]
         print(f"Server reply: ", message.decode())
 
         # terminate operation;;
         flag = input("Continue (Y or N): ")
 
-        # terminate proce
+        # terminate process;;
         if flag.lower() == ['y', 'yes', 'n', 'no']:
             print("Server Terminated by client !")
             break
