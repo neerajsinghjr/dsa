@@ -7,7 +7,7 @@
 -> Updated: 06.08.2023
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
-*** Q083 : Method Resolution Order in Python;;
+-> Q083 : Method Resolution Order in Python;;
 -> Q082 : UDP Socket Programming in Pthon
 -> Q081 : Multiprocessing Lock And Pool;;
 -> Q080 : SortedContainers in Python;;
@@ -76,7 +76,7 @@
 -> Q017 : Access Parent Class using Child class;;
 -> Q016 : Python Pickling vs UnPickling;;
 -> Q015 : Class Compositon Vs Inheritance;;
-***Q014: Duck Typing in Python;;
+-> Q014 : Duck Typing in Python;;
 -> Q013 : @classmethod() vs @staticmethod();;
 -> Q012 : Magic Method __str__() vs __repr__();;
 -> Q011 : Set Variable LowerBound and UpperBound;;
@@ -94,6 +94,80 @@
 '''
 
 ###---PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q083 : Method Resolution Order in Python;;
+
+(refer source code: python-apps/cls-composiiton/with-inheritance/v3)
+
+Method Resolution Order(MRO) signifies the way in which a programming language
+resolves a method or attribute. 
+
+Python Support Multiple Inheritance in which a single child class can derive
+from mulitple parent class. 
+ 
+MRO or Method Resolution Rrder defines the order in which the base classes are
+searched when executing a method. 
+
+First, the method or attribute is searched within a class and then it follows
+the order we specified while inheriting. This order is also called
+Linearization of a class and set of rules are called MRO(Method Resolution
+Order). 
+
+While inheriting from another class, the interpreter needs a way to resolve
+the methods that are being called via an instance. Thus we need the method
+resolution order. For Example 
+
+
+Python Syntax:
+   TemporarySecretary.__mro__
+
+
+for eg,
+
+class Employee:
+    def __init__(self, eid, name):
+        self.id = eid
+        self.name = name
+
+class SalaryEmployee(Employee):
+    def __init__(self,  eid, name, salary):
+        super().__init__(eid, name)
+        self.salary = salary
+
+    def calculate_payroll(self):
+        return self.salary
+
+
+class Secretary(SalaryEmployee):
+    def work(self, hours):
+        print(f"Secretary: {self.name}, handled billing for {hours} hours")
+
+
+
+class TemporarySecretary(Secretary):
+    """
+    final resolution:- MRO Method Resolution Order
+    MRO for class TemporarySecretary(Secretary):
+        <class 'TemporarySecretary'>,
+        <class 'Secretary'>,
+        <class 'SalaryEmployee'>,
+        <class 'Employee'>,
+        <class 'object'>
+    )
+    """
+    def __init__(self, eid, name, hour, rate):
+        # Need to control the constructor calling as well;;
+        HourlyEmployee.__init__(self, eid, name, hour, rate)
+
+    def calculate_payroll(self):
+        # Needs to override this function as well;;
+        return HourlyEmployee.calculate_payroll(self)
+
+
+if __name__ == "__main__":
+    shreya = TemporarySecretary(1005, "Janvi", 100, 70)
+
 
 -------------------------------------------------------------------------------------
 -> Q082 : UDP Socket Programming in Pthon
@@ -5317,7 +5391,41 @@ Here,
 -------------------------------------------------------------------------------------
 -> Q014: Duck Typing in Python;;
 
+Duck Typing is a type system used in dynamic languages. For example, Python,
+Perl, Ruby, PHP, Javascript, etc. where the type or the class of an object is
+less important than the method it defines. Using Duck Typing, we do not check
+types at all. Instead, we check for the presence of a given method or
+attribute.
 
+The name Duck Typing comes from the phrase:
+
+“If it looks like a duck and quacks like a duck, it’s a duck”
+
+for eg,
+class Bird:
+    def fly(self):
+        print("fly with wings")
+  
+class Airplane:
+    def fly(self):
+        print("fly with fuel")
+  
+class Fish:
+    def swim(self):
+        print("fish swim in sea")
+  
+# Attributes having same name are
+# considered as duck typing
+for obj in Bird(), Airplane(), Fish():
+    try:
+        obj.fly()
+    except Exception as e:
+        print(f"{obj.__class__.__name__} can't fly")
+
+# RESULT:
+fly with wings
+fly with fuel
+Fish can't fly
 
 
 
