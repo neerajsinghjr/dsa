@@ -161,8 +161,6 @@ This will rename the git tag.
 $ git tag -f stable master
 
 
-
-
 -------------------------------------------------------------------------------------
 -> Q008 : Rename & Delete Command using Git;;
 
