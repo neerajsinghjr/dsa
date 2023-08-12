@@ -4,9 +4,12 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 05/12/2022
--> Updated : 07/08/2022
+-> Updated : 11/08/2022
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q011 : Update Remove Repository SSH url link 
+-> Q010 : Reset Head or Go Back & Forth in Commits History
+-> Q009 : Tags Creation in Git;;
 -> Q008 : Rename Command using Git;;
 -> Q007 : Create Alias in Git;;
 -> Q006 : Show commit logs in Graph Style;;
@@ -19,6 +22,146 @@
 '''
 
 ###---GIT NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+-> Q011 : Update Remove Repository SSH url link 
+
+This Scenario can be used to update to update the existing remote link with
+the newer one. Like this,
+
+# Intial SSH URL 
+$ git remote add origin git@bitbucket.org:sqrrl-fintech/repo1.git
+$ git remote -v
+
+# OUTPUT:
+origin	git@bitbucket.org:sqrrl-fintech/repo1.git (fetch)
+origin	git@bitbucket.org:sqrrl-fintech/repo1.git (push)
+
+# New SSH URL 
+$ git remote set-url origin git@bitbucket.org:sqrrl-fintech/repo2.git
+$ git remote -v
+
+# OUTPUT:
+origin	git@bitbucket.org:sqrrl-fintech/repo2.git (fetch)
+origin	git@bitbucket.org:sqrrl-fintech/repo2.git (push)
+
+
+-------------------------------------------------------------------------------------
+-> Q010 : Reset Head or Go Back & Forth in Commits History
+
+-> Reset command is used to move changes back and forth from git commits
+   timeline. Suppose you've a git timeline is like this,
+
+   	# Commit Timeline, Initially
+	* ace6055 (HEAD -> master, tag: v1) added c <-- HEAD NOW
+	* 860ce77 staged commit
+	* 8172daf 2 files
+	* 0aab975 author
+	* 3b6b754 added first file
+
+
+-> Suppose now you want to go the first commit, but you want to keep the
+   latest changes. Basically you just want to move point your head on the
+   first commit then prefer soft reset. Like this,
+
+    $ git reset --soft 3b6b754
+
+   	# Commits Timeline, Soft Reset
+	* ace6055 (tag: v1) added c
+	* 860ce77 staged commit
+	* 8172daf 2 files
+	* 0aab975 author
+	* 3b6b754 (HEAD -> master) added first files <-- HEAD NOW
+
+-> for this same case, now you want to move all your changes back to the very
+   first commit changes then prefer the hard reset. In this all the files
+   structure move back to the first commit changes, But you commits history
+   will be maintained. Like this, 
+
+   	$ git reset --hard 3b6b754
+
+   	# Commit Timeline, Hard Reset
+   	* ace6055 (tag: v1) added c
+	* 860ce77 staged commit
+	* 8172daf 2 files
+	* 0aab975 author
+	* 3b6b754 (HEAD -> master) added first file
+
+-> now suppose you have fixed few changes from the first commit and then you
+   want to go back to the latest commit then, do the similar step with hard.
+
+	$ git reset --hard ace6055
+
+	# Commit Timeline, Like Initially
+	* ace6055 (HEAD -> master, tag: v1) added c
+	* 860ce77 staged commit
+	* 8172daf 2 files
+	* 0aab975 author
+	* 3b6b754 added first file
+
+
+-------------------------------------------------------------------------------------
+-> Q009 : Tags Creation in Git;;
+
+-> Tags are use to label the branch tracking the changes till current specific
+   requirements.
+
+-> Create Tags:
+
+$  git tag your-new-tags
+
+or, you can pass message as well
+
+$ git tag -a v1 -m "your new message"
+
+-> List Tags:- 	
+
+$ git tag --list
+
+-> Delete Tag:-
+
+FROM REMOVE REPO:-
+
+$ git push origin :your-remote-tag
+
+From LOCAL REPO:-
+
+$ git tag -d your-local-tag
+
+-> Create Tag for a specific Commit:-
+
+$ git tag -a v1 -m "previous release" ac34522e
+
+-> Create tag for current or any other branch
+
+$ git tag stable-release master
+
+or, for another branch
+
+$ git tag unstable-release develop
+
+-> Push tag to Remote Repo 
+
+if you wanted to push all the tags, then this command,
+
+$ git push --tags
+
+for single tag push, use this command
+
+$ git push origin tag-name
+
+for eg, 
+$ git push origin stable
+$ git push origin unstable
+
+-> Renaming Tag in Git
+
+This will rename the git tag.
+
+$ git tag -f stable master
+
+
+
 
 -------------------------------------------------------------------------------------
 -> Q008 : Rename & Delete Command using Git;;
@@ -95,6 +238,7 @@ $ git reset HEAD
 
 This will revert you stages changes to unstages state.
 
+
 -------------------------------------------------------------------------------------
 -> Q004 : Difference in Manual Add and Commit with '-am' Flag;;
 
@@ -152,6 +296,9 @@ $ git merge origin/develop
 -> Q002 : Git Favourite Commands;;;;
 
 ###--- GIT FAVOURITE COMMANDS :-
+
+// Delete Remote Branch
+$ git push origin :branch-name
 
 //--- set upstream for local branch to remote
 $ git branch --set-upstream-to origin feature-branch
