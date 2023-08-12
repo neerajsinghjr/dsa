@@ -1,0 +1,17 @@
+# Example showing Class Implementation ~ Without strategy design
+
+Problem Here is that ...
+Base Class (Vehicle)
+---- INHERITS ----
+Chile Class (GoodsVehicle, OffroadVehicle, NormalVehicle, SportsVehicle)
+
+But the problem in this inheritance case,
+is code is being redundant in the case of
+child class.
+
+Because OffroadVehicle and SportyVehicle
+have same driving algorithms function.
+
+This is the issue in the case of inheritance
+
+Let's fix this in ~v2 with design strategy using class composition

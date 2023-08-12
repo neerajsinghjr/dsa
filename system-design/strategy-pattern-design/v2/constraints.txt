@@ -1,0 +1,15 @@
+# Example showing Class Implementation ~ Without strategy design
+
+Problem Here is that ...
+Base Class (Vehicle)
+---- INHERITS ----
+Chile Class (GoodsVehicle, OffroadVehicle, NormalVehicle, SportsVehicle)
+
+Let's use class composition or dependency injection instead
+of inheritance concept.
+
+Instead of defining driving function again and again in every Vehicle type
+Create interface with DrivingStrategy implementing -
+SpecialDriveStrategy,
+HeavyDriveStrategy,
+SpecialDriveStrategy

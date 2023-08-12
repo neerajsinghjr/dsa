@@ -1,0 +1,12 @@
+# Requirements
+
+We are designing a vehicle class as base class and
+Child class -
+    1) Normal Vehicle
+    2) Sporty Vehicle
+    3) Goods Vehicle
+    4) OffRoad Vehicle
+
+Key Points:
+Child class Sports Vehicle and OffRoad Vehicle have
+same drive() functionality
