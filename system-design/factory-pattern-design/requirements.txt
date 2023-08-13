@@ -1,3 +1,7 @@
 ### Requirements :: Factory Pattern Design
 
 ### Explanation
+Factory Pattern design are used to club multiple
+class object using an particular type.
+
+for eg,

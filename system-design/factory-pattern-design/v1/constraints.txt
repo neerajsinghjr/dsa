@@ -1,0 +1,4 @@
+### Constraints:
+Source code ~v1 implemented Single Factory class
+which fetch the required document based on the
+type of shape you need.
