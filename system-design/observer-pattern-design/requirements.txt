@@ -1,0 +1,8 @@
+### Requirements: Notify Me Implementation
+
+Scenario 1 : (~v1)
+Suppose there is an out of stock for a laptop and a user wants
+get notified for the same product as soon as it is in stock
+again.
+
+Create Observable and Observer Pattern for this !!!
