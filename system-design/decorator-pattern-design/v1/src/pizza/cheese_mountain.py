@@ -1,4 +1,4 @@
-
+from main import PizzaMain
 
 
 class CheeseMountain(PizzaMain):

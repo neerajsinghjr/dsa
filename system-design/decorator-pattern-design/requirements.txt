@@ -15,9 +15,6 @@ CheeseMountain -> 250rs
 
 For above mention base pizza there are extra price for
 Topping customization are as follows ...
-Topping Prices are -
 Veggies Toppings -> 20rs,
 Extra Cheese -> 30rs,
 CheeseVeggies Topping -> 50rs
-
-

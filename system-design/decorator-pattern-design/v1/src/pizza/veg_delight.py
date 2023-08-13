@@ -1,4 +1,4 @@
-from .pizza_main import PizzaMain
+from main import PizzaMain
 
 
 class VegDelight(PizzaMain):
