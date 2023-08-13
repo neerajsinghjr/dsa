@@ -7,5 +7,5 @@ class NotificationObserver(ABC):
     is used to implement Observer Class.
     - update()
     """
-    def __init__(self, observable):
-        self.observable = observable
+    @abstractmethod
+    def update(self): ...
