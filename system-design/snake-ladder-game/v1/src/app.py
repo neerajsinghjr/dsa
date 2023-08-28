@@ -2,10 +2,10 @@
 	APP Run
 """
 
-from src.dice import Dice 
-from src.jumper import Jumper
-from src.player import Player 
-from src.playground import Playground
+from game.dice import Dice
+from game.jumper import Jumper
+from game.player import Player
+from game.playground import Playground
 from collections import deque
 
 

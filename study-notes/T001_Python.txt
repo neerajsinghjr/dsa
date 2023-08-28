@@ -56,7 +56,7 @@
 -> Q037 : Method Overloading and Operator Overloading;;
 -> Q036 : Switch alternative in python;;
 *** Q035 : Disassember Package using DIS package;;
-*** Q034 : Access Python Source Code and Byte Code ;;
+-> Q034 : Python OOPS Basic Architecture;;
 -> Q033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
 -> Q032 : Variable arguments *args and **vargs in python;;
 -> Q031 : Finding and Installing Packages;;
@@ -4505,8 +4505,109 @@ switch = {
 
 
 -------------------------------------------------------------------------------------
--> Q034: Access Python Source Code and Byte Code ;;
+-> Q034 : Python OOPS Basic Architecture;;
 
+#--- OOPS : Basic Oops Vs Procedural Programming:-
+
+Object-oriented programming (OOP) is a method of structuring a program by
+bundling related properties and behaviors into individual objects
+
+Procedural Programming, which structures a program like a recipe in that it
+provides a set of steps, in the form of functions and code blocks, that flow
+sequentially in order to complete a task.
+
+
+#--- OOPS : Python OOPs Basic
+
+-> Classes are used to create user-defined data structures. 
+
+-> Classes define functions called methods, which identify the behaviors and
+   actions that an object created from the class can perform with its data.
+
+-> for eg,
+# Dog Class 
+
+class Dog:
+    
+    def __init__(self, name, color, hair):
+        self.name = name
+        self.color = color
+        self.hair = hair
+
+    def bark(self):
+        print(f"{self.name}... Bow Bow !!!")
+
+    def __repr__(self):
+        return f"Meet My Dog: {self.name}"
+
+
+if __name__ == "__main__":
+    milly = Dog("Milly", "White", "Silky") # <__main__.Dog object at 0x0004ccc90>
+    print("Dog: ", milly)
+    milly.bark()
+
+
+###--- OOPS : Inheritance in Python
+
+-> Inheritance is the process by which one class takes on the attributes and
+   methods of another. 
+
+-> Newly formed classes are called child classes, and the classes that child
+   classes are derived from are called parent classes.
+
+-> Child classes can override or extend the attributes and methods of parent
+   classes
+
+-> for eg,
+
+
+class Pet:
+    def __init__(self, name, color, hair):
+        self.name = name
+        self.color = color
+        self.hair = hair
+
+    def bark(self):
+        print(f"{self.name}... Aww Aww!!!")
+
+
+class Dog(Pet):
+    
+    def __init__(self, name, color, hair, type):
+        super()__init__(name, color, hair)
+        self.type = type
+
+    def bark(self):
+        print(f"{self.name}... Bow Bow !!!")
+
+    def __repr__(self):
+        return f"Meet My Dog: {self.name}"
+
+
+class Cat(Pet):
+    
+    def __init__(self, name, color, hair, type):
+        super()__init__(name, color, hair)
+        self.type = type
+
+    def bark(self):
+        print(f"{self.name}... Meow Meow !!!")
+
+    def __repr__(self):
+        return f"Meet My Cat: {self.name}"
+
+if __name__ == "__main__":
+    snobell = Dog("Snobell", "White", "Curly", "CAT") # <__main__.Dog object at 0x0004ccc99>
+    milly = Dog("Milly", "White", "Silky", "DOG") # <__main__.Dog object at 0x0004ccc90>
+
+    print("Hello, ", milly)     # Hello, Meet My Dog: Milly
+    print("Hello,", snobell)    # Hello, Met My Cat: Snobell
+
+    milly.bark()    # Milly... Bow Bow
+    snobell.bark()  # Snobell... Meow Meow
+
+    print(f"Is Milly is a Dog ? ... {isinstance(milly, Dog)} )
+    print(f"Is Snobell is a Cat ? ... {isinstance(snobell, Cat)} )
 
 
 -------------------------------------------------------------------------------------
