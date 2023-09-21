@@ -20,7 +20,7 @@
 
 -------------------------------------------------------------------------------------
 -> Q006 : Array - Javascript
-
+   
 ###---------------- Array Basic :-
 
 -> An array is used to store multiple values together.
@@ -222,8 +222,8 @@ console.log(subjects);
 
 ###---------------- Get Object Keys - Object.keys() :-
 
--> We can get all the keys of an object using Object.keys(). It returns the
-   keys as an array of strings.
+-> We can get all the keys of an object using Object.keys(). 
+-> It returns the keys as an array of strings.
 -> Object.keys() function return list of all keys in an object.
 -> for eg,
 
@@ -240,8 +240,8 @@ console.log(Object.keys(subjects))
 
 ###---------------- Get Object Values - Object.values() :-
 
--> We can get all the values of an object using Object.values(). It returns
-   the values as an array of different types.
+-> We can get all the values of an object using Object.values(). 
+-> It returns the values as an array of different types.
 -> Object.values() return the value in a list.
 -> for eg,
 const subjects = {
