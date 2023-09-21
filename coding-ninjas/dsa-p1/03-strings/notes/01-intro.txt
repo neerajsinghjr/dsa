@@ -1,0 +1,81 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Array Notes
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 22-09-2023
+-> Updated : 22-09-2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q002 : Operations on Strings;;
+-> Q001 : String Getting Started;;
+-------------------------------------------------------------------------------------
+'''
+
+###---STRING NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+Q002 : Operations on Strings;;
+
+-> Strings operations include standard operations...
+
+1) Access Character: String can be accessed using like any ordinary array. 
+Like, name = "Neeraj" then, name[0] represents 'N' and name[1] represents 'e'.
+
+2) Concatenation: we can concatenate two or more string into one, process called 
+concatenation.
+
+3) Substring: A contiguous sequence of character in a string.
+for eg, substring "boy" are ...
+substring 1:  "" (remember: empty string is also an substring)
+substring 2: "b",
+substring 3: "o",
+substring 4: "y",
+substring 5: "bo",
+substring 6: "oy",
+substring 7: "boy"
+
+If we dont consider empty string, then total number of substring would be 
+(n * (n + 1))/2, for string "boy", (3 * (3+1))/2 -> 12/2 -> 6
+
+otherwise, including empty string would be factorial + 1 
+
+4) Prefix Of String: A Prefix is any leading continuous part of the string.
+for eg,  "garden" have prefix like ...
+prefix 1: "",
+prefix 2: "g",
+prefix 3: "ga",
+prefix 4: "gar",
+prefix 5: "gard",
+prefix 6: "garde",
+prefix 7: "garden",
+
+
+5) Sufix Of String: A Suffix is any trailing continuous part of the string.
+for eg, "garden" have suffix like ...
+suffix 1: "",
+suffix 2: "n",
+suffix 3: "en",
+suffix 4: "den",
+suffix 5: "rden",
+suffix 6: "arden",
+suffix 7: "garden",
+
+
+-------------------------------------------------------------------------------------
+Q001 : String Getting Started;;
+
+-> A String is a data type which represents sequence of characters in the array.
+
+-> String also accessed from the zero index to the total length - 1.
+
+-> Depends on the type of strings, strings can be of two types 
+
+	- Mutable String: Mutable String are the one whose value can be change
+	  anytime whhen the code is rendering out in their scope. 
+
+	- Immutable String: Immutable String are the one whose value is remains
+	  untouched once the start executing.
+
+
+-------------------------------------------------------------------------------------
