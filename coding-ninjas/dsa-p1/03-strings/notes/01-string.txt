@@ -1,6 +1,6 @@
 '''
 -------------------------------------------------------------------------------------
--> Title : Array Notes
+-> Title : String Notes
 -> Author : @neeraj-singh-jr
 -> Status : Completed
 -> Created : 22-09-2023

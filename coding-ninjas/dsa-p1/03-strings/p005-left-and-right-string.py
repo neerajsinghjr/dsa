@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: 
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: Left and Right Rotation of A String
+-> Problem Status: Completed
+-> Problem Attempted: 30/09/2023
 -> Problem Description: 
 -------------------------------------------------------------------------------------
 
-...
+https://www.codingninjas.com/studio/guided-paths/data-structures-algorithms/content/118626/offering/1377979?leftPanelTab=0
 
 -------------------------------------------------------------------------------------
 '''
@@ -22,11 +22,17 @@ import random
 
 
 ##---Main Solution
-class Solution:
-    
-    # Constructor;
-    def __init__(self):
-        pass
+def leftRotate(ch, d):
+    # Write your code here.
+    d = d % len(ch) if d > len(ch) else d
+    return ch[d:] + ch[:d]
+
+
+def rightRotate(ch, d):
+    # Write your code here.
+    d = d % len(ch) if d > len(ch) else d
+    mid = len(ch) - d
+    return ch[mid:] + ch[:mid]
 
 
 ##---Main Execution;;

@@ -1,0 +1,30 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : DSA Main
+-> Author : @neeraj-singh-jr
+-> Status : Completed
+-> Created : 03-10-2023
+-> Updated : 03-10-2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q002 : 
+-> Q00* : Highlight Main DSA Concepts;;
+-> 
+-> Q001 : How to approach a problem
+-------------------------------------------------------------------------------------
+'''
+
+###---STRING NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+-> Q001 : How to approach DSA Problem 
+
+-> Always remember these fundamentals steps while doing any dsa problems...
+
+    - Observe Input - Output - Process
+    - Identify the problem type like apply datastructure
+    - Break Down Problem in chunks 
+    - Always write or explain Brute Force Solution for better understanding
+    - Explanation and Code (only if you're sitting in interview)
+
+-------------------------------------------------------------------------------------

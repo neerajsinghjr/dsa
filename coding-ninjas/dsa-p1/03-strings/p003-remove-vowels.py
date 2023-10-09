@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: Convert String
+-> Problem Title: Remove Vowels
 -> Problem Status: Completed
--> Problem Attempted: 23/09/2023
+-> Problem Attempted: 24/09/2023
 -> Problem Description: 
 -------------------------------------------------------------------------------------
 
-https://www.codingninjas.com/studio/guided-paths/data-structures-algorithms/content/118626/offering/1377975
+https://www.codingninjas.com/studio/guided-paths/data-structures-algorithms/content/118626/offering/1377977?leftPanelTab=0
 
 -------------------------------------------------------------------------------------
 '''
@@ -22,28 +22,44 @@ import random
 
 
 ##---Main Solution
-def convertString(str):
-	"""
+def removeVowels(stmt):
+    if not stmt:
+        return 
+    # return removeVowels_v1(stmt)
+    return removeVowels_v2(stmt)
+
+
+def removeVowels_v2(stmt):
+    """
     time: o(n)
     space: o(1)
     run: success
-    choke: none 
-    brief: simple iterate over the loop and check for
-    space and then upper the next character.
+    choke: none
+    brief: traversing single character and check
+    for the respective vowels in it;;
     """
-    res, space_traced = '', True
-    for idx in range(len(str)):
-        if str[idx].isalpha() and space_traced:
-            space_traced = False
-            res += str[idx].upper()
-        elif str[idx] == ' ':
-            space_traced = True
-            res += str[idx]
-        else:
-            space_traced = False
-            res += str[idx]
-            
-    return res
+    result = ''
+    vowels = 'aeiouAEIOU'
+    for s in stmt:
+        if not(s in vowels):
+            result += s
+
+    return result
+
+
+def removeVowels_v1(stmt):
+    """
+    time: o(k)
+    space: o(1)
+    run: success
+    choke: none
+    brief: replacing vowels directly from the 
+    inputted string.
+    """
+    vowels = "aeiouAEIOU"
+    for v in vowels:
+        stmt = stmt.replace(v,'')
+    return stmt
 
 
 ##---Main Execution;;

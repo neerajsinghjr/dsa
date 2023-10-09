@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: 
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: Encode the message
+-> Problem Status: Completed
+-> Problem Attempted: 24/09/2023
 -> Problem Description: 
 -------------------------------------------------------------------------------------
 
-...
+https://www.codingninjas.com/studio/guided-paths/data-structures-algorithms/content/118626/offering/1377976?leftPanelTab=0
 
 -------------------------------------------------------------------------------------
 '''
@@ -22,11 +22,23 @@ import random
 
 
 ##---Main Solution
-class Solution:
-    
-    # Constructor;
-    def __init__(self):
-        pass
+def encode(message):
+    """
+    time: o(n)
+    space: o(1)
+    run: success
+    choke: none 
+    brief: verifying the current index and index+1 is the same 
+    if same then count++ otherwise move to next character;;
+    """
+    res, count = '', 1
+    for i in range(len(message)):
+        if i < len(message)-1 and message[i] == message[i+1]:
+            count += 1
+        else:
+            res += "{}{}".format(message[i], count)
+            count = 1
+    return res
 
 
 ##---Main Execution;;
@@ -54,4 +66,3 @@ if __name__ == '__main__':
     endTime = time.time()
     print("Run Time:",endTime-startTime,"ms")
     print("#------------ Code Stop ----------------#")
-    
