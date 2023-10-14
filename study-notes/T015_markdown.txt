@@ -1,0 +1,39 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title : Docker Notes
+-> Author : @neeraj-singh-jr
+-> Status : Ongoing
+-> Created : 29/09/2023
+-> Updated : 12/10/2023
+-> Summary : Notes indices are as follows (**** pending)
+-------------------------------------------------------------------------------------
+-> Q001 : What is Docker and Why Containers;;
+-------------------------------------------------------------------------------------
+'''
+
+
+![jihyo](https://wallpapercave.com/wp/wp2320976.jpg)
+
+<!-- Headers:
+
+# - Used to create headings. The number of # symbols indicates the header level. For example, # creates an H1 header, ## an H2, and so on.
+Emphasis and Strong Emphasis:
+
+* or _ - Used to make text italic. For example, *italic* or _italic_.
+** or __ - Used to make text bold. For example, **bold** or __bold__.
+Lists:
+
+*, -, or + - Used to create unordered (bulleted) lists.
+1., 2., etc. - Used to create ordered (numbered) lists.
+Links:
+
+[link text](URL) - Used to create hyperlinks. For example, [Google](https://www.google.com).
+Images:
+
+![alt text](image URL) - Used to insert images. For example, ![Sample Image](https://example.com/image.jpg).
+Blockquotes:
+
+> - Used to create blockquotes. For example, > This is a blockquote.
+Code Blocks and Inline Code:
+
+`code` - Used for inline code. -->

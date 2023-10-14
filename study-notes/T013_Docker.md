@@ -1,30 +1,35 @@
-'''
--------------------------------------------------------------------------------------
--> Title : Docker Notes
--> Author : @neeraj-singh-jr
--> Status : Ongoing
--> Created : 29/09/2023
--> Updated : 02/10/2023
--> Summary : Notes indices are as follows (**** pending)
--------------------------------------------------------------------------------------
--> Q014 : Docker interactive vs tty flag;;
--> Q013 : Connect to container Interactively;;
--> Q012 : Attach to running docker container;;
--> Q011 : Different Start Vs Run Command in Docker;;
--> Q010 : Dockerfile stages optimization;;
--> Q009 : Dockerfile Commands Go through;;
--> Q008 : Dockerfile Getting Started;;
--> Q007 : Docker Core Getting Started;;
--> Q006 : Docker Getting Started Commands;;
--> Q005 : Docker Vs Hypervisor in Real life;;
--> Q004 : Docker Architecture for Developement;;
--> Q003 : Docker Setup in Cross Platform 
--> Q002 : Docker Vs Virtual Machines;; 
--> Q001 : What is Docker and Why Containers;;
--------------------------------------------------------------------------------------
-'''
 
-###---DOCKER NOTES : BEGINNING 
+# DOCKER NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+
+- Topic	 Docker				
+- Author   @neeraj-singh-jr	
+- Status   Ongoing			
+- Created 29/09/2023		    
+- Updated  12/10/2023		
+-------------------------------------------------------------------------------------
+
+| Docker Topic                          |     Go      |
+| ------------------------------------- |:-----------:|
+| Setup an interactive docker container | [Go](#q015) |
+| Docker interactive vs tty flag  		| [Go](#q14)  |
+| Connect to container Interactively	| [Go](#q13)  |
+| Attach to running docker container	| [Go](#q12)  |
+| Different Start Vs Run Command in Docker|[Go](#q11) |
+| Dockerfile stages optimization		| [Go](#q10)  |
+| Dockerfile Commands Go through		| [Go](#q09)  |
+| Dockerfile Getting Started			| [Go](#q08)  |
+| Docker Commands All Time Favourite	| [Go](#q07)  |
+| Docker Getting Started Commands		| [Go](#q06)  |
+| Docker Vs Hypervisor in Real life		| [Go](#q05)  |
+| Docker Architecture for Developement	| [Go](#q04)  |
+| Docker Setup in Cross Platfor			| [Go](#q03)  |
+| Docker Vs Virtual Machines;			| [Go](#q02)  |
+| What is Docker and Why Containers		| [Go](#q01)  |
+
+
+
 
 -------------------------------------------------------------------------------------
 -> Q015: Setup an interactive docker container;;
@@ -613,7 +618,7 @@ working on containerized applications.
 
 
 -------------------------------------------------------------------------------------
--> Q002 : Docker Vs Virtual Machines;;
+-> Q002	: Docker Vs Virtual Machines;;
 
 ###-------- VIRTUAL MACHINE
 
@@ -695,7 +700,9 @@ drive and tends to slow.
 
 
 -------------------------------------------------------------------------------------
-Q001 : What is Docker and Why Containers;;
+######q01 
+
+### What is Docker and Why Containers;;
 
 -> Docker is a container technology or a tool for creating and managing containers.
 
