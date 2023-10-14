@@ -7,6 +7,8 @@
 -> Updated : 02/10/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q016 : Docker Volume Concepts in Cont,m uviner;;
+-> Q015 : Setup an interactive docker container;;
 -> Q014 : Docker interactive vs tty flag;;
 -> Q013 : Connect to container Interactively;;
 -> Q012 : Attach to running docker container;;
@@ -25,6 +27,28 @@
 '''
 
 ###---DOCKER NOTES : BEGINNING 
+
+--------------------------------/- ----------------------------------------------------
+-> Q016 : Docker Volume Concepts in Container;;
+
+-> Volumes are folder on you host mahcine hard drive which are mounted ("made available or mapped") into the containers.
+
+-> Shared directory of docker-container volume mounted to the local-machine.
+	For eg,
+	/home/local-machine/shared  <-- /home/docker-container/shared
+
+-> Volumes persist if a container shuts down. If a container (re-)starts and
+   mounts a volume, any data inside of that volume is available in the
+   container.
+
+-> A container can read or write data into a volume and similary it is
+   available for the local machine as well for read/write operation.
+
+-> Volumne Types are of two types :
+	- Anonymous or Names Volume 
+	- Bind Volume
+	
+
 
 -------------------------------------------------------------------------------------
 -> Q015: Setup an interactive docker container;;
