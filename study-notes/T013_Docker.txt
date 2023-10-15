@@ -2,12 +2,19 @@
 -------------------------------------------------------------------------------------
 -> Title : Docker Notes
 -> Author : @neeraj-singh-jr
--> Status : Ongoing
+-> Status : Ongoing...
 -> Created : 29/09/2023
--> Updated : 02/10/2023
+-> Updated : 14/10/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q016 : Docker Volume Concepts in Cont,m uviner;;
+-> Q023 : Docker ARG and ENV Variable Concept;;
+-> Q022 : Docker Ignore (.dockerignore) File Concept;;
+-> Q021 : Docker Volume Commands;;
+-> Q020 : Difference - Anonymous Vs Named Vs Mount Bind Volume;;
+-> Q019 : Docker Anonymous Vs Named Volume Concept;;
+-> Q018 : Docker Mount Bind Volumne Concept
+-> Q017 : Docker Named Volume Concept;;
+-> Q016 : Docker Anonymous Volume Concept;;
 -> Q015 : Setup an interactive docker container;;
 -> Q014 : Docker interactive vs tty flag;;
 -> Q013 : Connect to container Interactively;;
@@ -45,9 +52,9 @@
    available for the local machine as well for read/write operation.
 
 -> Volumne Types are of two types :
-	- Anonymous or Names Volume 
-	- Bind Volume
-	
+	- Anonymous or Names Volume (Managed By Docker)
+	- Bind Volume (Managed By Engineer )
+
 
 
 -------------------------------------------------------------------------------------

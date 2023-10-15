@@ -1,0 +1,332 @@
++ umask 000
+
++ GIT_LFS_SKIP_SMUDGE=1 retry 6 git clone --branch="release_oct16" --depth 50 https://x-token-auth:$REPOSITORY_OAUTH_ACCESS_TOKEN@bitbucket.org/$BITBUCKET_REPO_FULL_NAME.git $BUILD_DIR
+Cloning into '/opt/atlassian/pipelines/agent/build'...
+
++ git reset --hard 1a6bc5e322d85243264de5c70ca382b9f861fd10
+HEAD is now at 1a6bc5e Appsflyer Webhook Functionality
+
++ git config user.name bitbucket-pipelines
+
++ git config user.email commits-noreply@bitbucket.org
+
++ git config push.default current
+
++ git config http.${BITBUCKET_GIT_HTTP_ORIGIN}.proxy http://localhost:29418/
+
++ git remote set-url origin http://bitbucket.org/$BITBUCKET_REPO_FULL_NAME
+
++ git reflog expire --expire=all --all
+
++ echo ".bitbucket/pipelines/generated" >> .git/info/exclude
+
++ chmod 777 $BUILD_DIR
+
+
+Cache "pip: ~/.cache/pip": Downloading
+Cache "pip: ~/.cache/pip": Downloaded 16.5 MiB in 2 seconds
+Cache "pip: ~/.cache/pip": Extracting
+Cache "pip: ~/.cache/pip": Extracted in 0 seconds
+Cache "docker: docker.tar": Downloading
+Cache "docker: docker.tar": Downloaded 659.7 MiB in 8 seconds
+Cache "docker: docker.tar": Extracting
+Cache "docker: docker.tar": Extracted in 9 seconds
+
+Default variables:
+    BITBUCKET_BRANCH
+    BITBUCKET_BUILD_NUMBER
+    BITBUCKET_CLONE_DIR
+    BITBUCKET_COMMIT
+    BITBUCKET_GIT_HTTP_ORIGIN
+    BITBUCKET_GIT_SSH_ORIGIN
+    BITBUCKET_PIPELINE_UUID
+    BITBUCKET_PROJECT_KEY
+    BITBUCKET_PROJECT_UUID
+    BITBUCKET_REPO_FULL_NAME
+    BITBUCKET_REPO_IS_PRIVATE
+    BITBUCKET_REPO_OWNER
+    BITBUCKET_REPO_OWNER_UUID
+    BITBUCKET_REPO_SLUG
+    BITBUCKET_REPO_UUID
+    BITBUCKET_SSH_KEY_FILE
+    BITBUCKET_STEP_RUN_NUMBER
+    BITBUCKET_STEP_TRIGGERER_UUID
+    BITBUCKET_STEP_UUID
+    BITBUCKET_WORKSPACE
+    CI
+    DOCKER_HOST
+    PIPELINES_JWT_TOKEN
+
+Repository variables:
+    AWS_KEY
+    AWS_SECRET
+
+Images used:
+    build : docker.io/library/python@sha256:597c368d03cc6eedbdcd2c02ce25df70ec5a005786bf8a068f8614aafb64382c
++ pip3 install awscli
+Collecting awscli
+  Downloading awscli-1.29.63-py3-none-any.whl (4.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 74.7 MB/s eta 0:00:00
+Collecting s3transfer<0.8.0,>=0.7.0
+  Using cached s3transfer-0.7.0-py3-none-any.whl (79 kB)
+Collecting colorama<0.4.5,>=0.2.5
+  Using cached colorama-0.4.4-py2.py3-none-any.whl (16 kB)
+Collecting PyYAML<6.1,>=3.10
+  Using cached PyYAML-6.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (738 kB)
+Collecting docutils<0.17,>=0.10
+  Using cached docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting botocore==1.31.63
+  Downloading botocore-1.31.63-py3-none-any.whl (11.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 79.7 MB/s eta 0:00:00
+Collecting rsa<4.8,>=3.1.2
+  Using cached rsa-4.7.2-py3-none-any.whl (34 kB)
+Collecting urllib3<1.27,>=1.25.4
+  Using cached urllib3-1.26.17-py2.py3-none-any.whl (143 kB)
+Collecting jmespath<2.0.0,>=0.7.1
+  Using cached jmespath-1.0.1-py3-none-any.whl (20 kB)
+Collecting python-dateutil<3.0.0,>=2.1
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Collecting pyasn1>=0.1.3
+  Using cached pyasn1-0.5.0-py2.py3-none-any.whl (83 kB)
+Collecting six>=1.5
+  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: urllib3, six, PyYAML, pyasn1, jmespath, docutils, colorama, rsa, python-dateutil, botocore, s3transfer, awscli
+Successfully installed PyYAML-6.0.1 awscli-1.29.63 botocore-1.31.63 colorama-0.4.4 docutils-0.16 jmespath-1.0.1 pyasn1-0.5.0 python-dateutil-2.8.2 rsa-4.7.2 s3transfer-0.7.0 six-1.16.0 urllib3-1.26.17
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+
+[notice] A new release of pip is available: 23.0.1 -> 23.2.1
+[notice] To update, run: pip install --upgrade pip
+
++ IMAGE="423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app"
+
++ TAG=${BITBUCKET_BUILD_NUMBER:-$BITBUCKET_TAG}
+
++ aws configure set aws_access_key_id "${AWS_KEY}"
+
++ aws configure set aws_secret_access_key "${AWS_SECRET}"
+
++ aws configure set default.region ap-south-1
+
++ aws s3 cp s3://karat-environment-files/QA_Environment/.env ./p2p_13karat/
+Completed 5.0 KiB/5.0 KiB (5.9 KiB/s) with 1 file(s) remaining
+download: s3://karat-environment-files/QA_Environment/.env to p2p_13karat/.env
+
++ aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 423988693650.dkr.ecr.ap-south-1.amazonaws.com
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
++ docker build -t $IMAGE:$TAG .
+Sending build context to Docker daemon  9.498MB
+Step 1/14 : FROM python:3.9
+ ---> 49d20c6af9a6
+Step 2/14 : RUN apt-get update && apt-get install -y     libxrender1     libxext6     libfontconfig1     libjpeg-dev     libx11-dev     libxslt-dev     libxext-dev     libpng-dev     libffi-dev     libssl-dev     libxml2-dev     libxslt1-dev     zlib1g-dev     wkhtmltopdf
+ ---> Using cache
+ ---> 7b17a84a9c20
+Step 3/14 : RUN mkdir -p /home/ec2-user/13karat_backend/
+ ---> Using cache
+ ---> 44d3f5902512
+Step 4/14 : ENV CORALOGIX_LOG_URL="https://api.app.coralogix.in:443/api/v1/logs"
+ ---> Using cache
+ ---> 9338e4a15257
+Step 5/14 : RUN export CORALOGIX_LOG_URL="https://api.app.coralogix.in:443/api/v1/logs"
+ ---> Using cache
+ ---> d7f84d6df0ae
+Step 6/14 : RUN mkdir -p /home/ec2-user/13karat_backend/logs/ && mkdir -p /home/ec2-user/13karat_backend/p2p_13karat/log/
+ ---> Using cache
+ ---> e2c188526cb4
+Step 7/14 : RUN touch /home/ec2-user/13karat_backend/logs/nginx-access.log
+ ---> Using cache
+ ---> 898576c016bd
+Step 8/14 : WORKDIR /home/ec2-user/13karat_backend/
+ ---> Using cache
+ ---> fd74aacbdcac
+Step 9/14 : COPY https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/requirements/base.txt ./
+ ---> Using cache
+ ---> 440a371bfcab
+Step 10/14 : RUN pip3 install -r base.txt
+ ---> Using cache
+ ---> 1994ba232912
+Step 11/14 : ADD . /home/ec2-user/13karat_backend/
+ ---> 71a2b1e9e3e2
+Step 12/14 : VOLUME /home/ec2-user/13karat_backend/run/
+ ---> Running in 625117deec17
+Removing intermediate container 625117deec17
+ ---> 0faf9ac60d8c
+Step 13/14 : RUN ls
+ ---> Running in 12d5d81b4e78
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/Dockerfile
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/Dockerfile.celery
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/Pipfile
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/Pipfile.lock
+base.txt
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/bitbucket-pipelines.yml
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/celerybeat-schedule
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/celerybeat.pid
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/docker-compose.yml
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/gunicorn_start
+logs
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/manage.py
+p2p_13karat
+requirements
+run
+https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/start.sh
+Removing intermediate container 12d5d81b4e78
+ ---> 75eae473e6c2
+Step 14/14 : ENTRYPOINT ["./gunicorn_start"]
+ ---> Running in 8b8d3d209d07
+Removing intermediate container 8b8d3d209d07
+ ---> 1d2e7a550c00
+Successfully built 1d2e7a550c00
+Successfully tagged 423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app:250
+
++ docker build -t $IMAGE:latest .
+Sending build context to Docker daemon  9.498MB
+Step 1/14 : FROM python:3.9
+ ---> 49d20c6af9a6
+Step 2/14 : RUN apt-get update && apt-get install -y     libxrender1     libxext6     libfontconfig1     libjpeg-dev     libx11-dev     libxslt-dev     libxext-dev     libpng-dev     libffi-dev     libssl-dev     libxml2-dev     libxslt1-dev     zlib1g-dev     wkhtmltopdf
+ ---> Using cache
+ ---> 7b17a84a9c20
+Step 3/14 : RUN mkdir -p /home/ec2-user/13karat_backend/
+ ---> Using cache
+ ---> 44d3f5902512
+Step 4/14 : ENV CORALOGIX_LOG_URL="https://api.app.coralogix.in:443/api/v1/logs"
+ ---> Using cache
+ ---> 9338e4a15257
+Step 5/14 : RUN export CORALOGIX_LOG_URL="https://api.app.coralogix.in:443/api/v1/logs"
+ ---> Using cache
+ ---> d7f84d6df0ae
+Step 6/14 : RUN mkdir -p /home/ec2-user/13karat_backend/logs/ && mkdir -p /home/ec2-user/13karat_backend/p2p_13karat/log/
+ ---> Using cache
+ ---> e2c188526cb4
+Step 7/14 : RUN touch /home/ec2-user/13karat_backend/logs/nginx-access.log
+ ---> Using cache
+ ---> 898576c016bd
+Step 8/14 : WORKDIR /home/ec2-user/13karat_backend/
+ ---> Using cache
+ ---> fd74aacbdcac
+Step 9/14 : COPY https://bitbucket.org/sqrrl-fintech/13karat_backend/src/1a6bc5e322d85243264de5c70ca382b9f861fd10/requirements/base.txt ./
+ ---> Using cache
+ ---> 440a371bfcab
+Step 10/14 : RUN pip3 install -r base.txt
+ ---> Using cache
+ ---> 1994ba232912
+Step 11/14 : ADD . /home/ec2-user/13karat_backend/
+ ---> Using cache
+ ---> 71a2b1e9e3e2
+Step 12/14 : VOLUME /home/ec2-user/13karat_backend/run/
+ ---> Using cache
+ ---> 0faf9ac60d8c
+Step 13/14 : RUN ls
+ ---> Using cache
+ ---> 75eae473e6c2
+Step 14/14 : ENTRYPOINT ["./gunicorn_start"]
+ ---> Using cache
+ ---> 1d2e7a550c00
+Successfully built 1d2e7a550c00
+Successfully tagged 423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app:latest
+
++ docker push $IMAGE:$TAG
+The push refers to repository [423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app]
+aeee9b74a7b9: Preparing
+2229e4fe2e45: Preparing
+2c6669011936: Preparing
+2e898495273c: Preparing
+3530b77eb75b: Preparing
+8fd9def3bfab: Preparing
+17265f92dda9: Preparing
+673eab6940b2: Preparing
+888be1c3284b: Preparing
+5c4dd1023adc: Preparing
+dcd3a2688916: Preparing
+c26432533a6a: Preparing
+01d6cdeac539: Preparing
+a981dddd4c65: Preparing
+f6589095d5b5: Preparing
+8fd9def3bfab: Waiting
+7c85cfa30cb1: Preparing
+17265f92dda9: Waiting
+01d6cdeac539: Waiting
+673eab6940b2: Waiting
+a981dddd4c65: Waiting
+888be1c3284b: Waiting
+f6589095d5b5: Waiting
+5c4dd1023adc: Waiting
+7c85cfa30cb1: Waiting
+dcd3a2688916: Waiting
+c26432533a6a: Waiting
+3530b77eb75b: Pushed
+aeee9b74a7b9: Pushed
+2e898495273c: Pushed
+2229e4fe2e45: Pushed
+17265f92dda9: Pushed
+8fd9def3bfab: Pushed
+5c4dd1023adc: Pushed
+888be1c3284b: Pushed
+dcd3a2688916: Pushed
+c26432533a6a: Pushed
+f6589095d5b5: Pushed
+2c6669011936: Pushed
+a981dddd4c65: Pushed
+7c85cfa30cb1: Pushed
+673eab6940b2: Pushed
+01d6cdeac539: Pushed
+250: digest: sha256:391b46cbf81e0e6614f576326978af66082a44e4c75733d38cff0e37b2ad1487 size: 3681
+
++ docker push $IMAGE:latest
+The push refers to repository [423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app]
+aeee9b74a7b9: Preparing
+2229e4fe2e45: Preparing
+2c6669011936: Preparing
+2e898495273c: Preparing
+3530b77eb75b: Preparing
+8fd9def3bfab: Preparing
+17265f92dda9: Preparing
+673eab6940b2: Preparing
+888be1c3284b: Preparing
+5c4dd1023adc: Preparing
+dcd3a2688916: Preparing
+c26432533a6a: Preparing
+01d6cdeac539: Preparing
+a981dddd4c65: Preparing
+f6589095d5b5: Preparing
+7c85cfa30cb1: Preparing
+8fd9def3bfab: Waiting
+17265f92dda9: Waiting
+5c4dd1023adc: Waiting
+dcd3a2688916: Waiting
+673eab6940b2: Waiting
+c26432533a6a: Waiting
+888be1c3284b: Waiting
+01d6cdeac539: Waiting
+7c85cfa30cb1: Waiting
+a981dddd4c65: Waiting
+f6589095d5b5: Waiting
+aeee9b74a7b9: Layer already exists
+2229e4fe2e45: Layer already exists
+2e898495273c: Layer already exists
+2c6669011936: Layer already exists
+3530b77eb75b: Layer already exists
+8fd9def3bfab: Layer already exists
+888be1c3284b: Layer already exists
+17265f92dda9: Layer already exists
+5c4dd1023adc: Layer already exists
+673eab6940b2: Layer already exists
+f6589095d5b5: Layer already exists
+01d6cdeac539: Layer already exists
+c26432533a6a: Layer already exists
+dcd3a2688916: Layer already exists
+a981dddd4c65: Layer already exists
+7c85cfa30cb1: Layer already exists
+latest: digest: sha256:391b46cbf81e0e6614f576326978af66082a44e4c75733d38cff0e37b2ad1487 size: 3681
+
+You already have a 'pip' cache so we won't create it again
+Skipping assembly of docker cache as one is already present
+Cache "pip: ~/.cache/pip": Skipping upload for existing cache
+Cache "docker: docker.tar": Skipping upload for existing cache
+
+Searching for test report files in directories named [test-results, failsafe-reports, test-reports, TestResults, surefire-reports] down to a depth of 4
+Finished scanning for test reports. Found 0 test report files.
+Merged test suites, total number tests is 0, with 0 failures and 0 errors.

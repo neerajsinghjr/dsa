@@ -13,6 +13,7 @@ WORKDIR /home/devil/first-app
 COPY . ./
 
 # stage 4: post-project requirements or dependencies setup;;
+# VOLUME [ "/home/devil/first-app/user_log" ]
 
 # stage 5: Expose it to parent host;;
 EXPOSE 8000

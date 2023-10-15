@@ -1,0 +1,60 @@
+image: python:3.9
+
+pipelines:
+  custom:
+    QA-Deployment:
+      - step:
+          name: Build and Push Image
+          services:
+            - docker
+          caches:
+            - pip
+            - docker
+          script:
+            - pip3 install awscli
+            - IMAGE="423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app"
+            - TAG=${BITBUCKET_BUILD_NUMBER:-$BITBUCKET_TAG}
+            - aws configure set aws_access_key_id "${AWS_KEY}"
+            - aws configure set aws_secret_access_key "${AWS_SECRET}"
+            - aws configure set default.region ap-south-1
+            - aws s3 cp s3://karat-environment-files/QA_Environment/.env ./p2p_13karat/
+            - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 423988693650.dkr.ecr.ap-south-1.amazonaws.com
+            - docker build -t $IMAGE:$TAG .
+            - docker build -t $IMAGE:latest .
+            - docker push $IMAGE:$TAG
+            - docker push $IMAGE:latest
+      - step:
+          name: Update Task Definition
+          script:
+            - apt-get update && apt-get install -y jq
+            - pip3 install awscli
+            - aws configure set aws_access_key_id "${AWS_KEY}"
+            - aws configure set aws_secret_access_key "${AWS_SECRET}"
+            - aws configure set default.region ap-south-1
+            - |
+              # Describe the task definition
+              task_definition=$(aws ecs describe-task-definition \
+              --task-definition qa13karat)
+
+              # Get the current container definitions
+              container_definitions=$(echo $task_definition | jq -r '.taskDefinition.containerDefinitions')
+
+              TAG=${BITBUCKET_BUILD_NUMBER:-$BITBUCKET_TAG}
+              
+              # Replace the tag for the first container definition
+              updated_container_definitions=$(echo $container_definitions | jq --arg new_tag $TAG '.[0].image |= sub(":.*";":\($new_tag)")')
+
+              # Update the task definition
+              updated_task_definition=$(echo $task_definition | jq --argjson updated_container_definitions "$updated_container_definitions" '.taskDefinition | .containerDefinitions = $updated_container_definitions | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
+              # Register the updated task definition
+              updated_task_definition_arn=$(aws ecs register-task-definition \
+              --cli-input-json "$updated_task_definition" \
+              --query 'taskDefinition.taskDefinitionArn' \
+              --output text)
+
+              aws ecs update-service \
+              --cluster QA_13Karat \
+              --service 13-karat-qa \
+              --task-definition $updated_task_definition_arn \
+              --desired-count 1 \
+              --enable-execute-command

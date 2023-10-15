@@ -1,0 +1,47 @@
+
+time="2023-10-14T06:19:56.739295400Z" level=warning msg="could not change group /var/run/docker.sock to docker: group docker not found"
+time="2023-10-14T06:19:56.739514859Z" level=warning msg="Binding to IP address without --tlsverify is insecure and gives root access on this machine to everyone who has access to your network." host="tcp://0.0.0.0:2375"
+time="2023-10-14T06:19:56.739536528Z" level=warning msg="Binding to an IP address, even on localhost, can also give access to scripts run in a browser. Be safe out there!" host="tcp://0.0.0.0:2375"
+time="2023-10-14T06:19:57.739890528Z" level=warning msg="Binding to an IP address without --tlsverify is deprecated. Startup is intentionally being slowed down to show this message" host="tcp://0.0.0.0:2375"
+time="2023-10-14T06:19:57.739930345Z" level=warning msg="Please consider generating tls certificates with client validation to prevent exposing unauthenticated root access to your network" host="tcp://0.0.0.0:2375"
+time="2023-10-14T06:19:57.739945690Z" level=warning msg="You can override this by explicitly specifying '--tls=false' or '--tlsverify=false'" host="tcp://0.0.0.0:2375"
+time="2023-10-14T06:19:57.739958517Z" level=warning msg="Support for listening on TCP without authentication or explicit intent to run without authentication will be removed in the next release" host="tcp://0.0.0.0:2375"
+time="2023-10-14T06:20:12Z" level=warning msg="containerd config version `1` has been deprecated and will be removed in containerd v2.0, please switch to version `2`, see https://github.com/containerd/containerd/blob/main/docs/PLUGINS.md#version-header"
+time="2023-10-14T06:20:12.790351357Z" level=warning msg="failed to load plugin io.containerd.snapshotter.v1.devmapper" error="devmapper not configured"
+time="2023-10-14T06:20:12.791188522Z" level=warning msg="could not use snapshotter devmapper in metadata plugin" error="devmapper not configured"
+time="2023-10-14T06:20:12.794333953Z" level=warning msg="failed to load plugin io.containerd.internal.v1.opt" error="mkdir /opt/containerd: read-only file system"
+time="2023-10-14T06:20:12.794413066Z" level=error msg="failed to initialize a tracing processor \"otlp\"" error="no OpenTelemetry endpoint: skip plugin"
+time="2023-10-14T06:20:12.855981630Z" level=warning msg="Your kernel does not support CPU realtime scheduler"
+time="2023-10-14T06:20:12.856002448Z" level=warning msg="Your kernel does not support cgroup blkio weight"
+time="2023-10-14T06:20:12.856007788Z" level=warning msg="Your kernel does not support cgroup blkio weight_device"
+time="2023-10-14T06:20:27Z" level=info msg="Pipelines plugin request authorization." allowed=false method=HEAD plugin=pipelines uri=/_ping
+time="2023-10-14T06:20:27.865482534Z" level=error msg="AuthZRequest for HEAD /_ping returned error: authorization denied by plugin pipelines: "
+time="2023-10-14T06:20:27Z" level=info msg="Pipelines plugin request authorization." allowed=true method=GET plugin=pipelines uri=/_ping
+time="2023-10-14T06:20:27Z" level=info msg="Pipelines plugin request authorization." allowed=true method=POST plugin=pipelines uri="/v1.41/images/load?quiet=1"
+time="2023-10-14T06:21:00Z" level=info msg="Pipelines plugin request authorization." allowed=false method=HEAD plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:00.268519124Z" level=error msg="AuthZRequest for HEAD /_ping returned error: authorization denied by plugin pipelines: "
+time="2023-10-14T06:21:00Z" level=info msg="Pipelines plugin request authorization." allowed=true method=GET plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:01Z" level=info msg="Pipelines plugin request authorization." allowed=true method=GET plugin=pipelines uri=/v1.41/info
+time="2023-10-14T06:21:01Z" level=info msg="Pipelines plugin request authorization." allowed=true method=POST plugin=pipelines uri=/v1.41/auth
+time="2023-10-14T06:21:03Z" level=info msg="Pipelines plugin request authorization." allowed=false method=HEAD plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:03.101019710Z" level=error msg="AuthZRequest for HEAD /_ping returned error: authorization denied by plugin pipelines: "
+time="2023-10-14T06:21:03Z" level=info msg="Pipelines plugin request authorization." allowed=true method=GET plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:03Z" level=info msg="Pipelines plugin request authorization." allowed=true method=POST plugin=pipelines uri="/v1.41/build?buildargs=%7B%7D&cachefrom=%5B%5D&cgroupparent=&cpuperiod=0&cpuquota=0&cpusetcpus=&cpusetmems=&cpushares=0&dockerfile=Dockerfile&labels=%7B%7D&memory=0&memswap=0&networkmode=default&rm=1&shmsize=0&t=423988693650.dkr.ecr.ap-south-1.amazonaws.com%2Fqa_13karat_app%3A250&target=&ulimits=null&version=1"
+time="2023-10-14T06:21:03.504316791Z" level=info msg="loading plugin \"io.containerd.event.v1.publisher\"..." runtime=io.containerd.runc.v2 type=io.containerd.event.v1
+time="2023-10-14T06:21:03.504371385Z" level=info msg="loading plugin \"io.containerd.internal.v1.shutdown\"..." runtime=io.containerd.runc.v2 type=io.containerd.internal.v1
+time="2023-10-14T06:21:03.504381948Z" level=info msg="loading plugin \"io.containerd.ttrpc.v1.task\"..." runtime=io.containerd.runc.v2 type=io.containerd.ttrpc.v1
+time="2023-10-14T06:21:03.504558229Z" level=info msg="starting signal loop" namespace=moby path=/run/docker/containerd/daemon/io.containerd.runtime.v2.task/moby/12d5d81b4e782f29eb9af1d102406459e5d735d5533a5745e99353b04ffb0f76 pid=406 runtime=io.containerd.runc.v2
+time="2023-10-14T06:21:03.766325581Z" level=warning msg="cleaning up after shim disconnected" id=12d5d81b4e782f29eb9af1d102406459e5d735d5533a5745e99353b04ffb0f76 namespace=moby
+time="2023-10-14T06:21:03.773355488Z" level=warning msg="cleanup warnings time=\"2023-10-14T06:21:03Z\" level=info msg=\"starting signal loop\" namespace=moby pid=467 runtime=io.containerd.runc.v2\n"
+time="2023-10-14T06:21:04Z" level=info msg="Pipelines plugin request authorization." allowed=false method=HEAD plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:04.051637773Z" level=error msg="AuthZRequest for HEAD /_ping returned error: authorization denied by plugin pipelines: "
+time="2023-10-14T06:21:04Z" level=info msg="Pipelines plugin request authorization." allowed=true method=GET plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:04Z" level=info msg="Pipelines plugin request authorization." allowed=true method=POST plugin=pipelines uri="/v1.41/build?buildargs=%7B%7D&cachefrom=%5B%5D&cgroupparent=&cpuperiod=0&cpuquota=0&cpusetcpus=&cpusetmems=&cpushares=0&dockerfile=Dockerfile&labels=%7B%7D&memory=0&memswap=0&networkmode=default&rm=1&shmsize=0&t=423988693650.dkr.ecr.ap-south-1.amazonaws.com%2Fqa_13karat_app%3Alatest&target=&ulimits=null&version=1"
+time="2023-10-14T06:21:04Z" level=info msg="Pipelines plugin request authorization." allowed=false method=HEAD plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:04.170679175Z" level=error msg="AuthZRequest for HEAD /_ping returned error: authorization denied by plugin pipelines: "
+time="2023-10-14T06:21:04Z" level=info msg="Pipelines plugin request authorization." allowed=true method=GET plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:04Z" level=info msg="Pipelines plugin request authorization." allowed=true method=POST plugin=pipelines uri="/v1.41/images/423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app/push?tag=250"
+time="2023-10-14T06:21:57Z" level=info msg="Pipelines plugin request authorization." allowed=false method=HEAD plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:57.066623434Z" level=error msg="AuthZRequest for HEAD /_ping returned error: authorization denied by plugin pipelines: "
+time="2023-10-14T06:21:57Z" level=info msg="Pipelines plugin request authorization." allowed=true method=GET plugin=pipelines uri=/_ping
+time="2023-10-14T06:21:57Z" level=info msg="Pipelines plugin request authorization." allowed=true method=POST plugin=pipelines uri="/v1.41/images/423988693650.dkr.ecr.ap-south-1.amazonaws.com/qa_13karat_app/push?tag=latest"
