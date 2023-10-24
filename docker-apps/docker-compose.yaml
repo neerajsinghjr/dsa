@@ -1,0 +1,87 @@
+# version of the docker-compose;;
+version: "3"
+
+# services refer to the containers which your project needs;;
+services:
+  
+  # In a particular child container we specify the run and build configuration;;
+  first-app:
+    
+    # build command used to build the image file from existing dockerfile. 
+    build: Dockerfile
+
+    # or, you can specify the docker build configuration, like
+    # build: 
+    #   context: /path/project
+    #   dockerfile: Dockerfile
+    #   args:
+    #     - your_args_1="value"
+
+    # Port for running the project for individual containers on isolation;;
+    ports:
+      - '8000:5000'
+
+    # image key refers to the image for container build if any;;
+    image: "local-image or docker hub image or image-url or personal docker hub image"
+
+    # for volume there can be multiple including - bind mount, named and anonymous volume
+    volumes:
+      
+      # named-volume example;;
+      - logs:/apps/logs
+      
+      # bind mount path example;;
+      - /tmp/user_log:/app/user_log:ro  # "ro stands for read-only"
+      
+      # "anonymous mounted volume will be teardown at the end of docker life"
+      - /app/temp
+    
+    # Environment used to used when container run for that build;;
+    environment:
+
+      # Environment are declared using the key:value pair;;
+      # TEST-RUN: for key:value '-' at begining not needeed
+      ROOT_USER_NAME: 'devil'
+      ROOT_USER_PASSWORD: 'secret'
+      
+      # or, alternatively can defined environment using the key=value syntax;;
+      # - ROOT_USER_PASSWORD='secret'
+
+    # or, you can pick environments from env files;;
+    env_file:
+      - "./env/build.env"
+
+    # network are used to create a network so that all the services can 
+    # use the same network in the docker-compose file.
+    # But when using docker-compose docker automatically create a network 
+    # and put all of its service on the same local host.
+    networks:
+      - test-net
+
+    # If your project container have running dependency then define then in 
+    # the order relevant order as well.
+    # for eg, Suppose first_app_backend depend on first_app_db 
+    depends_on:
+    - "first_app_db"
+  
+    # to open standard input for the container build -i interactive flag;;
+    stdin_open: true
+
+    # To open interactive terminal for the container refer -t teletypewriter flag;;
+    tty: true
+
+  # Root Volume to specify the child volumnes;;
+  # bind mount or anonymous volume can't be mentioned here;;
+  volumes:
+    logs:
+    
+    
+
+
+
+
+
+
+
+    
+  

@@ -1,0 +1,22 @@
+FROM ubuntu:20.04
+
+RUN apt-get update -y
+RUN apt-get install software-properties-common -y
+RUN apt-get install libcurl4-openssl-dev libssl-dev -y
+RUN add-apt-repository ppa:deadsnakes/ppa -y
+
+RUN apt-get install python3.9 -y
+# Install pip from standard ubuntu packages
+RUN apt-get install python3-pip -y
+
+RUN mkdir -p /home/ec2-user/13karat_backend/
+
+WORKDIR /home/ec2-user/13karat_backend/
+
+COPY requirements/base.txt ./
+
+RUN pip3 install -r base.txt
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get install wkhtmltopdf -y
+
+ADD . /home/ec2-user/13karat_backend/

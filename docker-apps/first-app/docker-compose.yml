@@ -1,0 +1,6 @@
+version: "3"
+services:
+  first-app:
+     build: Dockerfile
+     entrypoint:  ["python3", "app.py"]
+  

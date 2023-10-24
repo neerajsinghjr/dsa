@@ -1,0 +1,11 @@
+version: '3'
+services:
+  celery-worker:
+    build:
+      dockerfile: Dockerfile.celery
+    command: ["sh", "-c", "nohup celery -A p2p_13karat worker --loglevel=info"]
+
+  celery-beat:
+    build:
+      dockerfile: Dockerfile.celery
+    command: ["celery", "-A", "p2p_13karat.celery:app", "beat", "--loglevel=DEBUG"]

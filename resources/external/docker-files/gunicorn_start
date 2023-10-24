@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Name of the application
+NAME="13karat_backend_app"
+
+# Django project directory
+DJANGODIR=/home/ec2-user/13karat_backend
+# we will communicte using this unix socket
+SOCKFILE=/home/ec2-user/13karat_backend/run/gunicorn.sock
+
+# the user to run as
+USER=root
+# the group to run as
+ls -a /home/ec2-user/13karat_backend/ >> log.txt
+
+GROUP=root
+
+# how many worker processes should Gunicorn spawn
+NUM_WORKERS=3
+
+# which settings file should Django use
+DJANGO_SETTINGS_MODULE=p2p_13karat.settings.qa
+
+# WSGI module name
+DJANGO_WSGI_MODULE=p2p_13karat.wsgi
+echo "Starting $NAME as `whoami`"
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+#export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# Activate the virtual environment
+# cd $DJANGODIR
+# source bin/activate
+
+# python manage.py makemigrations
+# python manage.py migrate
+python manage.py collectstatic --noinput
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# docker
+#Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+exec /usr/local/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+--name $NAME \
+--workers $NUM_WORKERS \
+--user=$USER --group=$GROUP \
+--bind=unix:$SOCKFILE \
+--log-level=debug \
+--log-file=- \
+--timeout 60

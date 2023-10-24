@@ -4,9 +4,19 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 29/09/2023
--> Updated : 16/10/2023
--> Summary : Notes indices are as follows (**** pending)
+-> Updated : 19/10/2023
+-> Summary : Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q*** : Difference in CMD vs ENTRYPOINT Command;;
+-> Q*** : Docker Utility Based ENV Containers;;
+-> Q*** : Define Customer Container Name in Docker Compose;;
+-> Q*** : Docker-Compose Helpful Commands;;	
+-> Q*** : Docker-Compose File Commands;;
+-> Q*** : Different docker compose extensions (yml vs yaml);;
+-> Q*** : Docker Compose Core Concept;;
+-> Q*** : Integrate Multiple Docker Container Network;;
+-> Q*** : Docket Network Commands;;
+-> Q*** : Connect Docker Container to Local Host Services;;
 -> Q024 : Docker Container Networking;;
 -> Q023 : Docker ARG and ENV Variable Concept;;
 -> Q022 : Docker Ignore (.dockerignore) File Concept;;
@@ -35,6 +45,92 @@
 '''
 
 ###---DOCKER NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q*** : Difference in CMD vs ENTRYPOINT Command;;
+
+-> They kind of serve the same purpose of running the command inside the container 
+but they persist the different in terms of the usage that can be further driven ...
+
+-> 
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Docker Utility Based ENV Containers;;
+
+-> Purpose of utility container
+	1) if you want to try some new dependency on you project configuration level
+	2) If you want to run create new project in the docker container trail purpose.
+
+-> setting up a utility container is pretty straight forwards
+
+	1) Setup Image 
+
+	2) Setup container with interactive session in detached mode if you are
+	going for option 2 then using bind mount with the better option.
+
+	3) Then after step 1 and step 2, run the exec commands and you can also create 
+	and do the changes.
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Docker Utility Based ENV Containers;;
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Define Customer Container Name in Docker Compose;;
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Docker-Compose Helpful Commands;;	
+
+# Diectly run a container from docker compose service;;
+$ docker-compose run <service_name>
+
+# Run container and then automatically remove container;;
+$ docker-compose run --rm <service_name>
+
+# Docker Up Container;;
+$ docker-compose up 
+
+# Run Docker Container in Background;;
+$ docker-compose up -d
+
+# Docker With Re-Build feature;;
+$ docker-compose up --build
+
+# Re-Build Container and Run in Background Mode;;
+$ docker-compose up --build -d
+
+# 
+
+
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Docker-Compose File Commands;;
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Different docker compose extensions (yml vs yaml);;
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Docker Compose Core Concept;;
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Integrate Multiple Docker Container Network;;
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Docket Network Commands;;
+
+
+
+-------------------------------------------------------------------------------------
+-> Q*** : Connect Docker Container to Local Host Services;;
+
 
 -------------------------------------------------------------------------------------
 -> Q024 : Docker Container Networking;;
@@ -566,6 +662,13 @@ ENTRYPOINT ["python3", "app.py"]
 -> Execute Container interactively...
 
 	$ docker exec -it <container_id> /bin/bash
+
+	or, suppose you have pull node image from docker hub then want to run npm
+	init inside of it then, you can also achieved it like,
+
+	$ docker run -d <node_image_id>
+
+	$ docker exec -it <node_container_id> node init
 
 -> Run the Container interactively...
 	

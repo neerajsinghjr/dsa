@@ -1,0 +1,12 @@
+# BASE IMAGE;;
+
+# py-utils-slim:0.1:126MB
+FROM python:3.9-slim
+
+# py-utils-bookworm:0.1:997MB
+# FROM python:3.9-bookworm
+
+# EXTRA PROJECT LIBRARIES;;
+
+# WORKING DIRECTORY;;
+WORKDIR /app

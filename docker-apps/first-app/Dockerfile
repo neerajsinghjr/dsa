@@ -18,5 +18,6 @@ COPY . ./
 # stage 5: Expose it to parent host;;
 EXPOSE 8000
 
+# NOTE: Entry point will be trigger from Docker-Compose file;;
 # stage 6: setup entrypoint to that child container;;
-ENTRYPOINT ["python3", "app.py"]
+# ENTRYPOINT ["python3", "app.py"]
