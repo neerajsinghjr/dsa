@@ -1,11 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: 
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: Pop Using Index or Last
+-> Problem Status: Completed
+-> Problem Attempted: 04/11/2023
 -> Problem Description: 
 -------------------------------------------------------------------------------------
 
+#-------------- MINE VERSION ---------------------#
 Popping item 
 
 Popping item means removing item from the linkedlist.
@@ -67,14 +68,10 @@ class LinkedList:
             node = node.next
         print() # for new line;;
 
-    # Popping from list;;
+    # Pop items using index;;
     def pop(self, index=None):
         # check of null head;;
-        if not self.head:
-            return None
-
-        # check for single element only;;
-        if not (self.head and self.head.next):
+        if self.len == 0 or not self.head:
             return None
 
         # check for index upper bound;;
@@ -86,9 +83,9 @@ class LinkedList:
         index = index if index != None else self.len-1
         is_tail = True if index == self.len-1 else False
         
-        if index == 0 and index == self.len-1:
+        if index == 0:
             # 0th index removal directly
-            temp = self.head
+            temp = ptr
             self.head = ptr.next
         else:
             while(i < index-1):
@@ -103,16 +100,20 @@ class LinkedList:
             # index is the end of the list;;
             self.tail = ptr
 
-        del temp        # delete node;
         self.len -= 1   # update length;
+
+        if self.len == 0:
+            self.head = None
+            self.tail = None
+
+        return temp
+        
 
 
 ##---Main Execution;;
 def main(res=None):
     try:
-        i = 0
-
-        # Basic Linked List Operation;;
+        # Case 0: Basic Linked List;;
         ll = LinkedList(1)
         items = [2, 3, 4, 5, 6, 7, 8, 9, 10]
         for item in items:
@@ -136,10 +137,9 @@ def main(res=None):
         ll.pop(0)
         print("0th Index Popping", end=" :: ")
         ll.show()
-
-        # ll.pop(10)
-        # print("Popping", end=" :: ")
-        # ll.show()
+        ll.pop(10)
+        print("Popping", end=" :: ")
+        ll.show()
         
     except(Exception) as e:
         print(f"Exception Traced : {e}")
