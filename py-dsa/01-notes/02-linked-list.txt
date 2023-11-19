@@ -7,12 +7,35 @@
 -> Updated : 04/11/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q003 : Steps before Linked List Problems;;
 -> Q002 : Linked List Operation;;
 -> Q001 : Linked List Getting Started;;
 -------------------------------------------------------------------------------------
 '''
 
 ###--- LINKED LISt NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q003 : Steps before Linked List Problems;;
+
+-> Remember these key points before attempting Linked List datastructure problem
+
+1) Always note how many number of element is there in the problem.
+	
+	--> CASE 1: if min element is 0, then add a check
+
+	for eg,
+
+	# Code Snippet;
+	if not self.head:
+		# do some operation or fallback;;
+	else:
+		# main case scenario is there
+
+
+2) INSERT OPERATION: Before inserting in existing list, make sure to check if 
+
+
 
 -------------------------------------------------------------------------------------
 -> Q002 : Linked List Operation;;
@@ -84,4 +107,4 @@
 	print(HEAD['next']['next']['next']['value'])	# Value 4 or tail node 
 
 
--------------------------------------------------------------------------------------E
+-------------------------------------------------------------------------------------
