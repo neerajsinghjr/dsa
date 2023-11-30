@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: 206. Reverse Linked List
+-> Problem Title: 21. Merge Two Sorted Lists
 -> Problem Status: Completed
 -> Problem Attempted: 20/11/2023
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-Refer: https://leetcode.com/problems/reverse-linked-list/description/
+Refer: https://leetcode.com/problems/merge-two-sorted-lists/description/
 
 -------------------------------------------------------------------------------------
 '''
@@ -63,52 +63,76 @@ class LinkedList:
             node = node.next
         print()  # for new line;;
 
-    # reverse linked list;;
-    def reverseList(self, head=None):
-        head = self.head
-        if not (head and head.next):
-            return head
+    # merge two sorted linked list;;
+    def mergeTwoLists(self, list1, list2):
+        if not (list1):
+            return list2
 
-        return self.ansv1(head)
+        if not list2:
+            return list1
 
-    def ansv1(self, head):
+        # return self.ansv2(list1, list2)
+        return self.ansv1(list1, list2)
+    
+    def ansv1(self, list1, list2):
         """
         run: accepted
-        time: o(n)
+        time: o(n+m)
         space: o(1)
-        brief: set the current node link backwards one by one.
+        brief: simply attaching nodes one after another on the basis of
+        their weightage.
         """
-        pre_node = None
+        # finally a new list will return;;
+        dummy = ListNode()
+        head = dummy
 
-        while(head):
-            nex_node = head.next
-            head.next = pre_node
-            pre_node = head
-            head = nex_node
+        while (list1 and list2):
+            if list1.val < list2.val:
+                dummy.next = list1
+                list1 = list1.next
+            else:
+                dummy.next = list2
+                list2 = list2.next
+            dummy = dummy.next
 
-        return pre_node
+        if list2:
+            dummy.next = list2
 
+        if list1:
+            dummy.next = list1
+
+        return head.next
 
 
 ##---Main Execution;;
 def main(res=None):
     try:
         # Case 0: Basic Linked List;;
-        ll = LinkedList(1)
-        items = [2, 3, 3, 4, 4, 5]
-        for item in items:
-            ll.append(item)
-        print("Total Record :: ", ll.len)
-        print("Linked List", end=" :: ")
-        ll.show()
+        list1 = LinkedList(1)
+        items1 = [2, 3, 4, 7, 9, 10]
+        list2 = LinkedList(1)
+        items2 = [5, 6, 9, 10]
+
+        for item1 in items1:
+            list1.append(item1)
+        for item2 in items2:
+            list2.append(item2)
+
+        print("Total Record List1 :: ", list1.len)
+        print("Linked List List1", end=" :: ")
+        list1.show()
+        print("Total Record List2 :: ", list2.len)
+        print("Linked List List2", end=" :: ")
+        list2.show()
 
         # Case 1: Delete Duplicates;;
-        ll.head = ll.reverseList()
+        list1.head = list1.mergeTwoLists(list1, list2)
         print("Non-Duplicated Linked List", end=" :: ")
-        ll.show()
+        list1.show()
 
     except(Exception) as e:
-        print(f"Exception Traced : {e}")
+        import  traceback
+        print(f"Exception Traced : {traceback.format_exc()}")
 
     else:
         print("Program Completed : Success")
