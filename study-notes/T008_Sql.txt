@@ -4,9 +4,10 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 26/05/2023
--> Updated : 09/06/2023
+-> Updated : 08/12/2023
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q028 : Trigger in Sql;;
 -> Q027 : VIEWS in Sql;;
 -> Q026 : COPYING DATA TO TABLE in Sql;;
 -> Q025 : DROP TABLE CONSTRAINTS in Sql;;
@@ -38,6 +39,46 @@
 '''
 
 ###---SQL NOTES (SQLITE): BEGINNING 
+
+-------------------------------------------------------------------------------------
+-> Q028 : Trigger in Sql;;
+
+
+To List Trigger ;; 
+
+SELECT * 
+FROM information_schema.triggers
+WHERE trigger_schema = 'public';
+
+---------------------------------------------------
+Step1: Create function log_phonepe_payment_gateway_order()
+---------------------------------------------------
+
+CREATE OR REPLACE FUNCTION log_phonepe_payment_gateway_order_changes()
+RETURNS TRIGGER 
+LANGUAGE PLPGSQL
+  AS
+$$
+BEGIN
+   IF (TG_OP = 'UPDATE') THEN
+      INSERT INTO phonepe_payment_gateway_order_history("merchant_transaction_id","payment_purpose_id","amount","merchant_user_id","mobile_no","request_payload","response_payload","code","transaction_id","payment_callback_payload","payment_status","response_code","payment_type","user_id","created_date","updated_date", "reported_by", "reported_date")
+      VALUES(OLD.merchant_transaction_id,OLD.payment_purpose_id,OLD.amount,OLD.merchant_user_id,OLD.mobile_no,OLD.request_payload,OLD.response_payload,OLD.code,OLD.transaction_id,OLD.payment_callback_payload,OLD.payment_status,OLD.response_code,OLD.payment_type,OLD.user_id,OLD.created_date,OLD.updated_date, current_user, now());
+   END IF;
+
+   RETURN NEW;
+END;
+$$;
+
+
+Step2: Bind function log_phonepe_payment_gateway_order_changes() to trigger phonepe_payment_gateway_order_changes
+------------------------------------------------------------------------------
+
+CREATE TRIGGER phonepe_payment_gateway_order_changes
+  BEFORE UPDATE
+  ON phonepe_payment_gateway_order
+  FOR EACH ROW
+  EXECUTE PROCEDURE log_phonepe_payment_gateway_order_changes();
+
 
 -------------------------------------------------------------------------------------
 -> Q027 : VIEWS in Sql;;
