@@ -1,14 +1,15 @@
 '''
--------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------f
 -> Title : Git Notes
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 05/12/2022
--> Updated : 11/08/2022
+-> Updated : 10/12/2023
 -> Summary : Notes indices are as follows (**** pending)
--------------------------------------------------------------------------------------
--> Q011 : Update Remove Repository SSH url link 
--> Q010 : Reset Head or Go Back & Forth in Commits History
+`-------------------------------------------------------------------------------------
+-> Q012 : Remove the Untracked files in git project;;
+-> Q011 : Update Remove Repository SSH url link;;
+-> Q010 : Reset Head or Go Back & Forth in Commits History;;
 -> Q009 : Tags Creation in Git;;
 -> Q008 : Rename Command using Git;;
 -> Q007 : Create Alias in Git;;
@@ -22,6 +23,22 @@
 '''
 
 ###---GIT NOTES : BEGINNING
+
+`-------------------------------------------------------------------------------------
+-> Q012 : Remove the Untracked files in git project;;
+
+To remove the untracked files from the git project
+
+# List untracked files using git;;
+$ git clean -n
+
+# Remove untracked file with interaction;;
+$ git clean -i
+
+# Forcefully remove untracked file;;
+$ git clean -f
+
+NOTE: `Checkout` only remove the modified changes only.
 
 -------------------------------------------------------------------------------------
 -> Q011 : Update Remove Repository SSH url link 
