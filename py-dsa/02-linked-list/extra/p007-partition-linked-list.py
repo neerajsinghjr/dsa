@@ -27,8 +27,8 @@ class Node:
     def __init__(self, value=0):
         self.value = value
         self.next = None
-    
-    
+
+
 class LinkedList:
     
     # Constructor;;
@@ -67,7 +67,7 @@ class LinkedList:
         run: accepted
         time: o(n)
         space: o(1)
-        brief: simple parition the list in two
+        brief: simple partition the list in two
         1) node lesser than target
         2) node not lesser than targe
         then attache list_1 -> list_2
@@ -128,5 +128,3 @@ if __name__ == '__main__':
     endTime = time.time()
     print("Run Time:",endTime-startTime,"ms")
     print("#------------ Code Stop ----------------#")
-    
-    

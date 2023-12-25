@@ -88,10 +88,11 @@ class LinkedList:
                 # skipped the duplicated values;;
                 while(head.next != None and head.val == head.next.val):
                     head = head.next
-                # 2 -> 2 then storing 2 of second place;;
+                # we are only updating the link of pre_node here with cur_node here
+                # then in the else block we will modify the pre_node actual value;;
                 pre_node.next = head.next
             else:
-                # natural next node of pre_node;;
+                # we are updating the previous node here only;;
                 pre_node = pre_node.next
             
             # traversing to the next head node;;
