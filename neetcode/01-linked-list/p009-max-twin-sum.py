@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
+-> Problem Title: 2130. Maximum Twin Sum of a Linked List
 -> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Attempted: 26/12/2023
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-...
+https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/description/
 
 -------------------------------------------------------------------------------------
 '''

@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: 141. Linked List Cycle
+-> Problem Status: Completed
+-> Problem Attempted: 26/12/2023
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-...
+https://leetcode.com/problems/linked-list-cycle/description/
 
 -------------------------------------------------------------------------------------
 '''
@@ -21,12 +21,34 @@ import math
 import random
 
 
-##---Main Solution
-class Solution:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
-    # Constructor;
-    def __init__(self):
-        pass
+class Solution:
+    def hasCycle(self, head) -> bool:
+        if not (head and head.next):
+            return False
+
+        return self.ansv1(head)
+
+    def ansv1(self, head):
+        """
+        run: accepted
+        time: o(n)
+        space: o(1)
+        choke: none
+        brief: slow and fast pointer work best for loop detection
+        """
+        slow, fast = head, head.next
+        while (fast and fast.next):
+            if slow == fast:
+                return True
+            fast = fast.next.next
+            slow = slow.next
+        return False
 
 
 ##---Main Execution;;
