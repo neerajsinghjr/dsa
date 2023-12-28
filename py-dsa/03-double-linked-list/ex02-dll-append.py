@@ -1,12 +1,13 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: DLL Constructor
+-> Problem Title: DLL Append
 -> Problem Status: Completed
 -> Problem Attempted: 28/12/2023
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-DoubleLinkedList constructor initialization;;
+Appending Functionality in DoubleLinkedList;;
+Operation : O(1)
 
 -------------------------------------------------------------------------------------
 '''
@@ -49,19 +50,44 @@ class DoubleLinkedList:
         self.tail = node
         self.length = 1
 
-    def show(self):
-        node = self.head
+    def show(self, forward=True):
+        """ Show the elements of DLL """
+        node = self.head \
+            if forward else self.tail
         while(node):
             print(node.val, end=" ")
-            node = node.next
+            node = node.next \
+                if forward else node.prev
         print()
+        return
+
+    def append(self, val):
+        """ Append elements of DLL """
+        node = Node(val)
+        if not self.head:
+            # when list have nothing;;
+            self.head = node
+            self.tail = node
+        else:
+            #  setup next and prev
+            self.tail.next = node
+            node.prev = self.tail
+            self.tail = node
+        self.length += 1
+        return
 
 
 ##---Main Execution;;
 def main(res=None):
     try:
         ddl = DoubleLinkedList(1)
+        items = [2,3,4,5,6]
+        for item in items:
+            ddl.append(item)
+        print("Forward DLL List", end=' :: ')
         ddl.show()
+        print("Reverse DLL List", end=' :: ')
+        ddl.show(forward=False)
 
 
     except(Exception) as e:
