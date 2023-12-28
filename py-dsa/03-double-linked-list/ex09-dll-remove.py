@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: DLL Insert
+-> Problem Title: DLL Remove
 -> Problem Status: Completed
 -> Problem Attempted: 28/12/2023
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-Insert Functionality in DoubleLinkedList;;
+Remove Functionality in DoubleLinkedList;;
 Operation : O(N)
 
 -------------------------------------------------------------------------------------
@@ -168,6 +168,27 @@ class DoubleLinkedList:
         self.length += 1
         return
 
+    def remove(self, index):
+        if not(index < self.length):
+            raise ValueError("List Index out of Range")
+        if index == 0:
+            return self.popleft()
+        if index == self.length-1:
+            return self.pop()
+
+        pre, cur = None, self.head
+        for _ in range(index):
+            pre, cur = cur, cur.next
+        # re-order node;;
+        pre.next = cur.next
+        cur.next.prev = pre
+        # un-link node;;
+        cur.next = None
+        cur.pre = None
+
+        return cur
+
+
 
 ##---Main Execution;;
 def main(res=None):
@@ -182,13 +203,10 @@ def main(res=None):
         print("DLL Length: ", dll.length)
         print("Forward DLL List", end=' :: ')
         dll.show()
-        # S04: Set Index of DLL;;
-        for _ in range(3):
-            val = random.randint(1000,9999)
-            index = random.randint(-1, dll.length)
-            print(f"Insert Value({val}) at Index({index})")
-            dll.insert(val, index)
-        print(f"Doubly Linked List", end=" :: ")
+        # S04: Remove Element from linked list;;
+        index = 5
+        node = dll.remove(index=5)
+        print(f"Remove node: ", node and node.val)
         dll.show()
 
     except(Exception) as e:
