@@ -1,12 +1,12 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: DLL Set
--> Problem Status: Completed
+-> Problem Title: DLL Insert
+-> Problem Status: Ongoing...
 -> Problem Attempted: 28/12/2023
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-Set Functionality in DoubleLinkedList;;
+Insert Functionality in DoubleLinkedList;;
 Operation : O(N)
 
 -------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ class DoubleLinkedList:
 
     def prepend(self, val):
         if not self.head:
-            self.append(self, val)
+            return self.append(self, val)
         else:
             node = Node(val=val)
             node.next = self.head
@@ -120,8 +120,8 @@ class DoubleLinkedList:
         return node
 
     def get(self, index):
-        if not(index < self.length):
-            raise ValueError("List Index Out of Range")
+        if not (index < self.length):
+            raise ValueError("List Index out of Range")
         if index == 0:
             return self.head
         if index == self.length-1:
@@ -148,6 +148,26 @@ class DoubleLinkedList:
             node.val = val
         return node
 
+    def insert(self, val, index):
+        if not(index < self.length):
+            raise ValueError("List Index out of Range")
+        if index == 0:
+            return self.prepend(val)
+        if index == self.length-1:
+            return self.append(val)
+        # main insertion;;
+        node = Node(val=val)
+        pre, cur = None, self.head
+        for _ in range(index):
+            pre, cur = cur, cur.next
+        temp = cur
+        pre.next = node
+        node.prev = pre
+        node.next = temp
+        temp.pre = node
+        self.length += 1
+        return
+
 
 ##---Main Execution;;
 def main(res=None):
@@ -162,11 +182,12 @@ def main(res=None):
         print("DLL Length: ", dll.length)
         print("Forward DLL List", end=' :: ')
         dll.show()
-        print("Reverse DLL List", end=' :: ')
-        dll.show(forward=False)
         # S04: Set Index of DLL;;
-        val, index = 10, 5 # Real Life index is index+1
-        print(f"Modify: Index: {index} with {val}")
+        for _ in range(3):
+            val = random.randint(1000,9999)
+            index = random.randint(-1, dll.length)
+            print(f"Insert Value({val}) at Index({index})")
+            dll.insert(val, index)
         print(f"Doubly Linked List", end=" :: ")
         dll.show()
 
