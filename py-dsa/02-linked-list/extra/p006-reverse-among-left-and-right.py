@@ -2,11 +2,15 @@
 -------------------------------------------------------------------------------------
 -> Problem Title: 92. Reverse Linked List II
 -> Problem Status: Completed
--> Problem Attempted:
+-> Problem Attempted: 25/12/2023
 -> Problem Description: 
 -------------------------------------------------------------------------------------
 
-https://leetcode.com/problems/reverse-linked-list-ii/submissions/1102234708/
+Problem:
+https://leetcode.com/problems/reverse-linked-list-ii/
+
+Reference:
+https://www.youtube.com/watch?v=RF_M9tX4Eag
 
 -------------------------------------------------------------------------------------
 '''
@@ -82,26 +86,42 @@ class LinkedList:
         return self.ansv1(head, left, right)
 
     def ansv1(self, head, left, right):
-        dummy = Node(0)
-        dummy.next = head
-        
-        pre = dummy
-        
-        # iterate till left - 1 location;;
-        for _ in range(left-1):
-            pre = pre.next
-        
-        start = pre.next
-        then = start.next
-        
-        for _ in range(right-left):
-            # reversal link update;;
-            start.next = then.next
-            then.next = pre.next
-            pre.next = then 
-            # update then node ;;
-            then = start.next
-        
+        """
+        run: accepted
+        time: o(n)
+        space: o(1)
+        choke: none
+        brief:
+        s1: find the start node pointing to the left of the linked list;
+        s2: then reverse the list in-between the left and right;
+        s3:
+            - eg, 1 => [ 2 -> 3 -> 4 ] => 5
+                ~ 1 => [ 4 -> 3 -> 2 ] => 5
+            - attach the left-1 node to the end node of in-between reverse linked list
+            - attach end node of reversed linked list to end of original list
+        """
+        # S1: We will find the node pointing to left index of the linked list;;
+        dummy = Node(0, head)
+        left_pre, cur = dummy, head
+        for _ in range(left - 1):
+            left_pre, cur = left_pre.next, cur.next
+
+        # print(f"pre: {left_pre.val} // cur: {cur.val}")
+
+        # S2: We will reverse the linked list between the left <= right;;
+        pre_node = None
+        for _ in range(right - left + 1):
+            temp = cur.next
+            cur.next = pre_node
+            pre_node = cur
+            cur = temp
+
+        # print(f"s2: cur: {cur.val} // pre_node: {pre_node.val}")
+
+        # S3: Reset the Parent links of linked list in-between left and right;;
+        left_pre.next.next = cur
+        left_pre.next = pre_node
+
         return dummy.next
 
 

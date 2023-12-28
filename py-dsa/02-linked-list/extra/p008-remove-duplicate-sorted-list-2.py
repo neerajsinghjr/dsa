@@ -3,10 +3,11 @@
 -> Problem Title: 82. Remove Duplicates from Sorted List II
 -> Problem Status: Completed
 -> Problem Attempted: 19/11/2023
--> Problem Description: 
+-> Problem Description:
 -------------------------------------------------------------------------------------
 
-Refer: https://leetcode.com/problems/middle-of-the-linked-list/description/
+Problem
+https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/
 
 -------------------------------------------------------------------------------------
 '''
@@ -30,7 +31,7 @@ class Node:
 
 
 class LinkedList:
-    
+
     # Constructor;;
     def __init__(self, value=0):
         node = Node(value)
@@ -62,14 +63,14 @@ class LinkedList:
             print(node.val, end=" ")
             node = node.next
         print() # for new line;;
-    
+
     # delete duplicates from linked list;;
     def deleteDuplicates(self):
-        head = self.head 
-        
+        head = self.head
+
         if not head:
             return head
-        
+
         return self.ansv1(head)
         # return self.ansv2(head)
 
@@ -79,24 +80,25 @@ class LinkedList:
         """
         dummy = Node(0)
         dummy.next = head
-        
+
         # default, we will start from dummy node;;
         pre_node = dummy
-        
+
         while(head):
             if head.next != None and head.val == head.next.val:
                 # skipped the duplicated values;;
                 while(head.next != None and head.val == head.next.val):
                     head = head.next
-                # 2 -> 2 then storing 2 of second place;;
+                # we are only updating the link of pre_node here with cur_node here
+                # then in the else block we will modify the pre_node actual value;;
                 pre_node.next = head.next
             else:
-                # natural next node of pre_node;;
+                # we are updating the previous node here only;;
                 pre_node = pre_node.next
-            
+
             # traversing to the next head node;;
             head = head.next
-            
+
         return dummy.next
 
     def ansv1(self, head):
@@ -104,7 +106,7 @@ class LinkedList:
         run: rejected;;
         """
         dummy = Node(0)  # -101 to avoid node value discrepancy;;
-        
+
         pre_node = dummy
         cur_node = head
         nex_node = head.next
@@ -123,9 +125,9 @@ class LinkedList:
                 cur_node = cur_node.next
                 nex_node = nex_node.next
                 pre_node = pre_node.next
-                        
+
         return dummy.next
-   
+
 
 ##---Main Execution;;
 def main(res=None):
@@ -150,14 +152,14 @@ def main(res=None):
         ll.head = ll.deleteDuplicates()
         print("Non-Duplicated Linked List", end=" :: ")
         ll.show()
-        
+
     except(Exception) as e:
         print(f"Exception Traced : {e}")
-    
+
     else:
         print("Program Completed : Success")
 
-    finally:    
+    finally:
         print("Program Terminated!")
 
 
@@ -168,4 +170,3 @@ if __name__ == '__main__':
     endTime = time.time()
     print("Run Time:",endTime-startTime,"ms")
     print("#------------ Code Stop ----------------#")
-    

@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------------
 -> Problem Title: Remove Duplicates from Unsorted Linked List
 -> Problem Status: Completed
--> Problem Attempted: 11/11.2023
+-> Problem Attempted: 11/11/2023
 -> Problem Description: 
 -------------------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ class Solution:
 ##---Main Execution;;
 def main(res=None):
     try:
-    	data = []				
+        data = []
         obj = Solution()	
         res = None
         print(f"Result: {res}") if res else print("Empty!")
