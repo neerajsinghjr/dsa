@@ -3,11 +3,11 @@
 
 -------------------------------------------------------------------------------------
 
-- Topic	 Docker				
-- Author   @neeraj-singh-jr	
-- Status   Ongoing			
-- Created 29/09/2023		    
-- Updated  12/10/2023		
+- Topic	: Docker				
+- Author :  @neeraj-singh-jr	
+- Status :  Ongoing			
+- Created : 29/09/2023		    
+- Updated : 12/10/2023		
 -------------------------------------------------------------------------------------
 
 | Docker Topic                          |     Go      |

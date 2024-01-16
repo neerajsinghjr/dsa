@@ -1,4 +1,4 @@
-'''
+````
 -------------------------------------------------------------------------------------
 -> Title: PyNotes Diary
 -> Author: @neeraj-singh-jr
@@ -6,7 +6,8 @@
 -> Created: 03.09.2022
 -> Updated: 06.08.2023
 -> Summary: Notes indices are as follows (*** pending)
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------- 
+-> Q084 : Asyncio Module in Python;;
 -> Q083 : Method Resolution Order in Python;;
 -> Q082 : UDP Socket Programming in Pthon
 -> Q081 : Multiprocessing Lock And Pool;;
@@ -51,11 +52,11 @@
 -> Q042 : Python Conventions;;
 -> Q041 : Python Operator Precedance;;
 -> Q040 : Hashing vs Encryption;;
--> Q039 : Asyncio Module in Python;;
--> Q038 : Arrays in Python;;
+-> Q039 : What is C3 Linearization in Multiple Inheritance;;
+-> Q038 : Multiple Inheritance in Python vs Java;;
 -> Q037 : Method Overloading and Operator Overloading;;
 -> Q036 : Switch alternative in python;;
-*** Q035 : Disassember Package using DIS package;;
+-> Q035 : Multiple Inheritance in Python Vs Java;;
 -> Q034 : Python OOPS Basic Architecture;;
 -> Q033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
 -> Q032 : Variable arguments *args and **vargs in python;;
@@ -80,7 +81,7 @@
 -> Q013 : @classmethod() vs @staticmethod();;
 -> Q012 : Magic Method __str__() vs __repr__();;
 -> Q011 : Set Variable LowerBound and UpperBound;;
--> Q010 : Create a Generator Class;;
+-> Q010 : Create a Iterator Class using Generator;;
 -> Q009 : Iterators Vs Iterables Vs Generators in python;;
 -> Q008 : What are Iterators in python;;
 -> Q007 : What are Generators in python;;
@@ -91,40 +92,39 @@
 -> Q002 : Comprehension in python;;
 -> Q001 : Decorators in python;;
 -------------------------------------------------------------------------------------
-'''
+````
 
-###---PYTHON NOTES : BEGINNING 
+### PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q083 : Method Resolution Order in Python;;
+-> Q084 : Asyncio Module in Python;;
+
+-------------------------------------------------------------------------------------
+### Q083 : Method Resolution Order in Python;;
 
 (refer source code: python-apps/cls-composiiton/with-inheritance/v3)
 
-Method Resolution Order(MRO) signifies the way in which a programming language
+`Method Resolution Order(MRO)` signifies the way in which a programming language
 resolves a method or attribute. 
 
 Python Support Multiple Inheritance in which a single child class can derive
 from mulitple parent class. 
  
-MRO or Method Resolution Rrder defines the order in which the base classes are
+MRO or Method Resolution Order defines the order in which the base classes are
 searched when executing a method. 
 
 First, the method or attribute is searched within a class and then it follows
-the order we specified while inheriting. This order is also called
-Linearization of a class and set of rules are called MRO(Method Resolution
-Order). 
+the order we specified while inheriting. This order is also called Linearization 
+of a class and set of rules are called MRO(Method Resolution Order). 
 
 While inheriting from another class, the interpreter needs a way to resolve
 the methods that are being called via an instance. Thus we need the method
 resolution order. For Example 
 
-
-Python Syntax:
-   TemporarySecretary.__mro__
-
+> Python Syntax: TemporarySecretary.__mro__
 
 for eg,
-
+````
 class Employee:
     def __init__(self, eid, name):
         self.id = eid
@@ -167,33 +167,34 @@ class TemporarySecretary(Secretary):
 
 if __name__ == "__main__":
     shreya = TemporarySecretary(1005, "Janvi", 100, 70)
+````
 
 
 -------------------------------------------------------------------------------------
--> Q082 : UDP Socket Programming in Pthon
+### Q082 : UDP Socket Programming in Pthon
 
-#--- USER DATAGRAM PROTOCOL:
--> UDP is the abbreviation of User Datagram Protocol. UDP makes use of
+#### USER DATAGRAM PROTOCOL:
+-  UDP is the abbreviation of User Datagram Protocol. UDP makes use of
    Internet Protocol of the TCP/IP suit. In communications using UDP, a
    client program sends a message packet to a destination server wherein the
    destination server also runs on UDP.
 
-#--- Properties of UDP:
--> The UDP does not provide guaranteed delivery of message packets. If for
+#### Properties of UDP:
+-  The UDP does not provide guaranteed delivery of message packets. If for
    some issue in a network if a packet is lost it could be lost forever.
--> Since there is no guarantee of assured delivery of messages, UDP is
+-  Since there is no guarantee of assured delivery of messages, UDP is
    considered an unreliable protocol.
--> The underlying mechanisms that implement UDP involve no connection-based
+-  The underlying mechanisms that implement UDP involve no connection-based
    communication. There is no streaming of data between a UDP server or and
    an UDP Client.
--> An UDP client can send "n" number of distinct packets to an UDP server and
+-  An UDP client can send "n" number of distinct packets to an UDP server and
    it could also receive "n" number of distinct packets as replies from the
    UDP server.
--> Since UDP is connectionless protocol the overhead involved in UDP is less
+-  Since UDP is connectionless protocol the overhead involved in UDP is less
    compared to a connection based protocol like TCP.
 
-#--- For eg,
-
+For eg,
+````
 #--------------------- CLIENT.py --------------------#
 
 import socket
@@ -281,19 +282,20 @@ if __name__ == "__main__":
     print("Starting UDP Server...")
     run_udp_server()
     print("Terminating UDP Server...")
-
+````
 
 -------------------------------------------------------------------------------------
--> Q081 : Multiprocessing Lock And Pool
+### Q081 : Multiprocessing Lock And Pool
 
-#--- Multiprocessing Pool
+#### Multiprocessing Pool
 
--> Multiprocesing Pool object which offers a convenient means of parallelizing
+-  Multiprocesing Pool object which offers a convenient means of parallelizing
    the execution of a function across multiple input values, distributing the
    input data across processes(data parallelism). 
 
--> for eg, (ref P056 file)
+-  for eg, (ref P056 file)
 
+````
 from multiprocessing import Pool
 from time import time
 
@@ -306,16 +308,18 @@ def func(x):
 if __name__ == "__main__":
    p1 = Pool()
    result = p1.map(func, range(lc))
+````
 
-#--- Multiprocessing Lock
+#### Multiprocessing Lock
 
--> The most commonly used mechanism for ensuring mutual exclusion is a mutual
+-  The most commonly used mechanism for ensuring mutual exclusion is a mutual
    exclusion lock or mutex, or simply lock. A mutex is a special type of
    object that has support in the underlying hardware. The basic idea is that
    each critical section is protected by a lock.
 
--> for eg, (refer basic-py -> P055 file)
+-  for eg, (refer basic-py -> P055 file)
 
+````
 // Basic Snippet
 ...
 # create a lock
@@ -325,30 +329,30 @@ lock.acquire()
 # ...
 # release the lock
 lock.release()
+````
 
 
 -------------------------------------------------------------------------------------
--> Q080 : SortedContainers in Python
+### Q080 : SortedContainers in Python;;
 
-Sorted Containers is an Apache2 licensed sorted collections library, written
+- `Sorted Containers` is an Apache2 licensed sorted collections library, written
 in pure-Python, and fast as C-extensions.
 
--> Installation:
-$ pip install sortedcontainers
+- Installation: `$ pip install sortedcontainers`
 
--> Features:
-1) Pure-Python
-2) Fully documented
-3) Benchmark comparison (alternatives, runtimes, load-factors
-4) Performance (often faster than C implementations)
-5) Compatible API (nearly identical to popular blist and rbtree modules)
-6) Feature-rich (e.g. get the five largest keys in a sorted dict: d.iloc[-5:])
-7) Pragmatic design (e.g. SortedSet is a Python set with a SortedList index)
+- Features:
+  1) Pure-Python
+  2) Fully documented
+  3) Benchmark comparison (alternatives, runtimes, load-factors
+  4) Performance (often faster than C implementations)
+  5) Compatible API (nearly identical to popular blist and rbtree modules)
+  6) Feature-rich (e.g. get the five largest keys in a sorted dict: d.iloc[-5:])
+  7) Pragmatic design (e.g. SortedSet is a Python set with a SortedList index)
 
--> Types Of Containers
-1) SortedList : It is used to add list in sorted containers.
-2) SortedDict : It is used to add dict in sorted containers.
-3) SortedSet : It is used to add set in sorted containers.
+- Types Of Containers
+  1) SortedList : It is used to add list in sorted containers.
+  2) SortedDict : It is used to add dict in sorted containers.
+  3) SortedSet : It is used to add set in sorted containers.
 
 ###--- SortedList :-
 
@@ -372,7 +376,7 @@ SortedList adding all the values from the iterable.
 - Runtime complexity: O(n).
 
 For eg, 
-            
+````      
 from sortedcontainers import SortedList, SortedDict, SortedSet
 
 sl = SortedList()                                                                                
@@ -399,7 +403,7 @@ s3 = SortedList()
 s3.update(element)
 
 # Output: It will work;;
-                                                                                                      
+````                                                                                                  
                                                                                                       
 ###--- SortedSet :-
 
@@ -419,12 +423,14 @@ not a member, do nothing.
 - Runtime complexity: O(n)
 
 for eg, 
+````
 sorted_set = SortedSet([1, 1, 2, 3, 4])
 for i in range(5, 0, -1):
     sorted_set.add(i)
   
 print(sorted_set)
 # Output: SortedSet([1, 2, 3, 4, 5]
+````
 
 ###--- SortedDict :-
 
@@ -451,6 +457,7 @@ default.
 - Runtime Complexity: O(1)
 
 -> for eg,
+````
 from sortedcontainers import SortedDict 
 
 sd = SortedDict()                                                                            
@@ -465,14 +472,15 @@ sd.setdefault('c', 20)
 
 sd.get('c')
 # Output: 20
+````
 
 
 -------------------------------------------------------------------------------------
--> Q079 : Enum in Python;;
+### Q079 : Enum in Python;;
 
-Enumerations in Python are implemented by using the module named “enum“.
+`Enumerations` in Python are implemented by using the module named “enum“.
 
-Enumerations are created using classes. Enums have names and values associated
+`Enumerations` are created using classes. Enums have names and values associated
 with them.
 
 Properties of enum:
@@ -481,6 +489,7 @@ Properties of enum:
 3) The “name” keyword is used to display the name of the enum member.
 
 for eg,
+````
 from enum import Enum
 
 class Season(Enum):
@@ -525,60 +534,61 @@ spring <-> 1
 winter <-> 2
 autumn <-> 3
 summer_x <-> 4
+````
 
 
 -------------------------------------------------------------------------------------
--> Q078 : Python Multithreading;;
+### Q078 : Python Multithreading;;
 
-###--- Multithreading in Python 
+#### Multithreading in Python 
 
--> Multithreading, in its simplest form, is an approach for carrying out many
+-  `Multithreading`, in its simplest form, is an approach for carrying out many
    threads of operation simultaneously. Each thread operates independently
    from the others and has the capacity to run unique sections of the
    software program simultaneously.
 
-###--- Why Python Lack Support For Multithreading 
+#### Why Python Lack Support For Multithreading 
 
--> Python's lack of multithreading instruction is due to the Global
+-  Python's lack of multithreading instruction is due to the Global
    Interpreter Lock (GIL). The GIL is a mechanism that guarantees only one
    thread can execute Python bytecode at a time.
 
--> Even though numerous threads can exist in a Python process, they are
+-  Even though numerous threads can exist in a Python process, they are
    incapable of executing Python code concurrently. This is because the GIL
    restricts the interpreter to a single thread, which prevents other threads
    from executing Python code.
 
--> The Global Interpreter Lock exists because Python adopts a
-   reference-counting memory management model, which deletes objects when
-   their reference count reaches zero.
+-  The Global Interpreter Lock exists because Python adopts a reference-counting 
+   memory management model, which deletes objects when their reference count 
+   reaches zero.
 
--> The GIL guarantees that the reference count is accurate, even when multiple
+-  The GIL guarantees that the reference count is accurate, even when multiple
    threads are simultaneously accessing the same object. If the GIL were not
    in place, there would be race conditions whereby two threads may attempt
    to modify the reference count of the same object concurrently, resulting
    in memory corruption.
 
--> Python used to be designed to be a high-level, user-friendly, and readable
+-  Python used to be designed to be a high-level, user-friendly, and readable
    language. Python lacks many intricate and low-level elements seen in other
    programming languages as a result. 
 
--> Although it is a powerful tool, multithreading is now not required for all
+-  Although it is a powerful tool, multithreading is now not required for all
    Python applications. The single-threaded Python paradigm typically serves
    the meaning well.
 
 
 -------------------------------------------------------------------------------------
--> Q077 : Python Crontab Job function;;
+### Q077 : Python Crontab Job function;;
 
--> CronTab is the linux library which is used to run the any script in as a
+-  CronTab is the linux library which is used to run the any script in as a
    backgroun job.
 
--> Cronjob alaway run as per the UTC time slot, you make sure to verify your
+-  Cronjob alaway run as per the UTC time slot, you make sure to verify your
    utc time before setting any job. You can use $: date linux command to
    check machine local utc time slot.
 
--> Syntax for Configuration of crontab is here 
-
+- Syntax for Configuration of crontab is here 
+````
 (~ you can also use * for arg1 to arg5 only)
 
 (Time Format is 24 hr format)
@@ -589,9 +599,10 @@ arg3: day of month (dom),
 arg4: month (mon),
 arg5: day of week (dow) or use '*' in these fields (for 'any').
 arg6: your command which need to run.
+````
 
--> Consider there is a dummy file named, test.py
-
+- Consider there is a dummy file named, test.py
+````
 23 7 * * * 
 source /home/ec2-user/.virtualenvs/api/bin/activate; 
 cd /home/ec2-user/api; 
@@ -602,17 +613,18 @@ cmd1 : Activating the virtual env for python
 cmd2 : Traverse to the project director
 cmd3 : Run the python script file, test.py
 cmd4 : Logs redirection for verification.
+````
 
 NOTE : All the commands must be separated with semicolon and order is
 important. Otherwise flow will break. Keep this in mind.
 
 
 -------------------------------------------------------------------------------------
--> Q076 : Python Celery function;;
+### Q076 : Python Celery function;;
 
-//-------------------- USAGE 1 : Definations;;
+#### USAGE 1 : Definations;;
 
-# Basics;
+> Celery :: Basics;
 
 Celery is an open-source Python library which is used to run the tasks
 asynchronously. It is a task queue that holds the tasks and distributes them
@@ -622,26 +634,26 @@ message brokers such as RabbitMQ and Redis.
 The main advantage of Celery is that our application can continue to respond
 to client requests. So the end-users don't have to wait unnecessarily.
 
-# Architecture;
+> Celery :: Architecture;
 
 Celery interacts via messages, normally broker works as a mediate between
 clients and workers. The inward working of the Celery affirms as Producer and
 Consumer pattern. Celery has the three chief elements at the high level.
 
-Producers - Producers are 'web nodes' that manages the web requests. When the
+`Producers` - Producers are 'web nodes' that manages the web requests. When the
 application is processing, tasks are assigned to the Celery means forced into
 the task queue.
 
-Consumer - Consumers are the 'worker nodes' that monitors the queue head, the
+`Consumer` - Consumers are the 'worker nodes' that monitors the queue head, the
 workers take the tasks and perform it. Workers can perform various tasks as
 well; hence they can also behave as producers.
 
-Queue - It is basically a message broker which acts as a bridge between
+`Queue` - It is basically a message broker which acts as a bridge between
 producer and consumer. It essentially passes messages between web application
 and the Celery workers. Celery has wide support for RabbitMQ and Redis, also
 helps Zookeeper, Amazon SQS but with confined abilities.
 
-# Features;
+#### Features;
 
 - Open-source Library
 - Straight Forward Installation 
@@ -651,18 +663,18 @@ helps Zookeeper, Amazon SQS but with confined abilities.
 - Fast
 - Works-flow
 
-//--------------------- USAGE 2 : Installation;
+#### USAGE 2 : Installation;
 
-# Install using pip :- $ pip install celery
+- Install using pip :- `$ pip install celery`
 
-# Celery Configuration :-
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Kolkata' 
+- Celery Configuration :-
+  - CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+  - CELERY_ACCEPT_CONTENT = ['application/json']
+  - CELERY_TASK_SERIALIZER = 'json'
+  - CELERY_RESULT_SERIALIZER = 'json'
+  - CELERY_TIMEZONE = 'Asia/Kolkata' 
 
-# About BROKER :- 
+#### About BROKER :
 
 Brokers are separate services that enable applications, systems, and services
 to communicate and share information. We assign tasks to workers via a
@@ -670,55 +682,49 @@ message queue. A message queue is a first-in, first-out data structure which
 means the message is stored at first place will be executed first
 
 
-
-
 -------------------------------------------------------------------------------------
--> Q075 : Python rsplit function;;
+### Q075 : Python rsplit function;;
 
-The rsplit() method splits a string into a list, starting from the right.
+The `rsplit()` method splits a string into a list, starting from the right.
 
 If no "max" is specified, this method will return the same as the split () method.
 
-//--------------------- SYNTAX
+> SYNTAX : string.rsplit(separator, maxsplit)
 
-    ++++++++++++++++++++++++++++++++++++++
-    | string.rsplit(separator, maxsplit) |
-    ++++++++++++++++++++++++++++++++++++++
+- separator :  Optional. Act as Delimiter with default is whitespace.
+- maxsplit  :  Optional. Specifies how many splits to do. Default -1.
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| Parameter |  Description                                                       |
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| separator |  Optional. Act as Delimiter with defautl is whitespace.            |
-| maxsplit  |  Optional. Specifies how many splits to do. Default -1.            |
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#### USAGE : rsplit()
 
-//--------------------- USAGE : rsplit()
-
+for eg,
+````
 txt = "app.worker.transaction.transact_via_bse"
 
 x = txt.rsplit(".")
-y = txt.split(".")
 print("x : ", x)    # x :  ['app', 'worker', 'transaction', 'transact_via_bse']
+
+y = txt.split(".")
 print("y : ", y)    # y :  ['app', 'worker', 'transaction', 'transact_via_bse']
 
 a = txt.rsplit(".", 1)
 print("a : ", a)    # a :  ['app.worker.transaction', 'transact_via_bse']
 b = txt.rsplit(".", 1)
 print("b : ", b)    # b :  ['app.worker.transaction', 'transact_via_bse']
+````
 
 
 -------------------------------------------------------------------------------------
--> Q074 : Python Unittest Mock Library;
+### Q074 : Python Unittest Mock Library;
 
 # Refer : root/basic-python/advance/P001_Unittest_mock_library.py; 
 
 # Refer : https://realpython.com/python-mock-library/#lazy-attributes-and-methods
 
-//------------------------------- USAGE 1: Definations;;
+####  USAGE 1: Definations;;
 
 A mock object substitutes and imitates a real object within a testing
-environment. It is a versatile and powerful tool for improving the quality of
-your tests.
+environment. It is a versatile and powerful tool for improving the 
+quality of your tests.
 
 One reason to use Python mock objects is to control your code’s behavior
 during testing.
@@ -733,12 +739,11 @@ environment. Replacing the actual request with a mock object would allow you
 to simulate external service outages and successful responses in a
 predictable way.
 
-//------------------------------ USAGE 2: Installation;;
+#### USAGE 2: Installation;;
 
-Installation :-
-$ pip install mock
+Installation :- `$ pip install mock`
 
-'unittest.mock' provides a class called Mock which you will use to imitate real
+`unittest.mock` provides a class called Mock which you will use to imitate real
 objects in your codebase
 
 The library also provides a function, called patch(), which replaces the real
@@ -751,53 +756,60 @@ counterparts.
 Finally, unittest.mock provides solutions for some of the issues inherent in
 mocking objects.
 
-//----------------------------- USAGE 3: Directly using Mock Object;
+#### USAGE 3: Directly using Mock Object;
 
-unittest.mock offers a base class for mocking objects called Mock. The use
+`unittest.mock` offers a base class for mocking objects called Mock. The use
 cases for Mock are practically limitless because Mock is so flexible.
 
 for eg,
->>> from unittest.mock import Mock
->>> mock = Mock()
->>> mock
+````
+from unittest.mock import Mock
+mock = Mock()
+mock
 <Mock id='4561344720'>
+````
 
 Now, you are able to substitute an object in your code with your new Mock. You
 can do this by passing it as an argument to a function or by redefining
 another object:
 
+````
 # Pass mock as an argument to do_something()
 do_something(mock)
 
 # Patch the json library
 json = mock
+````
 
 When you substitute an object in your code, the Mock must look like the real
 object it is replacing. Otherwise, your code will not be able to use the Mock
 in place of the original object.
 
 
-//------------------------------ USAGE 4: Lazy Attributes and Methods
+#### USAGE 4: Lazy Attributes and Methods
 
 A Mock must simulate any object that it replaces. To achieve such flexibility,
 it creates its attributes when you access them:
 
->>> mock.some_attribute
+for eg,
+````
+mock.some_attribute
 <Mock name='mock.some_attribute' id='4394778696'>
->>> mock.do_something()
+mock.do_something()
 <Mock name='mock.do_something()' id='4394778920'>
 
 Since Mock can create arbitrary attributes on the fly, it is suitable to
 replace any object.
 
-for eg,
->>> json = Mock()
->>> json.dumps()
+json = Mock()
+json.dumps()
 <Mock name='mock.dumps()' id='4392249776'>
+````
 
-//------------------------------- USAGE 5: mocking with patch
+#### USAGE 5: mocking with patch
 
 for eg, 
+````
 @patch('app.service.branch.requests.post')
 def test_create_non_customer_campaign_through_admin(mock_request_post, client, db):
     params = {
@@ -824,55 +836,59 @@ def test_create_non_customer_campaign_through_admin(mock_request_post, client, d
     mock_request_post.return_value = Mock(name="mock response", **response)
     res = initiate_admin_action(client, payload)
     assert res.status_code < 300
-    
+````
 
 
 -------------------------------------------------------------------------------------
--> Q073 : Python urllib method urljoin();;
+### Q073 : Python urllib method urljoin();;
 
 The best way (for me) to think of this is the first argument, base is like the
 page you are on in your browser. The second argument url is the href of an
 anchor on that page. The result is the final url to which you will be
 directed should you click.
 
->>> urljoin('some', 'thing')           # 'thing'
+urljoin('some', 'thing')           # 'thing'
 
 This one makes sense given my description. Though one would hope base includes
 a scheme and domain.
 
->>> urljoin('http://some', 'thing')     # 'http://some/thing'
+urljoin('http://some', 'thing')     # 'http://some/thing'
 
-If you are on a vhost some, and there is an anchor like <a href='thing'>Foo</a>, 
-then the link will take you to http://some/thing
-
->>> urljoin('http://some/more', 'thing')    # 'http://some/thing'
+If you are on a `vhost` some, and there is an anchor like <a href='thing'>Foo</a>, 
+then the link will take you to `http://some/thing`
+````
+urljoin('http://some/more', 'thing')    # Output: 'http://some/thing'
+````
 
 We are on some/more here, so a relative link of thing will take us to /some/thing
 
->>> urljoin('http://some/more/', 'thing') 
+````
+urljoin('http://some/more/', 'thing') 
 
 # just a tad / after 'more'
 'http://some/more/thing'
+````
 
-Here, we aren't on some/more, we are on some/more/ which is different. Now,
+Here, we aren't on `some/more`, we are on `some/more/` which is different. Now,
 our relative link will take us to some/more/thing
 
->>> urljoin('http://some/more/', '/thing')
+````
+urljoin('http://some/more/', '/thing')
 'http://some/thing'
 
+urljoin('http://some/parent_dir_1/parent_dir_2/', '/child_dir_1')
+# Output :: 'http://some/child_dir_1'
 
->>> urljoin('http://some/parent_dir_1/parent_dir_2/', '/child_dir_1')
-'http://some/child_dir_1'
+# here, /child_dir_1 is considered as new independent root directory;
 
-here, /child_dir_1 is considered as new independent root directory;
-
->>> urljoin('http://some/parent_dir_1/parent_dir_2/', 'child_dir_1')
-'http://some/parent_dir_1/parent_dir_2/child_dir_1'
+urljoin('http://some/parent_dir_1/parent_dir_2/', 'child_dir_1')
+# Output :: 'http://some/parent_dir_1/parent_dir_2/child_dir_1'
 
 here, child_dir_1 is acting as sub directory of parent_dir_2;
 
->>> urljoin('http://some/parent_dir_1/parent_dir_2', 'child_dir_1')
-'http://some/parent_dir_1/child_dir_1'
+urljoin('http://some/parent_dir_1/parent_dir_2', 'child_dir_1')
+# Output :: 'http://some/parent_dir_1/child_dir_1'
+````
 
 Here, notice the parent_dir_2 is the sub-directory of the parent_dir_1
 then when using accessing child_dir_1. It will replace the parent_dir_2 
@@ -886,9 +902,9 @@ If on some/more/ and the href is to /thing, you will be linked to some/thing.
 
 
 -------------------------------------------------------------------------------------
--> Q072 : Python class inherits from objects;;
+### Q072 : Python class inherits from objects;;
 
-//--- PYTHON 2.X : Usage as per Parent object class; 
+> PYTHON 2.X : Usage as per Parent object class; 
 
 In Python 2.x (from 2.2 onwards) there's two styles of defining classes
 depending on the presence or absence of object as a base-class
@@ -896,6 +912,7 @@ depending on the presence or absence of object as a base-class
 1) Classic Style Classes : They don't have object as a base class.
 
 for eg, 
+````
 # Example 1
 class ClassicSpam:      # no base class
 	pass
@@ -903,11 +920,12 @@ class ClassicSpam:      # no base class
 print(ClassicSpam.__bases__()) 	
 # Result : 
 AttributeError: 'builtin_function_or_method' object has no attribute '__bases__'
+````
 
 2) NEW Style : They have directly or indirectly, object as a base class.
 
 for eg, 
-
+````
 # Example 1
 Class NewStyleClass_v1(object):
 	pass
@@ -919,14 +937,16 @@ Class NewStyleClass_v2(int):
 	pass
 
 print(NewStyleClass_v2.__base__)		# Result : (<type 'int'>)
+````
 
-
-//--- PYTHON 3.X : Usage as per Parent Object Class;
+> PYTHON 3.X : Usage as per Parent Object Class;
 
 In Python 3, things are simplified. Only new-style classes exist (referred to
 plainly as classes) so, the only difference in adding object is requiring you
 to type in 8 more characters.
 
+for eg,
+````
 # Example 1;
 class ClassicSpam:
     pass
@@ -941,12 +961,12 @@ class NewSpam(object):
 class Spam():
     pass
 
-All have object in their __bases__ object.
-
->>> [object in cls.__bases__ for cls in {Spam, NewSpam, ClassicSpam}]
+# All have object in their __bases__ object.
+[object in cls.__bases__ for cls in {Spam, NewSpam, ClassicSpam}]
 [True, True, True]
+````
 
-//--- Advantage of Python Object Class
+#### Advantage of Python Object Class
 
 Without a doubt, when writing a class you'll always want to go for new-style
 classes. The perks of doing so are numerous, to list some of them:
@@ -954,15 +974,16 @@ classes. The perks of doing so are numerous, to list some of them:
 Support for descriptors. Specifically, the following constructs are made
 possible with descriptors:
 
-classmethod: A method that receives the class as an implicit argument instead
+- `classmethod`: A method that receives the class as an implicit argument instead
 of the instance. staticmethod: A method that does not receive the implicit
 argument self as a first argument. properties with property: Create functions
 for managing the getting, setting and deleting of an attribute.
-__slots__: Saves memory consumptions of a class and also results in faster
+
+- `__slots__`: Saves memory consumptions of a class and also results in faster
   attribute access. Of course, it does impose limitations. The __new__ static
   method: lets you customize how new class instances are created.
 
-Method resolution order (MRO): in what order the base classes of a class will
+- `Method resolution order` (MRO): in what order the base classes of a class will
 be searched when trying to resolve which method to call.
 
 Related to MRO, super calls. Also see, super() considered super.
@@ -977,47 +998,47 @@ this would be an issue and it's a negative sinking in a sea of positives.
 
 
 -------------------------------------------------------------------------------------
--> Q071 : Multitreading Vs Multiprocessing
+### Q071 : Multitreading Vs Multiprocessing
 
 NOTE : Here address memory is referred to those memory where a program store
 variable, argument, control statement etc.
 
-#--- Multithreading:-
+#### Multithreading:
 
--> Multithreading is when lot of threads of a single process is working
-   simultaneously.
+- Multithreading is when a lot of threads of a single process is working
+  simultaneously.
 
--> Multiple thread shares the same memory address and heap memory.
+- Multiple thread shares the same memory address and heap memory.
 
--> Multiple thread do have their own code and task and their different stack
-   memory
+- Multiple thread do have their own code and task and their different stack
+  memory
 
--> Multiple thread can access global variable simultaneously and that can
-   cause a conflict. Becuase any thread can access it and change the value
-   which may cause inaccurate result.
+- Multiple thread can access global variable simultaneously and that can
+  cause a conflict. Becuase any thread can access it and change the value
+  which may cause inaccurate result.
 
--> Threads are light weight.
+- Threads are light weight.
 
-#--- Multiprocessing:-
+#### Multiprocessing:-
 
--> Multiprocessing is when multile process are executing simultaneously.
+- Multiprocessing is when a lot of multiple process are executing simultaneously.
 
--> Multiprocess have different memory address but they can communicate with
-   other process using the File, Shared Memory, Message Pipe.
+- Multiprocess have different memory address but they can communicate with
+  other process using the File, Shared Memory, Message Pipe.
 
--> Process are heavy weighted
+- Process are heavy weighted
 
--> Running Multiprocess is good because one process error doesnt induce error
-   flow in another process.
+- Running Multiprocess is good because one process error doesnt induce error
+  flow in another process.
 
 
 -------------------------------------------------------------------------------------
--> Q070 : Different usage when add list to set or set to set;
+### Q070 : Different usages when add list to set or set to set;
 
-Differene usage of add or updating list or set to the main set;
+Mention below, different usage of add or updating list or set to the main set
 
 for eg, 
-
+````
 a = set()
 
 #--- CASE 1: WHEN ADDING LIST TO SET A;
@@ -1075,10 +1096,68 @@ print(a)
 
 # NOTE : Notice result format;
 {0, 1, 2, 12, 13, 14}
+````
+
+#### Difference in Python Set Method Add() Vs Update();;
+
+> Python Set :: Add();;
+
+- The add method is used to add a `single element` to a set.
+- If the element is already present in the set, the set remains unchanged.
+- The syntax is `set.add(element)`
+
+for eg,
+````
+# Case 1: Adding list directly;;
+a = set()
+data = [1,2]
+a.add(data) # Traceback: list not hashable;;
+
+# Case 2: Adding hashed data;;
+a = set()
+data = (1,2)
+a.add(data) # {(1,2)}
+
+data = {'a':1, 'b',2}
+a.add(data) # Traceback: dictionary not hashable;;
+
+# Case 3: Add not hashed data using iteration;;
+a = set()
+data = [1,2]
+a.add(data[0)  # {1}
+````
+
+> Python Set :: Update();;
+
+- The update method is used to add `multiple elements` (iterable) to a set.
+- It takes an iterable as an argument and adds its elements to the set.
+- If any elements in the iterable are already present in the set, they are ignored.
+- The syntax is `set.update(iterable)`.
+
+for eg,
+````
+# Case 1: Update list directly;;
+a = set()
+data = [1,2]
+a.update(data) # {1,2}
+
+# Case 2: Updating Hashable;;
+a = set()
+data = (1,2)
+a.update(data)  # {1,2}
+
+data = {'a': 1, 'b':2}
+a.update(data)  # {1,2,'a','b'}
+
+# Case 3: Adding Single Value
+a = set()
+data = (1,2)
+a.update(data[0])   # {1}
+````
 
 
 -------------------------------------------------------------------------------------
--> Q069 : Time Delta (timedelta) in python
+### Q069 : Time Delta (timedelta) in python;;
 
 A timedelta represents a duration which is the difference between two dates,
 time, or datetime instances, to the microsecond resolution.
@@ -1087,199 +1166,221 @@ The Timedelta class available in Python’s datetime module. Use the timedelta
 to add or subtract weeks, days, hours, minutes, seconds, microseconds, and
 milliseconds from a given date and time.
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| - timedelta.days            | Returns days from timedelta                              |
-| - timedelta.microseconds    | Returns microseconds from timedelta                      |
-| - timedelta.seconds         | Returns seconds from timedelta                           |
-| - timedelta.max             | Returns the maximum positive timedelta value,            |
-|                             | it will be datetime.timedelta(999999999, 86399, 999999)  |
-| - timedelta.min             | Returns the most negative timedelta value and its value  |
-|                             | is datetime.timedelta(-999999999)                        |
-| - timedelta.resolution      | Return the smallest possible difference between          |
-|                             | two nonequal timedelta objects is 1 microsecond.         |
-| - timedelta.total_seconds() | Returns total seconds in the duration                    |
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#### TIMEDELTA :: ATTRIBUTE
 
-//------------------------ Example 1: Imports
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from datetime import timedelta                                    |
-| from datetime import datetime                                     |
-|                                                                   |
-| # given datetime                                                  |
-| current_date = datetime.now()                                     |
-| x_date_time = datetime(                                           |
-|   year=2020, month=3, day=21, hour=12, minute=30                  |
-| )                                                                 |
-|                                                                   |
-| # Difference between two dates                                    |
-| # Get timedelta                                                   |
-| timedelta = current_date - x_date_time                            |
-|                                                                   |
-| print(timedelta)                                                  |
-| print(type(timedelta))                                            |
-|                                                                   |
-| # output:                                                         |
-| 469 days, 20:39:07.830124                                         |
-| <class 'datetime.timedelta'>                                      |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+- timedelta.days :: Returns days from timedelta                              
+- timedelta.microseconds :: Returns microseconds from timedelta                      
+- timedelta.seconds :: Returns seconds from timedelta                           
+- timedelta.max :: Returns the maximum positive timedelta value,
+                   it will be datetime.timedelta(999999999, 86399, 999999)  
+- timedelta.min :: Returns the most negative timedelta value and its value
+                   is datetime.timedelta(-999999999)                        
+- timedelta.resolution :: Return the smallest possible difference between
+                          two nonequal timedelta objects is 1 microsecond.         
+- timedelta.total_seconds() :: Returns total seconds in the duration                    
 
-//------------------------- Example 2: Calculate Future Datetime
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from datetime import datetime, timedelta                          |
-|                                                                   |
-| current_date = datetime.now()                                     |
-| print('Given Date:', current_date)                                |
-|                                                                   |
-| # add 4 weeks in given date                                       |
-| new_date = current_date + timedelta(weeks=4)                      |
-| print('Future Date:', new_date)                                   |
-|                                                                   |
-| # OUTPUT                                                          |
-| Given Date: 2021-07-04 05:41:46.328154                            |
-| Future Date: 2021-08-01 05:41:46.328154                           |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-//------------------------- Example 3: Features
+#### USAGE 1: Basic Imports
+for eg,
+````
+from datetime import timedelta                                    |
+from datetime import datetime                                     
+                                                               
+# Given datetime                                                  
+current_date = datetime.now()                                     
+x_date_time = datetime(                                           
+year=2020, month=3, day=21, hour=12, minute=30                  
+)                                                                 
+                                                               
+# Difference between two dates, Get timedelta                                                   
+timedelta = current_date - x_date_time                            
+                                                               
+print(timedelta)                                                  
+print(type(timedelta))                                            
+                                                               
+# output:                                                         
+469 days, 20:39:07.830124                                         
+<class 'datetime.timedelta'>                                      
+````
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from datetime import datetime                                            |
-|                                                                          |
-| d1 = datetime(year=2020, month=3, day=21, hour=12, minute=30)            |
-| d2 = datetime(year=2021, month=1, day=12, hour=18, minute=15)            |
-|                                                                          |
-| # Get timedelta by subtracting two dates                                 |
-| td = d2 - d1                                                             |
-|                                                                          |
-| # access timedelta attributes                                            |
-| print("Days:", td.days)   # Days: 297                                    |
-| print("Microseconds:", td.microseconds) # Microseconds: 0                |
-| print("seconds:", td.seconds) # seconds: 20700                           |
-| print("Max:", td.max) # Max: 999999999 days, 23:59:59.999999             |
-| print("Min:", td.min)  # Min: -999999999 days, 0:00:00                   |
-| print("Resolution:", td.resolution) # Resolution: 0:00:00.000001         |                      
-| print("Total Seconds:", td.total_seconds() # Total Seconds: 25681500.0   |                    
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#### USAGE 2: Calculate Future Datetime
+for eg,
+````
+from datetime import datetime, timedelta                          
+                                                               
+current_date = datetime.now()                                     
+print('Given Date:', current_date)                                
+                                                               
+# add 4 weeks in given date                                       
+new_date = current_date + timedelta(weeks=4)                      
+print('Future Date:', new_date)                                   
+                                                               
+# OUTPUT                                                          
+Given Date: 2021-07-04 05:41:46.328154                            
+Future Date: 2021-08-01 05:41:46.328154
+````
+
+#### USAGE 3: Features
+for eg,
+````
+from datetime import datetime                                            
+                                                                      
+d1 = datetime(year=2020, month=3, day=21, hour=12, minute=30)            
+d2 = datetime(year=2021, month=1, day=12, hour=18, minute=15)            
+                                                                      
+# Get timedelta by subtracting two dates                                 
+td = d2 - d1                                                             
+                                                                      
+# access timedelta attributes                                            
+print("Days:", td.days)   # Days: 297                                    
+print("Microseconds:", td.microseconds) # Microseconds: 0                
+print("seconds:", td.seconds) # seconds: 20700                           
+print("Max:", td.max) # Max: 999999999 days, 23:59:59.999999             
+print("Min:", td.min)  # Min: -999999999 days, 0:00:00                   
+print("Resolution:", td.resolution) # Resolution: 0:00:00.000001                               
+print("Total Seconds:", td.total_seconds() # Total Seconds: 25681500.0                       
+````
 
 
 -------------------------------------------------------------------------------------
--> Q068 : Relative Delta (relativedelta)in Python;;
+### Q068 : Relative Delta (relativedelta)in Python;;
 
-Realtive delta is a python library used to calculated the date relatively from
+Realtive delta is a python library used to calculate the date relatively from
 a given expected date.
 
-It falls under the (dateutil.realtivedelta) package library.
+It falls under the `dateutil.realtivedelta` package library.
 
+####  USAGE 1: Params of realtivedelta;;
+for eg,
+````
+from dateutil.relativedelta import relativedelta                                
+                                                                             
+dt=relativedelta(                                                               
+    year=2021,
+    month=1,
+    day=1,
+    hour=23,
+    minute=56,
+    second=57,
+    microsecond=324534         
+)                     
+                                                         
+print(dt)                                                                       
+print(dt.year,dt.month,dt.day,dt.hour,dt.minute,dt.second,dt.microsecond)       
+                                                                              
+# outputs                                                                       
+relativedelta(
+    year=2021, 
+    month=1, 
+    day=1, 
+    hour=23, 
+    minute=56, 
+    second=57, 
+    microsecond=324534 
+)                                                                              
+2021 1 1 23 56 57 324534        
+````
 
-//-------------------------- USAGE 1: Params of realtivedelta;
+#### USAGE 2: Difference day vs days;;
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from dateutil.relativedelta import relativedelta                                |
-|                                                                                 |
-| dt=relativedelta(                                                               |
-|  year=2021,month=1,day=1,hour=23,minute=56,second=57,microsecond=324534         |
-|  )                                                                              |
-| print(dt)                                                                       |
-| print(dt.year,dt.month,dt.day,dt.hour,dt.minute,dt.second,dt.microsecond)       |
-|                                                                                 | 
-| # outputs                                                                       |
-| relativedelta(                                                                  |
-|    year=2021, month=1, day=1, hour=23, minute=56, second=57, microsecond=324534 |
-|  )                                                                              |
-| 2021 1 1 23 56 57 324534                                                        |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+- `day` : reset the day counter to 1 of that month.
+- `days` : adds day relatively for the given today date.
 
-//-------------------------- USAGE 2: Difference days vs days;
+for eg,
 
--> day : reset the day counter to 1 of that month.
--> days : adds day relatively for the given today date.
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from dateutil.relativedelta import relativedelta                                |
-| from datetime import date                                                       |
-|                                                                                 |
-| dt=date.today()  # today is 2019-09-23                                          |
-|                                                                                 |
-| # Adding one day to today                                                       |
-| print(dt + relativedelta(days=1))  # 2019-09-24                                 |
-|                                                                                 |
-| # 1st day of the month                                                          |
-| print(dt + relativedelta(day=1))  # 2019-09-01                                  |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+````
+from dateutil.relativedelta import relativedelta                                
+from datetime import date                                                       
+                                                                             
+dt=date.today()  # today is 2019-09-23                                          
+                                                                             
+# Adding one day to today                                                       
+print(dt + relativedelta(days=1))  # 2019-09-24                                 
+                                                                             
+# 1st day of the month                                                          
+print(dt + relativedelta(day=1))  # 2019-09-01                                  
+````
 
-//------------------------- USAGE 3: Difference months vs month
+#### USAGE 3: Difference months vs month;;
 
--> month : reset the month counter to the 1 of the year eg, january.
--> months : add month relatively to the given today date.
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from dateutil.relativedelta import relativedelta                                |
-| from datetime import date                                                       |
-|                                                                                 |
-| dt=date.today()  # today is 2019-09-23                                          |
-|                                                                                 |
-| # Adding one month to today                                                     |
-| print(dt + relativedelta(month=1))  # 2019-01-23                                |
-|                                                                                 |
-| # 1st month of the year                                                         |
-| print(dt + relativedelta(months=1))  # 2019-10-23                               |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+- `month` : reset the month counter to the 1 of the year i.e, january.
+- `months` : add month relatively to the given today date.
 
+for eg,
+````
+from dateutil.relativedelta import relativedelta                                
+from datetime import date                                                       
+                                                                             
+dt=date.today()  # today is 2019-09-23                                          
+                                                                             
+# Adding one month to today                                                     
+print(dt + relativedelta(month=1))  # 2019-01-23                                
+                                                                             
+# 1st month of the year                                                         
+print(dt + relativedelta(months=1))  # 2019-10-23                               
+````
 
-//------------------------- USAGE 4: Difference years vs year;
+#### USAGE 4: Difference years vs year;;
 
--> year : reset the year counter to the 0001 of the year.
--> years : add year relatively to the given today date.
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from dateutil.relativedelta import relativedelta                                |
-| from datetime import date                                                       |
-|                                                                                 |
-| dt=date.today()  # today is 2019-09-23                                          |
-|                                                                                 |
-| # Adding one month to today                                                     |
-| print(dt + relativedelta(year=1))  # 0001-10-24                                 |
-|                                                                                 |
-| # 1st month of the year                                                         |
-| print(dt + relativedelta(years=1))  # 2020-01-24                                |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+- `year` : reset the year counter to the 0001 of the year.
+- `years` : add year relatively to the given today date.
 
+for eg,
+````
+from dateutil.relativedelta import relativedelta                                
+from datetime import date                                                       
+                                                                             
+dt=date.today()  # today is 2019-09-23                                          
+                                                                             
+# Adding one month to today                                                     
+print(dt + relativedelta(year=1))  # 0001-10-24                                 
+                                                                             
+# 1st month of the year                                                         
+print(dt + relativedelta(years=1))  # 2020-01-24                                
+````
 
-//--------------------------- USAGE 5: Age Calculation using RealtiveDelta;
+#### USAGE 5: Age Calculation using RealtiveDelta;;
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from dateutil.relativedelta import relativedelta                                |
-| from datetime import date                                                       |
-|                                                                                 |
-| dob = date(1997,1,5)    # date of birth;                                        |
-| today = date.today()    # 28/12/2022                                            |
-|                                                                                 |
-| cur_date = relativedelta(today, dob)                                            |
-| print(cur_date)         # relativedelta(years=+25, months=+11, days=+23)        |
-| print(cur_date.years)   # 25                                                    |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+for eg,
+````
+from dateutil.relativedelta import relativedelta                                
+from datetime import date                                                       
+                                                                             
+dob = date(1997,1,5)    # date of birth;                                        
+today = date.today()    # 28/12/2022                                            
+                                                                             
+cur_date = relativedelta(today, dob)                                            
+print(cur_date)         # relativedelta(years=+25, months=+11, days=+23)        
+print(cur_date.years)   # 25                                                    
+````
 
+#### USAGE 6: RelativeDelta adding sequence;;
 
-//--------------------------- USAGE 6: RelativeDelta adding sequence;
+for eg,
+````
+from dateutil.relativedelta import relativedelta                                                                              
+from dateutil.rrule import MO, TU, WE, TH, FR, SA, SU                           
+from datetime import date        
+                                                                             
+dt=date.today()  # today is 2019-09-22                                          
+                                                                             
+# 2nd Monday from today                                                         
+print(dt + relativedelta(weekday=MO(2)))  # 2019-09-30
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-| from dateutil.relativedelta import relativedelta                                |
-| from datetime import date                                                       |
-| from dateutil.rrule import MO, TU, WE, TH, FR, SA, SU                           |
-|                                                                                 |
-| dt=date.today()  # today is 2019-09-22                                          |
-|                                                                                 |
-| # 2nd Monday from today                                                         |
-| print(dt + relativedelta(weekday=MO(2)))  # 2019-09-30                          |
-|                                                                                 |
-| # 2nd Monday of present Month                                                   |
-| print(dt + relativedelta(day=1,weekday=MO(2)))  # 2019-09-09                    |
-|                                                                                 |
-| # Next Sunday from TODAYS                                                       |
-| print(dt + relativedelta(weekday=SU(+1)))  # 2019-09-22                         |
-|                                                                                 |
-| # As today is sunday there is no difference with SU(+1) or SU(-1)               |
-| print(dt + relativedelta(weekday=SU(-1)))  # 2019-09-22                         |
-|                                                                                 |
-| # previous 2nd Tuesday                                                          |
-| print(dt + relativedelta(weekday=TU(-2)))   # 2019-09-10                        |
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+print(dt + relativedelta(weekday=MO(2)))  # 2019-09-30                          
+                                                                             
+# 2nd Monday of present Month                                                   
+print(dt + relativedelta(day=1,weekday=MO(2)))  # 2019-09-09                    
+                                                                                                        
+# Next Sunday from TODAYS                                                       
+print(dt + relativedelta(weekday=SU(+1)))  # 2019-09-22                         
+                                                                             
+# As today is sunday there is no difference with SU(+1) or SU(-1)               
+print(dt + relativedelta(weekday=SU(-1)))  # 2019-09-22                         
+                                                                             
+# previous 2nd Tuesday                                                          
+print(dt + relativedelta(weekday=TU(-2)))   # 2019-09-10                        
+````
 
 
 -------------------------------------------------------------------------------------
@@ -1289,7 +1390,7 @@ Dictionary can be directory sorted using the sorted pre-defined function
 in the python library.
 
 Eg, 
-
+````
 x = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
 
 # Sorting the dictionary using the key;;
@@ -1304,10 +1405,10 @@ reverse_sort_by_value = dict(sorted(x.items(), reverse=True, key=lambda item: it
 print("sort_by_key:", sort_by_key)        # {0: 0, 1: 2, 2: 1, 3: 4, 4: 3}
 print("sort_by_value:", sort_by_value)    # {0: 0, 2: 1, 1: 2, 4: 3, 3: 4}
 print(reverse_sort_by_value)              # {4: 3, 3: 4, 2: 1, 1: 2, 0: 0}
-
+````
 
 -------------------------------------------------------------------------------------
--> Q066 : Iterators Workflow in Python;;
+### Q066 : Iterators Workflow in Python;;
 
 Iterators are objects that allow us to compute and fetch one value at a time
 from a sequence. They help us save memory and computation by not calculating
@@ -1318,19 +1419,22 @@ iterative object using iter().
 
 To fetch the next value we can use the next() function as shown below.
 
-//-------------------------- USAGE 1 : ITERATOR BASIC;;
-
+#### USAGE 1 : ITERATOR BASIC;;
+````
 def example1():
-  cartoons = ['Tom and Jerry', 'Shin Chan', 'Doraemon', 'Ninja Hatodi', 'Hage Maru']
+    cartoons = ['Tom and Jerry', 'Shin Chan', 'Doraemon', 'Ninja Hatodi', 'Hage Maru']
 
-  cartoon = iter(cartoons)
+    cartoon = iter(cartoons)
+    
+    print("Generator Object :", cartoon)
+    print("next cartoon :", next(cartoon))
+    print("next cartoon :", next(cartoon))
+    print("next cartoon :", next(cartoon))
+    print("next cartoon :", next(cartoon))
+    print("next cartoon :", next(cartoon))
 
-  print("Generator Object :", cartoon)
-  print("next cartoon :", next(cartoon))
-  print("next cartoon :", next(cartoon))
-  print("next cartoon :", next(cartoon))
-  print("next cartoon :", next(cartoon))
-  print("next cartoon :", next(cartoon))
+if __name__ == "__main__":
+    example1()
 
 # OUTPUT:-
 Generator Object : <list_iterator object at 0x7f0897500bb0>
@@ -1339,40 +1443,36 @@ next cartoon : Shin Chan
 next cartoon : Doraemon
 next cartoon : Ninja Hatodi
 next cartoon : Hage Maru
+````
 
-//--------------------------- USAGE 2: ITERATOR VS GENERATORS;;
+#### USAGE 2: ITERATOR VS GENERATORS;;
 
--------------------------------------------------------------------------------
-|                                  ITERATORS                                  |
--------------------------------------------------------------------------------
-| -> Iterators use classes.                                                   |
-| -> Iterators use the __next__ and __iter__ methods                          |
-| -> Iterators maintain state within instance attributes                      |
-| -> No methods are paused. State is maintained within instance.              |
-| -> Can be created using iter()                                              |
--------------------------------------------------------------------------------
+> ITERATORS
+- Iterators use classes.
+- Iterators use the __next__ and __iter__ methods.
+- Iterators maintain state within instance attributes.
+- No methods are paused. State is maintained within instance.
+- Can be created using iter().
 
--------------------------------------------------------------------------------
-|                                  GENERATORS                                 |
--------------------------------------------------------------------------------
-| -> Generators use function.                                                 |
-| -> Generator use yield keyword for pause exeuction and next() methods       |
-| -> Generator maintain state within the local function variable.             |
-| -> Functions are paused and their state is maintained within Python.        |
-| -> Can be created using function()                                          |
--------------------------------------------------------------------------------
+> GENERATORS
+- Generators use function.
+- Generator use yield keyword for pause exeuction and next() methods.
+- Generator maintain state within the local function variable.
+- Functions are paused and their state is maintained within Python.
+- Can be created using function().
 
-//--------------------------- USAGE 3: CREATE A ITERATOR;;
 
-To create an iterator we have to add the __iter__ and __next__ methods in our
-class. __iter__ is used to initialize the iterator object and __next__ is
-used to return the next value from the iterator.
+#### USAGE 3: CREATE A ITERATOR;;
+
+To create an iterator we have to add the `__iter__` and `__next__` methods in 
+our class. `__iter__` is used to initialize the iterator object and `__next__` 
+is used to return the next value from the iterator.
 
 To create an iterator instance we have to call the iter() function on the
 object of the class.
 
 for eg,
-
+````
 class IDGenerator:
 
     def __init__(self, ECODE):
@@ -1404,20 +1504,23 @@ ID:  EAC002
 ID:  EAC003
 ID:  EAC004
 ID:  EAC005
+````
 
-//--------------------------- USAGE 4: EXAMPLES OF ITERATORS;;
+#### USAGE 4: EXAMPLES OF ITERATORS;;
 
 Many functions within Python 3 return an Iterator instead of a list by
 default. This is in order to help conserve memory and avoid unnecessary
 computation.
 
-For example the map(), filter() and range() functions should ideally return a
-sequence. Instead the return value is an iterable. 
+For example the map(), filter() and range() functions should ideally 
+return a sequence. Instead the return value is an iterable. 
 
 To consume its values we have to pass it to the list() function or iterate
 over it.
 
-for eg, #--- Example 1: range() iterator;;
+for eg, 
+````
+# Example 1: range() iterator;;
 
 print(range(5))         # result is an iterator
 print(list(range(5)))   # convert iterator to a list
@@ -1426,7 +1529,7 @@ print(list(range(5)))   # convert iterator to a list
 range(0, 5)
 [0, 1, 2, 3, 4]
 
-for eg, #--- Example 2: map() iterator;;
+# Example 2: map() iterator;;
 
 inputs = [56,23,67,23,75,23]
 result = map(lambda x: x // 2, inputs)
@@ -1440,7 +1543,7 @@ for r in result: # <-- iterates through the results
 Result :  <map object at 0x7ffff781df10>
 28  11  33  11  37  11  
 
-for eg, #--- Example 3: filter() method iterator;;
+# Example 3: filter() method iterator;;
 
 nums = range(10)
 result = filter(lambda x: x & 1, nums)
@@ -1450,52 +1553,56 @@ print(list(result))
 # OUTPUT:-
 Result type :  <filter object at 0x7ffff781df40>
 [1, 3, 5, 7, 9]
+````
 
-//--------------------------- USAGE 5: MODIFYING ITERATOR WITH ITERTOOLS;;
+#### USAGE 5: MODIFYING ITERATOR WITH ITERTOOLS;;
 
-#--- EXAMPLE 1: ITERTOOLS BASICS;;
+> ITERTOOLS :: BASICS
 
 Python comes with a dedicated inbuilt module to help us work with iterables.
-The itertools module in Python comprises of a set of functions that allow us
+The itertools module in Python consists of a set of functions that allow us
 to augment iterables in a way that can ease our work.
 
 To use the function from itertools we have to import it.
 
+for eg,
+
+````
 import itertools
 print(itertools)
 
 # OUTPUT:-
 <module 'itertools' (built-in)>
+````
 
-#--- EXAMPLE 2: ZIP LONGEST FROM ITERTOOLS
+> ITERTOOLS :: ZIP LONGEST 
 
-The zip_longest() function in itertools, extends the zip() functions
+The `zip_longest()` function in itertools, extends the zip() functions
 functionality.
 
-Consider two lists A and B which are not equal in length. A has a length of 4
-while B has a length of 6.
+Consider two lists A and B which are not equal in length. A has a length 
+of 4 while B has a length of 6.
 
-Given zip(A, B), the zip() function ends after the 4th iteration as A has only
-4 values. The zip_longest() function on the other hand continues the
+Given zip(A, B), the zip() function ends after the 4th iteration as A has 
+only 4 values. The zip_longest() function on the other hand continues the
 iteration until B ends. It fills the empty values missing from A with a fill
 value.
 
 for eg,
-
+````
 from itertools import zip_longest
 
 A = ["Aaron", "Clive", "Thomas", "Victor"]
 B = ["Sharon", "Rossette", "Emily", "Alice", "Karen", "Shirley"]
 
-# Normal Zip function 
-print("Using zip():")
 for boy, girl in zip(A, B): # <-- ends after the 4th iteration
   print(f"{boy} is paired with {girl}")
 
-print("\n")
-
-# Zip Longest function
-print("Using zip_longest():")
+# OUTPUT:
+Aaron is paired with Sharon
+Clive is paired with Rossette
+Thomas is paired with Emily
+Victor is paired with Alice
 
 # Set 'Nobody' for fillvalue key for missing values;;
 iterator = zip_longest(A, B, fillvalue="Nobody") 
@@ -1504,27 +1611,22 @@ for boy, girl in iterator: # <-- ends after the 6th iteration
   print(f"{boy} is paired with {girl}")
 
 # OUTPUT:
-Using zip():
-Aaron is paired with Sharon
-Clive is paired with Rossette
-Thomas is paired with Emily
-Victor is paired with Alice
-
-Using zip_longest():
 Aaron is paired with Sharon
 Clive is paired with Rossette
 Thomas is paired with Emily
 Victor is paired with Alice
 Nobody is paired with Karen
 Nobody is paired with Shirley
+````
 
-#--- EXAMPLE 3: ZIP LONGEST FROM ITERTOOLS
+> ITERTOOLS :: CYCLE
 
-The cycle() function loops through the values of a list infinitely. That is,
-once it finishes iterating through all the values from a list, it begins
-iterating again from the start of the list.
+The `cycle()` function loops through the values of a list infinitely. 
+That is, once it finishes iterating through all the values from a list, 
+it begins iterating again from the start of the list.
 
 for eg,
+````
 from itertools import cycle
 colours = ['Red', 'Pink' , 'Blue']
 
@@ -1540,35 +1642,44 @@ Pink
 Red
 Blue
 ... TILL 100
+````
 
-#--- EXAMPLE 4: CHAINED FROM ITERTOOLS
+> ITERTOOLS :: CHAIN
+
+The `chain` method in Python is used to combine multiple iterable arguments 
+into a single iterable. It takes multiple iterables as arguments and returns 
+an iterator that produces items from the first iterable until it is exhausted, 
+then it continues to the next iterable, and so on.
 
 for eg,
-
+````
 from itertools import chain
 
-# Merges three iterables together
-chainedObj = chain(range(1,4), range(4, 7), range(7, 10))
+# Example iterables
+iterable1 = [1, 2, 3]
+iterable2 = ['a', 'b', 'c']
+iterable3 = (10, 20, 30)
 
-print(list(chainedObj))
+# Using itertools.chain to combine the iterables
+combined_iterable = chain(iterable1, iterable2, iterable3)
 
-# OUTPUT:
-[1, 2, 3, 4, 5, 6, 7, 8, 9]
+# Iterating over the combined iterable
+for item in combined_iterable:
+    print(item)
+````
 
+> ITERTOOLS :: COMPRESS
 
-#--- EXAMPLE 5: COMPRESS FROM ITERTOOLS;;
-
-The compress() method helps us pick out elements from an iterable based on the
-values of another iterable.
+The `compress()` method helps us pick out elements from an iterable based on 
+the values of another iterable.
 
 For example, say we have a list of students ["John", "Vishnu", "Kabir"] and a
 list of results containing a boolean indicating if the student has passed the
-test [True, False, True]. Now, using compress() we can select all the
-students from the student list who have passed i.e where the boolean is
-True.
+test [True, False, True]. Now, using compress() we can select all the students 
+from the student list who have passed i.e where the boolean is True.
 
 for eg,
-
+````
 from itertools import compress
 
 students = ["John", "Vishnu", "Kabir", "Shreya", "Rose"]
@@ -1579,23 +1690,26 @@ print(list(filtered))
 
 # OUTPUT: -
 ['John', 'Kabir', 'Shreya']
+````
 
+> ITERTOOLS :: GROUPBY
 
-#--- EXAMPLE 6: GROUPBY FROM ITERTOOLS;;
+The `groupby()` function does exactly what its name says. Using groupby() 
+we can group values of an iterable together based on a certain condition.
 
-The groupby() function does exactly what its name says. Using groupby() we can
-group values of an iterable together based on a certain condition.
+***THE ONE QUIRK OF THIS FUNCTION IS THAT IT EXPECTS THE ITERABLE TO BE IN 
+SOR TED ORDER***
 
-THE ONE QUIRK OF THIS FUNCTION IS THAT IT EXPECTS THE ITERABLE TO BE IN SORTED
-ORDER.
+Hence, we need to sort our lists before we use them.
 
-Hence we need to sort our lists before we use them.
+for eg,
+````
+from itertools import groupby
 
-import itertools
-
-students = ["John", "Jishnu", "Vishnu", "Kabir", "Vinod", "Shreya", "Vikas", "Rose"]
+students = ["John", "Jishnu", "Vishnu", "Kabir", 
+            "Vinod", "Shreya", "Vikas", "Rose"]
 students.sort() # <-- sort list
-groups = itertools.groupby(students, lambda x: x[1])
+groups = groupby(students, lambda x: x[1])
 
 for group, values in groups:
   print(group, " --- ", list(values))
@@ -1607,19 +1721,20 @@ a  ---  ['Kabir']
 o  ---  ['Rose']
 h  ---  ['Shreya']
 i  ---  ['Vikas', 'Vinod', 'Vishnu']
+````
 
-#--- EXAMPLE 7: STARMAP FROM ITERTOOLS;;
+> ITERTOOLS :: STARMAP
 
-The starmap() is similar to the map() function where we can iteratively pass
+The `starmap()` is similar to the map() function where we can iteratively pass
 values from a list as an argument to a function. The difference between them
 is that starmap() supports passing multiple arguments to a function.
 
-We can use starmap() in cases where we want to call a function iteratively for
-every set of arguments in a list. starmap() passes each argument set to the
-function and returns the results as an iterable.
+We can use `starmap()` in cases where we want to call a function iteratively 
+for every set of arguments in a list. starmap() passes each argument set to 
+the function and returns the results as an iterable.
 
 for eg,
-
+````
 from itertools import starmap
 
 params= [(2,4), (5,6), (7,8)]
@@ -1637,19 +1752,40 @@ for param, result in zip(params, res):
 (5, 6) => 30
 (7, 8) => 56
 
+# ReWriting above code with map function;;
+
+params= [(2,4), (5,6), (7,8)]
+
+def areaRectangle(length, breadth):
+  return length * breadth
+
+res = map(areaRectangle, params)
+
+for param, result in zip(params, res):
+  print(f"{param} => {result}")
+
+# OUTPUT:
+Traceback (most recent call last):
+ERROR!
+File "<string>", line 11, in <module>
+TypeError: <lambda>() missing 1 required positional argument: 'y'
+````
+
 
 -------------------------------------------------------------------------------------
--> Q065 : Bitwise Operators;
+### Q065 : Bitwise Operators;
 
-//-------------------------- USAGE 1 : BITWISE BASIC;;
+#### USAGE 1 : BITWISE BASIC;;
 
-All data within a system is represented by bits. A bit is a unit of the
-binary number system, which comprises only two numbers 1 and 0
+All data within a system is represented by bits. A bit is a unit of the binary 
+number system, which comprises only two numbers 1 and 0.
 
 A collection of bits make up Integers, Floats, Strings, and other Datatypes.
-For example, the following are samples of how natural numbers are represented
-in bit
 
+For example, the following are samples of how natural numbers are represented
+in bit.
+
+````
 ------------------------------
 |   BITS      |    VALUES    |
 ------------------------------
@@ -1659,23 +1795,26 @@ in bit
 | 0000 0100   |       4      |
 | 0000 0101   |       5      |
 ------------------------------
+````
 
-bin() : bin() is a binary function in python can be used to quickyl view the
-binary representation of the number.
+`bin()` : `bin()` is a binary function in python can be used to quickyl view 
+the binary representation of the number.
 
-foe eg,
+for eg,
+````
 print(bin(5))   # 0b101
 print(bin(6))   # 0b110
 print(bin(15))  # 0b1111
+````
 
-//----------------------- OPERATOR 1 : BITWISE AND OPERATOR;;
+#### OPERATOR 1 : BITWISE AND OPERATOR;;
 
-The AND operator is represented by an & (ampersand) symbol in Python. It
-compares two bits and returns 1 if and only if both the operands are 1. If
-either one of the operands is 0, then the operator will return a 0.
+The `AND` operator is represented by an & (ampersand) symbol in Python. 
+It compares two bits and returns 1 if and only if both the operands are 1. 
+If either one of the operands is 0, then the operator will return a 0.
 
-Illustration 1 :-
-
+Illustration 1 :
+````
 print(5, "\t = ", bin(5))
 print(4, "\t = ", bin(4))
 print(5 & 4, "\t = ", bin(5 & 4))
@@ -1688,12 +1827,16 @@ print(5 & 4, "\t = ", bin(5 & 4))
 # Code Explanation
 5 :  0000 00101
 4 :  0000 00100
-RESULT : 5 & 4 => 0000 00100  => 4
 
+# RESULT :
+5 & 4 => 0000 00100  => 4
+````
+for eg,
 
-For eg, # EXAMPLE 1: CHECK FOR EVEN AND ODD IN BINARY OPERATOR;
+````
+# EXAMPLE 1: CHECK FOR EVEN AND ODD IN BINARY OPERATOR;;
+# Find if a number is even or odd using & operator;;
 
-# Find if a number is even or odd using & operator
 nums = [45, 21, 34, 64]
 
 for num in nums:
@@ -1707,14 +1850,15 @@ for num in nums:
 21 is odd
 34 is even
 64 is even
+````
 
-//----------------------- OPERATOR 2 : BITWISE OR OPERATOR;;
+#### OPERATOR 2 : BITWISE OR OPERATOR;;
 
-The OR operator is represented by a | pipe character in Python. The result of
+The `OR Operator` is represented by a | pipe character in Python. The result of
 an or operator is 1 if one of the operands is 1.
 
-Illustration 2 :-
-
+Illustration 2 :
+````
 print(10, "\t = ", bin(10))
 print(1, "\t = ", bin(1))
 print(5, "\t = ", bin(5))
@@ -1725,11 +1869,13 @@ print(10 | 5, "\t = ", bin(10 | 5))
 1    =  0000 0001
 5    =  0000 0101
 15   =  0000 1111
+````
 
 for eg,
-
-# Check task is to check if a number is even or odd. If it is odd, you should
-# ignore it. If it is even, increment the number by 1 to make it odd.
+````
+# EXAMPLE 2 : Check task is to check if a number is even or odd. If it is 
+# odd, you should ignore it. If it is even, increment the number by 1 to 
+# make it odd.
 
 # Modify an even number by adding 1 and making it odd
 nums = [45, 21, 34, 64, 4, 97, 24]
@@ -1754,15 +1900,16 @@ So, for illustration
 1 : 0000 0001
 then, OR Operation...
 14 OR 1 => 0000 1110 OR 0000 0001 => 0000 1111 (~15)
+````
 
-//----------------------- OPERATOR 3 : XOR BITWISE OPERATION;
+#### OPERATOR 3 : XOR BITWISE OPERATION;;
 
-The XOR operator is represented by the ^ (hat) character in Python. The XOR
+The `XOR operator` is represented by the ^ (hat) character in Python. The XOR
 operator outputs a 1 only if both the input bits are different. If both input
 bits are the same, the result is 0.
 
 Illustration 3 :-
-
+````
 print(10, "\t = ", bin(10))
 print(12, "\t = ", bin(12))
 print(10 ^ 12, "\t = ", bin(10 ^ 12))
@@ -1771,8 +1918,10 @@ print(10 ^ 12, "\t = ", bin(10 ^ 12))
 10 : 0000 1010
 12 : 0000 1100
 10 XOR 12 => 0000 1010 XOR 0000 1100 => 0000 0110
+````
 
-for eg, 
+for eg,
+````
 # Illustration : Version 1 
 def example3_v1():
     nums = [
@@ -1808,10 +1957,11 @@ def example3_v2():
         print(f"current result:", result)
 
     print("Result :", result)
+````
 
-//----------------------- OPERATOR 4 : NOT BITWISE OPERATION;
+#### OPERATOR 4 : NOT BITWISE OPERATION;;
 
-The NOT operation is simple and easy to grasp. The purpose of the NOT operator
+The `NOT operation` is simple and easy to grasp. The purpose of the NOT operator
 is to just invert the existing bits. i.e if the input is 0 the output is 1
 and vice versa. The NOT operator is represented by the ~(tilde) sign in
 Python.
@@ -1819,20 +1969,22 @@ Python.
 The NOT operator is a unary operator in Python, which means, that it only
 takes in one operand as the input
 
-like, 
+like,
 
+````
 print(10, "\t = ", bin(10))   # 10 =  0b1010
 print(~10, "\t = ", bin(~10)) # -11 = -0b1011
 print(bin(~10 & 0xf))         # 0b101
+````
 
+#### OPERATOR 5: LEFT AND RIGHT SHIFT;;
 
-//------------------------ OPERATOR 5: LEFT AND RIGHT SHIFT;;
-
-Left shift and Right shift operators : These two operators either move the
+`Left shift and Right shift operators` : These two operators either move the
 bits to the left or right based on the value specified by the second operand.
 The left and right shift operators are represented by the << and >> operators
 respectively.
 
+```
 print(8, "\t =", bin(8))                # 8 = 0b1000
 print(8 << 1, "\t =", bin(8 << 1))      # 16 = 0b10000
 
@@ -1840,12 +1992,12 @@ In our example, we right shift bit of integer 8 by 1 bit.
 
 print(8, "\t =", bin(8))                # 8 = 0b1000
 print(8 >> 2, "\t =", bin(8 >> 2))      # 2 = 0b10
-
+```
 
 for eg,
-
-# Given below is a number n. Your task is to find the number of 1's in the
-# number. Do this using the >> and & operators.
+```
+# Given below is a number n. Your task is to find the number 
+# of 1's in the number. Do this using the >> and & operators.
 
 num = 355
 result = 0
@@ -1859,24 +2011,27 @@ print(result)
 # OUTPUT :
 0b101100011
 5
-
+```
 
 -------------------------------------------------------------------------------------
--> Q064 : Magic Method __call__ in Python;;
+### Q064 : Magic Method __call__ in Python;;
 
-Python has a set of built-in methods and __call__ is one of them. The __call__
-method enables Python programmers to write classes where the instances behave
-like functions and can be called like a function. When the instance is called
-as a function; 
+Python has a set of built-in methods and `__call__` is one of them. 
 
-if this method is defined,
-x(arg1, arg2, ...) is a shorthand for x.__call__(arg1, arg2, ...).
+The `__call__` method enables Python programmers to write classes 
+where the instances behave like functions and can be called like 
+a function. When the instance is called as a function. 
+
+If this method is defined,
+>    x(arg1, arg2, ...) is a shorthand for x.__call__(arg1, arg2, ...).
 
 Syntax : 
-  object() is shorthand for object.__call__
+>    object() is shorthand for object.__call__
 
-//----------------------------------- EXAMPLE 1: 
+#### EXAMPLE 1: 
+for eg,
 
+````
 class Example:
     def __init__(self):
         print("Instance Created")
@@ -1894,9 +2049,12 @@ e()     # Call object like a function;
 # OUTPUT :
 Instance Created
 Instance is called via special method
+````
 
-//----------------------------------- EXAMPLE 2: 
+#### EXAMPLE 2: 
 
+for eg,
+````
 class Product:
     def __init__(self):
         print("Instance Created")
@@ -1914,9 +2072,11 @@ ans(10, 20)   # Calling like a function with argument;
 # OUTPUT:
 Instance Created
 200
+````
 
-//------------------------------------- EXAMPLE 3:
-
+#### EXAMPLE 3:
+for eg,
+````
 class Student:
 
   _record = {}
@@ -1955,10 +2115,10 @@ school : DUCS Sr. Sec. School
 std : XII
 teacher : Shristi Sharma
 Subjects : ('Physics', 'Chemisty', 'Computer Cpp', 'Maths', 'English')
-
+````
 
 -------------------------------------------------------------------------------------
--> Q063 : Class Decorator in Python;;
+#### Q063 : Class Decorator in Python;;
 
 We can also use decorators to modify the methods of a class. As a class can
 also be passed as an argument to a function, we can access and modify it as
@@ -1966,13 +2126,14 @@ required.
 
 for eg, 
 
-//------------ EXAMPLE 1: IMPLEMENTING DECORATOR FUNCTION ON REGULAR CLASS;;
+#### EXAMPLE 1: IMPLEMENTING DECORATOR FUNCTION ON REGULAR CLASS;;
 
 Here, in this example decorator are implemented using the regular function
 like we are using earlied but the decorator are implementing on the class 
 variable.
 
 for eg,
+````
 def printUppercase(_class):
     
     # Main Wrapper Starts Here
@@ -1985,7 +2146,7 @@ def printUppercase(_class):
     # So that we can modify or extends the functional requirement
     # of that function.
 
-    _class.show = wrapper   # Overriding old show function with wrapper 
+    _class.show = wrapper   # Overriding old show function with wrapper
 
     return _class
 
@@ -2006,15 +2167,17 @@ if __name__ == "__main__":
 
 # OUTPUT :
 WORD OF THE DAY IS HALLOWEEN
+````
 
-
-//------------ EXAMPLE 2: IMPLEMENTING DECORATOR CLASS ON REGULAR FUNCTION;;
+#### EXAMPLE 2: IMPLEMENTING DECORATOR CLASS ON REGULAR FUNCTION;;
 
 We can also use a class as a decorator in Python. The function will be
-received as an argument to __init__ and the function arguments will be passed
-to __call__.
+received as an argument to `__init__` and the function arguments will be 
+passed to `__call__`.
 
-for eg, # In the example below we define StoreResults which stores the results
+for eg,
+```
+# In the example below we define StoreResults which stores the results
 of every call to add().
 
 class StoreResults:
@@ -2063,19 +2226,21 @@ LOG : kwargs: {'y': 22, 'z': 33}
 # or, @return res ... instead of self.result from place INDEX-01;
 20      
 20, 22 
+```
 
-
-//------------ EXAMPLE 3 : PASSING ARGUMENT ON CLASS DECORATOR;
+#### EXAMPLE 3 : PASSING ARGUMENT ON CLASS DECORATOR;;
 
 To accept arguments to our class-based decorator, we would have to make subtle
 changes because of the following issues.
-1) The __init__ method will now receive the decorator argument and not the function.
-2) The function will be passed as the first argument to __call__. 
+1) The `__init__` method will now receive the decorator argument and not the function.
+2) The function will be passed as the first argument to `__call__`. 
 3) The function arguments will be received in a nested function.
 
-for eg, # In this case we are expanding the abbreviation of the given message;
-
+for eg, 
+````
+# In this case we are expanding the abbreviation of the given message;
 # Given Abbreviation inside the system;
+
 abbr = {
   "ttyl": "Talk to you later",
   "omg": "Oh my God!",
@@ -2098,6 +2263,7 @@ class Abbreviation:
 
         # Nested Wrapper for main functionality;
         # args : refers to external argument of function;
+        
         def wrapper(args):   
             
             # string, *_ = args             # Doesn't effect the code ;
@@ -2120,28 +2286,29 @@ def message(msg):
 
 if __name__ == "__main__":
   message("omg that's so funny. Anyways I gtg. ttyl okay.")
+````
 
 
 -------------------------------------------------------------------------------------
--> Q062 : Generators Workflow in Python;;
+### Q062 : Generators Workflow in Python;;
 
 Generators are basically stateful functions. They can be paused and resumed at
 specific points.
-
 
 Consider ordering fries, biryani, and ice cream at a restaurant. You could ask
 the waiter to get all the items in one go itself. However, it would be
 difficult to consume all of them in one sitting. Instead, you ask the waiter
 to get the first dish i.e fries, and once you are through with it, you could
-ask them to get the next one i.e biryani followed by ice cream.
+ask them to get the next one i.e, biryani followed by ice cream.
 
 Generators take a similar approach. A function is paused after it yields a
 value and resumes when it is explicitly asked.
 
+> Example Illustration in P0043 inside the BasicPython/01.basic/...
 
-for eg, # Example Illustration in P0043 inside the 'BasicPython/01.basic/...'
-
-###---- Example 1 : Basic Example for Generator object;
+for eg, 
+````
+###---- Example 1 : Basic Example for Generator object;;
 def orderFood():
     yield 'Red Wine'
 
@@ -2162,9 +2329,8 @@ Starters :  Red Wine
 Main Course:  Fish and Rice
 Desserts : Ice Cream
 
-###---/Example 1;
 
-###---Example 2: Fibonacci Series using the Generator Object;
+###---Example 2: Fibonacci Series using the Generator Object;;
 def fibo(a=0, b=1, limit=10):
     a = 0
     yield(a)
@@ -2192,15 +2358,13 @@ Object __main__ : <generator object fibo at 0x7fc5238c2a50>
 0->1->1->2->3->5->8->13->21->34
 Genrator Terminated !
 
-###--- /Example2;
 
-###--- Example 3: Calculate first N prime number default limit 10;
+###--- Example 3: Calculate first N prime number default limit 10;;
 def checkPrimeNumber(num):
     for x in range(2, num//2):
         if(num % x == 0):
             return False
     return True
-
 
 def primeGenerator(count):
     i = 2           # number 0 and 1 are not prime number;
@@ -2210,7 +2374,6 @@ def primeGenerator(count):
             yield(i)
             cur_count += 1
         i += 1
-
 
 def example3():
     count = 10
@@ -2235,11 +2398,12 @@ Next Prime Number :  17
 Next Prime Number :  19
 Next Prime Number :  23
 Generator Terminated !
+````
 
-//--------------------------------- USAGE 2 : PASSING ARGUMENT TO GENERATOR 
+#### USAGE 2 : PASSING ARGUMENT TO GENERATOR;; 
 
 For eg,
-
+````
 names = ["ferrari", "john", "barbie", "cottonwood", "shirley"]
 labels = ["car", "boy", "toy", "tree", "girl"]
 
@@ -2258,28 +2422,29 @@ John is a boy
 Barbie is a toy
 Cottonwood is a tree
 Shirley is a girl
-
+````
   
+
 -------------------------------------------------------------------------------------
--> Q061 : First Class Function in Python;;
+### Q061 : First Class Function in Python;;
 
---> DEFINATION OF FIRST CLASS FUNCTION
+#### DEFINATION OF FIRST CLASS FUNCTION;;
 
-First class functions: If a function can be assigned to a variable or passed
+`First class functions`:If a function can be assigned to a variable or passed
 as object/variable to other function, that function is called as first class
 function.
 
-Languages like - Python, Javascript and C(pointers) support first class
+Languages like - `Python`, `Javascript` and `C(pointers)` support first class
 functions.
 
-First class objects in a language are handled uniformly throughout. They may
-be stored in data structures, passed as arguments, or used in control
+`First class objects` in a language are handled uniformly throughout. They 
+may be stored in data structures, passed as arguments, or used in control
 structures. A programming language is said to support first-class functions
 if it treats functions as first-class objects. Python supports the concept of
 First Class functions.
 
 for eg, 
-
+````
 def square(x):
   return x*x
 
@@ -2291,14 +2456,15 @@ def show(x, func):
 
 print(show(5, square))    # 25
 print(show(5, cube))      # 125
+````
 
---> PROPERTIES OF FIRST CLASS FUNCTIONS:
+#### PROPERTIES OF FIRST CLASS FUNCTIONS:
 1) You can store the function in a variable. 
 2) You can pass the function as a parameter to another function. 
 3) You can return the function from a function. 
 4) You can store them in data structures such as hash tables, lists, 
 
-//--- Property 1 : Storing function in variable
+#### Property 1 : Storing function in variable
 
 Functions are objects: Python functions are first class objects. In the
 example below, we are assigning function to a variable. This assignment
@@ -2306,15 +2472,16 @@ doesn’t call the function. It takes the function object referenced by shout
 and creates a second name pointing to it, yell.
 
 for eg,
-
+````
 def show(message):
   return message.upper()
 
 print(show("Hello World"))      # HELLO WORLD
 yell = show
 print(yell("Now i'm shouting..."))       # NOW I'M SHOUTING...
+````
 
-//--- Property 2 : Functions can be passed as arguments to other functions:
+#### Property 2 : Functions can be passed as arguments to other functions:
 
 Because functions are objects we can pass them as arguments to other
 functions. Functions that can accept other functions as arguments are also
@@ -2322,27 +2489,31 @@ called higher-order functions. In the example below, we have created a
 function greet which takes a function as an argument.
 
 for eg,
+````
 # Python program to illustrate functions
 # can be passed as arguments to other functions
 def shout(text):
     return text.upper()
+    
 def whisper(text):
     return text.lower()
+    
 def greet(func):
     #storing the function in a variable
     greeting = func("Hi, I am created by a function passed as an argument.")
     print greeting     
 
-
 greet(shout)
 greet(whisper)
+````
 
-//--- Property 3 : Functions can return another function
+#### Property 3 : Functions can return another function
 
 Because functions are objects we can return a function from another function.
 In the below example, the create_adder function returns adder function.
 
 for eg,
+````
 #Python program to illustrate functions
 #Functions can return another function    
 def create_adder(x):  
@@ -2352,20 +2523,21 @@ def create_adder(x):
       
 add_15 = create_adder(15)
 print add_15(10)
+````
 
 
 -------------------------------------------------------------------------------------
--> Q060 : Operator Overloading in Python;;
+#### Q060 : Operator Overloading in Python;;
 
-Operator Overloading : The + operator is used to add two numbers or
+`Operator Overloading` : The + operator is used to add two numbers or
 concatenate two strings together. Using Operator Overloading we can also
 modify it to perform some operations on our newly created objects.
 
-To overload the + operator, we have to overwrite the internal __add__ method
-of the operand's class.
+To overload the + operator, we have to overwrite the internal `__add__` 
+method of the operand's class.
 
-for eg, # Operator Overloading
-
+for eg,
+````
 class House:
   def __init__(self):
     self.rooms = []
@@ -2401,54 +2573,39 @@ print(house)
 # OUTPUT :
 House[rooms: [Judy's room]]
 House[rooms: [Judy's room, Arthur's room]]
+````
 
+#### Overloading other mathematical operators;;
 
-//--- Overloading other mathematical operators
+- Addition (c1 + c2): `c1.__add__(c2)`
+- Subtraction (c1 - c2): `c1.__sub__(c2)`
+- Multiplication (c1 * c2): `c1.__mul__(c2)`
+- Power (c1 ** c2): `c1.__pow__(c2)`
+- Division (c1/c2): `c1.__truediv__(c2)`
+- Floor Division (c1//c2): `c1.__floordiv__(c2)`
+- Remainder(c1 % c2) : `c1.__mod__(c2)`
+- Bitwise Left Shift(c1 << c2) : `c1.__lshift__(c2)`
+- Bitwise Right Shift(c1 >> c2) : `c1.__rshift__(c2)`
+- Bitwise AND	(c1 & c2) : `c1.__and__(c2)`
+- Bitwise OR (c1 | c2) : `c1.__or__(c2)`
+- Bitwise XOR (c1 ^ c2) : `c1.__xor__(c2)`
+- Bitwise NOT (~c1) : `c1.__invert__()`
 
-Method :    Addition        :    (+)    :   def __add__(self): ...
-Method :    Subtraction     :    (-)    :   def __sub__(self): ...
-Method :    Multiply        :    (*)    :   def __mul__(self): ...
-Method :    Division        :    (/)    :   def __truediv__(self): ...
-Method :    Modulus         :    (%)    :   def __mod__(self): ...
-Method :    Left Shift      :    (<<)   :   def __lshift__(self): ...
-Method :    Unary Opr       :    (~)    :   def __invert__(self): ...
-Method :    Greater Opr       :    (~)    :   def __invert__(self): ...
-Method :    Less Than Opr       :    (~)    :   def __invert__(self): ...
-Method :    Unary Opr       :    (~)    :   def __invert__(self): ...
-
-//--- Unary Operator Example;
- for eg, 
- class Bulb:
-
-   def __init__(self):
-      self.switch = "OFF"
-
-   def __invert__(self):
-      self.switch = 'ON' if self.switch == 'OFF' else 'OFF'
-
-   def __repr__(self):
-      return f"Bulb : {self.switch}"
-
-
-# OUTPUT:
-Bulb : OFF
-Bulb : ON
-Bulb : OFF
-
-//--- COMPARISION OPERATOR OVERLOADING
 
 
 
 -------------------------------------------------------------------------------------
--> Q059 : Inheritance in Python;;
+### Q059 : Inheritance in Python;;
 
-//--------------------------------------- EXAMPLE 1: BASIC INHERITANCE;
+#### EXAMPLE 1: BASIC INHERITANCE;
 
-Inheritance : Python supports inheriting data and methods from other classes.
+`Inheritance` : Python supports inheriting data and methods from other classes.
 This can help us to avoid rewriting common functionalities across multiple
 classes.
 
-for eg, # Inheritance of Class
+#### Inheritance of Class
+
+````
 class Phone: # <-- Parent class
   """
   Contains all functionalities and data of a Phone
@@ -2495,14 +2652,16 @@ iOS Version 12.5.6
 Calling Android methods
 Calling 999999999
 Opening Play Store
+````
 
-//--------------------------------------- EXAMPLE 2: METHOD OVERRIDING
+#### EXAMPLE 2: METHOD OVERRIDING;;
 
-Method Overriding : Inheritance allows us to overwrite the methods and data
+`Method Overriding` : Inheritance allows us to overwrite the methods and data
 from the parent class. We could add new functionality in the child class for
 the same method.
 
-for eg, # Method Overriding
+for eg,
+````
 class Phone:
   """
   Parent Class
@@ -2533,15 +2692,17 @@ Sending an email to abc@gmail.com via Email
 
 Calling iPhone methods
 Sending an email to abc@gmail.com via Apple Mail
+````
 
-//--------------------------------------- EXAMPLE 3: SUPER FUNCTION
+#### EXAMPLE 3: SUPER FUNCTION
 
-SUPER() : super() method helps us to call the function of parent method from 
+`SUPER()` method helps us to call the function of parent method from 
 before overriding that function in the derived class.
 
-super() refers to a temporary instance of the parent class.
+`super()` refers to a temporary instance of the parent class.
 
-for eg # SUPER method
+for eg, 
+````
 class Phone:
   """
   Parent Class
@@ -2567,14 +2728,16 @@ iphone.power_up()
 Calling iPhone methods
 Powering up Phone.
 Showing apple logo
+````
 
-//--------------------------------------- EXAMPLE 4: MULTIPLE INHERITANCE
+#### EXAMPLE 4: MULTIPLE INHERITANCE
 
-Multiple Inheritance can inherit attributes and methods from more than two class
-at the same time.
+`Multiple Inheritance` can inherit attributes and methods from more than 
+two class at the same time.
 
-for eg, # MULTIPLE INHERITANCE
+for eg,
 
+````
 class Phone:
   """
   Contains all functionalities and data of a Phone
@@ -2599,21 +2762,22 @@ iphone.start() # <-- Calls from Phone class
 # OUTPUT:
 witching on iPhone
 Opening Caller
-
+````
 
 -------------------------------------------------------------------------------------
--> Q058 : Class and Objects Python;;
+### Q058 : Class and Objects Python;;
 
 A class is a blueprint for an item. For example, if Dog is a class then a
 Labrador is an object or instance of that class
 
-The __init__ method is automatically called by Python internally when we
+The `__init__` method is automatically called by Python internally when we
 create an instance/object of the class
 
 The self variable within our class represents the instance of the class.
 
-for eg, # Basic Class Example 
+#### Basic Class Example;;
 
+````
 class Dog: # <-- Define Dog class
   
   noOfObjects = 1       # <-- Class ATTRIBUTES;
@@ -2644,9 +2808,11 @@ Woof
 Wagging tail..
 The dog name is Chester
 The dog name is dalmati
+````
 
-for eg // Example of class attributes;
+#### Example of class attributes;;
 
+````
 class Employee:
 
   # Create class attribute count
@@ -2678,9 +2844,11 @@ print(chester.__class__.__name__)
 
 # OUTPUT 
 Dog
+````
 
-for eg, # Popular examples of classes and object;
+#### Popular examples of classes and object;
 
+````
 from collections import Counter # import class
 
 counter = Counter("hello world") # Count frequency
@@ -2692,10 +2860,13 @@ print(counter.most_common()) # print most common using .most_common() method
   ('e', 1), (' ', 1), ('w', 1), 
   ('r', 1), ('d', 1)
 ]
+````
 
 
 -------------------------------------------------------------------------------------
--> Q057 : Decorator in Python;; (PING -> Q063 : Class Decorator in Python)
+### Q057 : Decorator in Python;; 
+
+(Refer Q063 : Class Decorator in Python)
 
 Sometimes we might want to run some code at the beginning and at end of a
 function. 
@@ -2706,7 +2877,10 @@ with time.time() statements.
 We can avoid such repetition using decorators and implement the same in a much
 cleaner way.
 
-for eg, // EXAMPLE WITHOUT DECORATOR
+for eg, 
+
+#### EXAMPLE WITHOUT DECORATOR;;
+````
 import time
 
 def hello_world():
@@ -2717,15 +2891,17 @@ if __name__ == "__main__":
     hello_world()
     end = time.time()
     print(f"Time taken : {end - start} seconds")
-
+````
 
 Decorators are basically functions. They help us run code before and after
 other functions. Ideally, you can think of them as wrappers for other
 functions.
 
-//---------------------------------- EXAMPLE 1: DECORATOR EXAMPLES;
+#### EXAMPLE 1: DECORATOR EXAMPLES;
 
-For eg, # BASIC EXAMPLE 1
+For eg, 
+````
+# BASIC EXAMPLE 1
 import time
 
 def hello_world():
@@ -2740,7 +2916,7 @@ def measure_time(another_function):     # <-- Decorator function
 
 measure_time(hello_world)
 
-for eg, # BASIC EXAMPLE 2
+# BASIC EXAMPLE 2
 # Create function encrypt to encrypt the string returned from send_message
 # Store the result in message
 
@@ -2755,15 +2931,19 @@ message = encrypt(send_message)
 
 print(message)
 # OUTPUT :
-[84, 97, 110, 103, 111, 44, 32, 67, 104, 97, 114, 108, 105, 101, 44, 32, 65, 108, 112, 104, 97]
+[84, 97, 110, 103, 111, 44, 32, 67, 104, 97, 114, 
+108, 105, 101, 44, 32, 65, 108, 112, 104, 97]
+````
 
-//---------------------------------- EXAMPLE 2: DECORATOR AS ANNOTATION;
+#### EXAMPLE 2: DECORATOR AS ANNOTATION;
 
-Python provides a cleaner and shorter way to represent decorators by using
-the @ symbol.
+Python provides a cleaner and shorter way to represent decorators by 
+using the @ symbol.
 
-for eg, # Annotations;
-impdef measure_time(another_function):
+for eg,
+````
+# Annotations;
+def measure_time(another_function):
   start = time.time()
   result = another_function()
   end = time.time()
@@ -2776,24 +2956,26 @@ def hello_world():
 
 # OUTPUT :
 Time Measured : 5.936622619628906e-05 seconds
+````
 
 EXPLANATION : An issue however, is that python runs measure_time()
-(hello_world) without an explicit call or calling automatically, which is
-something we might not want. 
+(hello_world) without an explicit call or calling automatically, 
+which is something we might not want. 
 
 To avoid such automatic calling scenario, we used the nested function.
 
-//----------------------------------- EXAMPLE 3: NESTED FUNCTION;
+#### EXAMPLE 3: NESTED FUNCTION;
 
 Re-define above method using the nested function !!!
 
 for eg,
+````
 from time import time
 
-def runtime(main):
+def runtime(func):
   def wrapper():
     start = time()
-    main()
+    func()
     end = time()
     print(f"runtime : {end - start} seconds")
   return wrapper  # Return the memory reference of the wrapper method defination;
@@ -2807,17 +2989,20 @@ greeting()    # MAIN ENTERY POINT;
 # OUTPUT : 
 Hello World
 runtime : 3.337860107421875e-06 seconds
+````
 
 EXPLANATION :  The only change that we have made is that we have added a
-nested function called wrapper() and moved the code within it. measure_time
-() returns this wrapper function to the caller.
+nested function called `wrapper()` and moved the code within it. 
+`measure_time()` returns this wrapper function to the caller.
 
 If we run the code snippet now, you will notice measure_time() is not being
 called implicitly. Instead, we will have to call hello_world(), which will
 internally call the code from wrapper() within the measure_time decorator.
 
-for eg, # Practice Example (Redefine BASIC EXAMPLE 2)
-# MESSAGE ENCYRPTION PROBLEM;
+for eg, 
+````
+# REDEFINE BASIC EXAMPLE 2 WITH WRAPPER;;
+# MESSAGE ENCYRPTION PROBLEM;;
 
 def encrypt(func):
   def wrapper():
@@ -2830,11 +3015,14 @@ def send_message():
   return "Tango, Charlie, Alpha"
 
 send_message()
+````
 
-//----------------------------------- EXAMPLE 4: DECORATOR WITH ARGUMENT;
+#### EXAMPLE 4: DECORATOR WITH ARGUMENT;
 
 An buggy based example for receiving the argument inside the decorator.
 
+For eg,
+````
 import time
 
 def measure_time(function):
@@ -2858,10 +3046,11 @@ Traceback (most recent call last):
   File "script.py", line 17, in <module>
     hello("Python")
 TypeError: wrapper() takes 0 positional arguments but 1 was given
+````
 
+> CORRECTING THE ABOVE CODE SNIPPET TO ACCEPT ARGUMENT;;
 
-for eg, // Real example of argument in decorator.
-
+```
 import time
 
 def measure_time(function):
@@ -2881,13 +3070,23 @@ def hello(*args, **kwargs):
 
 hello("Python", "Guido Van Rosseum", xyz=20, abc=30)
 
-//------------------------------------ EXAMPLE 5: MULTIPLE DECORATORS;
+# OUTPUT:-
+args : ('Python', 'Guido Van Rosseum') || kwargs : {'xyz': 20, 'abc': 30}
+your v-args: ('Python', 'Guido Van Rosseum')
+your kw-args: {'xyz': 20, 'abc': 30}
+Time taken: 1.4543533325195312e-05 seconds
+````
+
+### EXAMPLE 5: MULTIPLE DECORATORS;;
 
 The measure_time decorator here measures the time for running the function
 twice. That is, it includes the do_twice decorator's time within it. Try
 swapping the order of the decorators and see the output.
 
-for eg, // Ex 1: Demonstration for passing argument;
+for eg,
+
+````
+// Ex 1: Demonstration for passing argument;
 
 import time
 
@@ -2963,25 +3162,25 @@ print(message)
 [75, 104, 111, 111, 114, 35, 82, 105, 105, 108, 102, 104, 117, 118, 49, 35,
 87, 107, 108, 118, 35, 108, 118, 35, 124, 114, 120, 117, 35, 102, 100, 115,
 119, 100, 108, 113, 35, 118, 115, 104, 100, 110, 108, 113, 106, 49]
+````
 
+#### EXAMPLE 6: DECORATOR INSIDE DECORATOR WITH ARGUMENT;;
 
+- General purpose Decorator with Decorator itself accepting arbitary arguments;;
+- decorator_kwargs: kwargs are coming from decorator main (@decorator_maker);
+- 1st Level Decorator;;
 
+for eg,
 
-
-//------------------------------------ EXAMPLE 6: DECORATOR INSIDE DECORATOR WITH ARGUMENT;
-
-## General purpose Decorator with Decorator itself accepting arbitary arguments;;
-# decorator_kwargs: kwargs are coming from decorator main (@decorator_maker);
-## 1st Level Decorator;;
-
+````
 def decorator_maker(*args):  
     ## Decorator works likes the main;
 
     def decorator_main(func):
-        ## Wrapper function arguments come from the main external function (employee_details);
-
+        # Wrapper function arguments come from 
+        # the main external function (employee_details);
+        
         def wrapper(**kwargs):
-
             print("-----------------------------------")
             print("****|Decorator Maker Arguments|****")
             print("-----------------------------------")
@@ -2995,10 +3194,11 @@ def decorator_maker(*args):
                 data = func(**kwargs)
                 print(f"data : {data}")
 
-        return wrapper          ## 2nd-level-decorator > wrapper;
+        return wrapper          ## 2nd-level-decorator > return;
 
-    return decorator_main       ## /1st-level-decorator;
+    return decorator_main       ## 1st-level-decorator -> return ;
 
+# Now, decortator_main() will receive argument like ordinary function;;
 @decorator_maker("Crickets", "Badminton", "Football", "Volleyball")
 def student_details(**kwargs):
     return kwargs
@@ -3030,38 +3230,43 @@ data : {
   'lastname': 'Junior', 
   'std': 'XII'
 }
-
+````
 
 -------------------------------------------------------------------------------------
--> Q056 : Date and Time (datetime) Module;;
+### Q056 : Date and Time (datetime) Module;;
 
 Python provides specialized modules for working with dates and times. One of
 the most popular modules for the same is the datetime module.
 
 SYNTAX :
-    from datetime import datetime
-    today = datetime.now()
-    print(today)               # 2022-11-21 20:01:00.791002
+````
+from datetime import datetime
+today = datetime.now()
+print(today)               # 2022-11-21 20:01:00.791002
 
-    # or, alternatively we can used the datetime object like this also,
-    x-mas = datetime(year=2022, month=12, day=25)
-    print(f"This year Christmas day comes on a {x-mas:%A}")
+# or, alternatively we can used the datetime object like this also,
+x-mas = datetime(year=2022, month=12, day=25)
+print(f"This year Christmas day comes on a {x-mas:%A}")
+````
 
-//---------------------------------- EXAMPLE 1;
->>> from datetime import datetime
+#### EXAMPLE 1: BASIC 
+For eg,
+```
+from datetime import datetime
 
->>> today = datetime.now()                          # 2022-11-21 20:01:00.791002  
+today = datetime.now()                          # 2022-11-21 20:01:00.791002  
 
->>> print(f"The day today is {today.day}")          # The day today is 22
->>> print(f"The month is {today.month}")            # The month is 11
->>> print(f"The year is {today.year}")              # The year is 2022
->>> print(f"The hour is {today.hour}")              # The hour is 1
->>> print(f"The minute is {today.minute}")          # The minute is 36
->>> print(f"The second is {today.second}")          # The second is 4
+print(f"The day today is {today.day}")          # The day today is 22
+print(f"The month is {today.month}")            # The month is 11
+print(f"The year is {today.year}")              # The year is 2022
+print(f"The hour is {today.hour}")              # The hour is 1
+print(f"The minute is {today.minute}")          # The minute is 36
+print(f"The second is {today.second}")          # The second is 4
+```
 
-//---------------------------------- EXAMPLE 2: TODAYS DATE;
+#### EXAMPLE 2: TODAYS DATE;
 for eg,
-
+````
 from datetime import datetime
 
 today = datetime.now()
@@ -3070,12 +3275,15 @@ dd = today.day
 mm = today.month
 yyyy = today.year
 
-print(f"Today : {dd}-{mm}-{yyyy}")              # Today : 21-11-2022
+print(f"Today : {dd}-{mm}-{yyyy}")              
+# OUTPUT : Today : 21-11-2022
+````
 
-//----------------------------------- EXAMPLE 3: HUMAN READABLE DATE;
+#### EXAMPLE 3: HUMAN READABLE DATE;
 
--> Human-readable formats of dates :
+- Human-readable formats of dates :
 
+````
 -----------------------------------------------------------
 |   Code     |     Description             |   Example    |  
 -----------------------------------------------------------
@@ -3093,9 +3301,11 @@ print(f"Today : {dd}-{mm}-{yyyy}")              # Today : 21-11-2022
 |    %S      |   second of the minute      |    40        |
 |    %p      |   AM/PM                     |    PM        |
 -----------------------------------------------------------
+````
 
 for eg,
 
+```
 from datetime import datetime
 
 today = datetime.now()
@@ -3106,13 +3316,15 @@ print(f"Time    : {today:%H::%M::%S}")          # Time    : 01::55::57
 print(f"AM/PM   : {today:%p}")                  # AM/PM   : AM
 print(f"Month   : {today:%b or %B}")            # Month   : Nov or November
 print(f"Weekday : {today:%a or %A}")            # Weekday : Tue or Tuesday
+```
 
-//----------------------------------- EXAMPLE 4: DIFFERENCE IN TIME;
+#### EXAMPLE 4: DIFFERENCE IN TIME;
 
-You can count the required days or months. By simply subtracting it from the
-`datetime.now()` object
+You can count the required days or months. By simply subtracting it 
+from the `datetime.now()` object
 
 for eg,
+````
 from datetime import datetime
 
 current_date = datetime.now()
@@ -3121,13 +3333,15 @@ days_left = christmas_date - current_date
 
 print(f"Days left with Time : {days_left}")     # Days left : 32 days, 21:36:31.024657
 print(f"Days left only : {days_left}")          # Days left only : 32 days
+````
 
-//----------------------------------- EXAMPLE 5: REPLACE VALUE IN DATETIME;
+#### EXAMPLE 5: REPLACE VALUE IN DATETIME;;
 
 To replace any value like a year, month, date, hour, etc within the date or
 time in the datetime object we can use the replace() method.
 
 for eg,
+```
 from datetime import datetime
 
 christmas_day = datetime(year=2022, month=12, day=25)
@@ -3138,8 +3352,9 @@ next_christmas = christmas_day.replace(year=2023)
 time_since = next_christmas - christmas_day
 
 print(f"Days left for X-Mas : {time_since.days}")   # Days left for X-Mas : 365
+```
 
-//----------------------------------- EXAMPLE 6: TIMEDELTA IN PYTHON;
+#### EXAMPLE 6: TIMEDELTA IN PYTHON;
 
 Sometimes we might want to add or subtract a number of days to/from our date.
 For this, we use the timedelta() function.
@@ -3148,7 +3363,7 @@ The timedelta object adds or removes weeks, days, and time. For example, we
 could also add an hour to our time.
 
 for eg,
-
+````
 from datetime import timedelta, datetime
 
 print(f"Today: {datetime.now()}") 
@@ -3172,10 +3387,11 @@ print(f"Yesterday: {datetime.now() + subtract_one_day}")
 next_two_year = timedelta(days=365*2)
 print(f"next year : {datetime.now() + next_two_year}")
 # next year : 2024-11-20 21:54:19.012424
+````
 
 
 -------------------------------------------------------------------------------------
--> Q055 : Deque in collection module;;
+### Q055 : Deque in collection module;;
 
 A deque is a combination of a stack and a queue data structure. It basically
 implements the First In First Out (Queue) and First In Last Out
@@ -3187,68 +3403,78 @@ the same time, it is slower when accessing elements, as you can only access
 the ends of the queue.
 
 SYNTAX :
-    from collections import deque
+````
+from collections import deque
 
-    que = deque([1,2,3,4,5])
-    print(que)
+que = deque([1,2,3,4,5])
+print(que)
+````
 
-//------------------------------ EXAMPLE 1
->>> from collections import deque
+#### EXAMPLE 1
+```
+from collections import deque
 
->>> nums = [x for x in range(6)]
->>> print(nums)                         # [0, 1, 2, 3, 4, 5]
->>> que = deque(nums)
->>> print(que)                          # deque([0, 1, 2, 3, 4, 5])
->>> que.append(6)
->>> print(que)                          # deque([0, 1, 2, 3, 4, 5, 6])
->>> print(que.pop())                    # 6
->>> print(que)                          # deque([0, 1, 2, 3, 4, 5])
->>> print(que.popleft())                # 0
->>> print(que)                          # deque([1, 2, 3, 4, 5])
->>> que.appendleft(10)
->>> print(que)                          # deque([10, 1, 2, 3, 4, 5])
+nums = [x for x in range(6)]
+print(nums)                         # [0, 1, 2, 3, 4, 5]
+que = deque(nums)
+print(que)                          # deque([0, 1, 2, 3, 4, 5])
+que.append(6)
+print(que)                          # deque([0, 1, 2, 3, 4, 5, 6])
+print(que.pop())                    # 6
+print(que)                          # deque([0, 1, 2, 3, 4, 5])
+print(que.popleft())                # 0
+print(que)                          # deque([1, 2, 3, 4, 5])
+que.appendleft(10)
+print(que)                          # deque([10, 1, 2, 3, 4, 5])
+```
 
 
 -------------------------------------------------------------------------------------
--> Q054 : Name Tuples (namedtuple) in collections module;;
+### Q054 : Name Tuples (namedtuple) in collections module;;
 
 A named tuple is a variant of a tuple whose values can be accessed by a given
 attribute instead of indices.
 
 SYNTAX : 
-    from collections import namedtuple
+````
+variable_name = namedtuple('tuple_name, ['attribute_1', 'attribute_2'])
+````
 
-    variable-name = namedtuple('name-of-tuple', ['attribute_1', 'attribute_2'])
+#### EXAMPLE 1,
+````
+from collections import namedtuple
 
-    # Sake of Simplicity, community define the variable-name and name-of-tuple
-    # of value same like below,
-    Employee = namedtuple('Employee', ['firstname', 'lastname', 'ecode'])
+# Sake of Simplicity, community define the variable-name 
+# and name-of-tuple of value same like below,
+Employee = namedtuple('Employee', ['firstname', 'lastname', 'ecode'])
 
-    # then access, can be easy
-    stud_1 = Employee('Neeraj', 'Singh', 'BH10319')
+# then access, can be easy
+e1 = Employee('Neeraj', 'Singh', 'BH10319')
 
-    print(stud_1.firstname)         # Neeraj
-    print(stud_1.lastname)          # Singh
-    print(stud_1.ecode)             # BH10319
+print(e1.firstname)         # Neeraj
+print(e1.lastname)          # Singh
+print(e1.ecode)             # BH10319
 
-    # Above namedtuple can be defined like this,
-    # e = namedtuple('Employee', ['firstname', 'lastname', 'ecode'])
-    # stud_1 = e('Neeraj', 'Singh', 'BH10319')
-    # print(stud_1.firstname)         # Neeraj
+# Alternatively, namedtuple can be defined like this,
+e = namedtuple('Employee', ['firstname', 'lastname', 'ecode'])
+e1 = e('Neeraj', 'Singh', 'BH10319')
+# print(e1.firstname)       # Neeraj
+````
 
-for eg,
+#### EXAMPLE 2
 
-//------------------------------------ EXAMPLE 1
-
+````
 from collections import namedtuple
 
 Person = namedtuple('Person', ['name', 'age', 'place'])
 person = Person("Jonathan", 34, "Goa, India")
 
 print(f"{person.name} is {person.age} years old coming from {person.place}.")
+````
 
+#### EXAMPLE 3
 
-//------------------------------------ EXAMPLE 2
+````
 from collections import namedtuple
 
 # Create a list of named tuples of planets with the given csv data
@@ -3279,46 +3505,49 @@ The radius of Earth is 6371 km
 The radius of Venus is 6052 km
 The radius of Mars is 3390 km
 The radius of Mercury is 2440 km
+````
 
 
 -------------------------------------------------------------------------------------
--> Q052 : Difference list vs [];
+#### Q052 : Difference list() vs [];
 
-here, [] is just returned the location of the stored objects. but list
-() convert the old object to the new object as list.
+- The [] is just returned the location of the stored objects.
+- The list() convert the old object to the new object as list.
 
 for eg,
->>> a = (1,2,3)         
->>> b = (4,5,6)
->>> c = [a] + [b]
->>> print(c)
-[(1, 2, 3), (4, 5, 6)]
->>> c = list(a) + list(b)
->>> print(c)
-[1, 2, 3, 4, 5, 6]
+````
+a = (1,2,3)         
+b = (4,5,6)
+c = [a] + [b]
+print(c)    # [(1, 2, 3), (4, 5, 6)]
+c = list(a) + list(b)
+print(c)    [3 1, 2, 3, 4, 5, 6]
+````
 
 
 -------------------------------------------------------------------------------------
--> Q051 : Collection Module;;
+### Q051 : Collection Module;;
 
-Python provides a number of utilities and storage methods that can help us
-store our data in the most effective way. Many of these utilities are
+Python provides a number of utilities and storage methods that can help 
+us store our data in the most effective way. Many of these utilities are
 available in the collections module.
 
-For a defaultdict the default value is usually not really a value, it a
+For a `defaultdict` the default value is usually not really a value, it a
 factory: a method that generates a new value.
 
 SYNTAX : 
+```
+from collections import defaultdict
 
-    from collections import defaultdict
+dictionary = defaultdict(list)     
+# here, list is a factory object or iterable objects only.
+# Other options are int, float, str, dict, tuple, set etc.
+```
 
-    dictionary = defaultdict(list)     
-    # here, list is a factory object or iterable objects only.
-    # Other options are int, float, str, dict, tuple, set etc.
+#### ILLUSTRATION EXAMPLE  OF DEFAULT DICT;;
+for eg,
 
-
-##--- ILLUSTRATION EXAMPLE  OF DEFAULT DICT;;
-
+```
 from collections import defaultdict
 
 string = '''Peter Piper picked a peck of pickled peppers
@@ -3357,16 +3586,18 @@ defaultdict(
     'picked?': [34]
   }
 )
+```
 
+#### EXAMPLE 1: COUNTER IMPORTS;;
 
-//---------------------------- EXAMPLE 1: COUNTER IMPORTS;
 for eg,
->>> import collections
+````
+import collections
 
->>> print(collections)
+print(collections)
 <module 'collections' from '/usr/lib/python3.8/collections/__init__.py'>
 
->>> dir(collections)
+dir(collections)
 ['ChainMap', 'Counter', 'Mapping', 'MutableMapping', 'OrderedDict', 'UserDict',
 'UserList', 'UserString', '_Link', '_OrderedDictItemsView', '_OrderedDictKeysView',
 '_OrderedDictValuesView', '__all__', '__builtins__', '__cached__', '__doc__',
@@ -3374,28 +3605,32 @@ for eg,
 '__spec__', '_chain', '_collections_abc', '_count_elements', '_eq', '_heapq',
 '_iskeyword', '_itemgetter', '_proxy', '_recursive_repr', '_repeat', '_starmap',
 '_sys', '_tuplegetter', 'abc', 'defaultdict', 'deque', 'namedtuple']
+````
 
-//---------------------------- EXAMPLE 2: COUNTER MODULE;
+#### EXAMPLE 2: COUNTER MODULE;;
+for eg,
+````
 from collections import Counter
 
+string = "hello"
+c = Counter(string)
+print(c) # Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1})
+````
 
->>> from collections import Counter
->>> string = "hello"
->>> c = Counter(string)
->>> print(c)
-Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1})
-
-//----------------------------- EXAMPLE 3: MOST COMMON MODULE;
+#### EXAMPLE 3: MOST COMMON MODULE;;
 
 -- most_common(n=None) method of collections.Counter instance --
-List the n most common elements and their counts from the most
-common to the least. If n is None, then list all element counts.
-    
->>> Counter('abracadabra').most_common(3)
+
+List the n most common elements and their counts from the most common 
+to the least. If n is None, then list all element counts.
+
+```
+Counter('abracadabra').most_common(3)
 [('a', 5), ('b', 2), ('r', 2)]
+```
 
-for eg, 
-
+for eg,
+```
 from collections import Counter
 
 string = '''Peter Piper picked a peck of pickled peppers
@@ -3408,14 +3643,16 @@ print(c.most_common(3))
 
 # OUTPUT:
 [('Peter', 4), ('Piper', 4), ('peck', 4)]
+```
 
-//-------------------------------- EXAMPLE 4: DEFAULT DICTIONARY
+#### EXAMPLE 4: DEFAULT DICTIONARY
 
 The collections module also provides a variant of a dictionary called Default
 Dictionary. A default dictionary pre initializes the values in a dictionary
 to a certain type.
 
 for eg,
+````
 string = '''Peter Piper picked a peck of pickled peppers
 A peck of pickled peppers Peter Piper picked
 If Peter Piper picked a peck of pickled peppers
@@ -3458,17 +3695,23 @@ defaultdict(<class 'list'>, {
         [17], 'Where’s': [26], 'the': [27], 'picked?': [34]
     }
 )
+````
 
-//-------------------------------- EXAMPLE 5: ORDERED DICTIONARY
+#### EXAMPLE 5: ORDERED DICTIONARY;;
 
 An Ordered Dictionary is a variant of a dictionary that maintains the order of
 the elements in the way they were added. 
 
 For eg,
+````
 from collections import OrderedDict
 
 data = OrderedDict()
-items = ["cheese", "yoghurt", "tomatoes", "yoghurt", "onions", "milk", "milk", "cheese"]
+items = [
+    "cheese", "yoghurt", "tomatoes", 
+    "yoghurt", "onions", "milk", 
+    "milk", "cheese"
+]
 
 for item in items:
   if not(item in data):
@@ -3482,33 +3725,37 @@ print(data)
 OrderedDict(
     [ ('cheese', 2), ('yoghurt', 2), ('tomatoes', 1), ('onions', 1), ('milk', 2) ]
 )
+````
 
 
 -------------------------------------------------------------------------------------
--> Q050 : Exception Handling;;
+### Q050 : Exception Handling;;
 
-Exceptions are errors thrown by Python when we try to do something which we
+- Exceptions are errors thrown by Python when we try to do something which we
 are not allowed to or is not possible to
 
-The Exception class is imported by default when Python starts. We can use it
+- The Exception class is imported by default when Python starts. We can use it
 to create an Exception object with a custom message and any other details we
 need. Like, 
 
-The Exception object takes in a variable number of arguments. So we can pass
+- The Exception object takes in a variable number of arguments. So we can pass
 it any number and types of data related to the error we face.
 
-SYNTAX :
-    raise Exception("Failure detected.", {"data": [1, 2, 3]})
+> SYNTAX :: raise Exception("Failure detected.", {"data": [1, 2, 3]})
 
-eg, # Raising Exception Example;;
+eg, 
+````
+# Raising Exception Example;;
 age = 999
 if not 1 <= age <= 100:
   raise Exception("Invalid age value provided.")  # Exception is raised;;
+````
 
-//-------------------- USAGE 1 : BASIC TRY AND CATCH;;
+#### USAGE 1 : BASIC TRY AND CATCH;;
 
-for eg,  # EXAMPLE 1 : KEY NOT FOUND EXCEPTION;;
-
+for eg,  
+````
+# EXAMPLE 1 : KEY NOT FOUND EXCEPTION;;
 countries_and_capitals = {"India": "Delhi"}
 print(countries_and_capitals["England"])
 
@@ -3526,8 +3773,7 @@ except KeyError:
 except IndexError:
     print(f"--- Index {i} is not present in countries_list ---")
 
-for eg, # EXAMPLE 2 : VERBOSE MESSAGE;
-
+# EXAMPLE 2 : VERBOSE MESSAGE;
 try:
   40 / 0
 except ZeroDivisionError as e:
@@ -3535,13 +3781,15 @@ except ZeroDivisionError as e:
 
 # OUTPUT:-
 division by zero
+````
 
-//---------------------- USAGE 2 : TRY-EXCEPT-ELSE BLOCK
+#### USAGE 2 : TRY-EXCEPT-ELSE BLOCK;;
 
-The Else block in a try/except statement is executed when none of the except
+The `Else block` in a try/except statement is executed when none of the except
 blocks are executed i.e no error is thrown.
 
 for eg,
+````
 countries_and_capitals = {
   "India": "Delhi",
   "United Kingdom": "London",
@@ -3568,13 +3816,15 @@ else: # <--- Else Block
 # OUTPUT :- 
 The capital of India is Delhi
 No Error Occurred
+````
 
-//---------------------- USAGE 3 : FINALLY BLOCK
+#### USAGE 3 : FINALLY BLOCK;;
 
-The finally block in a try-except statement, contains code that will be run
-irrespective of if there was an error or not i.e It will always be run.
+The `finally block` in a try-except statement, contains code that will be 
+run irrespective of if there was an error or not i.e It will always be run.
 
 for eg,
+````
 countries_and_capitals = {
   "India": "Delhi",
   "United Kingdom": "London",
@@ -3604,8 +3854,9 @@ finally:
 # OUTPUT:-
 Index does not exist in List
 Runs irrespective of occurrence of error.
+````
 
-//---------------------- USAGE 4 : CREATE CUSTOM EXCEPTION;;
+#### USAGE 4 : CREATE CUSTOM EXCEPTION;;
 
 While we can use the Exception class to create and raise new errors but it is
 not the recommended method. The Exception class does not distinguish between
@@ -3616,7 +3867,7 @@ To help exception handlers (try-except block) distinguish between errors, we
 create a child exception class.
 
 for eg,
-
+````
 age = 999
 
 class InvalidAgeException(Exception): # <-- inherit from Exception
@@ -3631,8 +3882,7 @@ class InvalidAgeException(Exception): # <-- inherit from Exception
     return f"{self.age} should be in range 1 - 100"
 
 
-#--- EXAMPLE 1 : WITHOUT TRY AND CATCH BLOCK;
-
+# EXAMPLE 1 : WITHOUT TRY AND CATCH BLOCK;
 if not(1 <= age <= 100):
   raise InvalidAgeException(age, "Invalid Age Provided")
 
@@ -3644,7 +3894,6 @@ __main__.InvalidAgeException: 999 is not in the range of 1 - 100
 
 
 #--- EXAMPLE 2: WITH TRY AND CATCH ERROR BLOCK;;
-
 try:
   if not(1 <= age <= 100):
     raise InvalidAgeException(age, "Invalid age value provided")
@@ -3657,8 +3906,9 @@ except Exception:
 
 # OUTPUT:
 Please enter a valid age in the input
+````
 
-//---------------------- USAGE 5: RE-RAISING EXCEPTION IN PYTHON;;
+#### USAGE 5: RE-RAISING EXCEPTION IN PYTHON;;
 
 Python also allows us to re-raise a handled exception. 
 
@@ -3667,7 +3917,9 @@ try-except block and store its details in some file. Then we would want to
 continue to raise that exception so that it can be handled at a higher
 level.
 
-for eg, #--- ILLUSTRATION OF RE-RAISING EXCEPTION;;
+for eg, 
+````
+#--- ILLUSTRATION OF RE-RAISING EXCEPTION;;
 
 age = 999       # Given, age
 
@@ -3702,10 +3954,11 @@ Traceback (most recent call last):
   File "script.py", line 12, in <module>
     raise InvalidAgeException("Invalid age value provided.")
 __main__.InvalidAgeException: Invalid age value provided.
+````
 
+#### USAGE 6: REAL LIFE SCENARIO;; 
 
-for eg, #--- Example 5: REAL LIFE SCENARIO 
-
+````
 #------------------------------ TASK --------------------------------------------#
 # Mr.Sharma wants you to design a login screen where the user has 3 attempts to  
 # login into his website.
@@ -3719,6 +3972,8 @@ for eg, #--- Example 5: REAL LIFE SCENARIO
 # Handle WrongPasswordError and reduce attempts. 
 # Re raise the exception once done.
 #--------------------------------------------------------------------------------#
+
+# SOLUTION HERE...
 
 attempts = 2
 email, password = "username@gmail.com", "pasword"
@@ -3742,121 +3997,144 @@ except:
 
 # OUTPUT:
 Please try again. You have 1 left
+````
 
 
 -------------------------------------------------------------------------------------
--> Q049 : List or Variable Destructuring;;
+### Q049 : List or Variable Destructuring;;
 
-//----------------------- USAGE 1: BASIC DESTRUCTING;
+#### USAGE 1: BASIC DESTRUCTING;
 For eg,
->>> animal, bird, insect = "Dog", "Eagle", "Ant"
->>> print(animal, bird, insect)
+```
+animal, bird, insect = "Dog", "Eagle", "Ant"
+print(animal, bird, insect)
 Dog Eagle Ant
+```
+#### USAGE 2: TUPLE;
+for eg,
+````
+animals = ('dog', 'cat', 'elephant')
+print(type(animals))   # <class 'tuple'>
 
-//----------------------- USAGE 2: TUPLE;
-for eg, 
->>> animals = ('dog', 'cat', 'elephant')
->>> print(type(animals))
-<class 'tuple'>
->>> a1, a2, a3 = animals
->>> print(a1,'~', a2, '~', a3)
-dog ~ cat ~ elephant
->>> print(animals)
-('dog', 'cat', 'elephant')
+a1, a2, a3 = animals
+print(a1,'~', a2, '~', a3)  # dog ~ cat ~ elephant
+print(animals)  # ('dog', 'cat', 'elephant')
+````
 
-//------------------------ USAGE 3: VARIABLE ARGUMENT;
->>> numbers = (1,2,3,4,5,6,7,8,9,10,11,12,13,14)
->>> a,b,c,*var = numbers
->>> print(a,b,c)
-1 2 3
->>> print(type(var))
-<class 'list'>
->>> print(var)
-[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
->>> print(type(numbers))
-<class 'tuple'>
+#### USAGE 3: VARIABLE ARGUMENT;
+for eg,
+````
+numbers = (1,2,3,4,5,6,7,8,9,10,11,12,13,14)
+a, b, c, *var = numbers
+print(a,b,c) # 1 2 3
+print(type(var))    # <class 'list'>
+print(var)  # [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+print(type(numbers))    # <class 'tuple'>
+````
 
-//------------------------ USAGE 4: DICTIONARY DESTRUCTING;
->>> countries_and_capitals = {
+#### USAGE 4: DICTIONARY DESTRUCTING;
+for eg,
+````
+countries_and_capitals = {
 ...   "USA": "Washington D.C",
 ...   "India": "New Delhi",
 ...   "China": "Beijing",
 ...   "England": "London"
 ... }
->>> 
->>> for country, capital in countries_and_capitals.items():
+
+for country, capital in countries_and_capitals.items():
 ...   print(f"The capital of {country} is {capital}")
 ... 
 The capital of USA is Washington D.C
 The capital of India is New Delhi
 The capital of China is Beijing
 The capital of England is London
+````
 
-//------------------------ USAGE 5: ENUMERATE FUNCTION;
->>> names = ["Ricky", "Justin", "Bob"]
->>> 
->>> for index, name in enumerate(names):
+#### USAGE 5: ENUMERATE FUNCTION;
+for eg,
+````
+names = ["Ricky", "Justin", "Bob"]
+
+for index, name in enumerate(names):
 ...   print(f"The value at index {index} is {name}")
 ... 
 The value at index 0 is Ricky
 The value at index 1 is Justin
 The value at index 2 is Bob
+````
 
-//------------------------- USAGE 6: NEGATIVE NUMBER;
->>> colors = ["red", "pink", "white", "yellow", "grey", "blue"]
->>> print(f"The last element in the list is {colors[-1]}")
+#### USAGE 6: NEGATIVE NUMBER;
+for eg,
+````
+colors = ["red", "pink", "white", "yellow", "grey", "blue"]
+print(f"The last element in the list is {colors[-1]}")
 The last element in the list is blue
 
->>> print(f"The second last element in the list is {colors[-2]}")
+print(f"The second last element in the list is {colors[-2]}")
 The second last element in the list is grey
 
->>> print(f"The third last element in the list is {colors[-3]}")
+print(f"The third last element in the list is {colors[-3]}")
 The third last element in the list is yellow
 
-//-------------------------- USAGE 7: SLICING
->>> colors = ["red", "pink", "white", "yellow", "grey", "blue"]
->>> print(colors[0:4])
+
+# Traverse in Reverse order using for loop;;
+nums = (1,2,2,3,0,5,5,6,6,76,7,7)
+
+for i in range(len(a)-1, -1, -1):
+    print(num[i], end=" ")  # 7 ,7 ,76 ,6 ,6 ,5 ,5 ,0 ,3 ,2 ,2 ,1
+  
+````
+
+#### USAGE 7: SLICING
+for eg,
+````
+colors = ["red", "pink", "white", "yellow", "grey", "blue"]
+print(colors[0:4])
 ['red', 'pink', 'white', 'yellow']
->>> print(colors[3: 6])
+print(colors[3: 6])
 ['yellow', 'grey', 'blue']
->>> print(colors[4:])
+print(colors[4:])
 ['grey', 'blue']
->>> print(colors[:4])
+print(colors[:4])
 ['red', 'pink', 'white', 'yellow']
+````
 
-//--------------------------- USAGE 8: MAP
->>> names = ["Neeraj", "Mathews", "Jack"]
->>> unames = map(lambda x: x + f"(@{x})", names)
->>> print(unames)
+#### USAGE 8: MAP
+for eg,
+````
+names = ["Neeraj", "Mathews", "Jack"]
+unames = map(lambda x: x + f"(@{x})", names)
+print(unames)
 <map object at 0x7f7241dce430>
->>> print(list(unames))
+print(list(unames))
 ['Neeraj(@Neeraj)', 'Mathews(@Mathews)', 'Jack(@Jack)']
+````
 
-//---------------------------- USAGE 9: LIST COMPREHENSION
+#### USAGE 9: LIST COMPREHENSION
 
 List comprehension is an inline for loop, which can be used to quickly iterate
 over and process elements of a list.
 
-SYNTAX :-
-    [(return value) for value in list if (condition)]
+SYNTAX : [(return value) for value in list if (condition)]
 
 for eg,
-
+````
 // Example 1:
->>> names = ["Tom", "Bob", None, "Shirley", None, "Kajal"]
->>> filtered_names = [f"Mr.{name}" for name in names if name is not None]
->>> print(filtered_names)
-['Mr.Tom', 'Mr.Bob', 'Mr.Shirley', 'Mr.Kajal']
+names = ["Tom", "Bob", None, "Shirley", None, "Kajal"]
+filtered_names = [f"Mr.{name}" for name in names if name is not None]
+print(filtered_names) # ['Mr.Tom', 'Mr.Bob', 'Mr.Shirley', 'Mr.Kajal']
+````
 
 
 -------------------------------------------------------------------------------------
--> Q048 : String Helpers Methods;;
+### Q048 : String Helpers Methods;;
 
-###--- Join() Method : 
+#### PYTHON METHOD :: Join() 
 
 Just like separating words into a list using a .split(), we can also join a
 list of strings into a sentence using .join().
-
+```
 // Example 1
 characters = ["Gangadhar", "Geetha", "Kilvish", "Dr.Jackal"]
 print(', '.join(characters))
@@ -3865,18 +4143,19 @@ print(', '.join(characters))
 Gangadhar, Geetha, Kilvish, Dr.Jackal
 
 // Example 2: 
-
 characters = ["Gangadhar", "Geetha", "Kilvish", "Dr.Jackal"]
 print(f"The main characters in Shaktimaan were {', '.join(characters)}")
 
 # OUTPUT :
 The main characters in Shaktimaan were Gangadhar, Geetha, Kilvish, Dr.Jackal
+```
 
-###--- lowercase() and uppercase() and capitalize()
+#### PYTHON METHOD :: lowercase() and uppercase() and capitalize();;
 
 Convert lowercase and uppercase of letter.
 
 for eg, 
+````
 // lowercase 
 text = "PUT YOUR HANDS IN THE AIR."
 print(text.lower())
@@ -3896,8 +4175,10 @@ print(text.capitalize())
 I am the king
 
 // remove extra spaces from string
-text = "  Cooper, this is no time for caution.  \n\n"
-print(text.strip())
+text = " x "
+print(text, f"len: {len(text)}" # x, len: 3
+text = text.strip()
+print(text, f"len: {len(text)}" # x, len: 1
 
 // find index of character in word
 text = "The dishes served are Mutton, Soup, Pulav, Chicken, Salad."
@@ -3905,8 +4186,8 @@ i = text.find("Soup") # Returns the index if the text is found
 print(f"The Index of Soup is {i}")
 
 // count the appearance of particular letter;
-i = text.count("e") # Returns -1 if the text is not found
-print(f"The Index of Ice Cream is {i}")
+i = text.count("e") # Returns 0 if the text is not found
+print(f"The Count of letter 'e' is {i}")
 
 // Replace a word;
 text = "The dishes served are Mutton, Soup, Pulav, Chicken, Salad"
@@ -3925,41 +4206,44 @@ print("45.32".isalphanum()) # check for alpha-numeric;
 movie = "Spiderman: No Way Home"
 
 # Output:
->>> print(f"The first character is {movie[0]}")
+print(f"The first character is {movie[0]}")
 The first character is S
 
->>> print(f"The last character is {movie[-1]}") # gets the last character
+print(f"The last character is {movie[-1]}") # gets the last character
 The last character is e
 
->>> print(f"The length of the string is {len(movie)}")
+print(f"The length of the string is {len(movie)}")
 The length of the string is 22
 
->>> print(movie[::-1])                                  # emoH yaW oN :namredipS
->>> print(movie[-1])                                    # e
->>> print(movie[-2])                                    # m
->>> print(movie[-7:-2])                                 # ay Ho
->>> print(movie[0:len(movie)-4])                        # Spiderman: No Way 
+print(movie[::-1])                                  # emoH yaW oN :namredipS
+print(movie[-1])                                    # e
+print(movie[-2])                                    # m
+print(movie[-7:-2])                                 # ay Ho
+print(movie[0:len(movie)-4])                        # Spiderman: No Way 
+````
 
 
 -------------------------------------------------------------------------------------
--> Q047 : Dictionary and Operation;;
+### Q047 : Dictionary and Operation;;
 
-###--- DICT :-
+#### DICT :
 Python provides an in-built way of storing key-value pairs. These are called
 Dictionaries and can be declared using dict() or {}.
 
-###--- OPERATION :-
-
+#### OPERATION :
+```
 // Initialization;
->>> fruits_and_colors = {
+fruits_and_colors = {
 ...   "grapes": "green",
 ...   "apple": "red",
 ...   "banana": "yellow",
 ...   "orange": "orange"
 ... }
->>> print(fruits_and_colors)
+
+print(fruits_and_colors)
 {'grapes': 'green', 'apple': 'red', 'banana': 'yellow', 'orange': 'orange'}
->>> print(fruits_and_colors['apple'])
+
+print(fruits_and_colors['apple'])
 red
 
 // or 
@@ -3972,12 +4256,12 @@ banana are yellow in colours
 orange are orange in colours
 
 // Setting Default Values;
->>> print(fruits_and_colors.get('mango', 'NOT FOUND'))
+print(fruits_and_colors.get('mango', 'NOT FOUND'))
 NOT FOUND
 
 // Inserting Values;
->>> fruits_and_colors['sapodilla'] = "brown"
->>> print(fruits_and_colors)
+fruits_and_colors['sapodilla'] = "brown"
+print(fruits_and_colors)
 {
     'grapes': 'green', 
     'apple': 'red', 
@@ -3991,138 +4275,137 @@ NOT FOUND
 ## METHOD 1: Delete using del keyword;
 ## To delete a key-value pair from the dictionary we can use the del keyword.
 
->>> print(fruits_and_colors)
+print(fruits_and_colors)
 {
     'grapes': 'green', 'apple': 'red', 
     'banana': 'yellow', 'orange': 'orange', 
     'sapodilla': 'brown'
 }
->>> del fruits_and_colors['apple']  
->>> print(fruits_and_colors)
+del fruits_and_colors['apple']  
+print(fruits_and_colors)
 {'grapes': 'green', 'banana': 'yellow', 'orange': 'orange', 'sapodilla': 'brown'}
 
 ## METHOD 2: Delete using pop keyword;
-## Pop can also used for deleting element as well. Difference here is pop returned 
+## Pop can also used for deleting element as well. 
+## Difference here is pop returned 
 ## the delte value. 
 
->>> print(fruits_and_colors)
+print(fruits_and_colors)
 {
     'grapes': 'green', 'banana': 'yellow', 
     'sapodilla': 'brown'
 }
->>> fruit = fruits_and_colors.pop('sapodilla')
->>> print(fruits_and_colors)
+fruit = fruits_and_colors.pop('sapodilla')
+print(fruits_and_colors)
 {'grapes': 'green', 'banana': 'yellow'}
 
 // Merge Dictionary using updated() method:
->>> states = {'delhi', 'goa'}
->>> states_2 = {'uttrakhand', 'uttar pradesh'}
->>> states.update(states_2)
->>> print(states)
+states = {'delhi', 'goa'}
+states_2 = {'uttrakhand', 'uttar pradesh'}
+states.update(states_2)
+print(states)
 {'uttrakhand', 'delhi', 'uttar pradesh', 'goa'}
-
+```
 
 -------------------------------------------------------------------------------------
--> Q046 : Set and Operation;;
+### Q046 : Set and Operation;;
 
-# SET :- 
-It is unqiue collection of number. It can include the numbers, string, list,
+#### SET :- 
+- It is unqiue collection of number. It can include the numbers, string, list,
 tuple, dictionary.
-
-Set can be defined using the helper method set() or similary can be defined
+- Set can be defined using the helper method set() or similary can be defined
 using the brackets {}. But remember the brackets can't be initialized empty. 
 
 NOTE : EMPTY BRACKETS {} IS CONSIDERED AS DICTIONARY NOT SET;
 
-###--- OPERATIONS :-
-// Initialization;
->>> a = {1,2,3,4,5}
->>> b = {1,3,5,7,9}
->>> print(a|b)
-{1, 2, 3, 4, 5, 7, 9}
+#### OPERATIONS :
+````
+# In    itialization;
+a = {1,2,3,4,5}
+b = {1,3,5,7,9}
 
-###--- Intersection; 
->>> print(a.intersection(b))
+# Intersection; 
+print(a.intersection(b))
 {1, 3, 5}
 or 
->>> print(a&b)
+print(a&b)
 {1, 3, 5}
 
-// Union;
->>> print(a.union(b))
+# Union;
+print(a.union(b))
 {1, 2, 3, 4, 5, 7, 9}
->>> print(a|b)
+print(a|b)
 {1, 2, 3, 4, 5, 7, 9}
 
-
-// Difference;
->>> print(a.difference(b))
+# Difference;
+print(a.difference(b))
 {2, 4}
->>> print(b.difference(a))
+print(b.difference(a))
 {9, 7}
 or
->>> print(a-b)
+print(a-b)
 {2, 4}
->>> print(b-a)
+print(b-a)
 {9, 7}
 
-// issubset()
->>> a = {1,2,3}
->>> b = {1,2,3,4,5,6,7,8,9,10}
->>> print(a.issubset(b))
+# issubset()
+a = {1,2,3}
+b = {1,2,3,4,5,6,7,8,9,10}
+print(a.issubset(b))
 True
-
+````
 
 -------------------------------------------------------------------------------------
--> Q045 : List and Operations;;
+### Q045 : List and Operations;;
 
-###--- LIST :-
-List :- It is a heterogeneous collection of items including... 
-    a) numbers
-    b) string
-    c) child list
-    d) child tuple 
-    e) dictionary 
+#### LIST;;
+- `List`: It is a heterogeneous collection of items 
+  - numbers
+  - string
+  - child list
+  - child tuple 
+  - dictionary 
 
-Tuples are similar to Lists except that they cannot be modified. We cannot add
-or remove elements from a tuple once declared.
+#### TUPLE;;
 
-Tuples are read-only and can only be accessed or searched for elements.
+- `Tuples` are similar to Lists except that they cannot be modified. We cannot 
+add or remove elements from a tuple once declared.
+- Tuples are read-only and can only be accessed or searched for elements.
+- We can declare a tuple using the () brackets.
 
-We can declare a tuple using the () branckets.
-
-###--- OPERATION : -
-
+#### OPERATION : -
+````
 // Initialization;
->>> fruits = ['animal', 'grapes','guawa', 'banana','mango', 'orange']
->>> print(fruits)
+fruits = ['animal', 'grapes','guawa', 'banana','mango', 'orange']
+print(fruits)
 ['animal', 'grapes', 'guawa', 'banana', 'mango', 'orange']
 
 // remove operation;
->>> fruits.remove('banana')
->>> print(fruits)
+fruits.remove('banana')
+print(fruits)
 ['animal', 'grapes', 'guawa', 'mango', 'orange']
 
 // pop operation default;
->>> fruits.pop()
+fruits.pop()
 'orange'
->>> print(fruits)
+print(fruits)
 ['grapes', 'guawa', 'mango']
 
 // pop operation index provided;
->>> fruits.pop(0)
+fruits.pop(0)
 'animal'
->>> print(fruits)
+print(fruits)
 ['grapes', 'guawa', 'mango', 'orange']
 
 // append operation;
 fruits.append('oranges')
->>> print(fruits)
+print(fruits)
 ['grapes', 'guawa', 'mango', 'oranges']
 
 // Accessing list;
->>> for fruit in fruits:
-...     print(fruit)
+for fruit in fruits:
+    print(fruit)
+    
 # OUTPUT 
 grapes
 guawa
@@ -4130,28 +4413,35 @@ mango
 oranges
 
 // len of list;
->>>print(len(fruits))
->>>6
+print(len(fruits))  # 6
 
 // Search a List
->>> print('banana' in fruits)
-False
->>> print('guawa' in fruits)
+print('banana' in fruits) # False
+print('guawa' in fruits)
 True
-
+````    
 
 -------------------------------------------------------------------------------------
--> Q044 : Padding Number using F-String;
+### Q044 : Padding Number using F-String;
 
 Sometimes we would like to print our numbers with a fixed length. For example,
-printing military time. ie. 0900 hours, we can use the inbuilt string
+printing military time. i.e, 0900 hours, we can use the inbuilt string
 formating syntax to print numbers in a fixed length.
 
 In the example below, basically padding or inserting zero to the left of the 
 number, if the number has less than 4 digits.
 
-for eg, 
+> Syntax, number = f"{x:0yz}"
+ 
+where, 
+- x is the initial number. For eg 9
+- y is the number of times you want to add the padding. For eg, 5
+- z is the data type. For eg, `d for digit`, `f for float value`.
+- for eg, number = f"{9:05d} will result 00009
+- for eg, number = f"{9:05f}" will result 9.0000
 
+for eg, 
+```
 print(f"We will depart at {900:04d} hours")
 We will depart at 0900 hours
 
@@ -4172,76 +4462,63 @@ print(f"James Bond \t\t {7:03d}")
  Elena Williams         005
  Catherine Smith        006
  James Bond             007
+```
 
 
 -------------------------------------------------------------------------------------
--> Q043 : Join() vs Format() in Python;
+### Q043 : Join() vs Format() in Python;
 
-// format() 
+#### PYTHON FORMAT :: format()
 
-The Indian Space Research Organisation has launched a new mission to Mars.
-After the scheduled landing of its rover: Mangal, ISRO will put out a
-message, announcing to the world it's successful landing.
-
-Create a Python program to print out the message given the details below.
-Use .format() to add the variable into the text.
+The `format()` method is a powerful tool that allows developers to create 
+formatted strings by embedding variables and values into placeholders 
+within a template string.
    
 for eg, 
-# Example 0:
->>> fname, mname, lname = "Neeraj", "Singh", "Junior"
->>> v = "f : {0}, m: {1}, l: {2}".format(fname, mname, lname)
->>> print(v)
+````
+###--- Example 0:
+fname, mname, lname = "Neeraj", "Singh", "Junior"
+v = "f : {0}, m: {1}, l: {2}".format(fname, mname, lname)
+print(v)
 f : Neeraj, m: Singh, l: Junior
 
->>> v = "f : {2}, m: {1}, l: {0}".format(fname, mname, lname)
->>> print(v)
+###--- Example 1:
+v = "f : {2}, m: {1}, l: {0}".format(fname, mname, lname)
+print(v)
 f : Junior, m: Singh, l: Neeraj
 
->>> v = "f : {f}, m: {m}, l: {l}".format(fname, mname, lname)
+###--- Example 2:
+v = "f : {f}, m: {m}, l: {l}".format(fname, mname, lname)
 Traceback (most recent call last):
 File "<stdin>", line 1, in <module>
 KeyError: 'f'
 
->>> v = "f : {f}, m: {m}, l: {l}".format(f=fname, m=mname, l=lname)
->>> print(v)
+###--- Example 3:
+v = "f : {f}, m: {m}, l: {l}".format(f=fname, m=mname, l=lname)
+print(v)
 f : Neeraj, m: Singh, l: Junior
+````
 
-# Example 1:
->>> var = "{0}, {1}, {2}".format("Neeraj", "Singh", "Junior")
->>> print(var)
-Neeraj, Singh, Junior
+#### PYTHON JOIN :: join()
 
-# Example 2:
->>> var = "firstname : {0}, middlename : {1},lastname : {2}".format("Neeraj", "Singh", "Junior")
->>> print(var)
-firstname : Neeraj, middlename : Singh,lastname : Junior
-
-# Example 3:
->>> firstname = "Neeraj"
->>> middlename = "Singh"
->>> lastname = "Junior"
->>> var = "firstname : {0}, middlename : {1}, lastname : {2}".format(firstname, middlename, lastname)
->>> print(var)
-firstname : Neeraj, middlename : Singh, lastname : Junior
-
-
-// join() :
-
-The join() method takes all items in an iterable and joins them into one
+The `join()` method takes all items in an iterable and joins them into one
 string. A string must be specified as the separator.
 
-for eg, 
+for eg,
+````
 ###--- Example 1:
 numList = ['1', '2', '3', '4']
 print(','.join(numList))
 '1,2,3,4'
 
 ###--- Example 2:
->>>''.join(['A', 'B', 'C'])
+''.join(['A', 'B', 'C'])
 'ABC'
->>> ''.join({'A': 0, 'B': 0, 'C': 0}) # note that dicts are unordered
+
+''.join({'A': 0, 'B': 0, 'C': 0}) # note that dicts are unordered
 'ACB'
->>> '-'.join(['A', 'B', 'C'])  # '-' string is the seprator
+
+'-'.join(['A', 'B', 'C'])  # '-' string is the seprator
 'A-B-C' 
 
 ###--- EXAMPLE 3: PRINT DATA IN TABLE FORMAT;
@@ -4266,43 +4543,57 @@ Name    |   Age |   Phone   |   City
 Tom |   25  |   9838572948  |   Kochi
 Bob |   29  |   8273885932  |   Delhi
 Rob |   45  |   9273285631  |   Miami
+````
 
 
 -------------------------------------------------------------------------------------
--> Q042 : Python Conventions;
+### Q042 : Python Conventions;
 
-// Variable Naming Conventions;
+#### Variable Naming Conventions;
 
 - Tip #1: Variable names should only contain alpha numeric characters.
-for eg, 
-    H3LL0_W0RLD = "Hello World" # valid variable name
-    $uper$t@r = "superstar" # not a valid variable
+
+for eg,
+````
+H3LL0_W0RLD = "Hello World" # valid variable name
+$uper$t@r = "superstar" # not a valid variable
+````
 
 - Tip #2: Variables names cannot start with a number.
-for eg, 
-    oceans_12 = "movie" # valid variable name
-    13_reasons_why = "series" # not a valid variable
+
+for eg,
+````
+oceans_12 = "movie" # valid variable name
+13_reasons_why = "series" # not a valid variable
+````
 
 - Tip #3: Variable names are case sensitive.
-for eg, 
-    ANIMAL = "cow" # valid variable name
-    ANiMaL = "pig" # valid variable name
-    AnIMal = "crocodile" # valid variable name
 
-    print(ANIMAL)   # cow
-    print(ANiMaL)   # pig
-    print(AnIMal)   # crocodile
+for eg,
+````
+ANIMAL = "cow" # valid variable name
+ANiMaL = "pig" # valid variable name
+AnIMal = "crocodile" # valid variable name
+
+print(ANIMAL)   # cow
+print(ANiMaL)   # pig
+print(AnIMal)   # crocodile
+````
 
 - Tip #4: Python variables are generally declared in snake case
+
 for eg,
-    no_of_animals = 13      # recommended
-    noOfAnimals = 13        # not recommended
+````
+no_of_animals = 13      # recommended
+noOfAnimals = 13        # not recommended
+````
 
 
 -------------------------------------------------------------------------------------
 -> Q041 : Python Operator Precedance;;
 
-- Operator Precedance : 
+#### Operator Precedance :
+````
  ------------------------------
 |    Operators   Priority      |
 |        ()          1         |
@@ -4310,57 +4601,60 @@ for eg,
 |    *, /, //, %     3         |
 |        +, -        4         |
  ------------------------------
+````
 
-- PRIORITIES :- 
-    - () : It has the highest priority
-    - ** : Exponent will be executed second after the brackets
-    - *, /, //, % : They all the same priority 
-    - +, - : They have the same priority.
+#### PRIORITIES :-
+```
+() : It has the highest priority.
+** : Exponent will be executed second after the brackets.
+*, /, //, % : They all the same priority.
++, - : They have the same priority.
+```
 
 
 -------------------------------------------------------------------------------------
 -> Q040 : Encryption vs Hashing
 
-ENCYRPTION : 
+#### ENCYRPTION: 
     
-    - Encryption is a two-way function where data is passed in as plaintext and
-      comes out as ciphertext, which is unreadable but the data can be decrypted
-      so it is readable again
-    - Encryption comes in two types: Asymmetric and Symmetric. 
+- Encryption is a two-way function where data is passed in as plaintext and
+  comes out as ciphertext, which is unreadable but the data can be decrypted
+  so it is readable again
+- Encryption comes in two types: Asymmetric and Symmetric. 
 
-        a) Asymmetric Encryption
+    a) Asymmetric Encryption
 
-            Encryption : Asymmetric encryption uses two different keys, a
-            public and private key, for encryption and decryption. The
-            private key is used to encrypt data, and is kept a secret from
-            everyone but the person encrypting the data. The public key is
-            available for anyone, and is used for decryption. Using
-            asymmetric encryption, the authenticity of the data can be
-            verified, because if the data was modified in transit, it would
-            not be able to be re-encrypted with the private key
+        Encryption : Asymmetric encryption uses two different keys, a
+        public and private key, for encryption and decryption. The
+        private key is used to encrypt data, and is kept a secret from
+        everyone but the person encrypting the data. The public key is
+        available for anyone, and is used for decryption. Using
+        asymmetric encryption, the authenticity of the data can be
+        verified, because if the data was modified in transit, it would
+        not be able to be re-encrypted with the private key
 
-            Asymmetric Encryption Algorithms:
+        Asymmetric Encryption Algorithms:
 
-                1) Elliptic Curve Digital Signature Algorithm (ECDSA)
-                2) Rivest-Shamir-Adleman (RSA)
-                3) Diffie-Hellman
-                4) Pretty Good Privacy (PGP)
+            1) Elliptic Curve Digital Signature Algorithm (ECDSA)
+            2) Rivest-Shamir-Adleman (RSA)
+            3) Diffie-Hellman
+            4) Pretty Good Privacy (PGP)
 
-        b) Symmetric Encryption : 
-            
-            Symmetric encryption uses the same key for both encryption and
-            decryption. This type of encryption uses less processing power
-            and is faster, but is less secure as only one key is used
+    b) Symmetric Encryption : 
+        
+        Symmetric encryption uses the same key for both encryption and
+        decryption. This type of encryption uses less processing power
+        and is faster, but is less secure as only one key is used
 
-            Symmetric Encryption Algorithms:
+        Symmetric Encryption Algorithms:
 
-                1) Advanced Encryption Standard (AES)
-                2) Blowfish
-                3) Twofish
-                4) Rivest Cipher (RC4)
-                5) Data Encryption Standard (DES)
+            1) Advanced Encryption Standard (AES)
+            2) Blowfish
+            3) Twofish
+            4) Rivest Cipher (RC4)
+            5) Data Encryption Standard (DES)
 
-HASHING  :
+#### HASHING:
 
     - Hashing, on the other hand, is one-way, meaning the plaintext is scrambled
       into a unique digest, through the use of a salt, that cannot be decrypted.
@@ -4373,11 +4667,10 @@ HASHING  :
         4) TIGER
         5) Cyclical Reduction Check (CRC32)
 
-HASHING USE CASES :-
+#### HASHING USE CASES:
 
-1)  One of the uses for hashing is to compare large amounts of data. Hash
-values are much easier to compare than large chunks of data, as they are more
-concise.
+1) One of the uses for hashing is to compare large amounts of data. Hash values 
+are much easier to compare than large chunks of data, as they are more concise.
 
 2) Hashing is also used for mapping data, as finding values using hashes is
 quick, and good hashes do not overlap.
@@ -4388,7 +4681,7 @@ duplication of data in databases too.
 4) hashing is extremely infeasible to reverse, hashing algorithms are used on
 passwords. This makes the password shorter and undiscoverable by attackers.
 
-ENCRYPTION USE CASES :-
+#### ENCRYPTION USE CASES:
 
 1)  Encryption tends to be used for encrypting data that is in transit. Data
 being transmitted is data that needs to be read by the recipient only, thus
@@ -4403,85 +4696,255 @@ at rest, but retrieved later.
 
 
 -------------------------------------------------------------------------------------
--> Q039: Asyncio Module in Python;;
+### Q039: What is C3 Linearization in Multiple Inheritance;;
 
-# Thread syncrhonization;
+(Refer Q083 : Method Resolution Order in Python;;)
 
+The `C3 Linearization`, often referred to as `C3 superclass linearization`, is an 
+algorithm used in the context of multiple inheritance to determine the order in 
+which base classes are considered during method resolution.
 
+The C3 Linearization algorithm is used in languages like Python to address the 
+`diamond problem` and provide a clear order for method lookup.
 
+In this example, class D inherits from both B and C, both of which inherit from A. 
 
--------------------------------------------------------------------------------------
--> Q038: Arrays in Python;;
-
-// Syntax of array module :-
-arrayIdentifierName = array(typecode, [Initializers])
-
-for eg, 
-from array import Array
-
-arr = array(paramter type, initialize values)
-print(arr)
-
-// Array Parameters Details :-
-c : character of size 1 byte
-u : unicode character of size 2 bytes
-w : unicode character of size 4 bytes
-
-b : signed integer of 1 byte
-B : unsigned integer of 1 byte
-h : signed integer of 2 bytes
-H : unsigned integer of 2 bytes
-i : signed integer of 2 bytes
-I : unsigned integer of 2 bytes
-l : signed integer of 4 bytes
-L : unsigned integer of 4 bytes
-
-f : floating point of 4 bytes
-d : floating point of 8 bytes
-
-
-for eg, // Array CRUD
-
-from array import *
-
-arr = array(i, [1,2,3])
-
-// append values to array
-arr.append(4)       # [1,2,3,4]
-
-print(arr)
-
-// print array
-for i in arr:
-    print(i)
-
-// insert values at array
-arr.insert(4,99)
-
-// extends from list
-c = [11,12,13]
-arr.extends(c)
-print(arr)
-
-// more helpers...
-arr.fromlist(opts=[11,22,33])
-arr.count(3)
-arr.tostring()              # convert to string
-arr.tolist()                # convert to list
-
-
--------------------------------------------------------------------------------------
--> Q037: Method Overloading and Operator Overloading;;
-
-
-
-
--------------------------------------------------------------------------------------
--> Q036: Switch alternative in python;;
+The `diamond problem` occurs because there are multiple paths to reach class A 
+through the inheritance hierarchy.
 
 for eg,
+````
+class A:
+    def test(self):
+        print("A")
 
-# Case 1: Switch case using if-else;
+class B(A):
+    def test(self):
+        print("B")
+
+class C(A):
+    def test(self):
+        print("C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.test()    # B
+C.test(d)   # C
+A.test(d)   # A
+
+print(D.__mro__)
+
+# Output (MRO define the order of linearization) 
+(<class '__main__.D'>, <class '__main__.B'>, 
+<class '__main__.C'>, <class '__main__.A'>, 
+<class 'object'>)
+````    
+
+#### C3 Linearization:
+
+1. Start with the Class:
+- Begin with the class itself (D in this case).
+
+2. Consider the Parent Classes:
+- Consider the parent classes in the order they are listed in the class definition 
+(B and C). 
+- Check their parents in a similar way, maintaining the order.
+
+3. Merge Lists:
+- Merge the lists of parent classes, ensuring that the order is preserved, and 
+duplicates are removed.
+- Keep track of the original order of classes from each list. 
+ 
+4. Check Consistency:
+- Ensure that the resulting linearization is consistent and respects the order of 
+inheritance.
+
+#### Applying C3 Linearization:
+
+For class D in the given example:
+
+1. Start with D.
+2. Consider parents B and C.
+3. Merge lists: D, B(A), C(A).
+4. Resulting linearization: D, B, C, A. (Refer MRO in the example)
+
+So, the C3 Linearization for class D is D, B, C, A. This order ensures that method 
+resolution follows a consistent path, and in case of a method conflict, the method 
+from the first class in the linearization is chosen.
+
+#### Method Resolution:
+Now, when calling the foo method on an instance of D
+````
+d_instance = D()
+d_instance.foo()
+````
+
+The output will be "B" because B comes before C in the C3 linearization order.
+
+This example demonstrates how C3 Linearization helps in establishing a clear and 
+predictable order for method resolution in the presence of multiple inheritance.
+
+
+-------------------------------------------------------------------------------------
+### Q038: Multiple Inheritance in Python vs Java;;
+
+(Refer Q039: What is C3 Linearization in Multiple Inheritance;;)
+
+Multiple inheritance in Python and Java is approached differently, and the 
+design choices in each language contribute to the perceived safety or challenges 
+of multiple inheritance.
+
+#### PYTHON :
+
+1) C3 Linearization (C3 superclass linearization):
+- Python uses the C3 linearization algorithm to determine the order in which base 
+classes are considered during method resolution.
+- This algorithm ensures a consistent and predictable order for method lookup in 
+the presence of multiple inheritance.
+- It prevents the `diamond problem`, where ambiguity could arise from the use of 
+shared base classes.
+
+2. Mixin Pattern:
+- Python encourages the use of mixins, which are small, focused classes that provide 
+a specific set of behaviors.
+- Mixins can be combined using multiple inheritance to create composite classes with 
+a combination of behaviors.
+
+3. Super() Function:
+- Python's `super()` function provides a way to call methods from the parent class in 
+a cooperative manner.
+- It allows for a clear and predictable delegation of method calls in the inheritance 
+hierarchy.
+
+#### JAVA :
+
+In Java, multiple inheritance is not supported with classes, but it is supported with 
+interfaces. However, challenges can arise, and the reasons include:
+
+1) Diamond Problem:
+
+- Java interfaces support multiple inheritance, but when a class implements multiple 
+interfaces with conflicting methods, it can lead to the `diamond problem`.
+- The diamond problem occurs when a class inherits from two classes that have a common 
+ancestor, resulting in ambiguity.
+
+2) Lack of C3 Linearization:
+
+- Unlike Python, Java does not use a C3 linearization algorithm, which means that the 
+order of method resolution may not be as predictable.
+- This can lead to challenges when dealing with complex inheritance hierarchies.
+
+3) Interface Default Methods:
+
+- Java 8 introduced default methods in interfaces, allowing the inclusion of method 
+implementations in interfaces.
+- While this provides a form of multiple inheritance, it can also lead to the diamond 
+problem and method ambiguity.
+
+
+-------------------------------------------------------------------------------------
+### Q037: Method Overloading and Operator Overloading;;
+
+#### MULTIPLE INHERITANCE;;
+Method overloading in Python is achieved by defining multiple methods in the 
+same class with the same name but different signatures.
+
+for eg,
+````
+class MyClass:
+    
+    def add_sum(self, x, y):
+        return x + y
+    
+    def add_sum(self, x, y, c=0):
+        return x + y + c
+    
+
+# Creating an instance
+obj = MyClass()
+
+# Calling the method with one or two arguments
+result1 = obj.add_sum(5, 3)
+result2 = obj.add_sum(5, 2, 5)
+
+print(result1)  # Output: 8
+print(result2)  # Output: 12
+````
+
+#### OPERATOR OVERLOADING;;
+- Operator overloading allows you to define how operators behave for objects 
+of a class. 
+- This is achieved by defining special methods in the class that start and end 
+with double underscores (__). 
+- For example, to overload the + operator, you can define the __add__ method.
+
+for eg,
+````
+class test:
+    
+    def __init__(self, a, b):
+        self.a, self.b = a,b
+    
+    def __sub__(self, other):
+        left = self.a + self.b
+        right = other.a + other.b
+        return abs(left - right)
+    
+    def __add__(self, other):
+        left = self.a + self.b
+        right = other.a + other.b
+        return left + right
+    
+    def __truediv__(self, other):
+        left = self.a + self.b
+        right = other.a + other.b
+        return left/right
+    
+    def __mul__(self, other):
+        left = self.a + self.b
+        right = other.a + other.b
+        return left*right
+    
+    def __mod__(self, other):
+        left = self.a + self.b
+        right = other.a + other.b
+        return left%right
+        
+
+obj1 = test(5,5)
+obj2 = test(4,4)
+
+print("__add__:", obj1+obj2)    # __add__: 18
+print("__sub__:", obj1-obj2)    # __sub__: 2
+print("__truediv__:", obj1/obj2) # __truediv__: 1.25
+print("__mul__:", obj1*obj2) # __mul__: 80
+print("__mod__:", obj1%obj2) # __mod__: 2
+````
+
+NOTE: Python In-Build function name W.R.T Operators.
+
+- Addition (c1 + c2): `c1.__add__(c2)`
+- Subtraction (c1 - c2): `c1.__sub__(c2)`
+- Multiplication (c1 * c2): `c1.__mul__(c2)`
+- Power (c1 ** c2): `c1.__pow__(c2)`
+- Division (c1/c2): `c1.__truediv__(c2)`
+- Floor Division (c1//c2): `c1.__floordiv__(c2)`
+- Remainder(c1 % c2) : `c1.__mod__(c2)`
+- Bitwise Left Shift(c1 << c2) : `c1.__lshift__(c2)`
+- Bitwise Right Shift(c1 >> c2) : `c1.__rshift__(c2)`
+- Bitwise AND	(c1 & c2) : `c1.__and__(c2)`
+- Bitwise OR (c1 | c2) : `c1.__or__(c2)`
+- Bitwise XOR (c1 ^ c2) : `c1.__xor__(c2)`
+- Bitwise NOT (~c1) : `c1.__invert__()`
+
+
+-------------------------------------------------------------------------------------
+### Q036: Switch alternative in python;;
+
+#### Case 1: Switch case using if-else;
+````
 def switch(value):
 	if(value == 1):	return value*10
 	elif(value == 2): return value*20
@@ -4489,44 +4952,47 @@ def switch(value):
 	else: return value
 
 print(switch(value=3))	# switch function in python
+````
 
-# Case 2: Switch using dict;
+#### Case 2: Switch using dict;
+````
 switch = {
 	1: lambda: 1*10,
 	2: lambda: 2*20,
 	3: lambda: 3*30,
 }
 
-
--------------------------------------------------------------------------------------
--> Q035: Disassember Package using DIS package;;
-
-
+print(switch(1)) # 10
+print(switch(2)) # 40
+````
 
 
 -------------------------------------------------------------------------------------
--> Q034 : Python OOPS Basic Architecture;;
+### Q035: Multiple Inheritance in Python Vs Java;;
 
-#--- OOPS : Basic Oops Vs Procedural Programming:-
 
-Object-oriented programming (OOP) is a method of structuring a program by
+
+-------------------------------------------------------------------------------------
+### Q034 : Python OOPS Basic Architecture;;
+
+#### OOPS : Basic Oops Vs Procedural Programming:-
+
+- Object-oriented programming (OOP) is a method of structuring a program by
 bundling related properties and behaviors into individual objects
 
-Procedural Programming, which structures a program like a recipe in that it
+- Procedural Programming, which structures a program like a recipe in that it
 provides a set of steps, in the form of functions and code blocks, that flow
 sequentially in order to complete a task.
 
+#### OOPS : Python OOPs Basic
 
-#--- OOPS : Python OOPs Basic
+- Classes are used to create user-defined data structures. 
 
--> Classes are used to create user-defined data structures. 
-
--> Classes define functions called methods, which identify the behaviors and
+- Classes define functions called methods, which identify the behaviors and
    actions that an object created from the class can perform with its data.
 
--> for eg,
-# Dog Class 
-
+for eg,
+````
 class Dog:
     
     def __init__(self, name, color, hair):
@@ -4545,22 +5011,21 @@ if __name__ == "__main__":
     milly = Dog("Milly", "White", "Silky") # <__main__.Dog object at 0x0004ccc90>
     print("Dog: ", milly)
     milly.bark()
+````
 
+#### OOPS : Inheritance in Python
 
-###--- OOPS : Inheritance in Python
-
--> Inheritance is the process by which one class takes on the attributes and
+- Inheritance is the process by which one class takes on the attributes and
    methods of another. 
 
--> Newly formed classes are called child classes, and the classes that child
+- Newly formed classes are called child classes, and the classes that child
    classes are derived from are called parent classes.
 
--> Child classes can override or extend the attributes and methods of parent
+- Child classes can override or extend the attributes and methods of parent
    classes
 
--> for eg,
-
-
+for eg,
+````
 class Pet:
     def __init__(self, name, color, hair):
         self.name = name
@@ -4608,12 +5073,12 @@ if __name__ == "__main__":
 
     print(f"Is Milly is a Dog ? ... {isinstance(milly, Dog)} )
     print(f"Is Snobell is a Cat ? ... {isinstance(snobell, Cat)} )
-
+````
 
 -------------------------------------------------------------------------------------
--> Q033: ABCMeta, AbstractClass, abstractmethod in ABC package;;
+### Q033: ABCMeta, AbstractClass, abstractmethod in ABC package;;
 
-# BASIC USAGE OF ABSTRACT CLASS:-
+#### BASIC USAGE OF ABSTRACT CLASS:
 Abstract classes are classes that are meant to be inherited but avoid 
 implementing specific methods, leaving behind only method signatures that 
 subclasses must implement.
@@ -4628,7 +5093,7 @@ prevents children classes from accessing parent methods without overriding
 them first. 
 
 for eg, 
-
+````
 class Fruit:
     def check_ripeness(self):
         raise NotImplementedError("method not implemented!")
@@ -4638,18 +5103,20 @@ class Apple(Fruit):
 
 a = Apple()
 a.check_ripeness() # raises NotImplementedError
+````
 
+#### ABSTRACT CLASS PACKAGE :
 
-# ABSTRACT CLASS PACKAGE :-
 Abstract base classes (ABCs) enforce what derived classes implement particular 
 methods from the base class.
 
 To understand how this works and why we should use it, let's take a look at 
 an example that Van Rossum would enjoy. Let's say we have a Base class 
-"MontyPython"with two methods (joke & punchline) that must be implemented by 
+"MontyPython" with two methods (joke & punchline) that must be implemented by 
 all derived classes.
 
 for eg,
+````
 class MontyPython:
     def joke(self):
         raise NotImplementedError()
@@ -4661,12 +5128,13 @@ class ArgumentClinic(MontyPython):
     def joke(self):
         return "Hahahahahah"
         
-When we instantiate an object and call it's two methods, we'll get an error
-(as expected) with the punchline() method.
+# When we instantiate an object and call it's two methods, 
+# we'll get an error (as expected) with the punchline() method.
 
- >>> sketch = ArgumentClinic() 
- >>> sketch.punchline() 
- >>> NotImplementedError 
+sketch = ArgumentClinic()
+sketch.joke()   # Hahahahahah 
+sketch.punchline()  # NotImplementatoin Error Raised;;
+````
 
 However, this still allows us to instantiate an object of the ArgumentClinic 
 class without getting an error. In fact we don't get an error until we look 
@@ -4676,7 +5144,7 @@ This is avoided by using the Abstract Base Class (ABC) module. Let's see how
 this works with the same example:
 
 for eg,
-
+````
 from abc import ABCMeta, abstractmethod
 
 class MontyPython(metaclass=ABCMeta):
@@ -4684,62 +5152,69 @@ class MontyPython(metaclass=ABCMeta):
     def joke(self):
         pass
 
-@abstractmethod
-def punchline(self):
-    pass
+    @abstractmethod
+    def punchline(self):
+        pass
 
 class ArgumentClinic(MontyPython):
     def joke(self):
         return "Hahahahahah"
-        
-This time when we try to instantiate an object from the incomplete class, we 
-immediately get a TypeError!
 
->>> c = ArgumentClinic()
->>> TypeError: "Can't instantiate abstract class ArgumentClinic with abstract 
-methods punchline"
+
+# This time when we try to instantiate an object from the 
+# incomplete class, we immediately get a TypeError!
+
+c = ArgumentClinic()
+
+TypeError: "Can't instantiate abstract class ArgumentClinic 
+with abstract methods punchline"
+````
 
 In this case, it's easy to complete the class to avoid any TypeErrors:
 
 for eg,
+````
 class ArgumentClinic(MontyPython):
     def joke(self):
         return "Hahahahahah"
 
     def punchline(self):
         return "Send in the constable!"
+````
 
 
 -------------------------------------------------------------------------------------
--> Q032: *args and **vargs in python;;
+### Q032: *args and **vargs in python;;
 
-- args  : RECEIVED TUPLE
-- kargs : RECIEVED DICTIONARY 
+- `args`  : RECEIVED TUPLE
+- `kargs` : RECIEVED DICTIONARY 
 
-###--- KEYWORDED ARGUMENT : **kwargs
+#### KEYWORDED ARGUMENT : **kwargs
 
-
-//------------------------ Usage 1:
+Usage 1:
 
 The names args and kwargs are used by convention, they are not a part of the 
 language specification. Thus, these are equivalent:
 
 for eg, They both are same...
-
-def func(*args, **kwargs):	# example 1
+````
+# Example 1
+def func(*args, **kwargs):
 	print(args)
 	print(kwargs)
-	
-def func(*a, **b):			# example 2
+
+# Example 2
+def func(*a, **b):
 	print(a)
 	print(b)
+````
 
-
-//------------------------ Usage 2:
+Usage 2:
 
 You may not have more than one args or more than one kwargs parameters 
 (however they are not required)
 
+````
 def func(*args1, *args2): #  example 1
 	# File "<stdin>", line 1
 	# def test(*args1, *args2):
@@ -4752,40 +5227,44 @@ def test(**kwargs1, **kwargs2):	# example 2
 	# def test(**kwargs1, **kwargs2):
 	
 	# SyntaxError: invalid syntax
+````
 
+Usage 3: 
 
-//------------------------ Usage 3: 
-
-If any positional argument follow *args , they are keyword-only arguments
+If any positional argument follow *args, they are keyword-only arguments
 that can only be passed by name. A single star may be used instead of 
 *args to force values to be keyword arguments without providing a variadic
 parameter list. Keyword-only parameter lists are only available in Pytohn3
 
-
-def func(a, b, *args, x, y):	# Example 1
+````
+# Example 1
+def func(a, b, *args, x, y):	
 	print(a, b, args, x, y)
 	
 func(1, 2, 3, 4, 5, 6)
->>> Error : Missing param x,y
+Error : Missing param x,y
 
 def func(a,b, *args, x, y):
 	print(a, b, var, b, y)
 	
-func(1,2,3,4,6,x=8,y=9)
+func(1,2,3,4,6,x=8,y=9) # Work fine
+````
 
+Usage 4: 
 
-//------------------------ Usage 4:
+Keyword argument should be at last of the function defination.
 
-Keyworded argument should be at last of the function defination.
+````
+def func(**kwargs, *args): 
+    pass
+    
+func()
 
-def func(**kwargs, *args):
-# File "<stdin>", line 1
-# def test(**kwargs, *args):
-#
-# SyntaxError: invalid syntax
-	
+# SyntaxError: arguments cannot follow var-keyword argument
 
-//--------------------------- Usage 5:
+````
+
+Usage 5:
 
 Keyword arguments (also known as named arguments) are arguments that need to
 be named specifically while calling the function. They don't require to be in
@@ -4796,16 +5275,17 @@ function. In the snippet below, we define two keyword arguments width and
 length, for the area() function.
 
 for eg,
+````
+# Example 1 
 def area(*, width, length):
   return width * length
 
 if __name__ == "__main__":
-    result = area(length=10, width=6)   # Keyworded Argument accepted only;
+    # Keyworded Argument accepted only;
+    result = area(length=10, width=6)   
     print(f"The area of the rectangle is {result}")
 
-# Example without keyworded argument in above example will result error;
-for eg, 
-
+# Example 2 : without keyword argument in above example will result error;
 def area(*, width, length):
   return width * length
 
@@ -4816,18 +5296,20 @@ Traceback (most recent call last):
   File "script.py", line 4, in <module>
     result = area(2, 3) # Will throw an error
 TypeError: area() takes 0 positional arguments but 2 were given
+````
 
+Usage 6:
 
-//------------------------ Usage 6:
-
-We can use variable argument(*args) and keyworded argument(**kwargs) together in a 
-function. 
+We can use variable argument(*args) and keyword argument(**kwargs) 
+together in a function. 
 
 for eg, 
-def area(*args, shape="rectangle", **kwargs):  # kwargs is a variable keyword argument
-  print(args)
-  print(shape)
-  print(kwargs)
+````
+# kwargs is a variable keyword argument
+def area(*args, shape="rectangle", **kwargs):  
+    print(args)
+    print(shape)
+    print(kwargs)
 
 area(8,9,10,height=6, width=8, breadth=4, shape='cuboid')
 
@@ -4835,18 +5317,18 @@ area(8,9,10,height=6, width=8, breadth=4, shape='cuboid')
 (8, 9, 10)
 cuboid
 {'height': 6, 'width': 8, 'breadth': 4}
+````
 
-
-###--- VARIABLE ARGUMENT : *args ;
+#### VARIABLE ARGUMENT : *args ;;
 
 args uses tuple for sending and receiving the value;
 
 when you are using *args for sending param value to a func() param
 then argument gonna unpack while calling the method and the func()
-recieved individual argument.
+received individual argument.
 
 for eg,
-
+```
 def func(x,y):
 	print(x,y)
 	
@@ -4855,20 +5337,21 @@ func(*a)		# x = 1, y = 2 unpack a into two variables;
 
 a.append(3)
 func(*a)		# error func() expects two agrument but 3 were given;
+```
 
-### kwargs using in function;
+kwargs using in function
 
 Work approach is same as in the args but kwargs received key:value
 pair instead of tuple as in args;
 
 for eg,
-
+````
 def func(x,y):
 	print(f"x: {x} // y:{y}")
 
 x = {'a': 10, 'b': 20}
 func(**x)
-
+````
 
 Note that the length of the starred argument need to be equal to the 
 number of the function's arguments.
@@ -4878,33 +5361,35 @@ function to reverse its effects.
 
 
 -------------------------------------------------------------------------------------
--> Q031: Finding and Installing Packages;
+### Q031: Finding and Installing Packages;
 
 For indirect calling for the pip module if the pip module is not defined as 
 inside the environment variable;
 
-$ python -m pip install 
-
 NOTE: for directly using pip, you need to defined it inside the environment
 variable like you have done while install python;
 
-$ pip search <query>
-$ pip install <query>
-$ pip uniinstall <query>
-$ pip install [package_name]==x.x.x # specific version of the package
-$ pip install '[package_name]>=x.x.x' # minimum version of the package
+- Search (Obsolete) : `$ pip search <query>`
 
-$ pip list --outdated # list outdated package;
+- Install & Uninstall : `$ pip install <query>`
 
-$ pip install <package> --upgrade # Upgrading the installed packges;;
+- Un-install Package : `$ pip uniinstall <query>`
 
-$ pip install -U pip	# upgrading pip module;;
+- Install Specific Version : `$ pip install [package_name]==x.x.x`
+
+- Minimum Version Of Package : `$ pip install '[package_name]>=x.x.x'` 
+
+- List Outdated Package : `$ pip list --outdated` 
+
+- Upgrade Installed Package : `$ pip install --upgrade <package> `
+
+- Upgrade Pip Module : `$ pip install -U pip`
 
 
 -------------------------------------------------------------------------------------
--> Q030: Deafult Dict in Python;;
+### Q030: Deafult Dict in Python;;
 
-A defaultdict is a dictionary with a default value for keys, so that keys for
+A `defaultdict` is a dictionary with a default value for keys, so that keys for
 which no value has been explicitly defined can be accessed without errors.
 defaultdict is especially useful when the values in the dictionary are
 collections (lists, dicts, etc) in the sense that it does not need to be
@@ -4914,19 +5399,21 @@ A defaultdict will never raise a KeyError. Any key that does not exist gets
 the default value returned.
 
 for eg, 
+````
 from collections import defaultdict
 
 data = defaultdict(int)
 nums = [1,2,3,4,4,3,3,1,2,3,4,5,6]
 for num in nums:
- data[num] += 1
+    data[num] += 1
 
 print(data)     # defaultdict(<class 'int'>, {1: 2, 2: 2, 3: 4, 4: 3, 5: 1, 6: 1})
+````
 
 
 -------------------------------------------------------------------------------------
 
--> Q029 : GropuBy in Itertools;;
+### Q029 : GroupBy in Itertools;;
 
 Refer Example: Basic-Py/P050_Iterator_GroupBy.py
 
@@ -4936,6 +5423,8 @@ memory-efficient tool that is used either by themselves or in combination
 to form iterator algebra.
 
 For eg,
+```
+from itertools import groupby
 
 records = [
     ['5000', '1234567890'],
@@ -4963,30 +5452,48 @@ for key, group in groupby(records, lambda x: x[0]):
 # 6000 : [['6000', '1234567890'], ['6000', '1234567890']]
 # 8000 : [['8000', '1234567890']]
 
+print("Example 3...")
+for key, group in groupby(records, lambda x:x[1]):
+    print(key,':', list(group))
+
+# Example 3:
+1234567890 -> [
+    ['5000', '1234567890'], 
+    ['5000', '1234567890'], 
+    ['6000', '1234567890'], 
+    ['6000', '1234567890'], 
+    ['8000', '1234567890']
+]
+```
+
 
 -------------------------------------------------------------------------------------
 -> Q028: Builtins Error and Exception;;
 
-Built in modules contains extra functionalities.For example to get square root
-of a number we need to include math module.
+Built in modules contains extra functionalities.For example to get square 
+root of a number we need to include math module.
 
->>> import math
->>> math.sqrt(16) # 4.0
+for eg,
+````
+import math
+math.sqrt(16) # 4.0
+````
 
 To know all the functions in a module we can assign the functions list to a
 variable, and then print the variable.
 
->>> import math
->>> dir(math)
+````
+import math
+dir(math)
 
-['__doc__', '__name__', '__package__', 'acos', 'acosh',
-'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign',
-'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1',
-'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma',
-'hypot', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10',
-'log1p', 'modf', 'pi', 'pow'
+['__doc__', '__name__', '__package__', 'acos', 'acosh','asin', 
+'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign','cos', 
+'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 
+'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'hypot', 
+'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 
+'modf', 'pi', 'pow']
 
->>> dir(__builtins__)
+dir(__builtins__)
 [
     'ArithmeticError',
     'AssertionError',
@@ -5016,49 +5523,51 @@ variable, and then print the variable.
     'None',
     'NotImplemented',
     'NotImplementedError',
-
     ...
 ]
+````
+
+-------------------------------------------------------------------------------------
+### Q027: Mutable and Immutable data types;;
+
+#### Immutable:
+- numbers 
+- complex
+- string
+- bytes
+- tuple
+- frozenset
+
+#### Mutable
+- list
+- set
+- dict
+- bytearray
 
 
 -------------------------------------------------------------------------------------
--> Q027: Mutable and Immutable data types;;
+### Q026: Explicit string type at definition of literals;;
 
-# Immutable:
-int , long , float , complex
-str
-bytes
-tuple
-frozenset
-
-# Mutable
-list
-set
-dict
-bytearray
-
-
--------------------------------------------------------------------------------------
--> Q026: Explicit string type at definition of literals;;
-
-With one letter labels just in front of the quotes you can tell what type of
+With one letter labels just in front of the quotes you can tell what type of 
 string you want to define.
 
-- b'foo bar' : results : bytes in Python 3, str in Python 2
-- u'foo bar' : results : str in Python 3, unicode in Python 2
-- 'foo bar'  : results : str
-- r'foo bar' : results : so called raw string, where escaping special characters
-  is not necessary, everything is taken verbatim as you typed 
+- `b'foo bar'` : bytes in Python 3, str in Python 2.
+- `u'foo bar'` : str in Python 3, unicode in Python 2.
+- `"foo bar"`  : regular string all string in python 3 are unicode.
+- `r'foo bar'` : raw string literal, where backslashes \ are treated as literal
+characters and not as escape characters. 
 
 for eg,
+````
 normal = 'foo\nbar'         # foo 
-                            # bar
+                            # bar                            
 escaped = 'foo\\nbar'       # foo\nbar
 raw = r'foo\nbar'           # foo\nbar
 
+````
 
 -------------------------------------------------------------------------------------
--> Q025: Python first class objects;;
+### Q025: Python first class objects;;
 
 It means there are no restrictions on the object's use. It's the same as any
 other object.
@@ -5067,7 +5576,7 @@ A first class object is an entity that can be dynamically created, destroyed,
 passed to a function, returned as a value, and have all the rights as other
 variables in the programming language have.
 
-Depending on the language, this can imply:
+#### Depending on the language, this can imply
 
 - Being expressible as an anonymous literal value
 - Being storable in variables
@@ -5084,7 +5593,7 @@ Depending on the language, this can imply:
 
 
 -------------------------------------------------------------------------------------
--> Q024: Python main() function;;
+### Q024: Python main() function;;
 
 In the world of programming languages, the main is considered as an entry
 point of execution for a program. But in python, it is known that the
@@ -5095,52 +5604,52 @@ user-defined main() function and by using the __name__ property of python
 file. This __name__ variable is a special built-in variable that points to
 the name of the current module. This can be done as shown below:
 
-
+for eg,
+````
 def main():
    print("Hi Interviewbit!")
+
 if __name__=="__main__":
    main()
-
+````
 
 -------------------------------------------------------------------------------------
--> Q023: Shallow Copy vs Deep Copy;;
+### Q023: Shallow Copy vs Deep Copy;;
 
-Shallow copy does the task of creating new objects storing references of
+`Shallow copy` does the task of creating new objects storing references of
 original elements. This does not undergo recursion to create copies of nested
 objects. It just copies the reference details of nested objects.
 
-Deep copy creates an independent and new copy of an object and even copies all
-the nested objects of the original element recursively.
-
+`Deep copy` creates an independent and new copy of an object and even copies 
+all the nested objects of the original element recursively.
 
 
 -------------------------------------------------------------------------------------
--> Q022: Global Interpreter Lock;;
+### Q022: Global Interpreter Lock;;
 
-GIL stands for Global Interpreter Lock. This is a mutex used for limiting
+- `GIL` stands for `Global Interpreter Lock`. This is a mutex used for limiting
 access to python objects and aids in effective thread synchronization by
-avoiding deadlocks. GIL helps in achieving multitasking (and not parallel
-computing). The following diagram represents how GIL works.
-
+avoiding deadlocks. 
+- GIL helps in achieving multitasking (and not parallel computing).
 
 Thread Work Synchronization, Suppose there are 3 threads, so their execution
 should be like this, 
 
-First Thread: First Thread acquires the GIL first and starts the I/O execution. When the
+`First Thread`: First Thread acquires the GIL first and starts the I/O execution. When the
 I/O operations are done, thread 1 releases the acquired GIL Lock.
 
-Second Thread: After Thread 1 release GIL Lock, which is then taken up by the
+`Second Thread`: After Thread 1 release GIL Lock, which is then taken up by the
 second thread. The process repeats and the GIL are used by different threads
 alternatively until the threads have completed their execution. 
 
-The threads not having the GIL lock goes into the waiting state and resumes
-execution only when it acquires the lock.
+*The threads not having the GIL lock goes into the waiting state and resumes
+execution only when it acquires the lock*
 
 
 -------------------------------------------------------------------------------------
 -> Q021: Lambda function in Python;;
 
-LAMBDA functions are generally inline, anonymous functions represented by a
+`LAMBDA` functions are generally inline, anonymous functions represented by a
 single expression. They are used for creating function objects during
 runtime. They can accept any number of parameters. They are usually used
 where functions are required only for a short period. They can be used as:
@@ -5148,9 +5657,8 @@ where functions are required only for a short period. They can be used as:
 They are defined by using lambda instead of def, and return the result of the
 one line of code without requiring the return statement
 
-//----------------------------- USAGE 1 : GENERAL
 for eg,
-
+```
 square = lambda x: x * x
 
 print(square(3))
@@ -5159,62 +5667,83 @@ print(square(4))
 # OUTPUT : 
 9
 16
+```
 
 The code above defines a Lambda function that takes in an input x and returns
 its square. The LAMBDA is then assigned to variable square that can be called
 in a similar way to a normal function.
 
-//----------------------------- USAGE 2: MAP FUNCTION
-Lambda functions are generally useful when using functions like map(). The map() 
+#### USAGE 2: MAP FUNCTION
+Lambda functions are generally useful when using functions like map().  The map() 
 function takes in a list and returns its modified version based on some
 criteria. This criterion is passed to it as a function.
 
 for eg,
+```
 radius = [1,2,3,4,5]
 areas = map(lambda x: 3.14*x*x, radius)
 print(f"areas : {list(areas)}")
+```
 
-//------------------------------- USAGE 3: FILTER FUNCTION
->>> numbers = (1,2,3,4,5,6,7,8,9,10)
->>> data = filter(lambda x: x % 2 == 0, numbers)
->>> print(list(data))
+#### USAGE 3: FILTER FUNCTION
+Filter function is used to  of the sequence 
+
+for eg,
+```
+numbers = (1,2,3,4,5,6,7,8,9,10)
+data = filter(lambda x: x % 2 == 0, numbers)
+
+print(list(data))
+
+# Output:
 [2, 4, 6, 8, 10]
+```
 
 
 -------------------------------------------------------------------------------------
--> Q020: Module vs Packages in Python;;
+### Q020: Module vs Packages in Python;;
 
-The module is a single python file. A module can import other modules
-(other python files) as objects. Whereas, a package is the folder/directory
-where different sub-packages and the modules reside.
+- The module is a single python file. A module can import other modules
+(other python files) as objects. 
+- Whereas, a package is the folder/directory where different sub-packages 
+and the modules reside.
+
+#### Module
 
 A python module is created by saving a file with the extension of .py. This
 file will have classes and functions that are reusable in the code as well as
 across modules.
 
-A python package is created by following the below steps:
+#### Package
 
-Create a directory and give a valid name that represents its operation. Place
-modules of one kind in this directory. Create __init__.py file in this
-directory. This lets python know the directory we created is a package. The
-contents of this package can be imported across different modules in other
-packages to reuse the functionality.
+A python package is created by following the below steps
+
+- Create a directory and give a valid name that represents its operation. 
+- Place modules of one kind in this directory. 
+- Create __init__.py file in this directory. 
+- This lets python know the directory we created is a package. 
+- The contents of this package can be imported across different modules in 
+other packages to reuse the functionality.
 
 
 -------------------------------------------------------------------------------------
--> Q019: Inheritance in Python;;
+### Q019: Inheritance in Python;;
 
-Inheritance gives the power to a class to access all attributes and methods of
-another class. It aids in code reusability and helps the developer to
-maintain applications without redundant code. The class inheriting from
-another class is a child class or also called a derived class. The class from
-which a child class derives the members are called parent class or
-superclass.
+- Inheritance gives the power to a class to access all attributes and methods 
+of another class. 
+- It aids in code reusability and helps the developer to maintain applications 
+without redundant code. 
+- The class inheriting from another class is a child class or also called a 
+derived class. 
+- The class from which a child class derives the members are called parent 
+class or superclass.
 
 Python supports different kinds of inheritance, they are:
 
-# Single Inheritance: Child class derives members of one parent class.
-
+#### Single Inheritance: 
+Child class derives members of one parent class.
+for eg,
+````
 # Parent class
 class ParentClass:
     def par_func(self):
@@ -5229,13 +5758,15 @@ class ChildClass(ParentClass):
 obj1 = ChildClass()
 obj1.par_func()
 obj1.child_func()
+````
 
+#### Multi-level Inheritance: 
+The members of the parent class(A), are inherited by child class (B) which is 
+again inherited by another child class (C). 
 
-# Multi-level Inheritance: The members of the parent class, A, are inherited
-  by child class which is then inherited by another child class, B. The
-  features of the base class and the derived class are further inherited into
-  the new derived class, C. Here, A is the grandfather class of class C.
+Here, A is the grandfather class of class C.
 
+```
 # Parent class
 class A:
    def __init__(self, a_name):
@@ -5264,12 +5795,15 @@ class C(B):
 obj1 = C('child', 'intermediate', 'parent')
 print(obj1.a_name)
 obj1.display_names()
- 
+``` 
 
-# Multiple Inheritance: This is achieved when one child class derives members
-  from more than one parent class. All features of parent classes are
-  inherited in the child class.
 
+#### Multiple Inheritance: 
+
+This is achieved when one child class derives members from more than one parent 
+class. All features of parent classes are inherited in the child class.
+
+````
 # Parent class1
 class Parent1:
    def parent1_func(self):
@@ -5289,11 +5823,12 @@ class Child(Parent1, Parent2):
 # Driver's code
 obj1 = Child()
 obj1.child_func()
+````
 
+#### Hierarchical Inheritance: 
+When a parent class is derived by more than one child class.
 
-# Hierarchical Inheritance: When a parent class is derived by more than one
-  child class, it is called hierarchical inheritance.
-
+````
 # Base class
 class A:
      def a_func(self):
@@ -5316,20 +5851,22 @@ obj1.a_func()
 obj1.b_func()    #child 1 method
 obj2.a_func()
 obj2.c_func()    #child 2 method
+````
 
 
 -------------------------------------------------------------------------------------
--> Q018: Access Specifiers used in python;;
+### Q018: Access Specifiers used in python;;
 
-Python does not make use of access specifiers specifically like private,
+- Python does not make use of access specifiers specifically like private,
 public, protected, etc. However, it does not derive this from any variables.
-It has the concept of imitating the behaviour of variables by making use of a
-single (protected) or double underscore (private) as prefixed to the variable
-names. By default, the variables without prefixed underscores are public.
+- It has the concept of imitating the behaviour of variables by making use of a
+  - Single underscore (protected) 
+  - Double underscore (private) as prefixed to the variable names
+  - Variables without prefixed underscores are public for python.
 
 Example:
-
-# to demonstrate access specifiers
+```
+# Demonstrate access specifiers
 class InterviewbitEmployee:
    
     # protected members
@@ -5348,10 +5885,11 @@ class InterviewbitEmployee:
     #public member
     def display():
         print(self._emp_name +" "+self._age+" "+self.__branch)
+```
 
 
 -------------------------------------------------------------------------------------
--> Q017: Access Parent Class using Child class;;
+### Q017: Access Parent Class using Child class;;
 
 Following are the ways using which you can access parent class members within
 a child class:
@@ -5359,6 +5897,7 @@ a child class:
 By using Parent class name: You can use the name of the parent class to access
 the attributes as shown in the example below:
 
+````
 # Example Class;
 class Parent(object):  
    # Constructor
@@ -5378,12 +5917,12 @@ class Child(Parent):
 # Driver Code
 obj = Child("Interviewbit", 6)
 obj.display()
-
+````
 
 By using super(): The parent class members can be accessed in child class
 using the super keyword.
 
-
+```
 class Parent(object):
    # Constructor
    def __init__(self, name):
@@ -5406,51 +5945,108 @@ class Child(Parent):
 # Driver Code
 obj = Child("Interviewbit", 6)
 obj.display()
-
+```
 
 -------------------------------------------------------------------------------------
--> Q016: Python Pickling vs UnPickling;;
+### Q016: Python Pickling vs UnPickling;;
 
 Python library offers a feature - serialization out of the box. Serializing an
 object refers to transforming it into a format that can be stored, so as to
 be able to deserialize it, later on, to obtain the original object. Here, the
 pickle module comes into play.
 
+#### Pickling:
+
 Pickling:
 
-Pickling is the name of the serialization process in Python. Any object in
-Python can be serialized into a byte stream and dumped as a file in the
-memory. The process of pickling is compact but pickle objects can be
-compressed further. Moreover, pickle keeps track of the objects it has
-serialized and the serialization is portable across versions. The function
-used for the above process is pickle.dump().
+- Pickling is the process of converting a Python object into a byte stream.
+- The pickle module is used for pickling.
+- The pickle.dump() method is used to serialize an object into a file-like object.
 
-Unpickling:
+for eg,
+````
+import pickle
 
-Unpickling is the complete inverse of pickling. It deserializes the byte
-stream to recreate the objects stored in the file and loads the object to
-memory. The function used for the above process is pickle.load(). Note:
-Python has another, more primitive, serialization module called marshall,
-which exists primarily to support .pyc files in Python and differs
-significantly from the pickle.
+data = {'name': 'John', 'age': 30, 'city': 'New York'}
+
+with open('data.pkl', 'wb') as file:
+    pickle.dump(data, file)
+````
+
+#### Unpickling:
+
+- Unpickling is the process of converting a byte stream back into a Python object.
+- The pickle module is used for unpickling.
+- The pickle.load() method is used to deserialize an object from a file-like object.
+
+for eg,
+````
+import pickle
+
+with open('data.pkl', 'rb') as file:
+    loaded_data = pickle.load(file)
+
+print(loaded_data)
+````
+
+#### Usages Pickling and Unpickling:
+
+> Object Persistence:
+- Pickling: It allows you to save Python objects (such as dictionaries, lists, or 
+custom objects) to a file or another storage medium in a serialized format.
+- Unpickling: It enables you to later read and reconstruct the original Python objects 
+from the serialized data.
+
+> Data Storage and Retrieval:
+- Pickling: Useful for storing data persistently in a compact, serialized format.
+- Unpickling: Allows retrieving the original data from the stored serialized format.
+
+> Data Transmission:
+- Pickling: Facilitates the transmission of Python objects between different processes 
+or systems.
+- Unpickling: Enables the reconstruction of Python objects on the receiving end.
+
+> Caching:
+- Pickling: Objects can be pickled and stored in a cache for faster retrieval in future 
+computations.
+- Unpickling: Retrieves the cached objects when needed.
+
+> Cross-Version Compatibility:
+- Pickling: Can be used to store data in a version-independent format, ensuring 
+compatibility between different versions of the same application or library.
+- Unpickling: Allows reading and using the data across different versions.
+
+> Remote Procedure Calls (RPC) and Distributed Systems:
+- Pickling: Objects can be pickled and sent over a network to remote systems.
+- Unpickling: Enables the remote system to reconstruct the original objects.
+
+> Memoization:
+- Pickling: Can be used in memoization techniques to cache and reuse the results 
+of expensive function calls.
+
+> Testing:
+- Pickling: Allows creating and storing test data in a serialized format for later 
+use in unit tests or integration tests.
+- Unpickling: Retrieves the test data for verification during testing.
+
 
 -------------------------------------------------------------------------------------
--> Q015: Class Composition Vs Class Inheritance;;
+### Q015: Class Composition Vs Class Inheritance;;
 
 (Refer: https://realpython.com/inheritance-composition-python)
 
-//--- Inheritance:
+#### Inheritance:
 
--> Inheritance models what is called an 'is a' relationship. This means that
+-  Inheritance models what is called an 'is a' relationship. This means that
    when you have a Derived class that inherits from a Base class, you created
    a relationship where Derived is a specialized version of Base.
 
--> Inheritance is represented using the Unified Modeling Language or UML in
+-  Inheritance is represented using the Unified Modeling Language or UML in
    the following way:
 
-      |Base Class| <---- Extends ---- |Derived Class|
+>  Base Class <---- Extends ---- Derived Class
 
--> Liskov Substitution Principle: 
+#### Liskov Substitution Principle: 
 
 Suppose, you have base class of type Animal and there is a class Horse derived
 from it. So you can say that Horse is a type of Animal. 
@@ -5458,13 +6054,14 @@ from it. So you can say that Horse is a type of Animal.
 Horse inherits interface and implementation of class Animal and Horse class
 object can be used to replace the Animal Class object from the code.
 
-This is known as Liskov Substitution Principle. The Principle states that 
-"in a computer program, If S is a subtype of T, then objects of type T may be
-replaced with object of type S without altering any of the desired
-properties of the program."
+This is known as **Liskov Substitution Principle**. 
+
+> The Principle states that "in a computer program, If S is a subtype of T, 
+then objects of type T may be replaced with object of type S without altering 
+any of the desired properties of the program."
 
 
-//--- Class Composition:
+#### Class Composition:
 
 -> Composition model what is called an 'has a' relationship. It enables
    creating complex types by combining objects of other types. This means
@@ -5476,33 +6073,35 @@ properties of the program."
 
 -> UML representation of the following, 
 
-      |Composite Class| (1)----------------->  |Component Class|
+>  Composite Class (1) -----------------> Component Class
 
-Here, 
--> A number represent number of the component class. In our case it is 1,
+Here,
+-  A number represent number of the component class. In our case it is 1,
    which means the composite class have components.
--> The * Symbols indicates that the composite class can contains a variable
+-  The * Symbols indicates that the composite class can contains a variable
    number of component services.
--> A range 1..4 indicates that the composite class can contain a range of
+-  A range 1..4 indicates that the composite class can contain a range of
    component instance. The range is indicated with the minimum and maximum
    number of numbers of instances. for eg, if there is minimum instance is of
-   1 and maximum doesnt have any limit than it can be show with *, 1..*
+   1 and maximum doesn't have any limit than it can be show with *, 1..*
 
 
 -------------------------------------------------------------------------------------
--> Q014: Duck Typing in Python;;
+### Q014: Duck Typing in Python;;
 
-Duck Typing is a type system used in dynamic languages. For example, Python,
-Perl, Ruby, PHP, Javascript, etc. where the type or the class of an object is
-less important than the method it defines. Using Duck Typing, we do not check
-types at all. Instead, we check for the presence of a given method or
-attribute.
+Duck Typing is a type system used in dynamic languages. 
+
+For example, Python, Perl, Ruby, PHP, Javascript, etc. where the type or 
+the class of an object is less important than the method it defines. 
+Using Duck Typing, we do not check types at all. Instead, we check for the 
+presence of a given method or attribute.
 
 The name Duck Typing comes from the phrase:
 
 “If it looks like a duck and quacks like a duck, it’s a duck”
 
 for eg,
+```
 class Bird:
     def fly(self):
         print("fly with wings")
@@ -5514,7 +6113,7 @@ class Airplane:
 class Fish:
     def swim(self):
         print("fish swim in sea")
-  
+
 # Attributes having same name are
 # considered as duck typing
 for obj in Bird(), Airplane(), Fish():
@@ -5527,26 +6126,29 @@ for obj in Bird(), Airplane(), Fish():
 fly with wings
 fly with fuel
 Fish can't fly
-
-
+```
 
 -------------------------------------------------------------------------------------
--> Q013: @classmethod vs @stacticmethod;;
+### Q013: @classmethod vs @stacticmethod;;
 
-@classmethod 
+#### @classmethod 
 
-The @classmethod decorator is a built-in function decorator that is an
+The `@classmethod` decorator is a built-in function decorator that is an
 expression that gets evaluated after your function is defined. The result of
 that evaluation shadows your function definition. A class method receives the
 class as an implicit first argument, just like an instance method receives
 the instance.
 
-Syntax Python Class Method: 
-
+Syntax Python Class Method:
+````
 class C(object):
+
     @classmethod
     def fun(cls, arg1, arg2, ...):
        ....
+       
+````
+
 fun: function that needs to be converted into a class method
 returns: a class method for function.
 
@@ -5555,10 +6157,12 @@ returns: a class method for function.
 - They have the access to the state of the class as it takes a class parameter
 that points to the class and not the object instance.
 - It can modify a class state that would apply across all the instances of the
-class. For example, it can modify a class variable that will be applicable to
+class. 
+- For example, it can modify a class variable that will be applicable to
 all the instances.
 
-@staticmethod 
+
+#### @staticmethod 
 
 A static method does not receive an implicit first argument. A static method
 is also a method that is bound to the class and not the object of the class.
@@ -5573,70 +6177,75 @@ class C(object):
         ...
 returns: a static method for function fun.
 
-# When to use the class or static method ?
+#### When to use the class or static method ?
 - We generally use the class method to create factory methods. Factory methods
   return class objects ( similar to a constructor ) for different use cases.
 - We generally use static methods to create utility functions.
 
 for eg,
+````
 # Python program to demonstrate
 # use of class method and static method.
 from datetime import date
- 
+from time import time
  
 class Person:
-    def __init__(self, name, age):
+    def __init__(self, name, dob):
         self.name = name
-        self.age = age
+        self.dob = dob
  
-    # a class method to create a Person object by birth year.
     @classmethod
-    def fromBirthYear(cls, name, year):
-        return cls(name, date.today().year - year)
- 
-    # a static method to check if a Person is adult or not.
+    def is_adult(cls, user_id):
+        # factory method to valid user age > 18;;
+        # suppose fetching dob from database;;
+        
+        user = cls.objects.filter(user_id).get()
+        if now - user.dob < 18:
+            return Fale
+        return True
+     
     @staticmethod
-    def isAdult(age):
-        return age > 18
+    def generate_username(uid, prefix='UID'):
+        # utility method for generating username;;
+        return f"C{uid}{int(time())}"
  
  
-person1 = Person('mayank', 21)
-person2 = Person.fromBirthYear('mayank', 1996)
+person1 = Person('mayank', '1997-01-05')
  
-print(person1.age)
-print(person2.age)
- 
-# print the result
-print(Person.isAdult(22))
+print(f"{person1.name} is adult"person1.is_ad)
+print(f"{person1.name}'s' Username: {person1.generate_username(uid=1)}")
 
 #Output:
-21
-25
-True
+mayank is adult : True
+mayank's' Username: C11705143685
+````
 
 
 -------------------------------------------------------------------------------------
--> Q012: Magic Method __str__() vs __repr__();;
+### Q012: Magic Method __str__() vs __repr__();;
 
 In Python, the built-in str() and repr() functions both produce a textual
 representation of an object.
 
 for eg,
-
+````
 import datetime
+
 today = datetime.datetime.now()
+
 print(str(today))
 print(repr(today))
 
 # Output:
 2021-10-14 10:15:31.405463          # output: __str__
 datetime.datetime(2021, 10, 14, 10, 15, 31, 405463)     # output: __repr__
+````
 
-The difference between str() and repr() is:-
+#### Difference between str() and repr() is:
 - The str() function returns a user-friendly description of an object.
 - The repr() method returns a developer-friendly string representation of an object.
 
-Working str() and repr() under the hood:-
+#### Working str() and repr() under the hood:
 - When you call str() on an object, it calls the special method __str__ of
 the object.
 - And when you call repr() on an object, it calls the special method __repr__ 
@@ -5644,10 +6253,10 @@ of the object.
 - Also, when you call print() on an object, it calls __str__ method of the 
 object. If __str__ is not implemented, the __repr__ is called as a fallback.
 
-for eg, 
+for eg,
 
+````
 # Case 1: Without str() and repr();
-
 class Fruit:
     def __init__(self, name):
         self.name = name
@@ -5659,7 +6268,6 @@ print(banana)
 <__main__.Fruit object at 0x7f0ece0e8d00>
 
 # Case 2: With str() and repr();
-
 class Fruit:
     def __init__(self, name):
         self.name = name
@@ -5672,39 +6280,43 @@ class Fruit:
 
 banana = Fruit("Banana")
 print(banana)       # output: I am a Banana
+````
 
 
 -------------------------------------------------------------------------------------
--> Q011: Set Variable LowerBound and UpperBound;;
+### Q011: Set Variable LowerBound and UpperBound;;
 
 This methods helps to set the upper and lower bound of a bound for fallback
 prevention.
 
--> FIRST APPROACH
+#### FIRST APPROACH
+In this, we use sys module to find the maxsize limit for a system.
 
 for eg,
->>> from sys import maxsize
+```
+from sys import maxsize
 
->>> minValue = -maxsize
->>> maxValue = maxsize
->>> print(minValue, maxValue)
+minValue = -maxsize
+maxValue = maxsize
 
--> SECOND APPROACH 
-It acts as an unbounded upper value for comparison. This is
-useful for finding lowest values for something. for example, calculating path
-route costs when traversing trees.
+print(minValue, maxValue)
+```
+
+#### SECOND APPROACH 
+It acts as an unbounded upper value for comparison. This is useful for 
+finding lowest values for something. 
 
 e.g. Finding the "cheapest" path in a list of options:
+````
+lowest_path_cost = float('inf')
+# pretend that these were calculated using some worthwhile algorithm
+path_costs = [1, 100, 2000000000000, 50]
+for path in path_costs:
+    if path < lowest_path_cost:
+     lowest_path_cost = path
 
->>> lowest_path_cost = float('inf')
->>> # pretend that these were calculated using some worthwhile algorithm
->>> path_costs = [1, 100, 2000000000000, 50]
->>> for path in path_costs:
-...   if path < lowest_path_cost:
-...     lowest_path_cost = path
-...
->>> lowest_path_cost
-1
+print(lowest_path_cost) # 1
+````
 
 if you didn't have float('Inf') available to you, what value would you use for
 the initial lowest_path_cost? Would 9999999 be enough -- float('Inf') removes
@@ -5712,57 +6324,77 @@ this guesswork.
 
 
 -------------------------------------------------------------------------------------
--> Q010: Create a Generator Class;;
+### Q010: Create a Iterator Class using Generator;;
 
-You're almost there, writing an Iterator class (I show a Generator at the end
-of the answer), but __next__ gets called every time you call the object with
-next, returning a generator object. Instead, to make your code work with the
-least changes, and the fewest lines of code, use __iter__, which makes your
-class instantiate an iterable (which isn't technically a generator):
+*Remember :: Generator is a type of Iterator in itself*
 
+- An iterator is an object representing a stream of data and can be 
+iterated one element at a time.
+- It must implement two methods: `__iter__()` and `__next__()`.
+- The `__iter__()` method returns the iterator object itself, and the 
+`__next__()` method returns the next element in the sequence.
+- When there are no more elements to return, the __next__() method 
+should raise the `StopIteration` exception.
+
+```
 class Fib:
     def __init__(self):
         self.a, self.b = 0, 1
+
     def __iter__(self):
         while True:
             yield self.a
             self.a, self.b = self.b, self.a+self.b
-When we pass an iterable to iter(), it gives us an iterator:
 
->>> f = iter(Fib())
->>> for i in range(3):
-...     print(next(f))
-...
-0
-1
-1
+# When we pass an iterable to iter(), 
+# It gives us an iterator
 
-To make the class itself an iterator, it does require a __next__:
+f = iter(Fib())
+for i in range(3):
+    print("i: ", next(f))
 
+# Output 
+i: 0
+i: 1
+i: 1
+```
+
+To make the class itself an iterator, it does require a `__next__`.
+
+```
 class Fib:
     def __init__(self):
-        self.a, self.b = 0, 1        
-    def __next__(self):
-        return_value = self.a
-        self.a, self.b = self.b, self.a+self.b
-        return return_value
+        self.a, self.b = 0, 1
+       
+    # __iter__ will generate iterable
     def __iter__(self):
         return self
+     
+    # __next__ will generate sequence;;        
+    def __next__(self):
+        return  self.a   # Observe, return used not yield
+        self.a, self.b = self.b, self.a + self.b
 
-And now, since iter just returns the instance itself, we don't need to call
-it:
 
->>> f = Fib()
->>> for i in range(3):
-...     print(next(f))
-...
-0
-1
-1
+# since iter just returns the instance itself
+# we don't need to call it.
 
--> Why is the value self.a not getting printed at the first place?
+f = Fib()
+for i in range(3):
+    print("i: ", next(f))
 
-Here's your original code with my comments:
+# Output
+i: 0
+i: 1
+i: 1
+```
+
+From above example observed one thing in `__next__()` function we don't use 
+`yield` keyword but instead we directly return the value because `yield` 
+will return generator object.
+
+````
+# Check the same above code with yield implementation instead return;;
 
 class Fib:
     def __init__(self):
@@ -5773,98 +6405,105 @@ class Fib:
         self.a, self.b = self.b, self.a+self.b
 
 f = Fib()
-
 for i in range(3):
     print(next(f))
     
-So every time you called next(f) you got the generator object that __next__
-returns:
+# So every time you called next(f) you got the generator 
+# object that __next__ returns
 
 <generator object __next__ at 0x000000000A3E4F68>
 <generator object __next__ at 0x000000000A3E4F68>
 <generator object __next__ at 0x000000000A3E4F68>
 
+````
 
 -------------------------------------------------------------------------------------
--> Q009: Iterators Vs Iterables Vs Generators in python;;
+### Q009: Iterators Vs Iterables Vs Generators in python;;
 
--> Iterators:-
-An object capable of returning its members one at a time. Examples of
-iterables include all sequence types (such as list, str, and tuple) and some
-non-sequence types like dict, file objects, and objects of any classes you
-define with an __iter__() method or with a __getitem__() method that
-implements Sequence semantics.
+#### Iterators:
+- An iterator is an object representing a stream of data and can be 
+iterated one element at a time.
+- It must implement two methods: `__iter__()` and `__next__()`.
+- The `__iter__()` method returns the iterator object itself, and the 
+`__next__()` method returns the next element in the sequence.
+- When there are no more elements to return, the __next__() method 
+should raise the `StopIteration` exception.
 
-Iterables can be used in a for loop and in many other places where a sequence
-is needed (zip(), map(), …). When an iterable object is passed as an argument
-to the built-in function iter(), it returns an iterator for the object. This
-iterator is good for one pass over the set of values. When using iterables, it
-is usually not necessary to call iter() or deal with iterator objects
-yourself. The for statement does that automatically for you, creating a
-temporary unnamed variable to hold the iterator for the duration of the loop.
-See also iterator, sequence, and generator.
+for eg,
+```
+class MyIterator:
+    def __init__(self, data):
+        self.data = data
+        self.index = 0
 
+    def __iter__(self):
+        return self
 
--> Iterables:-
-An object representing a stream of data. Repeated calls to the iterator’s
-__next__() method (or passing it to the built-in function next()) return
-successive items in the stream. When no more data are available a
-StopIteration exception is raised instead. At this point, the iterator object
-is exhausted and any further calls to its __next__() method just raise
-StopIteration again. Iterators are required to have an __iter__() method that
-returns the iterator object itself so every iterator is also iterable and may
-be used in most places where other iterables are accepted. One notable
-exception is code which attempts multiple iteration passes. A container object
-(such as a list) produces a fresh new iterator each time you pass it to the
-iter() function or use it in a for loop. Attempting this with an iterator will
-just return the same exhausted iterator object used in the previous iteration
-pass, making it appear like an empty container.
+    def __next__(self):
+        if self.index < len(self.data):
+            result = self.data[self.index]
+            self.index += 1
+            return result
+        else:
+            raise StopIteration
 
+my_iterator = MyIterator([1, 2, 3, 4, 5])
 
--> Generator:-
-A function which returns a generator iterator. It looks like a normal function
-except that it contains yield expressions for producing a series of values
-usable in a for-loop or that can be retrieved one at a time with the next()
-function.
+for item in my_iterator:
+    print(item)
+```
 
-Usually refers to a generator function, but may refer to a generator iterator
-in some contexts. In cases where the intended meaning isn’t clear, using the
-full terms avoids ambiguity.
+#### Iterables:
+- An iterable is any object in Python capable of returning its elements 
+one at a time.
+- Examples of iterables include lists, tuples, strings, dictionaries, 
+sets, and more.
+- You can iterate over the elements of an iterable using a loop or by 
+using functions like iter() and next().
 
+for eg,
+```
+my_list = [1, 2, 3, 4, 5]
 
--> Generator Iterators:-
-An object created by a generator function.
+for item in my_list:
+    print(item)
+```
 
-Each yield temporarily suspends processing, remembering the location execution
-state (including local variables and pending try-statements). When the
-generator iterator resumes, it picks-up where it left-off (in contrast to
-functions which start fresh on every invocation).
+#### Generator:
 
--> Iterators Vs Generators:-
+- A generator is a special type of iterator defined using a function 
+with the `yield` keyword.
+- It allows you to iterate over a potentially large sequence of data 
+without storing the entire sequence in memory.
+- The state of the generator is maintained between successive calls 
+to the `yield` statement.
 
------------------------------------------------------------------------------------
-|         Iterators                     |             Generators                  |
------------------------------------------------------------------------------------
-| -> Iterators use classes.             | -> Generators use functions.            |
-| -> Iterators use the __next__ and     | -> Generators use the yield keyword     |
-|    __iter__ methods.                  |    and next methods.                    |
-| -> Iterators maintain state within    | -> Generators store state in local      |
-|    instance attributes                |    function variables                   |
-| -> No methods are paused. State is    | -> Functions are paused and their state |
-|    maintained within Instance.        |    is maintained within Python.         |
-| -> Can be created using iter()        | -> Can be created using function()      |
------------------------------------------------------------------------------------
+for eg,
+```
+def my_generator(data):
+    for item in data:
+        yield item
 
--------------------------------------------------------------------------------------
--> Q008: What are Iterators in python;;
+my_gen = my_generator([1, 2, 3, 4, 5])
 
-The below is class which implements `__next__`as if it was a function using
-the `yield` keyword.
+for item in my_gen:
+    print(item)
+```
 
+#### Generator Iterators:
+
+- An object created by a generator function.
+- Each yield temporarily suspends processing, remembering the location 
+execution state (including local variables and pending try-statements).
+- When the generator iterator resumes, it picks-up where it left-off
+(in contrast to functions which start fresh on every invocation).
+
+for eg,
+```
 class FirstHundredGenerator(object):
     def __init__(self):
         self.number = 0
-
+    
     # Iterators are those which have __next__(self) function;;
     def __next__(self):
         if self.number < 100:
@@ -5874,14 +6513,110 @@ class FirstHundredGenerator(object):
         else:
             raise StopIteration()     ## used to stop iteration;;
 
+# We use next function as Generator to fetch the next sequence each time;;
 gen = FirstHundredGenerator()
-next(gen)  # 0
-next(gen)  # 1
+print(next(gen))  # 0
+print(next(gen))  # 1
+```
 
+#### Iterators Vs Generators:
+
+**Iterators**
+- Iterators use classes.             
+- Iterators use the __next__ and __iter__ methods.          
+- Iterators maintain state within instance attributes.
+- No methods are paused. State is maintained within Instance.
+- Can be created using iter()       
+
+** Generator **
+- Generators use functions.
+- Generators use the yield keyword and next methods.                    
+- Generators store state in local function variables.
+- Functions are paused and their state is maintained within Python.
+- Can be created using function().
+
+
+-------------------------------------------------------------------------------------
+### Q008: What are Iterators in python;;
+
+An iterator is an object representing a stream of data and can be iterated 
+one element at a time.
+
+It must implement two methods: `__iter__()` and `__next__()`.
+
+The `__iter__()` method returns the iterator object.
+
+The `__next__()` method returns the next element in the sequence.
+
+```
+class FirstHundredGenerator(object):
+    def __init__(self):
+        self.number = 0
+    
+    # Iter(): return the iterator object;;
+    def __iter__(self):
+        return self
+        
+    # Next() will return the sequence of object;;
+    def __next__(self):
+        if self.number < 100:
+            current = self.number
+            self.number += 1
+            return current
+        else:
+            raise StopIteration()     ## used to stop iteration;;
+
+# Usage 1: It is a generator as well;;
+gen = FirstHundredGenerator()
+print(next(gen))  # 0
+print(next(gen))  # 1
+
+# Usage 2: It is an iterator as well;;
+for i in FirstHundredGenerator():
+    print(f"i: {i}")
+
+# Output: 
+i : 0
+i : 1 
+... so on
+```
+
+
+**NOTE**: Below Code Snippet can also be used as Iterator.
+
+- We are only using the `__next__()` for making the sequence.
+- Below code won't be able to act act as an iterator because we are not 
+using the `__iter__()`
+
+````
+class FirstHundredGenerator(object):
+    def __init__(self):
+        self.number = 0
+    
+    # Iterators are those which have __next__(self) function;;
+    def __next__(self):
+        if self.number < 100:
+            current = self.number
+            self.number += 1
+            return current
+        else:
+            raise StopIteration()     ## used to stop iteration;;
+
+# We use next function as Generator to fetch the next sequence each time;;
+gen = FirstHundredGenerator()
+print(next(gen))  # 0
+print(next(gen))  # 1
+
+# If you tried the for loop here then it will throw you an error,
+# saying it's not an iterator;;
+for i in FirstHundredGenerator():
+    print(i)    # Error: FirstHundredGenerator() not itertable.
+    
+````
 Notice how the object, with its property, remembers what the value of
 `self.number` is at all points in time.
 
-This object is called in Python a generator because every time the next number
+This object is called in Python Generator because every time the next number
 is available not because it’s in a sequence, but because it is generated from
 its current state (in this case, by adding 1 to `self.number`).
 
@@ -5892,12 +6627,13 @@ For example, you could have an iterator on which you can call `next()`, but
 that doesn’t generate its values. Instead, it could take them from a list or
 from a database.
 
-*Important*: iterators are objects which have a `__next__` method.
+*Important: iterators are objects which have a `__next__` method.*
 
 Here’s an example of an iterator which is not a generator:
 
 for eg,
-  class FirstFiveIterator:
+````
+class FirstFiveIterator:
     def __init__(self):
         self.numbers = [1, 2, 3, 4, 5]
         self.i = 0
@@ -5910,19 +6646,16 @@ for eg,
         else:
             raise StopIteration()
 
-As you can see it’s returning numbers that are not being generated; instead
-they’re being returned from a list.
+# As you can see it’s returning numbers that are not being generated; 
+# Instead they’re being returned from a list.
 
-If we run this code though, we will get an error:
-
-
+# If we run this code though, we will get an error:
 sum(FirstHundredGenerator())  # comment this line out to run the rest of the file.
 
-or 
-
+or, 
 for i in FirstHundredGenerator():
     print(i)
-
+````
 
 And that’s because in Python, an `iterator` and an `iterable` are different
 things. You can iterate over an `iterable`. The iterator is used to get the
@@ -5932,7 +6665,7 @@ You can iterate over iterables, not over iterators.
   
 
 -------------------------------------------------------------------------------------
--> Q007: What are Generator in Python;;
+### Q007: What are Generator in Python;;
 
 A generator in Python is a function that remembers the state it’s in, in
 between executions.
@@ -5941,13 +6674,15 @@ Let’s explain with an example. Imagine you wanted to build a list of 100
 numbers, like this one:
 
 for eg,
-  def hundred_numbers():
+````
+def hundred_numbers():
     nums = []
     i = 0
     while i < 100:
       nums.append(num)
       i += 1
     return nums
+````
 
 We could use list comprehension for this and the `range()` function, but for
 now let’s assume that this is a cool way of doing it. We construct a list,
@@ -5968,11 +6703,13 @@ called a “generator”. It generates numbers (or indeed strings, or anything
 else you want to generate).
 
 for eg,
-  def hundred_numbers():
+````
+def hundred_numbers():
     num = 0
     while num < 100:
       yield num
       num += 1
+````
 
 The `yield` keyword is very much like a `return`, in that it gives the value
 back to the caller and returns execution control to them (show this with
@@ -5982,18 +6719,25 @@ from the very next line inside the function, instead of from the top.
 We could re-write the function as a list comprehension:
 
 for eg,
-  hunderd_numbers = [n for n in range(100)]
+```
+hunderd_numbers = [n for n in range(100)]
+```
 
 Or indeed as a generator comprehension. This is essentially the same thing,
 including the `yield` statement.
 
-hundred_numbers = (n for n in range(100))
-print(next(hundred_numbers))
-print(next(hundred_numbers))
+````
+def hundred_numbers():
+    num = 0
+    while num < 100:
+      yield num
+      num += 1
 
-print(list(hundred_numbers))
-
-""" 
+print(next(hundred_numbers)) # 0
+print(next(hundred_numbers)) # 1
+print(list(hundred_numbers)) 
+````
+ 
 Notice that when we do the code snippet above, `next()` runs the function
 once up until the `yield` (which would give you the first value). The
 following `next()` runs it again, which gives you the second value. Then,
@@ -6001,31 +6745,33 @@ turning it into a list continues and builds a list from the remaining values
 (that’s only 98 values left).
 
 A few sections ago I printed out `range(10)` and it was a strange `range(0,
-10)` thing. That’s a generator object! 
-"""
+10)` thing. That’s a generator object!sc3
 
 
 -------------------------------------------------------------------------------------
--> Q006: Type Hinting in Python;;
+### Q006: Type Hinting in Python;;
 
 It is used to validate the data type of the incoming argument of a function or
 returning variable  from the function; 
 
-  For eg,
-  from typing import List, Dict, Tuple, Type        ## Import statement;
+For eg,
+````
+from typing import List, Dict, Tuple, Type
 
-  def sample(x: int) -> List[Dict[key, bool]:
+def sample(x: int) -> List[Dict[key, bool]:
     res = []
     for i in range(x):
-      if(i%2 == 0)
-        res.append({i:True})
-      else:
-        res.append({i:False})
+        if(i%2 == 0)
+            res.append({i:True})
+        else:
+            res.append({i:False})
 
     return res            ## Output: List[Dict[int, bool]]
+   
+print("Answer: ", sample(4))
+````
 
-
-## Generic Types
+### Generic Types
 
 The fundamental building blocks defined above allow to construct new types in
 a generic manner. For example, Tuple can take a concrete type float and make a
@@ -6040,28 +6786,35 @@ generic manner. Consider two examples:
 
 Container classes, such as list or dict, typically contain only values of a
 particular type. Therefore, a user might want to type annotate them as such:
-users = [] # type: List[UserID] users.append(UserID(42)) # OK
+
+````
+users = [] # type: List[UserID] 
+users.append(UserID(42)) # OK
 users.append('Some guy') # Should be rejected by the type checker
 
 examples = {} # type: Dict[str, Any]
 examples['first example'] = object() # OK
-examples[2] = None                   # rejected by the type checker
+examples[2] = None  # rejected by the type checker
+````
 
 The following function can take two arguments of type int and return an int,
-or take two arguments of type float and return a float, etc.: 
+or take two arguments of type float and return a float, etc.
 
+````
 def add(x, y):
   return x + y
 
 add(1, 2) == 3
 add('1', '2') == '12'
 add(2.7, 3.5) == 6.2
+````
 
 To allow type annotations in situations from the first example, built-in
 containers and container abstract base classes are extended with type
 parameters, so that they behave as generic type constructors. Classes, that
 behave as generic type constructors are called generic types. Example:
 
+````
 from typing import Iterable
 
 class Task:
@@ -6069,6 +6822,7 @@ class Task:
 
 def work(todo_list: Iterable[Task]) -> None:
     ...
+````
 
 Here Iterable is a generic type that takes a concrete type Task and returns a
 concrete type Iterable[Task].
@@ -6080,28 +6834,29 @@ similar to semantics of parameters in functions. But one does not assign
 concrete types to type variables, it is the task of a static type checker to
 find their possible values and warn the user if it cannot find. Example:
 
+````
 def take_first(seq: Sequence[T]) -> T: # a generic function
     return seq[0]
-
+    
 accumulator = 0 # type: int
-
 accumulator += take_first([1, 2, 3])   # Safe, T deduced to be int
 accumulator += take_first((2.7, 3.5))  # Unsafe
+````
 
 Type variables are used extensively in type annotations, also internal
 machinery of the type inference in type checkers is typically build on type
-variables. Therefore, let us consider them in detail.
+variables.
 
 
 -------------------------------------------------------------------------------------
-
--> Q005: Copy in Python;
+### Q005: Copy in Python;
 
 In Python, the assignment statement (= operator) does not copy objects.
 Instead, it creates a binding between the existing object and the target
 variable name. To create copies of an object in Python, we need to use the
-copy module. Moreover, there are two ways of creating copies for the given
-object using the copy module -
+copy module. 
+
+There are two ways of creating copies for the given object 
 
 Shallow Copy is a bit-wise copy of an object. The copied object created has an
 exact copy of the values in the original object. If either of the values is a
@@ -6111,37 +6866,43 @@ copied.
 Deep Copy copies all values recursively from source to target object,
 i.e. it even duplicates the objects referenced by the source object.
 
+```
 from copy import copy, deepcopy
 list_1 = [1, 2, [3, 5], 4]
+
 ## shallow copy
 list_2 = copy(list_1) 
 list_2[3] = 7
 list_2[2].append(6)
 list_2    # output => [1, 2, [3, 5, 6], 7]
 list_1    # output => [1, 2, [3, 5, 6], 4]
+
 ## deep copy
 list_3 = deepcopy(list_1)
 list_3[3] = 8
 list_3[2].append(7)
 list_3    # output => [1, 2, [3, 5, 6, 7], 8]
 list_1    # output => [1, 2, [3, 5, 6], 4]
-
+```
 
 -------------------------------------------------------------------------------------
--> Q004: Python arrays;
+### Q004: Python arrays;
 
-Arrays in python can only contain elements of same data types i.e., data type
-of array should be homogeneous. It is a thin wrapper around C language arrays
-and consumes far less memory than lists. Lists in python can contain elements
-of different data types i.e., data type of lists can be heterogeneous. It has
-the disadvantage of consuming large memory.
+- `Arrays` in python can only contain elements of same data types i.e., data type
+of array should be homogeneous. 
+- It is a thin wrapper around C language arrays and consumes far less memory than 
+lists. Lists in python can contain elements of different data types i.e., data type 
+of lists can be heterogeneous. It has the disadvantage of consuming large memory.
 
+> Syntax: arr = array(Parameter, [Initialize Values])
+
+for eg,
+```
 import array
 
 a = array.array('i', [1, 2, 3])
 for i in a:
     print(i, end=' ')    #OUTPUT: 1 2 3
-
 a = array.array('i', [1, 2, 'string'])   
 
 #OUTPUT: TypeError: an integer is required (got type str)
@@ -6150,28 +6911,84 @@ a = [1, 2, 'string']
 
 for i in a:
    print(i, end=' ')    #OUTPUT: 1 2 string
+```
+
+#### Array Parameters Details:
+- c : character of size 1 byte
+- u : unicode character of size 2 bytes
+- w : unicode character of size 4 bytes
+
+- b : signed integer of 1 byte
+- B : unsigned integer of 1 byte
+- h : signed integer of 2 bytes
+- H : unsigned integer of 2 bytes
+- i : signed integer of 2 bytes
+- I : unsigned integer of 2 bytes
+- l : signed integer of 4 bytes
+- L : unsigned integer of 4 bytes
+
+- f : floating point of 4 bytes
+- d : floating point of 8 bytes
+
+
+for eg,
+````
+// Array CRUD
+from array import *
+
+arr = array(i, [1,2,3])
+
+// append values to array
+arr.append(4)       # [1,2,3,4]
+
+print(arr)
+
+// print array
+for i in arr:
+    print(i)
+
+// insert values at array
+arr.insert(4,99)
+
+// extends from list
+c = [11,12,13]
+arr.extends(c)
+print(arr)
+
+// more helpers...
+arr.fromlist(opts=[11,22,33])
+arr.count(3)
+arr.tostring()              # convert to string
+arr.tolist()                # convert to list
+````
 
 
 -------------------------------------------------------------------------------------
--> Q003: LAMBDA;
+### Q003: LAMBDA;;
 
 Lambda is an anonymous function in Python, that can accept any number of
 arguments, but can only have a single expression. It is generally used in
-situations requiring an anonymous function for a short time period. Lambda
-functions can be used in either of the two ways:
+situations requiring an anonymous function for a short time period. 
 
-Assigning lambda functions to a variable:
+Lambda functions can be used in either of the two ways:
+
+```
+Useage 1 : Assigning lambda functions to a variable;;
 mul = lambda a, b : a * b
 print(mul(2, 5))    # output => 10
-Wrapping lambda functions inside another function:
+```
+
+````
+Usage 2 : Wrapping lambda functions inside another function;;
 def myWrapper(n):
  return lambda a : a * n
 mulFive = myWrapper(5)
 print(mulFive(2))    # output => 10
-
+````
 
 -------------------------------------------------------------------------------------
--> Q002: Comprehensions;
+
+### Q002: Comprehensions;
 
 Python comprehensions, like decorators, are syntactic sugar constructs that
 help build altered and filtered lists, dictionaries, or sets from a given
@@ -6180,35 +6997,50 @@ that might be considerably more verbose (containing more lines of code). Let's
 check out some examples, where comprehensions can be truly beneficial:
 
 Performing mathematical operations on the entire list
+````
 my_list = [2, 3, 5, 7, 11]
+
 squared_list = [x**2 for x in my_list]    # list comprehension
 # output => [4 , 9 , 25 , 49 , 121]
+
 squared_dict = {x:x**2 for x in my_list}    # dict comprehension
 # output => {11: 121, 2: 4 , 3: 9 , 5: 25 , 7: 49}
+````
+
 Performing conditional filtering operations on the entire list
+````
 my_list = [2, 3, 5, 7, 11]
+
 squared_list = [x**2 for x in my_list if x%2 != 0]    # list comprehension
 # output => [9 , 25 , 49 , 121]
+
 squared_dict = {x:x**2 for x in my_list if x%2 != 0}    # dict comprehension
 # output => {11: 121, 3: 9 , 5: 25 , 7: 49}
+````
 
 Combining multiple lists into one Comprehensions allow for multiple iterators
 and hence, can be used to combine multiple lists into one. 
 
-a = [1, 2, 3]
-b = [7, 8, 9]
+````
+a, b  = [1, 2, 3], [7, 8, 9]
+
 [(x + y) for (x,y) in zip(a,b)]  # parallel iterators
 # output => [8, 10, 12]
+
 [(x,y) for x in a for y in b]    # nested iterators
 # output => [(1, 7), (1, 8), (1, 9), (2, 7), (2, 8), (2, 9), (3, 7), (3, 8), (3, 9)] 
+````
 
 Flattening a multi-dimensional list A similar approach of nested iterators (as
 above) can be applied to flatten a multi-dimensional list or work upon its
 inner elements. 
 
+or, running multiple loop in a single comprehension
+````
 my_list = [[10,20,30],[40,50,60],[70,80,90]]
 flattened = [x for temp in my_list for x in temp]
 # output => [10, 20, 30, 40, 50, 60, 70, 80, 90]
+````
 
 Note: List comprehensions have the same effect as the map method in other
 languages. They follow the mathematical set builder notation rather than map
@@ -6216,13 +7048,14 @@ and filter functions in Python.
 
 
 -------------------------------------------------------------------------------------
--> Q001: Decorators in python;; 
+### Q001: Decorators in python;; 
 
 Decorators in Python are essentially functions that add functionality to an
 existing function in Python without changing the structure of the function
 itself. They are represented the @decorator_name in Python and are called in a
 bottom-up fashion. For example:
 
+```
 # decorator function to convert to lowercase
 def lowercase_decorator(function):
    def wrapper():
@@ -6230,6 +7063,7 @@ def lowercase_decorator(function):
        string_lowercase = func.lower()
        return string_lowercase
    return wrapper
+   
 # decorator function to split words
 def splitter_decorator(function):
    def wrapper():
@@ -6237,11 +7071,13 @@ def splitter_decorator(function):
        string_split = func.split()
        return string_split
    return wrapper
+   
 @splitter_decorator # this is executed next
 @lowercase_decorator # this is executed first
 def hello():
    return 'Hello World'
 hello()   # output => [ 'hello' , 'world' ]
+```
 
 The beauty of the decorators lies in the fact that besides adding
 functionality to the output of the method, they can even accept arguments for
@@ -6250,6 +7086,7 @@ function itself. The inner nested function, i.e. 'wrapper' function, plays a
 significant role here. It is implemented to enforce encapsulation and thus,
 keep itself hidden from the global scope.
 
+```
 # decorator function to capitalize names
 def names_decorator(function):
    def wrapper(arg1, arg2):
@@ -6258,10 +7095,12 @@ def names_decorator(function):
        string_hello = function(arg1, arg2)
        return string_hello
    return wrapper
+   
 @names_decorator
 def say_hello(name1, name2):
    return 'Hello ' + name1 + '! Hello ' + name2 + '!'
+   
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
-
+```
 
 -------------------------------------------------------------------------------------
