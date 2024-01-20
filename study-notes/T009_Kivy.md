@@ -1,10 +1,10 @@
-'''
+````
 -------------------------------------------------------------------------------------
 -> Title : Python Kivy
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
--> Created : 20/02/2022
--> Updated : 20/02/2022
+-> Created : 20/02/2023
+-> Updated : 20/02/2024
 -> Summary : Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
 ***Q006 : Layouting in Kivy App;;
@@ -14,73 +14,72 @@
 -> Q002 : Kivy Architecture;;
 -> Q001 : What is Kivy;;
 -------------------------------------------------------------------------------------
-'''
+````
 
-###---PYTHON KIVY NOTES : BEGINNING 
+### PYTHON KIVY NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
 ***Q006 : Layouting in Kivy App;;
-
-
 
 
 -------------------------------------------------------------------------------------
 ***Q005 : Images Class in Kivy;;
 
 
-
-
 -------------------------------------------------------------------------------------
 ***Q004 : Label Class in Kivy;;
 
 
-
-
 -------------------------------------------------------------------------------------
--> Q003 : Kivy Installation;;
+### Q003 : Kivy Installation;;
  
 NOTE : Make sure to install python compatabile version in your system before hand.
 
-Step 1 : Install or upgrade pip 
-	$ pip install -U pip 
-then,
-	$ pip install --upgrade pip wheel setuptools 
+Step 1 : Install or upgrade pip
 
-Step 2 : Install dependencies 
-	$ pip install docutils pygments pypiwin32 kivy.deps.sdl2 kivy.deps.glew  
-then 
-	$ pip install kivy.deps.gstreamer  
+	`$ pip install -U pip` 
 then,
-	$ pip install kivy.deps.angle 
+
+	`$ pip install --upgrade pip wheel setuptools` 
+
+Step 2 : Install dependencies
+
+	`$ pip install docutils pygments pypiwin32 kivy.deps.sdl2 kivy.deps.glew`
+
+then 
+	
+    `$ pip install kivy.deps.gstreamer`  
+then,
+	
+    `$ pip install kivy.deps.angle` 
 
 Step 3 : Install Kivy
-	$ pip install kivy
-
+	
+    `$ pip install kivy`
 
 
 -------------------------------------------------------------------------------------
--> Q002 : Kivy Architecture;;
+### Q002 : Kivy Architecture;;
 
-//--- Kivy Archietecture core components ...
+#### Kivy Archietecture core components ...
 
-------------------------------------------------------------------------------- 
-| 							Widget 							|								Kv Language 							| High Level	 
-------------------------------------------------------------------------------| | 
-| 	Cache	 | 		Clock 	| 	Gesture 	| 	Event Loop 	| 	Properties 					| | 
-------------------------------------------------------------------------------| |----------
-| 	Core Providers 			|				Graphics 					|					Inputs						| |
-|(Windows, Text, Image, |(vertex buffer, 					|(Motion events, 						| |
-|Video, Audio)					|frame buffer, texture, 	|Post Processing,						| |
-|												|shader, instructions)		|double tap, dejitter...)		| |
-|-----------------------------------------------------------------------------| |-----------
-|	 Pygame  |  Pil  |  GStreamer 	|  GLES API  |  GLEW	|  Mouse  | TUIO     	| |	
-|-----------------------------------------------------------------------------| |
-|	 FFMpeg  | 	SDL  | 	Cairo 	|													| VM_Touch| Mac Touch | |
-|-----------------------------------------------------------------------------| |
-|																												| MTDev		| HIDInput  | Low Level 
--------------------------------------------------------------------------------
+````
+ ------------------------------------------- -------------------------------
+| 	                    Widget   	|	Kv Language                         | 	 
+|---------------------------------------------------------------------------| 
+| Cache, Clock, Gesture, Event Loop, Properties                             | 
+------------------------------------------------------------------------------> High Level Top
+| - Core Providers(Windows, Text, Image, Video, Audio)                      |
+| - Graphics(vertex buffer, frame buffer, texture, shader, instructions)    |	 
+| - Inputs(Motion events,Post Processing,double tap, dejitter...)           |
+|-----------------------------------------------------------------------------> Low Level Below
+| Pygame, Pil , GStreamer, GLES API, GLEW, Mouse, TUIO                      |	
+|---------------------------------------------------------------------------|
+|	 FFMpeg, SDL, Cairo, VM_Touch(MTDev), Mac Touch(HIDInput)               | 
+----------------------------------------------------------------------------
+````
 
-//--- Description of Components :-
+#### Description of Components :-
 
 1) Core Providers and Input Providers :- 
 
@@ -157,9 +156,9 @@ application. The config file is used to manage the loading of modules.
 
 
 -------------------------------------------------------------------------------------
--> Q001 : What is Kivy;;
+### Q001 : What is Kivy;;
 
-###---------------- Introduction :-
+#### Introduction :
 
 - Kivy is an open-source and Graphical User Interface (GUI) development
   platform for Python.
@@ -176,7 +175,7 @@ application. The config file is used to manage the loading of modules.
 	4) An extensive support for input devices such as a mouse, keyboard, TUIO,
 		as well as OS-specific multi touches events.
 
-###---------------- Featured :-
+#### Featured :-
 
 1) Video :- Kivy includes various modules to play video files and streams.
 Kivy Video player also supports some common requirements related to videos
@@ -211,9 +210,9 @@ Pi. Kivy is flexible so it can adapt to new technologies quickly.
 must have 1 GHz 32 bit (x86), or 64 bit (x64) CPU, 1 GB of RAM, 128 MB of
 graphical memory, and Python installed on your system.
 
-###---------------- Advantage and Dis-Advantage :- 
+#### Advantage and Dis-Advantage :- 
 
-//--- Advantage :-
+// Advantage :
 
 1) Kivy helps us to design innovative user interfaces with multi-touch
 functionalities.
@@ -225,11 +224,10 @@ Linux, ios, macOS, and Raspberry Pi.
 6) It offers a better representation of programs, including classes, widget
 configuration, and inherited classes.
 
-//--- Disadvantage :-
+// Disadvantage :
 
 1) It is not always up-to-date with the latest Android APIs.
-2) Kivy uses kV language, which is not suitable for us to compile our code
-alone.
+2) Kivy uses kV language, which is not suitable for us to compile our code alone.
 3) The sizes of the package are unnecessarily huge.
 4) It has a lack of community support.
 5) It takes a lot of time for building and compiling mobile applications.

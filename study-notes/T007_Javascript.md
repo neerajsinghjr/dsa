@@ -1,58 +1,66 @@
-'''
+````
 -------------------------------------------------------------------------------------
--> Title : Javascript Notes
--> Author: @neeraj-singh-jr
--> Status : Ongoing...
--> Created : 12/02/2023
--> Updated : 02/08/2023
--> Summary : Notes indices are as follows (**** pending)
+-  Title : Javascript Notes
+-  Author: @neeraj-singh-jr
+-  Status : Ongoing...
+-  Created : 12/02/2023
+-  Updated : 02/08/2024
+-  Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q006 : Array - Javascript
--> Q005 : Object - Javascript
--> Q004 : Undefined and null - Javscript;;
--> Q003 : Number - Javascript;;
--> Q002 : String - Javascript;;
--> Q001 : Variable - Javascript;;
+-  Q006 : Array - Javascript
+-  Q005 : Object - Javascript
+-  Q004 : Undefined and null - Javscript;;
+-  Q003 : Number - Javascript;;
+-  Q002 : String - Javascript;;
+-  Q001 : Variable - Javascript;;
 -------------------------------------------------------------------------------------
-'''
+````
 
-###---Javascript NOTES : BEGINNING 
+#### Javascript NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q006 : Array - Javascript
+### Q006 : Array - Javascript
    
-###---------------- Array Basic :-
+#### Array Basic :-
 
--> An array is used to store multiple values together.
--> An array is built by a pair of square brackets, with values placed inside
+-  An array is used to store multiple values together.
+-  An array is built by a pair of square brackets, with values placed inside
    it separated by commas.
--> for eg,
+-  for eg,
+
+````
 const fruits = ["Apple", "Orange", "Banana"];
 console.log(fruits); // ["Apple", "Orange", "Banana"]
+````
 
-###---------------- Homogenenous Array :-
+#### Homogenenous Array :-
 
--> Array are of the same data type, i.e., string, the array is known as a
+-  Array are of the same data type, i.e., string, the array is known as a
    homogeneous array.
--> for eg,
+-  for eg,
+````
 const fruits = ["Apple", "Orange", "Banana"];
 console.log(fruits); 
 // ["Apple", "Orange", "Banana"]
+````
 
-###---------------- Heterogeneous Array :-
+#### Heterogeneous Array :-
 
--> The elements of the array measurements are of different data types. Such an
+-  The elements of the array measurements are of different data types. Such an
    array is known as a heterogeneous array.
--> for eg,
+-  for eg,
+````
 const measurements = [12, "34cm", 567.89];
 console.log(measurements);    
 // [12, "34cm", 567.89]
+````
 
-###---------------- Reading an Array :-
+#### Reading an Array :-
 
--> Each element of an array has a number associated with it starting from 0
+-  Each element of an array has a number associated with it starting from 0
    and is known as the index of that element.
--> for eg,
+-  for eg,
+````
 const names = ["Oliver", "Adam", "Eve"];
 console.log(names[0]);  // Oliver
 
@@ -70,27 +78,30 @@ console.log(names)   // ["Oliver", "Adam", "Eve", "May", undefined, undefined, u
 
 names[0] = "Jency"
 console.log(name[0]) // Jency
+````
 
+#### Array Length :-
 
-###---------------- Array Length :-
-
--> We can use .length to get the number of elements in an array, also known as
+-  We can use .length to get the number of elements in an array, also known as
    the length of the array.
--> for eg,
+-  for eg,
+````
 const fruits = ["Apple", "Banana"];
 console.log(fruits.length);   // ~2
+````
 
 
 -------------------------------------------------------------------------------------
--> Q005 : Object - Javascript
+### Q005 : Object - Javascript
 
-###---------------- Javascript Object :-
+#### Javascript Object :-
 
--> Object are used to store complex datatype together in a single entity. For
+-  Object are used to store complex datatype together in a single entity. For
    an instance, String and Number can hold string and number individually but
    there may be an instance when you need to bundle both together in a single
    entity, then object instance is used.
--> for eg,
+-  for eg,
+````
 const car = {
   model: 2011,
   fuelType: "diesel",
@@ -99,11 +110,13 @@ const car = {
 
 console.log(car.model);    // 2011
 console.log(car['fullName']);    // Hyundai Verma
+````
 
-###----------------- Access Javascript object :-
+#### Access Javascript object :-
 
--> There are two ways in which we can access javascript object.
+- There are two ways in which we can access javascript object.
 
+````
 //--- CASE 1 : Accessing using Bracket Notation;;
 
 for eg,
@@ -127,13 +140,15 @@ const car = {
 
 console.log(car.model);    // 2011
 console.log(car.fullName);    // Hyundai Verma
+````
 
-###---------------- Different Object Usages :-
+#### Different Object Usages :-
 
--> There are specific conventions for defining key and value syntax of an
+-  There are specific conventions for defining key and value syntax of an
    object.
 
--> for eg,
+-  for eg,
+````
 const profile = {
    first name : "Neeraj",  // Incorrect: Unexpected Variable;
    middle_name : "Singh",     // Correct
@@ -144,7 +159,7 @@ console.log(profile)
 
 // Countermeasure of above Syntax Error 
 
--> for eg,
+-  for eg,
 const profile = {
    "first name" : "Neeraj",  
    "middle_name" : "Singh",  
@@ -157,7 +172,7 @@ the dot notation. It can only be accessed using the bracket notation.
 console.log(profile."first name")   // Error: Not Accessible
 consolg.log(profile["first name"])  // Success
 
--> for eg, 
+-  for eg, 
 
 const subjectWithCode = {
    101 : "Physics",
@@ -171,12 +186,14 @@ console.log(subjectWithCode.101)
 
 // Can be accessed using Bracket Notation;
 console.log(subjectWithCode[101])
+````
 
-###---------------- Add Property to Existing Object :-
+#### Add Property to Existing Object :-
 
 //--- Add using Dot Notation :-
-
 for eg,
+
+````
 const person = {
    name : "Adam Jensen",
    age : 26,
@@ -193,11 +210,12 @@ console.log(person)
   isAdmin: true,
   profession: 'Software Engineer'
 }
+````
 
 //--- Add using Bracket Notation :-
 
 for eg,
-
+````
 const subjects = {
   101: "Physics",
   102: "Biology",
@@ -219,14 +237,15 @@ console.log(subjects);
   '104': 'Computer',
   '200': 'Mathematics'
 }
+````
 
-###---------------- Get Object Keys - Object.keys() :-
+#### Get Object Keys - Object.keys() :-
 
--> We can get all the keys of an object using Object.keys(). 
--> It returns the keys as an array of strings.
--> Object.keys() function return list of all keys in an object.
--> for eg,
-
+-  We can get all the keys of an object using Object.keys(). 
+-  It returns the keys as an array of strings.
+-  Object.keys() function return list of all keys in an object.
+-  for eg,
+````
 const subjects = {
   101: "Physics",
   102: "Biology",
@@ -237,13 +256,15 @@ console.log(Object.keys(subjects))
 
 // OUTPUT :
 [ '101', '102', '103']
+````
 
-###---------------- Get Object Values - Object.values() :-
+#### Get Object Values - Object.values() :-
 
--> We can get all the values of an object using Object.values(). 
--> It returns the values as an array of different types.
--> Object.values() return the value in a list.
--> for eg,
+-  We can get all the values of an object using Object.values(). 
+-  It returns the values as an array of different types.
+-  Object.values() return the value in a list.
+-  for eg,
+````
 const subjects = {
   101: "Physics",
   102: "Biology",
@@ -254,18 +275,19 @@ console.log(Object.keys(subjects))
 
 // OUTPUT :
 [ 'Physics', 'Biology', 'Chemistry']
+````
 
-###---------------- Get Object Keys and Values - Object.entires() :-
+#### Get Object Keys and Values - Object.entires() :-
 
--> We can get all the key-value pairs of an object using Object.entries(). It
+-  We can get all the key-value pairs of an object using Object.entries(). It
    returns the key-value pairs as an array of array
--> Object.entries(person) returns an array in which all the elements are also
+-  Object.entries(person) returns an array in which all the elements are also
    arrays. In other words, Object.entries(person) returns an array with many
    arrays nested in it.
--> Each nested array contains the key and the value of a property of 'subjects',
+-  Each nested array contains the key and the value of a property of 'subjects',
    in that same order. The keys will be strings.
--> for eg,
-
+-  for eg,
+````
 const subjects = {
   101: ["Physics","P2"],
   102: "Biology",
@@ -283,11 +305,13 @@ console.log(Object.values(subjects))
 
 // [ [ '101', [ 'Physics', 'P2' ] ], [ '102', 'Biology' ], [ '103', 'Chemistry' ] ]
 console.log(Object.entries(subjects))
+````
 
-###---------------- Object Shorthand :-
+#### Object Shorthand :-
 
--> Generally, we define object like this,
--> for eg,
+-  Generally, we define object like this,
+-  for eg,
+````
 const model = 2011;
 const fuelType = "diesel";
 
@@ -297,10 +321,11 @@ const car = {
 };
 
 console.log(car);
-
--> Here, we can use object shorthand
--> for eg,
-
+````
+ 
+- Here, we can use object shorthand
+-  for eg,
+````
 const model = 2011;
 const fuelType = "diesel";
 
@@ -310,19 +335,20 @@ const car = {
 };
 
 console.log(car);
+````
 
-###---------------- Object Naming Conventions :-
+#### Object Naming Conventions :-
 
--> The name of the variable to which an object is assigned should give a clear
+-  The name of the variable to which an object is assigned should give a clear
    description of what the object holds.
--> The name user itself gives the idea that the value is an object that
+-  The name user itself gives the idea that the value is an object that
    contains information on a user. Suffixing user with Object or Data is
    redundant
--> for instance, an object that contains information on a user should not be
+-  for instance, an object that contains information on a user should not be
    given names such as object, data, info or any other name that does not
    describe the content of the object
--> for eg,
-
+-  for eg,
+````
 // This is a bad name
 const object = { name: "Sam", age: 32 };
 console.log(object);
@@ -330,11 +356,12 @@ console.log(object);
 // This is a good name
 const user = { name: "Oliver", age: 23 };
 console.log(user);
-
--> The name of object properties, i.e., the keys of objects should also follow
+````
+-  The name of object properties, i.e., the keys of objects should also follow
    the naming conventions of a variable.
--> for eg,
+-  for eg,
 
+````
 // These are bad key names
 const user = {
   "first-name": "Sam",  // Name is not in camel case
@@ -350,44 +377,47 @@ const member = {
   age: 23,
 };
 console.log(member);
+````
 
 
 -------------------------------------------------------------------------------------
--> Q004 : Undefined and null - Javscript;;
+### Q004 : Undefined and null - Javscript;;
 
-###---------------- Undefined Datatype :-
+#### Undefined Datatype :-
 
--> A variable declared using let, whose value hasn't been assigned yet, has
+-  A variable declared using let, whose value hasn't been assigned yet, has
    undefined as its default value.
 
 NOTE : A variable declared using 'const' should always have a value assigned to
 it. It won't get automatically assigned with undefined if no value is given
 during declaration.
 for eg,
-
+````
 const age
 console.log(age)
 
 // SyntaxError: Missing initializer in const declaration
+````
 
-###---------------- Null Datatype :-
+#### Null Datatype :-
 
 The 'null' is a data type in JavaScript. It is used to denote the value of
 nothing in a variable.
 
 for eg,
-
+````
 const name = null;
 console.log(name);      // output: null
+````
 
-###---------------- Undefined vs Null :-
+#### Undefined vs Null :-
 
--> typeof of a variable assigned with undefined keyword, is always undefined.
--> typeof of a variable assigned with null, is always object.
--> Equality of undefined with null, is always true.
+-  typeof of a variable assigned with undefined keyword, is always undefined.
+-  typeof of a variable assigned with null, is always object.
+-  Equality of undefined with null, is always true.
 
 for eg,
-
+````
 let name1 = undefined
 let name2 = null 
 
@@ -395,16 +425,17 @@ console.log(typeof name1)     // undefined
 console.log(typeof name2)     // object
 console.log(name1 == name2)   // true
 console.log(name1 === name2)  // false
+````
 
 
 -------------------------------------------------------------------------------------
--> Q003 : Number - Javascript;;
+### Q003 : Number - Javascript;;
 
-###---------------- Store Number :-
+#### Store Number :-
 
--> Number can be positive, negative, fraction.
--> for eg,
-
+-  Number can be positive, negative, fraction.
+-  for eg,
+````
 const num1 = 1290
 const num2 = -1290
 const num3 = 12.90
@@ -413,14 +444,16 @@ console.log(f`num1: ${num1} || num2 : ${num2} || num3: ${num3}`)
 
 # Output :-
 num1: 1290 || num2 : -1290 || num3: 12.9
+````
 
-###---------------- NaN (Not a Number) :-
+#### NaN (Not a Number) :-
 
--> NaN stands for Not a Number
--> Arithmetic operation on a value that is not a number, we get NaN as the result.
+-  NaN stands for Not a Number
+-  Arithmetic operation on a value that is not a number, we get NaN as the result.
 
--> for eg, check for NaN existence ...
+-  for eg, check for NaN existence ...
 
+````
 const personID = "123abc";
 const quotient = personID / 2;
 
@@ -430,12 +463,13 @@ console.log(isNaN(quotient))
 # Output:-
 NaN
 true
+````
 
-###---------------- Uniary Operator :-
+#### Uniary Operator :-
 
--> Operator (++), (--) is used to increment the value of a number by 1.
--> for eg,
-
+-  Operator (++), (--) is used to increment the value of a number by 1.
+-  for eg,
+````
 var number = 10
 console.log(number)  # 10
 
@@ -444,24 +478,26 @@ console.log(number)  # 11
 
 number++
 console.log(number)  # 12
+````
 
-###---------------- Remainder (%) :-
+#### Remainder (%) :-
 
--> We can use % to get the remainder. It returns the remainder after the
+-  We can use % to get the remainder. It returns the remainder after the
    division of the value on the left of % by the value on the right of %.
--> for eg,
-
+-  for eg,
+````
 console.log(5 % 3);
 
 # Output : 2
-
+````
 
 -----------------------------------------------------------------------------------
--> Q002 : String - Javascript;;
+### Q002 : String - Javascript;;
 
-###---------------- Create String :-
+#### Create String :-
 
 for eg,
+````
 const fullName = "Sam Smith";
 console.log(fullName);              # Sam Smith
 
@@ -470,33 +506,37 @@ console.log(book);                  # The Newest Dragon Stories
 
 const someRandomSentence = "You can be a great programmer!";
 console.log(someRandomSentence);    # You can be a great programmer!
+````
 
-###---------------- Joining Strings :-
+#### Joining Strings :-
 
 We can join the string using add '+' operator.
 
 for eg,
+````
 let firstname = "Neeraj"
 let middleName = "Singh"
 let lastName = "Junior"
 
 console.log(firstName + middleName + lastName)  # Neeraj Singh Junior
+````
 
-###---------------- Template Strings :-
+#### Template Strings :-
 
--> Backticks should be used to create a string only when there is a need to
+-  Backticks should be used to create a string only when there is a need to
    escape double quotes in the string.
--> for eg,
-
+-  for eg,
+````
 console.log(`Hello, I am a "software developer".`);
 
-# Output :- 
+# Output :-
 Hello, I am a "software developer".
+````
 
+-  Backtick is also used to create multi-line strings for formatting.
+-  for eg,
 
--> Backtick is also used to create multi-line strings for formatting.
--> for eg,
-
+````
 const itemList = `Fruits:
   Apple
   Mango
@@ -512,11 +552,13 @@ Fruits:
   Mango
   Banana
   Orange
- 
--> Inserting values from variables into template strings using the ${} 
-   notation is called string interpolation.
--> for eg,
+````
 
+-  Inserting values from variables into template strings using the ${} 
+   notation is called string interpolation.
+-  for eg,
+
+````
 const firstName = "Sam";
 const lastName = "Smith";
 
@@ -527,30 +569,33 @@ console.log(fullName);
 
 # Output:-
 Sam Smith
-
+````
 
 -------------------------------------------------------------------------------------
--> Q001 : Variable - Javascript;;
+### Q001 : Variable - Javascript;;
 
-###---------------- Console Log:-
+#### Console Log:-
 
 In js, console.log() to make it visible on a special screen called console.
 
 for eg,
+````
 console.log("I love ice cream");
+````
 
-###---------------- Data Types :-
+#### Data Types :-
 
 Different programming languages work with different sets of data types.
 JavaScript also has a set of data types it can work with.
 
 //--- Variables :-
 
--> Variable like `const length = 120`, stores the value 120 in a variable named length.
--> Once the variable is created, we can use the variable name, 'length' in the
+-  Variable like `const length = 120`, stores the value 120 in a variable named length.
+-  Once the variable is created, we can use the variable name, 'length' in the
    entire code
 
 for eg,
+````
 const length = 120;
 
 console.log("Length in centimeters:");
@@ -558,36 +603,40 @@ console.log(length);
 
 console.log("Length in kilometers:");
 console.log(length / 100000);
+````
 
 //--- const and let keywords :-
 
--> const: It used to declare a variable whose value is not intended to be
+-  const: It used to declare a variable whose value is not intended to be
    changed at all, once it is declared.
--> let : It is used to declared variable whose value can be changed anywhere
+-  let : It is used to declared variable whose value can be changed anywhere
    in the code.
 
 NOTE : we can create variables without using the const and the let keyword.
 
+````
 for eg,
 count = 20
 console.log(count) // This will work;;
+````
 
 but, this is considered as bad practice.
 
 //--- typeof :-
 
--> typeof keyword is used to return the type of instance.
+-  typeof keyword is used to return the type of instance.
 
 for eg,
+````
 count = 20
 console.log(typeof count)              # number 
 console.log(typeof "Hello World")      # string
-
+````
 
 //--- Naming Variable :-
 
--> Variable are always case sensitive in javascript .
--> Javascript uses the camel case conventions for naming variable in javascript.
+-  Variable are always case sensitive in javascript .
+-  Javascript uses the camel case conventions for naming variable in javascript.
 
 # Rule of Naming variable are ...
 1) Name can be start with lowercase or uppercase.
@@ -601,6 +650,7 @@ responsibility to make code readable for other developer as well.
 //--- Changing Data Type :-
 
 for eg,
+````
 let lengthOfBox = 120;
 console.log(lengthOfBox);                       # 120 
 
@@ -609,30 +659,34 @@ console.log(lengthOfBox);                       # 120cm
 
 console.log("Length of box in meters");         # Length of box in meters 
 console.log(lengthOfBox * 100);                 # NaN
+````
 
 //--- Boolean Variable :-
 
--> The values true and false are known as Boolean values.
+-  The values true and false are known as Boolean values.
 for eg,
-
+````
 isAdmin = true
 console.log(isAdmin)    # true
+````
 
 //--- Expression :-
 
--> An expression is a piece of code that evaluates to something. It contains
+-  An expression is a piece of code that evaluates to something. It contains
    at least one operator and one operand.
 
--> The assignment operator = requires two operands, a left-hand operand and a
+-  The assignment operator = requires two operands, a left-hand operand and a
    right-hand operand.
 
 for eg,
+````
 console.log(23 + 45);
 
 const length = 1000;
 console.log(length / 100);
 
 console.log(typeof ["Apple", "Banana"]);
+````
 
 # Key Points :-
 
@@ -655,11 +709,13 @@ perform arithmetic operations on numbers.
 We can use the === operator to check if two values are equal.
 
 for eg,
+````
 console.log(9 === 9);   # true
 
 console.log(9 == "9");  # true 
 
 console.log(9 === "9"); # false
+````
 
 
 -------------------------------------------------------------------------------------
