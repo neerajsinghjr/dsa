@@ -6,7 +6,27 @@
 - Created : 29/09/2023		    
 - Updated : 21/10/2024		
 -------------------------------------------------------------------------------------
-*** Q0013 : Dockerfile stages wise optimization;;
+- Q*** : Dockerfile stages wise optimization;;
+- Q*** : Difference in CMD vs ENTRYPOINT Command;;
+- Q*** : Docker Utility Based ENV Containers;;
+- Q*** : Define Customer Container Name in Docker Compose;;
+- Q*** : Docker-Compose Helpful Commands;;	
+- Q*** : Docker-Compose File Commands;;
+- Q*** : Different docker compose extensions (yml vs yaml);;
+- Q*** : Docker Compose Core Concept;;
+- Q*** : Integrate Multiple Docker Container Network;;
+- Q*** : Docket Network Commands;;
+- Q*** : Connect Docker Container to Local Host Services;;
+- Q*** : Docker Container Networking;;
+- Q021 : Docker ARG and ENV Variable Concept;;
+- Q020 : Docker Ignore (.dockerignore) File Concept;;
+- Q019 : Docker Volume Commands;;
+- Q018 : Difference - Anonymous Vs Named Vs Mount Bind Volume;;
+- Q017 : Docker Mount Bind Volumne Concept;;
+- Q016 : Docker Named Volume Concept;;
+- Q015 : Docker Anonymous Volume Concept;;
+- Q014 : Docker Volume Concepts in Container;;
+- Q013: Setup an interactive docker container;;
 - Q012 : Docker interactive vs tty flag;;
 - Q011 : Connect to container Interactively;;
 - Q010 : Attach to running docker container;;
@@ -23,6 +43,432 @@
 -------------------------------------------------------------------------------------
 
 ### DOCKER NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q021 : Docker ARG and ENV Variable Concept;;
+
+-  Docker mechanisms for passing configuration values into a container
+	1) ARG (build-time variables)
+	2) ENV (environment variables)
+
+#### ARG : Argument Variable on Image Build-Time
+
+- ARG allows you to define variables which can be used in the process of
+  building the image.
+
+- These variables are typically used to provide flexibility during the
+  image building process, allowing you to customize the image based on
+  build-time parameters.
+
+- ARG variables are specified in a Dockerfile using the ARG instruction.
+
+- You can set the values of ARG variables at build time using the `--build-arg` 
+  flag when executing the docker build command.
+
+- Common use cases include specifying the version of a software package,
+  setting default values for environment variables, or allowing users to
+  customize the image behavior during the build process.
+
+- for eg,
+    ````
+    # Dockerfile structure;;
+    FROM ubuntu:20.04
+    ARG my_port=80
+    ENV PORT=$my_port
+
+    # Image Build-up from terminal;;
+    $ docker build -t arg_test_app:0.1 --build-arg my_port=9090 .
+    ````
+  
+#### ENV : Environment Variables On Run-Time
+
+- ENV allows you to set environment variables within a Docker image that
+  are available to processes running inside containers.
+
+- These variables are typically used for configuring software running
+  within the container and for providing runtime parameters.
+
+- ENV variables are specified in a Dockerfile using the ENV instruction.
+
+- You can set the values of ENV variables during the image build process,
+  and they are accessible within the running container.
+
+- Common use cases include specifying configuration settings for
+  applications within the container, such as database connection strings
+  or API keys.
+
+- for eg,
+    ````
+    # Dockerfile structure;;
+    FROM Ubuntu:20.04
+    ENV LOGS_URL='https://api.example.com/logs/monitoring'
+    ENV DEBIAN_FRONTEND noninteractive
+    CMD echo $LOGS_MONITORING $DEBIAN_FRONTEND
+
+    # Image Build-up from terminal;;
+    $ docker build -t env_test_app:0.1 .
+
+    # Set ENV Run-Time Variable;;
+    $ docker run -d --env LOGS_URL='https://api.example.com/new/endpoint' <image_id>
+
+    # Short Form of ENV flag;;
+    $ docker run -d -e LOGS_URL='https://api.example.com/new/endpoint' <image_id>
+
+    or, alternatively you can put all ENV in one file;;
+    $ docker run -d --env-file 'path/to/env/file' <image_id>
+    ````
+
+
+-------------------------------------------------------------------------------------
+### Q020 : Docker Ignore (.dockerignore) File Concept;;
+
+-  The `.dockerignore file` is used to specify which files and directories
+   should be excluded when building docker image.
+
+-  The `.dockerignore file` should be placed in the same directory as your
+   Dockerfile.
+
+for eg,
+````
+# .dockerignore file
+node_modules
+*.log
+/temp 
+````
+
+
+-------------------------------------------------------------------------------------
+### Q019 : Docker Volume Commands;;
+
+Docker provides several commands to manage volumes, allowing you to create,
+inspect, list, and remove volumes. 
+
+Here are the key volume-related commands in Docker:
+
+- Create a Volume: `$ docker volume create my_volume`
+
+- List Volumes: `$ docker volume ls`
+
+- Inspect a Volume: `$ docker inspect volume <volume_name>`
+
+- Remove Volume: `$ docker volume rm <volume_name>`
+
+- Prune Un-Used Volume: `$ docker volume prune`
+
+- Mount Volume in Container: 
+
+  `$ docker run -d -v my_volume::/path/to/container <image_id>`
+
+
+-------------------------------------------------------------------------------------
+### Q018 : Difference - Anonymous Vs Named Vs Mount Bind Volume;;
+
+Docker offers two primary types of volumes for managing data persistence 
+within containers: 
+	
+1) Anonymous volumes
+2) Named volumes
+3) Bind Volumes
+
+#### Anonymous Volumes:
+
+- Automatically Created: Created automatically using -v or --volume flag at runtime.
+
+- Unique Identifiers: Unique UUID is always assigned to anonymous volume.
+
+- Ephemeral Data: They are usually considered as temporary data.
+
+- Docker-Managed: Create or delete automatically by Docker in its lifecycle.
+
+- No Direct Access: Volume access by docker and user have no direct access.
+
+- Short-Lived Data: Suited for storing short-lived data, such as cache
+files, log files, or other temporary container-specific data.
+
+#### Named Volumes:
+
+- User-Defined Names: These are explicitly created by user given names.
+
+- Persistent Data: Volume that needs to be stored even after container not
+  running.
+
+- Access from Host and Containers: Named volumes can be mounted in multiple
+  containers and easy to share among different container. 
+
+- Ease of Access: Named volumes are also accessible from the host system,
+  allowing you to manage and back up the data directly from the host.
+
+- Explicit Management: Named volume are automatically removed, manual
+  interaction needed.
+
+- Sharing Data: Named volumes are  used for sharing data between containers
+  or host system, allowing for consistent data access and management
+  across containers.
+
+#### Bind Volumes:
+
+- Creation: Created manually by a host system path and container path, -v
+  or --volume flag.
+
+- Naming: Bind volumes are defined by their host system paths, so they are
+  not named in the same way as named volumes.
+
+- Purpose: Used for sharing data between the host system and containers.
+  Data is stored on the host machine and is accessible from both the host
+  and containers.
+
+- Lifecycle: Bind volumes are managed as regular files and directories on
+  the host system. They persist beyond container removal.
+
+- Access: Data is directly accessible from the host system, making it easy
+  to manage, edit, and back up.
+
+- Use Cases: Suitable for scenarios where data needs to be accessed and
+  shared between the host and containers, making it ideal for development,
+  configuration files, and shared data.
+
+#### Anonymous and Named Volumes:
+
+- Anonymous volumes are suitable when you need to store temporary,
+  container-specific data that doesn't require external management. Docker
+  handles their creation and deletion.
+
+- Named volumes are preferred for handling persistent data that needs to be
+  shared between containers, accessed from the host, and managed
+  externally. They provide more control and flexibility for data
+  management.
+
+- Bind volumes are used to share data between the host system and
+  containers, making them ideal for development or scenarios where data
+  needs to be accessible and editable on the host.
+
+- In practice, a combination of both anonymous, named, bind volumes is
+  often used to address different requirements within a containerized
+  environment
+
+
+-------------------------------------------------------------------------------------
+### Q017 : Docker Mount Bind Volume Concept;;
+
+-  `Docker bind volumes`, also known as host volumes, are a type of volume used
+   to manage data persistence within containers. 
+
+-  They allow you to explicitly specify a path on the host system that should
+   be mounted into the container. 
+
+-  This provides a way to share and manage data between the host system and
+   containers. 
+
+Here are some key concepts and characteristics of Docker bind volumes:
+
+`1) Path on Host and Container`:
+
+Bind volumes allow you to specify a path on the host system and a path
+within the container. 
+
+The data in the host directory is mounted into the container, making it
+accessible from both the host and the container.
+
+`2) Persistence`:
+
+Data in bind volumes is persistent and survives the removal of containers.
+This makes bind volumes suitable for managing persistent data that needs
+to be accessed and shared between containers or the host system.
+
+`3) User-Defined Paths`:
+
+You explicitly define the source path on the host system and the
+destination path within the container when using the -v or --volume flag.
+
+`4) Direct Host Access`:
+
+Bind volumes are easily accessible from the host system, allowing you to
+manage and back up data directly from the host.
+
+`5) Data Sharing`:
+
+Bind volumes are often used to share data between the host and containers
+or among multiple containers. For example, you can use a bind volume to
+store configuration files that need to be edited on the host system and
+accessed by the container.
+
+`6) File Permissions`:
+
+File permissions on the mounted volume are the same as those on the host
+system. This means that changes made to the files within the container
+can affect the file permissions on the host.
+
+Here's how to create and use a bind volume when running a Docker container:
+
+`$ docker run -d -v /host/path:/container/path my_image`
+
+Here, `/host/path` is the path on the host system and `/container/path` 
+is the path within the container where the data is mounted. 
+
+The container can access and modify the data in the `/container/path`
+directory, and changes are reflected on the host system in the 
+`/host/path directory`.
+
+`7) Mount Volume Key Uses`:
+
+Bind volumes are commonly used for scenarios where data needs to be
+accessed and shared between containers and the host system, 
+
+or, when it's necessary to manage persistent data that can be directly
+edited and controlled from the host.
+
+
+-------------------------------------------------------------------------------------
+### Q016 : Docker Named Volume Concept;;
+
+- Docker named volumes are a type of volume used to manage data persistence
+  within containers. 
+
+- They are explicitly named and provide a convenient and flexible way to data
+  that needs to survive the removal of containers. 
+
+- These can be shared among multiple containers, or be easily accessible from
+  both the host system and containers. 
+
+Here are some key concepts and characteristics of named volumes in Docker:
+
+`1) User-Defined Names`: 
+
+Named volumes are explicitly created and given user-defined names. You can
+create them using the docker volume create command or by specifying a
+name with the -v or --volume flag.
+
+`2) Persistent Data`: 
+
+Named volumes are designed for storing persistent data. This data is meant
+to survive the removal of containers, container restarts, or even the
+removal of the volume's associated containers.
+
+`3) User-Defined Names`: 
+
+Named volumes are given user-defined names, making them easily identifiable
+and more human-readable than anonymous volumes.
+
+`4) Access from Host and Containers`: 
+
+Named volumes can be mounted in multiple containers, which makes it easier
+to share data between containers. Named volumes are also accessible from
+the host system, allowing you to manage and back up the data directly
+from the host.
+
+`5) Explicit Management`: 
+
+Named volumes are not automatically deleted when containers using them are
+removed. This means that you have to explicitly remove the volume when
+it is no longer needed, using the docker volume rm command.
+
+`6) Sharing Data`: 
+
+Named volumes are often used for sharing data between containers. For
+example, you can create a named volume to store a database's data and
+then use that volume in multiple containers to ensure consistent data
+access across containers.
+
+Here's how to create a named volume using the docker volume create command:
+
+`$ docker volume create my_named_volume`
+
+or, alternatively, you can also create volumn when running a containe using
+the flag -v or --volume,
+
+`$ docker run -d -v my_named_volume:/container_path my_image`
+
+In this example, `my_named_volume` is the name of the `named volume`.
+
+`7) Named Volume Key Uses`:
+
+`Named volumes` are a powerful and flexible way to handle persistent data in
+Docker. They are commonly used for databases, configuration files,
+application code, and any data that needs to survive container restarts
+and be shared between containers.
+
+
+-------------------------------------------------------------------------------------
+### Q015 : Docker Anonymous Volume Concept;;
+
+-  Docker anonymous volumes are a type of volume used to manage data
+   persistence within containers. 
+
+-  They are created and managed by Docker itself, and unlike named volumes,
+   they are not explicitly named. Instead, they are assigned unique
+   identifiers (UUIDs) and are typically used for temporary or ephemeral data
+   specific to a container. 
+
+Here are some key concepts and characteristics of anonymous volumes in Docker:
+
+`1) Automatically Created`: 
+
+Anonymous volumes are automatically created by Docker when you specify
+the `-v` or `--volume` flag without explicitly specifying a source location.
+	
+For eg,
+> $ docker run -v /project/temp <image_id>
+
+An anonymous volume is created at the path `/project/temp` inside the container.
+
+`2) Unique Identifiers`:
+
+Each anonymous volume is assigned a unique identifier, such as a UUID, and
+does not have a user-defined name. This identifier is not easily
+human-readable.
+
+`3) Ephemeral Data`:
+Anonymous volumes are typically used for managing data that is temporary
+and specific to a container's runtime. This data is expected to be
+short-lived and may not need to be accessed or managed externally.
+
+`4) Docker-Managed:` 
+
+Docker is responsible for managing the lifecycle of anonymous volumes. This
+includes their creation and deletion. When you remove a container that
+uses anonymous volumes, Docker will also remove those associated volumes.
+
+`5) No Direct Access`: 
+
+Anonymous volumes are not meant to be directly accessible from the host
+system. They are managed by Docker and may be challenging to access or
+manage externally.
+
+`6) Temporary Data Preferences`: 
+
+Use anonymous volumes when you need to store temporary data, such as cached
+files or runtime-specific data, within a container. Since Docker
+automatically handles their creation and removal, you don't need to
+worry about managing them.
+
+`7) Not Easily Shared`: 
+
+Anonymous volumes are typically associated with a single container and are
+not designed for sharing data across multiple containers or with the
+host system.
+
+
+-------------------------------------------------------------------------------------
+### Q014 : Docker Volume Concepts in Container;;
+
+-  Volumes are folder on your host machine or hard drive which are mounted
+("made available or mapped") into the containers.
+
+-  Shared directory of docker-container volume mounted to the local-machine.
+For eg,
+
+`/home/local-machine/shared  <- /home/docker-container/shared`
+
+-  Volumes persist if a container shuts down. If a container (re-)starts and
+mounts a volume, any data inside of that volume is available in the container.
+
+-  A container can read or write data into a volume and similary it is
+available for the local machine as well for read/write operation.
+
+-  Volumne Types are of two types :
+	- Anonymous or Names Volume (Managed By Docker)
+	- Bind Volume (Managed By Engineer)
+
 
 -------------------------------------------------------------------------------------
 ### Q013: Setup an interactive docker container;;
