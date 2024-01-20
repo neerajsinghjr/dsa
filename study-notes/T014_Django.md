@@ -1,4 +1,4 @@
-'''
+````
 -------------------------------------------------------------------------------------
 -> Title : Django Notes
 -> Author : @neeraj-singh-jr
@@ -12,12 +12,12 @@
 -> Q002 : Djanog Core Architecture;;
 -> Q001 : What is Django Serializer;;
 -------------------------------------------------------------------------------------
-'''
+````
 
-###---DJANGO NOTES : BEGINNING 
+### DJANGO NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q004 : Django Migration Workflow;;
+### Q004 : Django Migration Workflow;;
 
 Database engine are those library which lets your project
 connect to any database client.
@@ -27,7 +27,7 @@ connect to any database client.
 	- msql : 'django.db.backends.mysql'
 	- oracle : 'django.db.backends.oracle'
 
-//--- Default apps
+#### Default apps
 
 - django.contrib.admin – The admin site. You’ll use it shortly.
 - django.contrib.auth – An authentication system.
@@ -38,14 +38,15 @@ connect to any database client.
 
 NOTE : We have to migrate the table for these default apps
 
-$ python manage.py migrate
+`$ python manage.py migrate`
 
 The migrate command looks at the INSTALLED_APPS setting and creates any
 necessary database tables according to the database settings in your
 mysite/settings.py file and the database migrations shipped with the app.
 
-//--- Creating Model
+#### Creating Model
 
+````
 # from mysite/polls/models.py
 
 from django.db import models
@@ -60,13 +61,14 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
+````
 
-# Key Notes:-
+#### Key Notes:-
 
 
 
 -------------------------------------------------------------------------------------
--> Q003 : Django Path Function;;
+### Q003 : Django Path Function;;
 
 The path() function is passed four arguments, two required: 
 	- route
@@ -74,7 +76,7 @@ The path() function is passed four arguments, two required:
 	- kwargs, 
 	- name
 
-//--- path() argument: route
+#### path() argument: route
 
 route is a string that contains a URL pattern. When processing a request, Django
 starts at the first pattern in urlpatterns and makes its way down the list,
@@ -85,18 +87,18 @@ for eg, Patterns don’t search GET and POST parameters, or the domain name. For
 example, in a request to https://www.example.com/myapp/
 
 
-//---path() argument: view
+#### path() argument: view
 
 When Django finds a matching pattern, it calls the specified view function with
 an HttpRequest object as the first argument and any “captured” values from the
 route as keyword arguments. We’ll give an example of this in a bit.
 
 
-//--- path() argument: kwargs
+#### path() argument: kwargs
 
 Arbitrary keyword arguments can be passed in a dictionary to the target view.
 
-//--- path() argument: name
+#### path() argument: name
 
 Naming your URL lets you refer to it unambiguously from elsewhere in Django,
 especially from within templates. This powerful feature allows you to make
@@ -105,10 +107,11 @@ file.
 
 
 -------------------------------------------------------------------------------------
--> Q002 : Djanog Core Architecture;;
+### Q002 : Djanog Core Architecture;;
 
-###--- Setup Django Model and Migration
+#### Setup Django Model and Migration
 
+````
 # main django model for core
 from django.db import models
 
@@ -134,10 +137,11 @@ $ python manage.py makemigrations
 
 then migrate
 $ python manage migrate
+````
 
+#### Django Test Migration from Shell
 
-###--- Django Test Migration from Shell
-
+````
 # Import the models we created from our "news" app
 >>> from news.models import Article, Reporter
 
@@ -163,10 +167,11 @@ Reporter.objects.get(id=1)
 
 >>> Reporter.objects.get(full_name__contains="mith")
 <Reporter: John Smith>
+````
 
+#### Register the created model with Admin Portal 
 
-###--- Register the created model with Admin Portal 
-
+````
 //--- from admin.py file
 
 from django.contrib import admin
@@ -174,7 +179,9 @@ from . import models
 
 admin.site.register(models.Reporter)
 admin.site.register(models.Article)
+````
 
+````
 //--- from urls.py
 
 from django.urls import path
@@ -185,7 +192,9 @@ urlpatterns = [
     path("articles/<int:year>/<int:month>/", views.month_archive),
     path("articles/<int:year>/<int:month>/<int:pk>/", views.article_detail),
 ]
+````
 
+````
 //--- from views.py
 
 from django.shortcuts import render
@@ -196,7 +205,9 @@ def year_archive(request, year):
     a_list = Article.objects.filter(pub_date__year=year)
     context = {"year": year, "article_list": a_list}
     return render(request, "news/year_archive.html", context)
+````
 
+````
 //--- from templates
 
 {% extends "base.html" %}
@@ -212,22 +223,24 @@ def year_archive(request, year):
     <p>Published {{ article.pub_date|date:"F j, Y" }}</p>
 {% endfor %}
 {% endblock %}
+````
 
 
 -------------------------------------------------------------------------------------
--> Q001 : Django Framwork Getting Started;;
+### Q001 : Django Framwork Getting Started;;
 
 Django was developed in a fast-paced newsroom environment, it was designed to
 make common web development tasks fast and easy.
 
 //--- check django version;;
 
-$ python -m django --version
+`$ python -m django --version`
 
 //--- creating a project;;
 
-$ django-admin startproject mysite
+`$ django-admin startproject mysite`
 
+````
 # project directory will look like this,
 mysite/
     manage.py
@@ -237,47 +250,47 @@ mysite/
         urls.py
         asgi.py
         wsgi.py
+````
 
-# directort description 
+#### Directory Description: 
 
--> The outer mysite/ root directory is a container for your project. Its name
-  doesn’t matter to Django; you can rename it to anything you like.
+-  The outer mysite/ root directory is a container for your project. Its name
+   doesn’t matter to Django; you can rename it to anything you like.
 
--> manage.py: A command-line utility that lets you interact with this Django
+-  manage.py: A command-line utility that lets you interact with this Django
    project in various ways. You can read all the details about manage.py in
    django-admin and manage.py.
 
-
--> The inner mysite/ directory is the actual Python package for your project.
+-  The inner mysite/ directory is the actual Python package for your project.
    Its name is the Python package name you’ll need to use to import anything
    inside it (e.g. mysite.urls).
 
--> mysite/__init__.py: An empty file that tells Python that this directory
+-  mysite/__init__.py: An empty file that tells Python that this directory
    should be considered a Python package. If you’re a Python beginner, read
    more about packages in the official Python docs.
 
--> mysite/settings.py: Settings/configuration for this Django project. Django
+-  mysite/settings.py: Settings/configuration for this Django project. Django
    settings will tell you all about how settings work.
 
--> mysite/urls.py: The URL declarations for this Django project; a “table of
+-  mysite/urls.py: The URL declarations for this Django project; a “table of
    contents” of your Django-powered site. You can read more about URLs in URL
    dispatcher.
 
--> mysite/asgi.py: An entry-point for ASGI-compatible web servers to serve your
+-  mysite/asgi.py: An entry-point for ASGI-compatible web servers to serve your
    project. See How to deploy with ASGI for more details.
 
--> mysite/wsgi.py: An entry-point for WSGI-compatible web servers to serve your
+-  mysite/wsgi.py: An entry-point for WSGI-compatible web servers to serve your
    project. See How to deploy with WSGI for more details.
 
-//--- 	running server;;
+### Django Run-Time Environment;;
 
-$ python manage.py runserver
+`$ python manage.py runserver`
 
 or, if you want to change the port
-$ python manage.py runserver 8080
+`$ python manage.py runserver 8080`
 
 or, if you want to change the ip
-$ $ python manage.py runserver 0.0.0.0:8000
+`$ $ python manage.py runserver 0.0.0.0:8000`
 
 
 -------------------------------------------------------------------------------------

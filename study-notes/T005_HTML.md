@@ -620,8 +620,9 @@ The title attribute is used to set the text which is displayed when the mouse
 is hovered over an HTML element.
 
 for eg,
+````
 <h1 title="The web loves HTML">On the internet, HTML is everywhere</h1>
-
+````
 
 -------------------------------------------------------------------------------------
 ### Q001 : HTML Core Topics;;
@@ -649,10 +650,12 @@ is the content and the </h1> at the end is called the closing tag.
 #### Topic : Headings
 
 The elements <h1> through <h6> are used to display headings.
-
-<h1> is the most important heading.
-
-<h2> is less important than h1, but more important than any other text.
+````
+<div>
+<h1> is the most important heading.</h1>
+<h2> is less important than h1, but more important than any other text.</h2>
+</div>
+````
 
 This way, we have six different types of headings, from <h1> to <h6>.
 

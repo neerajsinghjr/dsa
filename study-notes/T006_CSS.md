@@ -1,4 +1,4 @@
-'''
+````
 -------------------------------------------------------------------------------------
 -> Title : CSS Notes
 -> Author: @neeraj-singh-jr
@@ -36,16 +36,16 @@
 -> Q002 : Selectors Brief;;
 -> Q001 : CSS Core;;
 -------------------------------------------------------------------------------------
-'''
+````
 
-###---CSS NOTES : BEGINNING 
+### CSS NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
 -> Q028 : Flexbox in CSS;
 
 Display Properties - static, relative, absolute, fixed, float, flex 
 
-###---------------- Flexbox Display Property :-
+#### Flexbox Display Property :-
 
 The float property has been used a lot in the past to create web layouts. We
 can agree that it helps us stack elements next to each other.
@@ -80,7 +80,7 @@ for eg,
   background-color: #F1F5F9;
 }
 
-###---------------- Flex Container :-
+#### Flex Container :-
 
 When you set the display property of an element to flex, that element becomes
 a flex container and all its immediate child elements become flex items.
@@ -126,7 +126,7 @@ div {
   background-color: lightgrey;
 }
 
-###---------------- Flex Direction :-
+#### Flex Direction :-
 
 By default, the elements within a flex container are stacked next to each
 other in a single row. The stacking happens left to right.
@@ -186,7 +186,7 @@ for eg,
   flex-direction: column-reverse;
 }
 
-###---------------- Flex Wraps :-
+#### Flex Wraps :-
 
 By default, flexbox tries to fit all the child elements in a single row or a
 single column depending on the flex-direction.
@@ -220,7 +220,7 @@ for eg,
   margin: 5px;
 }
 
-###---------------- Flex Justify Content :-
+#### Flex Justify Content :-
 
 By default, we saw that the flex items are placed at the beginning of the
 container depending on the flex direction, with least spacing between the
@@ -323,7 +323,7 @@ for eg,
   justify-content: space-evenly;
 }
 
-###---------------- Align Items :-
+#### Align Items :-
 
 While justify-content allows us to change the placement and spacing of the
 items in one direction, we would also want to align the items in the other
@@ -411,7 +411,7 @@ for eg,
 }
 
 
-###---------------- Align Self :-
+#### Align Self :-
 
 When you want only one flex item to be aligned differently from the rest, you
 can use the align-self property.
@@ -441,7 +441,7 @@ for eg,
   align-self: end;
 }
 
-###---------------- Flex Grow :-
+#### Flex Grow :-
 
 Sometimes, you might want one or all of the items to occupy the full space
 available. That's when you can use the flex-grow property on individual flex
@@ -474,7 +474,7 @@ p {
   flex-grow: 0;
 }
 
-###---------------- Flex Shrink :-
+#### Flex Shrink :-
 
 When the flex items don't wrap, they try to shrink as much as possible to fit
 into the available space.
@@ -509,7 +509,7 @@ for eg,
   flex-shrink: 5;
 }
 
-###---------------- Flex Basis :-
+#### Flex Basis :-
 
 With the flex-basis property, we can set the initial size of the item. It's
 possible to set this with the width property too, but flex-basis is a better
@@ -548,7 +548,7 @@ for eg,
   flex-basis: 50%;
 }
 
-###---------------- Flex Shorthand Property :- 
+#### Flex Shorthand Property :- 
 
 -> You can set flex-grow, flex-shrink and flex-basis with one single shorthand
    flex property.
@@ -580,7 +580,7 @@ flex-grow is 0
 flex-shrink is not specified
 flex-basis is 100px
 
-###---------------- Flex Order :-
+#### Flex Order :-
 
 -> By default, flex items are displayed in the same order they appear in the
    HTML code.
@@ -623,7 +623,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q027 : Media Query in CSS;
 
-###---------------- Responsive without Media Query :- 
+#### Responsive without Media Query :- 
 
 With CSS flexbox, we can create blocks which automatically adjust their sizes
 for small and large screens
@@ -694,7 +694,7 @@ div {
 NOTE : 
 -> Width > 600 green bg shown and smaller then 600 orange bg will be shown.
 
-###---------------- Mobile first and Desktop first Approaches :-
+#### Mobile first and Desktop first Approaches :-
 
 -> Desktop First Approaches : Usually, We started with layouts suitable for
    desktops. Then we worked our way towards smaller screen sizes by adding
@@ -708,7 +708,7 @@ NOTE :
 -> Keep in mind that we used max-width media feature for desktop-first
    approach and min-width for mobile-first approach.
 
-###---------------- Media Queries for Orientation :-
+#### Media Queries for Orientation :-
 
 We can also change some styles based on whether our web page is being viewed
 in portrait or landscape orientation
@@ -730,7 +730,7 @@ p {
   }
 }
 
-###---------------- Responsive Images :-
+#### Responsive Images :-
 
 When we specify the width of an image in pixels or em, on larger screens there
 might be a lot of empty space next to image and on smaller screens, a
@@ -748,7 +748,7 @@ img {
   max-width: 100%
 }
 
-###---------------- Responsive Text :-
+#### Responsive Text :-
 
 Just like any other style, we can change the text size too, based on screen
 width using media queries
@@ -774,7 +774,7 @@ h2 {
   }
 }
 
-###---------------- Responsive Blocks :-
+#### Responsive Blocks :-
 
 One of the earliest methods of creating responsive layouts is to set the width
 of blocks in percentages and stack them one below the other for mobile
@@ -835,7 +835,7 @@ header {
 -------------------------------------------------------------------------------------
 -> Q026 : CSS Page Layout;
 
-###---------------- Most common web page structure
+#### Most common web page structure
 
 Key Points :-
 - The header, navigation bar and footer occupy 100% width of the page.
@@ -902,7 +902,7 @@ nav, footer {
   clear: both;
 }
 
-###---------------- Fluid Layout :-
+#### Fluid Layout :-
 
 Instead of setting the width in pixels, if we use percentages, all the
 elements auto adjust their width based on the screen size.
@@ -948,7 +948,7 @@ header {
 This is a fluid layout because all the elements adjust according to the size
 of the screen just like a liquid put inside a container.
 
-###---------------- Adaptive Layout :-
+#### Adaptive Layout :-
 
 If we can change the appearance of elements based on screen size, our problem
 is solved. We can use media queries to set different styles for different
@@ -1034,7 +1034,7 @@ header {
   }
 }
 
-###---------------- Responsive Layout :-
+#### Responsive Layout :-
 
 Responsive layouts use a mix of fluid and adaptive layouts. That is, we can
 specify the widths in percentages and use media queries to change them as
@@ -1102,7 +1102,7 @@ header {
 -------------------------------------------------------------------------------------
 -> Q025 : Cascade in CSS;
 
-###---------------- Cascade : Basic :-
+#### Cascade : Basic :-
 
 When you have multiple CSS rules that apply to the same HTML, these rules
 conflict with each other and one of them wins
@@ -1130,7 +1130,7 @@ In such a case, where all the selectors are identical, the rule that appears
 last in the code always wins. The last color value is green and the last
 background-color is yellow
 
-###---------------- Cascade : Specificity Hierarchy :-
+#### Cascade : Specificity Hierarchy :-
 
 When the selectors are identical, or have the same importance, the rule that
 comes later wins. 
@@ -1169,7 +1169,7 @@ p {
 
 NOTE : Red Wins, Class selector > html-element.
 
-###---------------- Cascade : Specificity Value :-
+#### Cascade : Specificity Value :-
 
 There is a specificity value attached to each of the selectors or combination
 of selectors. Higher the specificity value, more specific is the selector.
@@ -1205,7 +1205,7 @@ Specificity value = 1 + 10 + 10 = 21
 # CASE 2 :- (#p1 > span)
 Specificity value = 100 + 1 = 101
 
-###---------------- Cascade : The !important Rule :-
+#### Cascade : The !important Rule :-
 
 Sometimes you might need to override the styles of a more specific selector.
 The only way to do that is by adding !important to the CSS rule, to which you
@@ -1229,7 +1229,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q024 : Pseudo-Elements in CSS;
 
-###---------------- Pesudo Elements : Styling First Line and First Letter :-
+#### Pesudo Elements : Styling First Line and First Letter :-
 
 ::first-line :- When you want to style only the first line of a paragraph or
   the first line of each paragraph differently, you can use the ::first-line
@@ -1273,7 +1273,7 @@ you can combine the :first-child pseudo-class with :first-letter like this:
 
 p:first-child::first-letter
 
-###---------------- Pesudo Elements : Before Element :-
+#### Pesudo Elements : Before Element :-
 
 When you want to add something at the beginning of an element without actually
 adding it in HTML, you can use the ::before pseudo-element to do so, with the
@@ -1300,7 +1300,7 @@ for eg,
   color: tomato;
 }
 
-###---------------- Pesudo Elements : After Element :-
+#### Pesudo Elements : After Element :-
 
 When you want to add something at the end of an element without actually
 adding it in the HTML, you can use the ::after pseudo-element to do so, with
@@ -1324,7 +1324,7 @@ h2::before, h2::after {
 -------------------------------------------------------------------------------------
 -> Q023 : Pseudo-Class in CSS;
 
-###---------------- Pseudo Class: Hover :-
+#### Pseudo Class: Hover :-
 
 When a user takes the mouse pointer over an element, you can style it
 differently by appending :hover to the selector
@@ -1345,7 +1345,7 @@ div:hover + p {
   display: block;
 }
 
-###---------------- Pseudo Class : Focus :-
+#### Pseudo Class : Focus :-
 
 When you click or tap on an element, or when you use the tab key on keyboard
 to move to it, an element gets focus
@@ -1381,7 +1381,7 @@ button:focus {
   outline: 1px solid darkblue;
 }
 
-###---------------- Pseudo Class : Links :-
+#### Pseudo Class : Links :-
 
 Along with :hover, we can change the appearance of links depending on other
 user actions. We can change the link styling for when the user clicks the
@@ -1417,7 +1417,7 @@ a:active {
   color: darkred;
 }
 
-###---------------- Pseudo Class : First and Last Child :-
+#### Pseudo Class : First and Last Child :-
 
 We can select first child or the last child of its parent element, we can
 use - 
@@ -1452,7 +1452,7 @@ ul > li:last-child {
   color: yellow;
 }
 
-###---------------- Pseudo Class : Nth Child :-
+#### Pseudo Class : Nth Child :-
 
 You can also select a specific child element using the :nth-child
 pseudo-class
@@ -1491,7 +1491,7 @@ span:nth-child(n+3) {
   background-color: teal;
 }
 
-###---------------- Pseudo Class : First and Last of Type :-
+#### Pseudo Class : First and Last of Type :-
 
 With the :first-child pseudo-class, you can select a particular type of
 element if its the first child of its parent. 
@@ -1525,7 +1525,7 @@ span:first-of-type {
   background-color: orange;
 }
 
-###---------------- Pseudo Class : nth of Type :-
+#### Pseudo Class : nth of Type :-
 
 When you want to select the 7th element of its type within its parent, or
 select the first 15 elements or every 3rd element and so on, you can use
@@ -1562,7 +1562,7 @@ a, span a:nth-child(2) {
 -------------------------------------------------------------------------------------
 -> Q022 : Combinators in CSS;
 
-###---------------- Combinators : Selecting Direct Child Elements :-
+#### Combinators : Selecting Direct Child Elements :-
 
 We can select an element directly using its class, or id, or the tag name. 
 
@@ -1585,7 +1585,7 @@ div > p {
   background-color: lightgrey;
 }
 
-###---------------- Combinator : Selecting all child elements :-
+#### Combinator : Selecting all child elements :-
 
 When we need to select a particular set of child elements, we use the space
 character like this - div a
@@ -1595,7 +1595,7 @@ even when those a elements are nested deeper within the div
 
 for eg,
 <!-- HTML -->
-<div> <a href="#" alt="">Link 1 </a> </div>
+<div> <a href="#" >Link 1 </a> </div>
 
 a href="#" alt="">Link 2</a>
 
@@ -1615,17 +1615,19 @@ ul li {
   padding-right: 10px
 }
 
-###---------------- Combinators : Selecting Immediate Next Element :-
+#### Combinators : Selecting Immediate Next Element :-
 
 When we need to select the immediate next element, we use the + character.
 
 for eg,
-<!-- HT :-L -->
+````
+<!-- HT :--->
 <h1>Lotus</h1>
 <p>
   Binomial name: Nelumbo nucifera
   <p> GREEN COLOUR NOT SHOWN FOR THIS PARAGRAPH! </p>
 </p>
+````
 
 <!-- CSS -->
 h1 + p {
@@ -1634,12 +1636,13 @@ h1 + p {
   color: green;
 }
 
-###---------------- Combinators : Selecting any Next Element :-
+#### Combinators : Selecting any Next Element :-
 
 When we need to select any sibling element that follow a particular element,
 we use the ~ character to combine two selectors like this, h2 ~ p
 
 for eg,
+````
 <div>
   <p>BROWN COLOR NEGATI76VE</p>
   <h2>Hello World</h2>
@@ -1649,6 +1652,7 @@ for eg,
 <p class="outer">BROWN COLOR NEGATIVE
   <p>BROWN COLOR NEGATIVE</p>
 </p>
+````
 
 <!-- CSS -->
 h2 ~ p {
@@ -1664,7 +1668,7 @@ h2 ~ a {
 -------------------------------------------------------------------------------------
 -> Q021 : Float in CSS;
 
-###---------------- Float Property :-
+#### Float Property :-
 
 We can use the float property to put an element on the right or left side
 inside its parent element
@@ -1678,7 +1682,7 @@ for eg,
 <!-- HTML -->
 <div>
   <img src="har-ki-doon-valley-uttarakhand.jpg" alt="Har ki Doon Valley Uttarakhand"/>
-  <h1>Har Ki Doon</h2>
+  <h1>Har Ki Doon</h1>
   <p>
     Har Ki Doon or Har Ki Dun is a cradle-shaped hanging valley in the Garhwal Himalayas of Uttarakhand, India. The region is surrounded with green Bugyals (High Altitude Meadows). It is surrounded by snow-covered peaks and alpine vegetation. It is connected to Baspa Valley by the Borasu Pass. (Credits: Wikipedia)
   </p>
@@ -1691,7 +1695,7 @@ img {
   width: 300px;
 }
 
-###---------------- Float Clear Property :-
+#### Float Clear Property :-
 
 Float's clear property is used to clear the left or right alignment.
 
@@ -1724,7 +1728,7 @@ img {
   clear: left
 }
 
-###---------------- Clearfix :-
+#### Clearfix :-
 
 The clear property on the next element to clear the effect of the float property. 
 
@@ -1761,7 +1765,7 @@ div {
 -------------------------------------------------------------------------------------
 -> Q020 : Position in CSS;
 
-###---------------- Position Property;
+#### Position Property;
 
 By default, all the HTML elements appear on the web page one after another in
 the same order as specified in the HTML markup. 
@@ -1808,7 +1812,7 @@ div {
   top: 50px;
 }
 
-###---------------- Position Relative :-
+#### Position Relative :-
 
 The default value for the position property is static. It makes the elements
 follow the normal flow.
@@ -1852,7 +1856,7 @@ pushed it from the left and top by 100px from its original position.
 The top and left properties wouldn't work if you remove the position property.
 These properties don't work with the static position elements.
 
-###---------------- Difference between offsets and margins :-
+#### Difference between offsets and margins :-
 
 //--- Top vs Margin-top :-
 
@@ -1912,7 +1916,7 @@ div {
   border: 5px solid darkorange;
 }
 
-###---------------- Negative Offset Values :-
+#### Negative Offset Values :-
 
 The top, right, bottom and left properties can also have negative values.
 
@@ -1937,7 +1941,7 @@ div {
   left: 40px;
 }
 
-###---------------- Z-Index :-
+#### Z-Index :-
 
 Sometimes, we want to overlap one element over another. We can achieve this
 with position:relative, but which element appears in front or at the back can
@@ -1976,7 +1980,7 @@ div {
   z-index: 2;
 }
 
-###---------------- Position Absolute :-
+#### Position Absolute :-
 
 When you set an element's position to absolute, you can use the top, right,
 bottom and left properties to change the its position inside its parent
@@ -2021,7 +2025,7 @@ div {
   right: 20px;
 }
 
-###---------------- Parent Element For Absolute Position;
+#### Parent Element For Absolute Position;
 
 An absolute element's location changes with respect to its parent element.
 This works only if the parent element has its own position set to a value
@@ -2066,7 +2070,7 @@ div {
   left: 0px;
 }
 
-###---------------- Absolute Element's Width & Height;
+#### Absolute Element's Width & Height;
 
 If an absolute element has no height specified, we can make the element fill
 up the available vertical space by specifying both top and bottom values.
@@ -2138,7 +2142,7 @@ for eg,
   left: 0px;
 }
 
-###---------------- Position Fixed :-
+#### Position Fixed :-
 
 When you set an element's position to fixed, the element stays at the same
 position even when you scroll away.
@@ -2163,7 +2167,7 @@ div {
   bottom: 0px;
 }
 
-###---------------- Position Sticky
+#### Position Sticky
 
 The orange coloured div is positioned sticky in the example given below. Try
 to scroll inside the example window.
@@ -2229,7 +2233,7 @@ body {
   top: 0px;
 }
 
-###---------------- Position Inset Property :-
+#### Position Inset Property :-
 
 Instead of using the individual top, right, bottom and left properties, a
 single inset property can be used to specify all the four values.
@@ -2341,7 +2345,7 @@ for eg, Visibility:hidden;
 -------------------------------------------------------------------------------------
 -> Q018 : Display in CSS;;
 
-###---------------- Display Block :-
+#### Display Block :-
 
 The div and p elements have their default display set to block. Some more
 block-level elements are the heading elements - h1 to h6, header, footer,
@@ -2371,7 +2375,7 @@ span, a {
   margin-top: 30px;
 }
 
-###---------------- Display Inline :-
+#### Display Inline :-
 
 The span, a and img elements have their display set to inline by default.
 These elements do not start on a new line and take up only as much space as
@@ -2393,7 +2397,7 @@ ul {
 	margin: 10px;
 }
 
-###---------------- Display Inline Block :-
+#### Display Inline Block :-
 
 Sometimes it's helpful to have elements display in the same line but also
 behave like block-level elements with specified height and width.
@@ -2420,7 +2424,7 @@ a {
   margin-top: 50px;
 }
 
-###---------------- Display None :-
+#### Display None :-
 
 The display property has another value none which makes the element completely disappear.
 
@@ -2438,7 +2442,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q017 : CSS Box Model;;
 
-###---------------- CSS Box Model or content-box :-
+#### CSS Box Model or content-box :-
 
 In CSS, all elements are represented as rectangular boxes in the browser. 
 
@@ -2454,7 +2458,7 @@ Final width = content width + left padding + right Padding + left Border
 Final height = content height + top padding + bottom Padding + top Border 
 							+ bottom Border + top Margin + bottom Margin
 
-###---------------- Box Sizing Model :-
+#### Box Sizing Model :-
 
 The calculations for the width or height in the box model tend to become complex. 
 This is why, CSS has an alternative box model, where the padding and border sizes 
@@ -2495,7 +2499,7 @@ div {
 -------------------------------------------------------------------------------------
 -> Q016 : Styling Forms in CSS;;
 
-###---------------- Styling Width & Height for Text Inputs :-
+#### Styling Width & Height for Text Inputs :-
 
 The text fields and textareas in forms can be styled in multiple ways using
 width, height, padding, border, color, background-color and fonts. 
@@ -2532,7 +2536,7 @@ textarea {
   height: 100px;
 }
 
-###---------------- Style Input by type :-
+#### Style Input by type :-
 
 Select each input type differently, we can use it like this -
 
@@ -2555,7 +2559,7 @@ input[type="button"] {
   height: 25px;
 }
 
-###---------------- Padding & Margin for text inputs :-
+#### Padding & Margin for text inputs :-
 
 Padding and Margin can be used inside the text inputs. 
 
@@ -2567,7 +2571,7 @@ input[type="text"], textarea {
   width: 300px;
 }
 
-###---------------- Styling with Borders and Colors :-
+#### Styling with Borders and Colors :-
 
 Text input fields and textareas have a border by default. But we can change
 their look using the border property.
@@ -2590,7 +2594,7 @@ textarea {
   border: 1px solid lightgray;
 }
 
-###---------------- Styling Font-Family and Font-Size :-
+#### Styling Font-Family and Font-Size :-
 
 By default, the text field has a sans-serif font and the textarea has a serif
 font. The font sizes are different too.
@@ -2611,7 +2615,7 @@ input[type="text"], textarea {
   font-size: 1em;
 }
 
-###---------------- Textarea resize :-
+#### Textarea resize :-
 
 The textarea field can be resized when you drag the resizer at the bottom
 right corner in any direction. To prevent resizing horizontally, vertically
@@ -2645,7 +2649,7 @@ textarea {
     resize: vertical;
 }
 
-###---------------- Styling Select Inputs :-
+#### Styling Select Inputs :-
 
 The select input can be styled in the standard manner much like any other HTML
 element or a form element
@@ -2682,7 +2686,7 @@ select > option {
   line-height: 1px;
 }
 
-###---------------- Styling Border :-
+#### Styling Border :-
 
 Buttons can be styled in various ways using the standard properties - width,
 height, padding, background-color, color, border, border-radius, font-family,
@@ -2690,12 +2694,13 @@ font-size.
 
 for eg,
 <!-- HTML -->
+````
 <form
 	<input type="button" value="Next"/>
 	<input type="reset" value="Reset"/>
 	<input type="submit" value="Submit"/>
 </form>
-
+````
 
 <!-- CSS -->
 input[type="button"] {
@@ -2730,7 +2735,7 @@ input[type="submit"] {
   border: none;
 }
 
-###---------------- Hover & Focus Styles
+#### Hover & Focus Styles
 
 When you take your mouse over a text input or a button, the background or
 border colour can be changed using the :hover pseudo-class selector.
@@ -2741,8 +2746,10 @@ changed using the :focus pseudo-class selector.
 
 for eg,
 <!-- HTML -->
+````
 <input type="text" id="email" placeholder="Email ID" />
 <input type="button" id="subscribe" value="Subscribe" /
+````
 
 <!-- CSS -->
 #email {
@@ -2769,7 +2776,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q015 : Styling Tables in CSS;;
 
-###---------------- Table Border :-
+#### Table Border :-
 
 The border property for the table element adds a border around the table:
 
@@ -2803,7 +2810,7 @@ table, th, td {
   border: 1px solid darkgray;
 }
 
-###---------------- Table Collapse :-
+#### Table Collapse :-
 
 When we add borders around cells, we get double borders. We can use the
 property border-collapse to change this behavior.
@@ -2817,7 +2824,7 @@ table, th, td {
   border-collapse: collapse;
 }
 
-###---------------- Table Width and Height :-
+#### Table Width and Height :-
 
 By default, the table occupies only as much width as required by the content.
 But we can manually set the width for a table too.
@@ -2845,7 +2852,7 @@ td {
   height: 35px;
 }
 
-###---------------- Table Text Alignment - Horizontally :-
+#### Table Text Alignment - Horizontally :-
 
 By default, the text in the header row is center aligned and the text in all
 other rows is left aligned. The text-align property can be used to change
@@ -2861,7 +2868,7 @@ table > tr {
 	height : 50px
 }
 
-###---------------- Table Text Alignment - Vertically :-
+#### Table Text Alignment - Vertically :-
 
 When you set a height for the entire table or for individual rows, the text is
 vertically aligned to the middle by default. The vertical-align property can
@@ -2893,7 +2900,7 @@ td {
 
 NOTE: The vertical-align property has no effect on the table selector.
 
-###---------------- Styling Specific Rows (tr:tag):-
+#### Styling Specific Rows (tr:tag):-
 
 We can style specific rows of a table using pseudo classes like 
 
@@ -2909,7 +2916,7 @@ We can style specific rows of a table using pseudo classes like
 -> Select Even or Odd child, 
 	for eg, tr:nth-child(even), tr:nth-child(odd)
 
-###---------------- Styling Specific Columns (td:tag):-
+#### Styling Specific Columns (td:tag):-
 
 We can style specific columns of a table using pseudo classes like 
 
@@ -2929,7 +2936,7 @@ We can style specific columns of a table using pseudo classes like
 -------------------------------------------------------------------------------------
 -> Q014 : Styling Un/Ordered List in CSS 
 
-###---------------- Styling : Ordered and Unordered List :-
+#### Styling : Ordered and Unordered List :-
 
 //--- List Style Type as decimal, alpha, roman, shapes :-
 
@@ -3014,7 +3021,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q013 : Styling Text in CSS;
 
-###---------------- Styling : Anchor Links :-
+#### Styling : Anchor Links :-
 
 Links can be styled in many different ways using properties like color,
 background-color, border, padding, text-decoration and so on:
@@ -3030,7 +3037,7 @@ a {
 	text-decoration: none;
 }
 
-###---------------- Styling : Anchor Links With States :-
+#### Styling : Anchor Links With States :-
 
 We can change the appearance of links not only like the normal elements, but
 also depending on some user actions. Like when the user takes their cursor
@@ -3076,7 +3083,7 @@ a:visited for the styles to take effect.
 -------------------------------------------------------------------------------------
 -> Q012 : Opacity in CSS;
 
-###---------------- Opacity :-
+#### Opacity :-
 
 The opacity property is used to define transparency for elements.
 
@@ -3107,7 +3114,7 @@ for eg,
   opacity: 0.3;
 }
 
-###---------------- Opacity using RGBA :-
+#### Opacity using RGBA :-
 
 When we set the opacity for a parent element, all the child elements also
 inherit the same value:
@@ -3144,7 +3151,7 @@ div {
 -------------------------------------------------------------------------------------
 -> Q011 : Borders in CSS;
 
-###---------------- Border Color :-
+#### Border Color :-
 
 The border-color property is used to specify the colour of the borders using
 color names or RGB or HEX values.
@@ -3167,7 +3174,7 @@ for eg,
 	border-style : dashed;
 }
 
-###---------------- Border Style :-
+#### Border Style :-
 
 The border-style property is used to identify the type of border:
 
@@ -3225,7 +3232,7 @@ for eg,
   border-style: dashed solid dotted outset;
 }
 
-###---------------- Border Width :-
+#### Border Width :-
 
 The border-width property is used to specify the thickness of the borders.
 
@@ -3274,7 +3281,7 @@ for eg,
   border-width: 1px 2px 4px;
 }
 
-###---------------- Border Shorthand :-
+#### Border Shorthand :-
 
 The border properties in CSS are used to create borders around an HTML
 element. We can control the width, color and the general styling of the
@@ -3306,7 +3313,7 @@ div {
 	border : 2px dotted organge;
 }
 
-###---------------- Border Sides :-
+#### Border Sides :-
 
 We can set different styles, widths and colours for the borders of the
 different sides of an element. We do this by specifying multiple values for
@@ -3343,7 +3350,7 @@ div {
   border-color: #cccccc;
 }
 
-###---------------- Borders Corners :-
+#### Borders Corners :-
 
 When you need rounded corners instead of the default sharp corners, you can
 use the border-radius property.
@@ -3383,7 +3390,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q010 : Backgrounds in CSS;;
 
-###---------------- Background Color :-
+#### Background Color :-
 
 We can add a background color to an HTML element using the background-color
 property. Color can be specified using color names, HEX values or RGB values.
@@ -3398,7 +3405,7 @@ p {
 	color: darkgrey;
 }
 
-###---------------- Background Image :-
+#### Background Image :-
 
 An image can be added to the background of any element using the
 background-image property.
@@ -3419,7 +3426,7 @@ body {
   color: white;
 }
 
-###---------------- Background Repeat :-
+#### Background Repeat :-
 
 By default, the background image repeats itself horizontally and vertically,
 if it's smaller than the element. This can be changed using the
@@ -3447,7 +3454,7 @@ body {
   background-repeat: repeat-x;
 }
 
-###---------------- Background Size :-
+#### Background Size :-
 
 The background image for any element retains its original size. To adjust the
 image size, we need to use the background-size property.
@@ -3483,7 +3490,7 @@ div {
   background-size: cover;
 }
 
-###---------------- Background Position :-
+#### Background Position :-
 
 By default, the background image starts at the top left corner of its HTML
 element. This can be changed using the background-position property.
@@ -3515,7 +3522,7 @@ div {
 -------------------------------------------------------------------------------------
 -> Q009 : Text Formatting in CSS;;
 
-###---------------- Text Color :-
+#### Text Color :-
 
 We can set the colour of the text in any element on the web page using its color property.
 
@@ -3544,7 +3551,7 @@ ul {
   color: rgb(0, 139, 139);
 }
 
-###---------------- Text Alignments :-
+#### Text Alignments :-
 
 We can make our text align the way we want, using the text-align property.
 We can use the values left, right, center or justify to align the text
@@ -3572,7 +3579,7 @@ ul {
   /* This is the default value */
 }
 
-###---------------- Text Decoration :-
+#### Text Decoration :-
 
 We can underline text, strike through it or remove an underline using the
 text-decoration property.
@@ -3603,7 +3610,7 @@ ul > li {
   color: green;
 }
 
-###---------------- Text Line Height :-
+#### Text Line Height :-
 
 We can control the space between lines of text using the line-height
 property.
@@ -3637,7 +3644,7 @@ ul > li {
   line-height: 2;
 }
 
-###---------------- Text Letter Space :-
+#### Text Letter Space :-
 
 We can control the spacing between letters of the text using the
 letter-spacing property.
@@ -3656,7 +3663,7 @@ h2 {
   letter-spacing: 1em;
 }
 
-###---------------- Text Font Space :-
+#### Text Font Space :-
 
 We can modify the size of any text using the font-size property.
 
@@ -3677,7 +3684,7 @@ p {
   font-size: 120%;
 }
 
-###---------------- Text Font Weight :-
+#### Text Font Weight :-
 
 The font-weight property is used to make text bolder or lighter.
 
@@ -3702,7 +3709,7 @@ for eg,
   font-weight: 400; 
 }
 
-###---------------- Text Font Family :-
+#### Text Font Family :-
 
 The font-family property can help us choose which font we want for our text.
 
@@ -3730,7 +3737,7 @@ Here, Serif is the fallback font for #serif id based element.
 -------------------------------------------------------------------------------------
 -> Q008 : Spacing With Padding in CSS;;
 
-###---------------- Padding :-
+#### Padding :-
 
 The padding property defines the spacing within an element. It controls the
 space between the content in the element and the element's boundaries.
@@ -3747,7 +3754,7 @@ p {
   padding: 2em;
 }
 
-###---------------- Padding Shorthand Property :-
+#### Padding Shorthand Property :-
 
 Instead of using individual properties for top, bottom, right and left
 padding, the single padding property can be used to specify different values
@@ -3809,7 +3816,7 @@ p {
 -------------------------------------------------------------------------------------
 -> Q007 : Spacing With Margin in CSS;;
 
-###---------------- Margins :-
+#### Margins :-
 
 The margin property defines the spacing around an element.
 
@@ -3829,7 +3836,7 @@ p {
   margin: 2em;
 }
 
-###---------------- Side Margin :-
+#### Side Margin :-
 
 We can separately set margin properties for each side of an element using
 margin-top, margin-bottom, margin-left and margin-right.
@@ -3856,7 +3863,7 @@ for eg,
   margin-right: 80px;
 }
 
-###---------------- Margin Shorthand Property :-
+#### Margin Shorthand Property :-
 
 Instead of using individual properties for top, bottom, right and left
 margins, the single margin property can be used to specify different values
@@ -3957,7 +3964,7 @@ for eg,
   margin: 50px;
 }
 
-###---------------- Margin With Negative Values :-
+#### Margin With Negative Values :-
 
 The margin properties can also accept negative values. This reduces the
 spacing around elements.
@@ -3981,7 +3988,7 @@ for eg,
   margin-top: -2em;
 }
 
-###---------------- Marign with Auto Alignments :-
+#### Marign with Auto Alignments :-
 
 The margin property can be set to auto value. This horizontally centers an
 element.
@@ -3991,9 +3998,11 @@ remaining space.
 
 for eg,
 <!-- HTML -->
+````
 <body>
 	<div id="auto-align">Check Alignment
 </body>
+````
 
 <!-- CSS -->
 .auto-align {
@@ -4011,7 +4020,7 @@ REMARK :
 -------------------------------------------------------------------------------------
 -> Q006 : Min Width and Min Height;;
 
-###---------------- Minimum Height (~ min-height) :-
+#### Minimum Height (~ min-height) :-
 
 The min-height property is used to define the minimum height of an element.
 
@@ -4044,7 +4053,7 @@ for eg,
   background-color: orange;
 }
 
-###---------------- Minimum Width (~ min-width) :-
+#### Minimum Width (~ min-width) :-
 
 The min-width property is used to define the minimum width of an element.
 
@@ -4085,7 +4094,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q005 : Max Width and Max Height;;
 
-###---------------- Maximum Height (~ max-height) :-
+#### Maximum Height (~ max-height) :-
 
 The max-height property is used to define the maximum height of an element.
 
@@ -4117,7 +4126,7 @@ for eg,
   background-color: orange;
 }
 
-###---------------- Maximum Width (~ max-width) :-
+#### Maximum Width (~ max-width) :-
 
 The max-width property is used to define the maximum width of an element.
 
@@ -4152,7 +4161,7 @@ for eg,
 -------------------------------------------------------------------------------------
 -> Q004 : CSS Sizing;;
 
-###---------------- CSS : Heights;;
+#### CSS : Heights;;
 
 The height property is used to set the height of an element. Height can be
 defined in percentage % or pixels px.
@@ -4181,7 +4190,7 @@ img {
 	width: 100%
 }
 
-###---------------- CSS : Width;;
+#### CSS : Width;;
 
 The width property is used to set the width of an element. Width can be
 defined in percentage % or pixels px.
@@ -4212,7 +4221,7 @@ for eg,
   border : 2px solid yellow;
 }
 
-###---------------- CSS : Relative Units;;
+#### CSS : Relative Units;;
 
 When we use relative units to specify a length, it depends on the size of
 other elements.
@@ -4427,7 +4436,7 @@ their font size or parent element's size.
 -------------------------------------------------------------------------------------
 -> Q003 : CSS Color;;
 
-###---------------- CSS : Color Names;;
+#### CSS : Color Names;;
 
 Color names such as blue, yellow, black, white, gray, darkgreen in your CSS.
 
@@ -4445,7 +4454,7 @@ h1 {
   color: lightgray;
 }
 
-###---------------- CSS : RGB Colurs;;
+#### CSS : RGB Colurs;;
 
 RGB mix the 3 primary colours Red, Green and Blue in different proportions.
 This way, we can create any colour that we require.
@@ -4483,7 +4492,7 @@ h1 {
   color: rgb(255, 255, 255);
 }
 
-###---------------- CSS : HEX Colurs;;
+#### CSS : HEX Colurs;;
 
 HEX color value is a mix of Red, Green, Blue color values. The colour code
 uses the hexadecimal number range from 00 to ff to represent the different
@@ -4515,9 +4524,9 @@ h1 {
 
 
 -------------------------------------------------------------------------------------
--> Q002 : Selectors Brief;;
+### Q002 : Selectors Brief;;
 
-###---------------- CSS : Element Selectors;;
+#### CSS : Element Selectors;;
 
 Selectors like h2 and p are Element Selectors. They select elements using
 their HTML tag name.
@@ -4539,7 +4548,7 @@ p {
   color: darkblue;
 }
 
-###---------------- CSS : Class Selectors;;
+#### CSS : Class Selectors;;
 
 An element selector selects all the elements with that tag. But what if we
 need to give a different color only to the second and third headings
@@ -4569,7 +4578,7 @@ body {
 	color : darkgrey;
 }
 
-###---------------- CSS : ID Selectors;;
+#### CSS : ID Selectors;;
 
 When we need to style only one element on the page differently, using a class
 selector is not the best way.
@@ -4592,7 +4601,7 @@ p {
   color: darkblue;
 }
 
-###---------------- CSS : Universal Selectors;;
+#### CSS : Universal Selectors;;
 
 Sometimes, we need to apply some common styles to all elements on a web page.
 For this, we can use the universal selector *. 
@@ -4614,9 +4623,9 @@ for eg,
 
 
 -------------------------------------------------------------------------------------
--> Q001 : CSS Core;;
+### Q001 : CSS Core;;
 
-###---------------- CSS : Selectors
+#### CSS : Selectors
 
 Selector are used to select the HTML elements that we want to style. 
 
@@ -4642,7 +4651,7 @@ p {
 	font-size : 18px;
 }
 
-###---------------- CSS : Properties and Values;
+#### CSS : Properties and Values;
 
 Properties that we want to change like background-color, color and font-size etc
 
@@ -4659,14 +4668,13 @@ for eg,
 body {
   background-color: beige;
 }
-h1 {
   color: darkgreen;
 }
 p {
   font-size: 18px;
 }
 
-###---------------- CSS : Comments;
+#### CSS : Comments;
 
 CSS comments start with /* and end with */. They can be single line or span
 across multiple lines.
