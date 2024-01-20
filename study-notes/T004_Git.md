@@ -1,4 +1,4 @@
-'''
+````
 -------------------------------------------------------------------------------------f
 -> Title : Git Notes
 -> Author: @neeraj-singh-jr
@@ -20,15 +20,16 @@
 -> Q002 : Git Favourite Commands;;
 -> Q001 : What is Git;;
 -------------------------------------------------------------------------------------
-'''
+````
 
-###---GIT NOTES : BEGINNING
+### GIT NOTES : BEGINNING
 
-`-------------------------------------------------------------------------------------
--> Q012 : Remove the Untracked files in git project;;
+-------------------------------------------------------------------------------------
+### Q012 : Remove the Untracked files in git project;;
 
 To remove the untracked files from the git project
 
+````
 # List untracked files using git;;
 $ git clean -n
 
@@ -37,15 +38,18 @@ $ git clean -i
 
 # Forcefully remove untracked file;;
 $ git clean -f
+````
 
 NOTE: `Checkout` only remove the modified changes only.
 
+
 -------------------------------------------------------------------------------------
--> Q011 : Update Remove Repository SSH url link 
+### Q011 : Update Remove Repository SSH url link;; 
 
 This Scenario can be used to update to update the existing remote link with
 the newer one. Like this,
 
+````
 # Intial SSH URL 
 $ git remote add origin git@bitbucket.org:sqrrl-fintech/repo1.git
 $ git remote -v
@@ -53,223 +57,238 @@ $ git remote -v
 # OUTPUT:
 origin	git@bitbucket.org:sqrrl-fintech/repo1.git (fetch)
 origin	git@bitbucket.org:sqrrl-fintech/repo1.git (push)
+````
 
-# New SSH URL 
+#### New SSH URL
+````
 $ git remote set-url origin git@bitbucket.org:sqrrl-fintech/repo2.git
 $ git remote -v
 
 # OUTPUT:
 origin	git@bitbucket.org:sqrrl-fintech/repo2.git (fetch)
 origin	git@bitbucket.org:sqrrl-fintech/repo2.git (push)
+````
 
 
 -------------------------------------------------------------------------------------
--> Q010 : Reset Head or Go Back & Forth in Commits History
+### Q010 : Reset Head or Go Back & Forth in Commits History
 
--> Reset command is used to move changes back and forth from git commits
-   timeline. Suppose you've a git timeline is like this,
+`Reset command` is used to move changes back and forth from git commits
+timeline. Suppose you've a git timeline is like this,
 
-   	# Commit Timeline, Initially
-	* ace6055 (HEAD -> master, tag: v1) added c <-- HEAD NOW
-	* 860ce77 staged commit
-	* 8172daf 2 files
-	* 0aab975 author
-	* 3b6b754 added first file
+````
+# Commit Timeline, Initially
+* ace6055 (HEAD -> master, tag: v1) added c <-- HEAD NOW
+* 860ce77 staged commit
+* 8172daf 2 files
+* 0aab975 author
+* 3b6b754 added first file
+````
 
+Suppose now you want to go the first commit, but you want to keep the
+latest changes. Basically you just want to move point your head on the
+first commit then prefer soft reset. Like this,
 
--> Suppose now you want to go the first commit, but you want to keep the
-   latest changes. Basically you just want to move point your head on the
-   first commit then prefer soft reset. Like this,
+````
+$ git reset --soft 3b6b754
 
-    $ git reset --soft 3b6b754
+# Commits Timeline, Soft Reset
+* ace6055 (tag: v1) added c
+* 860ce77 staged commit
+* 8172daf 2 files
+* 0aab975 author
+* 3b6b754 (HEAD -> master) added first files <-- HEAD NOW
+````
 
-   	# Commits Timeline, Soft Reset
-	* ace6055 (tag: v1) added c
-	* 860ce77 staged commit
-	* 8172daf 2 files
-	* 0aab975 author
-	* 3b6b754 (HEAD -> master) added first files <-- HEAD NOW
+for this same case, now you want to move all your changes back to the very
+first commit changes then prefer the hard reset. In this all the files
+structure move back to the first commit changes, But you commits history
+will be maintained. Like this, 
 
--> for this same case, now you want to move all your changes back to the very
-   first commit changes then prefer the hard reset. In this all the files
-   structure move back to the first commit changes, But you commits history
-   will be maintained. Like this, 
+````
+$ git reset --hard 3b6b754
 
-   	$ git reset --hard 3b6b754
+# Commit Timeline, Hard Reset
+* ace6055 (tag: v1) added c
+* 860ce77 staged commit
+* 8172daf 2 files
+* 0aab975 author
+* 3b6b754 (HEAD -> master) added first file
+````
 
-   	# Commit Timeline, Hard Reset
-   	* ace6055 (tag: v1) added c
-	* 860ce77 staged commit
-	* 8172daf 2 files
-	* 0aab975 author
-	* 3b6b754 (HEAD -> master) added first file
+now suppose you have fixed few changes from the first commit and then you
+want to go back to the latest commit then, do the similar step with hard.
 
--> now suppose you have fixed few changes from the first commit and then you
-   want to go back to the latest commit then, do the similar step with hard.
+````
+$ git reset --hard ace6055
 
-	$ git reset --hard ace6055
-
-	# Commit Timeline, Like Initially
-	* ace6055 (HEAD -> master, tag: v1) added c
-	* 860ce77 staged commit
-	* 8172daf 2 files
-	* 0aab975 author
-	* 3b6b754 added first file
-
+# Commit Timeline, Like Initially
+* ace6055 (HEAD -> master, tag: v1) added c
+* 860ce77 staged commit
+* 8172daf 2 files
+* 0aab975 author
+* 3b6b754 added first file
+````
 
 -------------------------------------------------------------------------------------
--> Q009 : Tags Creation in Git;;
+### Q009 : Tags Creation in Git;;
 
--> Tags are use to label the branch tracking the changes till current specific
+Tags are use to label the branch tracking the changes till current specific
    requirements.
 
--> Create Tags:
+#### Create Tags:
 
-$  git tag your-new-tags
+> $  git tag your-new-tags
 
 or, you can pass message as well
 
-$ git tag -a v1 -m "your new message"
+> $ git tag -a v1 -m "your new message"
 
--> List Tags:- 	
+#### List Tags: 	
 
-$ git tag --list
+> $ git tag --list
 
--> Delete Tag:-
+#### Delete Tag:
 
-FROM REMOVE REPO:-
-
+````
+# FROM REMOVE REPO:-
 $ git push origin :your-remote-tag
-
-From LOCAL REPO:-
-
+````
+````
+From LOCAL REPO:
 $ git tag -d your-local-tag
+````
 
--> Create Tag for a specific Commit:-
+#### Create Tag for a specific Commit:-
 
-$ git tag -a v1 -m "previous release" ac34522e
+> $ git tag -a v1 -m "previous release" ac34522e
 
--> Create tag for current or any other branch
+#### Create tag for current or any other branch
 
-$ git tag stable-release master
+> $ git tag stable-release master
 
 or, for another branch
 
-$ git tag unstable-release develop
+> $ git tag unstable-release develop
 
--> Push tag to Remote Repo 
-
+#### Push tag to Remote Repo 
 if you wanted to push all the tags, then this command,
 
-$ git push --tags
+> $ git push --tags
 
 for single tag push, use this command
+> $ git push origin tag-name
 
-$ git push origin tag-name
-
-for eg, 
+for eg,
+````
 $ git push origin stable
 $ git push origin unstable
+````
 
--> Renaming Tag in Git
+#### Renaming Tag in Git
 
 This will rename the git tag.
 
-$ git tag -f stable master
+> $ git tag -f stable master
 
 
 -------------------------------------------------------------------------------------
--> Q008 : Rename & Delete Command using Git;;
+### Q008 : Rename & Delete Command using Git;;
 
 NOTE: Even if you have stage the changes then the changes will be reflect
 there as well. Renamed file will be shown there.
 
-
--> CASE : RENAME COMMAND
-suppose you have file using temp.txt => demo.txt, then and no changes will be
+#### CASE : RENAME COMMAND
+Suppose you have file using temp.txt => demo.txt, then and no changes will be
 shown, everything will be up to date.
 
+for eg,
+````
 # you can use this command;
 $ git mv temp.txt demo.txt
+````
 
+#### CASE : DELETE COMMAND
+For deleting a file or stage files, you can use this command
 
--> CASE : DELETE COMMAND 
-
-For deleting a file or stage files, you can use this command 
-
+for eg,
+````
 $ git rm demo.txt
-
+````
 
 -------------------------------------------------------------------------------------
--> Q007 : Create Alias in Git;;
+### Q007 : Create Alias in Git;;
 
 Git gives you alias command to make alias for long commands, like this 
 
-Example 1: Git about "your message"
-
+Example 1: Git about "your message
+````
 git config --global --add alias.remark '
 	!describe() { 
 		msg="$1"; 
 		git config branch."$(git branch --show-current)".description ${msg:+"$msg"}; 
 	}; describe'
-
+````
 
 Example 2: Add pretty logs in graph style
-
+````
 git config --global --add alias.plogs 
 	'!describe() {
 		git log --oneline --graph --decorate --all;
 	}; describe'
-
+````
 
 Example 3: Add alias to show conflicts in files
-
+````
 git config --global --add alias.conflicts '
 	!describe() { 
 		git diff --name-only --diff-filter=u; 
 	}; describe'
+````
 
 
 -------------------------------------------------------------------------------------
--> Q006 : Show commit logs in Graph Style;;
+### Q006 : Show commit logs in Graph Style;;
 
 Use this command to show logs in Graph style,
-
+````
 $ git log --oneline --graph --decorate --all
-
+````
 
 -------------------------------------------------------------------------------------
--> Q005 : Revert Changes from Staged Area ;;
+### Q005 : Revert Changes from Staged Area ;;
 
 Suppose you made a few changes in your profile files(a.txt), then
 
 you've added it to staging area
-
+````
 $ git add .
+````
 
 but now you want to add few more changes to the same commit, then
-
+````
 $ git reset HEAD
+````
 
 This will revert you stages changes to unstages state.
 
 
 -------------------------------------------------------------------------------------
--> Q004 : Difference in Manual Add and Commit with '-am' Flag;;
+### Q004 : Difference in Manual Add and Commit with '-am' Flag;;
 
-Case 1 : Manually Add using Git
+#### Case 1 : Manually Add using Git
 
 In this you, manually saying git to add all my changes to staging area
 
-You changes can include - Modified, Untraced, Updated etc.
+Your changes can include - Modified, Untraced, Updated etc.
 
 You can do so by 
-
+````
 $ git add .
 $ git commit -m "your-msg"
+````
 
-
-Case 2 : Automatic Add using Git
+#### Case 2 : Automatic Add using Git
 
 In this case, you are just using commit and add in the same commit command and
 saying the git to first add all changes then commit the changes
@@ -278,6 +297,7 @@ NOTE: But, here is the important thing to Notice, which is this automatic add
 and commit will not in the case. When you've Untraced files in your changes.
 In this case it will fail to add the files changes.
 
+````
 # You can check if you're file is alread tracked by git or not using below command
 # This will list you the tracked files names.
 $ git ls-files
@@ -285,10 +305,10 @@ $ git ls-files
 
 # If you 've not Untraced files, then go for it
 $ git commit -am "your-msg"
-
+````
 
 -------------------------------------------------------------------------------------
--> Q003 : Check code changes pulled from origin;;
+### Q003 : Check code changes pulled from origin;;
 
 Suppose you are on develop branch of your project,
 
@@ -296,6 +316,7 @@ Then proceed as following
 
 // On Terminal
 
+````
 # Fetch everything from the remote/develop branch;;
 $ git fetch origin develop
 
@@ -305,13 +326,15 @@ $ git diff origin/develop
 # If everything ok, then merge 
 # make sure u're on develop branch before
 $ git merge origin/develop
+````
 
 
 -------------------------------------------------------------------------------------
--> Q002 : Git Favourite Commands;;;;
+### Q002 : Git Favourite Commands;;;;
 
-###--- GIT FAVOURITE COMMANDS :-
+#### GIT FAVOURITE COMMANDS :-
 
+````
 // Delete Remote Branch
 $ git push origin :branch-name
 
@@ -416,10 +439,10 @@ git restore --staged <file>...
 
 // Alias to print only conflict files
 git config --global --add alias.conflicts '!describe() { git diff --name-only --diff-filter=u; }; describe'
-
+````
 
 -------------------------------------------------------------------------------------
--> Q001 : What is Git;;
+### Q001 : What is Git;;
 
 Git is a distributed version control system: tracking changes in any set of
 files, usually used for coordinating work among programmers collaboratively
@@ -427,5 +450,6 @@ developing source code during software development.
 
 Its goals include speed, data integrity, and support for distributed,
 non-linear workflows.
+
 
 -------------------------------------------------------------------------------------

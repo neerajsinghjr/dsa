@@ -1,4 +1,4 @@
-'''
+````
 -------------------------------------------------------------------------------------
 -> Title : HTML Notes
 -> Author: @neeraj-singh-jr
@@ -16,24 +16,25 @@
 -> Q002 : HTML Attributes;;
 -> Q001 : HTML Core;;
 -------------------------------------------------------------------------------------
-'''
+````
 
-###---HTML NOTES : BEGINNING 
+### HTML NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
 -> Q008 : HTML Structure;;
 
-//--- Element : Doctype
+#### Element : Doctype
 
-<!DOCTYPE> is a special element that is added only at the top of the document.
+`<!DOCTYPE>` is a special element that is added only at the top of the document.
 It provides information about the type of HTML used in the document. 
 
 For example, the following code is used for an HTML document:
 
 for eg, 
+````
 <!DOCTYPE html>
 
-//--- Element : <html>
+#### Element : <html>
 
 The <html> element is the main element, which acts as the container for all
 the other elements, except the <!DOCTYPE> element. The <head> and <body>
@@ -44,35 +45,41 @@ for eg,
 <html>
 	<!-- Body -->
 </html>
+````
 
-//--- Element : <head>
+#### Element : <head>
 
 The <head> element is used for specifying additional information about your
 webpage. Information such as which fonts to use, which JavaScript or CSS
 files to link to, what is the title of the page, etc.
 
-The elements includes :-
-1) Title : <title> element, used to set the title of the web page.
-2) Link : <link> element, used to add external resources, such as CSS files.
-3) Script : <script> element, used to embed JavaScript code.
+The elements includes
+
+- Title : <title> element, used to set the title of the web page.
+- Link : <link> element, used to add external resources, such as CSS files.
+- Script : <script> element, used to embed JavaScript code.
 
 for eg,
+````
 <head>
 	<title>Web Page Title</title>
 </head>
+````
 
-//--- Element : <body>
+#### Element : <body>
 
 The <body> element contains the HTML elements that are used to display the
 contents of the web page, such as headings, images, paragraphs, links etc.
 There can be only one <body> tag within an HTML document.
 
 for eg,
+````
 <body>
 	<!-- Content here -->
 </body>
+````
 
-//--- Element : Comments
+#### Element : Comments
 
 Comments are great! Comments can help explain your work to other coders and
 even to your future self.
@@ -83,7 +90,7 @@ and helpful.
 
 For writing a comment use the syntax: <!-- text -->
 
-//--- Complete : Structure
+#### Complete : Structure
 
 - <!DOCTYPE> declaration
 - <html> element, contains root HTML element that holds all the other elements.
@@ -91,6 +98,7 @@ For writing a comment use the syntax: <!-- text -->
 - <body> element, contains the actual content displayed in the browser.
 
 for eg,
+````
 <!DOCTYPE html>
 <html>
 	<!-- HEADERS -->
@@ -102,6 +110,7 @@ for eg,
 		<!-- BODY -->
 	</body>
 </html>
+````
 
 
 -------------------------------------------------------------------------------------
@@ -615,9 +624,9 @@ for eg,
 
 
 -------------------------------------------------------------------------------------
--> Q001 : HTML Core Topics;;
+### Q001 : HTML Core Topics;;
 
-###----------------- Topic : Elements
+#### Topic : Elements
 
 An HTML document is made up of different HTML elements. 
 
@@ -627,15 +636,17 @@ Each HTML element typically has three parts:
 3. Closing tag
 
 for eg, 
+````
 <h1>This is a heading</h1>
 <br />
 <h1>This is another heading</h1>
+````
 
 Here, <h1> at the beginning is called the opening tag, the 'Hello, World!' text 
 is the content and the </h1> at the end is called the closing tag.
 
 
-###----------------- Topic : Headings
+#### Topic : Headings
 
 The elements <h1> through <h6> are used to display headings.
 
@@ -646,30 +657,35 @@ The elements <h1> through <h6> are used to display headings.
 This way, we have six different types of headings, from <h1> to <h6>.
 
 for eg,
+````
 <h1>Hello BigBinary Academy</h1>
 <h2>Hello BigBinary Academy</h2>
 <h3>Hello BigBinary Academy</h3>
 <h6>Hello BigBinary Academy</h6>
+````
 
-###----------------- Topic : Paragraph
+#### Topic : Paragraph
 
 The <p> element is used to display a paragraph.
 
 for eg,
+````
 <h1>The Himalayas?</h1>
 <p>Himalayas is a beautiful mountain range. It lies in the Indian subcontinent.</p>
 <p>It is mostly made up of uplifted sedimentary and metamorphic rock.</p>
+````
 
-###----------------- Topic : List
+#### Topic : List
 
 There are two types of list in the html section
 1) Unordered list
 2) Ordedered list
 
-Unordered List : The <ul> element is used to display a bulleted list of items.
+`Unordered List` : The <ul> element is used to display a bulleted list of items.
 Each item, in turn, needs to be put inside an <li> element.
 
 for eg,
+````
 <h1>Things I like</h1>
 
 <ul>
@@ -677,20 +693,23 @@ for eg,
   <li>Chocolate</li>
   <li>Movies</li>
 </ul>
+````
 
-Ordered List : The <ol> element is used to display an ordered list of items.
+`Ordered List` : The <ol> element is used to display an ordered list of items.
 Each item, in turn, needs to be put inside an <li> element.
 
 for eg,
+````
 <h1>Greek Alphabet</h1>
 
 <ol>
   <li>Alpha</li>
   <li>Beta</li>
   <li>Gamma</li>
-</ol
+</ol>
+````
 
-###----------------- Topic : Line Break
+#### Topic : Line Break
 
 The br element is used to create a line break in your text. It is a
 self-closing tag and so looks like this, <br/>.
@@ -700,14 +719,16 @@ new paragraph. br tags can be used to display text where we need to show the
 information in different lines, but the lines are not contextually separate
 
 for eg,
+````
 An old silent pond...<br/>
 A frog jumps into the pond, <br/>
 splash! Silence again.<br/>
 - Matsuo Basho
+````
 
-###----------------- Topic : Div Tag
+#### Topic : Div Tag
 
-The <div> element is used to create a section in an HTML document.
+The `<div>` element is used to create a section in an HTML document.
 
 It is a box in which you can hold a certain part of your content. You can
 group HTML tags, text, or any kind of content together in a div. Since, it is
@@ -717,6 +738,7 @@ code is now more organized.
 The importance of div will be visible to you as you practice more.
 
 for eg,
+````
 <!-- DIV 1 -->
 <div>
   <h2>Administrator</h2>
@@ -732,6 +754,6 @@ for eg,
   <h2>Product</h2>
   <p>Every product has a product card</p>
 </div>
-
+````
 
 -------------------------------------------------------------------------------------
