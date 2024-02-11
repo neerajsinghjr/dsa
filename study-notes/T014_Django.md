@@ -4,9 +4,10 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing
 -> Created : 09/10/2023
--> Updated : 09/10/2023
+-> Updated : 28/01/2024
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q005 : Django OAuth2.0 Toollkit Flow;;
 -> Q004 : Django Migration Workflow;;
 -> Q003 : Django Path Function;;
 -> Q002 : Djanog Core Architecture;;
@@ -15,6 +16,13 @@
 ````
 
 ### DJANGO NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q005 : Django OAuth2.0 Toollkit Flow;;
+
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q004 : Django Migration Workflow;;

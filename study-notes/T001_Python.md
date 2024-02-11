@@ -3,10 +3,11 @@
 -> Title: PyNotes Diary
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
--> Created: 03.09.2022
--> Updated: 06.08.2023
+-> Created: 03/09/2022
+-> Updated: 21/01/2024
 -> Summary: Notes indices are as follows (*** pending)
-------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------------
+-> Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task) 
 -> Q084 : Asyncio Module in Python;;
 -> Q083 : Method Resolution Order in Python;;
 -> Q082 : UDP Socket Programming in Pthon
@@ -97,7 +98,122 @@
 ### PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
--> Q084 : Asyncio Module in Python;;
+### Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task)
+
+`Multiprocessing` and `Asyncio` are both approaches to concurrent programming
+
+#### Multiprocessing (CPU Core Task):
+- Nature of Tasks:
+    1. Multiprocessing is suitable for CPU-bound tasks, which are tasks that 
+       require significant computation or processing power.
+    2. It involves running separate processes in parallel, each with its own 
+       interpreter and memory space.
+- Concurrency Model:
+    1. Achieves parallelism by executing tasks concurrently in separate processes.
+- Use Cases:
+    1. Intensive mathematical computations, simulations, data processing, and other
+       tasks that heavily utilize the CPU.
+
+for eg,
+````
+from multiprocessing import Process
+
+def square_numbers(numbers):
+    for number in numbers:
+        print('Square:', number * number)
+
+if __name__ == "__main__":
+    numbers = [1, 2, 3, 4, 5]
+    process = Process(target=square_numbers, args=(numbers,))
+    process.start()
+    process.join()
+
+````
+
+#### Asyncio (IO Task):
+
+- Nature of Tasks:
+    1. Asyncio is suitable for I/O-bound tasks, which are tasks that spend a 
+       significant amount of time waiting for external resources such as 
+       (e.g., network, file I/O).
+    2. It achieves concurrency by efficiently switching between tasks during I/O 
+       operations without blocking.
+- Concurrency Model:
+    1. Achieves concurrency by using an event loop to switch between tasks 
+       when one is waiting for I/O.
+- Use Cases:
+    1. Web servers, network communication, web scraping, and other tasks where 
+       waiting for external resources is a significant part of the workload.
+
+For eg,
+````
+import asyncio
+
+async def print_numbers():
+    for i in range(5):
+        print('Number:', i)
+        await asyncio.sleep(1)
+
+if __name__ == "__main__":
+    asyncio.run(print_numbers())
+````
+
+#### Conclusion
+- Use `multiprocessing` for CPU-bound tasks that require parallel execution.
+- Use `asyncio` for I/O-bound tasks where concurrency can be achieved by 
+  efficiently switching between tasks during I/O operations.
+- In practice, both approaches can be combined for scenarios where a mix of 
+  CPU-bound and I/O-bound tasks need to be handled efficiently in a single 
+  application.
+
+
+-------------------------------------------------------------------------------------
+### Q084 : Asyncio Module in Python;;
+
+(Refer Example : dsa/basic-py/P038_Asyncio.py)
+
+(Refer Study : https://realpython.com/async-io-python/)
+
+#### Asynchronous Topics:
+- `Threading` is a concurrent execution model whereby multiple threads take turns 
+executing tasks. One process can contain multiple threads.
+- `Coroutines` are computer program components that allow execution to be suspended 
+and resumed, generalizing subroutines for cooperative multitasking.
+- `Concurrency` is a slightly broader term than parallelism. It suggests that multiple 
+tasks have the ability to run in an overlapping manner. (There’s a saying that concurrency 
+does not imply parallelism.)
+
+#### AsyncioIO:
+- `Async IO` is not multithreading, nor is it multiprocessing. 
+- `Async IO` is a single-threaded, single-process design: it uses cooperative multitasking, 
+async IO gives a feeling of concurrency despite using a single thread in a single process. 
+Coroutines (a central feature of async IO) can be scheduled concurrently, but they are 
+not inherently concurrent.
+- Asynchronous routines are able to “pause” while waiting on their ultimate result and 
+let other routines run in the meantime.
+- Asynchronous code, through the mechanism above, facilitates concurrent execution. To 
+put it differently, asynchronous code gives the look and feel of concurrency.
+- At the heart of async IO are coroutines. A coroutine is a specialized version of a 
+Python generator function. A coroutine is a function that can suspend its execution 
+before reaching return, and it can indirectly pass control to another coroutine for 
+some time.
+
+> NOTE: 
+What’s important to know about threading is that it’s better for IO-bound tasks. 
+While a CPU-bound task is characterized by the computer’s cores continually working 
+hard from start to finish, an IO-bound job is dominated by a lot of waiting on 
+input/output to complete.
+
+#### Asyncio - Async/Await 
+- 
+
+
+
+
+
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q083 : Method Resolution Order in Python;;
