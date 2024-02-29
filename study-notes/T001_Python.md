@@ -4,10 +4,12 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03/09/2022
--> Updated: 21/01/2024
+-> Updated: 18/02/2024
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
--> Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task) 
+-> Q087 : Memoization Concept with Python Decorator;;
+-> Q086 : Reduce function in python;;
+-> Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task);; 
 -> Q084 : Asyncio Module in Python;;
 -> Q083 : Method Resolution Order in Python;;
 -> Q082 : UDP Socket Programming in Pthon
@@ -98,7 +100,130 @@
 ### PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
-### Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task)
+### Q087 : Memoization Concept with Python Decorator;;
+
+A recursion is a technique where a function calls itself repeatedly till the base 
+case condition is met.
+
+Eg 1 : Calculation of Fibonacci series without memoization
+````
+def fact(num):
+    if num <= 1:
+        return 1
+    else:
+        return num * fact(num-1)
+
+if __name__ == "__main__":
+    print("Factorial Response : ", fact(5))
+````
+
+Eg2 : Calculation of Fibonacci series with memoization;;
+````
+memory = {}
+count = 0
+
+def cache(func):
+    def reading_cache(num):
+        if num not in memory:
+            memory[num] = func(num)
+        return memory[num]
+    return reading_cache
+
+@cache
+def fact(num):
+    global count
+    count += 1
+    if num <= 1:
+        return 1
+    else:
+        return num * fact(num-1)
+
+if __name__ == "__main__":
+    print("Factorial Response: ", fact(10))
+    print("Factorial Run-Count: ", count)
+````
+
+Explanation:-
+
+- We have defined `cache` function to store the intermediate result in the variable 
+called memory.
+- The second method `fact` is the function to calculate the factorial. It is wrapped 
+by the decorator `cache`. The fact method has access to the memory variables as result. 
+The wrapped function is equivalent as `fact = cache(fact)`.
+- When `fact(5)` is called, the recursive call begins in addition to the storage of 
+the intermediate results. Every time a calculation needs to be done, it is checked 
+if the result is available in the `memory`. If the value is available in the `memory` 
+it is used, the value is calculated and stored in the `memory`.
+- We can use this technique in the tree-based problems.
+
+
+-------------------------------------------------------------------------------------
+### Q086 : Reduce function in python;;
+
+In Python, `reduce()` is a built-in function that applies a given function to the 
+elements of an iterable, reducing them to a single value.
+
+The syntax for reduce() is as follows:
+> functools.reduce(function, iterable[, initializer])
+
+- The function argument is a function that takes two arguments and returns a single 
+value. The first argument is the accumulated value, and the second argument is the 
+current value from the iterable.
+- The iterable argument is the sequence of values to be reduced.
+- The optional initializer argument is used to provide an initial value for the 
+accumulated result. If no initializer is specified, the first element of the iterable 
+is used as the initial value.
+
+
+for eg,
+````
+from functools import reduce
+from time import time
+from random import randint
+
+class Txn:
+    @property
+    def amount(self):
+        return round(time())
+
+orders = [Txn(), Txn(), Txn(), Txn()]
+
+# Case 1
+txn_amounts = map(lambda order: order.amount, orders)
+print("txn_amounts: ", sum(txn_amounts))
+# Output:
+# txn_amounts:  6832652060
+
+# Case 2
+total_amounts = reduce(lambda amt1, amt2: amt1 + amt2, 
+                        map(lambda order: order.amount, orders))
+print("total_amounts: ", total_amounts)
+# output:
+# total_amounts:  6832652060
+
+# Case 3:
+nums = [21, 30, 34, 44, 47, 60 ,71]
+
+def add(a, b):
+    r = a + b
+    print(f"a: {a}, b: {b}, r: {r}")
+    return r
+    
+ans = reduce(add, nums)
+print("ans: ", ans)
+# Output :
+# a: 21, b: 30, r: 51
+# a: 51, b: 34, r: 85
+# a: 85, b: 44, r: 129
+# a: 129, b: 47, r: 176
+# a: 176, b: 60, r: 236
+# a: 236, b: 71, r: 307
+# ans:  307
+````
+
+
+-------------------------------------------------------------------------------------
+### Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task);;
 
 `Multiprocessing` and `Asyncio` are both approaches to concurrent programming
 
