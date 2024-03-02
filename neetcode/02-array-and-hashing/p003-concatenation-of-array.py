@@ -6,7 +6,11 @@
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
+Problem:-
 https://leetcode.com/problems/concatenation-of-array/
+
+Reference:-
+https://youtu.be/68isPRHgcFQ
 
 -------------------------------------------------------------------------------------
 '''

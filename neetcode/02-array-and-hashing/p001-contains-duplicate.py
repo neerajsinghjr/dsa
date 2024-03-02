@@ -6,7 +6,11 @@
 -> Problem Description: 28/02/2024
 -------------------------------------------------------------------------------------
 
+Problem:-
 https://leetcode.com/problems/contains-duplicate/description/
+
+Reference:-
+https://youtu.be/3OamzN90kPg
 
 -------------------------------------------------------------------------------------
 '''
