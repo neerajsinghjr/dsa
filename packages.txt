@@ -24,12 +24,16 @@ MarkupSafe==2.1.5
 moviepy==1.0.3
 numpy==1.24.4
 outcome==1.2.0
+pandas==2.2.1
 Pillow==10.1.0
 platformdirs==4.2.0
 proglog==0.1.10
 pycrypto==2.6.1
 Pygments==2.15.1
+PyPDF2==3.0.1
 PySocks==1.7.1
+python-dateutil==2.9.0.post0
+pytz==2024.1
 pyxdg==0.28
 requests==2.31.0
 selenium==4.10.0
@@ -39,6 +43,8 @@ sortedcontainers==2.4.0
 tqdm==4.66.1
 trio==0.22.2
 trio-websocket==0.10.3
+typing_extensions==4.10.0
+tzdata==2024.1
 urllib3==2.0.3
 virtualenv==20.25.1
 wcwidth==0.2.6

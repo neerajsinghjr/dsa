@@ -7,6 +7,14 @@
 -> Updated : 28/01/2024
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q013 : Combine multiple QuerySets in a View;;
+-> Q012 : Permanent Redirection not a good options;;
+-> Q011 : Mixins classes in Django;;
+-> Q010 : File Based Session in Django;;
+-> Q009 : Caching strategies supported by Django;;
+-> Q008 : Middleware usage in Django;;
+-> Q007 : Filer data using django models;;
+-> Q006 : Signal and Dispatcher in Django;;
 -> Q005 : Django OAuth2.0 Toollkit Flow;;
 -> Q004 : Django Migration Workflow;;
 -> Q003 : Django Path Function;;
@@ -18,22 +26,89 @@
 ### DJANGO NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
+### Combine multiple QuerySets in a View;;
+
+QuerySets can be combined into another QuerySet, and they do not have to be from 
+the same model.
+
+To merge QuerySets from the same model, use the `Python union operator`.
+
+The `union operator` can be used to combine two or more QuerySets with the 
+following syntax: 
+
+> model_combination = model_set1 | model_set2 | model_set3 
+
+Additionally, you can concatenate two or more QuerySets from other models by using 
+the `chain()` method from the Itertools package. 
+
+````
+from itertools import chain
+
+model_combination = list(chain(model_set1, model_set2))
+````
+
+As an alternative, you can merge two or more QuerySets from other models using 
+`union()`, `passing all=TRUE` to allow for duplication.
+
+> model_combination = model_set1.union(model_set2, all=TRUE) 
+
+
+-------------------------------------------------------------------------------------
+### Q012 : Permanent Redirection not a good options;;
+
+Permanent redirection is only employed if it does not require visitors to be 
+directed to the old URLs. The browser caches the response of permanent redirections, 
+thus attempting to redirect to somewhere different will cause problems. 
+
+Because this is a `browser-side process`, if your user navigates to a different page, 
+it will load the same page.
+
+
+-------------------------------------------------------------------------------------
+### Q011: Mixins classes in Django;;
+
+In Django, a mixin is a Python class that is inherited by another class to carry 
+out extra functions. Classes that can be reused and scaled are mixins. A unique 
+form of multiple inheritances is a mixin.
+
+Mixins are typically employed in two contexts:
+- You wish to give a class several optional features.
+- You wish to apply a specific feature to numerous classes.
+
+
+-------------------------------------------------------------------------------------
+### Q010 : File Based Session in Django;;
+
+
+-------------------------------------------------------------------------------------
+### Q009 : Caching strategies supported by Django;;
+
+
+-------------------------------------------------------------------------------------
+### Q008 : Middleware usage in Django;;
+
+
+-------------------------------------------------------------------------------------
+### Q007 : Filer data using django models;;
+
+
+-------------------------------------------------------------------------------------
+### Q006 : Signal and Dispatcher in Django;;
+
+
+-------------------------------------------------------------------------------------
 ### Q005 : Django OAuth2.0 Toollkit Flow;;
-
-
-
 
 
 -------------------------------------------------------------------------------------
 ### Q004 : Django Migration Workflow;;
 
-Database engine are those library which lets your project
-connect to any database client.
+Database engine are library which lets your project connect to any database client.
 
-	- sqlite3 :'django.db.backends.sqlite3' ~ default 
-	- postgres : 'django.db.backends.postgresql',
-	- msql : 'django.db.backends.mysql'
-	- oracle : 'django.db.backends.oracle'
+- sqlite3 :'django.db.backends.sqlite3' ~ default 
+- postgres : 'django.db.backends.postgresql',
+- msql : 'django.db.backends.mysql'
+- oracle : 'django.db.backends.oracle'
 
 #### Default apps
 
@@ -48,9 +123,9 @@ NOTE : We have to migrate the table for these default apps
 
 `$ python manage.py migrate`
 
-The migrate command looks at the INSTALLED_APPS setting and creates any
-necessary database tables according to the database settings in your
-mysite/settings.py file and the database migrations shipped with the app.
+The migrate command looks at the INSTALLED_APPS setting and creates any necessary 
+database tables according to the database settings in your `mysite/settings.py`
+file and the database migrations shipped with the app.
 
 #### Creating Model
 
@@ -71,18 +146,15 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
 ````
 
-#### Key Notes:-
-
-
 
 -------------------------------------------------------------------------------------
 ### Q003 : Django Path Function;;
 
 The path() function is passed four arguments, two required: 
-	- route
-	- view
-	- kwargs, 
-	- name
+- route
+- view
+- kwargs, 
+- name
 
 #### path() argument: route
 
@@ -240,11 +312,11 @@ def year_archive(request, year):
 Django was developed in a fast-paced newsroom environment, it was designed to
 make common web development tasks fast and easy.
 
-//--- check django version;;
+#### check django version;;
 
 `$ python -m django --version`
 
-//--- creating a project;;
+#### creating a project;;
 
 `$ django-admin startproject mysite`
 

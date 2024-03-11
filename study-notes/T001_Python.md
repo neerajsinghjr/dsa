@@ -4,9 +4,11 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03/09/2022
--> Updated: 18/02/2024
+-> Updated: 10/03/2024
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q089 : Scopes in Python Language;;
+-> Q088 : What are Mixin in Python;;
 -> Q087 : Memoization Concept with Python Decorator;;
 -> Q086 : Reduce function in python;;
 -> Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task);; 
@@ -98,6 +100,106 @@
 ````
 
 ### PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q089 : Scopes in Python Language;;
+
+Every object in Python functions within a scope. A scope is a block of code where 
+an object in Python remains relevant. Namespaces uniquely identify all the objects 
+inside a program. 
+
+However, these namespaces also have a scope defined for them where you could use 
+their objects without any prefix. A few examples of scope created during code 
+execution in Python are as follows:
+
+#### LOCAL Scope
+A local scope refers to the local objects available in the current function.
+
+for eg,
+````
+def my_function():
+    local_variable = 10
+    print(local_variable)
+
+my_function()
+# This will print 10 because `local_variable` is defined 
+# in the local scope of the function.
+````
+
+#### GLOBAL Scope:-
+A global scope refers to the objects available throughout the code execution since 
+their inception.
+
+for eg,
+````
+global_variable = 20
+
+def another_function():
+    print(global_variable)
+
+another_function()
+# This will print 20 because `global_variable` is defined 
+# in the global scope.
+````
+
+#### MODULE-LEVEL Scope
+A module-level scope refers to the global objects of the current module accessible 
+in the program.
+
+for eg,
+````
+# module_example.py
+module_variable = 30
+
+def some_function():
+    print(module_variable)
+
+# In another file or interactive session
+import module_example
+
+module_example.some_function()
+# This will print 30 because `module_variable` is defined 
+# at the module level.
+````
+
+#### BUILT-IN Scope
+An outermost scope refers to all the built-in names callable in the program. The objects
+in this scope are searched last to find the name referenced.
+
+for eg,
+````
+built_in_function = len("example")
+
+def yet_another_function():
+    print(len)  # This refers to the built-in len function.
+
+yet_another_function()
+# This will print the information about the built-in len function.
+
+````
+
+In this line, the len function is a built-in function in Python, and it is used to 
+determine the length of a sequence (such as a string, list, or tuple). 
+
+Here's how it works:
+- The `len("example")` calculates the length of the string "example", which is 7.
+- The result (7) is then assigned to the variable built_in_function.
+
+Now, built_in_function holds the value 7, representing the length of the string 
+"example". You can use the built_in_function variable later in your code.
+
+Built-in functions like len are part of Python's standard library, and they are 
+always available for use without the need for explicit import statements. 
+
+These functions provide fundamental operations that can be applied to various 
+types of objects in Python. Some other examples of built-in functions include 
+print(), type(), sum(), and max().
+
+
+-------------------------------------------------------------------------------------
+### Q088 : What are Mixin in Python;;
+
+
 
 -------------------------------------------------------------------------------------
 ### Q087 : Memoization Concept with Python Decorator;;
