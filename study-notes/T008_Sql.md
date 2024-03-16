@@ -4,41 +4,300 @@
 -  Author: @neeraj-singh-jr
 -  Status : Ongoing...
 -  Created : 26/05/2023
--  Updated : 20/01/2024
+-  Updated : 20/03/2024
 -  Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--  Q028 : Trigger in Sql;;
--  Q027 : VIEWS in Sql;;
--  Q026 : COPYING DATA TO TABLE in Sql;;
--  Q025 : DROP TABLE CONSTRAINTS in Sql;;
--  Q024 : ALTER TABLE CONSTRAINTS in Sql;;
--  Q023 : CRUD TABLE & SCHEMA CONSTRAINTS in Sql;;
--  Q022 : INSERT INTO Table in Sql;;
--  Q021 : CREATE TABLE in Sql;;
--  Q020 : Subqueries in Sql;;
--  Q019 : INTERSECT & EXCEPT in Sql;;
--  Q018 : UNION clause in Sql;;
--  Q017 : JOIN - CARTENSIAN PRODUCT in Sql;;
--  Q016 : JOIN Relationship in Sql;;
--  Q015 : GROUP_CONCAT in Sql;;
--  Q014 : COUNT(*) vs COUNT(1) in Sql;;
--  Q013 : COUNT & GROUP BY in Sql;;
--  Q012 : COALESCE vs IFNULL in Sql;;
--  Q011 : COALESCE Clause in Sql;;
--  Q010 : IFNULL Clause in Sql;;
--  Q009 : Concatenation in Sql;;
--  Q008 : Case Clause in Sql;;
--  Q007 : Modify Data from Rows in Sql;;
--  Q006 : Arithmetic Operation in Sql;;
--  Q005 : Modulus in Sql;;
--  Q004 : Strftime function in sql;;
--  Q003 : Date and Time function in sql;;
--  Q002 : Sql Length function in sql;;
--  Q001 : Sql Core Fundamentals Topics;;
+-> Q031 : Stored Procedure in Postgres;;
+-> Q030 : Functions in Postgres;;
+-> Q029 : What are Index in Database;;
+-> Q028 : Trigger in Sql;;
+-> Q027 : VIEWS in Sql;;
+-> Q026 : COPYING DATA TO TABLE in Sql;;
+-> Q025 : DROP TABLE CONSTRAINTS in Sql;;
+-> Q024 : ALTER TABLE CONSTRAINTS in Sql;;
+-> Q023 : CRUD TABLE & SCHEMA CONSTRAINTS in Sql;;
+-> Q022 : INSERT INTO Table in Sql;;
+-> Q021 : CREATE TABLE in Sql;;
+-> Q020 : Subqueries in Sql;;
+-> Q019 : INTERSECT & EXCEPT in Sql;;
+-> Q018 : UNION clause in Sql;;
+-> Q017 : JOIN - CARTENSIAN PRODUCT in Sql;;
+-> Q016 : JOIN Relationship in Sql;;
+-> Q015 : GROUP_CONCAT in Sql;;
+-> Q014 : COUNT(*) vs COUNT(1) in Sql;;
+-> Q013 : COUNT & GROUP BY in Sql;;
+-> Q012 : COALESCE vs IFNULL in Sql;;
+-> Q011 : COALESCE Clause in Sql;;
+-> Q010 : IFNULL Clause in Sql;;
+-> Q009 : Concatenation in Sql;;
+-> Q008 : Case Clause in Sql;;
+-> Q007 : Modify Data from Rows in Sql;;
+-> Q006 : Arithmetic Operation in Sql;;
+-> Q005 : Modulus in Sql;;
+-> Q004 : Strftime function in sql;;
+-> Q003 : Date and Time function in sql;;
+-> Q002 : Sql Length function in sql;;
+-> Q001 : Sql Core Fundamentals Topics;;
 ------------------------------------------------------------------------------------
 ````
 
 ### SQL NOTES (SQLITE): BEGINNING 
+
+-------------------------------------------------------------------------------------
+###  Q031 : Stored Procedure in Postgres;;
+
+`Scope`: 
+Stored procedures are specific to the database management system (DBMS) and are 
+stored within the database itself. They can be accessed and executed by any user 
+with the appropriate permissions. 
+
+On the other hand, ordinary functions (like those in programming languages) are 
+typically defined within a programming environment or application code and may 
+not be directly accessible from the database.
+
+`Compilation`: 
+Stored procedures are precompiled and optimized by the DBMS when they are created 
+or modified. This compilation process can improve performance by reducing the 
+overhead associated with parsing and executing SQL statements. 
+
+Ordinary functions in application code are typically interpreted or compiled by the 
+programming language's runtime environment each time they are called.
+
+`Transaction Management`: 
+Stored procedures can be part of a database transaction and can participate in the 
+database's transaction management mechanisms, such as commit and rollback. This 
+allows stored procedures to ensure data integrity and consistency within the database. 
+
+Ordinary functions in application code may rely on the transaction management mechanisms 
+provided by the programming language or framework in which they are executed.
+
+`Access Control`: 
+Stored procedures can have their own access control settings, allowing administrators 
+to restrict or grant permissions for specific users or roles to execute them. 
+
+Ordinary functions in application code may rely on the access control mechanisms provided 
+by the programming language or framework
+
+for eg,
+````
+CREATE OR REPLACE PROCEDURE get_employee_count()
+LANGUAGE SQL
+AS $$
+    SELECT COUNT(*) FROM employees;
+$$;
+
+---- EXECUTION OF PROCEDURE
+CAL get_employee_count();
+````
+
+
+-------------------------------------------------------------------------------------
+### Q030 : Functions in Postgres;;
+
+Syntax Refers : Postgres
+
+#### Functions 
+
+In PostgreSQL, you can define custom functions using the CREATE FUNCTION statement. 
+
+Here's a basic syntax for creating a function:
+
+````
+CREATE FUNCTION function_name(parameter1 data_type, parameter2 data_type, ...)
+RETURNS return_type AS
+$$
+DECLARE
+    -- optional variable declarations
+BEGIN
+    -- function body
+END;
+$$
+LANGUAGE plpgsql;
+````
+
+Explanation of the Syntax:-
+
+1) `CREATE FUNCTION`: This statement is used to define a new function.
+2) `function_name`: This is the name of the function you want to define. 
+3) `parameter1, parameter2, ...`: These are optional parameters that the function 
+may accept. Each parameter consists of a name and a data type.
+4) `RETURNS return_type`: This specifies the data type that the function will return.
+5) `AS $$ ... $$`: This is the function body enclosed within dollar-quoted strings. 
+You can use either single dollar signs ($) or double dollar signs ($$) as delimiters. 
+Using double dollar signs allows for multiline function bodies and helps to avoid 
+conflicts with SQL keywords.
+6) `DECLARE`: This keyword is used to declare local variables within the function. 
+It's optional, and you only need it if your function requires local variables.
+7) `BEGIN ... END;`: This block contains the actual code of the function. It starts 
+with BEGIN and ends with END;.
+8) `LANGUAGE plpgsql`: This specifies the language of the function. In this case, 
+plpgsql indicates that the function is written in PL/pgSQL, which is a procedural 
+language extension for PostgreSQL
+
+
+for eg,
+```
+CREATE FUNCTION square(num INTEGER)
+RETURN INTEGER AS 
+
+$$
+DECLARE
+   result INTEGER 
+BEGIN
+   result := num * num
+   RETURN result;
+END;
+$$
+
+LANGUAGE plpgsql;
+
+
+--- triggering function;;
+SELECT square(7)
+```
+
+
+-------------------------------------------------------------------------------------
+### Q029 : What are Index in Database;;
+
+A database index is a data structure that provides a quick lookup of data in a 
+column or columns of a table. It enhances the speed of operations accessing data 
+from a database table at the cost of additional writes and memory to maintain the
+index data structure.
+
+for eg,
+````
+/* Create Index */
+CREATE INDEX index_name   
+ON table_name (column_1, column_2);
+
+/* Drop Index */
+DROP INDEX index_name;
+````
+
+There are different types of indexes that can be created for different purposes
+1. 
+2. Unique 
+2. Non Unique 
+3. Clustered Index
+4. Non Clustered Index
+
+#### Unique Index
+
+A unique index ensures that the values in the indexed column (or columns) are 
+unique across the entire table. This means that no two rows can have the same 
+value in the indexed column(s). 
+
+Unique indexes are often used for columns that should contain unique values, 
+such as `primary keys` or columns that should not have duplicate entries.
+
+Index on `primary key` are created by default by DBMS management system
+
+for eg,
+````
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100) UNIQUE
+);
+
+CREATE UNIQUE INDEX idx_student_id on Students(StudentID)
+````
+
+#### Non-Unique Index
+
+A non-unique index does not enforce uniqueness on the values in the indexed 
+column(s). Multiple rows in the table can have the same value in the indexed 
+column(s). 
+
+Non-unique indexes are useful for improving query performance when searching 
+or sorting based on specific columns, even if those columns may contain 
+duplicate values.
+
+for eg,
+````
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Author VARCHAR(100),
+    Genre VARCHAR(50),
+    PublicationYear INT
+);
+
+CREATE INDEX IDX_Genre ON Books(Genre);
+````
+
+#### Clustered Index
+
+In a clustered index, the rows of the table are physically stored in the order 
+of the index key. Each table can have only one clustered index because the data 
+rows themselves are ordered based on the clustered index key.
+
+When you create a clustered index on a table, the database system rearranges the 
+table's rows based on the index key. This means that the actual table data is 
+physically organized according to the clustered index key.
+
+Because of this physical organization, searching for a particular value using the 
+clustered index is usually very fast since the data is sorted in the order of the 
+index key.
+
+for eg,
+```
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    DepartmentID INT,
+    Salary DECIMAL(10, 2)
+);
+
+CREATE CLUSTERED INDEX index_employee_id ON Employees(EmployeeID);
+```
+
+#### Non Clustered Index
+
+In contrast to a clustered index, a non-clustered index does not alter the physical 
+order of the table's rows. Instead, it creates a separate structure that contains 
+index key values and pointers to the corresponding table rows.
+
+Unlike clustered indexes, tables can have multiple non-clustered indexes. Each 
+non-clustered index is stored separately from the actual table data.
+
+When you create a non-clustered index, the database system creates a separate index 
+structure containing the index key values and pointers to the corresponding rows in 
+the table. This allows for efficient searching and retrieval of data based on the 
+indexed columns.
+
+Non-clustered indexes are typically used for columns that are frequently searched but 
+not updated frequently, as updating the indexed columns can be slower due to the need 
+to update the index structure.
+
+```
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    DepartmentID INT,
+    Salary DECIMAL(10, 2)
+);
+
+CREATE NONCLUSTERED INDEX idx_department_id ON Employees(DepartmentID);
+```
+
+#### Difference in Clustered Vs Non-Clustered Index;;
+
+The differences can be broken down into three small factors -
+
+- Clustered index modifies the way records are stored in a database based on the indexed 
+column. A non-clustered index creates a separate entity within the table which references 
+the original table.
+
+- Clustered index is used for easy and speedy retrieval of data from the database, whereas, 
+fetching records from the non-clustered index is relatively slower.
+
+- A table can have a single clustered index whereas it can have multiple non clustered indexes
+
 
 -------------------------------------------------------------------------------------
 ### Q028 : Trigger in Sql;;

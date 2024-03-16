@@ -7,6 +7,7 @@
 -> Updated : 28/01/2024
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q014 : Model Serializer vs HyperLinked Serializer;; 
 -> Q013 : Combine multiple QuerySets in a View;;
 -> Q012 : Permanent Redirection not a good options;;
 -> Q011 : Mixins classes in Django;;
@@ -26,7 +27,108 @@
 ### DJANGO NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
-### Combine multiple QuerySets in a View;;
+### Q014 : Model Serializer vs HyperLinked Serializer;;
+
+`Hyperlinked APIs` and `simple primary key (PK)` lookups often revolves around 
+the design principles of REST and the requirements of the application
+
+Here are the key reasons to consider using hyperlinked APIs instead of simple 
+primary key lookups
+
+#### Improved Readability and User Experience:
+- Hyperlinked APIs use URLs that are more human-readable and descriptive.
+- URLs based on resource relationships (hyperlinks) provide context about the 
+relationship between different resources.
+
+#### Consistency and Predictability:
+- Hyperlinked APIs provide consistent URLs for related resources, making it easier 
+for developers to predict and understand the structure of the API.
+- Simple PK lookups may expose internal database details and may not be as 
+consistent or predictable.
+
+#### Loose Coupling:
+- Hyperlinked APIs promote loose coupling between the client and the server. Clients 
+can navigate through the API based on hyperlinks without depending on the internal
+implementation details.
+- Simple PK lookups may tightly couple clients to the structure of the server's database.
+
+for eg,
+
+> Simple Primary Key Lookups:
+````
+# serializers.py
+from rest_framework import serializers
+from .models import Author, Book
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'
+
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+# views.py
+from rest_framework import generics
+from .models import Author, Book
+from .serializers import AuthorSerializer, BookSerializer
+
+class AuthorDetailView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+    lookup_field = 'id'  # Using simple primary key lookup
+
+class BookDetailView(generics.RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    lookup_field = 'id'  # Using simple primary key lookup
+    
+# NOTE :
+In this approach, to get details about an author or a book, the client needs 
+to construct URLs like /api/authors/1/ or /api/books/2/.
+````
+
+> Hyperlinked APIs:
+
+````
+# serializers.py
+from rest_framework import serializers
+from .models import Author, Book
+
+class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'
+
+class BookSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+# views.py
+from rest_framework import generics
+from .models import Author, Book
+from .serializers import AuthorSerializer, BookSerializer
+
+class AuthorDetailView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+class BookDetailView(generics.RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+NOTE:
+In this hyperlinked approach, the serializers use HyperlinkedModelSerializer, 
+and clients can navigate the API using hyperlinks. For example, the client can 
+follow links from an author's details to the books they have written and vice versa.
+````
+
+
+-------------------------------------------------------------------------------------
+### Q013 : Combine multiple QuerySets in a View;;
 
 QuerySets can be combined into another QuerySet, and they do not have to be from 
 the same model.

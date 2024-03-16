@@ -199,6 +199,44 @@ print(), type(), sum(), and max().
 -------------------------------------------------------------------------------------
 ### Q088 : What are Mixin in Python;;
 
+In Python, mixins are classes that provide functionality to be inherited by other 
+classes. They are often used to add common or reusable behavior to multiple classes 
+without requiring multiple inheritance. Mixins typically contain methods or attributes 
+that can be shared across different classes.
+
+for eg,
+````
+# Define a mixin class for logging functionality
+class LogMixin:
+    def log_info(self, message):
+        print(f"INFO: {message}")
+
+    def log_error(self, message):
+        print(f"ERROR: {message}")
+
+# Define a class that uses the LogMixin
+class MyClass(LogMixin):
+    def do_something(self):
+        # Call the log_info method from the LogMixin
+        self.log_info("Doing something...")
+
+        # Call the log_error method from the LogMixin
+        self.log_error("Oops! Something went wrong.")
+
+# Create an instance of MyClass and call its methods
+obj = MyClass()
+obj.do_something()
+````
+
+> Note
+
+Mixins in Python often utilize multiple inheritance to provide reusable behavior 
+to multiple classes. 
+
+However, the distinction is that mixins are typically designed to be used with 
+single inheritance, meaning that they are intended to be added to classes that 
+inherit from only one base class. This helps avoid the complexities and ambiguity 
+that can arise from multiple inheritance.
 
 
 -------------------------------------------------------------------------------------
@@ -5811,7 +5849,7 @@ for key, group in groupby(records, lambda x:x[1]):
 
 
 -------------------------------------------------------------------------------------
--> Q028: Builtins Error and Exception;;
+### Q028: Builtins Error and Exception;;
 
 Built in modules contains extra functionalities.For example to get square 
 root of a number we need to include math module.
@@ -6522,7 +6560,7 @@ returns: a static method for function fun.
 
 #### When to use the class or static method ?
 - We generally use the class method to create factory methods. Factory methods
-  return class objects ( similar to a constructor ) for different use cases.
+  return class objects ( similar to a construct or ) for different use cases.
 - We generally use static methods to create utility functions.
 
 for eg,
