@@ -4,9 +4,10 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing
 -> Created : 09/10/2023
--> Updated : 28/01/2024
+-> Updated : 20/03/2024
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q015 : Transaction Lock in Django;;
 -> Q014 : Model Serializer vs HyperLinked Serializer;; 
 -> Q013 : Combine multiple QuerySets in a View;;
 -> Q012 : Permanent Redirection not a good options;;
@@ -25,6 +26,50 @@
 ````
 
 ### DJANGO NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q015 : Transaction Lock in Django;;
+
+In Django, the `transaction.atomic()` context manager is used to ensure that a block 
+of database operations are executed within a single transaction. Transactions 
+are important for maintaining data consistency and integrity, especially when dealing 
+with multiple database operations that need to be executed together as a single unit.
+
+#### WORK ARCHITECUTRE
+
+`Atomicity`: By wrapping database operations inside transaction.atomic(), Django 
+ensures that either all operations within the block are successfully committed 
+to the database or none of them are. If an exception occurs during the execution 
+of the block, Django automatically rolls back the transaction to its initial state, 
+preventing any partial updates from being persisted in the database.
+
+`Consistency`: Transactions help maintain data consistency by enforcing constraints 
+and validations. For example, if you have a set of database operations that need to 
+be executed together to maintain referential integrity or satisfy business rules, 
+wrapping them inside a transaction ensures that these constraints are applied as a whole.
+
+`Isolation`: Transactions provide isolation between concurrent database transactions, 
+ensuring that the operations performed by one transaction are not visible to other 
+transactions until the transaction is committed. This prevents data corruption and 
+ensures that each transaction sees a consistent view of the database.
+
+for eg,
+````
+from django.db import transaction
+
+# Define a function that performs database operations within a transaction
+def perform_database_operations():
+    with transaction.atomic():
+        # Perform database operations here
+        # For example:
+        # Create, update, or delete database records
+        # Perform bulk inserts or updates
+        # Execute complex database queries
+
+# Call the function to execute database operations within a transaction
+perform_database_operations()
+````
+
 
 -------------------------------------------------------------------------------------
 ### Q014 : Model Serializer vs HyperLinked Serializer;;
