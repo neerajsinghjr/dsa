@@ -1,0 +1,14 @@
+version: "2"
+services:
+
+  # Collector
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: ["--config=/etc/otel-collector-config.yaml", "${OTELCOL_ARGS}"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"   # otlp receiver
+      - "4318:4318"   # otlp receiver
+      - "13133:13133" # heatlth check extention
+

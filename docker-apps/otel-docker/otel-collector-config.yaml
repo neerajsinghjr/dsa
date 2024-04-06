@@ -1,0 +1,141 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+exporters:
+  logging:
+  coralogix:
+    domain: "coralogix.in"
+    private_key: "XXXXXXXXXXXXXXXXXXXX"
+    application_name_attributes:
+      - "application.name"
+    subsystem_name_attributes:
+      - "api.name"
+    application_name: "application.name"
+    subsystem_name: "api.name"
+    timeout: 30s
+
+extensions:
+  health_check:
+
+
+processors:
+  batch:
+  tail_sampling:
+    policies: [
+      {
+        name: randomized-policy-ipaybridge,
+        type: and,
+        and: {
+          and_sub_policy:
+            [
+              {
+                name: randomized-policy,
+                type: probabilistic,
+                probabilistic: { sampling_percentage: 0.5 },
+              },
+              {
+                name: application-sampling,
+                type: string_attribute,
+                string_attribute: { key: cx.application.name, values: [ ipaybridge ] }
+              },
+            ]
+        }
+      },
+      {
+        name: randomized-policy-payment-services,
+        type: and,
+        and: {
+          and_sub_policy:
+            [
+              {
+                name: randomized-policy,
+                type: probabilistic,
+                probabilistic: { sampling_percentage: 10 },
+              },
+              {
+                name: application-sampling,
+                type: string_attribute,
+                string_attribute: { key: cx.application.name, values: [ cashe_payment_application ] }
+              },
+            ]
+        }
+      },
+      {
+        name: randomized-policy-cashe-partners,
+        type: and,
+        and: {
+          and_sub_policy:
+            [
+              {
+                name: randomized-policy,
+                type: probabilistic,
+                probabilistic: { sampling_percentage: 5 },
+              },
+              {
+                name: application-sampling,
+                type: string_attribute,
+                string_attribute: { key: cx.application.name, values: [ cashe_partners ] }
+              },
+            ]
+        }
+      },
+      {
+        name: randomized-policy-digital-gold,
+        type: and,
+        and: {
+          and_sub_policy:
+            [
+              {
+                name: randomized-policy,
+                type: probabilistic,
+                probabilistic: { sampling_percentage: 5 },
+              },
+              {
+                name: application-sampling,
+                type: string_attribute,
+                string_attribute: { key: cx.application.name, values: [ digital_gold ] }
+              },
+            ]
+        }
+      },
+      {
+        name: randomized-policy-communications,
+        type: and,
+        and: {
+          and_sub_policy:
+            [
+              {
+                name: randomized-policy,
+                type: probabilistic,
+                probabilistic: { sampling_percentage: 5 },
+              },
+              {
+                name: application-sampling,
+                type: string_attribute,
+                string_attribute: { key: cx.application.name, values: [ communications ] }
+              },
+            ]
+        }
+      },
+    ]
+
+service:
+  extensions:
+    - health_check
+  pipelines:
+    traces:
+      exporters:
+        - logging
+        - coralogix
+      processors:
+        - tail_sampling
+        - batch
+      receivers:
+        - otlp
+
+

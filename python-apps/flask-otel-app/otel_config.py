@@ -2,7 +2,7 @@
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import SimpleSpanProcessor
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter, BatchSpanProcessor
 from opentelemetry.sdk.trace.sampling import StaticSampler, Decision
 from opentelemetry import trace
 # --- coralogix sampler --- #
@@ -26,7 +26,7 @@ headers = ', '.join([
 # --- opentelemetry setup --- #
 # resource creation;;
 flask_resource = Resource.create({
-    SERVICE_NAME: 'flask_test_resource'
+    SERVICE_NAME: 'dice_app_v3'
 })
 # sampler to sample the incoming api data ;;
 flask_sampler = CoralogixTransactionSampler(
@@ -43,7 +43,7 @@ exporter = OTLPSpanExporter(
     headers=headers
 )
 # set up a span processor to send spans to the exporter
-span_processor = SimpleSpanProcessor(exporter)
+span_processor = BatchSpanProcessor(exporter)
 # debugging the span
 # span_processor = ConsoleSpanExporter(exporter)
 

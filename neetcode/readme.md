@@ -4,9 +4,10 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 2024-03-17
--> Updated : 2024-03-17
+-> Updated : 2024-04-07
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q004 : Usage of 2^n combination for substring or subsequence problem;;
 -> Q003 : Anagram in DSA Problems;;
 -> Q002 : Pallindrome in DSA Problems;;
 -> Q001 : Subarray and Subsequence in DSA Problems;;
@@ -14,6 +15,51 @@
 ````
 
 ### NEETCODE MASTER DSA NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q004 : Usage of 2^n combination for substring or subsequence problem;;
+
+In the context of algorithms or problems involving substrings or subsequences, the 
+expression `2^(right-left)`, often arises when counting the number of possible 
+substrings or subsequences within a given range defined by the variables left and right.
+
+> Here's an explanation:
+
+1. `Substrings or Subsequences`: A substring is a contiguous sequence of characters 
+within a string. A subsequence is a sequence that can be derived from another sequence 
+by deleting some or no elements without changing the order of the remaining elements
+
+
+2. `Counting Possible Subsequences`: When you have a string or an array. You're trying 
+to count the number of possible substrings or subsequences within a given range, you 
+often iterate through the range with two pointers, `left` and `right`. Each substring 
+or subsequence corresponds to a contiguous segment between these two pointers.
+
+
+3. `Calculating the Count`: The expression `2^(right-left)`, represents the number of 
+possible substrings or subsequences that can be formed using the characters or elements 
+between the left and right pointers. This is because for each character or element in 
+the range, you have two choices: include it in the subsequence or exclude it. 
+Therefore, the total number of combinations is `2^(right-left)`
+
+
+4. `Example` : Let's say you have a string "abc". If left = 0 and right = 2, then you 
+have substrings "a", "ab", "abc", "b", "bc", and "c". 
+The count of substrings is `2^(2-0)=4`, which includes all combinations of including 
+or excluding characters between the left and right pointers.
+
+
+> Conclusion:
+ 
+This approach is commonly used in algorithms like sliding window, two pointers, or 
+dynamic programming to efficiently calculate counts of substrings or subsequences. 
+
+It's important because it allows you to avoid explicitly generating and checking every 
+possible substring or subsequence, which would be inefficient for large inputs. 
+
+Instead, you can calculate the count directly based on the range of indices
+
+
 
 -------------------------------------------------------------------------------------
 ### Q003 : Anagram in DSA Problems;;
