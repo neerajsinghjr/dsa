@@ -4,9 +4,10 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing
 -> Created: 03/09/2022
--> Updated: 10/03/2024
+-> Updated: 11/04/2024
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q090 : Python Round Division;;
 -> Q089 : Scopes in Python Language;;
 -> Q088 : What are Mixin in Python;;
 -> Q087 : Memoization Concept with Python Decorator;;
@@ -100,6 +101,26 @@
 ````
 
 ### PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q090 : Python Round Division;;
+
+- `print(6//132)` will output 0, because it performs integer division between 
+6 and 132, resulting in 0 with no remainder
+
+- `print(6//-132)` will output -1, because it performs integer division between 
+6 and -132, resulting in -1 with no remainder.
+
+- `print(int(6/-132))` use for accurate result or straight zero. 
+
+> Conclusion:
+
+In Python, integer division always rounds towards negative infinity, meaning the 
+result is rounded to the nearest integer that is less than or equal to the true 
+quotient. 
+
+Therefore, -1 is the result of dividing 6 by -132.
+
 
 -------------------------------------------------------------------------------------
 ### Q089 : Scopes in Python Language;;
