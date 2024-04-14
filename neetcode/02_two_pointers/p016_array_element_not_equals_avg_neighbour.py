@@ -1,12 +1,16 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
+-> Problem Title: 1968. Array With Elements Not Equal to Average of Neighbors
 -> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Attempted: 2024-04-14
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-...
+Problem:-
+https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/description/
+
+Reference:-
+https://youtu.be/Wmb3YdVYfqM
 
 -------------------------------------------------------------------------------------
 '''
@@ -24,9 +28,40 @@ import random
 ##---Main Solution
 class Solution:
 
-    # Constructor;
-        def __init__(self):
-            pass
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        """
+        _stdin:
+            args1: list[int]
+        _stdout: list[int]
+        """
+        # return self.ansv1(nums)
+        return self.ansv2(nums)
+
+
+    def ansv1(self, nums):
+        """
+        _run: accepted
+        _code: time: o(n), space: o(1)
+        _study:
+        --- explanation ---
+        """
+        nums.sort()
+
+        i, j, n = 0, 0, len(nums)
+        ans = [0]*n
+
+        while i < n and j < n:
+            ans[i] = nums[j]
+            i = i + 2
+            j = j + 1
+
+        i = 1
+        while i < n and j < n:
+            ans[i] = nums[j]
+            i = i + 2
+            j = j + 1
+
+        return ans
 
 
 ##---Main Execution;;

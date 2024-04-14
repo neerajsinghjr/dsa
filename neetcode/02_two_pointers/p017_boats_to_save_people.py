@@ -62,7 +62,7 @@ class Solution:
             if peoples[lo] + peoples[hi] <= limit:
                 lo += 1
 
-            # here we are directly reducing the wieght of people from end directly
+            # here we are directly reducing the weight of people from end directly
             # without checking because as per the question constraints people weight
             # can't be greater than that the limit of boat capacity;;
             # otherwise you've to pick whether the candidate can be assigned to the
