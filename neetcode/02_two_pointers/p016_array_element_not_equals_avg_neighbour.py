@@ -1,7 +1,7 @@
 '''
 -------------------------------------------------------------------------------------
 -> Problem Title: 1968. Array With Elements Not Equal to Average of Neighbors
--> Problem Status: Ongoing...
+-> Problem Status: Completed
 -> Problem Attempted: 2024-04-14
 -> Problem Description:
 -------------------------------------------------------------------------------------
