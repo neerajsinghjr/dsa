@@ -39,7 +39,7 @@ import os
 # SCRIPT RUN TIME CONSTANTS;;
 DEBUG = False
 TASK = 'IMAGE_COMPRESSOR_SCRIPT'
-LOG_FILE = 'S000_runtime_log.log'
+LOG_FILE = 'script_logs.log'
 LOG_FORMAT = "[##time##][##type##::##task##] :: ##message## \n"
 
 

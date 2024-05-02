@@ -4,10 +4,10 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 16/12/2023
--> Updated : 16/12/2023
+-> Updated : 02/05/2024
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q001 : ... ;;
+-> Q001 : What is Trading;;
 -------------------------------------------------------------------------------------
 ````
 
@@ -164,8 +164,10 @@ positional trading: when you buy a stock and its going on increasing so in this 
 of case you just keep a hold on the stock for sometime can be week 
 
 -------------------------------------------------------------------------------------
-Q001 : What is trading ?
+### Q001 : What is Trading;;
 
--> Buying or selling of stocks
+#### Buying or selling of stocks
+
+- 
 
 -------------------------------------------------------------------------------------

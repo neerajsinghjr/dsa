@@ -1,12 +1,16 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: https://leetcode.com/problems/single-element-in-a-sorted-array/description/
+-> Problem Status: Completed
+-> Problem Attempted: 2024-04-14
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-...
+Problem:-
+https://leetcode.com/problems/single-element-in-a-sorted-array/
+
+Reference:-
+https://youtu.be/HGtqdzyUJ3k
 
 -------------------------------------------------------------------------------------
 '''
