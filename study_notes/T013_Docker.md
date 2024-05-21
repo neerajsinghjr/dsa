@@ -619,21 +619,21 @@ or, you can also use logs with follow flag,
 
 - Third different is that, 
 
-	- `RUN` command run the container in the foreground mode 
+    - `RUN` command run the container in the foreground mode 
 
-		`$ docker run <image_id>`
+        `$ docker run <image_id>`
 
-		or, run the container in background mode.
-		
-      	`$ docker run -d <image_id>`
+        or, run the container in background mode.
 
-	- `START` command run the container in the background mode by default. 
+        `$ docker run -d <image_id>`
 
-		`$ docker start <container_id>`
+    - `START` command run the container in the background mode by default. 
 
-		or, run the container in foreground mode,
+        `$ docker start <container_id>`
+
+        or, run the container in foreground mode,
    
-		`$ docker start -a <container_id>`
+        `$ docker start -a <container_id>`
 
 NOTE: Run mode is not fixed can be changed as per the requirements as well. 
 It can be used interchangely using the flag `-d` for detached or background 
@@ -1031,11 +1031,10 @@ working on containerized applications.
 -------------------------------------------------------------------------------------
 ### Q003 : Docker Setup in Cross Platform;; 
 
--  for Mac Os and Windows if the docker requirements are not installed
-   successively then you should install docker toolbox then you've to install
-   docker desktop.
+-  for MacOs and Windows if the docker requirements are not installed successively 
+   then you should install docker toolbox then you've to install docker desktop.
 
--  for Linux, Docker Engine are supported Natively that means we dont need any
+-  for Linux, Docker Engine are supported Natively that means we don't need any
    docker related toolbox. we can setup docker directly.
 
 -  Refer Ubuntu Installation :
@@ -1055,7 +1054,7 @@ working on containerized applications.
  		$ docker --version
 
  		# verify docker daemon ...
- 		$ sudo sytemctl status docker 	
+ 		$ sudo systemctl status docker 	
 
  		# Verify the docker compose version 
  		$ docker-compose --version
@@ -1117,7 +1116,7 @@ working on containerized applications.
 |       App A1     |         App B1    |      App C1           |
 |------------------|-------------------|-----------------------|
 | Library, Tools   | Libraries, Tools, | Own Libraries, Tools, |
-|  Dependency      | Dependencies      | Dependencies          |
+|  Dependency      | Dependencies      | Dependencies                           `       |
 |------------------|-------------------|-----------------------|
 | Virtual OS       | Virutal OS        |      Virutal OS       |
 |  (Linux)         | (Windows 7)       |    (Centos)           |
@@ -1125,8 +1124,6 @@ working on containerized applications.
 |                     Host Operating System                    |
 ---------------------------------------------------------------
 ````
-
-NOTE: 
 
 **(NOTE: Creating a own replicas of virtual os takes a lot of space on your 
 hard drive and tends to slow.)**
@@ -1158,22 +1155,22 @@ hard drive and tends to slow.)**
 |      Docker Engine           |
 | (Setup by Docker itself)     |
 |------------------------------|
-| 	OS Build-in/Emulated   |
+|   OS Build-in/Emulated       |
 |   Containers Support         |
 |------------------------------|
-| your operating system        |
+|    your operating system     |
 -------------------------------
 ````
 
 #### DOCKER VS VIRTUAL MACHINE
 
--  Docker Containers:
-	- Low imapact on OS, Very fast, minimal disk space usages
+- Docker Containers:
+	- Low impact on OS, Very fast, minimal disk space usages.
 	- Sharing, re-building and distribution of image is easy.
 	- Encapsulation apps/environments instead of whole machines.
 
--  Virtual Machines:
-	- Bigger impact on OS, slower higher disk space usage
+- Virtual Machines:
+	- Bigger impact on OS, slower higher disk space usage.
 	- Sharing, re-building and distribution can be challenge.
 	- Encapsulate whole machine instead of just apps/environment.
 
@@ -1208,7 +1205,7 @@ hard drive and tends to slow.)**
    production. So that we can make sure that everything works as expected.
 
 -  Different Development Environments With Team/Company : Every team
-   member should have exactly the same environemtn when working on the
+   member should have exactly the same environment when working on the
    same project
 
 -  Clashing Tools/Versions Between Different Projects : When switching
