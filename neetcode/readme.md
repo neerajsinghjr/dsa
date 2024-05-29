@@ -4,9 +4,10 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 2024-03-17
--> Updated : 2024-04-07
+-> Updated : 2024-05-27
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q005 : Bitwise Manipulation in One Go
 -> Q004 : Usage of 2^n combination for substring or subsequence problem;;
 -> Q003 : Anagram in DSA Problems;;
 -> Q002 : Pallindrome in DSA Problems;;
@@ -15,6 +16,12 @@
 ````
 
 ### NEETCODE MASTER DSA NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q005 : Bitwise Manipulation in One Go
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q004 : Usage of 2^n combination for substring or subsequence problem;;

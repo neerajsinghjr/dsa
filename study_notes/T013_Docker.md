@@ -1116,7 +1116,7 @@ working on containerized applications.
 |       App A1     |         App B1    |      App C1           |
 |------------------|-------------------|-----------------------|
 | Library, Tools   | Libraries, Tools, | Own Libraries, Tools, |
-|  Dependency      | Dependencies      | Dependencies                           `       |
+|  Dependency      | Dependencies      | Dependencies          |
 |------------------|-------------------|-----------------------|
 | Virtual OS       | Virutal OS        |      Virutal OS       |
 |  (Linux)         | (Windows 7)       |    (Centos)           |
