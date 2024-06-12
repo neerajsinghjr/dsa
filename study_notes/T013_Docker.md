@@ -1,10 +1,10 @@
 ```
 -------------------------------------------------------------------------------------
 - Topic	: Docker				
-- Author :  @neeraj-singh-jr	
-- Status :  Ongoing			
+- Author : @neeraj-singh-jr	
+- Status : Ongoing			
 - Created : 29/09/2023		    
-- Updated : 21/10/2024		
+- Updated : 03/06/2024
 -------------------------------------------------------------------------------------
 - Q*** : Dockerfile stages wise optimization;;
 - Q*** : Difference in CMD vs ENTRYPOINT Command;;
@@ -45,6 +45,42 @@
 ### DOCKER NOTES : BEGINNING
 
 -------------------------------------------------------------------------------------
+### Q*** : Dockerfile stages wise optimization;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Difference in CMD vs ENTRYPOINT Command;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Docker Utility Based ENV Containers;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Define Customer Container Name in Docker Compose;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Docker-Compose Helpful Commands;;	
+
+-------------------------------------------------------------------------------------
+### Q*** : Docker-Compose File Commands;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Different docker compose extensions (yml vs yaml);;
+
+-------------------------------------------------------------------------------------
+### Q*** : Docker Compose Core Concept;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Integrate Multiple Docker Container Network;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Docket Network Commands;;
+
+-------------------------------------------------------------------------------------
+### Q*** : Connect Docker Container to Local Host Services;;
+
+-------------------------------------------------------------------------------------
+### Q022 : Docker Container Networking;;
+
+-------------------------------------------------------------------------------------
 ### Q021 : Docker ARG and ENV Variable Concept;;
 
 -  Docker mechanisms for passing configuration values into a container
@@ -70,15 +106,16 @@
   customize the image behavior during the build process.
 
 - for eg,
-    ````
-    # Dockerfile structure;;
-    FROM ubuntu:20.04
-    ARG my_port=80
-    ENV PORT=$my_port
+````
+# Dockerfile structure;;
+FROM ubuntu:20.04
 
-    # Image Build-up from terminal;;
-    $ docker build -t arg_test_app:0.1 --build-arg my_port=9090 .
-    ````
+ARG my_port=80
+ENV PORT=$my_port
+
+# Image Build-up from terminal;;
+$ docker build -t arg_test_app:0.1 --build-arg my_port=9090 .
+````
   
 #### ENV : Environment Variables On Run-Time
 
@@ -93,14 +130,14 @@
 - You can set the values of ENV variables during the image build process,
   and they are accessible within the running container.
 
-- Common use cases include specifying configuration settings for
-  applications within the container, such as database connection strings
-  or API keys.
+- Common use cases include specifying configuration settings for applications 
+  within the container, such as database connection strings or API keys.
 
 - for eg,
     ````
     # Dockerfile structure;;
     FROM Ubuntu:20.04
+  
     ENV LOGS_URL='https://api.example.com/logs/monitoring'
     ENV DEBIAN_FRONTEND noninteractive
     CMD echo $LOGS_MONITORING $DEBIAN_FRONTEND
@@ -264,7 +301,7 @@ Here are some key concepts and characteristics of Docker bind volumes:
 `1) Path on Host and Container`:
 
 Bind volumes allow you to specify a path on the host system and a path
-within the container. 
+within the container.
 
 The data in the host directory is mounted into the container, making it
 accessible from both the host and the container.
@@ -373,7 +410,7 @@ Here's how to create a named volume using the docker volume create command:
 
 `$ docker volume create my_named_volume`
 
-or, alternatively, you can also create volumn when running a containe using
+or, alternatively, you can also create volume when running a container using
 the flag -v or --volume,
 
 `$ docker run -d -v my_named_volume:/container_path my_image`
@@ -391,8 +428,8 @@ and be shared between containers.
 -------------------------------------------------------------------------------------
 ### Q015 : Docker Anonymous Volume Concept;;
 
--  Docker anonymous volumes are a type of volume used to manage data
-   persistence within containers. 
+-  Docker anonymous volumes are a type of volume used to manage data persistence 
+   within containers.
 
 -  They are created and managed by Docker itself, and unlike named volumes,
    they are not explicitly named. Instead, they are assigned unique
@@ -455,7 +492,8 @@ host system.
 ("made available or mapped") into the containers.
 
 -  Shared directory of docker-container volume mounted to the local-machine.
-For eg,
+
+- For eg,
 
 `/home/local-machine/shared  <- /home/docker-container/shared`
 
@@ -465,7 +503,7 @@ mounts a volume, any data inside of that volume is available in the container.
 -  A container can read or write data into a volume and similary it is
 available for the local machine as well for read/write operation.
 
--  Volumne Types are of two types :
+-  Volume Types are of two types :
 	- Anonymous or Names Volume (Managed By Docker)
 	- Bind Volume (Managed By Engineer)
 
@@ -529,11 +567,9 @@ $ docker build -t first_app:0.1 .
 $ docker images
 
 # Docker container up 
-	
 $ docker run -it <image_id>
 
 # verify the result...
-
 $ Hello, I'm docker-first-app
 $ Your Name...Neeraj 
 $ Hi Neeraj
@@ -557,18 +593,19 @@ $ Shutting down...
    you want to interact with the container's shell or, run an interactive
    application that expects a terminal. 
 	
-	or, You can allocate a TTY when running a Docker container using the -t
+   You can allocate a TTY when running a Docker container using the -t
    or --tty option, and you can also use the -i or --interactive option for
    interactive sessions. Here's how you can allocate a TTY in Docker:
 
+    `$ docker exec -it <container_id> /bin/bash`
 
 -------------------------------------------------------------------------------------
 ### Q011: Connect to container Interactively;;
 
--  Sometimes you have the requirement to connect a container interactively,
-   then you can use the command by like this
+Sometimes you have the requirement to connect a container interactively,
+then you can use the command by like this
 
-	`$ docker exec -it <container_id> /bin/bash`
+`$ docker exec -it <container_id> /bin/bash`
 
 This command is composed of two flags
 
@@ -593,7 +630,7 @@ or, you can also use logs with follow flag,
 
 
 -------------------------------------------------------------------------------------
-### Q009: Different Start Vs Run Command in Docker;;
+### Q009: Difference Start Vs Run Command in Docker;;
 
 - First Difference is that, 
 
@@ -617,7 +654,7 @@ or, you can also use logs with follow flag,
 
   		`$ docker start <container_id>`
 
-- Third different is that, 
+- Third difference is that, 
 
     - `RUN` command run the container in the foreground mode 
 
