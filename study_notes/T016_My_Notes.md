@@ -43,7 +43,8 @@ then commit and push the changes to remove the .DS_Store from your remote repo:
 
 $ git push origin master
 ```
-And now add .DS_Store to your .gitignore file, and then again commit and push with the 2 last pieces of code (git commit..., git push...)
+And now add .DS_Store to your .gitignore file, and then again commit and push 
+with the 2 last pieces of code (git commit..., git push...)
 
 
 #### Other Solution
