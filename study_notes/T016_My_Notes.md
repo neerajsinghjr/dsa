@@ -16,7 +16,7 @@
 ### MY NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
-### Q003 : Ignore DB_Store directory in MacoOs;;
+### Q003 : Ignore DB_Store directory in Mac-OS;;
 
 If `.DS_Store` was never added to your git repository, simply add it to your 
 `.gitignore` file.
@@ -26,7 +26,7 @@ If `.DS_Store` was never added to your git repository, simply add it to your
 .gitignore
 ```
 
-In your the root directory of your app and simply write
+In you're the root directory of your app and simply write
 ```
 **/.DS_Store
 ```
