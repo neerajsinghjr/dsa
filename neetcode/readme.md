@@ -4,7 +4,7 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 2024-03-17
--> Updated : 2024-05-27
+-> Updated : 2024-06-17
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> Q005 : Bitwise Manipulation in One Go
@@ -86,6 +86,7 @@ in a different order.
 # rearranging for letters taken place in formation for new words;;
 ````
 
+
 -------------------------------------------------------------------------------------
 ### Q002 : Pallindrome in DSA Problems;;
 
@@ -105,8 +106,8 @@ read backward.
 
 # pallindromic numbers, where the digits read the same forward and backward ... 
 `121, 1331, 12321`, 
-
 ````
+
 
 -------------------------------------------------------------------------------------
 ### Q001 : Subarray and Subsequence in DSA Problems;;
@@ -153,4 +154,5 @@ without changing the order of the remaining elements.
 from the original array.
 - Subsequences may not be contiguous, while subarrays are always contiguous.
 
+    
 -------------------------------------------------------------------------------------

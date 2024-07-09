@@ -40,16 +40,17 @@ class Solution:
         if not t:
             return False
 
-        return self.ansv1(s, t)
+        # return self.ansv1(s, t)
         # return self.ansv2(s, t)
+        return self.ansv3(s, t)
 
-    def ansv2(self, s, t):
+    def ansv3(self, s, t):
         """
         run: accepted
         time: o(n)
         space: o(1)
         choke: none
-        brief: simpe solution where every character of 's' string
+        brief: simple solution where every character of 's' string
         should be in 't' string.
         """
         s_idx, t_idx = 0, 0
@@ -59,6 +60,29 @@ class Solution:
             t_idx += 1
 
         return True if s_idx == len(s) else False
+
+    def ansv2(self, s, t):
+        """
+        _run: rejected
+        _code: ts: o(n), sc: o(n)
+        _study:
+        --- choke ---
+        [+] solution not working because using hashmap doesn't tip you
+        with respect to sequence it only helps you with the character
+        count which is only one aspect of the question.
+        --- explanation ---
+        [+] here intention is of using a hashmap to get the character
+        count of final string and then at search first string into the
+        second string.
+        """
+        hmap = {}
+        for c1 in t:
+            hmap[c1] = hmap.get(c1, 0) + 1
+        for c2 in s:
+            if not hmap.get(c2):
+                return False
+            hmap[c2] -= 1
+        return True
 
     def ansv1(self, s, t):
         """

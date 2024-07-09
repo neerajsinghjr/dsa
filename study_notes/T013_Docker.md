@@ -26,7 +26,7 @@
 - Q016 : Docker Named Volume Concept;;
 - Q015 : Docker Anonymous Volume Concept;;
 - Q014 : Docker Volume Concepts in Container;;
-- Q013: Setup an interactive docker container;;
+- Q013 : Setup an interactive docker container;;
 - Q012 : Docker interactive vs tty flag;;
 - Q011 : Connect to container Interactively;;
 - Q010 : Attach to running docker container;;
@@ -198,7 +198,7 @@ Here are the key volume-related commands in Docker:
 
 
 -------------------------------------------------------------------------------------
-### Q018 : Difference - Anonymous Vs Named Vs Mount Bind Volume;;
+### Q018 : Difference - Anonymous Vs Named Vs Binds Mount Volume;;
 
 Docker offers two primary types of volumes for managing data persistence 
 within containers: 
@@ -285,7 +285,7 @@ files, log files, or other temporary container-specific data.
 
 
 -------------------------------------------------------------------------------------
-### Q017 : Docker Mount Bind Volume Concept;;
+### Q017 : Docker Bind Mount Volume Concept;;
 
 -  `Docker bind volumes`, also known as host volumes, are a type of volume used
    to manage data persistence within containers. 

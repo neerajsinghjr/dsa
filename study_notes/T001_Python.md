@@ -2,11 +2,12 @@
 -------------------------------------------------------------------------------------
 -> Title: PyNotes Diary
 -> Author: @neeraj-singh-jr
--> Status: Ongoing
+-> Status: Ongoing...
 -> Created: 03/09/2022
--> Updated: 11/04/2024
+-> Updated: 09/07/2024
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q091 : Variable Type Hinting in Python;;
 -> Q090 : Python Round Division;;
 -> Q089 : Scopes in Python Language;;
 -> Q088 : What are Mixin in Python;;
@@ -101,6 +102,202 @@
 ````
 
 ### PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q091 : Variable Type Hinting in Python;;
+
+- Type Hinting allows you to get the details of the variable used in the 
+piece of code.
+
+- These "type hints" are a special syntax that allow declaring the type 
+of a variable
+
+for eg,
+````
+Ex1: Without Declaring any type hinting
+
+# Here we dont know what type of value we can expect in fname, lname.
+# It create a lack of readability inside the code 
+def get_full_name(fname, lname): 
+    return fname + " " + lname
+   
+if __name__ == "__main__":
+    fname = "Neeraj" # here we know fname should be string
+    lname = "Singh"  # here we know lname should be string
+    
+    print(get_full_name("john", "doe"))
+
+
+Ex2: With Declaring type
+
+def get_full_name(fname: str, lname: str): 
+    return fname + " " + lname
+ 
+if __name__ == "__main__":    
+    print(get_full_name("john", "doe"))
+````
+
+#### Declaring Types
+
+The main place to declare type hints. As function parameters.
+
+1) int
+2) float
+3) bool
+4) bytes
+
+for eg,
+```
+def get_items(item_a: str, item_b: int, item_c: float, item_d: bool, item_e: bytes):
+    return item_a, item_b, item_c, item_d, item_d, item_e
+```
+
+#### Generic types with type parameters
+
+- There are some data structures that can contain other values, like dict, 
+list, set and tuple. And the internal values can have their own type too.
+
+- These types that have internal types are called `generic types`. And 
+it's possible to declare them, even with their internal types.
+
+- To declare those types and the internal types, you can use the standard 
+Python module `typing`. It exists specifically to support these type hints.
+
+for eg,
+```
+from typing import List
+
+
+# Example 1: List Datatype
+def process_items(items: List[str]):
+    for item in items:
+        print(item)
+        
+       
+# Example 2: Tuple and Set Datatype
+def process_items(items_t: tuple[int, int, str], items_s: set[bytes]):
+    return items_t, items_s
+```
+
+**DICT**
+
+- To define a dict, you pass 2 type parameters, separated by commas.
+
+- The first type parameter is for the keys of the dict.
+
+- The second type parameter is for the values of the dict:
+
+for eg,
+````
+from typing import Dict
+
+
+def process_items(prices: Dict[str, float]):
+    for item_name, item_price in prices.items():
+        print(item_name)
+        print(item_price)
+````
+
+**UNION**
+
+- Variable can be any of several types, for example, an int or a str
+
+- In Python 3.6 and above (including Python 3.10) you can use the Union 
+type from typing and put inside the square brackets the possible types 
+to accept.
+
+- In Python 3.10 there's also a new syntax where you can put the possible 
+types separated by a vertical bar (|).
+
+for eg,
+```
+from typing import Union
+
+
+def process_item(item: Union[int, str]):
+    print(item)
+```
+
+**Possibly NONE Value**
+
+- You can declare that a value could have a type, like str, but that it 
+could also be None.
+
+- In Python 3.6 and above (including Python 3.10) you can declare it by 
+importing and using Optional from the typing module.
+
+- Using `Optional[str]` instead of just str will let the editor help you 
+detecting the errors where you could be assuming that a value is always a 
+`str`, when it could actually be `None` too.
+
+- `Optional[Something]` is actually a shortcut for `Union[Something, None]`, 
+they are equivalent.
+
+for eg,
+```
+from typing import Optional
+
+
+def say_hi(name: Optional[str] = None):
+    if name is not None:
+        print(f"Hey {name}!")
+    else:
+        print("Hello World")
+```
+
+***Union or Optional***
+
+- For Python3.10 version below. It would be better to use `Union[str, None]` 
+instead of `Optional[str] = None`
+
+- Both are equivalent and underneath they are the same, but I would recommend 
+Union instead of Optional because the word "optional" would seem to imply that 
+the value is optional, and it actually means "it can be None", even if it's not 
+optional and is still required
+
+- I think `Union[SomeType, None]` is more explicit about what it means.
+
+for eg,
+```
+from typing import Optional
+
+
+def say_hi(name: Optional[str]):
+    print(f"Hey {name}!") 
+    
+# The parameter name is defined as Optional[str], but it is not optional, 
+# you cannot call the function without the parameter:
+   
+say_hi()  # Oh, no, this throws an error!
+
+# The name parameter is still required (not optional) because it doesn't 
+# have a default value. Still, name accepts None as the value:
+
+say_hi(name=None)  # This works, None is valid
+```
+
+NOTE: 
+From Python 3.10 you won't have to worry about that, as you will be able to 
+simply use | to define unions of types
+
+```
+def say_hi(name: str | None):
+    print(f"Hey {name}!")
+```
+
+**Classes as types (Generic Type)**
+
+for eg,
+```
+class Person:
+    def __init__(self, name: str):
+        self.name = name
+
+
+def get_person_name(one_person: Person):
+    return one_person.name
+```
+
 
 -------------------------------------------------------------------------------------
 ### Q090 : Python Round Division;;

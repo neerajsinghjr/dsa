@@ -36,7 +36,7 @@ class Solution:
         # return self.ansv1(strs, n)
         return self.ansv2(strs, n)
 
-    def ansv2(slef, strs, n):
+    def ansv2(self, strs, n):
         # empty string for result calculatons;;
         prefix = ""
 

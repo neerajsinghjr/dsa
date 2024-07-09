@@ -23,30 +23,11 @@ import sys
 import time
 import math
 import random
-
-
-##---Main Solution
 from collections import defaultdict
 
 
-def main(res=None):
-    try:
-        data = []
-        obj = Solution()
-        res = None
-        print(f"Result: {res}") if res else print("Empty!")
-
-    except(Exception) as e:
-        print(f"Exception Traced : {e}")
-
-    else:
-        print("Program Completed : Success")
-
-    finally:
-        print("Program Terminated!")
-
-
 ##---Main Execution;;
+
 class Solution:
 
     def isAnagram(self, s: str, t: str) -> bool:
@@ -55,7 +36,38 @@ class Solution:
         # return self.ansv1(s, t)
         # return self.ansv2(s, t)
         # return self.ansv3(s, t)
-        return self.ansv4(s, t)
+        # return self.ansv4(s, t)
+        return self.ansv5(s, t)
+
+    def ansv5(s, t):
+        """
+        _run: accepted
+        _code: ts: o(n), sc: o(n)
+        _study:
+        --- intuition ---
+        [+] it lies around the character mapping mechanism where we map the first string
+        character into hashmap and then using the another string to check the relative
+        character and starts reducing the character count.
+        --- explanation ---
+        [+] first initialized the hashmap and start mapping the first string into it.
+        [+] check for second string character into the first map and starts reducing it.
+        [+] safety check if there is any extra character which is leftover then return false.
+        """
+        smap = {}
+
+        for c1 in s:
+            smap[c1] = smap.get(c1, 0) + 1
+
+        for c2 in t:
+            if not smap.get(c2):
+                return False
+            smap[c2] -= 1
+
+        for k, v in smap.items():
+            if v > 0:
+                return False
+
+        return True
 
     def ansv4(self, s, t):
         """
@@ -135,6 +147,24 @@ class Solution:
                 return False
 
         return True
+
+
+def main(res=None):
+    try:
+        data = []
+        obj = Solution()
+        res = None
+        print(f"Result: {res}") if res else print("Empty!")
+
+    except(Exception) as e:
+        print(f"Exception Traced : {e}")
+
+    else:
+        print("Program Completed : Success")
+
+    finally:
+        print("Program Terminated!")
+
 
 
 if __name__ == '__main__':
