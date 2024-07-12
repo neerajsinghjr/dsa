@@ -4,9 +4,11 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing
 -> Created : 02/11/2023
--> Updated : 21/11/2024
+-> Updated : 12/07/2024
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q005 : Income Tax Return Filing Procedure;;
+-> Q004 : Income Tax Return Categories;;
 -> Q003 : Ignore DB_Store directory in MacoOs;;
 -> Q002 : Increase Reach in online Job Portal;;
 -> Q001 : Resume Make Tips and Tricks;;
@@ -14,6 +16,40 @@
 ````
 
 ### MY NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q004 : Income Tax Return Categories;;
+
+The Income Tax Return (ITR) forms in India are used by taxpayers to file 
+their income tax returns with the Income Tax Department. Each form is 
+designed for different types of taxpayers and different sources of income. 
+
+Here are the details for ITR-1, ITR-2, ITR-3, and ITR-4:
+
+#### ITR-1
+
+**Who Should File**
+
+- Resident individuals with total income up to ₹50 lakh.
+- Income sources include:
+    -> Salary or pension
+    -> One house property (excluding cases where loss is brought forward from
+       previous years)
+    -> Other sources of income (excluding winnings from lottery and income
+       from racehorses).
+    -> Agricultural income up to ₹5,000.
+
+
+
+
+
+2) ITR-2
+3) ITR-3
+4) ITR-4
+
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q003 : Ignore DB_Store directory in Mac-OS;;

@@ -1,4 +1,4 @@
-// SETUP BUILD FOR PYTHON !!!
+//----------------------- SETUP BUILD FOR PYTHON -----------------------//
 {
    "shell_cmd": "gnome-terminal -- bash -c \"python3 -u $file;echo;echo Press Enter to exit...;read\"",
    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
@@ -6,9 +6,51 @@
 }
 
 
-// SETUP BUILD FOR JAVASCRIPT !!!
+//----------------------- SETUP BUILD FOR JAVASCRIPT -----------------------//
 {
    "shell_cmd": "gnome-terminal -- bash -c \"/home/neerajsingh/.nvm/versions/node/v19.6.0/bin/node $file;echo;echo Press Enter to exit...;read\"",
    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
    "selector": "source.js",
 }
+
+
+//----------------------- SETUP TERMINUS IN SUBLIME EDITOR -----------------------//
+
+Step 1: Install the Terminus using the Package Control: Install Package
+
+Step 2: Now go to Preferences >Package Settings > Terminus > Command Palette
+
+# Copy without the Quotes...
+
+"""
+[
+   {
+        "caption": "Terminal (panel)",
+        "command": "terminus_open",
+        "args"   : {
+           "cmd": "bash",
+           "cwd": "${file_path:${folder}}",
+           "title": "Command Prompt",
+           "panel_name": "Terminus"
+        }
+   },
+]  
+"""
+
+Step 3: Now go to Preferences > Package Settings > Terminus > Key Bindings
+
+# Copy without the Quotes...
+
+"""
+[
+   {
+       "keys": ["alt+1"],
+       "command": "terminus_open",
+       "args" : {
+           "cmd": "bash",
+           "cwd": "${file_path:${folder}}",
+           "panel_name": "Terminus"
+       }
+   }
+] 
+"""

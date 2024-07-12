@@ -7586,7 +7586,6 @@ print(mulFive(2))    # output => 10
 ````
 
 -------------------------------------------------------------------------------------
-
 ### Q002: Comprehensions;
 
 Python comprehensions, like decorators, are syntactic sugar constructs that
@@ -7675,6 +7674,7 @@ def splitter_decorator(function):
 @lowercase_decorator # this is executed first
 def hello():
    return 'Hello World'
+
 hello()   # output => [ 'hello' , 'world' ]
 ```
 
