@@ -2,5 +2,5 @@ version: "3"
 services:
   first-app:
      build: Dockerfile
-     entrypoint:  ["python3", "app.py"]
+     entrypoint:  ["python3", "producer_app.py"]
   

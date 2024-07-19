@@ -7,6 +7,8 @@
 -> Updated : 16/07/2024
 -> Summary : Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q012 : Zookeeper architecture 
+-> Q011 : Implementation of Kafka in Python;;
 -> Q010 : Usages of Zookeeper in Kafka;;
 -> Q009 : Describe use case for Kafka Offset;;
 -> Q008 : What are the benefit of Kafka;;
@@ -21,6 +23,146 @@
 ````
 
 ### SYSTEM DESIGN NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q011 : Implementation of Kafka in Python;;
+
+Below is an example of how you can implement a Kafka producer and consumer in
+Python using the confluent-kafka library. 
+
+This example will demonstrate the concepts of topics and partitions.
+
+
+#### Installation
+
+First, you need to install the confluent-kafka library:
+
+> pip install confluent-kafka
+
+
+
+### Kafka Producer Example 
+
+The producer will send messages to a Kafka topic.
+
+
+```
+from confluent_kafka import Producer
+
+
+# Kafka configuration
+conf = {
+    'bootstrap.servers': 'localhost:9092'  # Kafka broker
+}
+
+# Create Producer instance
+producer = Producer(**conf)
+
+# Delivery report callback function
+def delivery_report(err, msg):
+    if err is not None:
+        print(f"Message delivery failed: {err}")
+    else:
+        print(f"Message delivered to {msg.topic()} [{msg.partition()}]")
+
+# Produce messages to the Kafka topic 'example_topic'
+for i in range(10):
+    message = f"Hello Kafka {i}"
+    producer.produce('example_topic', 
+                      key=str(i), 
+                      value=message, 
+                      callback=delivery_report)
+    producer.poll(0)
+
+# Wait for any outstanding messages to be delivered 
+# and delivery report callbacks to be triggered
+
+producer.flush()
+
+
+```
+
+### Kafka Consumer Example
+
+The consumer will read messages from the Kafka topic.
+
+
+```
+from confluent_kafka import Consumer, KafkaError
+
+
+# Kafka configuration
+conf = {
+    'bootstrap.servers': 'localhost:9092',
+    'group.id': 'example_group',  # Consumer group
+    'auto.offset.reset': 'earliest'
+}
+
+# Create Consumer instance
+consumer = Consumer(**conf)
+
+# Subscribe to the Kafka topic 'example_topic'
+consumer.subscribe(['example_topic'])
+
+# Consume messages from the topic
+try:
+    while True:
+        msg = consumer.poll(1.0)  # Timeout of 1 second
+        if msg is None:
+            continue
+        if msg.error():
+            if msg.error().code() == KafkaError._PARTITION_EOF:
+                print('End of partition reached {0}/{1}'\
+                        .format(msg.topic(), msg.partition()))
+            elif msg.error():
+                raise KafkaException(msg.error())
+        else:
+            print(f"Received message: {msg.value().decode('utf-8')} 
+            				from topic: {msg.topic()} partition: {msg.partition()}")
+finally:
+    consumer.close()
+
+
+```
+
+Explanation
+
+1) Producer:
+
+- The producer sends messages to a Kafka topic named example_topic.
+
+- Each message is assigned a key and a value. The delivery_report callback
+  function is used to confirm message delivery.
+
+2) Consumer:
+
+- The consumer subscribes to the same Kafka topic example_topic.
+
+- It polls for new messages and prints them out.
+
+3) Topics and Partitions:
+
+- Topic: A category to which records are sent. In this example, the topic is
+  example_topic.
+
+- Partition: A topic is divided into partitions, which allows for parallel
+  processing and load balancing. Each message is sent to a specific partition
+  within the topic.
+
+When a producer sends a message, it can specify a partition or rely on Kafka's
+default partitioning strategy (e.g., hash of the key).
+
+Running the Example
+
+- Start Kafka: Ensure that Kafka is running on your local machine or remote
+  server.
+
+- Run the Producer: Execute the producer script to send messages to the Kafka
+  topic.
+
+- Run the Consumer: Execute the consumer script to read messages from the
+  Kafka topic.
+
 
 -------------------------------------------------------------------------------------
 ### Q010 : Usages of Zookeeper in Kafka;;
@@ -126,13 +268,16 @@ A producer sends log data to partition 0 of the logs topic. The data is written 
 
 - Broker B1 (leader for partition 0) fails. Zookeeper detects this failure.
 
-- Zookeeper initiates a leader election, and broker B2 is elected as the new leader for partition 0.
+- Zookeeper initiates a leader election, and broker B2 is elected as the new
+  leader for partition 0.
 
-**Consumer Group Coordination:
+**Consumer Group Coordination:**
 
-- Consumers in group log-analyzers register with Zookeeper. Zookeeper assigns partitions to consumers.
+- Consumers in group log-analyzers register with Zookeeper. Zookeeper assigns
+  partitions to consumers.
 
-- Consumer C1 is assigned partition 0. It fetches data from broker B2, processes the logs, and commits its offsets to Zookeeper.
+- Consumer C1 is assigned partition 0. It fetches data from broker B2,
+  processes the logs, and commits its offsets to Zookeeper.
 
 **Consumer Failure and Rebalancing:**
 
@@ -153,7 +298,6 @@ A producer sends log data to partition 0 of the logs topic. The data is written 
 
 - Consistency: Maintains consistent metadata across the Kafka cluster,
   ensuring all nodes have the same view of the system.
-
 
 
 -------------------------------------------------------------------------------------
