@@ -1,0 +1,5 @@
+# Requirements
+Problem is to use kafka architecture to transfer bundle of json files
+to kafka producer and which is further lead by consumed by consumers
+
+Kafka follows low latency and high throughput which enables to
