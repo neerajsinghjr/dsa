@@ -50,18 +50,44 @@ def kafka_producer_generator(json_data_generator, kafka_topic, kafka_server):
 
 
 def main():
-    # Streamlit interface;;
-    st.title("JSON File Uploader")
-    uploaded_files = st.file_uploader("Choose JSON files", type="json",
-                                      accept_multiple_files=True)
+    # # Streamlit interface;;
+    # st.title("JSON File Uploader")
+    # uploaded_files = st.file_uploader("Choose JSON files", type="json",
+    #                                   accept_multiple_files=True)
+    #
+    # kafka_server = st.text_input("Kafka Server", value=C.LOCALHOST)
+    # kafka_topic = st.text_input("Kafka Topic", value=C.PRODUCER_TOPIC)
+    #
+    # if uploaded_files and st.button("Send to Kafka"):
+    #     json_generator = json_data_generator(uploaded_files)
+    #     kafka_producer_generator(json_generator, kafka_topic, kafka_server)
+    #     st.success("JSON data sent to Kafka successfully!")
+    import streamlit as st
+    import json
 
-    kafka_server = st.text_input("Kafka Server", value=C.LOCALHOST)
-    kafka_topic = st.text_input("Kafka Topic", value=C.PRODUCER_TOPIC)
 
-    if uploaded_files and st.button("Send to Kafka"):
-        json_generator = json_data_generator(uploaded_files)
-        kafka_producer_generator(json_generator, kafka_topic, kafka_server)
-        st.success("JSON data sent to Kafka successfully!")
+    st.title("Upload and Manage JSON Files")
+
+    # Step 1: Upload multiple JSON files
+    uploaded_files = st.file_uploader("Choose JSON files", type="json", accept_multiple_files=True)
+
+    if uploaded_files:
+        st.write("### Uploaded Files")
+        file_contents = []
+        for file in uploaded_files:
+            content = json.load(file)
+            file_contents.append({
+                'filename': file.name,
+                'content': content,
+                'enabled': st.checkbox(f"Enable {file.name}", value=True)
+            })
+
+        # Step 2: Display enabled JSON data
+        st.write("### Enabled JSON Data")
+        for file_data in file_contents:
+            if file_data['enabled']:
+                st.write(f"**{file_data['filename']}**")
+                st.json(file_data['content'])
 
 
 if __name__ == "__main__":

@@ -4,9 +4,10 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing
 -> Created : 02/11/2023
--> Updated : 13/07/2024
+-> Updated : 12/10/2024
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q006 : EPF & EPS terminology in EPFO;;
 -> Q005 : File ITR-2 Returns Sections Briefs;;
 -> Q004 : Income Tax Return Categories;;
 -> Q003 : Ignore DB_Store directory in MacoOs;;
@@ -16,6 +17,143 @@
 ````
 
 ### MY NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q006 : EPF & EPS terminology in EPFO;;
+
+>>> EPF Wages - Employee Provident Fund(EPF)
+
+EPF wages refer to the basic salary and certain allowances on which
+contributions towards the Employees' Provident Fund (EPF) are calculated. 
+
+These wages form the basis for determining the amount an employee and employer
+contribute to the EPF account.
+
+
+#### Components of EPF Wages:
+
+
+1) EPF wages typically include:
+
+- Basic Salary: The core salary amount before any allowances or deductions.
+
+- Dearness Allowance (DA): A cost-of-living adjustment allowance paid to
+  employees to offset the impact of inflation.
+
+- Retaining Allowance: If applicable, this is an allowance paid to retain an
+  employee during non-working periods.
+
+
+2) Exclusions from EPF Wages:
+
+- Certain components of an employee’s salary may not be considered for EPF
+  contribution calculation, including:
+
+  1. House Rent Allowance (HRA)
+  2. Overtime Allowance
+  3. Bonus
+  4. Commissions
+  5. Conveyance Allowance
+
+#### EPF Contribution Based on EPF Wages:
+
+1) Employee Contribution:
+    
+  - The employee contributes 12% of their EPF wages 
+
+      (basic salary + DA + retaining allowance)
+
+2) Employer Contribution:
+
+  - The employer also contributes 12% of the employee's EPF wages. However,
+    the employer's contribution is divided as follows:
+
+  - 8.33% goes to the Employees' Pension Scheme (EPS) (up to a salary cap of
+    ₹15,000).
+
+  - The remaining portion goes to the EPF account.
+
+
+#### Example of EPF Contribution:
+
+If an employee’s basic salary + DA is ₹20,000 per month:
+
+Employee contribution = 12% of ₹20,000 = ₹2,400
+Employer contribution = 12% of ₹20,000 = ₹2,400
+
+Out of this, ₹1,250 goes to EPS (since EPS is calculated on a salary cap of
+₹15,000). 
+
+The remaining ₹1,150 goes to EPF. (Read EPS for more)
+
+
+>>> EPS Wages - Employee Provident Fund(EPF)
+
+EPS wages refer to the part of an employee's salary that is used to calculate
+contributions to the Employees' Pension Scheme (EPS), which is a pension
+benefit scheme under the Employees' Provident Fund Organization (EPFO). 
+
+The EPS provides employees with a pension after retirement or in cases of
+permanent disability, and the amount contributed towards EPS is a part of the
+employer's contribution to the overall EPF scheme.
+
+#### EPS Wages and Contribution:
+
+The contribution to the Employees' Pension Scheme (EPS) is calculated as:
+
+- 8.33% of the employee's EPS wages, which is borne by the employer. 
+
+However, there is an important salary cap for EPS wages:
+
+- ₹15,000 per month is the maximum salary on which EPS contributions are
+  calculated. This means: 
+
+If your salary (basic + DA) is more than ₹15,000 per month, the EPS
+contribution is capped at 8.33% of ₹15,000, which is ₹1,250 per month.
+
+If your salary is less than ₹15,000 per month, the contribution will be 8.33%
+of your actual EPS wages.
+
+#### Example of EPS Contribution:
+
+If an employee’s basic salary + DA is ₹20,000 per month:
+
+- EPS contribution = 8.33% of ₹15,000 = ₹1,250 per month (since the salary is
+  capped at ₹15,000 for EPS). 
+
+If the employee’s basic salary + DA is ₹12,000 per month:
+
+- EPS contribution = 8.33% of ₹12,000 = ₹999.60 per month.
+
+>>> Differences Between EPS Wages and EPF Wages:
+
+- EPS wages are capped at ₹15,000 for contribution purposes, meaning even if
+  an employee earns more than ₹15,000, the EPS contribution is limited to
+  this amount.
+
+- EPF wages, on the other hand, are calculated on the full salary without a
+  cap (unless the employer applies the salary cap for voluntary purposes).
+
+**Key Points About EPS Wages and Benefits:**
+
+1) Pension Eligibility: To be eligible for a pension under EPS, an employee
+must have completed at least 10 years of service.
+
+2) No Interest on EPS: Unlike EPF contributions, EPS does not earn interest.
+The amount accumulated in EPS is used to provide pension benefits upon
+retirement.
+
+3) Pension Calculation: The pension amount is based on the average of the last
+60 months' EPS wages and the number of years of service.
+
+**Why EPS Wages Are Important:**
+
+The higher your EPS wages (up to ₹15,000), the more you contribute to the
+pension scheme, which can increase your pension benefits in the future.
+However, due to the salary cap, even higher-earning employees will not
+contribute more than ₹1,250 per month to EPS, regardless of their actual
+salary.
+
 
 -------------------------------------------------------------------------------------
 ### Q005 : File ITR-2 Returns Sections Briefs;;

@@ -36,7 +36,6 @@ print('Length:', my_linked_list.length)
     Head: 4
     Tail: 4
     Length: 1
-    
 """
 -------------------------------------------------------------------------------------
 '''
@@ -71,9 +70,9 @@ def main():
 
 
 if __name__ == '__main__':
-    print("#------------ Code Start --------------#")
-    startTime = time()
-    main()
-    endTime = time()
-    print("Run Time:",endTime-startTime,"ms")
-    print("#------------ Code Stop ----------------#")
+	print("#------------ Code Start --------------#")
+	startTime = time()
+	main()
+	endTime = time()
+	print("Run Time:",endTime-startTime,"ms")
+	print("#------------ Code Stop ----------------#")
