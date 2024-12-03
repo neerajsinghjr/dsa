@@ -4,7 +4,7 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 05/12/2022
--> Updated : 10/12/2023
+-> Updated : 03/12/2024
 -> Summary : Notes indices are as follows (**** pending)
 `-------------------------------------------------------------------------------------
 -> Q012 : Remove the Untracked files in git project;;
@@ -439,6 +439,12 @@ git restore --staged <file>...
 
 // Alias to print only conflict files
 git config --global --add alias.conflicts '!describe() { git diff --name-only --diff-filter=u; }; describe'
+
+// List number of file changes in Stash
+git stash show stash@{0}
+
+// Show the file content difference in Stash
+git stash show -p stash@{0}
 ````
 
 -------------------------------------------------------------------------------------
