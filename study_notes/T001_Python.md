@@ -4,9 +4,11 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing...
 -> Created: 03/09/2022
--> Updated: 09/07/2024
+-> Updated: 25/01/2025
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q093 : Dataclass Schema Creation with Decorator;;
+-> Q092 : Dataclass Decorator in Python;;
 -> Q091 : Variable Type Hinting in Python;;
 -> Q090 : Python Round Division;;
 -> Q089 : Scopes in Python Language;;
@@ -102,6 +104,336 @@
 ````
 
 ### PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q093 : Dataclass Schema Creation with Decorator;;
+
+> Refer : basic_py/03.advance/P007_Oops_Dataclass.py
+
+#### Scenario: Creating a Dataclass based Schema for API Requests/Response
+
+Suppose you're working with a User Management API where:
+
+- Request: Create a user (POST /user)
+    - Fields: name, email, age, phone_number
+- Response: Get user details (GET /user/{id})
+    - Fields: id, name, email, created_at
+
+````
+from dataclasses import dataclass, field
+from datetime import datetime
+from typing import Optional
+import json
+
+# Step 1: Implementation for Dataclasses 
+
+@dataclass
+class CreateUserRequest:
+    """
+    Schema for Create User API request.
+    """
+    name: str
+    email: str
+    age: Optional[int] = None  # Optional field
+    phone_number: Optional[str] = None
+
+
+@dataclass
+class UserResponse:
+    """
+    Schema for User Details API response.
+    """
+    id: int
+    name: str
+    email: str
+    created_at: datetime
+
+
+# Step 2: Serialize/Deserialize API Data Using the Schemas
+
+# Example: Simulate API Request Payload
+request_payload = {
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "age": 30,
+    "phone_number": "123-456-7890",
+}
+
+# Convert JSON to Dataclass Object
+create_user_request = CreateUserRequest(**request_payload)
+print(create_user_request)
+# Output: CreateUserRequest(
+    name='John Doe', email='john.doe@example.com', 
+    age=30, phone_number='123-456-7890'
+)
+
+# Example: Simulate API Response Payload
+response_payload = {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "created_at": "2024-01-26T12:34:56",
+}
+
+# Deserialize API response to Dataclass Object
+response_payload["created_at"] = datetime.fromisoformat(response_payload["created_at"])
+user_response = UserResponse(**response_payload)
+print(user_response)
+# Output: UserResponse(
+    id=1, name='John Doe', email='john.doe@example.com', 
+    created_at=datetime.datetime(2024, 1, 26, 12, 34, 56)
+)
+
+# Step 3 : Validate or Enforce Data Constraints
+
+@dataclass
+class CreateUserRequest:
+    name: str
+    email: str
+    age: Optional[int] = None
+    phone_number: Optional[str] = None
+
+    def __post_init__(self):
+        if self.age is not None and self.age <= 0:
+            raise ValueError("Age must be greater than 0")
+        if "@" not in self.email:
+            raise ValueError("Invalid email address")
+
+
+# Step 4. Nested Dataclasses for Complex Schemas
+@dataclass
+class Address:
+    street: str
+    city: str
+    zip_code: str
+
+
+@dataclass
+class CreateUserRequest:
+    name: str
+    email: str
+    age: Optional[int] = None
+    address: Address
+
+
+# Example: Nested JSON Data
+nested_request_payload = {
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "age": 30,
+    "address": {
+        "street": "123 Elm St",
+        "city": "Springfield",
+        "zip_code": "12345",
+    },
+}
+
+# Deserialize Nested JSON to Dataclass
+address = Address(**nested_request_payload["address"])
+create_user_request = CreateUserRequest(**nested_request_payload, address=address)
+# or create_user_request = CreateUserRequest(**nested_request_payload) 
+
+print(create_user_request)
+# Output: CreateUserRequest(
+    name='John Doe', email='john.doe@example.com', 
+    age=30, address=Address(
+        street='123 Elm St', 
+        city='Springfield', 
+        zip_code='12345'
+    )
+)
+
+# Convert Dataclass to JSON
+request_json = json.dumps(asdict(create_user_request))
+print(request_json)
+# Output: {
+    "name": "John Doe", "email": "john.doe@example.com", 
+    "age": 30, "address": {
+        "street": "123 Elm St", 
+        "city": "Springfield", 
+        "zip_code": "12345"
+    }
+}
+````
+
+
+-------------------------------------------------------------------------------------
+### Q092 : Dataclass Decorator in Python;;
+
+- Dataclasses is a decorator from the dataclasses module that simplifies the
+  creation of classes by automatically generating special methods
+  like __init__, __repr__, __eq__, etc., based on class attributes
+
+
+#### Dataclasses Basic Usage 
+
+```
+# Example : Basic example for dataclasses in Python;;
+
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+    email: str
+
+person1 = Person(name="John", age=30, email="john@example.com")
+person2 = Person(name="Doe", age=25, email="doe@example.com")
+
+# Auto-generated methods in action
+print(person1)  # Person(name='John', age=30, email='john@example.com')
+print(person1 == person2)  # False
+```
+
+**NOTE:** 
+- Here, __init__, __repr__, and __eq__ are auto-generated.
+- The attributes name, age, and email are automatically included in these
+  methods.
+
+
+#### Dataclasses Advances Usages 
+
+> Default Values
+
+- You can provide default values for fields.
+
+```
+# Example 1: Default values with value 100;;
+
+@dataclass
+class Book:
+    title: str
+    author: str
+    pages: int = 100
+
+
+book = Book(title="Python 101", author="John Doe")
+print(book)  # Book(title='Python 101', author='John Doe', pages=100)
+```
+
+> Default Factory
+
+- For mutable types like lists, use field(default_factory=...)
+
+```
+# Example 2: Usages of field 
+
+from dataclasses import dataclass, field
+from typing import List
+
+@dataclass
+class ShoppingCart:
+    items: List[str] = field(default_factory=list)
+
+
+cart = ShoppingCart()
+cart.items.append("Apple")
+print(cart)  # ShoppingCart(items=['Apple'])
+```
+
+> Custom Methods 
+
+- Adding custom functions in dataclasses
+
+````
+# Example 3: Adding functions
+
+@dataclass
+class Rectangle:
+    length: float
+    width: float
+
+    def area(self) -> float:
+        return self.length * self.width
+
+
+rect = Rectangle(length=5.0, width=3.0)
+print(rect.area())  # 15.0
+````
+
+> Post-Initialization (__post_init__)
+
+- If you need custom logic after object creation, use `__post_init__`.
+
+```
+# Example 4: Post-initialization method 
+
+@dataclass
+class Product:
+    name: str
+    price: float
+    discounted_price: float = 0.0
+
+    def __post_init__(self):
+        self.discounted_price = self.price * 0.9  # Apply 10% discount
+
+
+product = Product(name="Laptop", price=1000)
+print(product.discounted_price)  # 900.0
+```
+
+> Frozen Dataclass
+
+- If you want the dataclass to be immutable, set `frozen=True`
+
+``` 
+# Example 5: Frozen Dataclass for attribute
+
+@dataclass(frozen=True)
+class ImmutablePoint:
+    x: int
+    y: int
+
+
+point = ImmutablePoint(1, 2)
+# point.x = 3  # This will raise a FrozenInstanceError
+```
+
+> Excluding Fields from Comparison/Representation
+
+- Use field() to exclude fields from being included in certain operations.
+
+```
+# Example 6: field() can be used to mask parameter using repr 
+
+@dataclass
+class User:
+    username: str
+    password: str = field(repr=False)  # Excludes from `__repr__`
+
+
+user = User(username="admin", password="secret")
+print(user)  # User(username='admin')
+```
+
+> Inheritance with dataclass
+
+- you can inherit `dataclass` like a normal class
+
+```
+# Example : Dataclass Inheritance 
+
+@dataclass
+class Vehicle:
+    make: str
+    model: str
+
+
+@dataclass
+class Car(Vehicle):
+    seats: str
+
+car = Car(make="Toyota", model="Corolla", seats=5)
+print(car)  # Car(make='Toyota', model='Corolla', seats=5)
+```
+
+#### When to Use dataclass
+- For simple classes with attributes and no significant custom logic.
+- When you want boilerplate code like __init__, __repr__, or __eq__ to be auto-generated.
+- For immutable objects (use frozen=True).
+- When managing complex data structures like nested configurations.
+
 
 -------------------------------------------------------------------------------------
 ### Q091 : Variable Type Hinting in Python;;
@@ -245,7 +577,7 @@ def say_hi(name: Optional[str] = None):
         print("Hello World")
 ```
 
-***Union or Optional***
+**Union or Optional**
 
 - For Python3.10 version below. It would be better to use `Union[str, None]` 
 instead of `Optional[str] = None`
