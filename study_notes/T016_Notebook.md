@@ -1,27 +1,290 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : My Notes
+-> Title : Notebook
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing
 -> Created : 02/11/2023
--> Updated : 12/10/2024
+-> Updated : 03/02/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q006 : EPF & EPS terminology in EPFO;;
--> Q005 : File ITR-2 Returns Sections Briefs;;
--> Q004 : Income Tax Return Categories;;
--> Q003 : Ignore DB_Store directory in MacoOs;;
+-> Q008 : DHT Blockers: Finasteride Vs Minoxidil
+-> Q007 : Why is DHT Produced in First Place ??
+-> Q006 : DHT and Male Pattern Baldness Breakdown;;
+-> Q005 : EPF & EPS terminology in EPFO;;
+-> Q004 : File ITR-2 Returns Sections Briefs;;
+-> Q003 : Income Tax Return Categories;;
 -> Q002 : Increase Reach in online Job Portal;;
 -> Q001 : Resume Make Tips and Tricks;;
 -------------------------------------------------------------------------------------
 ````
 
-### MY NOTES : BEGINNING
+### NOTEBOOK : BEGINNING
 
 -------------------------------------------------------------------------------------
-### Q006 : EPF & EPS terminology in EPFO;;
+### Q008 : DHT Blockers: Finasteride Vs Minoxidil
 
->>> EPF Wages - Employee Provident Fund(EPF)
+#### **1. Minoxidil – How It Works & Usage**  
+
+**🟢 What Is It?**  
+
+- Minoxidil is a topical solution or foam that stimulates hair growth.  
+
+**🟢 How Does It Work?**  
+
+- **Increases Blood Flow to Hair Follicles** – Helps bring more oxygen and
+    nutrients to hair roots.  
+- **Prolongs the Anagen (Growth) Phase** – Keeps hair growing longer before
+    shedding.  
+- **Activates Dormant Follicles** – Encourages miniaturized follicles to start
+    producing thicker hair.  
+
+**🟢 How to Use Minoxidil (Rogaine)?**  
+
+✅ **Dosage:** 5% Minoxidil is recommended for men (2% for women).  
+✅ **Application:** Apply **1 mL** of liquid or **half a cap of foam** twice
+daily to the affected scalp area.  
+✅ **Best Time to Apply:** Morning and night (at least **4 hours before washing
+hair**).  
+✅ **Absorption Time:** Let it sit for **4 hours** before rinsing or
+sleeping. 
+
+**🟢 Side Effects & Considerations**  
+
+⚠️ **Initial Shredding (First 2-8 Weeks)** – This is normal; weak hairs fall
+before new, stronger hairs grow.
+⚠️ **Scalp Dryness or Itching** – Can be avoided with proper moisturizing or
+switching to foam-based minoxidil.  
+⚠️ **Must Be Used Continuously** – If you stop, any hair gained will shed
+within months.  
+
+**🟢 Who Should Use It?**  
+
+- Men with **early to moderate** hair loss (especially in the crown area).  
+- Those who **do not want systemic hormonal effects** (like Finasteride).  
+
+
+## **2. Finasteride – How It Works & Usage**  
+
+**🟢 What Is It?**  
+
+- Finasteride is an **oral medication** that blocks DHT.  
+
+**🟢 How Does It Work?**  
+
+- **Blocks 5-Alpha Reductase** – Stops testosterone from converting
+    into **DHT**, the hormone responsible for hair loss.  
+- **Prevents Further Hair Loss** – Reduces **DHT levels by 70%**, slowing down
+    follicle miniaturization.  
+- **May Help Regrow Hair** – Works best for **maintaining existing hair** but
+    may also **regrow hair** in some men.  
+
+**🟢 How to Use Finasteride?**  
+
+✅ **Dosage:** **1 mg per day** (oral tablet).  
+✅ **When to Take It?** Any time of day (with or without food).  
+✅ **How Long to See Results?** Takes **3-6 months** for visible results, full effects in **12 months**.  
+
+**🟢 Side Effects & Considerations**  
+
+⚠️ **Possible Sexual Side Effects** – Reduced libido, erectile dysfunction
+(in ~1-2% of users).  
+⚠️ **Brain Fog & Mood Changes** – Rare but reported in some men.  
+⚠️ **Must Be Used Long-Term** – Stopping Finasteride will **reverse gains
+within months**.  
+
+**🟢 Who Should Use It?**  
+
+- Men with **DHT-related hair loss** (crown, hairline).  
+- Those **comfortable with a systemic medication** to **block DHT**.  
+
+
+#### **3. Can You Use Minoxidil & Finasteride Together?**  
+
+**✅ YES!** Combining **Minoxidil + Finasteride** gives the **best results** because:  
+
+- **Finasteride stops further hair loss** by blocking DHT.  
+- **Minoxidil stimulates regrowth** by increasing blood flow and follicle activation.  
+
+
+#### **🔹 Recommended Treatment Plan for Best Results**  
+
+💊 **Finasteride 1 mg (Daily, Oral)** – Prevents hair loss.  
+💧 **Minoxidil 5% (Twice Daily, Topical)** – Promotes regrowth.  
+🧴 **Ketoconazole Shampoo (2-3x per week)** – Helps with scalp health & mild DHT blocking.  
+
+
+#### **4. Which One Should You Choose?**  
+
+🔹 **If you only want to regrow hair and don’t want hormonal effects → Use Minoxidil (Rogaine).**  
+🔹 **If you want to prevent hair loss at the root cause → Use Finasteride.**  
+🔹 **For the best results → Use BOTH together.**  
+
+Would you like help in choosing the right regimen for your hair loss stage, Rey? 😊
+
+-------------------------------------------------------------------------------------
+### Q007 : Why is DHT Produced in First Place ??
+
+DHT (**Dihydrotestosterone**) is not just a random byproduct—it plays an
+essential role in male development. 
+
+Let’s break it down step by step :
+
+### **1. Why Does the Body Produce DHT?**  
+
+DHT is derived from **testosterone** through an enzyme called **5-alpha
+reductase**. The body produces it for several key reasons:  
+
+- **Male Sexual Development** – In the womb, DHT helps form male genitalia.  
+
+- **Puberty Changes** – Deep voice, body hair, muscle growth, and sex drive
+    are influenced by DHT.  
+
+- **Prostate Growth** – It regulates prostate function (but excess DHT can
+    cause an enlarged prostate).  
+
+- **Facial & Body Hair Growth** – Higher DHT levels promote beard growth but
+    also contribute to scalp hair loss.  
+
+So, **DHT is not "bad"—it’s just too much of it in the wrong places that
+causes problems.**  
+
+
+### **2. What's Lacking in Male Bodies That Causes Excess DHT?**  
+
+Certain deficiencies or imbalances can **increase DHT production** or **make
+hair follicles more sensitive to it**.  
+
+#### **A. Vitamin & Mineral Deficiencies**
+
+- **Zinc Deficiency** – Zinc regulates 5-alpha reductase. Low zinc = more DHT
+    production.  
+
+- **Vitamin D Deficiency** – Low vitamin D levels are linked to increased DHT
+    activity in hair follicles.  
+
+- **Magnesium Deficiency** – Magnesium helps regulate androgens, preventing
+    excessive DHT buildup.  
+
+#### **B. Poor Testosterone-DHT Balance**  
+
+- **Excess Testosterone → More DHT** – If the body produces more testosterone,
+    more of it gets converted into DHT.  
+- **Low Estrogen Levels** – Some estrogen is needed to balance DHT and prevent
+    hair loss.  
+
+#### **C. High 5-Alpha Reductase Activity**  
+
+- Some men **genetically** have **more 5-alpha reductase**, meaning more DHT
+  is converted from testosterone.  
+- High **insulin resistance** (from too much sugar/carbs) can also increase
+  this enzyme.  
+
+#### **D. Scalp Blood Circulation Issues**  
+
+- Poor circulation = weaker hair follicles, making them more **sensitive to DHT**.  
+
+### **3. How to Reduce Excess DHT Naturally?**
+
+If your goal is to **reduce scalp DHT without harming body functions**, focus on:  
+
+- **Increase Zinc & Magnesium Intake** (Pumpkin seeds, almonds, spinach)
+- **Support Hormonal Balance** (Healthy fats like avocado, olive oil)
+- **Reduce Sugar & Processed Foods** (Helps control insulin, which can trigger DHT production)  
+- **Use Natural DHT Blockers** (Saw palmetto, green tea, and rosemary oil)  
+- **Improve Scalp Circulation** (Microneedling, scalp massage, exercise)  
+
+### **Final Thought**  
+
+DHT is essential, but when it **over-activates in the scalp**, it leads to
+hair loss. The key is **balancing hormones naturally** and reducing scalp
+sensitivity to DHT.  
+
+
+-------------------------------------------------------------------------------------
+### Q006 : DHT and Male Pattern Baldness – Breakdown;;
+
+#### **1. What is DHT?**  
+
+Dihydrotestosterone (DHT) is a potent androgen (male hormone) derived from
+testosterone. It plays a crucial role in male development (like facial hair,
+deep voice, and muscle growth). However, in some men, DHT also contributes
+to **male pattern baldness (androgenetic alopecia, AGA)**—especially in
+the **crown and hairline areas**.  
+
+#### **2. How Does DHT Cause Hair Loss in the Crown?**  
+
+- **Miniaturization of Hair Follicles** : In genetically predisposed men, DHT
+    binds to androgen receptors in scalp hair follicles, especially in
+    the **crown and frontal areas**.  
+
+- **Shortened Hair Growth Cycle** : DHT shortens the anagen (growth) phase,
+    making hair grow thinner and weaker over time.  
+
+- **Increased Shedding** : As hair follicles shrink, they eventually stop
+    producing visible hair, leading to bald spots—most commonly starting at
+    the **crown and hairline**.  
+
+#### **3. Why is the Crown Area Affected?**  
+
+- **Androgen Sensitivity** : The crown has more androgen receptors, making it
+    more vulnerable to DHT.  
+
+- **Blood Flow Differences** : Some studies suggest reduced blood circulation
+    in the crown compared to the sides and back of the head.  
+
+#### **4. How to Fix or Reduce DHT-Induced Crown Baldness?**  
+
+##### **A. DHT Blockers (Medical Treatments)**
+
+1. **Finasteride (Propecia)**  
+   - Blocks **5-alpha reductase**, the enzyme that converts testosterone into DHT.  
+   - Slows down hair loss and, in some cases, promotes regrowth.
+   - **Side effects**: Lower libido, ED, brain fog in some men.
+
+2. **Dutasteride (Avodart) – More Potent**  
+   - Stronger than finasteride, blocking both Type I and II **5-alpha reductase**.
+   - More effective but also increases the risk of side effects.  
+
+##### **B. Topical Solutions (Less Systemic Side Effects)**
+
+1. **Minoxidil (Rogaine)**  
+   - Increases blood flow to hair follicles, prolonging the hair growth phase.  
+   - Works best in the **crown area** but does not block DHT.  
+   - Takes **3–6 months** for visible results.  
+
+2. **Topical Finasteride**  
+   - Works like oral finasteride but with fewer systemic side effects.  
+   - Applied directly to the scalp to **target DHT locally**.  
+
+##### **C. Natural DHT Blockers (Weaker but Safer)**
+
+1. **Saw Palmetto** – A natural 5-alpha reductase inhibitor.  
+2. **Pumpkin Seed Oil** – Has shown some benefits in reducing DHT’s effects.  
+3. **Rosemary Oil** – May improve scalp circulation and slightly inhibit DHT.  
+
+##### **D. Hair Transplants (For Severe Baldness)**
+
+- **FUE (Follicular Unit Extraction)** – Individual hairs are transplanted to the crown.  
+- **FUT (Follicular Unit Transplantation)** – A strip of hair is taken from the back and implanted in the crown.  
+- **Works best for advanced baldness.**  
+
+##### **E. Lifestyle & Scalp Care**
+
+1. **Low Sugar & High Protein Diet** – Reduces DHT production naturally.  
+2. **Microneedling (Dermarolling)** – Increases blood flow and improves minoxidil absorption.  
+3. **DHT-Blocking Shampoos** – Contain ketoconazole or caffeine to reduce scalp DHT.  
+
+#### **5. Final Thoughts**
+
+- **If hair loss is early-stage (thinning in crown)** → Try **minoxidil + microneedling + natural blockers**.  
+- **If hair loss is moderate** → Add **finasteride (or topical finasteride) + ketoconazole shampoo**.  
+- **If hair loss is advanced (bald crown)** → Hair transplant is the best option.  
+
+
+-------------------------------------------------------------------------------------
+### Q005 : EPF & EPS terminology in EPFO;;
+
+#### **EPF Wages - Employee Provident Fund(EPF)**
 
 EPF wages refer to the basic salary and certain allowances on which
 contributions towards the Employees' Provident Fund (EPF) are calculated. 
@@ -29,9 +292,7 @@ contributions towards the Employees' Provident Fund (EPF) are calculated.
 These wages form the basis for determining the amount an employee and employer
 contribute to the EPF account.
 
-
-#### Components of EPF Wages:
-
+> Components of EPF Wages:
 
 1) EPF wages typically include:
 
@@ -42,7 +303,6 @@ contribute to the EPF account.
 
 - Retaining Allowance: If applicable, this is an allowance paid to retain an
   employee during non-working periods.
-
 
 2) Exclusions from EPF Wages:
 
@@ -55,7 +315,7 @@ contribute to the EPF account.
   4. Commissions
   5. Conveyance Allowance
 
-#### EPF Contribution Based on EPF Wages:
+> EPF Contribution Based on EPF Wages:
 
 1) Employee Contribution:
     
@@ -73,8 +333,7 @@ contribute to the EPF account.
 
   - The remaining portion goes to the EPF account.
 
-
-#### Example of EPF Contribution:
+> Example of EPF Contribution:
 
 If an employee’s basic salary + DA is ₹20,000 per month:
 
@@ -87,7 +346,7 @@ Out of this, ₹1,250 goes to EPS (since EPS is calculated on a salary cap of
 The remaining ₹1,150 goes to EPF. (Read EPS for more)
 
 
->>> EPS Wages - Employee Provident Fund(EPF)
+#### **EPS Wages - Employee Provident Fund(EPF)**
 
 EPS wages refer to the part of an employee's salary that is used to calculate
 contributions to the Employees' Pension Scheme (EPS), which is a pension
@@ -97,7 +356,7 @@ The EPS provides employees with a pension after retirement or in cases of
 permanent disability, and the amount contributed towards EPS is a part of the
 employer's contribution to the overall EPF scheme.
 
-#### EPS Wages and Contribution:
+> EPS Wages and Contribution:
 
 The contribution to the Employees' Pension Scheme (EPS) is calculated as:
 
@@ -114,7 +373,7 @@ contribution is capped at 8.33% of ₹15,000, which is ₹1,250 per month.
 If your salary is less than ₹15,000 per month, the contribution will be 8.33%
 of your actual EPS wages.
 
-#### Example of EPS Contribution:
+> Example of EPS Contribution:
 
 If an employee’s basic salary + DA is ₹20,000 per month:
 
@@ -125,7 +384,7 @@ If the employee’s basic salary + DA is ₹12,000 per month:
 
 - EPS contribution = 8.33% of ₹12,000 = ₹999.60 per month.
 
->>> Differences Between EPS Wages and EPF Wages:
+> Differences Between EPS Wages and EPF Wages:
 
 - EPS wages are capped at ₹15,000 for contribution purposes, meaning even if
   an employee earns more than ₹15,000, the EPS contribution is limited to
@@ -146,7 +405,7 @@ retirement.
 3) Pension Calculation: The pension amount is based on the average of the last
 60 months' EPS wages and the number of years of service.
 
-**Why EPS Wages Are Important:**
+#### **Why EPS Wages Are Important:**
 
 The higher your EPS wages (up to ₹15,000), the more you contribute to the
 pension scheme, which can increase your pension benefits in the future.
@@ -156,7 +415,7 @@ salary.
 
 
 -------------------------------------------------------------------------------------
-### Q005 : File ITR-2 Returns Sections Briefs;;
+### Q004 : File ITR-2 Returns Sections Briefs;;
 
 Filing `ITR-2` involves multiple sections that you need to fill out based on
 your income sources and financial details.
@@ -270,7 +529,7 @@ to CPC, Bengaluru.
 
 
 -------------------------------------------------------------------------------------
-### Q004 : Income Tax Return Categories;;
+### Q003 : Income Tax Return Categories;;
 
 The Income Tax Return (ITR) forms in India are used by taxpayers to file their
 income tax returns with the Income Tax Department. Each form is designed for
@@ -437,56 +696,6 @@ Here are the details for ITR-1, ITR-2, ITR-3, and ITR-4:
 -> Part E: Other Information.
 -> Schedules: Details of presumptive income, deductions, and other relevant
    information.
-
-
--------------------------------------------------------------------------------------
-### Q003 : Ignore DB_Store directory in Mac-OS;;
-
-If `.DS_Store` was never added to your git repository, simply add it to your 
-`.gitignore` file.
-
-#### Case 1:  If you don't have one, create a file called:
-```
-.gitignore
-```
-
-In you're the root directory of your app and simply write
-```
-**/.DS_Store
-```
-
-In it. This will never allow the .DS_Store file to sneak in your git.
-
-#### Cas 2: if it's already there, write in your terminal:
-```
-$ find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
-```
-then commit and push the changes to remove the .DS_Store from your remote repo:
-```
-# git commit -m "Remove .DS_Store from everywhere"
-
-$ git push origin master
-```
-And now add .DS_Store to your .gitignore file, and then again commit and push 
-with the 2 last pieces of code (git commit..., git push...)
-
-
-#### Other Solution
-
-If .DS_Store already committed:
-```
-find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
-```
-
-To ignore them in all repository: (sometimes it named ._.DS_Store)
-
-```
-echo ".DS_Store" >> ~/.gitignore_global
-echo "._.DS_Store" >> ~/.gitignore_global
-echo "**/.DS_Store" >> ~/.gitignore_global
-echo "**/._.DS_Store" >> ~/.gitignore_global
-git config --global core.excludesfile ~/.gitignore_global
-```
 
 
 -------------------------------------------------------------------------------------

@@ -220,7 +220,7 @@ There are three types of dataset in pandas
 ````
 Output of Series and Dataframe;;
 
-      | Apple |              | Mango |                    | Apple | Mango |
+      | Apple |              | Mango |           | Apple | Mango |
 ---------------        ---------------              -----------------------
 | 0   |  4    |        | 0   |  5    |              | 0   |  4    |  5    |
 | 1   |  5    |    +   | 1   |  3    |      =       | 1   |  5    |  3    |

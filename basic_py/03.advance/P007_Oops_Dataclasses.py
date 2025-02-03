@@ -16,30 +16,19 @@ from importlib import find_loader
 from time import time
 import json
 
-
-def expl_test_v1():
+def expl_test():
     """
-    Basic Exploration with respect to dataclasses in Python;;
+    Testing Default in Dataclasses;;
     """
-
     @dataclass
-    class Student:
+    class Product:
         name: str
-        grade: str
-        age: int
+        price: int = 100
 
-
-    class Person:
-        fname: str
-        mname: str
-        lname: str
-        fullname: str
-
-    # runner for expl_test_v1;;
-    s1 = Student(name="Neeru", age=16, grade="A")
-    print("s1: obj:", s1)
-    print(f"s1: dict : {s1.__dict__}")
-    print(f"s1: dict : {s1.__dict__.keys()}")
+    p1 = Product(name="Pillow", price=50)
+    p2 = Product(name="Coca Cola")
+    print(f"Product 1: {p1}")
+    print(f"Product 2: {p2}")
 
 
 def expl_test_v2():
@@ -110,11 +99,34 @@ def expl_test_v2():
     return final_response
 
 
+def expl_test_v1():
+    """
+    Basic Exploration with respect to dataclasses in Python;;
+    """
+
+    @dataclass
+    class Student:
+        name: str
+        grade: str
+        age: int
+
+
+    class Person:
+        fname: str
+        mname: str
+        lname: str
+        fullname: str
+
+    # runner for expl_test_v1;;
+    s1 = Student(name="Neeru", age=16, grade="A")
+    print("s1: obj:", s1)
+    print(f"s1: dict : {s1.__dict__}")
+    print(f"s1: dict : {s1.__dict__.keys()}")
+
+
 ##---Main Execution;;
 def main():
-    expl_test_v2()
-    # expl_test_v1()
-
+    expl_test()
 
 if __name__ == '__main__':
     print("#------------ Code Start --------------#")

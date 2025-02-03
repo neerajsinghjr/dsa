@@ -4,9 +4,10 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing...
 -> Created: 03/09/2022
--> Updated: 25/01/2025
+-> Updated: 02/02/2025
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
+-> Q094 : Inspect module in python;;
 -> Q093 : Dataclass Schema Creation with Decorator;;
 -> Q092 : Dataclass Decorator in Python;;
 -> Q091 : Variable Type Hinting in Python;;
@@ -104,6 +105,13 @@
 ````
 
 ### PYTHON NOTES : BEGINNING 
+
+-------------------------------------------------------------------------------------
+### Q094 : Inspect module in python;;
+
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q093 : Dataclass Schema Creation with Decorator;;
@@ -476,7 +484,8 @@ The main place to declare type hints. As function parameters.
 1) int
 2) float
 3) bool
-4) bytes
+4) byte 
+5) str
 
 for eg,
 ```
@@ -783,6 +792,36 @@ obj.do_something()
 Mixins in Python often utilize multiple inheritance to provide reusable behavior 
 to multiple classes. 
 
+````
+# Define a mixin class for logging functionality
+class LogMixin:
+    def log_info(self, message):
+        print(f"INFO: {message}")
+
+    def log_error(self, message):
+        print(f"ERROR: {message}")
+
+# Define a Utitlity Class for some Productive work;;
+class Utils:
+       
+    def do_utility_stuff(self):
+        print("doing something productive here")
+
+# Define a class that uses the LogMixin
+class MyClass(LogMixin, Utils):
+    def do_something(self):
+        # Call the log_info method from the LogMixin
+        self.do_utility_stuff()
+        self.log_info("Doing something...")
+
+        # Call the log_error method from the LogMixin
+        self.log_error("Oops! Something went wrong.")
+
+# Create an instance of MyClass and call its methods
+obj = MyClass()
+obj.do_something()
+````
+
 However, the distinction is that mixins are typically designed to be used with 
 single inheritance, meaning that they are intended to be added to classes that 
 inherit from only one base class. This helps avoid the complexities and ambiguity 
@@ -809,8 +848,8 @@ if __name__ == "__main__":
 
 Eg2 : Calculation of Fibonacci series with memoization;;
 ````
-memory = {}
 count = 0
+memory = {}
 
 def cache(func):
     def reading_cache(num):
@@ -831,6 +870,8 @@ def fact(num):
 if __name__ == "__main__":
     print("Factorial Response: ", fact(10))
     print("Factorial Run-Count: ", count)
+    # without memoization : fact: 120, count: 15
+    # with memomization : fact: 120, count: 10
 ````
 
 Explanation:-
@@ -853,17 +894,18 @@ it is used, the value is calculated and stored in the `memory`.
 In Python, `reduce()` is a built-in function that applies a given function to the 
 elements of an iterable, reducing them to a single value.
 
-The syntax for reduce() is as follows:
+#### Syntax for reduce() is as follows:
 > functools.reduce(function, iterable[, initializer])
 
+#### Details:
 - The function argument is a function that takes two arguments and returns a single 
-value. The first argument is the accumulated value, and the second argument is the 
+value. 
+- The first argument is the accumulated value, and the second argument is the 
 current value from the iterable.
 - The iterable argument is the sequence of values to be reduced.
 - The optional initializer argument is used to provide an initial value for the 
 accumulated result. If no initializer is specified, the first element of the iterable 
 is used as the initial value.
-
 
 for eg,
 ````
