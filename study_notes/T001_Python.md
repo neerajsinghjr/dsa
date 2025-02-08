@@ -1,6 +1,6 @@
 ````
 -------------------------------------------------------------------------------------
--> Title: PyNotes Diary
+-> Title: Python Diary
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing...
 -> Created: 03/09/2022
@@ -107,9 +107,17 @@
 ### PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
-### Q094 : Inspect module in python;;
+### ***Q096 : Multithreading using Future Module;;
 
 
+
+-------------------------------------------------------------------------------------
+### ***Q095 : Usages of MultiProcessing Vs Asyncio;;
+
+
+
+-------------------------------------------------------------------------------------
+### ***Q094 : Inspect module in python;;
 
 
 
@@ -438,7 +446,8 @@ print(car)  # Car(make='Toyota', model='Corolla', seats=5)
 
 #### When to Use dataclass
 - For simple classes with attributes and no significant custom logic.
-- When you want boilerplate code like __init__, __repr__, or __eq__ to be auto-generated.
+- When you want boilerplate code like __init__, __repr__, or __eq__ to be
+  auto-generated.
 - For immutable objects (use frozen=True).
 - When managing complex data structures like nested configurations.
 
@@ -446,11 +455,11 @@ print(car)  # Car(make='Toyota', model='Corolla', seats=5)
 -------------------------------------------------------------------------------------
 ### Q091 : Variable Type Hinting in Python;;
 
-- Type Hinting allows you to get the details of the variable used in the 
-piece of code.
+- Type Hinting allows you to get the details of the variable used in the piece
+  of code.
 
-- These "type hints" are a special syntax that allow declaring the type 
-of a variable
+- These "type hints" are a special syntax that allow declaring the type of a
+  variable
 
 for eg,
 ````
@@ -518,6 +527,7 @@ def process_items(items: List[str]):
 # Example 2: Tuple and Set Datatype
 def process_items(items_t: tuple[int, int, str], items_s: set[bytes]):
     return items_t, items_s
+
 ```
 
 **DICT**
@@ -643,19 +653,19 @@ def get_person_name(one_person: Person):
 -------------------------------------------------------------------------------------
 ### Q090 : Python Round Division;;
 
-- `print(6//132)` will output 0, because it performs integer division between 
-6 and 132, resulting in 0 with no remainder
+- `print(6//132)` will output 0, because it performs integer division between
+  6 and 132, resulting in 0 with no remainder
 
-- `print(6//-132)` will output -1, because it performs integer division between 
-6 and -132, resulting in -1 with no remainder.
+- `print(6//-132)` will output -1, because it performs integer division
+  between 6 and -132, resulting in -1 with no remainder.
 
 - `print(int(6/-132))` use for accurate result or straight zero. 
 
 > Conclusion:
 
-In Python, integer division always rounds towards negative infinity, meaning the 
-result is rounded to the nearest integer that is less than or equal to the true 
-quotient. 
+In Python, integer division always rounds towards negative infinity, meaning
+the result is rounded to the nearest integer that is less than or equal to
+the true quotient. 
 
 Therefore, -1 is the result of dividing 6 by -132.
 
@@ -663,15 +673,16 @@ Therefore, -1 is the result of dividing 6 by -132.
 -------------------------------------------------------------------------------------
 ### Q089 : Scopes in Python Language;;
 
-Every object in Python functions within a scope. A scope is a block of code where 
-an object in Python remains relevant. Namespaces uniquely identify all the objects 
-inside a program. 
+Every object in Python functions within a scope. A scope is a block of code
+where an object in Python remains relevant. Namespaces uniquely identify all
+the objects inside a program. 
 
-However, these namespaces also have a scope defined for them where you could use 
-their objects without any prefix. A few examples of scope created during code 
-execution in Python are as follows:
+However, these namespaces also have a scope defined for them where you could
+use their objects without any prefix. A few examples of scope created during
+code execution in Python are as follows:
 
 #### LOCAL Scope
+
 A local scope refers to the local objects available in the current function.
 
 for eg,
@@ -686,8 +697,9 @@ my_function()
 ````
 
 #### GLOBAL Scope:-
-A global scope refers to the objects available throughout the code execution since 
-their inception.
+
+A global scope refers to the objects available throughout the code execution
+since their inception.
 
 for eg,
 ````
@@ -722,8 +734,9 @@ module_example.some_function()
 ````
 
 #### BUILT-IN Scope
-An outermost scope refers to all the built-in names callable in the program. The objects
-in this scope are searched last to find the name referenced.
+
+An outermost scope refers to all the built-in names callable in the program.
+The objects in this scope are searched last to find the name referenced.
 
 for eg,
 ````
@@ -758,10 +771,10 @@ print(), type(), sum(), and max().
 -------------------------------------------------------------------------------------
 ### Q088 : What are Mixin in Python;;
 
-In Python, mixins are classes that provide functionality to be inherited by other 
-classes. They are often used to add common or reusable behavior to multiple classes 
-without requiring multiple inheritance. Mixins typically contain methods or attributes 
-that can be shared across different classes.
+In Python, mixins are classes that provide functionality to be inherited by
+other classes. They are often used to add common or reusable behavior to
+multiple classes without requiring multiple inheritance. Mixins typically
+contain methods or attributes that can be shared across different classes.
 
 for eg,
 ````
@@ -789,8 +802,8 @@ obj.do_something()
 
 > Note
 
-Mixins in Python often utilize multiple inheritance to provide reusable behavior 
-to multiple classes. 
+Mixins in Python often utilize multiple inheritance to provide reusable
+behavior to multiple classes. 
 
 ````
 # Define a mixin class for logging functionality
@@ -822,10 +835,10 @@ obj = MyClass()
 obj.do_something()
 ````
 
-However, the distinction is that mixins are typically designed to be used with 
-single inheritance, meaning that they are intended to be added to classes that 
-inherit from only one base class. This helps avoid the complexities and ambiguity 
-that can arise from multiple inheritance.
+However, the distinction is that mixins are typically designed to be used with
+single inheritance, meaning that they are intended to be added to classes
+that inherit from only one base class. This helps avoid the complexities and
+ambiguity that can arise from multiple inheritance.
 
 
 -------------------------------------------------------------------------------------
@@ -881,10 +894,11 @@ called memory.
 - The second method `fact` is the function to calculate the factorial. It is wrapped 
 by the decorator `cache`. The fact method has access to the memory variables as result. 
 The wrapped function is equivalent as `fact = cache(fact)`.
-- When `fact(5)` is called, the recursive call begins in addition to the storage of 
-the intermediate results. Every time a calculation needs to be done, it is checked 
-if the result is available in the `memory`. If the value is available in the `memory` 
-it is used, the value is calculated and stored in the `memory`.
+- When `fact(5)` is called, the recursive call begins in addition to the
+  storage of the intermediate results. Every time a calculation needs to be
+  done, it is checked if the result is available in the `memory`. If the
+  value is available in the `memory` it is used, the value is calculated and
+  stored in the `memory`.
 - We can use this technique in the tree-based problems.
 
 
@@ -957,6 +971,11 @@ print("ans: ", ans)
 -------------------------------------------------------------------------------------
 ### Q085 : Multiprocessing (CPU Task) Vs Asyncio(IO Task);;
 
+(Refer Example : dsa/basic-py/P038_Asyncio.py)
+
+(Refer Study : https://realpython.com/async-io-python/)
+
+
 `Multiprocessing` and `Asyncio` are both approaches to concurrent programming
 
 #### Multiprocessing (CPU Core Task):
@@ -964,7 +983,7 @@ print("ans: ", ans)
     1. Multiprocessing is suitable for CPU-bound tasks, which are tasks that 
        require significant computation or processing power.
     2. It involves running separate processes in parallel, each with its own 
-       interpreter and memory space.
+       interpreter and memory space. so its bypasses the Global Interpreter Lock
 - Concurrency Model:
     1. Achieves parallelism by executing tasks concurrently in separate processes.
 - Use Cases:
@@ -1019,9 +1038,15 @@ if __name__ == "__main__":
 - Use `multiprocessing` for CPU-bound tasks that require parallel execution.
 - Use `asyncio` for I/O-bound tasks where concurrency can be achieved by 
   efficiently switching between tasks during I/O operations.
-- In practice, both approaches can be combined for scenarios where a mix of 
-  CPU-bound and I/O-bound tasks need to be handled efficiently in a single 
+- In practice, both approaches can be combined for scenarios where a mix of
+  CPU-bound and I/O-bound tasks need to be handled efficiently in a single
   application.
+- Multiprocessing works by creating separate processes (each with its own
+  Interpreter and Global Interpreter Lock (GIL)
+- Asyncio uses a single-threaded, single-process event loop to handle Python
+  interpreter), so it bypasses the Global Interpreter Lock (GIL).
+- Asyncio uses a single-threaded, single-process event loop to handle
+  asynchronous I/O tasks without blocking.
 
 
 -------------------------------------------------------------------------------------
@@ -1031,51 +1056,300 @@ if __name__ == "__main__":
 
 (Refer Study : https://realpython.com/async-io-python/)
 
+
 #### Asynchronous Topics:
-- `Threading` is a concurrent execution model whereby multiple threads take turns 
-executing tasks. One process can contain multiple threads.
-- `Coroutines` are computer program components that allow execution to be suspended 
-and resumed, generalizing subroutines for cooperative multitasking.
-- `Concurrency` is a slightly broader term than parallelism. It suggests that multiple 
-tasks have the ability to run in an overlapping manner. (There’s a saying that concurrency 
-does not imply parallelism.)
+- `Threading` is a concurrent execution model whereby multiple threads take
+  turns executing tasks. One process can contain multiple threads.
+- `Coroutines` are computer program components that allow execution to be
+  suspended and resumed, generalizing subroutines for cooperative multitasking.
+- `Concurrency` is a slightly broader term than parallelism. It suggests that
+  multiple tasks have the ability to run in an overlapping manner. (There’s a
+  saying that concurrency does not imply parallelism.)
+
 
 #### AsyncioIO:
 - `Async IO` is not multithreading, nor is it multiprocessing. 
-- `Async IO` is a single-threaded, single-process design: it uses cooperative multitasking, 
-async IO gives a feeling of concurrency despite using a single thread in a single process. 
-Coroutines (a central feature of async IO) can be scheduled concurrently, but they are 
-not inherently concurrent.
-- Asynchronous routines are able to “pause” while waiting on their ultimate result and 
-let other routines run in the meantime.
-- Asynchronous code, through the mechanism above, facilitates concurrent execution. To 
-put it differently, asynchronous code gives the look and feel of concurrency.
-- At the heart of async IO are coroutines. A coroutine is a specialized version of a 
-Python generator function. A coroutine is a function that can suspend its execution 
-before reaching return, and it can indirectly pass control to another coroutine for 
-some time.
-
-> NOTE: 
-What’s important to know about threading is that it’s better for IO-bound tasks. 
-While a CPU-bound task is characterized by the computer’s cores continually working 
-hard from start to finish, an IO-bound job is dominated by a lot of waiting on 
-input/output to complete.
-
-#### Asyncio - Async/Await 
-- 
+- `Async IO` is a single-threaded, single-process design: it uses cooperative
+  multitasking, async IO gives a feeling of concurrency despite using a
+  single thread in a single process. Coroutines (a central feature of async
+  IO) can be scheduled concurrently, but they are not inherently concurrent.
+- Asynchronous routines are able to “pause” while waiting on their ultimate
+  result and let other routines run in the meantime.
+- Asynchronous code, through the mechanism above, facilitates concurrent
+  execution. To put it differently, asynchronous code gives the look and feel
+  of concurrency.
+- At the heart of async IO are coroutines. A coroutine is a specialized
+  version of a Python generator function. A coroutine is a function that can
+  suspend its execution before reaching return, and it can indirectly pass
+  control to another coroutine for some time.
 
 
+#### AsyncIO Usecase: 
+- asyncio is better for IO-bound tasks. 
+- asyncio is a library used for writing concurrent code using async/await
+  syntax. It's useful when you have I/O-bound tasks (network requests, file
+  operations, database queries) that would otherwise block execution.
+
+- Unlike multithreading or multiprocessing, asyncio runs everything in a
+  single thread using an event loop.
+- While a CPU-bound task is characterized by the computer’s cores continually
+  working hard from start to finish, an IO-bound job is dominated by a lot of
+  waiting on input/output to complete.
 
 
+#### Asyncio : Getting Hands Dirty
+
+> 1. Understanding asyncio
+
+- `asyncio` is a library used for writing concurrent code using async/await
+  syntax. It's useful when you have I/O-bound tasks (network requests, file
+  operations, database queries) that would otherwise block execution.
+
+- Unlike multithreading or multiprocessing, asyncio runs everything in a
+  single thread using an event loop.
 
 
+> 2. Basic Syntax 
 
+**(a) Define Async Basic Function:-**
+
+````
+import asyncio 
+
+async def hello_world():
+    print("Hello")
+    asyncio.await(3)
+    print("World")
+
+asyncio.run(main())
+
+````
+
+**(b) Creating multiple independent tasks:-** 
+
+````
+import asyncio
+
+async def task1():
+    print("Task 1 started")
+    await asyncio.sleep(10)
+    print("Task 1 completed")
+    return (True, "All OK")
+
+async def task2():
+    print("Task 2 started")
+    await asyncio.sleep(1)
+    print("Task 2 completed")
+    return (True, "All OK")
+
+async def main():
+    result = await asyncio.gather(task1(), task2())  # Run both tasks concurrently
+    print(f"result: ", result)
+
+asyncio.run(main())
+
+# output:
+# Task 1 started
+# Task 2 started
+# Task 2 completed
+# Task 1 completed
+# result:  [(True, 'All OK'), (True, 'All OK')]
+
+````
+
+**(c) Event Loop and Tasks:-**
+
+- The event loop runs async tasks and manages scheduling.
+- asyncio.create_task() schedules tasks to run in the background.
+- asyncio.gather() runs multiple coroutines concurrently.
+
+````
+import asyncio
+
+async def task(name, seconds):
+    print(f"{name} started")
+    await asyncio.sleep(seconds)
+    print(f"{name} completed")
+
+async def main():
+    t1 = asyncio.create_task(task("Task A", 2))
+    t2 = asyncio.create_task(task("Task B", 3))
+
+    t1_resp = await t1  # Wait for Task A to finish
+    t2_resp = await t2  # Wait for Task B to finish
+    print(f"t1_resp: {t1_resp}, t2_resp: {t2_resp}")
+
+    # or run task together using gather function;;
+    # resp = await asyncio.gather(t1, t2)
+    # print(f"resp: {resp}") 
+
+asyncio.run(main())
+
+````
+
+**(d) Using async with HTTP Requests**
+
+Use aiohttp instead of requests for non-blocking HTTP calls.
+
+````
+import aiohttp
+import asyncio
+
+async def fetch_url(url):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            return await response.text()
+
+async def main():
+    url = "https://www.example.com"
+    content = await fetch_url(url)
+    print(content[:100])  # Print first 100 chars
+
+asyncio.run(main())
+
+````
+
+**(e) Using async with Databases**
+
+- If you're working with a database like PostgreSQL, use asyncpg
+
+````
+import asyncpg
+import asyncio
+
+async def fetch_data():
+    conn = await asyncpg.connect("postgresql://user:password@localhost/dbname")
+    rows = await conn.fetch("SELECT * FROM users")
+    await conn.close()
+    return rows
+
+async def main():
+    data = await fetch_data()
+    print(data)
+
+asyncio.run(main())
+
+````
+
+**(f) When to Use asyncio?**
+
+- When handling multiple I/O-bound operations (API calls, DB queries, file I/O).
+- When building web servers (e.g., FastAPI, Sanic).
+- When writing web scrapers that make multiple requests at once.
+
+**(g) When not to use asyncio**
+
+- When working with CPU-bound tasks (Use multiprocessing instead).
+- When you need thread safety (Use threading module instead).
+
+**(h) Debugging asyncio Code**
+
+
+To enable debugging mode, run
+
+````
+asyncio.run(main(), debug=True)
+
+````
+
+Or set environment variable:
+
+````
+PYTHONASYNCIODEBUG=1 python script.py
+
+````
+
+**(i) Common Mistakes**
+
+Calling `async` function without `await`
+
+````
+import asyncio
+
+async def foo():
+    print("Hello")
+    return 42
+
+result = foo()  # ❌ This returns a coroutine, not a result
+
+print(result)
+# output 
+# <coroutine object expl.<locals>.foo at 0x73b48b39eff0>
+
+
+# FIX : USE await before calling async function;;
+result = await foo()  # ✅ Now it executes the function
+
+````
+
+
+### Asyncio :: Exmaple;;
+
+In this we used two different methods which are asyncio methods which we later
+attach to asyncio task using create_task, so as they are individual task we
+would expect individual result at the end. Thats why we are using gather() 
+method to combined and push the method to process and later after execution 
+asyncio return us with the result. 
+
+We crafted one entry point main() which is also a asyncio method. 
+
+```
+import asyncio
+from random import choice
+
+from selenium.webdriver.common.devtools.v113.debugger import resume
+
+rt_flag = choice([True, False])
+
+async def task1():
+    result = []
+    for i in range(2):
+        waiting_time = 10
+        wlcm_msg = "Task 1 | Loading Next Stage ..." if i != 0 else "Task 1 | Loading ..."
+        print(wlcm_msg)
+        await asyncio.sleep(waiting_time)
+        t1_rslt = input(f"Executing Task(1): Iteration({i}): Enter Input: ")
+        result.append((rt_flag, t1_rslt))
+    return result
+
+async def task2():
+    result = []
+    for i in range(1):
+        waiting_time = 3
+        wlcm_msg = "Task 2 | Loading Next Stage ..." if i != 0 else "Task 2 | Loading ..."
+        print(wlcm_msg)
+        await asyncio.sleep(waiting_time)
+        t2_rslt = input(f"Executing Task(2): Iteration({i}): Enter Input: ")
+        result.append((rt_flag, t2_rslt))
+    return result
+
+async def main():
+    # Create tasks
+    t1 = asyncio.create_task(task1())
+    t2 = asyncio.create_task(task2())
+
+    # Wait for both tasks to complete
+    result = await asyncio.gather(t1, t2)
+    print("result: ", result)
+
+# Run the event loop
+asyncio.run(main())
+
+# output :
+[//]: # (Task 1 | Loading ...)
+[//]: # (Task 2 | Loading ...)
+[//]: # (Executing Task&#40;2&#41;: Iteration&#40;0&#41;: Enter Input: 1)
+[//]: # (Executing Task&#40;1&#41;: Iteration&#40;0&#41;: Enter Input: 3)
+[//]: # (Task 1 | Loading Next Stage ...)
+[//]: # (Executing Task&#40;1&#41;: Iteration&#40;1&#41;: Enter Input: 10)
+[//]: # (result:  [[&#40;False, '3'&#41;, &#40;False, '10'&#41;], [&#40;False, '1'&#41;]])
+```
 
 
 -------------------------------------------------------------------------------------
 ### Q083 : Method Resolution Order in Python;;
 
-(refer source code: python-apps/cls-composiiton/with-inheritance/v3)
+(refer source code: python-expl/cls-composiiton/with-inheritance/v3)
 
 `Method Resolution Order(MRO)` signifies the way in which a programming language
 resolves a method or attribute. 
@@ -1103,6 +1377,7 @@ class Employee:
         self.id = eid
         self.name = name
 
+
 class SalaryEmployee(Employee):
     def __init__(self,  eid, name, salary):
         super().__init__(eid, name)
@@ -1115,7 +1390,6 @@ class SalaryEmployee(Employee):
 class Secretary(SalaryEmployee):
     def work(self, hours):
         print(f"Secretary: {self.name}, handled billing for {hours} hours")
-
 
 
 class TemporarySecretary(Secretary):
@@ -1144,7 +1418,7 @@ if __name__ == "__main__":
 
 
 -------------------------------------------------------------------------------------
-### Q082 : UDP Socket Programming in Pthon
+### Q082 : UDP Socket Programming in Python;;
 
 #### USER DATAGRAM PROTOCOL:
 -  UDP is the abbreviation of User Datagram Protocol. UDP makes use of
@@ -1186,7 +1460,7 @@ def run_udp_server():
     # bind address with ip;;
     udp_client_socket.bind((local_ip, local_port))
 
-    print("UDP Client is running ....")
+    print("UDP Client is running ...")
 
     # listen to the port;;
     while(True):
@@ -1264,7 +1538,7 @@ if __name__ == "__main__":
 
 -  Multiprocesing Pool object which offers a convenient means of parallelizing
    the execution of a function across multiple input values, distributing the
-   input data across processes(data parallelism). 
+   input data across processes(data parallelism).
 
 -  for eg, (ref P056 file)
 

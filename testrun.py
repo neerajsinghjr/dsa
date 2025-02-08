@@ -1,8 +1,25 @@
+'''
+-------------------------------------------------------------------------------------
+-> Title: Testrun
+-> Attempted: 04-02-2025
+-> Description:
+-------------------------------------------------------------------------------------
+
+Exploratory testrun file for python;;
+
+-------------------------------------------------------------------------------------
+'''
 import sys
+import asyncio
 import inspect
-from distutils.util import strtobool
-from datetime import datetime
+import multiprocessing
+from asyncio import gather
+from random import randint
+from time import time, sleep
 from functools import reduce
+from datetime import datetime
+from multiprocessing import Process
+from distutils.util import strtobool
 
 
 DEBUG = True
@@ -11,9 +28,118 @@ memory = {}
 
 
 def expl():
-    # def msum():
-    #     print(f"a: {a}, b: {b}, c: {c}")
-    #     return a+b+c
+    # Exploring multiprocessing pool;;
+    def square(iter, sum=0):
+        print(f"Process Iteration: ", iter)
+        for i in range(10**3):
+            sum += i
+        return (True, {f"iter_{iter}": "success", "sum": sum})
+
+    # Main Multiprocessing mapping with Pool;;
+    with multiprocessing.Pool as pool:
+        result = pool.map(square, range(3))
+        print(result)
+
+
+def expl_v10():
+    # calling async without await;;
+    async def foo():
+        print("Hello")
+        return 42
+
+    result = foo()  # ❌ This returns a coroutine, not a result
+    print(result)
+
+
+def expl_v9():
+    # checking asyncio multi-task independency - trying different way;;
+    async def task(name, seconds):
+        print(f"{name} started")
+        await asyncio.sleep(seconds)
+        print(f"{name} completed")
+        return (True, "Success")
+
+    async def main():
+        t1 = asyncio.create_task(task("Task A", 2))
+        t2 = asyncio.create_task(task("Task B", 3))
+
+        t1_resp = await t1  # Wait for Task A to finish
+        t2_resp = await t2  # Wait for Task B to finish
+        print(f"t1_resp: {t1_resp}, t2_resp: {t2_resp}")
+
+        # or run task together using gather function;;
+        # resp = await asyncio.gather(t1, t2)
+        # print(f"resp: {resp}")
+
+    asyncio.run(main())
+
+
+def expl_v8():
+    # checking asyncio multi-task independency;;
+    async def task1():
+        print("Task 1 started")
+        await asyncio.sleep(10)
+        print("Task 1 completed")
+        return (True, "All OK")
+
+    async def task2():
+        print("Task 2 started")
+        await asyncio.sleep(1)
+        print("Task 2 completed")
+        return (True, "All OK")
+
+    async def main():
+        t1 = asyncio.create_task(task1())
+        t2 = asyncio.create_task(task2())
+        result = await asyncio.gather(t1, t2)
+        # above two line can be combined into one using below synatax;;
+        # result = await asyncio.gather(task1(), task2())  # Run both tasks concurrently
+        print(f"result: ", result)
+
+    asyncio.run(main())
+
+
+def expl_v7():
+    # Multiprocessing exploration;;
+    # def get_square(num):
+    #     time_to_sleep = randint(1, 100)
+    #     print(f"Processing going to sleep for {time_to_sleep} sec")
+    #     print(f"Before returning ")
+    #     return
+    #
+    # def square_list(nums):
+    #     return [get_square(num) for num in nums]
+    #
+    # nums = [randint(1,100) for i in range(10)]
+    # process = Process(square_list, args=(nums))
+    # process.start()
+    # process.join()
+
+
+    def funA():
+        for i in range(10**7):
+            print(f"fun(A): {i}")
+            sleep(3)
+            print(f"func(A): Wait completed for iteration: {i}")
+
+    def funB():
+        for i in range(10**7):
+            print(f"fun(B): {i}")
+            sleep(3)
+            print(f"func(B) : Wait completed for iteration: {i}")
+
+    with multiprocessing.Pool() as pool:
+        x = [1,2,3]
+        r1 = pool.map(funA, x)
+        r2 = pool.map(funB, x)
+
+    print(f"Result: {r1}")
+    print(f"Result: {r2}")
+
+
+def expl_v6():
+    # reduce combines everything into one;;
+    # reduce(function, iterable[...])
 
     def test(a, b):
         a_s, b_s = sum(a), sum(b)
@@ -23,11 +149,12 @@ def expl():
 
     nums = [[i, i+1, i+2] for i in range(10)]
     print(f"nums: {nums}")
+
     x = reduce(test, nums)
     # x = reduce(lambda acc, triplet: msum(acc[0], acc[1], acc[2]) + msum(*triplet), nums)
-
     # x2= reduce(msum, map(lambda x: x+100, nums))
     # x3 = reduce(msum, map(lambda x: x+100, nums))
+
     print(f"x: {x}")
 
 
@@ -177,4 +304,9 @@ def expl_v1():
 
 
 if __name__ == "__main__":
+    print("#------------ Code Start --------------#")
+    startTime = time()
     expl()
+    endTime = time()
+    print("Run Time:",endTime-startTime,"ms")
+    print("#------------ Code Stop ----------------#")

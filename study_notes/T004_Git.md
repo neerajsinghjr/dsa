@@ -307,6 +307,7 @@ $ git ls-files
 $ git commit -am "your-msg"
 ````
 
+
 -------------------------------------------------------------------------------------
 ### Q003 : Check code changes pulled from origin;;
 
@@ -326,6 +327,7 @@ $ git diff origin/develop
 # If everything ok, then merge 
 # make sure u're on develop branch before
 $ git merge origin/develop
+
 ````
 
 
@@ -335,23 +337,23 @@ $ git merge origin/develop
 #### GIT FAVOURITE COMMANDS :-
 
 ````
-// Delete Remote Branch
+//--- Delete remote branch
 $ git push origin :branch-name
 
-//--- set upstream for local branch to remote
+//--- Set upstream for local branch to remote
 $ git branch --set-upstream-to origin feature-branch
 
-//--- show up which remote branch a local branch is tracking
+//--- Show up which remote branch a local branch is tracking
 $ git branch -v
 
-//--- short version to set upstream with very first push
+//--- Short version to set upstream with very first push
 $ git push -u origin local-branch
 
-//--- fetch and pull branch
+//--- Fetch and pull branch
 $ git fetch origin BAC-2633-transaction-apis-create-lumpsum
 $ git checkout BAC-2633-transaction-apis-create-lumpsum
 
-//--- push from different local branch to different remote branch
+//--- Push from different local branch to different remote branch
 git push <remote> <branch with new changes>:<branch you are pushing to>
 for eg, $ git push origin branch-1:branch-2
 
@@ -445,14 +447,16 @@ git stash show stash@{0}
 
 // Show the file content difference in Stash
 git stash show -p stash@{0}
+
 ````
+
 
 -------------------------------------------------------------------------------------
 ### Q001 : What is Git;;
 
 Git is a distributed version control system: tracking changes in any set of
 files, usually used for coordinating work among programmers collaboratively
-developing source code during software development. 
+developing source code during software development.
 
 Its goals include speed, data integrity, and support for distributed,
 non-linear workflows.
