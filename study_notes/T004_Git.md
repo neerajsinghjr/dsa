@@ -7,6 +7,8 @@
 -> Updated : 09/02/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q016 : Stash Commands for Productive Work;;
+-> Q015 : Git Pull and Rebase Together in One Go;;
 -> Q014 : Remove Last commit from Git;;
 -> Q013 : How Git Reset Command allows time-travel;;
 -> Q012 : Remove the Untracked files in git project;;
@@ -25,6 +27,139 @@
 ````
 
 ### GIT NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q016 : Stash Commands for Productive Work;;
+
+**CASE 1 : Push Stash with a customer message:** 
+
+```bash
+$ git stash push -m "custom-message-here"
+```
+
+**CASE 2 : List number of file changes in Stash:**
+
+```bash
+$ git stash show stash@{0}
+```
+
+**CASE 3 : Show the file content difference in Stash**
+
+```bash
+$ git stash show -p stash@{0}
+```
+
+
+-------------------------------------------------------------------------------------
+### Q015: Git Pull and Rebase Together in One Go;;
+ 
+Below Command to show this - On Go 
+
+**SYNTAX : `git pull --rebase origin master`** 
+
+
+#### Explained  
+
+This command is used to **update** your current branch with the latest changes
+from `master` while keeping a **clean history**.  
+
+---	
+
+#### **🔍 Breaking It Down:**
+
+
+**1️⃣ `git pull`**
+
+- Fetches new changes from the `origin` (remote repository).
+
+- Merges them into your current branch by default (unless `--rebase` is
+  used).
+
+#### **2️⃣ `--rebase`**
+
+- Instead of a merge commit, it **reapplies your local commits** on top of the
+  latest `master` branch.
+
+- Keeps a **linear commit history** (avoids unnecessary merge commits).
+
+#### **3️⃣ `origin master`**
+
+- `origin` → Refers to the remote repository.  
+
+- `master` → The branch from which updates are pulled.
+
+---
+
+### **⏳ What Happens Step by Step?**
+
+1. **Fetch latest changes** from `master` into your local repository.
+
+2. **Rewind your local commits** (temporarily saving them).
+
+3. **Update your branch** to the latest `master` state.
+
+4. **Replay your local commits** on top of the updated `master`.
+
+---
+
+### **⚡ Example Scenario:**
+
+**(a) Before `git pull --rebase origin master`**
+
+```
+A---B---C (your branch)
+     \
+      D---E---F (master has new commits)
+```
+
+**(b) After `git pull --rebase origin master`**
+
+```
+D---E---F---A'---B'---C' (your branch rebased)
+```
+
+Your local commits **A, B, C** are **rebased** on top of the latest `master`.
+
+---
+
+#### **🔥 Why Use This?**
+
+- **Avoids extra merge commits** (`Merge branch 'master'` clutter).  
+
+- **Keeps history clean** and linear.  
+
+- **Works better for collaborative workflows** (especially when rebasing
+    feature branches).  
+
+---
+
+#### **🚨 If You Face Conflicts:**
+
+Git will pause and ask you to resolve conflicts in each file.  
+
+👉 After resolving conflicts, run:
+
+```sh
+git rebase --continue
+```
+If things go wrong, **abort the rebase** with:
+
+```sh
+git rebase --abort
+```
+
+---
+
+#### **🎯 When to Use It?**
+
+Use `git pull --rebase origin master` when you:  
+
+✅ Want to **update your branch** while keeping a clean history.  
+
+✅ Are working in a **team** and need to avoid unnecessary merge commits.  
+
+✅ Prefer **linear commit history** over merge-based commits.  
+
 
 -------------------------------------------------------------------------------------
 ### Q014 : Remove Last commit from Git;;
@@ -604,34 +739,36 @@ $ git merge origin/develop
 #### GIT FAVOURITE COMMANDS :-
 
 ````
-//--- Delete remote branch
+//--- Delete remote branch;;
 $ git push origin :branch-name
 
-//--- Set upstream for local branch to remote
+//--- Set upstream for local branch to remote;;
 $ git branch --set-upstream-to origin feature-branch
 
-//--- Show up which remote branch a local branch is tracking
-$ git branch -v
-
-//--- Short version to set upstream with very first push
+//--- Short version to set upstream with very first push;;
 $ git push -u origin local-branch
 
-//--- Fetch and pull branch
+//--- Show up which remote branch a local branch is tracking;;
+$ git branch -a
+
+//--- Show local branch sync;;
+$ git branch -v
+
+//--- Fetch and pull branch;;
 $ git fetch origin BAC-2633-transaction-apis-create-lumpsum
 $ git checkout BAC-2633-transaction-apis-create-lumpsum
 
-//--- Push from different local branch to different remote branch
+//--- Push from different local branch to different remote branch;;
 git push <remote> <branch with new changes>:<branch you are pushing to>
 for eg, $ git push origin branch-1:branch-2
 
-//--- fetch origin
+//--- fetch origin;;
 $ git fetch --all
+
+//--- Pull with origin master (refer Q015 for Details);;
 $ git pull --rebase origin master
 
-//--- Show local branch sync with remote branch
-$ git branch -v
-
-//--- Setup Email for Local Repo:
+//--- Setup Email for Local Repo;;
 $ git config --local user.email <your_email>
 
 //--- Clone Single branch from Repo:
@@ -708,6 +845,9 @@ git restore --staged <file>...
 
 // Alias to print only conflict files
 git config --global --add alias.conflicts '!describe() { git diff --name-only --diff-filter=u; }; describe'
+
+// Push Stash with a customer message 
+git stash push -m "custom-message-here"
 
 // List number of file changes in Stash
 git stash show stash@{0}
