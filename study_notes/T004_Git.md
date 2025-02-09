@@ -7,6 +7,7 @@
 -> Updated : 09/02/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q017 : Usages for PUSH command with -U flag;;
 -> Q016 : Stash Commands for Productive Work;;
 -> Q015 : Git Pull and Rebase Together in One Go;;
 -> Q014 : Remove Last commit from Git;;
@@ -27,6 +28,46 @@
 ````
 
 ### GIT NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q017 : Usages for PUSH command with -U flag;;
+
+Difference Between `git push` and `git push -u`
+
+#### **1️⃣ `git push`**
+
+- Pushes your **local branch** to the remote repository.  
+
+- If the branch **already has a remote tracking branch**, this works without
+  issues.  
+
+- **Example:**  
+  ```sh
+  git push origin dev
+  ```
+  This pushes the `dev` branch to `origin` (remote repository).  
+
+---
+
+#### **2️⃣ `git push -u` (or `--set-upstream`)**
+
+- This **sets a tracking connection** between your local branch and the remote
+  branch.  
+
+- Used when pushing a **new local branch** for the first time.  
+
+- After using `git push -u`, you can **simply use `git push`** next time
+  without specifying the remote and branch.  
+
+- **Example:**  
+  ```sh
+  git push -u origin dev
+  ```
+  This:  
+  - Pushes `dev` to `origin`.  
+  - Sets `origin/dev` as the **upstream** branch.  
+  - Allows future `git push` and `git pull` without needing `origin dev`.  
+
 
 -------------------------------------------------------------------------------------
 ### Q016 : Stash Commands for Productive Work;;
