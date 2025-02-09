@@ -4,9 +4,11 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 05/12/2022
--> Updated : 03/12/2024
+-> Updated : 09/02/2025
 -> Summary : Notes indices are as follows (**** pending)
-`-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-> Q014 : Remove Last commit from Git;;
+-> Q013 : How Git Reset Command allows time-travel;;
 -> Q012 : Remove the Untracked files in git project;;
 -> Q011 : Update Remove Repository SSH url link;;
 -> Q010 : Reset Head or Go Back & Forth in Commits History;;
@@ -25,6 +27,204 @@
 ### GIT NOTES : BEGINNING
 
 -------------------------------------------------------------------------------------
+### Q014 : Remove Last commit from Git;;
+
+--- 
+
+#### METHOD 1 :
+
+SYNTAX:-
+
+```bash
+$ git reset --soft HEAD^
+```
+
+**Explanation:**
+
+- **`git reset`:** This is the main command for moving the HEAD pointer of
+    your local repository.
+
+- **`--soft`:** This option specifies that only the HEAD pointer should be
+    moved. The changes introduced by the commit to be reset will remain in
+    the staging area (index).
+
+- **`HEAD^`:** This refers to the parent commit of the current HEAD. In other
+   words, it moves the HEAD pointer back to the previous commit.
+
+**How it works:**
+
+1. **Moves HEAD:** The command moves the HEAD pointer back one commit.
+
+2. **Changes staged:** The changes introduced by the commit that was "reset"
+are now staged for the next commit.
+
+---
+
+#### METHOD 2: 
+
+SYNTAX:-
+
+```bash
+$ git reset --soft HEAD~1
+```
+
+This has the same effect as `HEAD^`, but it might be more intuitive for some 
+users.
+
+**Important Notes:**
+
+- **Uncommitted changes:** This command does not affect any uncommitted
+    changes in your working tree.
+
+- **Caution:** Use `git reset` with caution, as it can alter your commit
+    history. Always understand the implications of using this command before
+    executing it.
+
+This command allows you to easily revert the most recent commit while
+preserving the changes introduced by that commit in the staging area, making
+it easier to amend or re-apply them in a different way.
+
+---
+
+#### METHOD 3: 
+
+you can also use git commit of previous or any commit you wanted to jump on.
+
+SYNTAX:
+
+```bash
+$ git reset --hard/--soft <SHA-COMMIT-ID>
+```
+
+**NOTE:**
+
+- Here also the --hard/--soft will do the same thing. only notable difference
+  is the commid-id which you can get from the git log command without any
+  efforts.
+- But here you must know which commit-id to jump. For trial purpose use
+  `--soft` for not disturbing any existing code flows.
+
+
+-------------------------------------------------------------------------------------
+### Q013 : How Git Reset Command allows time-travel;;
+
+Your confusion seems to be about how `git reset --hard` allows you to "go
+back" to a previous commit even though you haven’t re-committed anything new.
+Let me break it down.
+
+---
+
+#### **1. Problem Statement for Git Reset**
+
+- Initially, your `git log` showed this commit history:
+
+```
+41f6389 (HEAD -> master) re-commit 4
+ae59dee commit 3
+25b4d78 commit 2
+07280ad pilot commit
+  ```
+
+- Then you **reset hard** to `07280ad`:
+
+	```
+	git reset --hard 07280ad
+	```
+
+	- This **removed all commits after** `07280ad` from your branch history.
+	- Your `git log` now only showed:
+
+    ```
+    07280ad (HEAD -> master) pilot commit
+    ```
+
+  - This means commits `41f6389`, `ae59dee`, and `25b4d78` were **not lost**,
+    but they were **removed from the branch history**.
+
+- You then made a new commit (`e6d56e8`):
+
+  ```
+  [master e6d56e8] Re-Commit Hitory
+  ```
+
+  So, now your commit history looked like:
+
+  ```
+  e6d56e8 (HEAD -> master) Re-Commit Hitory
+  07280ad pilot commit
+  ```
+
+---
+
+#### **2. How Did You Get Back to `41f6389` (Refer Initial Commit)?**
+
+After that, you ran:
+
+```
+git reset --hard 41f6389
+```
+
+Since `41f6389` was a previous commit in your history, Git was able to find
+it **even though it was removed from the branch earlier**.
+
+Git keeps track of past commits in the **reflog** (a record of previous HEAD
+positions), so `41f6389` was still recoverable.
+
+After this reset, your commit history was back to:
+
+```
+41f6389 (HEAD -> master) re-commit 4
+ae59dee commit 3
+25b4d78 commit 2
+07280ad pilot commit
+```
+
+This is why it **looks like you "traveled back in time"** without
+re-committing anything.
+
+---
+
+#### **3. Why Was This Possible? (`git reflog`)**
+
+Git maintains an internal log of every action that moves `HEAD`. 
+
+You can view it using:
+
+```sh
+$ git reflog
+```
+
+You'll see something like:
+
+```
+e6d56e8 HEAD@{0}: reset: moving to 41f6389
+07280ad HEAD@{1}: commit: Re-Commit Hitory
+41f6389 HEAD@{2}: reset: moving to 07280ad
+```
+
+This is why even after `reset --hard`, you could return to an earlier commit.
+
+---
+
+### **4. Key Takeaways**
+
+- `git reset --hard <commit>` **moves HEAD** to that commit and discards all
+  later commits **from branch history**.
+
+- The old commits **are not deleted**; they are still stored in Git’s database
+  and retrievable through `git reflog`.
+
+- If you accidentally reset and want to recover lost commits, use:
+
+- for eg, 
+
+```sh
+git reflog
+git reset --hard <SHA of lost commit>
+```
+
+
+-------------------------------------------------------------------------------------
 ### Q012 : Remove the Untracked files in git project;;
 
 To remove the untracked files from the git project
@@ -38,6 +238,9 @@ $ git clean -i
 
 # Forcefully remove untracked file;;
 $ git clean -f
+
+# If there are folder which needs to be removed,
+$ git clean -f -d 
 ````
 
 NOTE: `Checkout` only remove the modified changes only.
@@ -46,8 +249,10 @@ NOTE: `Checkout` only remove the modified changes only.
 -------------------------------------------------------------------------------------
 ### Q011 : Update Remove Repository SSH url link;; 
 
-This Scenario can be used to update to update the existing remote link with
-the newer one. Like this,
+This Scenario can be used to update the existing remote link with the newer
+one. 
+
+Like this,
 
 ````
 # Intial SSH URL 
@@ -67,6 +272,24 @@ $ git remote -v
 # OUTPUT:
 origin	git@bitbucket.org:sqrrl-fintech/repo2.git (fetch)
 origin	git@bitbucket.org:sqrrl-fintech/repo2.git (push)
+````
+
+#### To Remove Existing Remote Url
+
+> SYNTAX: git remote rm remote_name
+
+Refer example below,
+
+````
+$ git remote -v 
+
+# OUTPUT :
+origin  git@bitbucket.org:sqrrl-fintech/repo2.git (fetch)
+Here remote_name = origin,
+and remote_url = git@bitbucket.org:sqrrl-fintech/repo2.git
+
+$ git remote rm origin
+
 ````
 
 
@@ -134,7 +357,7 @@ $ git reset --hard ace6055
 ### Q009 : Tags Creation in Git;;
 
 Tags are use to label the branch tracking the changes till current specific
-   requirements.
+requirements.
 
 #### Create Tags:
 
@@ -148,7 +371,7 @@ or, you can pass message as well
 
 > $ git tag --list
 
-#### Delete Tag:
+#### Delete Tags:
 
 ````
 # FROM REMOVE REPO:-
@@ -172,11 +395,13 @@ or, for another branch
 > $ git tag unstable-release develop
 
 #### Push tag to Remote Repo 
+
 if you wanted to push all the tags, then this command,
 
 > $ git push --tags
 
 for single tag push, use this command
+
 > $ git push origin tag-name
 
 for eg,
@@ -195,10 +420,11 @@ This will rename the git tag.
 -------------------------------------------------------------------------------------
 ### Q008 : Rename & Delete Command using Git;;
 
-NOTE: Even if you have stage the changes then the changes will be reflect
-there as well. Renamed file will be shown there.
+**NOTE: Even if you have stage the changes then the changes will be reflect
+there as well. Renamed file will be shown there.**
 
 #### CASE : RENAME COMMAND
+
 Suppose you have file using temp.txt => demo.txt, then and no changes will be
 shown, everything will be up to date.
 
@@ -206,6 +432,41 @@ for eg,
 ````
 # you can use this command;
 $ git mv temp.txt demo.txt
+````
+
+**NOTE: git mv vs linux mv**
+
+Fyi, in any case if you're thing that this renaming with mv git command can be
+easilty achievable using the normal mv command, then in that case the
+behaviour would be different. 
+
+For an instance, 
+
+````
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   deltest.txt
+	new file:   rentest.txt
+
+# Then, move(mv) commands, 
+$ mv rentest.txt ren_test.txt 
+
+# Result would be, like
+
+$ git status
+On branch master
+Changes to be committed:
+	new file:   deltest.txt
+	new file:   rentest.txt
+
+Changes not staged for commit:
+	deleted:    rentest.txt
+
+Untracked files:
+	ren_test.txt
+
 ````
 
 #### CASE : DELETE COMMAND
@@ -293,8 +554,9 @@ $ git commit -m "your-msg"
 In this case, you are just using commit and add in the same commit command and
 saying the git to first add all changes then commit the changes
 
-NOTE: But, here is the important thing to Notice, which is this automatic add
-and commit will not in the case. When you've Untraced files in your changes.
+**NOTE: Here is a catch. Which says, this automatic add and commit wont work
+  when you've  new untraced files in your changes. --Use Old School Style**
+
 In this case it will fail to add the files changes.
 
 ````
@@ -311,13 +573,18 @@ $ git commit -am "your-msg"
 -------------------------------------------------------------------------------------
 ### Q003 : Check code changes pulled from origin;;
 
-Suppose you are on develop branch of your project,
+Problem statments says:
+Suppose you are coming back to project after few days. But you are not sure
+that what types of changes have been commited in your absencies then prefer
+the below method for `fetch-diff`.
+
+Assuming you are on develop branch of your project,
 
 Then proceed as following
 
+````
 // On Terminal
 
-````
 # Fetch everything from the remote/develop branch;;
 $ git fetch origin develop
 
