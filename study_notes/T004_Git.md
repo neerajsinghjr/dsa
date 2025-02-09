@@ -34,7 +34,7 @@
 
 Difference Between `git push` and `git push -u`
 
-#### **1️⃣ `git push`**
+#### **1 `git push`**
 
 - Pushes your **local branch** to the remote repository.  
 
@@ -49,7 +49,7 @@ Difference Between `git push` and `git push -u`
 
 ---
 
-#### **2️⃣ `git push -u` (or `--set-upstream`)**
+#### **2 `git push -u` (or `--set-upstream`)**
 
 - This **sets a tracking connection** between your local branch and the remote
   branch.  
@@ -98,7 +98,6 @@ Below Command to show this - On Go
 
 **SYNTAX : `git pull --rebase origin master`** 
 
-
 #### Explained  
 
 This command is used to **update** your current branch with the latest changes
@@ -106,24 +105,23 @@ from `master` while keeping a **clean history**.
 
 ---	
 
-#### **🔍 Breaking It Down:**
+#### **Breaking It Down:**
 
-
-**1️⃣ `git pull`**
+**1. `git pull`**
 
 - Fetches new changes from the `origin` (remote repository).
 
 - Merges them into your current branch by default (unless `--rebase` is
   used).
 
-#### **2️⃣ `--rebase`**
+**2. `--rebase`**
 
 - Instead of a merge commit, it **reapplies your local commits** on top of the
   latest `master` branch.
 
 - Keeps a **linear commit history** (avoids unnecessary merge commits).
 
-#### **3️⃣ `origin master`**
+**3: `origin master`**
 
 - `origin` → Refers to the remote repository.  
 
@@ -131,7 +129,7 @@ from `master` while keeping a **clean history**.
 
 ---
 
-### **⏳ What Happens Step by Step?**
+#### **What Happens Step by Step?**
 
 1. **Fetch latest changes** from `master` into your local repository.
 
@@ -143,7 +141,7 @@ from `master` while keeping a **clean history**.
 
 ---
 
-### **⚡ Example Scenario:**
+### **Example Scenario:**
 
 **(a) Before `git pull --rebase origin master`**
 
@@ -163,7 +161,7 @@ Your local commits **A, B, C** are **rebased** on top of the latest `master`.
 
 ---
 
-#### **🔥 Why Use This?**
+#### ** Why Use This?**
 
 - **Avoids extra merge commits** (`Merge branch 'master'` clutter).  
 
@@ -174,7 +172,7 @@ Your local commits **A, B, C** are **rebased** on top of the latest `master`.
 
 ---
 
-#### **🚨 If You Face Conflicts:**
+#### **If You Face Conflicts:**
 
 Git will pause and ask you to resolve conflicts in each file.  
 
@@ -191,15 +189,15 @@ git rebase --abort
 
 ---
 
-#### **🎯 When to Use It?**
+#### **When to Use It?**
 
 Use `git pull --rebase origin master` when you:  
 
-✅ Want to **update your branch** while keeping a clean history.  
+- Want to **update your branch** while keeping a clean history.  
 
-✅ Are working in a **team** and need to avoid unnecessary merge commits.  
+- Are working in a **team** and need to avoid unnecessary merge commits.  
 
-✅ Prefer **linear commit history** over merge-based commits.  
+- Prefer **linear commit history** over merge-based commits.  
 
 
 -------------------------------------------------------------------------------------
