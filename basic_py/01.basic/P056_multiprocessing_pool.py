@@ -1,6 +1,7 @@
 from multiprocessing import Pool
 from time import time
 
+
 def func(x):
 	sum = 0
 	for x in range(1000):
@@ -10,8 +11,8 @@ def func(x):
 
 if __name__ == "__main__":
 	lc = 1000000
-
 	s = time()
+
 	# Task 1 : Executing task with pool
 	p1 = Pool()
 	result = p1.map(func, range(lc))

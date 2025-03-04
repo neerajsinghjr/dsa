@@ -69,6 +69,7 @@ def example2(balance, lock):
 	print("Current Balance v2 : ", balance.value)
 	# OUTPUT: 
 	# Current Balance v1: 200
+	sorted()
 
 
 #--------------------- MAIN EXECUTION -------------------# 

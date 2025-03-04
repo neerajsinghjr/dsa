@@ -68,8 +68,9 @@ Stored procedures can be part of a database transaction and can participate in t
 database's transaction management mechanisms, such as commit and rollback. This 
 allows stored procedures to ensure data integrity and consistency within the database. 
 
-Ordinary functions in application code may rely on the transaction management mechanisms 
-provided by the programming language or framework in which they are executed.
+Ordinary functions in application code may rely on the transaction management
+mechanisms provided by the programming language or framework in which they
+are executed.
 
 `Access Control`: 
 Stored procedures can have their own access control settings, allowing administrators 
