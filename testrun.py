@@ -11,17 +11,22 @@ Exploratory testrun file for python;;
 '''
 import gc
 import sys
+import psutil
+import random
 import asyncio
 import inspect
 import multiprocessing
-from asyncio import gather
-from random import randint
+from asyncio import gather, as_completed
 from time import time, sleep
 from functools import reduce
 from datetime import datetime
 from multiprocessing import Process
 from collections import namedtuple
 # from distutils.util import strtobool
+from random import choice, randint
+from tornado.process import task_id
+from concurrent.futures import (ThreadPoolExecutor, ProcessPoolExecutor)
+
 
 DEBUG = True
 count = 0
@@ -29,6 +34,172 @@ memory = {}
 
 
 def expl():
+
+    def _expl_inspect_module(func, *args, **kwargs):
+        # Printing Func related details
+        print(f"fun.__name__ : {func.__name__}")
+        # Fetching Signature;;
+        signature = inspect.signature(func)
+        print(f"signature: signature")
+        # Fetching Parameter of Signature;;
+        parameter = signature.parameters
+        print(f"parameter: {parameter}")
+        # Printing Bounded Arguments;
+        bound_args = signature.bind(*args, **kwargs)
+        bound_args.apply_defaults() # Fill in default values
+        for param, value in bound_args.arguments.items():
+            print(f"{param} : {value}")
+        # printing function defination;;
+        print(f"Defination:\n{inspect.getsource(func)}")
+        # check if the function is actually a function;;
+        print(f"isFunction: ", {inspect.isfunction(func)})
+
+    def _add_saluation(name, gender):
+        # add saluation to prefix of user;;
+        return f"Mr.{name}" if gender == "M" else f"Mrs.{name}"
+
+    def _get_pat_name():
+        # suppose fetching from db or business logic;;
+        name = "Rey"
+        gender = choice(['M', 'F'])
+        return _add_saluation(name, gender)
+
+    def _get_msg():
+        # suppose fetching from db or business logic;;
+        msg = "Your RX is ready to be picked"
+        return msg
+
+    def prepare_message(func):
+        def wrapper(*args, **kwargs):
+            # Exploring Inspect Module;;
+            _expl_inspect_module(func, *args, **kwargs)
+            # Main Decorator Method Execution;;
+            msg_template = args[0]
+            msg = msg_template.replace("{MSG}", _get_msg())
+            msg = msg.replace("{PAT_NAME}", _get_pat_name())
+            flag = func(msg)
+            return flag
+        return wrapper
+
+    @prepare_message
+    def msg(text):
+        print(f"final msg: {text}")
+        return 1
+
+    msg("Hi {PAT_NAME}, {MSG}")
+
+    # OUTPUT:
+    #------------ Code Start --------------#
+    # fun.__name__ : msg
+    # signature: signature
+    # parameter: OrderedDict([('text', <Parameter "text">)])
+    # text : Hi {PAT_NAME}, {MSG}
+    # Defination:
+    #     @prepare_message
+    #     def msg(text):
+    #         print(f"final msg: {text}")
+    #         return 1
+    #
+    # isFunction:  {True}
+    # final msg: Hi Mrs.Rey, Your RX is ready to be picked
+    # Run Time: 0.003398895263671875 ms
+    #------------ Code Stop ----------------#
+
+
+    # def log_function_info(func):
+    #     def wrapper(*args, **kwargs):
+    #         sig = inspect.signature(func)  # Get function signature
+    #         params = sig.parameters  # Extract parameter details
+    #
+    #         print(f"Calling `{func.__name__}` with:")
+    #
+    #         # Mapping args to parameter names
+    #         bound_args = sig.bind(*args, **kwargs)
+    #         bound_args.apply_defaults()  # Fill in default values
+    #
+    #         for param, value in bound_args.arguments.items():
+    #             print(f"  {param}: {value}")
+    #
+    #         result = func(*args, **kwargs)
+    #         print(f"`{func.__name__}` returned: {result}")
+    #         return result
+    #
+    #     return wrapper
+    #
+    # @log_function_info
+    # def add(a, b=10):
+    #     return a + b
+    #
+    # add(5)  # Call the function
+
+
+def expl_30():
+    # concurrent process pool executor;;
+    def cpu_intensive(n):
+        time.sleep(2)
+        return sum(i * i for i in range(n))
+
+    with ProcessPoolExecutor(max_workers=3) as executor:
+        results = executor.map(cpu_intensive, [10 ** 6, 10 ** 7, 10 ** 8])
+
+    for result in results:
+        print(result)
+
+
+def expl_v29():
+    # concurrent thread pool executor;;
+    def _get_max_workers():
+        logical_cpu = True
+        const_multiplier = 4
+        num_procs = min(const_multiplier * psutil.cpu_count(logical=logical_cpu), 10)
+        print(f"num_procs: ", num_procs)
+        return num_procs
+
+    def task(task_id):
+        work_time = choice([3,5,10,15,20])
+        print(f"Running Task: {task_id} will take {work_time} seconds")
+        sleep(work_time)
+        print(f"Task: {task_id}: Execution Completed !!!")
+        return (choice([True, False]), f"Task: {task_id} Returned!!!")
+
+    max_workers = _get_max_workers()
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [
+            executor.submit(task, task_id=randint(1000, 9999))
+            for _ in range(5)
+        ]
+
+        # if you're using as_completed() then future for stop at for_loop and as
+        # soon as any task got completed it will fetch the result.
+        # But if you're not using as_completed() then first iteration of for_loop
+        # will execute but wait for fetching the result;;
+
+        for future in as_completed(futures):
+            result = future.result()
+            print(f"result: ", result)
+
+    # OUTPUT:
+    # num_procs:  10
+    # Running Task: 3705 will take 20 seconds
+    # Running Task: 9980 will take 15 seconds
+    # Running Task: 3980 will take 5 seconds
+    # Running Task: 9527 will take 3 seconds
+    # Running Task: 9165 will take 10 seconds
+    # Task: 9527: Execution Completed !!!
+    # result:  (False, 'Task: 9527 Returned!!!')
+    # Task: 3980: Execution Completed !!!
+    # result:  (True, 'Task: 3980 Returned!!!')
+    # Task: 9165: Execution Completed !!!
+    # result:  (False, 'Task: 9165 Returned!!!')
+    # Task: 9980: Execution Completed !!!
+    # result:  (False, 'Task: 9980 Returned!!!')
+    # Task: 3705: Execution Completed !!!
+    # result:  (False, 'Task: 3705 Returned!!!')
+    # Run Time: 20.020946979522705 ms
+
+
+def expl_V28():
     from copy import copy, deepcopy
     list_1 = [1, 2, [3, 5], 4]
 

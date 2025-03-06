@@ -454,18 +454,447 @@ gc.enable()  # Enable it again
 
 
 -------------------------------------------------------------------------------------
-### ***Q096 : Multithreading using Future Module;;
+### Q096 : Multithreading using Future Module;;
 
+#### Using : ThreadPoolExecuter()
+
+Introduction to `concurrent.futures`
+
+- concurrent.futures provides:
+
+    - `ThreadPoolExecutor` → Runs tasks in multiple threads.
+    - `ProcessPoolExecutor` → Runs tasks in multiple processes.
+
+The module manages worker threads/processes, task submission, and result
+retrieval easily.
+
+- Why use `as_completed()` ?
+    - Retrieves results as soon as they finish (not in input order).
+    - Saves time when some tasks take longer than others.
+
+- `timeout=3`  If the function takes more than 3 seconds, it raises an exception.
+
+#### Using :: TheadPoolExecutor()
+
+```py
+# concurrent thread pool executor;;
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import psutil
+
+def _get_max_workers():
+    logical_cpu = True
+    const_multiplier = 4
+    num_procs = min(const_multiplier * psutil.cpu_count(logical=logical_cpu), 10)
+    print(f"num_procs: ", num_procs)
+    return num_procs
+
+def task(task_id):
+    sleep_time = choice([3,5,10,15,20])
+    print(f"Running Task: {task_id} will take {sleep_time} seconds")
+    sleep(sleep_time)
+    print(f"Task: {task_id}: Execution Completed !!!")
+    return (choice([True, False]), f"Task: {task_id} Returned!!!")
+
+max_workers = _get_max_workers()
+
+with ThreadPoolExecutor(max_workers=max_workers) as executor:
+    futures = [
+        executor.submit(task, task_id=randint(1000, 9999))
+        for _ in range(5)
+    ]
+
+    # if you're using as_completed() then future for stop at for_loop and as
+    # soon as any task got completed it will fetch the result.
+    # But if you're not using as_completed() then first iteration of for_loop
+    # will execute but wait for fetching the result;;
+
+    for future in as_completed(futures):
+        try:
+            result = future.result()
+            print(f"result: ", result)            
+        except Exception as ex:
+            print(f"Error: {ex}")
+
+# OUTPUT:
+# num_procs:  10
+# Running Task: 3705 will take 20 seconds
+# Running Task: 9980 will take 15 seconds
+# Running Task: 3980 will take 5 seconds
+# Running Task: 9527 will take 3 seconds
+# Running Task: 9165 will take 10 seconds
+# Task: 9527: Execution Completed !!!
+# result:  (False, 'Task: 9527 Returned!!!')
+# Task: 3980: Execution Completed !!!
+# result:  (True, 'Task: 3980 Returned!!!')
+# Task: 9165: Execution Completed !!!
+# result:  (False, 'Task: 9165 Returned!!!')
+# Task: 9980: Execution Completed !!!
+# result:  (False, 'Task: 9980 Returned!!!')
+# Task: 3705: Execution Completed !!!
+# result:  (False, 'Task: 3705 Returned!!!')
+# Run Time: 20.020946979522705 ms
+```
+
+**Explanation:**
+
+- `executor.submit(task, 1)` → Runs `task(1)` in a separate thread.
+- `future.result()` → Waits for the thread to finish and gets the result.
+- `max_workers=3` → Allows 3 threads to run simultaneously.
+
+
+#### USING :: ProcessPoolExecutor()
+
+```py
+# concurrent thread pool executor;;
+from concurrent.futures import ProcessPoolExecutor, as_completed
+import time
+
+def cpu_intensive(n):
+    time.sleep(2)
+    return sum(i * i for i in range(n))
+
+with ProcessPoolExecutor(max_workers=3) as executor:
+    results = executor.map(cpu_intensive, [10**6, 10**7, 10**8])
+
+for result in results:
+    print(result)
+```
+
+- Why use `ProcessPoolExecutor` ?
+    - Uses multiple CPU cores for parallel processing.
+    - Faster for CPU-heavy tasks like mathematical computations.
+
+
+#### SUMMARY 
+
+- ThreadPoolExecutor
+    1. Best for : I/O Bound task
+    2. Parallelism : Threads (Shared Memory)
+    3. Performance : Faster for I/O tasks
+    4. Python GIL : GIL Bound (not true parallelism)
+
+
+- ProcessPoolExecutor
+    1. Best for : CPU-bound tasks (e.g., data processing)
+    2. Parallelish : Processes (Separate memory)
+    3. Performance : Faster for CPU Heavy Task
+    4. Python GIL : Bypass GIL
 
 
 -------------------------------------------------------------------------------------
-### ***Q095 : Usages of MultiProcessing Vs Asyncio;;
+### Q095 : Usages of MultiProcessing Vs Asyncio;;
 
+Both **multiprocessing** and **asyncio** are used for concurrency in Python,
+but they solve different problems. 
+
+Here's a comparison to help you decide when to use which.
+
+---
+
+## **MultiProcessing vs Asyncio: Core Differences**
+
+1) **Type of Concurrency** 
+- Multiprocessing : True Parallelism (Multiple CPU Cores)
+- Asyncio : Asynchronous (Single Thread, Event Loop)
+
+2) **GIL Effect**
+- Multiprocessing : Bypasses GIL (separate processes)
+- Asyncio : Still under GIL but avoids blocking
+
+3) **Best for**
+- Multiprocessing : CPU-bound tasks (e.g., heavy computation)
+- Asyncio : I/O-bound tasks (e.g., network requests, DB queries) |
+
+4) **Runs on**
+- Multiprocessing : Multiple processes
+- Asyncio : Single process, single thread
+
+5) **Communication** | 
+- Multiprocessing : Inter-Process Communication (IPC)** (e.g., queues, pipes,
+  shared memory) 
+- Asyncio : Coroutine-based (async/await)
+
+6) **Overhead**
+- Multiprocessing : Higher (spawning processes is costly)
+- Asyncio : Lower (lightweight coroutines) |
+
+7) **Example Use Cases**
+- Multiprocessing : Data processing, Machine learning, Video rendering
+- Asyncio : Web scraping, API calls, Database queries
+
+---
+
+#### **When to Use `multiprocessing`?**
+
+- **For CPU-bound tasks** (e.g., number crunching, image processing).  
+- When you need **true parallel execution**.  
+- **Example**: Processing large datasets, ML training, image compression.
+
+**Example: MultiProcessing for CPU-bound Tasks**
+
+```py
+from multiprocessing import Pool
+import time
+
+def square(n):
+    return n * n
+
+numbers = [1, 2, 3, 4, 5]
+
+if __name__ == "__main__":
+    start = time.time()
+    with Pool(processes=2) as pool:
+        result = pool.map(square, numbers)  # Runs in parallel
+    end = time.time()
+
+    print(result)  # [1, 4, 9, 16, 25]
+    print(f"Total Time: {end - start:.2f} seconds")
+```
+
+- **Each process has its own memory space** (no GIL restriction).  
+- **Multiple CPU cores are utilized**.
+
+---
+
+## **When to Use `asyncio`?**
+
+- **For I/O-bound tasks** (e.g., API calls, file I/O, database queries).
+- When you have many tasks that **spend time waiting**.  
+- **Example**: Web scraping, async database queries.
+
+**Example: Asyncio for I/O-bound Tasks**
+
+```py
+import asyncio
+import time
+
+async def fetch_data(n):
+    print(f"Fetching data {n}...")
+    await asyncio.sleep(2)  # Simulates an I/O operation
+    print(f"Data {n} received")
+    return n
+
+async def main():
+    tasks = [fetch_data(i) for i in range(1, 4)]
+    results = await asyncio.gather(*tasks)  # Run tasks concurrently
+    print(results)
+
+start = time.time()
+asyncio.run(main())
+end = time.time()
+print(f"Total Time: {end - start:.2f} seconds")
+```
+
+- All tasks run concurrently (but not in parallel).  
+- Efficient for high network I/O operations**.
+
+---
+
+## **Can They Work Together?**
+
+Yes! You can **combine** `asyncio` and `multiprocessing` using
+`loop.run_in_executor()`.
+
+### **Example: Running CPU-bound Tasks Inside Asyncio**
+
+```py
+import asyncio
+import concurrent.futures
+import time
+
+def cpu_task(n):
+    time.sleep(2)
+    return n * n
+
+async def main():
+    loop = asyncio.get_running_loop()
+    with concurrent.futures.ProcessPoolExecutor() as pool:
+        tasks = [loop.run_in_executor(pool, cpu_task, i) for i in range(1, 4)]
+        results = await asyncio.gather(*tasks)
+        print(results)
+
+start = time.time()
+asyncio.run(main())
+end = time.time()
+print(f"Total Time: {end - start:.2f} seconds")
+```
+- Asyncio handles I/O, multiprocessing handles CPU-bound work.  
+- Efficient hybrid approach.
 
 
 -------------------------------------------------------------------------------------
-### ***Q094 : Inspect module in python;;
+### Q094 : Inspect module in python;;
 
+The `inspect` module in Python allows us to **retrieve information about live
+objects** such as functions, classes, and methods. It helps in debugging,
+introspection, and meta-programming.
+
+---
+
+#### Why Use `inspect`?**
+
+- Retrieve function signatures (arguments, defaults).  
+- Get the source code of a function.  
+- Check if an object is a class, method, or function.  
+- Get details about stack frames and execution context.
+
+---
+
+#### Example 1: Using `inspect` to Get Function Arguments in a Decorator**
+
+Let's create a decorator that **logs function arguments and their values**
+using `inspect`.
+
+```py
+    def _expl_inspect_module(func, *args, **kwargs):
+        # Printing Func related details
+        print(f"fun.__name__ : {func.__name__}")
+        # Fetching Signature;;
+        signature = inspect.signature(func)
+        print(f"signature: signature")
+        # Fetching Parameter of Signature;;
+        parameter = signature.parameters
+        print(f"parameter: {parameter}")
+        # Printing Bounded Arguments;
+        bound_args = signature.bind(*args, **kwargs)
+        bound_args.apply_defaults() # Fill in default values
+        for param, value in bound_args.arguments.items():
+            print(f"{param} : {value}")
+        # printing function defination;;
+        print(f"Defination:\n{inspect.getsource(func)}")
+        # check if the function is actually a function;;
+        print(f"isFunction: ", {inspect.isfunction(func)})
+
+    def _add_saluation(name, gender):
+        # add saluation to prefix of user;;
+        return f"Mr.{name}" if gender == "M" else f"Mrs.{name}"
+
+    def _get_pat_name():
+        # suppose fetching from db or business logic;;
+        name = "Rey"
+        gender = choice(['M', 'F'])
+        return _add_saluation(name, gender)
+
+    def _get_msg():
+        # suppose fetching from db or business logic;;
+        msg = "Your RX is ready to be picked"
+        return msg
+
+    def prepare_message(func):
+        def wrapper(*args, **kwargs):
+            # Exploring Inspect Module;;
+            _expl_inspect_module(func, *args, **kwargs)
+            # Main Decorator Method Execution;;
+            msg_template = args[0]
+            msg = msg_template.replace("{MSG}", _get_msg())
+            msg = msg.replace("{PAT_NAME}", _get_pat_name())
+            flag = func(msg)
+            return flag
+        return wrapper
+
+    @prepare_message
+    def msg(text):
+        print(f"final msg: {text}")
+        return 1
+
+    msg("Hi {PAT_NAME}, {MSG}")
+
+    # OUTPUT:
+    #------------ Code Start --------------#
+    # fun.__name__ : msg
+    # signature: signature
+    # parameter: OrderedDict([('text', <Parameter "text">)])
+    # text : Hi {PAT_NAME}, {MSG}
+    # Defination:
+    #     @prepare_message
+    #     def msg(text):
+    #         print(f"final msg: {text}")
+    #         return 1
+    #
+    # isFunction:  {True}
+    # final msg: Hi Mrs.Rey, Your RX is ready to be picked
+    # Run Time: 0.003398895263671875 ms
+    #------------ Code Stop ----------------#
+```
+
+**NOTE:**
+
+- `inspect.signature(func)` helps retrieve the function signature.  
+- `sig.parameters` returns details of function parameters.  
+- `sig.bind(*args, **kwargs)` binds actual arguments to parameters.
+
+---
+
+#### Example 2: Checking if an Object is a Function
+
+You can use `inspect.isfunction()` to check if a given object is a function.
+
+```py
+import inspect
+
+def sample_func():
+    pass
+
+print(inspect.isfunction(sample_func))  # True
+print(inspect.isfunction(42))  # False
+```
+
+- Helps verify if an object is a function before applying operations.
+
+---
+
+#### Example 3: Get Source Code of a Function
+
+Using `inspect.getsource()`, you can retrieve the actual source code of a
+function.
+
+```py
+import inspect
+
+def greet(name):
+    return f"Hello, {name}!"
+
+print(inspect.getsource(greet))
+
+# OUTPUT:
+# def greet(name):
+#     return f"Hello, {name}!"
+```
+
+- Useful for debugging and understanding code dynamically.
+
+---
+
+#### Example 4: Getting Caller Function Name**
+
+You can use `inspect.stack()` to **trace function calls**.
+
+```py
+import inspect
+
+def who_called_me():
+    frame = inspect.stack()[1]  # Get caller's frame
+    print(f"Called by {frame.function}")
+
+def caller():
+    who_called_me()
+
+caller()
+
+# Output
+# Called by caller
+```
+
+- Helps track function calls for debugging.
+
+---
+
+#### Long Story Short !!!
+
+- `inspect.signature(func)`: Get function signature (parameters, default values).  
+- `inspect.isfunction(obj)`: Check if an object is a function.  
+- `inspect.getsource(func)`: Retrieve function source code.  
+- `inspect.stack()`: Get execution stack info (caller function).  
 
 
 -------------------------------------------------------------------------------------
