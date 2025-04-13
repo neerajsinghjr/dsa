@@ -19,8 +19,9 @@
 
 ### NOSQL NOTES : BEGINNING
 
-------------------------------------------------------------------------------------
-### Q007 : Syntex for writing MongoDB Query;;
+---
+
+# Q007 : Syntex for writing MongoDB Query;;
 
 ### **Basic MongoDB Query Syntax**
 
@@ -30,20 +31,25 @@ fundamental query syntaxes:
 ---
 
 ### **1. Find Documents (`SELECT` equivalent)**
+
 ```js
 db.collection.find({ field: value })
 ```
+
 - **Example:** Find users with age **25**.
+
 ```js
 db.users.find({ age: 25 })
 ```
 
 - **Find all documents (like `SELECT *`)**:
+
 ```js
 db.users.find({})
 ```
 
 - **Find with multiple conditions (`AND`)**:
+
 ```js
 db.users.find({ age: 25, city: "Delhi" })
 ```
@@ -51,17 +57,20 @@ db.users.find({ age: 25, city: "Delhi" })
 ---
 
 ### **2. Insert Document (`INSERT` equivalent)**
+
 ```js
 db.collection.insertOne({ key1: value1, key2: value2 })
 db.collection.insertMany([{ key1: value1 }, { key1: value2 }])
 ```
 
 🔹 **Example: Insert a single user**:
+
 ```js
 db.users.insertOne({ name: "John", age: 30, city: "New York" })
 ```
 
 🔹 **Insert multiple users**:
+
 ```js
 db.users.insertMany([
     { name: "Alice", age: 28 },
@@ -72,17 +81,20 @@ db.users.insertMany([
 ---
 
 ### **3. Update Document (`UPDATE` equivalent)**
+
 ```js
 db.collection.updateOne({ filter }, { $set: { field: new_value } })
 db.collection.updateMany({ filter }, { $set: { field: new_value } })
 ```
 
 🔹 **Example: Update Alice's age to 29**:
+
 ```js
 db.users.updateOne({ name: "Alice" }, { $set: { age: 29 } })
 ```
 
 🔹 **Update multiple documents**:
+
 ```js
 db.users.updateMany({ age: { $lt: 30 } }, { $set: { status: "young" } })
 ```
@@ -95,11 +107,15 @@ db.users.updateMany({ age: { $lt: 30 } }, { $set: { status: "young" } })
 db.collection.deleteOne({ filter })
 db.collection.deleteMany({ filter })
 ```
+
 🔹 **Delete a specific user**:
+
 ```js
 db.users.deleteOne({ name: "Bob" })
 ```
+
 🔹 **Delete all users above age 40**:
+
 ```js
 db.users.deleteMany({ age: { $gt: 40 } })
 ```
@@ -107,15 +123,20 @@ db.users.deleteMany({ age: { $gt: 40 } })
 ---
 
 ### **5️⃣ Sorting & Limiting Results**
+
 ```js
 db.collection.find().sort({ field: 1 })   // Ascending (1) or Descending (-1)
 db.collection.find().limit(number)
 ```
+
 🔹 **Sort users by age (ascending)**:
+
 ```js
 db.users.find().sort({ age: 1 })
 ```
+
 🔹 **Limit results to top 5 users**:
+
 ```js
 db.users.find().limit(5)
 ```
@@ -123,6 +144,7 @@ db.users.find().limit(5)
 ---
 
 ### **Bonus: Aggregation (Advanced Queries)**
+
 ```js
 db.collection.aggregate([
     { $match: { field: value } },
@@ -131,6 +153,7 @@ db.collection.aggregate([
 ```
 
 🔹 **Example: Count users per city**:
+
 ```js
 db.users.aggregate([
     { $group: { _id: "$city", total: { $sum: 1 } } }
@@ -140,22 +163,24 @@ db.users.aggregate([
 ---
 
 ### **✅ Summary**
-| SQL Equivalent  | MongoDB Query |
-|----------------|--------------|
-| `SELECT * FROM users` | `db.users.find({})` |
-| `SELECT * FROM users WHERE age=25` | `db.users.find({ age: 25 })` |
-| `INSERT INTO users (name, age) VALUES ('John', 30)` | `db.users.insertOne({ name: "John", age: 30 })` |
-| `UPDATE users SET age=29 WHERE name='Alice'` | `db.users.updateOne({ name: "Alice" }, { $set: { age: 29 } })` |
-| `DELETE FROM users WHERE name='Bob'` | `db.users.deleteOne({ name: "Bob" })` |
+
+
+| SQL Equivalent                                      | MongoDB Query                                                  |
+| --------------------------------------------------- | -------------------------------------------------------------- |
+| `SELECT * FROM users`                               | `db.users.find({})`                                            |
+| `SELECT * FROM users WHERE age=25`                  | `db.users.find({ age: 25 })`                                   |
+| `INSERT INTO users (name, age) VALUES ('John', 30)` | `db.users.insertOne({ name: "John", age: 30 })`                |
+| `UPDATE users SET age=29 WHERE name='Alice'`        | `db.users.updateOne({ name: "Alice" }, { $set: { age: 29 } })` |
+| `DELETE FROM users WHERE name='Bob'`                | `db.users.deleteOne({ name: "Bob" })`                          |
 
 ---
 
+---
 
-------------------------------------------------------------------------------------
 ### Q006 : MongoDB Queries Using Python;;
 
 This section revolves how to **use Python to interact with MongoDB** using
-the **pymongo** library. 
+the **pymongo** library.
 
 We will cover:
 
@@ -175,7 +200,7 @@ First, install the **pymongo** library:
 pip install pymongo
 ```
 
-Now, import the library and establish a connection:  
+Now, import the library and establish a connection:
 
 ```python
 from pymongo import MongoClient
@@ -194,7 +219,7 @@ print("MongoDB Connected!")
 
 ---
 
-### **2. Insert Operations (CREATE - DML)**  
+### **2. Insert Operations (CREATE - DML)**
 
 We can insert single or multiple documents into a MongoDB collection.
 
@@ -228,18 +253,21 @@ print("Inserted Multiple Documents")
 MongoDB uses `.find()` and `.find_one()` to retrieve data.
 
 ### **Fetch All Documents**
+
 ```python
 for user in collection.find():
     print(user)
 ```
 
 ### **Fetch One Document**
+
 ```python
 user = collection.find_one({"name": "Alice"})
 print(user)
 ```
 
 ### **Query with Conditions**
+
 ```python
 # Users older than 25
 for user in collection.find({"age": {"$gt": 25}}):
@@ -247,6 +275,7 @@ for user in collection.find({"age": {"$gt": 25}}):
 ```
 
 ### **Query with AND / OR Conditions**
+
 ```python
 # AND condition: Users named "Alice" AND age > 20
 for user in collection.find({"name": "Alice", "age": {"$gt": 20}}):
@@ -261,16 +290,18 @@ for user in collection.find({"$or": [{"name": "Bob"}, {"name": "Charlie"}]}):
 
 ## **4. Update Operations (UPDATE - DML)**
 
-MongoDB allows **updating single or multiple documents** using `update_one()` 
+MongoDB allows **updating single or multiple documents** using `update_one()`
 and `update_many()`.
 
 ### **📌 Update One Document**
+
 ```python
 collection.update_one({"name": "Alice"}, {"$set": {"age": 26}})
 print("Updated Alice's Age")
 ```
 
 ### **📌 Update Multiple Documents**
+
 ```python
 collection.update_many({}, {"$inc": {"age": 1}})  # Increase age by 1 for all users
 print("Updated Age for All Users")
@@ -278,16 +309,19 @@ print("Updated Age for All Users")
 
 ---
 
-## **5. Delete Operations (DELETE - DML)**  
+## **5. Delete Operations (DELETE - DML)**
+
 We can delete single or multiple documents.
 
 ### **Delete One Document**
+
 ```python
 collection.delete_one({"name": "Alice"})
 print("Deleted Alice")
 ```
 
 ### **Delete Multiple Documents**
+
 ```python
 collection.delete_many({"age": {"$gt": 30}})
 print("Deleted Users Older Than 30")
@@ -295,21 +329,24 @@ print("Deleted Users Older Than 30")
 
 ---
 
-## **6. Advanced Queries & Indexing**  
+## **6. Advanced Queries & Indexing**
 
 ### **Sorting Results**
+
 ```python
 for user in collection.find().sort("age", -1):  # Sort by age (Descending)
     print(user)
 ```
 
 ### **Limiting Results**
+
 ```python
 for user in collection.find().limit(5):  # Limit to 5 results
     print(user)
 ```
 
 ### **Creating Indexes for Performance**
+
 ```python
 collection.create_index("email", unique=True)
 print("Created Index on Email")
@@ -322,6 +359,7 @@ print("Created Index on Email")
 Aggregation allows **grouping and processing** data like SQL `GROUP BY`.
 
 ### **Grouping Users by Age**
+
 ```python
 pipeline = [
     {"$group": {"_id": "$age", "count": {"$sum": 1}}}
@@ -331,6 +369,7 @@ for group in collection.aggregate(pipeline):
 ```
 
 ### **Using `$match` and `$project` in Aggregation**
+
 ```python
 pipeline = [
     {"$match": {"age": {"$gt": 25}}},  # Filter: Age > 25
@@ -354,8 +393,8 @@ with client.start_session() as session:
     print("Transaction Completed")
 ```
 
+---
 
-------------------------------------------------------------------------------------
 ### Q005 : MongoDB Query Fundamentals;;
 
 ---
@@ -368,67 +407,67 @@ to **interact with MongoDB without using the command line**.
 #### **How to Install MongoDB Compass**
 
 1. Download MongoDB Compass from [MongoDB Official Website]
-(https://www.mongodb.com/try/download/compass)
-
+   (https://www.mongodb.com/try/download/compass)
 2. Install and open it.
-
 3. Connect to your MongoDB instance by entering the **MongoDB connection
-string** (e.g., `mongodb://localhost:27017`).
+   string** (e.g., `mongodb://localhost:27017`).
 
 ---
 
 ### **2️⃣ DDL (Data Definition Language) - Creating & Managing Database
-      Structures**
 
+  Structures**
 #### **1. Creating a New Database**
 
 - **Syntax in Compass (GUI):**
-  
+
   - Click on **"Create Database"** in MongoDB Compass.
   - Enter **Database Name** and **Collection Name** (like a table in SQL).
-
 - **Syntax in MongoDB Shell:**
-    ```js
-    use my_database;  // Switch to database (creates it if it doesn’t exist)
-    ```
+
+  ```js
+  use my_database;  // Switch to database (creates it if it doesn’t exist)
+  ```
 
 ---
 
 ### **🔹 2. Creating a Collection (Equivalent to Tables in SQL)**
 
 - **Compass:** Click on **"Create Collection"**, enter the **name** and
-    click **Create**.
-
+  click **Create**.
 - **MongoDB Shell:**
-    ```js
-    db.createCollection("users");
-    ```
+
+  ```js
+  db.createCollection("users");
+  ```
 - **To list all collections:**
-    ```js
-    show collections;
-    ```
+
+  ```js
+  show collections;
+  ```
+
 ---
 
 ### **🔹 3. Dropping a Database**
 
 - **Compass:** Click on the **database name**, then **"Drop Database"**.
-
 - **MongoDB Shell:**
-    ```js
-    use my_database;
-    db.dropDatabase();
-    ```
+
+  ```js
+  use my_database;
+  db.dropDatabase();
+  ```
 
 ---
 
 ### **4. Dropping a Collection**
 
 - **Compass:** Click on the **collection name**, then **"Drop Collection"**.
-
 - **MongoDB Shell:**
-    ```js
-    db.users.drop();
-    ```
+
+  ```js
+  db.users.drop();
+  ```
 
 ---
 
@@ -443,16 +482,16 @@ Now, let's see how to **insert, update, delete, and query data**.
 #### **📌 Insert One Document**
 
 - **Compass:** Open the collection → Click on **"Insert Document"** → Add a
-    JSON document.
-
+  JSON document.
 - **MongoDB Shell:**
-    ```js
-    db.users.insertOne({
-        name: "Alice",
-        age: 25,
-        email: "alice@example.com"
-    });
-    ```
+
+  ```js
+  db.users.insertOne({
+      name: "Alice",
+      age: 25,
+      email: "alice@example.com"
+  });
+  ```
 
 #### **Insert Multiple Documents**
 
@@ -472,33 +511,34 @@ Now, let's see how to **insert, update, delete, and query data**.
 
 - **Compass:** Click **"Find"** to retrieve all documents.
 - **MongoDB Shell:**
-    ```js
-    db.users.find();
-    ```
+  ```js
+  db.users.find();
+  ```
 
 #### **Find a Specific Document**
 
 - **MongoDB Shell:**
-    ```js
-    db.users.findOne({ name: "Alice" });
-    ```
+  ```js
+  db.users.findOne({ name: "Alice" });
+  ```
 
 #### **Query with Conditions**
 
 - **Find users older than 25:**
-    ```js
-    db.users.find({ age: { $gt: 25 } });
-    ```
 
+  ```js
+  db.users.find({ age: { $gt: 25 } });
+  ```
 - **Find users named Bob or Charlie:**
-    ```js
-    db.users.find({ name: { $in: ["Bob", "Charlie"] } });
-    ```
 
+  ```js
+  db.users.find({ name: { $in: ["Bob", "Charlie"] } });
+  ```
 - **Find users with age between 20 and 30:**
-    ```js
-    db.users.find({ age: { $gte: 20, $lte: 30 } });
-    ```
+
+  ```js
+  db.users.find({ age: { $gte: 20, $lte: 30 } });
+  ```
 
 ---
 
@@ -507,16 +547,16 @@ Now, let's see how to **insert, update, delete, and query data**.
 #### **Update One Document**
 
 - **Change Alice’s age to 26:**
-    ```js
-    db.users.updateOne({ name: "Alice" }, { $set: { age: 26 } });
-    ```
+  ```js
+  db.users.updateOne({ name: "Alice" }, { $set: { age: 26 } });
+  ```
 
 #### **Update Multiple Documents**
 
 - **Increase the age of all users by 1 year:**
-    ```js
-    db.users.updateMany({}, { $inc: { age: 1 } });
-    ```
+  ```js
+  db.users.updateMany({}, { $inc: { age: 1 } });
+  ```
 
 ---
 
@@ -525,16 +565,16 @@ Now, let's see how to **insert, update, delete, and query data**.
 #### **Delete One Document**
 
 - **Delete user Alice:**
-    ```js
-    db.users.deleteOne({ name: "Alice" });
-    ```
+  ```js
+  db.users.deleteOne({ name: "Alice" });
+  ```
 
 #### **Delete Multiple Documents**
 
 - **Delete all users older than 30:**
-    ```js
-    db.users.deleteMany({ age: { $gt: 30 } });
-    ```
+  ```js
+  db.users.deleteMany({ age: { $gt: 30 } });
+  ```
 
 ---
 
@@ -544,47 +584,45 @@ Now, let's see how to **insert, update, delete, and query data**.
 
 - **Sort users by age in descending order:**
 
-    ```js
-    db.users.find().sort({ age: -1 });
-    ```
+  ```js
+  db.users.find().sort({ age: -1 });
+  ```
 
 ### **Limiting Results**
 
 - **Get only the first 5 users:**
-    ```js
-    db.users.find().limit(5);
-    ```
+  ```js
+  db.users.find().limit(5);
+  ```
 
 ### **Indexing for Performance**
 
 - **Create an index on the `email` field to speed up searches:**
-    ```js
-    db.users.createIndex({ email: 1 });
-    ```
 
+  ```js
+  db.users.createIndex({ email: 1 });
+  ```
 - **List all indexes:**
-    ```js
-    db.users.getIndexes();
-    ```
+
+  ```js
+  db.users.getIndexes();
+  ```
 
 ---
 
 ## **5️⃣ MongoDB Compass Features**
 
 - **Visual Query Builder** → Easily build queries using UI.
+- **Aggregation Pipeline** → Perform advanced data processing.
+- **Schema Analysis** → Get insights into the database schema.
+- **Index Management** → Improve performance by managing indexes.
 
-- **Aggregation Pipeline** → Perform advanced data processing.  
+---
 
-- **Schema Analysis** → Get insights into the database schema.  
-
-- **Index Management** → Improve performance by managing indexes.  
-
-
--------------------------------------------------------------------------------------
 ### Q004 : What is Sharding in DBMS;;
 
 Sharding is a technique used in **DBMS (Database Management Systems)**
-to **horizontally partition** data across multiple database servers. 
+to **horizontally partition** data across multiple database servers.
 
 It helps **scale out** a database by distributing the load across multiple
 nodes instead of relying on a single machine.
@@ -595,11 +633,11 @@ nodes instead of relying on a single machine.
 
 Sharding is the process of **splitting a large database into smaller, more
 manageable pieces called shards**. Each shard contains a subset of the
-database’s data and operates independently.  
+database’s data and operates independently.
 
-**Example:**  
+**Example:**
 
-Imagine a user database with **1 billion users**. 
+Imagine a user database with **1 billion users**.
 
 Instead of storing them in a single database, we can split them into **10
 shards**, each containing **100 million users**.
@@ -607,11 +645,9 @@ shards**, each containing **100 million users**.
 #### **Types of Database Scaling**
 
 - **Vertical Scaling (Scaling Up)** → Adding more CPU, RAM, or Disk to a
-    single server.
-
+  single server.
 - **Horizontal Scaling (Scaling Out)** → Distributing data across multiple
-    machines.
-
+  machines.
 - **Sharding** is a **horizontal scaling technique**.
 
 ---
@@ -621,26 +657,20 @@ shards**, each containing **100 million users**.
 #### **Problems with Single Large Databases**
 
 - **Performance Bottlenecks** → Too many read/write operations slow down the
-    system.  
-
-- **Storage Limitations** → A single server has limited disk space.  
-
+  system.
+- **Storage Limitations** → A single server has limited disk space.
 - **Scalability Issues** → Vertical scaling is expensive and has physical
-    limits.  
-
+  limits.
 - **Single Point of Failure** → If one database crashes, the whole system goes
-    down.  
+  down.
 
 #### **How Sharding Solves These Issues?**
 
 - **Increases Read/Write Throughput** → Queries are distributed across
-    multiple nodes.  
-
-- **Reduces Storage Load** → Data is split, so each shard handles less data. 
-
+  multiple nodes.
+- **Reduces Storage Load** → Data is split, so each shard handles less data.
 - **Improves Fault Tolerance** → If one shard fails, only part of the database
-    is affected.  
-
+  is affected.
 - **Supports Massive Scalability** → New shards can be added easily.
 
 ---
@@ -651,12 +681,10 @@ Sharding strategies determine how data is distributed across shards.
 
 #### **1️⃣ Range-Based Sharding**
 
-- **Data is divided based on a continuous range of values.**  
-
-- Example: **Users with IDs 1-1M in Shard 1, 1M-2M in Shard 2, etc.**  
-
-- **Pros:** Simple, easy to implement.  
-- **Cons:** Can cause **hotspots** (one shard may get more traffic than others).  
+- **Data is divided based on a continuous range of values.**
+- Example: **Users with IDs 1-1M in Shard 1, 1M-2M in Shard 2, etc.**
+- **Pros:** Simple, easy to implement.
+- **Cons:** Can cause **hotspots** (one shard may get more traffic than others).
 
 ```sql
 -- Example: Storing users based on ID range
@@ -664,30 +692,27 @@ Shard1 → Users 1 to 1000000
 Shard2 → Users 1000001 to 2000000
 Shard3 → Users 2000001 to 3000000
 ```
-
 ---
 
 ### **2️⃣ Hash-Based Sharding**
 
-- **Data is distributed using a hash function** to ensure even distribution. 
-
-- Example: `Shard = hash(user_id) % total_shards`  
-- **Pros:** Avoids hotspots, evenly distributes data.  
-- **Cons:** Difficult to range-query data.  
+- **Data is distributed using a hash function** to ensure even distribution.
+- Example: `Shard = hash(user_id) % total_shards`
+- **Pros:** Avoids hotspots, evenly distributes data.
+- **Cons:** Difficult to range-query data.
 
 ```python
 def get_shard(user_id, total_shards):
     return hash(user_id) % total_shards
 ```
-
 ---
 
 ### **3️⃣ Directory-Based Sharding**
 
 - A **lookup table (directory)** keeps track of which shard stores which
-data. 
+  data.
+- Example:
 
-- Example:  
 ```json
 {
   "UserID_1": "Shard1",
@@ -695,34 +720,32 @@ data.
   "UserID_3": "Shard1"
 }
 ```
-- **Pros:** Most flexible, supports dynamic sharding.  
+- **Pros:** Most flexible, supports dynamic sharding.
 - **Cons:** Single point of failure if the directory is lost.
 
 ---
 
 ### **4️⃣ Geo-Based Sharding (Location-Based)**
 
-- Data is sharded **based on user location** (e.g., country or region).  
-
-- Example:  
-
-- **Shard 1 → Users from North America**  
-- **Shard 2 → Users from Europe** 
-
-- **Pros:** Great for localized applications like **Uber, Google Maps**.  
+- Data is sharded **based on user location** (e.g., country or region).
+- Example:
+- **Shard 1 → Users from North America**
+- **Shard 2 → Users from Europe**
+- **Pros:** Great for localized applications like **Uber, Google Maps**.
 - **Cons:** Uneven distribution if one region has more users than another.
 
 ---
 
 ## **4️⃣ Sharding vs Replication**
 
-| Feature         | Sharding | Replication |
-|----------------|---------|-------------|
-| **Goal**       | Distribute data across multiple servers | Copy data across multiple servers |
-| **Scaling**    | Horizontal scaling | Improves read performance but not write performance |
-| **Storage**    | Data is divided across shards | All nodes store the same data |
-| **Use Case**   | Large datasets, high write workloads | High availability, read-heavy workloads |
-| **Example**    | Large e-commerce platforms like Amazon | Backup copies for failover in banking systems |
+
+| Feature      | Sharding                                | Replication                                         |
+| ------------ | --------------------------------------- | --------------------------------------------------- |
+| **Goal**     | Distribute data across multiple servers | Copy data across multiple servers                   |
+| **Scaling**  | Horizontal scaling                      | Improves read performance but not write performance |
+| **Storage**  | Data is divided across shards           | All nodes store the same data                       |
+| **Use Case** | Large datasets, high write workloads    | High availability, read-heavy workloads             |
+| **Example**  | Large e-commerce platforms like Amazon  | Backup copies for failover in banking systems       |
 
 ---
 
@@ -730,28 +753,24 @@ data.
 
 Even though sharding is powerful, it comes with challenges.
 
-- **Complexity** → Setting up and managing shards is difficult.  
-- **Data Rebalancing** → If a shard gets too large, it needs to be split or moved.  
-- **Joins are Harder** → Joining data across shards requires additional processing.  
-- **Increased Latency** → Some queries may need to fetch data from multiple shards.  
-- **Single Point of Failure (Directory Sharding)** → If lookup tables fail, the system crashes.  
+- **Complexity** → Setting up and managing shards is difficult.
+- **Data Rebalancing** → If a shard gets too large, it needs to be split or moved.
+- **Joins are Harder** → Joining data across shards requires additional processing.
+- **Increased Latency** → Some queries may need to fetch data from multiple shards.
+- **Single Point of Failure (Directory Sharding)** → If lookup tables fail, the system crashes.
 
 ---
 
 ## **6️⃣ Real-World Use Cases of Sharding**
 
 - **E-commerce** (Amazon, Flipkart) → Handling millions of products and
-    transactions.  
-
+  transactions.
 - **Social Media** (Facebook, Twitter) → Distributing user profiles, posts,
-    and comments.  
-
-- **Banking Systems** → Partitioning customer accounts and transactions.  
-
+  and comments.
+- **Banking Systems** → Partitioning customer accounts and transactions.
 - **Streaming Platforms** (Netflix, YouTube) → Storing video metadata and
-    watch history.
-
-- **IoT & Big Data** → Handling millions of sensor data points in real-time. 
+  watch history.
+- **IoT & Big Data** → Handling millions of sensor data points in real-time.
 
 ---
 
@@ -760,23 +779,23 @@ Even though sharding is powerful, it comes with challenges.
 MongoDB has **built-in support for sharding**.
 
 ### **Step 1: Enable Sharding on the Database**
+
 ```sh
 sh.enableSharding("my_database")
 ```
-
 ### **Step 2: Choose a Shard Key**
+
 ```sh
 sh.shardCollection("my_database.users", { "user_id": "hashed" })
 ```
-
 ### **Step 3: Add More Shards**
+
 ```sh
 sh.addShard("shard1.example.com:27017")
 sh.addShard("shard2.example.com:27017")
 ```
+---
 
-
-------------------------------------------------------------------------------------
 ### Q003 : MongoDB System Design Considerations
 
 #### Pros of MongoDB in System Design
@@ -798,12 +817,12 @@ sh.addShard("shard2.example.com:27017")
 - Sharding Complexity → Needs careful planning to avoid performance
   bottlenecks.
 
+---
 
-------------------------------------------------------------------------------------
 ### Q002 : MongoDB Core Architecture;;
 
 MongoDB is built around the concept of **Documents & Collections**,
-replacing **Tables & Rows** in SQL.  
+replacing **Tables & Rows** in SQL.
 
 #### **Basic MongoDB Structure:**
 
@@ -811,12 +830,9 @@ replacing **Tables & Rows** in SQL.
 # Basic Design:
 Database → Collections → Documents
 ```
-
-- A **Collection** is like a **table** in SQL.  
-
+- A **Collection** is like a **table** in SQL.
 - A **Document** is like a **row**, but stores data in a
-  flexible **JSON-like** format.  
-
+  flexible **JSON-like** format.
 - Example **MongoDB Document (JSON-like structure)**:
 
 ```
@@ -831,7 +847,6 @@ Database → Collections → Documents
   }
 }
 ```
-
 #### **Key MongoDB Components:**
 
 - **Document :** The smallest unit of data (JSON-like object).
@@ -842,42 +857,36 @@ Database → Collections → Documents
 - **Shard :** A partition of the database for horizontal scaling.
 - **Replica Set :** A group of MongoDB instances for high availability.
 
+---
 
--------------------------------------------------------------------------------------
 ### Q001 : Introduction to NoSql;;
 
 MongoDB is a **NoSQL** database designed for high-performance,
-high-availability, and easy scalability. 
+high-availability, and easy scalability.
 
 It stores data in **JSON-like documents** (BSON format), making it more
-flexible than relational databases. 
+flexible than relational databases.
 
-#### **Key Features:**  
+#### **Key Features:**
 
 - **Schema-less** → No fixed structure; each document can have different fields.
-
 - **Scalable** → Supports **sharding** (horizontal scaling) for massive datasets.
-
 - **Replication** → Data redundancy via **replica sets** ensures availability.
-
 - **Rich Query Language** → Supports indexing, aggregation, geospatial queries.
-
-- **High Performance** → Optimized for read/write operations compared to SQL. 
-
+- **High Performance** → Optimized for read/write operations compared to SQL.
 
 #### **When to Use MongoDB?**
 
 **MongoDB is ideal for:**
 
-- **Big Data & Real-time Analytics** (Log processing, IoT data, event tracking).  
-- **Content Management** (CMS, blogging platforms, product catalogs).  
-- **E-commerce Applications** (Flexible product schemas, fast performance).  
-- **IoT Applications** (Handling high-velocity data streams).  
+- **Big Data & Real-time Analytics** (Log processing, IoT data, event tracking).
+- **Content Management** (CMS, blogging platforms, product catalogs).
+- **E-commerce Applications** (Flexible product schemas, fast performance).
+- **IoT Applications** (Handling high-velocity data streams).
 
-**Not ideal for:**  
+**Not ideal for:**
 
-- Banking/Finance (needs strict ACID compliance).  
-- Applications with complex relationships (SQL databases handle joins better).  
+- Banking/Finance (needs strict ACID compliance).
+- Applications with complex relationships (SQL databases handle joins better).
 
-
--------------------------------------------------------------------------------------
+---

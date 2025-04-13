@@ -217,6 +217,7 @@ def expl_V28():
     print(list_3)  # output => [1, 2, [3, 5, 6, 7], 8]
     print(list_1)  # output => [1, 2, [3, 5, 6], 4] i.e, here parent & child both independent;;
 
+
 def expl_v27():
     # generator vs iterator;;
     def hundred_numbers():

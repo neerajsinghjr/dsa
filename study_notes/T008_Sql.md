@@ -44,50 +44,56 @@
 ### SQL NOTES (SQLITE): BEGINNING 
 
 -------------------------------------------------------------------------------------
-###  Q031 : Stored Procedure in Postgres;;
+### Q031 : Stored Procedure in Postgres;;
 
 `Scope`: 
-Stored procedures are specific to the database management system (DBMS) and are 
-stored within the database itself. They can be accessed and executed by any user 
-with the appropriate permissions. 
 
-On the other hand, ordinary functions (like those in programming languages) are 
-typically defined within a programming environment or application code and may 
-not be directly accessible from the database.
+Stored procedures are specific to the database management system (DBMS) and
+are stored within the database itself. They can be accessed and executed by
+any user with the appropriate permissions.
+
+On the other hand, ordinary functions (like those in programming languages)
+are typically defined within a programming environment or application code
+and may not be directly accessible from the database.
 
 `Compilation`: 
-Stored procedures are precompiled and optimized by the DBMS when they are created 
-or modified. This compilation process can improve performance by reducing the 
-overhead associated with parsing and executing SQL statements. 
 
-Ordinary functions in application code are typically interpreted or compiled by the 
-programming language's runtime environment each time they are called.
+Stored procedures are precompiled and optimized by the DBMS when they are
+created or modified. This compilation process can improve performance by
+reducing the overhead associated with parsing and executing SQL statements. 
+
+Ordinary functions in application code are typically interpreted or compiled
+by the programming language's runtime environment each time they are called.
 
 `Transaction Management`: 
-Stored procedures can be part of a database transaction and can participate in the 
-database's transaction management mechanisms, such as commit and rollback. This 
-allows stored procedures to ensure data integrity and consistency within the database. 
+
+Stored procedures can be part of a database transaction and can participate in
+the database's transaction management mechanisms, such as commit and
+rollback. This allows stored procedures to ensure data integrity and
+consistency within the database. 
 
 Ordinary functions in application code may rely on the transaction management
 mechanisms provided by the programming language or framework in which they
 are executed.
 
 `Access Control`: 
-Stored procedures can have their own access control settings, allowing administrators 
-to restrict or grant permissions for specific users or roles to execute them. 
 
-Ordinary functions in application code may rely on the access control mechanisms provided 
-by the programming language or framework
+Stored procedures can have their own access control settings, allowing
+administrators to restrict or grant permissions for specific users or roles
+to execute them. 
+
+Ordinary functions in application code may rely on the access control
+mechanisms provided by the programming language or framework
 
 for eg,
-````
+````sql
 CREATE OR REPLACE PROCEDURE get_employee_count()
 LANGUAGE SQL
 AS $$
     SELECT COUNT(*) FROM employees;
 $$;
 
----- EXECUTION OF PROCEDURE
+--- EXECUTION OF PROCEDURE
 CAL get_employee_count();
 ````
 
@@ -95,7 +101,7 @@ CAL get_employee_count();
 -------------------------------------------------------------------------------------
 ### Q030 : Functions in Postgres;;
 
-Syntax Refers : Postgres
+**Syntax Refers : Postgres**
 
 #### Functions 
 
@@ -103,9 +109,9 @@ In PostgreSQL, you can define custom functions using the CREATE FUNCTION stateme
 
 Here's a basic syntax for creating a function:
 
-````
+````sql
 CREATE FUNCTION function_name(parameter1 data_type, parameter2 data_type, ...)
-RETURNS return_type AS
+    RETURNS return_type AS
 $$
 DECLARE
     -- optional variable declarations
@@ -116,30 +122,39 @@ $$
 LANGUAGE plpgsql;
 ````
 
-Explanation of the Syntax:-
+**---:Explanation of the Syntax:---**
 
 1) `CREATE FUNCTION`: This statement is used to define a new function.
+
 2) `function_name`: This is the name of the function you want to define. 
-3) `parameter1, parameter2, ...`: These are optional parameters that the function 
-may accept. Each parameter consists of a name and a data type.
-4) `RETURNS return_type`: This specifies the data type that the function will return.
-5) `AS $$ ... $$`: This is the function body enclosed within dollar-quoted strings. 
-You can use either single dollar signs ($) or double dollar signs ($$) as delimiters. 
-Using double dollar signs allows for multiline function bodies and helps to avoid 
-conflicts with SQL keywords.
-6) `DECLARE`: This keyword is used to declare local variables within the function. 
-It's optional, and you only need it if your function requires local variables.
-7) `BEGIN ... END;`: This block contains the actual code of the function. It starts 
-with BEGIN and ends with END;.
-8) `LANGUAGE plpgsql`: This specifies the language of the function. In this case, 
-plpgsql indicates that the function is written in PL/pgSQL, which is a procedural 
-language extension for PostgreSQL
+
+3) `parameter1, parameter2, ...`: These are optional parameters that the
+function may accept. Each parameter consists of a name and a data type.
+
+4) `RETURNS return_type`: This specifies the data type that the function will
+return.
+
+5) `AS $$ ... $$`: This is the function body enclosed within dollar-quoted
+strings. You can use either single dollar signs ($) or double dollar signs
+($$) as delimiters. Using double dollar signs allows for multiline function
+bodies and helps to avoid conflicts with SQL keywords.
+
+6) `DECLARE`: This keyword is used to declare local variables within the
+function. It's optional, and you only need it if your function requires local
+variables.
+
+7) `BEGIN ... END;`: This block contains the actual code of the function. It
+starts with BEGIN and ends with END;.
+
+8) `LANGUAGE plpgsql`: This specifies the language of the function. In this
+case, plpgsql indicates that the function is written in PL/pgSQL, which is a
+procedural language extension for PostgreSQL
 
 
 for eg,
-```
+```sql
 CREATE FUNCTION square(num INTEGER)
-RETURN INTEGER AS 
+    RETURN INTEGER AS 
 
 $$
 DECLARE
@@ -152,22 +167,123 @@ $$
 
 LANGUAGE plpgsql;
 
-
 --- triggering function;;
 SELECT square(7)
+```
+
+#### Function Return Type;;
+
+1) Scalar Data Type (`Return data_type`)
+
+A function that returns a single value (e.g., INTEGER, TEXT, BOOLEAN).
+
+for eg, 
+```sql
+create function add_number(a int, b int)
+returns int as 
+$$
+begin
+    return a + b
+end;
+$$ language plpgsql
+
+-- usage;;
+select add_numbers(5, 10);  -- Output: 15
+```
+
+2) Table (`Return table()`)
+
+A function that returns multiple rows like a table.
+
+for eg,
+```sql
+-- example 1:
+create function get_users()
+returns table(id int, name text) as $$
+begin
+    return query select id, name from users;
+end;
+$$ language plpgql;
+
+-- example 2: 
+create function get_email()
+    returns table(id int, email text) as $$
+begin
+    return query select id, name from users outer join 
+
+end;
+```
+
+3) Record (`Returns RECORD`)
+
+Used when the structure of the returned row is dynamic.
+
+for eg,
+```sql
+CREATE FUNCTION get_user_details(uid INT)  
+RETURNS RECORD AS $$  
+DECLARE  
+    user_record RECORD;  
+BEGIN  
+    SELECT id, name INTO user_record FROM users WHERE id = uid;  
+    RETURN user_record;  
+END;  
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_user_details(1) AS (id INT, name TEXT);
+```
+
+4) VOID (`RETURNS VOID`)
+
+Used when a function performs an action but does not return a value.
+
+Example: Insert data without returning anything
+```sql
+CREATE FUNCTION insert_user(name TEXT)
+RETURNS VOID AS $$
+BEGIN
+    INSERT INTO users (name) VALUES (name);
+END;
+$$ LANGUAGE plpgsql;
+
+--- Usage
+SELECT insert_user('John Doe');  -- No output, just performs insertion
+```
+
+5) SETOF (`RETURNS SETOF data_type`)
+
+Returns a set (multiple rows) of a specific type.
+
+for eg, Return multiple integer values
+```sql
+CREATE FUNCTION get_even_numbers()  
+RETURNS SETOF INT AS $$  
+BEGIN  
+    RETURN NEXT 2;  
+    RETURN NEXT 4;  
+    RETURN NEXT 6;  
+END;  
+$$ LANGUAGE plpgsql;
+
+
+SELECT * FROM get_even_numbers();  
+-- Output: 
+-- 2  
+-- 4  
+-- 6
 ```
 
 
 -------------------------------------------------------------------------------------
 ### Q029 : What are Index in Database;;
 
-A database index is a data structure that provides a quick lookup of data in a 
-column or columns of a table. It enhances the speed of operations accessing data 
-from a database table at the cost of additional writes and memory to maintain the
-index data structure.
+A database index is a data structure that provides a quick lookup of data in a
+column or columns of a table. It enhances the speed of operations accessing
+data from a database table at the cost of additional writes and memory to
+maintain the index data structure.
 
 for eg,
-````
+````sql
 /* Create Index */
 CREATE INDEX index_name   
 ON table_name (column_1, column_2);
@@ -177,25 +293,25 @@ DROP INDEX index_name;
 ````
 
 There are different types of indexes that can be created for different purposes
-1. 
-2. Unique 
-2. Non Unique 
+
+1. Unique
+2. Non Unique
 3. Clustered Index
 4. Non Clustered Index
 
-#### Unique Index
+#### UNIQUE INDEX
 
-A unique index ensures that the values in the indexed column (or columns) are 
-unique across the entire table. This means that no two rows can have the same 
-value in the indexed column(s). 
+A unique index ensures that the values in the indexed column (or columns) are
+unique across the entire table. This means that no two rows can have the same
+value in the indexed column(s).
 
-Unique indexes are often used for columns that should contain unique values, 
+Unique indexes are often used for columns that should contain unique values,
 such as `primary keys` or columns that should not have duplicate entries.
 
 Index on `primary key` are created by default by DBMS management system
 
 for eg,
-````
+````sql
 CREATE TABLE Students (
     StudentID INT PRIMARY KEY,
     FirstName VARCHAR(50),
@@ -206,18 +322,18 @@ CREATE TABLE Students (
 CREATE UNIQUE INDEX idx_student_id on Students(StudentID)
 ````
 
-#### Non-Unique Index
+#### NON-UNIQUE INDEX
 
-A non-unique index does not enforce uniqueness on the values in the indexed 
-column(s). Multiple rows in the table can have the same value in the indexed 
+A non-unique index does not enforce uniqueness on the values in the indexed
+column(s). Multiple rows in the table can have the same value in the indexed
 column(s). 
 
-Non-unique indexes are useful for improving query performance when searching 
-or sorting based on specific columns, even if those columns may contain 
+Non-unique indexes are useful for improving query performance when searching
+or sorting based on specific columns, even if those columns may contain
 duplicate values.
 
 for eg,
-````
+````sql
 CREATE TABLE Books (
     BookID INT PRIMARY KEY,
     Title VARCHAR(100),
@@ -226,25 +342,25 @@ CREATE TABLE Books (
     PublicationYear INT
 );
 
-CREATE INDEX IDX_Genre ON Books(Genre);
+CREATE INDEX IDX_GENRE ON Books(Genre);
 ````
 
-#### Clustered Index
+#### CLUSTERED INDEX
 
-In a clustered index, the rows of the table are physically stored in the order 
-of the index key. Each table can have only one clustered index because the data 
-rows themselves are ordered based on the clustered index key.
+In a clustered index, the rows of the table are physically stored in the order
+of the index key. Each table can have only one clustered index because the
+data rows themselves are ordered based on the clustered index key.
 
-When you create a clustered index on a table, the database system rearranges the 
-table's rows based on the index key. This means that the actual table data is 
-physically organized according to the clustered index key.
+When you create a clustered index on a table, the database system rearranges
+the table's rows based on the index key. This means that the actual table
+data is physically organized according to the clustered index key.
 
-Because of this physical organization, searching for a particular value using the 
-clustered index is usually very fast since the data is sorted in the order of the 
-index key.
+Because of this physical organization, searching for a particular value using
+the clustered index is usually very fast since the data is sorted in the
+order of the index key.
 
 for eg,
-```
+```sql
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY,
     FirstName VARCHAR(50),
@@ -256,25 +372,25 @@ CREATE TABLE Employees (
 CREATE CLUSTERED INDEX index_employee_id ON Employees(EmployeeID);
 ```
 
-#### Non Clustered Index
+#### NON-CLUSTERED INDEX
 
-In contrast to a clustered index, a non-clustered index does not alter the physical 
-order of the table's rows. Instead, it creates a separate structure that contains 
-index key values and pointers to the corresponding table rows.
+In contrast to a clustered index, a non-clustered index does not alter the
+physical order of the table's rows. Instead, it creates a separate structure
+that contains index key values and pointers to the corresponding table rows.
 
-Unlike clustered indexes, tables can have multiple non-clustered indexes. Each 
+Unlike clustered indexes, tables can have multiple non-clustered indexes. Each
 non-clustered index is stored separately from the actual table data.
 
-When you create a non-clustered index, the database system creates a separate index 
-structure containing the index key values and pointers to the corresponding rows in 
-the table. This allows for efficient searching and retrieval of data based on the 
-indexed columns.
+When you create a non-clustered index, the database system creates a separate
+index structure containing the index key values and pointers to the
+corresponding rows in the table. This allows for efficient searching and
+retrieval of data based on the indexed columns.
 
-Non-clustered indexes are typically used for columns that are frequently searched but 
-not updated frequently, as updating the indexed columns can be slower due to the need 
-to update the index structure.
+Non-clustered indexes are typically used for columns that are frequently
+searched but not updated frequently, as updating the indexed columns can be
+slower due to the need to update the index structure.
 
-```
+```sql
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY,
     FirstName VARCHAR(50),
@@ -290,14 +406,16 @@ CREATE NONCLUSTERED INDEX idx_department_id ON Employees(DepartmentID);
 
 The differences can be broken down into three small factors -
 
-- Clustered index modifies the way records are stored in a database based on the indexed 
-column. A non-clustered index creates a separate entity within the table which references 
-the original table.
+- Clustered index modifies the way records are stored in a database based on
+  the indexed column. A non-clustered index creates a separate entity within
+  the table which references the original table.
 
-- Clustered index is used for easy and speedy retrieval of data from the database, whereas, 
-fetching records from the non-clustered index is relatively slower.
+- Clustered index is used for easy and speedy retrieval of data from the
+  database, whereas, fetching records from the non-clustered index is
+  relatively slower.
 
-- A table can have a single clustered index whereas it can have multiple non clustered indexes
+- A table can have a single clustered index whereas it can have multiple non
+  clustered indexes
 
 
 -------------------------------------------------------------------------------------
@@ -306,7 +424,7 @@ fetching records from the non-clustered index is relatively slower.
 
 **(NOTE: To List Trigger)**
 
-````
+````sql
 SELECT * 
 FROM information_schema.triggers
 WHERE trigger_schema = 'public';
@@ -314,7 +432,7 @@ WHERE trigger_schema = 'public';
 
 #### Step1: Create trigger function defination: backup_current_record();;
 
-````
+````sql
 CREATE OR REPLACE FUNCTION backup_current_record()
 RETURNS TRIGGER 
 LANGUAGE PLPGSQL
@@ -348,7 +466,7 @@ $$;
 #### Step2: Bind function backup_current_record() to trigger my_trigger;;
 
 for eg,
-````
+````sql
 CREATE TRIGGER my_trigger
   BEFORE UPDATE
   ON table_name
@@ -367,7 +485,7 @@ CREATE TRIGGER my_trigger
 
 #### ONE WAY DOING IT USING JOINS...
 
-```
+```sql
 SELECT courses.name,
 COUNT(DISTINCT authorId)
 
@@ -381,7 +499,7 @@ GROUP BY courseId
 
 #### ANOTHER WAY OF DOINT IT USING SUBQUERIES...
 
-```
+```sql
 SELECT courses.name, 
 booksSummary.authorsCount
 FROM  courses 
@@ -397,7 +515,7 @@ ON courses.id = booksSummary.courseId
 
 #### ONE WAY OF DOING IT USING VIEWS ...
 
-```
+```sql
 --- VIEW START
 CREATE VIEW booksSummary AS
 SELECT      courseId,
@@ -424,7 +542,7 @@ of statements below.
    all the students.
    Display all data from the VIEW basicStudentData.
 
-```
+```sql
 --- FIRST ANSWER;;
 create view basicStudentData as
 select name, age, grade, marks from students;
@@ -447,17 +565,17 @@ from basicStudentData
 
 (ref table : https://academy.bigbinary.com/learn-sql/views/exercise-views-2)
 
-```
-KEY POINT 1 : Create a VIEW booksVolumeSeries that contains these two columns:
-name, nextVolumeId. The data should be the name and the nextVolumeId for all
-the books where nextVolumeId is present.
+```sql
+-- KEY POINT 1 : Create a VIEW booksVolumeSeries that contains these two columns:
+-- name, nextVolumeId. The data should be the name and the nextVolumeId for all
+-- the books where nextVolumeId is present.
 
-KEY POINT 2 : Use the VIEW booksVolumeSeries in combination with books to get
-the name of the book and the name of the next volume for all the books that
-have a next volume. The headers should be set as bookName and nextVolumeName
-respectively.
+-- KEY POINT 2 : Use the VIEW booksVolumeSeries in combination with books to get
+-- the name of the book and the name of the next volume for all the books that
+-- have a next volume. The headers should be set as bookName and nextVolumeName
+-- respectively.
 
-create view bookVolumeSeries as 
+create view bookVolumeSeries as
 -- first book version in here;;
 select name, nextVolumeId
 from books;
@@ -474,17 +592,17 @@ on fv.nextVolumeId = sv.id
 
 (ref table: https://academy.bigbinary.com/learn-sql/views/exercise-views-3)
 
-```
-KEY POINT 1 : Create a VIEW booksCourses that contains these three columns:
-bookId, bookName, courseName. The data should be the id, name and the name of
-the course the book belongs to for all the books. For the books that do not
-have a course that they belong to, courseName should be NULL.
+```sql
+-- KEY POINT 1 : Create a VIEW booksCourses that contains these three columns:
+-- bookId, bookName, courseName. The data should be the id, name and the name of
+-- the course the book belongs to for all the books. For the books that do not
+-- have a course that they belong to, courseName should be NULL.
 
-KEY POINT 2 : Use the VIEW booksCourses in combination with authors and books
-to get the name of the book, name of the author it belongs to and name of the
-course it belongs to for all the books. For books that don't have an author
-or course, the relevant columns should be NULL. The headers should be set as
-bookName, authorName and courseName respectively.
+-- KEY POINT 2 : Use the VIEW booksCourses in combination with authors and books
+-- to get the name of the book, name of the author it belongs to and name of the
+-- course it belongs to for all the books. For books that don't have an author
+-- or course, the relevant columns should be NULL. The headers should be set as
+-- bookName, authorName and courseName respectively.
 
 -- SOLUTION 
 
@@ -519,7 +637,7 @@ on booksCourses.authorid = authors.id
 
 for eg,
 
-````
+````sql
 CREATE TABLE studentsCopy (
    id INTEGER NOT NULL PRIMARY KEY,
    name TEXT NOT NULL,
@@ -559,7 +677,7 @@ select id, name, marks from students
 
 for eg,
 
-````
+````sql
 UPDATE students
 SET courseName = (
    SELECT name
@@ -577,11 +695,11 @@ SET courseName = (
 
 -  SYNTAX :
 
-````
+````sql
 DROP TABLE teachers
 
-eg1: Write an SQL statement to delete the table courses from the database
-information given below.
+-- eg1: Write an SQL statement to delete the table courses 
+-- from the database information given below.
 
 drop table courses
 ````
