@@ -1,8 +1,8 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: 503. Next Greater Element II
+-> Problem Status: Ongoing ...
+-> Problem Attempted: 
 -> Problem Description:
 -------------------------------------------------------------------------------------
 

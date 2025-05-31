@@ -1,13 +1,13 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
+-> Problem Title: 1800. Maximum Ascending Subarray Sum
 -> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Attempted: 
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
 Problem Statement:
-...
+https://leetcode.com/problems/number-of-senior-citizens/description/
 
 -------------------------------------------------------------------------------------
 '''

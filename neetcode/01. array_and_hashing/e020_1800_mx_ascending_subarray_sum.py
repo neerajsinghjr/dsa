@@ -1,13 +1,13 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
+-> Problem Title: 3105. Longest Strictly Increasing or Strictly Decreasing Subarray
 -> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Attempted: 17/05/2025
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
 Problem Statement:
-...
+https://leetcode.com/problems/longest-common-prefix/description/
 
 -------------------------------------------------------------------------------------
 '''
@@ -28,7 +28,7 @@ class Solution:
     # Constructor;
         def __init__(self):
             pass
-
+        
 
 ##---Main Execution;;
 def main(res=None):
