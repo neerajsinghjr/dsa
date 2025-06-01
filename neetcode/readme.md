@@ -3,10 +3,13 @@
 -> Title : NEETCODE MASTER DSA NOTES    
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
--> Created : 2024-03-17
--> Updated : 2024-06-17
+-> Created : 17/03/2024
+-> Updated : 01/06/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q011 : BitWise Right Shift Operator Dividing Usecase;;
+-> Q010 : BitWise Left Shift Operator Multiplying Usecase;;
+-> Q009 : Bitwise XOR Operator Swapping Usecase;;
 -> Q008 : Boyer Moorie Algorithm In-Depth;;
 -> Q007 : Monotonic Stacks Algorithms In-Depth;;
 -> Q006 : Isomorphich arrays and strings in DSA;;
@@ -19,6 +22,208 @@
 ````
 
 ### NEETCODE MASTER DSA NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q011 : BitWise Right Shift Operator Dividing Usecase;;
+
+Let's dive into **bitwise right shift (`>>`)** — the opposite of what you 
+just saw with left shift.
+
+---
+
+#### What does `>>` do?
+
+Bitwise right shift `x >> y` shifts the bits of `x` to the right by `y` 
+positions.
+
+This is equivalent to:
+
+> **Integer division** of `x` by `2^y`.
+
+---
+
+#### Example: `10 >> 1`
+
+```text
+Decimal: 10
+Binary:  1010
+```
+
+Now, shift all bits **right by 1**:
+
+```text
+ 1010   (10)
+>> 1
+ ----
+ 0101   (5)
+```
+
+So:
+
+```python
+10 >> 1 == 5 → 10 // 2^1 = 5
+```
+
+---
+
+#### Why is this like dividing by 2?
+
+Each bit position represents a **power of 2**.
+
+Right shifting a binary number moves each bit **down one power**, effectively 
+dividing the value by 2 for each shift.
+
+```python
+10 >> 1 == 10 // 2 == 5
+10 >> 2 == 10 // 4 == 2
+```
+
+Only the **integer part** is kept. No decimals.
+
+---
+
+#### Real-World Use Cases of Right Shift (`>>`)
+
+1. **Fast division by powers of 2** (where speed matters)
+2. **Bitmasking or decoding packed data**
+3. **Binary search logic**
+4. **Efficient calculations in embedded systems, low-level apps, or game engines**
+
+---
+
+#### Comparison Summary
+
+| Operation | Symbol | Meaning                   | Example       |
+| --------- | ------ | ------------------------- | ------------- |
+| Left      | `<<`   | Multiply by 2^n           | `5 << 1 = 10` |
+| Right     | `>>`   | Divide by 2^n (floor div) | `10 >> 1 = 5` |
+
+
+-------------------------------------------------------------------------------------
+### Q010 : BitWise Left Shift Operator Multiplying Usecase;;
+
+Let's break it down and explore why left shifting (`<<`) a number is 
+equivalent to multiplying by powers of 2**i
+
+---
+
+#### Binary of 5
+
+`5` in binary = `0101`
+
+Now apply:
+
+#### Left Shift: `5 << 1`
+
+Shifting all bits to the **left by 1 place** gives:
+
+```
+    0101   (5)
+    << 1
+----------------
+    1010   (10)
+```
+
+**Result** = `10` in decimal
+
+---
+
+#### Why is this like `2^y`?
+
+Left shifting by `y` places is **multiplying the number by `2^y`**.
+
+So:
+
+```python
+5 << 1 == 5 * (2^1) == 10
+5 << 2 == 5 * (2^2) == 20
+5 << 3 == 5 * (2^3) == 40
+```
+
+---
+
+#### Reasoning (Bitwise Math)
+
+Each binary **digit (bit)** represents an increasing power of 2:
+
+```
+Binary:   0 1 0 1  (5)
+Powers:   8 4 2 1
+Value :   0+4+0+1 = 5
+```
+
+Now if you **shift left**, all bits move to higher powers of 2. So:
+
+* The `1` at `2^2` becomes `2^3`
+* The `1` at `2^0` becomes `2^1`
+
+That’s why it **doubles the number** with each shift.
+
+---
+
+#### Visual Summary
+
+| Decimal | Binary | `<< 1` Result | Equivalent |
+| ------- | ------ | ------------- | ---------- |
+| 5       | 0101   | 1010 (10)     | 5 × 2¹     |
+| 3       | 0011   | 0110 (6)      | 3 × 2¹     |
+| 6       | 0110   | 1100 (12)     | 6 × 2¹     |
+
+---
+
+So, when you do `a << y`, it's exactly `a * (2^y)`.
+
+
+-------------------------------------------------------------------------------------
+### Q009 : Bitwise XOR Operator Swapping Usecase;;
+
+Classic example of **swapping two variables using XOR** — a neat trick that 
+doesn't require a third temporary variable:
+
+---
+
+#### Swap Two Numbers Using XOR
+
+```python
+# Initial values
+a = 5
+b = 7
+
+print("Before swap:")
+print(f"a = {a}, b = {b}")
+
+# XOR Swap Logic
+a = a ^ b
+b = a ^ b  # (a ^ b) ^ b = a
+a = a ^ b  # (a ^ b) ^ a = b
+
+print("\nAfter swap:")
+print(f"a = {a}, b = {b}")
+```
+
+---
+
+#### Why It Works?
+
+Let's say:
+
+* `a = 5` → `0101` in binary
+* `b = 7` → `0111` in binary
+
+Step-by-step:
+
+1. `a = a ^ b` → stores the XOR of a and b in $a whch is 2
+2. `b = a ^ b` → retrieves original `a`
+3. `a = a ^ b` → retrieves original `b`
+
+---
+
+#### Caution
+
+* This only works **safely** with **primitive data types (ints)**.
+* It can be confusing in real code, so it's more of a cool trick or interview 
+concept than best practice in production.
+
 
 -------------------------------------------------------------------------------------
 ### Q008 : Boyer Moorie Algorithm In-Depth;;
@@ -725,8 +930,311 @@ variable names.
 -------------------------------------------------------------------------------------
 ### Q005 : Bitwise Manipulation in One Go
 
+Bit manipulation is a powerful technique in competitive programming and DSA 
+that often unlocks highly efficient o(1) or o(logn) solutions for problems 
+that might otherwise seem to require more complex data structures or algorithms. 
 
+It's about directly working with the binary representation of numbers.
 
+The "hidden tricks" aren't really secrets, but rather patterns and properties 
+of binary numbers that, once understood, become intuitive tools. Let's break 
+down the core concepts, common operations, and then dive into these hidden 
+tricks and problem patterns.
+
+---
+
+#### Core Concepts of Binary Numbers
+
+Every integer can be represented in binary (base-2) using only 0s and 1s.
+
+* **Bit:** A single binary digit (0 or 1).
+* **MSB (Most Significant Bit):** The leftmost bit, representing the highest 
+power of 2.
+* **LSB (Least Significant Bit):** The rightmost bit, representing `2^0 = 1`.
+* **Position:** Bits are indexed from right to left, starting at 0. So, the 
+`ith bit (0-indexed)` represents `2^i`.
+
+**Example:**
+
+Decimal 13
+Binary: `1101`
+* Bit 0: `1` (1 x 2^0 = 1)
+* Bit 1: `0` (0 x 2^1 = 0)
+* Bit 2: `1` (1 x 2^2 = 4)
+* Bit 3: `1` (1 x 2^3 = 8)
+
+Total: 1 + 0 + 4 + 8 = 13
+
+---
+
+#### Basic Bitwise Operators
+
+These are the fundamental building blocks.
+
+1.  **AND (`&`)**:
+    * Result bit is 1 if *both* corresponding bits are 1.
+    
+    * Example: `5 (0101) & 3 (0011) = 1 (0001)`
+    * **Use cases:** Checking if a bit is set, masking bits.
+
+2.  **OR (`|`)**:
+    * Result bit is 1 if *at least one* corresponding bit is 1.
+    
+    * Example: `5 (0101) | 3 (0011) = 7 (0111)`
+    * **Use cases:** Setting a bit, combining flags.
+
+3.  **XOR (`^`)**:
+    * Result bit is 1 if corresponding bits are *different*.
+    
+    * Example: `5 (0101) ^ 3 (0011) = 6 (0110)`
+    * **Properties (very useful):**
+        * `A ^ A = 0` (XORing a number with itself gives 0)
+        * `A ^ 0 = A` (XORing with 0 gives the number itself)
+        * XOR is commutative and associative: `(A ^ B) ^ C = A ^ (B ^ C)`
+    * **Use cases:** Swapping numbers without a temp variable, finding single 
+    unique element, detecting differences.
+
+4.  **NOT (`~`)**: (Bitwise Complement)
+    * Inverts all bits (0 becomes 1, 1 becomes 0).
+    
+    * Example: `~5 (~0101) = 1010` (This depends on integer size, usually 2's 
+    complement for negative numbers).
+    * **Caution:** In most languages, `~x` on a positive integer will result in a 
+    negative integer due to 2's complement representation. For competitive 
+    programming, it's often used with masks where its signed behavior isn't an issue.
+    * **Use cases:** Creating masks.
+
+5.  **Left Shift (`<<`)**:
+    * `x << y`: Shifts bits of `x` left by `y` positions. Fills right with 0s.
+    * Equivalent to multiplying by $2^y$.
+    
+    * Example: `5 (0101) << 1 = 10 (1010)`
+    * **Use cases:** Multiplying by powers of 2, creating masks (`1 << i` gives a 
+    number with only the $ith bit set).
+
+6.  **Right Shift (`>>`)**:
+    * `x >> y`: Shifts bits of `x` right by `y` positions.
+    * Equivalent to integer division by 2^y.
+    * **Arithmetic Right Shift (signed):** Most languages (Java, Python, C++) 
+    perform arithmetic right shift for signed integers, meaning the sign bit 
+    is propagated.
+    * **Logical Right Shift (unsigned):** Fills left with 0s. (Python's `>>` is 
+    arithmetic for signed, logical for unsigned. In C++, `>>` is arithmetic for 
+    signed, logical for unsigned. Java `>>>` is logical).
+
+    * Example: `10 (1010) >> 1 = 5 (0101)`
+    * **Use cases:** Dividing by powers of 2, iterating through bits (getting 
+    the ith bit).
+
+---
+
+#### Hidden Tricks and Common Patterns
+
+These are the powerful applications that leverage the properties of bitwise 
+operations.
+
+#### 1. Checking if a Bit is Set
+
+* **Trick:** `(num >> i) & 1` or `num & (1 << i)`
+* **Explanation:**
+    * `num & (1 << i)`: Creates a mask with only the $i$-th bit set. If `num` 
+    also has the $ith bit set, the result of AND will be non-zero (specifically, 
+    `1 << i`). Otherwise, it's 0.
+    * `(num >> i) & 1`: Shifts the $i$-th bit to the 0-th position (LSB). Then 
+    ANDs with 1. If the LSB is 1, result is 1; otherwise, 0.
+* **Example:** Check if 2nd bit of 13 (01101) is set. 
+`(13 >> 2) & 1` -> `(0011) & 1` -> `1`. Yes.
+
+#### 2. Setting a Bit
+
+* **Trick:** `num | (1 << i)`
+* **Explanation:** Creates a mask with only the $i$-th bit set. ORing with `num` 
+ensures that the $ith bit becomes 1, while other bits remain unchanged because 
+(`X | 0 = X` and `X | 1 = 1`).
+
+#### 3. Clearing/Unsetting a Bit
+
+* **Trick:** `num & ~(1 << i)`
+* **Explanation:**
+    * `1 << i`: Mask with $i$-th bit set.
+    * `~(1 << i)`: Inverts all bits. This creates a mask with all bits set except 
+    the ith bit.
+    * ANDing with `num` will keep all bits of `num` as they are, except for the 
+    ith bit, which will become 0 (because `X & 0 = 0`).
+
+#### 4. Toggling a Bit
+
+* **Trick:** `num ^ (1 << i)`
+* **Explanation:** `1 << i` creates a mask. XORing with it flips the $i$-th bit 
+(`0^1=1`, `1^1=0`) while leaving others unchanged (`X^0=X`).
+
+#### 5. Checking if a Number is a Power of 2
+
+* **Trick:** `num > 0 and (num & (num - 1)) == 0`
+* **Explanation:**
+    * A power of 2 in binary has exactly one bit set 
+    (e.g., 1 (0001), 2 (0010), 4 (0100), 8 (1000)).
+    * `num - 1` will flip that set bit to 0 and all bits to its right to 1 
+    (e.g., `8 (1000) - 1 = 7 (0111)`).
+    * `num & (num - 1)` will therefore be 0 if `num` is a power of 2.
+    * `num > 0` is essential to handle `0` correctly, as `0 & -1` is `0`.
+
+#### 6. Counting Set Bits (Population Count / Hamming Weight)
+
+* **Trick (Brian Kernighan's Algorithm):**
+    ```python
+    count = 0
+    while num > 0:
+        num &= (num - 1) # Clears the least significant set bit
+        count += 1
+    return count
+    ```
+* **Explanation:** `num & (num - 1)` is a magical operation. It clears the LSB 
+(least significant bit) of `num`. For example:
+    * `12 (1100)`
+    * `12 - 1 = 11 (1011)`
+    * `12 & 11 = 8 (1000)` (LSB of 12 was at pos 2, now cleared)
+    * The loop continues until `num` becomes 0. The number of iterations is the 
+    number of set bits.
+
+* **Other ways:** Many languages have built-in functions 
+(e.g., Python `bin(num).count('1')`, C++ `__builtin_popcount(num)`)
+
+#### 7. Finding the Unique Element in an Array (where all others appear twice)
+
+* **Trick:** XOR all elements together.
+* **Explanation:** `A ^ A = 0` and `A ^ 0 = A`. Since all duplicate elements 
+cancel each other out (`XOR` to 0), the unique element remains.
+* **Example:** `[4, 1, 2, 1, 2]`
+    `4 ^ 1 ^ 2 ^ 1 ^ 2`
+    `= 4 ^ (1 ^ 1) ^ (2 ^ 2)`
+    `= 4 ^ 0 ^ 0 = 4`
+
+#### 8. Swapping Two Numbers
+
+* **Trick:** `a = a ^ b; b = a ^ b; a = a ^ b;`
+
+* **Explanation:**
+    1.  `a = a ^ b`: `a` now holds the XOR sum of original `a` and `b`.
+    2.  `b = a ^ b`: This is `(orig_a ^ orig_b) ^ orig_b`. 
+    Since `orig_b ^ orig_b = 0`, `b` now becomes `orig_a`.
+    3.  `a = a ^ b`: This is `(orig_a ^ orig_b) ^ orig_a`. 
+    Since `orig_a ^ orig_a = 0`, `a` now becomes `orig_b`.
+
+* **Caution:** Don't use if `a` and `b` refer to the same memory location 
+(e.g., `a[i] = a[i] ^ a[j]; a[j] = ...`).
+
+#### 9. Finding Two Unique Elements (where all others appear twice)
+
+* **Trick:**
+    1.  XOR all elements in the array. The result `xor_sum` will be 
+    `unique1 ^ unique2`.
+    2.  Find any set bit in `xor_sum` 
+    (e.g., the rightmost set bit using `xor_sum & (-xor_sum)` in 2's 
+    complement, or `xor_sum & (~xor_sum + 1)`). Let this be `mask`.
+    3.  Divide all numbers in the original array into two groups: 
+    those that have the `mask` bit set, and those that don't.
+    4.  XOR all numbers in Group 1. The result will be `unique1`.
+    5.  XOR all numbers in Group 2. The result will be `unique2`.
+
+* **Explanation:** `unique1` and `unique2` must differ at least one bit 
+position (otherwise they'd be the same number). The `mask` identifies one 
+such differing bit. By grouping numbers based on this bit, you ensure 
+`unique1` is in one group and `unique2` in the other. All other pairs of 
+numbers (which appear twice) will have both instances in the same group, 
+thus cancelling out.
+
+#### 10. `x & (x - 1)` and `x & (~x + 1)` (or `x & -x`)
+
+* `x & (x - 1)`: **Clears the LSB** (Least Significant Set Bit).
+    - Example: `12 (1100) & 11 (1011) = 8 (1000)`
+
+* `x & (~x + 1)` or `x & -x` (using 2's complement representation for `-x`): 
+Isolates the LSB. Returns a number with only the LSB of `x` set.
+    * Example: `12 (1100)`
+        * `~12 = -13` (binary `0011` becomes `1100` if considering 4 bits, 
+        then for negative numbers it's 2's complement)
+        * In 2's complement, `-12` is `...1111110100`.
+        * `12 & -12 = 4 (0100)` which is the LSB of 12.
+    * This is incredibly useful for problems involving iterating through 
+    subsets or finding the first differing bit.
+
+#### 11. Converting Character to Lower/Upper Case
+
+* **Trick:**
+
+    * To lowercase: `char | ' '` 
+    (OR with space character's ASCII value, which has the 5th bit set)
+
+    * To uppercase: `char & '_' ` 
+    (AND with underscore character's ASCII value, which has the 5th bit cleared)
+
+* **Explanation:** The difference between ASCII uppercase and lowercase letters 
+is exactly the 5th bit (0-indexed).
+
+    * 'A' (65) = `01000001`
+    * 'a' (97) = `01100001`
+    * ' ' (32) = `00100000` (only 5th bit set)
+    * '_' (95) = `01011111` (only 5th bit cleared, others set for relevant range)
+
+* **Note:** This is less common in competitive programming than dedicated 
+`$tolower/$toupper` functions, but demonstrates bitwise character manipulation.
+
+#### 12. Bitmasks for Subsets
+
+* **Trick:** Iterating through all subsets of a set of $N$ items.
+
+* **Explanation:** A bitmask is an integer where each bit represents the presence 
+or absence of an element. If you have $N$ elements, you can represent all $2^N$ 
+subsets using integers from $0$ to $2^N - 1$.
+
+* **Example:** For a set {A, B, C} (N=3):
+    * `000` (0) -> {}
+    * `001` (1) -> {C}
+    * `010` (2) -> {B}
+    * `011` (3) -> {B, C}
+    * `100` (4) -> {A}
+    * ...and so on.
+
+* **Usage:**
+    ```python
+    for i in range(1 << N): # i iterates from 0 to 2^N - 1
+        for j in range(N):
+            if (i >> j) & 1: 
+                # Check if j-th element is in the current subset (represented by i)
+                # Element j is in the subset
+    ```
+* **Problems:** Subsets, combination sum variations, TSP (Traveling Salesperson 
+Problem with dynamic programming and bitmask), Knapsack variations.
+
+#### 13. Bitmask DP (Dynamic Programming with Bitmasks)
+
+* **Trick:** Using an integer as the state in DP to represent a subset or combination 
+of items/states.
+
+* **Example:** TSP, problems where you need to visit all nodes, or select items with 
+dependencies. `dp[mask]` could mean "the minimum cost to visit all nodes represented 
+by set bits in `mask`".
+
+---
+
+### General Tips for Bit Manipulation Problems:
+
+1.  **Draw it out:** When stuck, write down numbers in binary. This helps visualize 
+the effect of operations.
+2.  **Powers of 2:** Remember `1 << i` is $2^i$.
+3.  **LSB:** `x & -x` is a quick way to get the value of the LSB.
+4.  **`~` operator caution:** Be aware of signed vs. unsigned integer representation, 
+especially with `~` in C++/Java. Python handles large integers automatically, so `~` 
+is usually safe but still represents two's complement.
+5.  **Think about parity:** XOR is great for parity checks.
+6.  **Immutable Integers:** Remember that bitwise operations return *new* integers; 
+they don't modify the original in place.
+7.  **Practice!** The more you see and solve problems, the more these tricks will 
+become second nature.
+
+Bit manipulation problems can be challenging because they require thinking in a 
+different base, but mastering these tricks will significantly expand your DSA toolkit.
 
 
 -------------------------------------------------------------------------------------
