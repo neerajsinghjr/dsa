@@ -105,6 +105,13 @@ git worktree remove study_notes_wt
 - Makes multi-branch development buttery smooth.
 
 
+#### Hack for Worktree Untracked File !!!
+
+- When you create a worktree then it will create a folder which will be shown in 
+`git status` `untracked file`. So To avoid this situation add the untracked files 
+to `.gitignore` version.
+
+
 -------------------------------------------------------------------------------------
 ### Q018 : Open Different Branches in IDE in a Machine;;
 
