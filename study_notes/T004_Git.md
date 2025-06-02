@@ -4,7 +4,7 @@
 -> Author: @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 05/12/2022
--> Updated : 26/04/2025
+-> Updated : 01/06/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> Q019 : Worktree Usages in Git lifecycle;;
