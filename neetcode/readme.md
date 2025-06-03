@@ -76,12 +76,13 @@ and efficient techniques:
 This is the go-to method for checking anagrams and is very flexible.
 
 **Concept:** Count the occurrences of each character in the first string. 
-Then, for the second string, decrement the counts. If all counts end up at zero, 
-they are anagrams.
+Then, for the second string, decrement the counts. If all counts end up at 
+zero, they are anagrams.
 
 **Steps to check if `s1` and `s2` are anagrams:**
 
-1.  **Pre-check:** If `len(s1) != len(s2)`, they cannot be anagrams. Return `false`.
+1.  **Pre-check:** If `len(s1) != len(s2)`, they cannot be anagrams. 
+Return `false`.
 
 2.  **Initialize a frequency map:** Create a hash map (or an array of size 26 
 for lowercase English letters, 128 for ASCII, 256 for extended ASCII, etc.) 
@@ -93,18 +94,18 @@ its count in the map. For eg, `s1 = "listen"`
 
 4.  **Decrement for `s2`:** Iterate through `s2`. For each character:
     * Decrement its count in the map.
-    * If a character is encountered that is *not* in the map, or its count drops 
-    below zero, then `s1` and `s2` are not anagrams. Return `false`.
+    * If a character is encountered that is *not* in the map, or its count 
+    drops below zero, then `s1` and `s2` are not anagrams. Return `false`.
     * Example: `s2 = "silent"`
         * `s`: {'s': 0, ...}
         * `i`: {'i': 0, ...}
         * ... and so on.
 
-5.  **Final Check:** After iterating through `s2`, if all counts in the map are 
-zero, then `s1` and `s2` are anagrams. Return `true`. 
+5.  **Final Check:** After iterating through `s2`, if all counts in the map 
+are zero, then `s1` and `s2` are anagrams. Return `true`. 
 
-(You don't strictly need to iterate through the map if you caught negative counts 
-in step 4, but it's a good mental model).
+(You don't strictly need to iterate through the map if you caught negative 
+counts in step 4, but it's a good mental model).
 
 **Time Complexity:** O(L) where $L is the length of the strings because you 
 iterate through each string once.
@@ -121,26 +122,26 @@ alphabetically will result in identical strings.
 
 1.  **Pre-check:** If `len(s1) != len(s2)`, return `false`.
 
-2.  **Sort:** Convert both strings to character arrays (or lists), sort them, and 
-convert them back to strings (or compare the sorted arrays directly).
+2.  **Sort:** Convert both strings to character arrays (or lists), sort them, 
+and convert them back to strings (or compare the sorted arrays directly).
     * Example:
         * `s1 = "listen"` -> `['e', 'i', 'l', 'n', 's', 't']`
         * `s2 = "silent"` -> `['e', 'i', 'l', 'n', 's', 't']`
 
 3.  **Compare:** If the sorted strings/arrays are identical, they are anagrams.
 
-**Time Complexity:** O(nlogn) due to sorting (where $n is the length of the strings). 
-This is generally slower than the hash map approach for typical string lengths, but 
-can be simpler to implement quickly.
+**Time Complexity:** O(nlogn) due to sorting where $n is the length of the strings 
+This is generally slower than the hash map approach for typical string lengths, 
+but can be simpler to implement quickly.
 
 **Space Complexity:** O(L) or O(1) depending on whether the sorting algorithm uses 
 extra space or sorts in-place.
 
 #### 3. Prime Product (A Niche Trick)
 
-**Concept:** Assign a unique prime number to each letter of the alphabet. Multiply the 
-prime numbers corresponding to the letters in a word. If two words are anagrams, their 
-prime products will be the same.
+**Concept:** Assign a unique prime number to each letter of the alphabet. Multiply 
+the prime numbers corresponding to the letters in a word. If two words are anagrams, 
+their prime products will be the same.
 
 **Example:**
 
@@ -158,12 +159,13 @@ before you've multiplied all primes.
 * **Not common:** Less flexible and less frequently seen in general DSA problems 
 compared to hash maps.
 
-### Anagram Array Problems (Example: Group Anagrams)
+#### Anagram Array Problems (Example: Group Anagrams)
 
 This is where the "Array of Strings" comes into play. You're given `list[str]` and 
 need to group them.
 
 **Problem:** `strs = ["eat", "tea", "tan", "ate", "nat", "bat"]`
+
 **Output:** `[["eat","tea","ate"], ["tan","nat"], ["bat"]]`
 
 **Solution Idea:**
@@ -209,8 +211,8 @@ canonical form is the **sorted version of the string**.
 5.  `s = "nat"`: `sorted("nat")` -> "ant". 
 `anagram_groups = {"aet": ["eat", "tea", "ate"], "ant": ["tan", "nat"]}`
 
-6.  `s = "bat"`: `sorted("bat")` -> "abt". 
-`anagram_groups = {"aet": ["eat", "tea", "ate"], "ant": ["tan", "nat"], "abt": ["bat"]}`
+... so on
+
 
 Final result is `anagram_groups.values()`.
 
@@ -218,12 +220,12 @@ Final result is `anagram_groups.values()`.
 Instead of sorting, you can use a frequency array/map to create a canonical 
 representation.
 
-For eg, "eat", frequency map: `{'a':1, 'e':1, 't':1}`. You can represent this as a 
-tuple `(1,1,0,0,1,...)` for a-z counts or a string like `"a1e1t1"`. This avoids 
-sorting cost.
+For eg, "eat", frequency map: `{'a':1, 'e':1, 't':1}`. You can represent this 
+as a tuple `(1,1,0,0,1,...)` for a-z counts or a string like `"a1e1t1"`. This 
+avoids sorting cost.
 
-For English lowercase, a common way is `tuple(counts)` where `counts` is a length-26 
-array.
+For English lowercase, a common way is `tuple(counts)` where `counts` is a 
+length-26 array.
 
 ```python
 # Example for frequency tuple canonical form
@@ -248,25 +250,28 @@ def get_char_counts(s):
 # xs=(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 ```
-This frequency counting approach for the canonical form has o(n) complexity (string length) 
-instead of $O(nlogn) for sorting, making it more efficient for longer strings.
+This frequency counting approach for the canonical form has o(n) complexity 
+(string length) instead of $O(nlogn) for sorting, making it more efficient for
+longer strings.
 
 
 #### Key Takeaways for Anagrams in DSA:
 
 * **Frequency is King:** Anagrams are all about character frequencies.
-* **Hash Maps/Frequency Arrays:** Your primary tool for tracking character counts 
-efficiently ($O(1)$ average access).
-* **Sorting:** A simpler alternative for comparing two strings, but less efficient 
-and flexible for groups.
+* **Hash Maps/Frequency Arrays:** Your primary tool for tracking character 
+counts efficiently ($O(1)$ average access).
+* **Sorting:** A simpler alternative for comparing two strings, but less 
+efficient and flexible for groups.
 
-* **Canonical Form:** The crucial idea for grouping anagrams. Transform every string 
-into a unique representation that all its anagrams share.
+* **Canonical Form:** The crucial idea for grouping anagrams. Transform every
+string into a unique representation that all its anagrams share.
 
-* **Edge Cases:** Always consider empty strings, single-character strings, and strings 
-with non-alphabetic characters (and whether they should be considered in the anagram check).
+* **Edge Cases:** Always consider empty strings, single-character strings, and 
+strings with non-alphabetic characters (and whether they should be considered 
+in the anagram check).
 
 
+-------------------------------------------------------------------------------------
 ### Q011 : BitWise Right Shift Operator Dividing Usecase;;
 
 Let's dive into **bitwise right shift (`>>`)** — the opposite of what you 
