@@ -1,6 +1,6 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title: 1800. Maximum Ascending Subarray Sum
+-> Problem Title: 3105. Longest Strictly Increasing or Strictly Decreasing Subarray
 -> Problem Status: Completed
 -> Problem Attempted: 03/06/2025
 -> Problem Description:
