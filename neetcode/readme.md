@@ -1218,7 +1218,7 @@ by set bits in `mask`".
 
 ---
 
-### General Tips for Bit Manipulation Problems:
+#### General Tips for Bit Manipulation Problems:
 
 1.  **Draw it out:** When stuck, write down numbers in binary. This helps visualize 
 the effect of operations.
