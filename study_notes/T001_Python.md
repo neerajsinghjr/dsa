@@ -4,7 +4,7 @@
 -> Author: @neeraj-singh-jr
 -> Status: Ongoing...
 -> Created: 03/09/2022
--> Updated: 02/03/2025
+-> Updated: 06/06/2025
 -> Summary: Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
 -> Q099 : Closures (Function Encapsulation and Memory Retention);;
@@ -12,7 +12,6 @@
 -> Q097 : Python Reference Counting & Memory Management;;
 -> ***Q096 : Multithreading using Future Module;;
 -> ***Q095 : Usages of MultiProcessing Vs Asyncio;;
--> ***Q094 : Inspect module in python;;
 -> Q094 : Inspect module in python;;
 -> Q093 : Dataclass Schema Creation with Decorator;;
 -> Q092 : Dataclass Decorator in Python;;
@@ -72,7 +71,7 @@
 -> Q038 : Multiple Inheritance in Python vs Java;;
 -> Q037 : Method Overloading and Operator Overloading;;
 -> Q036 : Switch alternative in python;;
--> *** Q035 : ???;;
+-> Q035 : Python Dict follows OrderedDict By Default;;
 -> Q034 : Python OOPS Basic Architecture;;
 -> Q033 : ABCMeta, AbstractClass, abstractmethod in ABC package;;
 -> Q032: Positional Argument(args) & Named Argument(kwargs);;
@@ -7306,8 +7305,44 @@ print(switch.get(2, 2)) # 40
 
 
 -------------------------------------------------------------------------------------
-### *** Q035 : ???;;
+### Q035 : Python Dict follows OrderedDict By Default;;
 
+When you create `hashmap = {}` in Python, you are creating a standard Python
+dictionary.
+
+**Since Python 3.7 (and CPython 3.6 implementation detail), Python
+  dictionaries preserve insertion order.**
+
+So, for most practical purposes and in modern Python environments, you can
+consider it an **ordered dictionary** in the sense that the order in which
+you insert key-value pairs will be the order in which they are iterated
+over.
+
+**Here's a breakdown:**
+
+* **Before Python 3.7:** Dictionaries were fundamentally **unordered**. The
+    order of elements when iterated over was not guaranteed and could change
+    based on hashing and internal resizing. (CPython 3.6 did have an
+    implementation detail that made them ordered, but it wasn't a language
+    guarantee).
+
+* **Python 3.7 and later:** The preservation of insertion order became
+    a **guaranteed feature of the language specification**. This means you
+    can rely on dictionaries maintaining insertion order in all Python 3.7+
+    environments.
+
+**In summary:**
+
+If you are using Python 3.7 or newer (which is highly probable for most modern
+development), `hashmap = {}` will give you an **ordered dictionary**
+(ordered by insertion).
+
+If you are working with older Python versions (pre-3.7), then technically
+it's **unordered**, and you'd need to explicitly use
+`collections.OrderedDict` if order preservation was critical. However,
+`OrderedDict` is rarely needed in modern Python development unless you
+specifically need its `move_to_end` functionality or are dealing with legacy
+codebases.
 
 
 -------------------------------------------------------------------------------------
