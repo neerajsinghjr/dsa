@@ -1,12 +1,14 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : NEETCODE MASTER DSA NOTES    
+-> Title : MASTER DSA NOTES    
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 17/03/2024
 -> Updated : 01/06/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q013 : Understanding Heap with DSA Problems Identification;;
+-> Q012 : Anagram Array and Strings in DSA;;
 -> Q011 : BitWise Right Shift Operator Dividing Usecase;;
 -> Q010 : BitWise Left Shift Operator Multiplying Usecase;;
 -> Q009 : Bitwise XOR Operator Swapping Usecase;;
@@ -21,7 +23,14 @@
 -------------------------------------------------------------------------------------
 ````
 
-### NEETCODE MASTER DSA NOTES : BEGINNING
+### MASTER DSA NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q013 : Understanding Heap with DSA Problems Identification;;
+
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q012 : Anagram Array and Strings in DSA;;
