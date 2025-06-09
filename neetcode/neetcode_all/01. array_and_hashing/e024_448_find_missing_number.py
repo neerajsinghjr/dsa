@@ -27,9 +27,9 @@ class Solution:
 
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         """
-            _stdin:
-                arg1: list[int]
-            _stdout: list[int]
+        _stdin:
+            arg1: list[int]
+        _stdout: list[int]
         """
         n = len(nums)
         if n == 1:

@@ -27,9 +27,9 @@ class Solution:
 
     def findMissingAndRepeatedValues(self, grid: List[List[int]]) -> List[int]:
         """
-            _stdin:
-                arg1: list[list[int]]
-            _stdout: list[int]
+        _stdin:
+            arg1: list[list[int]]
+        _stdout: list[int]
         """
         # return self._ansv1(grid)
         return self._ansv2(grid)
