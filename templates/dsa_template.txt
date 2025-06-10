@@ -20,6 +20,7 @@ import sys
 import time
 import math
 import random
+import collections
 
 
 ##---Main Solution

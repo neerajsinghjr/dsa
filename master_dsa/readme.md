@@ -4,9 +4,11 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 17/03/2024
--> Updated : 01/06/2025
+-> Updated : 09/06/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q015 : Understanding Bucket Sort Algorithm 
+-> Q014 : Heap vs Monostack - Problem Identification
 -> Q013 : Understanding Heap with DSA Problems Identification;;
 -> Q012 : Anagram Array and Strings in DSA;;
 -> Q011 : BitWise Right Shift Operator Dividing Usecase;;
@@ -18,12 +20,24 @@
 -> Q005 : Bitwise Manipulation in One Go;;
 -> Q004 : Usage of 2^n combination for substring or subsequence problem;;
 -> Q003 : Anagram in DSA Problems;;
--> Q002 : Pallindrome in DSA Problems;;
+-> Q002 : Pallindrome in DSA Problems  ;;
 -> Q001 : Subarray and Subsequence in DSA Problems;;
 -------------------------------------------------------------------------------------
 ````
 
 ### MASTER DSA NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q015 : Understanding Bucket Sort Algorithm 
+
+
+
+
+-------------------------------------------------------------------------------------
+### Q014 : Heap vs Monostack - Problem Identification
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q013 : Understanding Heap with DSA Problems Identification;;
