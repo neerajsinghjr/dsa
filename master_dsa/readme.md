@@ -36,14 +36,439 @@
 -------------------------------------------------------------------------------------
 ### Q014 : Heap vs Monostack - Problem Identification
 
+---
 
+#### 1. Heap Problems (Priority Queue)
+
+A **Heap** is a tree-based data structure that satisfies the heap property:
+* **Min-Heap:** The value of each node is less than or equal to the values of 
+its children (smallest element at the root).
+* **Max-Heap:** The value of each node is greater than or equal to the values 
+of its children (largest element at the root).
+
+Heaps are typically used to implement **Priority Queues**.
+
+**How to Identify a Heap Problem:**
+
+Look for keywords and scenarios that indicate a need for efficiently 
+retrieving the *smallest/largest element* (or K-smallest/K-largest) from a 
+dynamic collection where elements are frequently added or removed.
+
+* **"Top K" or "Kth Largest/Smallest" elements:** 
+- This is the most classic indicator. If you need the `k` largest/smallest 
+items from a potentially larger set, a min-heap (for largest) or max-heap 
+(for smallest) is often the way to go.
+- *Example:* 
+    - Kth Largest Element in an Array
+    - Top K Frequent Elements
+    - K Closest Points to Origin.
+
+* **Dynamic Minimum/Maximum:** 
+- When you need to always access the current minimum or maximum value in 
+a collection that is constantly changing (elements being added/removed).
+- *Example:* 
+    - Median of a Data Stream (uses two heaps: one min-heap, one max-heap).
+
+* **Scheduling/Prioritization:** 
+- Problems where tasks or elements have priorities, and you always need to 
+process the one with the highest (or lowest) priority next.
+- *Example:* 
+    - Dijkstra's shortest path algorithm
+    - Prim's minimum spanning tree algorithm
+    - Job Scheduling.
+
+* **Merging Sorted Structures:** 
+- When you need to merge `K` sorted arrays or linked lists efficiently. A 
+min-heap helps you always pick the smallest available element across all 
+lists.
+- *Example:*
+    - Merge K Sorted Lists/Arrays.
+
+* **Any time you see "priority queue":** This is a direct hint.
+
+**Key Heap Characteristics:**
+
+* **Global Extremum:** 
+Provides quick access ($O(1)$) to the absolute min/max element.
+* **Logarithmic Operations:** Insertion and deletion of elements take 
+O(logn) time, where $n is the number of elements in the heap.
+* **No Fixed Order (except root):** Elements are not fully sorted; only 
+the heap property is maintained.
+* **Useful for:** Maintaining order in a dynamic set, finding K-extremes, 
+simulations where you always need the "next best" item.
+
+---
+
+#### 2. Monotonic Stack Problems
+
+A **Monotonic Stack** is a stack where the elements are always kept in 
+either **strictly increasing** or **strictly decreasing** order (from 
+bottom to top). 
+When you try to push a new element, you first pop elements from the top of 
+the stack that violate this monotonic property.
+
+**How to Identify a Monotonic Stack Problem:**
+
+Look for problems that involve finding the "next greater/smaller element," 
+"previous greater/smaller element," or
+calculating areas/spans related to elements' relative heights/values within 
+an array or sequence. These problems often require efficient lookups for 
+elements *to the left or right* that satisfy a certain ordering condition.
+
+* **"Next Greater/Smaller Element" (NGE/NSE):** 
+- This is the most common use case. For each element, you need to find the 
+first element to its right (or left) that is greater than/smaller than it.
+- *Example:* 
+    - Next Greater Element I
+    - Next Greater Element II (circular array), 
+    - Daily Temperatures.
+
+* **"Largest Rectangle in Histogram":** 
+- A classic problem where a monotonic stack helps find the nearest smaller 
+elements to the left and right for each bar, which define the potential 
+width of rectangles.
+
+* **"Trapping Rain Water":** 
+- While solvable with two pointers, a monotonic stack provides an alternative 
+to find bounding walls.
+
+* **Subarray/Subsequence problems involving ranges and relative ordering:** 
+- When the solution depends on the immediate neighbors or elements that are 
+"visible" from a certain point.
+
+* **Optimizing Nested Loops for "Next/Previous" problems:** 
+- If a brute-force $O(N^2)$ solution for finding NGE/NSE is obvious, a 
+monotonic stack is often the $O(N)$ optimization.
+
+**Key Monotonic Stack Characteristics:**
+
+* **Local Extremum / Relative Order:** 
+- Helps find nearest elements that satisfy a specific ordering. It's about 
+relative order of adjacent or "visible" elements.
+
+* **Single Pass Efficiency:** 
+- Often solves problems in a single pass $O(N)$ time because each element is 
+pushed and popped at most once.
+
+* **Stack's LIFO Property:** 
+- The LIFO nature of the stack naturally helps track relevant candidates for 
+"next/previous" elements. When an element is popped, it's because a more 
+relevant (monotonic-violating) element has come along, meaning the popped 
+element will no longer be the answer for anything to its right (or left).
+
+* **Useful for:** Calculating spans, areas, distances, or finding specific 
+neighbors in a sequence where the "monotonic" property is critical.
+
+---
+
+#### Do they look the same?
+
+**They can look similar if you only focus on "finding min/max."**
+
+* **Heap:** 
+- Finds the *global* min/max efficiently among a *dynamic set* of elements. It 
+doesn't care about the relative position of elements within the input sequence, 
+only their values.
+
+* **Monotonic Stack:** 
+- Finds *local* min/max properties or specific ordered neighbors within a 
+sequence The order of elements in the input sequence matters.
+
+**Think about it this way:**
+
+* **Heap:** 
+- Out of all elements I've seen so far (or am managing), give me the smallest 
+or largest one, regardless of where it came from in the input."
+
+* **Monotonic Stack:** 
+- As I scan through this sequence, for the current element, who is the *next* 
+element to my right (or left) that is greater/smaller than me? And who are the 
+elements that are no longer relevant because someone 'taller' or 'shorter' came 
+along?"
+
+**Example of the distinction:**
+
+* **Problem:** Find the maximum element in a sliding window of size K.
+    
+    * **Heap Approach:** You could use a max-heap. Add elements to the heap 
+    as the window slides. When an element leaves the window, remove it from 
+    the heap. The max element is always at the root. (This works, but removal 
+    from a heap is $O(log K)$ which can be slow if elements aren't easily 
+    referenceable for removal)
+
+    * **Monotonic Queue (Deque) Approach:** This is usually the more optimal 
+    solution. A deque (double-ended queue) is used to maintain a *decreasing* 
+    sequence of elements (or their indices) within the current window. When a 
+    new element comes in, pop smaller elements from the back. When an element 
+    goes out of window, pop it from the front if it's the max. The max is always 
+    at the front. (takes $O(N)$)
+
+In the sliding window example, both can be applied, but the monotonic queue 
+(a variation of monotonic stack logic) provides a better constant-factor $O(N)$ 
+solution than a heap's $O(N \log K)$. This highlights that while both deal with 
+extremums, the *context* of "locality" or "neighborhood" often points towards 
+monotonic stack/queue.
 
 
 -------------------------------------------------------------------------------------
 ### Q013 : Understanding Heap with DSA Problems Identification;;
 
+Let's dive into heaps, how to spot problems where they're useful, and then 
+walk through the thinking process for LeetCode problem 347, "Top K Frequent 
+Elements," without writing any code.
 
+---
 
+#### Understanding Heaps (Min and Max)
+
+A **heap** is a specialized tree-based data structure that satisfies the 
+heap property. It's commonly implemented as an array, taking advantage of 
+the fact that a complete binary tree can be perfectly mapped to an array.
+
+**Heap Property:**
+
+* **Min-Heap:** For any given node `i`, the value of node `i` is less than 
+or equal to the value of its children. This means the smallest element is 
+always at the root.
+    
+    * Think of it like a priority queue where the *lowest* value has the 
+    highest priority.
+
+* **Max-Heap:** For any given node `i`, the value of node `i` is greater 
+than or equal to the value of its children. This means the largest element 
+is always at the root.
+
+    * Think of it like a priority queue where the *highest* value has the 
+    highest priority.
+
+**Key Characteristics & Operations:**
+
+* **Complete Binary Tree:** 
+- All levels of the tree are fully filled, except possibly the last level, 
+which is filled from left to right. This allows for efficient array 
+representation.
+
+* **Root Element:** 
+- The root (first element in the array representation) always contains the 
+minimum element in a min-heap, or the maximum element in a max-heap.
+
+* **`heapify` (Build Heap):** 
+- Rearranging an arbitrary array into a heap.
+- Time Complexity: o(n) time
+
+* **`insert` (Push):** 
+- Add a new element to the heap while maintaining the heap property. 
+- Time Complexity: o(logn)
+
+* **`extract_min/max` (Pop):** 
+- Remove the root element (min/max) and reorganize the heap to maintain the 
+heap property. 
+- Time Complexity: o(logn)
+
+* **`peek_min/max`:** 
+- Look at the root element without removing it. 
+- Time Complexity: o(1)
+
+**Analogy:**
+Think of a heap like a very organized line at a theme park, but instead of 
+first-come, first-served, it's "smallest value first" (min-heap) or "largest 
+value first" (max-heap). 
+When someone gets on the ride (extracted), the next smallest/largest person 
+immediately moves to the front. When someone new joins the line (inserted), 
+they find their proper place quickly.
+
+---
+
+#### How to Identify DSA Problems Related to Heaps
+
+Heaps are primarily used when you need to efficiently find or retrieve the 
+**kth smallest/largest element**, the **smallest/largest element repeatedly**, 
+or maintain a **dynamically ordered collection** where only the extreme 
+values matter.
+
+Here are the "signals" that often point to a heap solution:
+
+1.  **"Top K" or "Kth Smallest/Largest"**: 
+- This is the strongest indicator. When a problem asks for the *k* most 
+frequent, *k* largest, *k* smallest, *k* longest, etc., a heap is almost 
+always the optimal approach.
+- Examples: 
+    - Top K Frequent Elements 
+    - Kth Largest Element in an Array 
+    - K Closest Points to Origin.
+
+2.  **"Median in a Stream" / "Data Stream"**: 
+- When you need to maintain an ordered collection and query the median 
+or some extreme value as elements are added one by one. Two heaps (one 
+min-heap, one max-heap) are often used here.
+- Example: 
+    - Find Median from Data Stream.
+
+3.  **"Priority Queue" Semantics**: 
+- If the problem description naturally implies a priority queue – elements 
+need to be processed in a specific order (e.g., shortest path first, highest 
+profit first, earliest deadline first) – a heap is the underlying data 
+structure for a priority queue.
+- Examples: 
+    - Dijkstra's Algorithm (shortest path)
+    - Huffman Coding, Event Scheduling.
+
+4.  **Maintaining Order in a Limited Size**: 
+- When you only care about a fixed number of the "best" or "worst" elements, 
+and the total number of elements could be very large. A min-heap of size `k` 
+(to find largest) or a max-heap of size `k` (to find smallest) is perfect.
+
+5.  **Smallest/Largest Element Repeatedly**: If you need to repeatedly extract 
+the minimum or maximum element from a collection and then possibly re-insert 
+modified elements.
+- Example: 
+    - Merge K Sorted Lists/Arrays (repeatedly extract smallest from K sources).
+
+**General Rule of Thumb:** If you find yourself thinking, "I need the *X* best 
+or worst items from a large collection, but I don't need to sort the whole 
+thing," then a heap is your friend.
+
+---
+
+#### Approaching LeetCode 347: Top K Frequent Elements
+
+**Problem Statement:** Given an integer array `nums` and an integer `k`, 
+return the `k` most frequent elements. You may return the answer in any 
+order.
+
+Let's walk through the thought process:
+
+**1. Brute-Force Approach:**
+
+* **Idea:** Count frequencies of all numbers. Then, sort based on these frequencies. 
+Finally, pick the top `k`.
+
+* **Steps:**
+    1.  Create a way to store counts. A hash map (dictionary) `frequency_map` 
+    would be perfect: `number -> count`.
+    2.  Iterate through `nums`. For each number, increment its count in 
+    `frequency_map`.
+    3.  Once all counts are gathered, you have `number -> count` pairs. You 
+    need to 
+    sort these pairs. How? Convert the `frequency_map` items into a list of 
+    tuples `[(number1, count1), (number2, count2), ...]`.
+    4.  Sort this list of tuples. The sorting key would be the `count` (the 
+    second element of the tuple), in descending order.
+    5.  After sorting, take the first `k` numbers from the sorted list.
+
+* **Example `nums = [1,1,1,2,2,3], k = 2`:**
+    1.  `frequency_map = {1: 3, 2: 2, 3: 1}`
+    2.  Convert to list of tuples: `[(1, 3), (2, 2), (3, 1)]`
+    3.  Sort by count (descending): `[(1, 3), (2, 2), (3, 1)]` (already sorted 
+    in this simple case).
+    4.  Take top `k=2`: `[1, 2]`
+
+* **Analysis:**
+    * **Counting:** $O(N)$ to iterate through `nums` and update hash map.
+    * **Sorting:** If there are `M` unique numbers, sorting `M` pairs takes O(MxlogM). 
+    In the worst case, `M` can be `N` (all numbers unique). So, O(NxlogN).
+    * **Overall Time:** O(Nxlog N).
+    * **Space:** O(M) for the hash map and the list of tuples. In worst case, O(N).
+
+* **Verdict:** This is a correct approach but might not be optimal if `N` is very large 
+and `k` is relatively small. The O(Nxlog N) from sorting is the bottleneck.
+
+**2. Optimized Approach (without Heap, using Bucket Sort idea or Quickselect idea):**
+
+* **Idea:** Can we avoid a full sort? If we only care about counts, maybe 
+we can group numbers by their counts.
+
+* **Steps:**
+    1.  **Count Frequencies:** (Same as brute-force) Use a `frequency_map` to 
+    get `number -> count` for all elements. O(N) time.
+    2.  **Bucket by Frequency:** Create an array of lists, where the index 
+    represents a frequency, and the list at that index contains all numbers 
+    that have that frequency.
+        * `buckets = [[] for _ in range(N + 1)]` (indices 0 to N, max frequency is N)
+        * Iterate through `frequency_map.items()`: 
+            `for num, count in frequency_map.items(): buckets[count].append(num)`
+        * Example `frequency_map = {1: 3, 2: 2, 3: 1}`:
+            * `buckets[1] = [3]`
+            * `buckets[2] = [2]`
+            * `buckets[3] = [1]`
+    3.  **Collect Top K:** Iterate through the `buckets` array from the 
+    highest frequency index down to 1. Add numbers to your `result` list 
+    until you have `k` elements.
+        * `result = []`
+        * `for count_idx in range(N, 0, -1):`
+        * `for num in buckets[count_idx]:`
+        * `result.append(num)`
+        * `if len(result) == k: return result`
+
+* **Analysis:**
+    * **Counting:** O(N).
+    * **Bucketing:** O(M) to iterate through unique numbers and place them 
+    in buckets.
+    * **Collecting:** In the worst case, you might iterate through many buckets 
+    to find `k` elements, but each element is placed in a bucket once. Total 
+    elements across all buckets is `M`. So $O(M)$.
+    * **Overall Time:** $O(N)$ (linear time!). This is because we avoid a full 
+    sort. The maximum frequency is `N`, so `buckets` array size is `N+1`.
+    * **Space:** $O(N)$ for the `frequency_map` and the `buckets` array.
+
+* **Verdict:** This is an optimal solution. It achieves $O(N)$ time complexity.
+
+**3. Optimized Approach (Using a Min-Heap):**
+
+* **Idea:** We want the *K largest* frequencies. A min-heap is counter-intuitive 
+but perfect for this! We maintain a min-heap of size `k`. If we encounter a pair 
+`(number, frequency)` with a frequency *greater* than the smallest frequency in 
+our heap (i.e., the heap's root), we remove the smallest and add the new, larger 
+one. This way, the heap always contains the `k` largest frequencies seen so far.
+
+* **Steps:**
+    1.  **Count Frequencies:** (Same as brute-force) Use a `frequency_map` to get 
+    `number -> count` for all elements. $O(N)$ time.
+    2.  **Initialize a Min-Heap:** Create an empty min-heap. We'll store 
+    `(frequency, number)` tuples in the heap. Python's `heapq` module is a min-heap.
+    3.  **Populate the Heap:**
+        * Iterate through each `(num, count)` pair in `frequency_map`.
+        * **If the heap's size is less than `k`:** Simply push `(count, num)` 
+        onto the heap.
+        * **If the heap's size is equal to `k`:**
+            * Check the smallest element in the heap (the root). Its frequency 
+            is `heap[0][0]`.
+            * If `count` is greater than `heap[0][0]` (smallest frequency 
+            currently in the heap):
+                * Pop the root element (`heapq.heappop`).
+                * Push the new element `(count, num)` onto the heap (`heapq.heappush`).
+            * Else (if `count` is less than or equal to `heap[0][0]`): 
+            Do nothing. This number's frequency is not among the top `k`.
+    4.  **Extract Results:** Once all `frequency_map` items are processed, the 
+    heap will contain the `k` most frequent elements (or fewer, if there are less 
+    than `k` unique elements). Extract the numbers from the heap.
+
+* **Example `nums = [1,1,1,2,2,3], k = 2`:**
+    1.  `frequency_map = {1: 3, 2: 2, 3: 1}`
+    2.  `min_heap = []`
+    3.  **Process `(1, 3)`:** `heap` size < 2. 
+    eg, `heapq.heappush(min_heap, (3, 1))`. `min_heap = [(3, 1)]`
+    4.  **Process `(2, 2)`:** `heap` size < 2. (heap property maintains min at root)
+    eg, `heapq.heappush(min_heap, (2, 2))`. `min_heap = [(2, 2), (3, 1)]` .
+    5.  **Process `(3, 1)`:** `heap` size == 2. `count = 1`. `min_heap[0][0] = 2`. 
+    Is `1 > 2`? No. Do nothing. `min_heap` remains `[(2, 2), (3, 1)]`
+    6.  **End of processing.**
+    7.  Extract numbers from heap: `[2, 1]` (order might vary based on ties, but 
+    `1` and `2` are the elements).
+
+* **Analysis:**
+    * **Counting:** O(N)
+    * **Heap Operations:** For each of the `M` unique numbers, we perform at 
+    most one `push` and one `pop` operation. Each heap operation takes $O(log k)$ 
+    time (because the heap size is capped at `k`). So, O(Mxlog k). 
+    In the worst case, `M` can be `N`. So, O(Nxlog k).
+    * **Overall Time:** O(N + Nxlog k) which simplifies to O(Nxlog k).
+    * **Space:** $O(M)$ for the `frequency_map` and $O(k)$ for the min-heap. 
+    So, O(N + k), which simplifies to $O(N)$ in the worst case where `k` can be `N`.
+
+* **Verdict:** This is a very common and efficient solution, especially
+when `k` is much smaller than `N`. $O(N \log k)$ is often better than 
+O(Nxlog N) (from full sort) and a good general-purpose solution.
 
 
 -------------------------------------------------------------------------------------
