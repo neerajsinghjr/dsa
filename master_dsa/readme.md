@@ -4,11 +4,11 @@
 -> Author : @neeraj-singh-jr
 -> Status : Ongoing...
 -> Created : 17/03/2024
--> Updated : 09/06/2025
+-> Updated : 11/06/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
--> Q015 : Understanding Bucket Sort Algorithm 
--> Q014 : Heap vs Monostack - Problem Identification
+-> Q015 : Understanding Bucket Sort Algorithm;;
+-> Q014 : Heap vs Monostack - Problem Identification;;
 -> Q013 : Understanding Heap with DSA Problems Identification;;
 -> Q012 : Anagram Array and Strings in DSA;;
 -> Q011 : BitWise Right Shift Operator Dividing Usecase;;
@@ -28,13 +28,142 @@
 ### MASTER DSA NOTES : BEGINNING
 
 -------------------------------------------------------------------------------------
-### Q015 : Understanding Bucket Sort Algorithm 
+### Q015 : Understanding Bucket Sort Algorithm;;
 
+Bucket Sort, also known as Bin Sort, is a **distribution sort algorithm** 
+that works by distributing elements into a number of "buckets" (or bins). 
 
+Each bucket is then sorted independently, and finally, the elements from 
+the sorted buckets are gathered to produce the final sorted list.
+
+It's a non-comparison-based sorting algorithm in its ideal form, meaning 
+it doesn't always rely on comparing elements directly like Bubble Sort or 
+Merge Sort do.
+
+#### How Bucket Sort Works (Step-by-Step)
+
+Let's assume we want to sort a list of numbers between 0 and 1 (or any 
+known range).
+
+1.  **Create Buckets:**
+    * Initialize a number of empty "buckets" (e.g., an array of lists). 
+    The number of buckets is typically chosen based on the size of the 
+    input and the range of values. A common heuristic is to have a number 
+    of buckets roughly equal to the number of elements in the input list.
+    * **Example:** If we have numbers between 0.0 and 1.0 and we decide 
+    to use 10 buckets, each bucket could represent a range (e.g., bucket 
+    0 for [0.0, 0.1), bucket 1 for [0.1, 0.2), ..., bucket 9 for [0.9, 1.0]).
+
+2.  **Distribute Elements (Scattering):**
+    * Iterate through the original unsorted list.
+    * For each element, calculate which bucket it belongs to based on its 
+    value and the defined range for each bucket. A common formula for mapping 
+    a value `x` to a bucket index is:
+    `index = floor(num_buckets * (x - min_value) / (max_value - min_value + 1))`.
+    * Place the element into its corresponding bucket.
+    * **Example:** If you have `0.42` and 10 buckets, 
+    index = floor(10 * (0.42 - 0) / (1 - 0 + 1)) 
+          = floor(10 * 0.42 / 1) = floor(4.2) 
+          = 4`. So `0.42` goes into bucket 4.
+
+3.  **Sort Each Bucket:**
+    * Once all elements are distributed, sort the elements *within* each 
+    individual bucket.
+    * Since each bucket is expected to contain a relatively small number 
+    of elements, any suitable sorting algorithm can be used here. Often, 
+    a simple and efficient algorithm like **Insertion Sort** is chosen 
+    for its low overhead on small lists. However, you could use Quick Sort, 
+    Merge Sort, or even recursively apply Bucket Sort if the data within 
+    buckets is still widely distributed.
+    * **Example:** If bucket 4 contains `[0.42, 0.47, 0.40]`, 
+    after sorting it becomes `[0.40, 0.42, 0.47]`.
+
+4.  **Gather Elements (Concatenating):**
+    * Finally, iterate through the buckets in order (from bucket 0 to bucket 
+    `num_buckets-1`).
+    * Concatenate the sorted elements from each bucket back into a single, 
+    sorted list.
+    * **Example:** You collect all elements from bucket 0, then bucket 1, and 
+    so on, until all elements are collected.
+
+#### Time and Space Complexity
+
+* **Time Complexity:**
+    * **Best/Average Case: O(N + K)**, where N is the number of elements and 
+    K is the number of buckets. This occurs when the input data is uniformly 
+    distributed across the range, leading to an even distribution of elements 
+    into buckets. In this ideal scenario, the work done within each bucket is 
+    minimal.
+    * **Worst Case: O(N^2)**. This happens when all (or most) elements fall 
+    into a single bucket. In this situation, you essentially end up sorting 
+    the entire list using the chosen in-bucket sorting algorithm (e.g., 
+    insertion sort's worst case).
+
+* **Space Complexity: O(N + K)**. You need space for the original elements plus 
+space for the K buckets.
+
+#### Key Advantage of Bucket Sort
+
+Bucket Sort's main advantage is its potential to achieve linear time complexity 
+($O(N)$) when the input data is **uniformly distributed** over a known range. 
+This makes it faster than comparison-based sorts like Quick Sort or Merge Sort 
+($O(Nxlog N)$) in specific scenarios.
+
+#### Real-Life Use Case: Sorting Student Scores
+
+Imagine you are a teacher and you have the final scores (percentages, say from 
+0 to 100) of 1000 students for an exam. You want to sort these scores to quickly 
+identify top performers, average performers, and those who struggled.
+
+**Scenario:** You have a list of 1000 student scores, 
+e.g., `[85.2, 91.5, 63.8, 77.0, 99.1, ..., 55.3]`.
+
+**How Bucket Sort Applies:**
+
+1.  **Define Buckets:** You can create 10 buckets, each representing a 10-point range:
+    * Bucket 0: Scores 0-9.99
+    * Bucket 1: Scores 10-19.99
+    * ...
+    * Bucket 9: Scores 90-100 (or 90-99.99, adjusting the last bucket's range)
+
+2.  **Distribute Scores:**
+    * Go through each student's score.
+    * A score of `85.2` goes into Bucket 8 (80-89.99).
+    * A score of `91.5` goes into Bucket 9 (90-100).
+    * A score of `63.8` goes into Bucket 6 (60-69.99).
+    * And so on. Each student's score is placed into its respective bucket.
+
+3.  **Sort Each Bucket:**
+    * Now, you have 10 buckets, each containing a subset of the total scores.
+    * For example, Bucket 8 might have `[85.2, 80.1, 89.9, 83.5]`. You sort just
+    these few scores (e.g., using Insertion Sort) to get `[80.1, 83.5, 85.2, 89.9]`.
+    * You do this for all 10 buckets.
+
+4.  **Combine Sorted Buckets:**
+    * Finally, collect all the sorted scores from Bucket 0, then Bucket 1, then 
+    Bucket 2, all the way up to Bucket 9.
+    * The result is the entire list of 1000 student scores sorted from lowest to 
+    highest.
+
+**Why it's a good use case here:**
+
+* **Known Range:** Scores are typically within a defined range (0-100).
+
+* **Relatively Uniform Distribution:** While not perfectly uniform, student scores 
+often tend to be somewhat spread out across the range, rather than all clustering 
+at one exact score. This prevents the worst-case scenario.
+
+* **Efficiency:** Instead of sorting all 1000 scores at once with a general-purpose 
+algorithm, you're effectively sorting 10 much smaller lists. This often leads to 
+better practical performance due to reduced comparisons and better cache utilization 
+for smaller data chunks.
+
+This "bucketing" strategy is intuitive and often mimics how humans might manually 
+sort items when they have categories or ranges.
 
 
 -------------------------------------------------------------------------------------
-### Q014 : Heap vs Monostack - Problem Identification
+### Q014 : Heap vs Monostack - Problem Identification;;
 
 ---
 
