@@ -25,65 +25,82 @@ import collections
 
 ##---Main Solution
 class Solution:
-
-    def wordPattern(self, pattern: str, s: str) -> bool:
+    
+    def heightChecker(self, nums: List[int]) -> int:
         """
         _stdin: 
-            arg1: str
-            arg2: str
-        _stdout: bool
+            arg1: list[int]
+        _stdout: int
         """
-        p_len = len(pattern)
-        n_len = len(s.split(" "))
-        if n_len != p_len:
-            return False
-        # return self._ansv1(pattern, s)
-        return self._ansv2(pattern, s, n_len, p_len)
-    
-    def _ansv2(self, pattern: str, s: str, n_len: int, p_len: int) -> bool:
-        """
-        _run: accepted (BEST!!!)
-        _code: tc: o(n), sc: o(n), rt: 0 ms, tcz: 44/44
-        _choke:
-        _brief:
-        -  this approach says hashmap cross mapping, which means first we map p_char with 
-        s_char.
-        - simnultaneously we check if there is any difference in our existing mapping 
-        then we return False; else return True at the end;
-        - for eg,
-            pattern = "abba"
-            s = "dog cat cat dog"
-            # p_map and n_map built over loop
-            p_map={'a': 'dog', 'b': 'cat'}
-            s_map={'dog': 'a', 'cat': 'b'}
-        """
-        p_map, s_map = {}, {}
-        s_list = s.split(" ")
-        for p_ch, s_ch in zip(pattern, s_list):
-            if (
-                p_ch in p_map and p_map[p_ch] != s_ch or
-                s_ch in s_map and s_map[s_ch] != p_ch
-            ):
-                return False
-            p_map[p_ch] = s_ch
-            s_map[s_ch] = p_ch
+        n = len(nums)
+        if n == 1:
+            return 0
+        # return self._ansv1(nums, n)
+        # return self._ansv2(nums, n)
+        return self._ansv3(nums, n)
 
-        return True
-    
-    def _ansv1(self, pattern: str, s: str) -> bool:
+    def _ansv3(self, nums: List[int], n: int) -> int:
+        """
+        _run: accepted (code-level-optimization)
+        _code: tc: o(n), sc: o(n), rt: 0ms, tcz: 81/81
+        _choke: none
+        _brief: --- python level optimization only --- 
+        - key factor observed is that we can have only 100 elements and nums[i] <= 100
+        - keeping this fact in mind, we can avoid _ansv2() sorting requirement and use
+        counting sort which can help us with o(n) time complexity same as space. 
+        """
+        count, idx = 0, 0
+        freq_map = collections.Counter(nums) 
+        for exp_height in range(101):
+            freq_count = freq_map.get(exp_height)
+            while freq_count:
+                if nums[idx] != exp_height:
+                    count += 1
+                freq_count -=1
+                idx += 1
+        return count
+
+    def _ansv2(self, nums: List[int], n: int) -> int:
+        """
+        _run: accepted (code-level-optimization)
+        _code: tc: o(n), sc: o(n), rt: 0ms, tcz: 81/81
+        _choke: none
+        _brief: --- optimization of previous sort to counting_sort ~ o(n) --- 
+        - key factor observed is that we can have only 100 elements and nums[i] <= 100
+        - keeping this fact in mind, we can avoid _ansv1() sorting requirement and use
+        counting sort which can help us with o(n) time complexity same as space. 
+        """
+        count = 0
+        freq_map = {}
+        expected = []
+        for num in nums:
+            freq_map[num] = freq_map.get(num, 0) + 1
+        for idx in range(101):
+            val = freq_map.get(idx)
+            if val:
+                while val:
+                    expected.append(idx)
+                    val -= 1
+        for idx in range(n):
+            if expected[idx] != nums[idx]:
+                count += 1
+        return count
+
+    def _ansv1(self, nums: List[int], n: int) -> int:
         """
         _run: accepted
-        _code: tc:o(n), sc: o(1), rt: 0 ms, tcz: 44/44
+        _code: tc: o(nlogn), sc: o(n), tc: o(n), tcz: 81/81
         _choke: none
-        _study: --- python oriented solution ----
-        - first we check length of pattern with length of string in set datastructure.
-        - then we map every string to pattern then convert to set remove duplicacy.
+        _brief:
+        - we calculate the expected string by sorting the existing array and compare every 
+        element to each other;;
+        - for every mismatch we note the $count
         """
-        s_list = s.split(" ")
-        p_set_len = len(set(pattern))
-        s_set_len = len(set(s_list))
-        zip_set_len = len(set(zip(pattern, s_list)))
-        return p_set_len == s_set_len == zip_set_len
+        count = 0
+        expected = sorted(nums)
+        for idx in range(n):
+            count = count+1 if nums[idx] != expected[idx] else count
+        return count 
 
 
 ##---Main Execution;;
