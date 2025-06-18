@@ -7,6 +7,7 @@
 -> Updated : 11/06/2025
 -> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
+-> Q016 : Understanding Merge Sort Algorithm
 -> Q015 : Understanding Bucket Sort Algorithm;;
 -> Q014 : Heap vs Monostack - Problem Identification;;
 -> Q013 : Understanding Heap with DSA Problems Identification;;
@@ -26,6 +27,12 @@
 ````
 
 ### MASTER DSA NOTES : BEGINNING
+
+-------------------------------------------------------------------------------------
+### Q016 : Understanding Merge Sort Algorithm
+
+
+
 
 -------------------------------------------------------------------------------------
 ### Q015 : Understanding Bucket Sort Algorithm;;
