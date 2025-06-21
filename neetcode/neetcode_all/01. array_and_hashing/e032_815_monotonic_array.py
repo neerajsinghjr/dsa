@@ -1,13 +1,13 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: https://leetcode.com/problems/monotonic-array/
+-> Problem Status: Completed
+-> Problem Attempted: 20/06/2025
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
 Problem Statement:
-...
+https://leetcode.com/problems/monotonic-array/description/
 
 -------------------------------------------------------------------------------------
 '''

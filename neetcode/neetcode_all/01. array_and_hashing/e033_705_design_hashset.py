@@ -1,13 +1,13 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: 705. Design HashSet
+-> Problem Status: Completed
+-> Problem Attempted: 21/06/2025
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
 Problem Statement:
-...
+https://leetcode.com/problems/design-hashset/description/
 
 -------------------------------------------------------------------------------------
 '''
