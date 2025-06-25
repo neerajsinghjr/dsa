@@ -1,10 +1,10 @@
 '''
+
 -------------------------------------------------------------------------------------
 -> Problem Title: 84. Largest Rectangle in Histogram
 -> Problem Status: Completed
 -> Problem Attempted: 15/06/2025
 -> Problem Description:
--------------------------------------------------------------------------------------
 
 Problem Statement:
 https://leetcode.com/problems/largest-rectangle-in-histogram/description/
