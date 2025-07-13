@@ -33,14 +33,44 @@ class Solution:
         stdout:
             bool
         """
-        return self._ansv1(s, t)
+        # return self._ansv1(s, t)
         # return self._ansv2(s, t)
         # return self._ansv3(s, t)
+        return self._ansv4(s, t)
+    
+    def _ansv4(self, s, t):
+        """
+        _run: accepted
+        _code: tc: o(n+m), sc: o(n+m), rt: 15 ms, tcz: 53/53
+        _choke: none
+        _brief: --- fix for ansv3() ---
+        - **fix** : whole solution was breaking due to the fact that both the target
+        string len must be same; thats why added a based condition to handle this. 
+        - firstly we map the character counts of target string $s and $t.
+        - next time we opt of iterating over s_map keys and pull the respective char
+        count from the t_map dict
+        - if matching count doesnt match then return false; else True
+        """
+        # if len(s) != len(t):
+        #     return False
+
+        s_map, t_map = {}, {}
+        # map the character occurrences;;
+        for idx in range(len(s)):
+            s_map[s[idx]] = s_map.get(s[idx], 0) + 1
+            t_map[t[idx]] = t_map.get(t[idx], 0) + 1
+        
+        # verify the character occurrences;;
+        for key in s_map:
+            if s_map[key] != t_map.get(key, 0):
+                return False
+              
+        return True
     
     def _ansv3(self, s, t):
         """
         _run: rejected
-        _code: time: o(n+m), space: o(n+m)
+        _code: time:o(n+m), space: o(n+m)
         _choke: failure of testcase like,
             input: s,t = "a", "ab"
             output: true
@@ -50,8 +80,10 @@ class Solution:
             checking the character count of s_map then we should definately 
             verify the other one character count too, the same way.
         """
-        s_map, t_map = {}, {}
+        # if len(s) != len(t):
+        #     return False
 
+        s_map, t_map = {}, {}
         # map the character occurrences;;
         for idx in range(len(s)):
             s_map[s[idx]] = s_map.get(s[idx], 0) + 1
@@ -106,7 +138,6 @@ class Solution:
                 return False
             
         return True
-
 
 ##---Main Execution;;
 def main(res=None):
