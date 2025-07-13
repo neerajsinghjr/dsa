@@ -51,8 +51,8 @@ class Solution:
         count from the t_map dict
         - if matching count doesnt match then return false; else True
         """
-        # if len(s) != len(t):
-        #     return False
+        if len(s) != len(t):
+            return False
 
         s_map, t_map = {}, {}
         # map the character occurrences;;
