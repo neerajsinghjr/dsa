@@ -1,12 +1,13 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: 645. Set Mismatch
+-> Problem Status: Completed
+-> Problem Attempted: 05/08/2025
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-Problem Statement: ...
+Problem Statement:
+https://leetcode.com/problems/set-mismatch/description/
 
 -------------------------------------------------------------------------------------
 '''
@@ -25,9 +26,22 @@ import collections
 ##---Main Solution
 class Solution:
 
-    # Constructor;
-        def __init__(self):
-            pass
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        """
+        _stdin:
+            arg: list[int]
+        _stdout: list[int]
+        """
+        return self._ansv1(nums)
+    
+    def _ansv1(self, nums: List[int]) -> List[int]:
+        """
+        """
+        n = len(nums)
+        n_sum = n*(n+1)//2  # sum of n natural number;;
+        dup_sum = sum(nums)
+        uniq_sum = sum(set(nums))
+        return [dup_sum-uniq_sum, n_sum-uniq_sum]
 
 
 ##---Main Execution;;

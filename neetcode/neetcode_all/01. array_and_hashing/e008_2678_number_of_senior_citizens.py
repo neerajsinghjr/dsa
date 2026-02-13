@@ -1,12 +1,13 @@
 '''
 -------------------------------------------------------------------------------------
--> Problem Title:
--> Problem Status: Ongoing...
--> Problem Attempted:
+-> Problem Title: 2678. Number of Senior Citizens
+-> Problem Status: Completed
+-> Problem Attempted: 17/05/2025
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-Problem Statement: ...
+Problem Statement:
+https://leetcode.com/problems/number-of-senior-citizens/description/
 
 -------------------------------------------------------------------------------------
 '''
@@ -19,7 +20,6 @@ import sys
 import time
 import math
 import random
-import collections
 
 
 ##---Main Solution

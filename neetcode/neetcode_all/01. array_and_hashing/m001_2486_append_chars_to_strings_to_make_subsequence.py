@@ -6,7 +6,8 @@
 -> Problem Description:
 -------------------------------------------------------------------------------------
 
-Problem Statement: ...
+Problem Statement:
+...
 
 -------------------------------------------------------------------------------------
 '''
@@ -19,7 +20,6 @@ import sys
 import time
 import math
 import random
-import collections
 
 
 ##---Main Solution
