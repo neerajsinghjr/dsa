@@ -5737,7 +5737,7 @@ SYNTAX :
 ```py
 from collections import defaultdict
 
-dictionary = defaultdict(list)     
+dictionary = defaultdict(list)
 # here, list is a factory object or iterable objects only.
 # Other options are int, float, str, dict, tuple, set etc.
 ```
