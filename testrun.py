@@ -11,7 +11,7 @@ Exploratory testrun file for python;;
 '''
 import gc
 import sys
-import psutil
+# import psutil
 import random
 import asyncio
 import inspect
@@ -32,8 +32,22 @@ DEBUG = True
 count = 0
 memory = {}
 
-
 def expl():
+    # exploring generator with infinite loop;;
+    def student_roll_call_system():
+        print("Starting Student Roll Call System ...")
+        roll_no = yield
+        while True:
+            print(f"Student Roll No {roll_no}")
+            roll_no = yield
+
+    system_ctl = student_roll_call_system()
+    next(system_ctl)
+    for i in range(1, 5):
+        system_ctl.send("160405100" + str(i))
+
+
+def expl_v32():
 
     def _expl_inspect_module(func, *args, **kwargs):
         # Printing Func related details
@@ -133,7 +147,7 @@ def expl():
     # add(5)  # Call the function
 
 
-def expl_30():
+def expl_v30():
     # concurrent process pool executor;;
     def cpu_intensive(n):
         time.sleep(2)
