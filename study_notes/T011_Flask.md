@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Flask Notes
--> Author : @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Flask Notes
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 12/06/2023
 -> Updated : 23/02/2024
 -> Summary : Notes indices are as follows (**** pending)

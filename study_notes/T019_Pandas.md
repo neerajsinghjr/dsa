@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Pandas
--> Author : @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Pandas
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 2024-04-14
 -> Updated : 2024-04-14
 -> Summary : Notes indices are as follows (**** pending)

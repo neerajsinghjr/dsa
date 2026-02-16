@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Selenium Notes
--> Author: @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Selenium Notes
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 27/08/2022
 -> Updated : 27/08/2022
 -> Summary : Notes indices are as follows (**** pending)

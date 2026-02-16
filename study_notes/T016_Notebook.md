@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Notebook
--> Author : @neeraj-singh-jr
--> Status : Ongoing
+-> Title   : Notebook
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing
 -> Created : 02/11/2023
 -> Updated : 03/02/2025
 -> Summary : Notes indices are as follows (**** pending)

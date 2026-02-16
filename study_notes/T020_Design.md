@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : System Design
--> Author : @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : System Design
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 13/07/2024
 -> Updated : 16/07/2024
 -> Summary : Notes indices are as follows (*** pending)

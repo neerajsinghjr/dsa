@@ -1,11 +1,11 @@
 ````
 -------------------------------------------------------------------------------------
--> Title: Python Diary
--> Author: @neeraj-singh-jr
--> Status: Ongoing...
--> Created: 03/09/2022
--> Updated: 06/06/2025
--> Summary: Notes indices are as follows (*** pending)
+-> Title   : Python Diary
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
+-> Created : 03/09/2022
+-> Updated : 06/06/2025
+-> Summary : Notes indices are as follows (*** pending)
 -------------------------------------------------------------------------------------
 -> Q099 : Closures (Function Encapsulation and Memory Retention);;
 -> Q098 : Closures & Decorators (Delayed Execution and Function References);;

@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Celery Notes
--> Author: @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Celery Notes
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 04/12/2022
 -> Updated : 05/12/2022
 -> Summary : Notes indices are as follows (**** pending)

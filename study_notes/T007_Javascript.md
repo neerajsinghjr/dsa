@@ -1,11 +1,11 @@
 ````
 -------------------------------------------------------------------------------------
--  Title : Javascript Notes
--  Author: @neeraj-singh-jr
--  Status : Ongoing...
--  Created : 12/02/2023
--  Updated : 02/08/2024
--  Summary : Notes indices are as follows (**** pending)
+-  Title    : Javascript Notes
+-  Author   : @neeraj-singh-jr
+-  Status   : Ongoing...
+-  Created  : 12/02/2023
+-  Updated  : 02/08/2024
+-  Summary  : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -  Q006 : Array - Javascript
 -  Q005 : Object - Javascript
