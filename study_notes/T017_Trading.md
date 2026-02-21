@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Stock Trading
--> Author : @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Stock Trading
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 16/12/2023
 -> Updated : 02/05/2024
 -> Summary : Notes indices are as follows (**** pending)

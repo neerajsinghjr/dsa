@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Techlogs
--> Author : @neeraj-singh-jr
--> Status : Ongoing
+-> Title   : Techlogs
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing
 -> Created : 03/02/2025
 -> Updated : 03/02/2025
 -> Summary : Notes indices are as follows (**** pending)

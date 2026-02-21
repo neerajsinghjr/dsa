@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Interview Experiences
--> Author : @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Interview Experiences
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 2024-06-06
 -> Updated : 2024-06-06
 -> Summary : Notes indices are as follows (**** pending)

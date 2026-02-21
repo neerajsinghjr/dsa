@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------f
--> Title : Git Notes
--> Author: @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Git Notes
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 05/12/2022
 -> Updated : 01/06/2025
 -> Summary : Notes indices are as follows (**** pending)

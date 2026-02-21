@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : LangEng
--> Author : @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : LangEng
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 26/04/2025
 -> Updated : 26/04/2025
 -> Summary : Notes indices are as follows (**** pending)

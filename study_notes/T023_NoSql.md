@@ -1,8 +1,8 @@
 ````
 ------------------------------------------------------------------------------------
--  Title : NoSql Notes
--  Author : @neeraj-singh-jr
--  Status : Ongoing...
+-  Title   : NoSql Notes
+-  Author  : @neeraj-singh-jr
+-  Status  : Ongoing...
 -  Created : 10/02/2025
 -  Updated : 15/02/2025
 -  Summary : Notes indices are as follows (**** pending)

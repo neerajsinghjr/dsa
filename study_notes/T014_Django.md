@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Django Notes
--> Author : @neeraj-singh-jr
--> Status : Ongoing
+-> Title   : Django Notes
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing
 -> Created : 09/10/2023
 -> Updated : 20/03/2024
 -> Summary : Notes indices are as follows (**** pending)

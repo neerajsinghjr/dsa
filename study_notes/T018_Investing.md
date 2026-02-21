@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Investments
--> Author : @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Investments
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 02/05/2024
 -> Updated : 02/05/2024
 -> Summary : Notes indices are as follows (**** pending)

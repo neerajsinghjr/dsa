@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--  Title : Sql Notes
--  Author: @neeraj-singh-jr
--  Status : Ongoing...
+-  Title   : Sql Notes
+-  Author  : @neeraj-singh-jr
+-  Status  : Ongoing...
 -  Created : 26/05/2023
 -  Updated : 20/03/2024
 -  Summary : Notes indices are as follows (**** pending)

@@ -1,11 +1,11 @@
 ````
 -------------------------------------------------------------------------------------
--> Title: Postgres Diary
--> Author: @neeraj-singh-jr
--> Status: Ongoing...
--> Created: 15.10.2022
--> Updated: 15.10.2022
--> Summary: Notes indices are as follows (**** pending)
+-> Title   : Postgres Diary
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
+-> Created : 15.10.2022
+-> Updated : 15.10.2022
+-> Summary : Notes indices are as follows (**** pending)
 -------------------------------------------------------------------------------------
 -> P003 : Postgresql - Select
 -> P002 : Connect to the PostgreSQL database server via psql

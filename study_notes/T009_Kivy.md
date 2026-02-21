@@ -1,8 +1,8 @@
 ````
 -------------------------------------------------------------------------------------
--> Title : Python Kivy
--> Author: @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Python Kivy
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 20/02/2023
 -> Updated : 20/02/2024
 -> Summary : Notes indices are as follows (*** pending)

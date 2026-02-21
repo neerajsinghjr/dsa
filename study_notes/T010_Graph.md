@@ -1,8 +1,8 @@
 ```
 -------------------------------------------------------------------------------------
--> Title : Graph Notes
--> Author: @neeraj-singh-jr
--> Status : Ongoing...
+-> Title   : Graph Notes
+-> Author  : @neeraj-singh-jr
+-> Status  : Ongoing...
 -> Created : 25/02/2022
 -> Updated : 25/02/2022
 -> Summary : Notes indices are as follows (**** pending)
