@@ -112,7 +112,7 @@
 ### PYTHON NOTES : BEGINNING 
 
 -------------------------------------------------------------------------------------
-### Q99 : Closures (Function Encapsulation and Memory Retention);;
+### Q099 : Closures (Function Encapsulation and Memory Retention);;
 
 Closures in Python are a way to retain access to variables from an enclosing
 function even after that function has finished executing. 
@@ -163,7 +163,7 @@ retains access to the function it wraps, just like `adder` retains access to
 
 
 -------------------------------------------------------------------------------------
-### Q98 : Closures & Decorators (Delayed Execution and Function References);;
+### Q098 : Closures & Decorators (Delayed Execution and Function References);;
 
 ---
 

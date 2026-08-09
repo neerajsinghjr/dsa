@@ -1047,6 +1047,20 @@ git stash show stash@{0}
 // Show the file content difference in Stash
 git stash show -p stash@{0}
 
+// Remote Origin Addition
+$ git remote add <name> <url>
+eg, git remote add origin https://github.com/neerajsinghjr/dsa.git
+
+// List Remote Origin Endpoint
+$ git remote -v 
+
+// Rename Remote Origin with New Name
+$ git remote rename <oldname> <newname>
+
+// Remove Old Remote Origin Later;;
+$ git remote remove <oldname>
+
+
 ````
 
 
